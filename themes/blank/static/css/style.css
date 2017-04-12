@@ -1,0 +1,11 @@
+/* Basic colors and fonts.  */
+body {
+  background-color: #faf8f8;
+  color: #101730;
+  font-family: "Merriweather";
+  font-size: 14px;
+}
+
+p {
+  line-height: 20px;
+}
