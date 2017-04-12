@@ -1,0 +1,4 @@
+languageCode = "en-us"
+title = "Tobi Lehman"
+baseURL = "http://tobilehman.com"
+theme = "blank"
