@@ -9,3 +9,16 @@ body {
 p {
   line-height: 20px;
 }
+
+table {
+  font-family: "Inconsolata";
+}
+
+tr:nth-child(even) {background: #DDD}
+tr:nth-child(odd) {background: #FFF}
+
+td { padding: 4px; }
+
+code {
+  font-family: "Inconsolata";
+}

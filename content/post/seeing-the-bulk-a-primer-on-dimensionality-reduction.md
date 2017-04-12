@@ -5,7 +5,7 @@ date = "2017-04-12"
 
 +++
 
-If you haven't seen Interstellar, you might not get the reference in the title. Don't sweat it, [[http://interstellarfilm.wikia.com/wiki/Bulk_Beings]["the bulk beings"]] are some advanced civilization that is able to move outside the familiar 3D space that we are stuck in. A similar plot device was used in Edwin Abbott's book Flatland.
+If you haven't seen Interstellar, you might not get the reference in the title. Don't sweat it, [the bulk beings](http://interstellarfilm.wikia.com/wiki/Bulk_Beings) are some advanced civilization that is able to move outside the familiar 3D space that we are stuck in. A similar plot device was used in Edwin Abbott's book Flatland.
 
 Outside of entertainment, there is a lot of value in attempting to understand high dimensional spaces. Physics, machine learning, engineering control systems all make use of higher-dimensional spaces in one way or another.
 
@@ -24,4 +24,7 @@ If we wanted to name the four corners of a tetrahedron,
 
 
 
-
+```
+def sum(a, b):
+    return a+b
+```

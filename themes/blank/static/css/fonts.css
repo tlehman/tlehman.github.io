@@ -26,3 +26,17 @@
   font-style: italic;
 }
 
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/fonts/Inconsolata-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('/fonts/Inconsolata-Bold.ttf');
+  font-weight: bold;
+  font-style: normal;
+}
