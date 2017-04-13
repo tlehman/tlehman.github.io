@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tlehman@home</title>
-    <link>http://tobilehman.com/index.xml</link>
-    <description>Recent content on tlehman@home</description>
+    <title>Machine Learning on tlehman@home</title>
+    <link>http://tobilehman.com/tags/machine-learning/index.xml</link>
+    <description>Recent content in Machine Learning on tlehman@home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Apr 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://tobilehman.com/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Seeing the bulk: a primer on dimensionality reduction</title>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Seeing the bulk: a primer on dimensionality reduction</title>
+	
+	
+	<link rel="stylesheet" href="http://tobilehman.comcss/fonts.css">
+	<link rel="stylesheet" href="http://tobilehman.comcss/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="http://tobilehman.com">tlehman@home</a>
+		<nav>
+			<ul>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Seeing the bulk: a primer on dimensionality reduction</h1>
+			<time>12.04.2017 00:00</time>
+			<div>
+				<p>If you haven&rsquo;t seen Interstellar, you might not get the reference in the title. Don&rsquo;t sweat it, <a href="http://interstellarfilm.wikia.com/wiki/Bulk_Beings">the bulk beings</a> are some advanced civilization that is able to move outside the familiar 3D space that we are stuck in. A similar plot device was used in Edwin Abbott&rsquo;s book Flatland.</p>
+
+<p>Outside of entertainment, there is a lot of value in attempting to understand high dimensional spaces. Physics, machine learning, engineering control systems all make use of higher-dimensional spaces in one way or another.</p>
+
+<p>In this post we will learn how datasets can be thought of as sets of points in a high dimensional space, and then we will learn how to map those sets into low (2 or 3)-dimensional spaces so that we can see them. The goal will be to preserve as much structure as possible, but still fit everything into a space we can see and feel.</p>
+
+<p>Let&rsquo;s start with 1D, real numbers are points on a line, easy. In 2D, we can use a pair (x,y) to name any point in a plane. For 3D, we can use triplets (x,y,z) to name points in a space like the one we physically live in.</p>
+
+<p>If we wanted to name the four corners of a tetrahedron,</p>
+
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>y</th>
+<th>z</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>-1</td>
+<td>-1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>-1</td>
+<td>1</td>
+<td>-1</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>-1</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code>def sum(a, b):
+    return a+b
+</code></pre>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+					<li><a href="/tags/datavis">datavis</a> </li>
+					
+					<li><a href="/tags/machine-learning">machine-learning</a> </li>
+					
+					<li><a href="/tags/math">math</a> </li>
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<aside>
+		<div>
+			<div>
+				<h3>LATEST POSTS</h3>
+			</div>
+			<div>
+				<ul>
+					
+					<li><a href="http://tobilehman.com/posts/seeing-the-bulk-a-primer-on-dimensionality-reduction/">Seeing the bulk: a primer on dimensionality reduction</a></li>
+					
+					<li><a href="http://tobilehman.com/tags/datavis/">Datavis</a></li>
+					
+					<li><a href="http://tobilehman.com/tags/machine-learning/">Machine Learning</a></li>
+					
+					<li><a href="http://tobilehman.com/tags/math/">Math</a></li>
+					
+					<li><a href="http://tobilehman.com/posts/">Posts</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</aside>
+
+	<footer>
+		<p>&copy; 2017 <a href="http://tobilehman.com">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

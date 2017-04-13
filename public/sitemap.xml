@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://tobilehman.com/post/seeing-the-bulk-a-primer-on-dimensionality-reduction/</loc>
+    <loc>http://tobilehman.com/posts/seeing-the-bulk-a-primer-on-dimensionality-reduction/</loc>
     <lastmod>2017-04-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://tobilehman.com/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://tobilehman.com/categories/datavis/</loc>
+    <loc>http://tobilehman.com/tags/datavis/</loc>
     <lastmod>2017-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tobilehman.com/categories/machine-learning/</loc>
+    <loc>http://tobilehman.com/tags/machine-learning/</loc>
     <lastmod>2017-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tobilehman.com/categories/math/</loc>
+    <loc>http://tobilehman.com/tags/math/</loc>
     <lastmod>2017-04-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://tobilehman.com/post/</loc>
+    <loc>http://tobilehman.com/posts/</loc>
     <lastmod>2017-04-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://tobilehman.com/tags/</loc>
     <priority>0</priority>
   </url>
   

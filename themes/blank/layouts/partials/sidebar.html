@@ -1,14 +1,46 @@
-	<aside>
-		<div>
-			<div>
-				<h3>LATEST POSTS</h3>
-			</div>
-			<div>
-				<ul>
-					{{ range first 5 .Site.Pages }}
-					<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-					{{ end }}
-				</ul>
-			</div>
-		</div>
-	</aside>
+<hr>
+<div class="container">
+
+  <aside class="column-left">
+    <div>
+      <div>
+        <h3>About</h3>
+      </div>
+      <div>
+        Mathematician and computer programmer. Lives in rainy Portland, Oregon, United States.
+      </div>
+    </div>
+  </aside>
+
+  <aside class="column-center">
+    <div>
+      <div>
+        <h3>Contact</h3>
+      </div>
+      <div>
+        <ul>
+          <li><img src="/images/about/email.png"></li>
+          <li>PGP fingerprint: <pre>FD0E 4D25 7D77 5AEB</pre></li>
+          <li><a href="https://mastodon.technology/@tlehman">mastodon:@tlehman</a></li>
+          <li><a href="https://keybase.io/tlehman/">keybase:@tlehman</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="column-right">
+    <div>
+      <div>
+        <h3>Latest Posts</h3>
+      </div>
+      <div>
+        <ul>
+          {{ range first 5 .Site.Pages }}
+          <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+          {{ end }}
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+</div>

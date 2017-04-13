@@ -1,0 +1,25 @@
+/* Basic colors and fonts.  */
+body {
+  background-color: #faf8f8;
+  color: #101730;
+  font-family: "Merriweather";
+  font-size: 14px;
+}
+
+p {
+  line-height: 20px;
+}
+
+table {
+  font-family: "Inconsolata";
+}
+
+tr:nth-child(even) {background: #DDD}
+tr:nth-child(odd) {background: #FFF}
+
+td { padding: 4px; }
+
+code {
+  font-family: "Inconsolata";
+  font-size: 16px;
+}
