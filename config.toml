@@ -1,4 +1,16 @@
 languageCode = "en-us"
 title = "tlehman@home"
-baseURL = "http://tobilehman.com"
+baseURL = "https://tobilehman.com"
 theme = "blank"
+
+[[menu.main]]
+    name = "About"
+    pre = ""
+    weight = -110
+    identifier = "about"
+    url = "/about/"
+[[menu.main]]
+    name = "Contact"
+    pre = ""
+    weight = -100
+    url = "/contact/"
