@@ -1,6 +1,6 @@
 languageCode = "en-us"
 title = "tlehman@home"
-baseURL = "https://tobilehman.com"
+baseURL = "/"
 theme = "blank"
 
 [[menu.main]]
