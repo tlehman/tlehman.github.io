@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2013-10-31T00:00:00Z
 title: Modular computing forever?
-url: /2013/10/31/modular-computing-forever/
+url: /blog/2013/10/31/modular-computing-forever/
 ---
 
 I remember building my first computer, I was about 14, I ordered my AMD Athlon XP processor, got a motherboard and case, keyboard, monitor, sound card, graphics card, etc. All that. Assembling it was straighforward, but configuring it was a challenge, getting GNU/Linux and Windows 2000 to dual boot, then getting drivers straight, setting up a shared partition for data sharing. It was rewarding to get it all up and running. I upgraded that computer piece by piece, getting a new graphics card, hard drive, keyboard/mouse, RAM, CPU and eventually a new motherboard.

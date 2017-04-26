@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2012-07-08T00:00:00Z
 title: Switching to a static blog platform
-url: /2012/07/08/switching-to-a-static-blog-platform/
+url: /blog/2012/07/08/switching-to-a-static-blog-platform/
 ---
 
 I have been looking for an alternative to WordPress for a while, one that I can understand at the code level. I found XavierShay's [enki blog](http://enkiblog.com/) platform and I like it a lot, it is made in rails and uses OpenID for authentication. However, I found myself using a text editor to first write my posts and then pasting them into the web editor.

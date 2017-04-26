@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2014-05-02T00:00:00Z
 title: Assurance Contracts with Bitcoin
-url: /2014/05/02/assurance-contracts-with-bitcoin/
+url: /blog/2014/05/02/assurance-contracts-with-bitcoin/
 ---
 
 This is a great [article by Arianna Simpson](http://www.ariannasimpson.com/game-theory-assurance-contracts) about using bitcoin to implement assurance contracts. The example she uses is crowdfunding. 

@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-07-21T00:00:00Z
 title: Probability of getting a numerical SHA-1 hash
-url: /2012/07/21/probability-of-getting-a-numerical-sha-1-hash/
+url: /blog/2012/07/21/probability-of-getting-a-numerical-sha-1-hash/
 ---
 
 Git uses the [SHA-1 hash function](http://en.wikipedia.org/wiki/SHA-1) to ensure the integrity of the data it stores. One important property of this function is that if the input is changed very slightly, the output changes completely. The output is supposed to be indistinguishable from randomness.

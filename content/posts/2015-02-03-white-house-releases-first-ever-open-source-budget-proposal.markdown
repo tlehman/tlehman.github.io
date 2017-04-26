@@ -9,7 +9,7 @@ categories:
 comments: true
 date: 2015-02-03T00:00:00Z
 title: White House releases first ever open source budget proposal
-url: /2015/02/03/white-house-releases-first-ever-open-source-budget-proposal/
+url: /blog/2015/02/03/white-house-releases-first-ever-open-source-budget-proposal/
 ---
 
 The White House just released the [first ever open source budget proposal](https://github.com/WhiteHouse/2016-budget-data). It is released on GitHub, and it's a bunch of CSV files. This is not very difficult, it requires only a few extra clicks when exporting an Excel spreadsheet, but hosting it on GitHub also opens it up to [Pull Requests](https://help.github.com/articles/using-pull-requests/), which I've [talked about before](/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/) as being a much better tool for 21st century democracy. Instead of paper and a bunch of politicians in a room following procedure, we should intead have a digital system where all citizens can contribute as easily as they can update a facebook status or apply an instagram filter.

@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2013-03-17T00:00:00Z
 title: Unmarshalling a list of JSON objects of different type in Go
-url: /2013/03/17/unmarshalling-a-list-of-json-objects-of-different-type-in-go/
+url: /blog/2013/03/17/unmarshalling-a-list-of-json-objects-of-different-type-in-go/
 ---
 
 This post started with mattyw's blog post [Using go to unmarshal json lists with multiple types](http://mattyjwilliams.blogspot.co.uk/2013/01/using-go-to-unmarshal-json-lists-with.html)

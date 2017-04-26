@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-04-30T00:00:00Z
 title: Fixed point in ruby hash function
-url: /2013/04/30/fixed-point-in-ruby-hash-function/
+url: /blog/2013/04/30/fixed-point-in-ruby-hash-function/
 ---
 
 A fixed point of a function  \\( f:S \to S \\) is an element \\(x \in

@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2012-08-18T00:00:00Z
 title: Avoiding a catch-22
-url: /2012/08/18/avoiding-a-catch-22/
+url: /blog/2012/08/18/avoiding-a-catch-22/
 ---
 
 I recently needed to find out if I had a particular version of the .NET

@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2014-05-30T00:00:00Z
 title: Traveling to the Future
-url: /2014/05/30/traveling-to-the-future/
+url: /blog/2014/05/30/traveling-to-the-future/
 ---
 
 Traveling to the future is easy, everyone is doing it at 1 second per second. There are a few possible ways to beat this though, one is relativistic, and the other is thermodynamic:

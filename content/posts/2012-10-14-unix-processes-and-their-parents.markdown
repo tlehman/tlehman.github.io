@@ -9,7 +9,7 @@ categories:
 comments: true
 date: 2012-10-14T00:00:00Z
 title: Visualizing Unix processes and their parents
-url: /2012/10/14/unix-processes-and-their-parents/
+url: /blog/2012/10/14/unix-processes-and-their-parents/
 ---
 
 I am reading Jesse Storimer's fantastic little book ["Working with Unix Processes"](http://workingwithunixprocesses.com/) right now, and inspiration struck after the second chapter "Processes Have Parents".

@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2014-04-04T00:00:00Z
 title: Abusing proverbs
-url: /2014/04/04/abusing-proverbs/
+url: /blog/2014/04/04/abusing-proverbs/
 ---
 
 I recently became a father, and that experience has lead to me to wonder what my son will be like when he his older. It's also lead me remember what I was like when I was younger. I usually didn't take things my teachers said seriously, this has lead to good things and bad.

@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-11-19T00:00:00Z
 title: Fixing spaces in filenames
-url: /2012/11/19/fixing-spaces-in-filenames/
+url: /blog/2012/11/19/fixing-spaces-in-filenames/
 ---
 
 Sorry this has taken so long, I've been working on the [Cryptography Coursera class](https://www.coursera.org/course/crypto), 

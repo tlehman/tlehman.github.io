@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2016-02-08T00:00:00Z
 title: Dockerize all the things
-url: /2016/02/08/dockerize-all-the-things/
+url: /blog/2016/02/08/dockerize-all-the-things/
 ---
 
 Okay, maybe not _all_ the things, but the things that tend to litter your

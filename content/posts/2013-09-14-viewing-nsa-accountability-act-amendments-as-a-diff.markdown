@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-09-14T00:00:00Z
 title: Viewing NSA Accountability Act amendments as a diff
-url: /2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/
+url: /blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/
 ---
 
 A new bill (HR3070) was just introduced a few days ago by Rep. Michael Fitzpatrick [R-PA8]. The bill is:

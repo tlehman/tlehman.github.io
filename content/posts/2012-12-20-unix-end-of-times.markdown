@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2012-12-20T00:00:00Z
 title: Unix end of times
-url: /2012/12/20/unix-end-of-times/
+url: /blog/2012/12/20/unix-end-of-times/
 ---
 
 A lot of people feared the year 2000 because the two digit year date rolled over from 99 to 00, which was believed to cause a lot of problems with time-dependent computer systems.

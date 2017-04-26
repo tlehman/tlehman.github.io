@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2015-01-27T00:00:00Z
 title: Parsing nested expressions using Bison
-url: /2015/01/27/parsing-nested-expressions-using-bison/
+url: /blog/2015/01/27/parsing-nested-expressions-using-bison/
 ---
 
 I modified my [tipcalc](/blog/2015/01/22/tip-calculation-using-bison-grammar/) program to handle expressions of arbitrary depth, so now it can handle input like `((($100 + 2%) + 2%) - 3%) + 3.5%`.

@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2013-01-20T00:00:00Z
 title: Extract array of frames from mp4 using Python OpenCV bindings
-url: /2013/01/20/extract-array-of-frames-from-mp4-using-python-opencv-bindings/
+url: /blog/2013/01/20/extract-array-of-frames-from-mp4-using-python-opencv-bindings/
 ---
 
 OpenCV is a mature Computer Vision library written in C++. There are python bindings available that make working with the library very convenient.

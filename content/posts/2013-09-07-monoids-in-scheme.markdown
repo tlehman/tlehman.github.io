@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-09-07T00:00:00Z
 title: Monoids in Scheme
-url: /2013/09/07/monoids-in-scheme/
+url: /blog/2013/09/07/monoids-in-scheme/
 ---
 
 There is a structure in abstract algebra called a monoid. There are several ways to define a monoid, but before we start, we should answer the obvious question: *why should you care?*

@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2015-11-11T00:00:00Z
 title: How to set up LetsEncrypt (free SSL/TLS certs)
-url: /2015/11/11/how-to-set-up-letsencrypt-free-ssl-slash-tls-certs/
+url: /blog/2015/11/11/how-to-set-up-letsencrypt-free-ssl-slash-tls-certs/
 ---
 
 First, for those who don't know what LetsEncrypt is, it is a project by the [EFF](https://www.eff.org/) to create a legitimate certificate authority that doesn't charge. Up until now, certificate authorities charged, creating a financial barrier for many to use SSL/TLS to secure their site. It's true that the prices weren't unreasonable, but it's just enough to prevent many people from choosing to reap the benefits of encryption. As far back as 2012, Jeff Atwood argued in a [blog post](http://blog.codinghorror.com/should-all-web-traffic-be-encrypted/) that we should make SSL default for web pages, but acknowledged that it would take a while for it to be the default:

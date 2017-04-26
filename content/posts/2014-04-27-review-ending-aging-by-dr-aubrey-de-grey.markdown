@@ -9,7 +9,7 @@ categories:
 comments: true
 date: 2014-04-27T00:00:00Z
 title: 'Review: Ending Aging by Dr. Aubrey de Grey (and some math about immortality)'
-url: /2014/04/27/review-ending-aging-by-dr-aubrey-de-grey/
+url: /blog/2014/04/27/review-ending-aging-by-dr-aubrey-de-grey/
 ---
 
 I just finished reading [Dr. Aubrey de Grey](https://en.wikipedia.org/wiki/Aubrey_de_Grey)'s _Ending Aging:  The Rejuvenation Breakthroughs that Could Reverse Human Aging in Our Lifetime (2007)_, it was an accessible introduction to the biology of aging, and a way that it might be defeated. By default, I am skeptical about anti-aging techniques or claims of some sort of fountain of youth. I've heard de Gray's idea on a podcast, and watched his TED talk. It sounded reasonable, but I wanted to learn more about the science to have a more informed opinion, so I read the book.

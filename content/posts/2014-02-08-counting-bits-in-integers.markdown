@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2014-02-08T00:00:00Z
 title: Counting bits in integers
-url: /2014/02/08/counting-bits-in-integers/
+url: /blog/2014/02/08/counting-bits-in-integers/
 ---
 
 While working on the code to count the number of fifteens I had in a hand in cribbage, I found it would be useful to count the number of bits in an integer. The comment below explains why it is useful.

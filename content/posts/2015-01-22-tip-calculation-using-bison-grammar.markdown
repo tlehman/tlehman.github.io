@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2015-01-22T00:00:00Z
 title: Tip calculation using Bison grammar
-url: /2015/01/22/tip-calculation-using-bison-grammar/
+url: /blog/2015/01/22/tip-calculation-using-bison-grammar/
 ---
 
 As long as I've been able to do arithmetic, I've been able to figure out calculating taxes and tips, it's easy. Given a 

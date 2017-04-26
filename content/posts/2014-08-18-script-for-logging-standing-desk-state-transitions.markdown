@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2014-08-18T00:00:00Z
 title: script for logging standing desk state transitions
-url: /2014/08/18/script-for-logging-standing-desk-state-transitions/
+url: /blog/2014/08/18/script-for-logging-standing-desk-state-transitions/
 ---
 
 At work I have an adjustible-height desk, that way it can be both a standing or a sitting desk.

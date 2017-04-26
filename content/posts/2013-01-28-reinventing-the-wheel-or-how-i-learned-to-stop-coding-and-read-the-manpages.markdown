@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2013-01-28T00:00:00Z
 title: 'Reinventing the wheel: Or how I learned to stop coding and read the manpages'
-url: /2013/01/28/reinventing-the-wheel-or-how-i-learned-to-stop-coding-and-read-the-manpages/
+url: /blog/2013/01/28/reinventing-the-wheel-or-how-i-learned-to-stop-coding-and-read-the-manpages/
 ---
 
 About a month ago I [wrote about a command line utility](/blog/2012/12/30/building-command-line-utilities-in-ruby-that-play-well-with-the-rest-of-the-unix-utilities/) I made that calculates word and character frequencies. It was packaged as a ruby gem and it interacted well with the Unix pipeline interface.

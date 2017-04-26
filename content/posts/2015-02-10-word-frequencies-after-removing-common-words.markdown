@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2015-02-10T00:00:00Z
 title: Word frequencies after removing common words
-url: /2015/02/10/word-frequencies-after-removing-common-words/
+url: /blog/2015/02/10/word-frequencies-after-removing-common-words/
 ---
 
 In taking the [Coursera class on Mining Massive Datasets](https://class.coursera.org/mmds-002), the problem of computing word frequency for very large documents came up. I wanted some convenient tools for breaking documents into streams of words, and also a tool to remove common words like 'the', so I wrote up `words` and `decommonize`. The `decommonize` script is just a big `grep -v '(foo|bar|baz)'`, where the words foo, bar and baz come from the words in a file. I made a script `generate_decommonize` that reads in a list of common words, and builds the regex for `grep -v`.

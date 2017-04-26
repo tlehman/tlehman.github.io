@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2012-07-31T00:00:00Z
 title: Convention over configuration, unless those conventions don't make sense
-url: /2012/07/31/convention-over-configuration-unless-those-conventions-dont-make-sense/
+url: /blog/2012/07/31/convention-over-configuration-unless-those-conventions-dont-make-sense/
 ---
 
 Ruby on Rails is a so-called opinionated framework, this means that it bakes in a bunch of conventions for how applications should be built. By following these conventions, you can write less code, and make more software. This is great, unless some of those conventions depend on something inconsistent or irregular.

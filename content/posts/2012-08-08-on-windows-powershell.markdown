@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-08-08T00:00:00Z
 title: On Windows PowerShell
-url: /2012/08/08/on-windows-powershell/
+url: /blog/2012/08/08/on-windows-powershell/
 ---
 
 If you use both Unix-like and Windows operating systems, then you have

@@ -10,7 +10,7 @@ categories:
 comments: true
 date: 2016-01-07T00:00:00Z
 title: Set up Mailinabox with LetsEncrypt
-url: /2016/01/07/set-up-mailinabox-with-letsencrypt/
+url: /blog/2016/01/07/set-up-mailinabox-with-letsencrypt/
 ---
 
 If you are not familiar with the [EFF](https://eff.org) or their great project [LetsEncrypt](https://letsencrypt.org),

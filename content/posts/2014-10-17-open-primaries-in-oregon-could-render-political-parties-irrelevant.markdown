@@ -4,7 +4,7 @@ categories:
 comments: true
 date: 2014-10-17T00:00:00Z
 title: Open Primaries in Oregon could render political parties irrelevant
-url: /2014/10/17/open-primaries-in-oregon-could-render-political-parties-irrelevant/
+url: /blog/2014/10/17/open-primaries-in-oregon-could-render-political-parties-irrelevant/
 ---
 
 There is a promising measure on the Oregon ballot this year, [Measure 90](http://www.90fororegon.org/).

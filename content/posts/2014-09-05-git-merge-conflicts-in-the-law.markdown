@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2014-09-05T00:00:00Z
 title: Git merge conflicts in the Law
-url: /2014/09/05/git-merge-conflicts-in-the-law/
+url: /blog/2014/09/05/git-merge-conflicts-in-the-law/
 ---
 
 Short post, just wanted to share this:

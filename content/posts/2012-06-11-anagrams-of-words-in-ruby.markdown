@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-06-11T00:00:00Z
 title: Anagrams of words in ruby
-url: /2012/06/11/anagrams-of-words-in-ruby/
+url: /blog/2012/06/11/anagrams-of-words-in-ruby/
 ---
 
 One thing that is nice about Ruby is the ability it gives you to peel open a class and stick new methods into an object or class while the program is running. As an example, we will use the Array#permutation method to implement an anagram method for any string. We start by opening up the class: 

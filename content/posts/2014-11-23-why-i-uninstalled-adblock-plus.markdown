@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2014-11-23T00:00:00Z
 title: Why I uninstalled Adblock plus
-url: /2014/11/23/why-i-uninstalled-adblock-plus/
+url: /blog/2014/11/23/why-i-uninstalled-adblock-plus/
 ---
 
 The most common business models on the internet are:

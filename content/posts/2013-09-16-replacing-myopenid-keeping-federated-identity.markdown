@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-09-16T00:00:00Z
 title: Replacing MyOpenID, keeping Federated Identity
-url: /2013/09/16/replacing-myopenid-keeping-federated-identity/
+url: /blog/2013/09/16/replacing-myopenid-keeping-federated-identity/
 ---
 
 For those unfamiliar with OpenID, [Jeff Atwood at Coding Horror has a nice description of OpenID](http://www.codinghorror.com/blog/2008/05/openid-does-the-world-really-need-yet-another-username-and-password.html), it's benefits, drawbacks and user experience.

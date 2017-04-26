@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2014-12-31T00:00:00Z
 title: Standing desk histogram
-url: /2014/12/31/standing-desk-histogram/
+url: /blog/2014/12/31/standing-desk-histogram/
 ---
 
 A while back I wrote about a program to [record changing the state of an adjustible height standing desk](/blog/2014/08/18/script-for-logging-standing-desk-state-transitions/)

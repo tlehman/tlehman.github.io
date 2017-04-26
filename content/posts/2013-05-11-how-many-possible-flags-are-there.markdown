@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2013-05-11T00:00:00Z
 title: How many possible flags are there?
-url: /2013/05/11/how-many-possible-flags-are-there/
+url: /blog/2013/05/11/how-many-possible-flags-are-there/
 ---
 
 I have been thinking about Mars a lot more lately, and about possible colonization. The [Mars One](http://mars-one.com/) project is a non-governmental not-for-profit organization that is looking to send groups of four people, independent of nationality, to Mars in 2023.

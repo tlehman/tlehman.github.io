@@ -9,7 +9,7 @@ categories:
 comments: true
 date: 2013-04-07T00:00:00Z
 title: Visualization of SICP Exercise 1.14
-url: /2013/04/07/visualization-of-sicp-exercise-1-dot-14/
+url: /blog/2013/04/07/visualization-of-sicp-exercise-1-dot-14/
 ---
 
 I am currently working my way the [Structure and Interpretation of

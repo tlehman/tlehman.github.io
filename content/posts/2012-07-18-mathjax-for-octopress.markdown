@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2012-07-18T00:00:00Z
 title: MathJax for Octopress
-url: /2012/07/18/mathjax-for-octopress/
+url: /blog/2012/07/18/mathjax-for-octopress/
 ---
 
 I have had many blogs in the past that had some mathematical flights of fancy on them. Part of it was a log of fun things I was exploring, and another part was just showing off the neat capabilities of the CodeCogs LaTeX equation editor or some wordpress plugin that did the same thing. In one rare case, I (incorrectly) debunked an argument that [&pi; = 4](http://28.media.tumblr.com/tumblr_lbxrvcK4pk1qbylvso1_400.png).

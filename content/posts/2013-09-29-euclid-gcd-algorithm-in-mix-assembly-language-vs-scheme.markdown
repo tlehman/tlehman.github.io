@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2013-09-29T00:00:00Z
 title: Euclid's Algorithm in MIX assembly language vs Scheme
-url: /2013/09/29/euclid-gcd-algorithm-in-mix-assembly-language-vs-scheme/
+url: /blog/2013/09/29/euclid-gcd-algorithm-in-mix-assembly-language-vs-scheme/
 ---
 
 I wrote my first assembly language program today, it was written in

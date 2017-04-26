@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-08-26T00:00:00Z
 title: Make your own Nexus 7 charging stand
-url: /2012/08/26/make-your-own-nexus-7-charging-stand/
+url: /blog/2012/08/26/make-your-own-nexus-7-charging-stand/
 ---
 
 If you have one of Google's awesome [Nexus 7 tablets](http://www.google.com/nexus/#/), but don't have a

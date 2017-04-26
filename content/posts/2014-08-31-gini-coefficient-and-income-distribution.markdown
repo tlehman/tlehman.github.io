@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2014-08-31T00:00:00Z
 title: Gini Coefficient and Income Distribution
-url: /2014/08/31/gini-coefficient-and-income-distribution/
+url: /blog/2014/08/31/gini-coefficient-and-income-distribution/
 ---
 
 The gini coefficient is a measure of income inequality. It is calculated by ordering the given population by income, then calculating the cumulative distribution, and finding out how much it deviates from total equality.

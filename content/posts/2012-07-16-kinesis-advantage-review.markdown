@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2012-07-16T00:00:00Z
 title: Kinesis Advantage Review
-url: /2012/07/16/kinesis-advantage-review/
+url: /blog/2012/07/16/kinesis-advantage-review/
 ---
 
 After reading Phil Haack's [the Real Pain of Software Development (part 2)](http://haacked.com/archive/2012/04/16/The-Real-Pain-Of-Software-Development-2.aspx.aspx) and several other stories of long-time programmers who have had pain in the wrists and back, I became a bit more concerned about trying to build good habits now to avoid problems later. Namely, finger movement.

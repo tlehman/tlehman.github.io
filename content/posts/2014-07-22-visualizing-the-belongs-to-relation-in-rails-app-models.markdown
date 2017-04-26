@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2014-07-22T00:00:00Z
 title: Visualizing the 'belongs to' relation in rails app models
-url: /2014/07/22/visualizing-the-belongs-to-relation-in-rails-app-models/
+url: /blog/2014/07/22/visualizing-the-belongs-to-relation-in-rails-app-models/
 ---
 
 When working on rails apps, I usually have to make a mental map of the models and how they interrelate.

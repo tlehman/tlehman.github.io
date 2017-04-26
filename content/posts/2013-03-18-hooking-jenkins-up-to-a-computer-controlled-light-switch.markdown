@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-03-18T00:00:00Z
 title: Hooking Jenkins up to a computer-controlled light switch
-url: /2013/03/18/hooking-jenkins-up-to-a-computer-controlled-light-switch/
+url: /blog/2013/03/18/hooking-jenkins-up-to-a-computer-controlled-light-switch/
 ---
 
 About a week ago I [wrote about how to hook up a light switch to a raspberry pi](/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/). Having a computer-controlled light switch is nice, but the novelty wears off pretty quickly. The next question that arises usually is _how can I make this useful?_

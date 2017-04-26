@@ -3,7 +3,7 @@ categories: outernet, information, earth
 comments: true
 date: 2015-07-15T00:00:00Z
 title: Please Steal This Blog Post
-url: /2015/07/15/please-steal-this-blog-post/
+url: /blog/2015/07/15/please-steal-this-blog-post/
 ---
 
 I believe that free access to information is a [human right](http://www.un.org/en/documents/udhr/index.shtml#a19). The Internet has dramatically enhanced our ability to exercise this right, but unfortunately most humans cannot access the Internet. Today, over 4.3 billion people cannot connect to the Internet at all and another roughly 1 billion people have their Internet connections censored or monitored. A world where only 20% of humans have truly free access to digital information is unacceptable.

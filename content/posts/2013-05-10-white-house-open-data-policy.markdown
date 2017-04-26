@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2013-05-10T00:00:00Z
 title: White House Open Data Policy
-url: /2013/05/10/white-house-open-data-policy/
+url: /blog/2013/05/10/white-house-open-data-policy/
 ---
 
 Just yesterday, President Obama signed an [executive order](http://www.whitehouse.gov/the-press-office/2013/05/09/executive-order-making-open-and-machine-readable-new-default-government-) that requires government agencies to publish their data in "open, machine readable formats":

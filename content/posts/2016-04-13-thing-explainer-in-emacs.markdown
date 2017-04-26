@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2016-04-13T00:00:00Z
 title: Thing explainer in emacs
-url: /2016/04/13/thing-explainer-in-emacs/
+url: /blog/2016/04/13/thing-explainer-in-emacs/
 ---
 
 [This](https://github.com/tlehman/etc/blob/master/common-words.el) is my first [major mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Major-Modes.html) for emacs. 

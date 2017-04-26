@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-06-18T00:00:00Z
 title: Analyzing Bash History and Fixing Typos
-url: /2013/06/18/analyzing-bash-history-and-fixing-typos/
+url: /blog/2013/06/18/analyzing-bash-history-and-fixing-typos/
 ---
 
 At the command line, I frequently type things too fast, and typos abound. A single character can mean the difference between showing documentation and deleting files (`rm` vs `ri`), so autocorrect is definitely a bad idea in this context.

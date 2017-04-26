@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-09-04T00:00:00Z
 title: Optimize your vote using statistics
-url: /2012/09/04/optimize-your-vote-using-statistics/
+url: /blog/2012/09/04/optimize-your-vote-using-statistics/
 ---
 
 I used to hate the phrase "throwing your vote away.". This is usually

@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2014-01-10T00:00:00Z
 title: Political parties are more like tribes than consistent philosophies
-url: /2014/01/10/political-parties-are-more-like-tribes-than-consistent-philosophies/
+url: /blog/2014/01/10/political-parties-are-more-like-tribes-than-consistent-philosophies/
 ---
 
 Much of political opinion is rationalized groupthink, [this article](http://www.washingtonpost.com/blogs/wonkblog/wp/2014/01/10/the-depressing-psychological-theory-that-explains-washington/) argues this by using a list of 5 political proposals written from a [liberal viewpoint](http://www.rollingstone.com/politics/news/five-economic-reforms-millennials-should-be-fighting-for-20140103#ixzz2pMmIpUzc), and then re-written [from a conservative viewpoint](http://www.washingtonpost.com/blogs/wonkblog/wp/2014/01/07/five-conservative-reforms-millennials-should-be-fighting-for/), the results are telling.

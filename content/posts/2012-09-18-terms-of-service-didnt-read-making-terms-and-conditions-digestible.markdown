@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-09-18T00:00:00Z
 title: 'Terms of Service; Didn''t Read: Making terms and conditions digestible'
-url: /2012/09/18/terms-of-service-didnt-read-making-terms-and-conditions-digestible/
+url: /blog/2012/09/18/terms-of-service-didnt-read-making-terms-and-conditions-digestible/
 ---
 
 Suppose you are signing up for some web service, and you are getting close to the end of the process. Inevitably, you are presented with the Terms, Conditions and Privacy Policy for the service. 

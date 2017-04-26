@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2013-03-10T00:00:00Z
 title: Make a computer-controlled light switch with a Raspberry Pi
-url: /2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/
+url: /blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/
 ---
 
 To build a computer-controlled light switch, you will need:

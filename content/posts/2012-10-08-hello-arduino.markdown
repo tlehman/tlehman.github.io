@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2012-10-08T00:00:00Z
 title: Hello Arduino
-url: /2012/10/08/hello-arduino/
+url: /blog/2012/10/08/hello-arduino/
 ---
 
 I have heard of Arduino and physical computing platforms before but have never really played with them. As preparation for building a robot, I wanted to get a feel for microcontrollers.

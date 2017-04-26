@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-09-26T00:00:00Z
 title: Why do we need more than one language?
-url: /2012/09/26/why-do-we-need-more-than-one-language/
+url: /blog/2012/09/26/why-do-we-need-more-than-one-language/
 ---
 
 My dad asked me an interesting question recently, *why do we need more than one programming language?*. I gave a short answer: *we don't*.

@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2015-04-23T00:00:00Z
 title: Bayesian Drunk Driving
-url: /2015/04/23/bayesian-drunk-driving/
+url: /blog/2015/04/23/bayesian-drunk-driving/
 ---
 
 Driving drunk is illegal for a good reason, it's way riskier than driving sober. This article isn't about driving drunk 

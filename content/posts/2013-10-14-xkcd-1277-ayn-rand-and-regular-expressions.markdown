@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2013-10-14T00:00:00Z
 title: 'XKCD 1277: Ayn Rand and Regular Expressions'
-url: /2013/10/14/xkcd-1277-ayn-rand-and-regular-expressions/
+url: /blog/2013/10/14/xkcd-1277-ayn-rand-and-regular-expressions/
 ---
 
 Randall Munroe of XKCD is brilliant, today's comic is no exception:

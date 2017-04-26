@@ -2,6 +2,7 @@ languageCode = "en-us"
 title = "tlehman@home"
 baseURL = "/"
 theme = "blank"
+paginate = 3
 
 [[menu.main]]
     name = "About"
@@ -14,3 +15,4 @@ theme = "blank"
     pre = ""
     weight = -100
     url = "/contact/"
+

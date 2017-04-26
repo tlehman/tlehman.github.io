@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2015-10-01T00:00:00Z
 title: Gun control and safety
-url: /2015/10/01/gun-control-and-safety/
+url: /blog/2015/10/01/gun-control-and-safety/
 ---
 
 Another mass shooting happened today. I don't usually write about this, but it happened in Roseberg, Oregon, close to where I live. Too close. I do understand that it is morally equivalent to a mass shooting in Ethiopia, Indonesia, the Netherlands or Australia, but something about events being close by have a bigger emotional impact.

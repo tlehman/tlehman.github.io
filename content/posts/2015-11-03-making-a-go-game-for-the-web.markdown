@@ -12,7 +12,7 @@ categories:
 comments: true
 date: 2015-11-03T00:00:00Z
 title: Making a Go Game for the Web
-url: /2015/11/03/making-a-go-game-for-the-web/
+url: /blog/2015/11/03/making-a-go-game-for-the-web/
 ---
 
 I've been feeling productive in the last few weeks. I just finished two Coursera classes, one in machine learning and one in Swift programming. I also finished my minimum viable go game: [goga.me](http://goga.me). And we are working on a really exciting feature at work. I really like having lots of interesting things to work on. Anyway, enough feelings, you came here for games and code.

@@ -12,7 +12,7 @@ categories:
 comments: true
 date: 2015-08-04T00:00:00Z
 title: 'Review: The Warmth of Other Suns by Isabel Wilkerson'
-url: /2015/08/04/review-the-warmth-of-other-suns-by-isabel-wilkerson/
+url: /blog/2015/08/04/review-the-warmth-of-other-suns-by-isabel-wilkerson/
 ---
 
 Isabel Wilkerson's riveting book about the Great Migration of African-Americans out of the south is the perfect blend of narrative and statisitcs.

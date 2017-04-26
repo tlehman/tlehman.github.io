@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2014-02-23T00:00:00Z
 title: How contract Law could become a form of computing
-url: /2014/02/23/how-contract-law-could-become-a-form-of-computing/
+url: /blog/2014/02/23/how-contract-law-could-become-a-form-of-computing/
 ---
 
 Since 2012, when I first heard about Bitcoin, I've thought it was a very cool application of cryptography and peer-to-peer networks that solves the problem of double spending and runaway inflation. Other than that, I didn't really think it was revolutionary, but a [recent article](http://thoughtinfection.com/2014/02/22/we-are-becoming-programmable-society/) by [@ThoughtInfected](https://twitter.com/ThoughtInfected) has changed my mind.

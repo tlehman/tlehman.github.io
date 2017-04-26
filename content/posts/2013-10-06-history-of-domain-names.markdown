@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2013-10-06T00:00:00Z
 title: History of Domain Names
-url: /2013/10/06/history-of-domain-names/
+url: /blog/2013/10/06/history-of-domain-names/
 ---
 
 In trying to understand [DNS](https://en.wikipedia.org/wiki/Domain_Name_System) better, I stumbled upon this little bit of history in [RFC 1034](http://www.ietf.org/rfc/rfc1034.txt):

@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-04-03T00:00:00Z
 title: Lies Damned Lies and Statistics
-url: /2013/04/03/lies-damned-lies-and-statistics/
+url: /blog/2013/04/03/lies-damned-lies-and-statistics/
 ---
 
 There is a quote, usually attributed to Mark Twain that goes something 

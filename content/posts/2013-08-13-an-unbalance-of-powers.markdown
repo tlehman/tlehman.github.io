@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2013-08-13T00:00:00Z
 title: An unbalance of powers
-url: /2013/08/13/an-unbalance-of-powers/
+url: /blog/2013/08/13/an-unbalance-of-powers/
 ---
 
 About three months ago I wrote about the [White House Open Data Policy and the balance of the three main branches of government](/blog/2013/05/10/white-house-open-data-policy/). This was shortly before the new evidence of the [far-reaching NSA domestic surveillance programs](https://www.eff.org/nsa-spying/timeline) was revealed by Edward Snowden.

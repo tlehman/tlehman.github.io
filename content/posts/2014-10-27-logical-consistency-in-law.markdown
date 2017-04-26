@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2014-10-27T00:00:00Z
 title: Logical consistency in Law
-url: /2014/10/27/logical-consistency-in-law/
+url: /blog/2014/10/27/logical-consistency-in-law/
 ---
 
 Washington state has two contradictory initiatives on the ballot this year.

@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2012-12-26T00:00:00Z
 title: 'What languages fix: graphically'
-url: /2012/12/26/what-languages-fix-graphically/
+url: /blog/2012/12/26/what-languages-fix-graphically/
 ---
 
 Paul Graham's article [What languages fix](http://www.paulgraham.com/fix.html) is about Kevin Kelleher's description of each programming language in terms of the problems with other languages that it fixes. I decided to make this into a graph where each node is a language, and the edge represents the relation "x fixes y".

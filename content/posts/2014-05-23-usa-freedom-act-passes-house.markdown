@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2014-05-23T00:00:00Z
 title: USA FREEDOM Act passes house
-url: /2014/05/23/usa-freedom-act-passes-house/
+url: /blog/2014/05/23/usa-freedom-act-passes-house/
 ---
 
 About 9 months ago I wrote about [NSA bulk spying and how the way the FISA court is being used upsets the balance of powers in the government](/blog/2013/08/13/an-unbalance-of-powers/), the [two](https://www.govtrack.us/congress/bills/113/hr2586) [bills](https://www.govtrack.us/congress/bills/113/hr2761) I referenced have a 4% and 2% chance of being enacted, according to GovTrack. Both of those bills still haven't left the House, and chances are they won't.

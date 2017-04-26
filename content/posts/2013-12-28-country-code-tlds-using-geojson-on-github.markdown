@@ -8,7 +8,7 @@ categories:
 comments: true
 date: 2013-12-28T00:00:00Z
 title: Country code TLDs using GeoJSON on Github
-url: /2013/12/28/country-code-tlds-using-geojson-on-github/
+url: /blog/2013/12/28/country-code-tlds-using-geojson-on-github/
 ---
 
 There are more country code top-level domains (ccTLDs) than there are countries, that is because territories such as [Wallis and Futuna](https://en.wikipedia.org/wiki/Wallis_and_Futuna) has the ccTLD `.wf`, even though it's a French territory, not a country.

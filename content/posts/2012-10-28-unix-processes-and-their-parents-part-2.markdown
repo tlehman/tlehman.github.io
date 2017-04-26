@@ -10,7 +10,7 @@ categories:
 comments: true
 date: 2012-10-28T00:00:00Z
 title: Unix Processes and Their Parents Part 2
-url: /2012/10/28/unix-processes-and-their-parents-part-2/
+url: /blog/2012/10/28/unix-processes-and-their-parents-part-2/
 ---
 
 Based on a comment by Mark Essel from [part 1](/blog/2012/10/14/unix-processes-and-their-parents/) I have been trying

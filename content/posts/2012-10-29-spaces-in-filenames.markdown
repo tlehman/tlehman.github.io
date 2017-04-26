@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2012-10-29T00:00:00Z
 title: Spaces in filenames
-url: /2012/10/29/spaces-in-filenames/
+url: /blog/2012/10/29/spaces-in-filenames/
 ---
 
 I don't like spaces in filenames. This trend started when I started playing with the command line on Linux 

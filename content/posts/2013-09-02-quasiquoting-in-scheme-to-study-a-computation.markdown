@@ -5,7 +5,7 @@ categories:
 comments: true
 date: 2013-09-02T00:00:00Z
 title: Quasiquoting in Scheme to study a computation
-url: /2013/09/02/quasiquoting-in-scheme-to-study-a-computation/
+url: /blog/2013/09/02/quasiquoting-in-scheme-to-study-a-computation/
 ---
 
 While working though [Structure and Interpretation of Computer Programs](https://mitpress.mit.edu/sicp/), I came across the definition of the `fold-right` function:

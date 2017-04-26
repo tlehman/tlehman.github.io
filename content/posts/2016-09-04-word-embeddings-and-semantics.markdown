@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2016-09-04T00:00:00Z
 title: word embeddings and semantics
-url: /2016/09/04/word-embeddings-and-semantics/
+url: /blog/2016/09/04/word-embeddings-and-semantics/
 ---
 
 Can a machine understand what a word means? Right now machines routinely correct spelling and grammar, but are pretty useless when it comes to semantics.

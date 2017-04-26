@@ -6,7 +6,7 @@ categories:
 comments: true
 date: 2013-12-08T00:00:00Z
 title: Point Time Machine at any destination
-url: /2013/12/08/point-time-machine-at-any-destination/
+url: /blog/2013/12/08/point-time-machine-at-any-destination/
 ---
 
 ## Set up Time Machine (on Mac OS X) to back up to any network volume

@@ -7,7 +7,7 @@ categories:
 comments: true
 date: 2013-02-18T00:00:00Z
 title: Swap values in C without intermediate variable
-url: /2013/02/18/swap-values-in-c-without-intermediate-variable/
+url: /blog/2013/02/18/swap-values-in-c-without-intermediate-variable/
 ---
 
 Using the following properties of the XOR function:
