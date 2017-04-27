@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Physics on tlehman@home</title>
+    <link>/categories/physics/index.xml</link>
+    <description>Recent content in Physics on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/physics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Traveling to the Future</title>
+      <link>/blog/2014/05/30/traveling-to-the-future/</link>
+      <pubDate>Fri, 30 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/05/30/traveling-to-the-future/</guid>
+      <description>
+
+&lt;p&gt;Traveling to the future is easy, everyone is doing it at 1 second per second. There are a few possible ways to beat this though, one is relativistic, and the other is thermodynamic:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Time_dilation&#34;&gt;Relativistic time dilation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Cryonics&#34;&gt;Cryonics (suspended animation)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;special-relativity&#34;&gt;Special Relativity&lt;/h2&gt;
+
+&lt;p&gt;For time dilation, you can simply travel at a very high speed. The time dilation (or Lorentz) factor is&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ \gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}} $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;So suppose you are flying away from Earth at v meters per second for t seconds, then your clock is slower by a factor of &amp;gamma;. If you turned around and traveled back at v meters per second, you would arrive at Earth having experienced 2t seconds, whereas &amp;gamma;(2t) Earth seconds would have passed.&lt;/p&gt;
+
+&lt;p&gt;As a concrete example, suppose you traveled away from Earth at 99.49% the speed of light for 10 years, then &amp;gamma; = 10, meaning that 100 Earth years would have passed. Then, you turn around and head home at the same speed, after 10 years, you arrive. However, if you left in 2014, you would have aged 20 years, but it would be year 2214 back on Earth, you would have effectively traveled 200 years into the future.&lt;/p&gt;
+
+&lt;p&gt;The big thing preventing this from being applied any time soon is energy. Kinetic energy is given by ½mv&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ K = \frac{1}{2}mv^2 $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Assuming the spacecraft has the same mass as the &lt;a href=&#34;http://www.spacex.com/dragon&#34;&gt;SpaceX Dragon capsule&lt;/a&gt;, which is 6,000kg, The energy of motion for traveling at 99.49% the speed of light would be &lt;a href=&#34;http://www.wolframalpha.com/input/?i=%281%2F2%29%284200kg%29%280.9949*299%2C792%2C458+m%2Fs%29%5E2&#34;&gt;(&lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt;)(6000kg)(0.9949*c)&lt;sup&gt;2&lt;/sup&gt; = 1.868x10&lt;sup&gt;20&lt;/sup&gt;kg m&lt;sup&gt;2&lt;/sup&gt; / s&lt;sup&gt;2&lt;/sup&gt; &lt;/a&gt; or about 0.44 times the amount of energy consumed by the world in 2001.&lt;/p&gt;
+
+&lt;p&gt;While that amount of energy is available to humanity, it would need to be carried by the spacecraft, which would add to the mass. The relativistic option may not be possible until humans become a &lt;a href=&#34;https://en.wikipedia.org/wiki/Kardashev_scale&#34;&gt;Type II civilization&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;cryonics&#34;&gt;Cryonics&lt;/h2&gt;
+
+&lt;p&gt;The trip to the future using cryonics would require far less energy than the relativistic one.&lt;/p&gt;
+
+&lt;p&gt;All that needs to be done is for a &lt;a href=&#34;https://en.wikipedia.org/wiki/Cryoprotectant#Conventional_cryoprotectants&#34;&gt;cryoprotectant&lt;/a&gt; (basically, antifreeze) to be flooded through the body so that most of the water molecules have been replaced with the cryoprotectant, then, cool the body to -196&amp;deg;C (Liquid Nitrogen temperature), and wait 200 years.&lt;/p&gt;
+
+&lt;p&gt;There may not be a functioning civilization in 200 years, or even if there is, they may not have the technology to undo the effects of being saturated with a cryoprotectant and cooled down to such low temperatures.&lt;/p&gt;
+
+&lt;p&gt;However, &lt;a href=&#34;http://www.newscientist.com/article/mg22129623.000-gunshot-victims-to-be-suspended-between-life-and-death.html#.U4l0FZRdXIU&#34;&gt;recent developments in suspended animation of humans to buy time while fixing tissue damage&lt;/a&gt; suggest that this will be possible, and it may happen in less than 200 years.&lt;/p&gt;
+
+&lt;p&gt;Either way, as long as there is a stable civilization with a steady supply of liquid nitrogen, people from our time can stay in a suspended state, where the chemistry of life has stopped, until some time later in the future when medical technology is advanced enough to revive them.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

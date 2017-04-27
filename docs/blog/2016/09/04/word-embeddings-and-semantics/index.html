@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>word embeddings and semantics</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>word embeddings and semantics</h1>
+			<div>
+				
+
+<p>Can a machine understand what a word means? Right now machines routinely correct spelling and grammar, but are pretty useless when it comes to semantics.</p>
+
+<p>Search engines are an exception, they have a rudimentary understanding of what words mean. One of the ways this can work is explored in Tomas Mikolov&rsquo;s 2013 paper
+on <strong>word embeddings</strong>. Word embeddings are mappings from sets of words to vectors, such that the distances between the vectors represent the semantic similarity
+of the words. These embeddings are learned by programs by scanning through large volumes of text, such as wikipedia articles and royalty-free books, and uses a
+sliding context to adjust the parameters of the embedding.</p>
+
+<p>The goal is to learn a function <code>f</code> from words to vectors such that the following equation holds:</p>
+
+<p>$$ f(\text{waiter}) - f(\text{man}) + f(\text{woman}) = f(\text{waitress}) $$</p>
+
+<p>Using the &lsquo;skip-gram&rsquo; technique in the Mikolov paper, we can get a pretty good function <code>f</code>, for details, look at this <a href="https://www.tensorflow.org/versions/r0.10/tutorials/word2vec/index.html">tensorflow tutorial</a>.</p>
+
+<p>I ran the <code>word2vec_optimized.py</code> program and generated the word embeddings, and here is a real session from that model:</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; model.analogy('man', 'woman', 'waiter')
+'waitress'
+</code></pre>
+
+<p>The <code>word2vec_optimized.py</code> script ran through all the text, generated the embeddings and then did that calculation up above to find the appropriate analogy. There is a lot more to
+this that I want to explore, but so far it&rsquo;s been surprising how well this works.</p>
+
+<h1 id="references">References</h1>
+
+<ul>
+<li>Efficient estimation of word representations in vector space by Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean (2013) <em>arXiv preprint arXiv:1301.3781</em></li>
+</ul>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

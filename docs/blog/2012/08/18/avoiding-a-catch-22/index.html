@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Avoiding a catch-22</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Avoiding a catch-22</h1>
+			<div>
+				<p>I recently needed to find out if I had a particular version of the .NET
+Framework installed. I googled around and found the registry key that
+has this information.</p>
+
+<p>Then, like a moron, I decided to write a C# program that would return
+this information, and I wrapped it in a cmdlet so I could run it from
+the powershell. I made my first powershell cmdlet,
+<a href="https://github.com/tlehman/get-dotnet-versions">get-dotnet-versions</a>.
+ All it does is fetch the subkeys of <em>HKLM\SOFTWARE\Microsoft\NET
+Framework Setup\NDP</em>.</p>
+
+<p>So, in order to find which versions of .NET I had installed, I compiled
+the C# source code, and this process used .NET libraries. So, which
+version of .NET do I target the assembly? Well, let&rsquo;s see which versions
+I have installed? Catch-22.</p>
+
+<p>To avoid this, I googled around some more and found the <del>crusty</del> trusty old reg.exe, I
+can query the windows registry with the simple command:</p>
+
+<pre><code class="language-bat">reg query &quot;HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP&quot;
+</code></pre>
+
+<p>The benefit of this is that I avoid that catch-22. Sometimes all that
+infrastructure gets in the way.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Abstract Algebra on tlehman@home</title>
+    <link>/categories/abstract-algebra/index.xml</link>
+    <description>Recent content in Abstract Algebra on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/abstract-algebra/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Monoids in Scheme</title>
+      <link>/blog/2013/09/07/monoids-in-scheme/</link>
+      <pubDate>Sat, 07 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/09/07/monoids-in-scheme/</guid>
+      <description>
+
+&lt;p&gt;There is a structure in abstract algebra called a monoid. There are several ways to define a monoid, but before we start, we should answer the obvious question: &lt;em&gt;why should you care?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The reason being aware of monoids is important is that they are everywhere, and knowing the properties of general monoids will lead to better understanding of their specific manifestations, such as the accumulator pattern or string concatenation. I&amp;rsquo;ll give a good example to start out with: linked lists.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/list.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;For the sake of simplicity, I am going to use scheme lists and the &lt;code&gt;append&lt;/code&gt; operation. In &lt;a href=&#34;https://mitpress.mit.edu/sicp/full-text/sicp/book/node32.html&#34;&gt;Section 2.2 of SICP&lt;/a&gt;, the closure property of was defined. &lt;em&gt;This is distinct from the notion of &lt;a href=&#34;http://stackoverflow.com/a/36639/46871&#34;&gt;closure&lt;/a&gt; of an expression over the surrounding environment&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;An operation &lt;code&gt;#&lt;/code&gt; is said to be &amp;lsquo;closed&amp;rsquo; in the sense that given two values &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt; of the same type, the expression &lt;code&gt;A # B&lt;/code&gt; is a value of the same type. In scheme-like prefix notation, we would write &lt;code&gt;(# A B)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Given a list &lt;code&gt;A&lt;/code&gt; and a list &lt;code&gt;B&lt;/code&gt;, we can concatenate the two lists and get a new list, &lt;code&gt;(append A B)&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;(append (append &#39;(a) &#39;(b)) &#39;(c))
+; =&amp;gt; (a b c)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another way to construct it is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;(append &#39;(a) (append &#39;(b) &#39;(c)))
+; =&amp;gt; (a b c)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fact that &lt;code&gt;(a b c)&lt;/code&gt; can be constructed in either way means that &lt;code&gt;append&lt;/code&gt; is an associative operation, and readers of this blog should recognize that &lt;a href=&#34;/blog/2013/09/02/quasiquoting-in-scheme-to-study-a-computation/&#34;&gt;&lt;code&gt;fold-left&lt;/code&gt; and &lt;code&gt;fold-right&lt;/code&gt; would give the same result in this case&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;set-theoretic-definition-of-a-monoid&#34;&gt;Set-theoretic Definition of a monoid&lt;/h2&gt;
+
+&lt;p&gt;This leads to the first two properties that define a general monoid, a monoid is:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ \text{a set } M \text{ with an associative operation } *:M \times M \to M $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Note: the closure property is implicit in the defintion of the operation as a function, since it is impossible for the output of the function to be anything outside of M.&lt;/p&gt;
+
+&lt;p&gt;The set M has an identity element e in M, it is defined by:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ \forall m \in M : e*m = m*e = m $
+{% endlatex %}&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;From the three properties that define of monoids (closure, associativity, identity), we can prove the uniqueness of the identity element:&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; are identity elements, then:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;$ a*b=b*a=b $&lt;/p&gt;
+
+&lt;p&gt;$ b*a=a*b=a $&lt;/p&gt;
+
+&lt;p&gt;$ a = b $&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;This applies to all monoids, in our example, the set &lt;code&gt;M&lt;/code&gt; is the set of all Scheme lists, the operation is &lt;code&gt;append&lt;/code&gt;, and the unique identity element is the empty list.&lt;/p&gt;
+
+&lt;h3 id=&#34;further-reading&#34;&gt;Further Reading&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dan Piponi (SIGFPE) wrote &lt;a href=&#34;http://blog.sigfpe.com/2009/01/haskell-monoids-and-their-uses.html&#34;&gt;a lot of good stuff about monoids in haskell&lt;/a&gt; at his blog &amp;lsquo;A Neighborhood of Infinity&lt;/li&gt;
+&lt;li&gt;Pete Clark wrote &lt;a href=&#34;http://math.uga.edu/~pete/semigroup.pdf&#34;&gt;a good introduction to semigroups and monoids&lt;/a&gt; on his UGA website&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

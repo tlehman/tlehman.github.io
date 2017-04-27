@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gis on tlehman@home</title>
+    <link>/categories/gis/index.xml</link>
+    <description>Recent content in Gis on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/gis/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Country code TLDs using GeoJSON on Github</title>
+      <link>/blog/2013/12/28/country-code-tlds-using-geojson-on-github/</link>
+      <pubDate>Sat, 28 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/12/28/country-code-tlds-using-geojson-on-github/</guid>
+      <description>&lt;p&gt;There are more country code top-level domains (ccTLDs) than there are countries, that is because territories such as &lt;a href=&#34;https://en.wikipedia.org/wiki/Wallis_and_Futuna&#34;&gt;Wallis and Futuna&lt;/a&gt; has the ccTLD &lt;code&gt;.wf&lt;/code&gt;, even though it&amp;rsquo;s a French territory, not a country.&lt;/p&gt;
+
+&lt;p&gt;There are so many that I have a hard time remembering them, and given one it&amp;rsquo;s hard to tell what country it belongs to, since &lt;a href=&#34;http://www.iso.org/iso/country_codes&#34;&gt;ISO 3166&lt;/a&gt; specifies that ccTLDs should be two characters long, that makes a maximum of 676 (26 squared) ccTLDs that could ever exist.&lt;/p&gt;
+
+&lt;p&gt;To solve the ccTLD→(Country/Territory)  problem, there is this great decoding table &lt;a href=&#34;http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm&#34;&gt;here at iso.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For the other problem, (Country/Territory)→ccTLD, I made the following map using &lt;a href=&#34;http://geojson.org/&#34;&gt;GeoJSON&lt;/a&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/tlehman/8166180.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

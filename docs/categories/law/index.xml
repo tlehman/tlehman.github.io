@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Law on tlehman@home</title>
+    <link>/categories/law/index.xml</link>
+    <description>Recent content in Law on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/law/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Gun control and safety</title>
+      <link>/blog/2015/10/01/gun-control-and-safety/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/10/01/gun-control-and-safety/</guid>
+      <description>&lt;p&gt;Another mass shooting happened today. I don&amp;rsquo;t usually write about this, but it happened in Roseberg, Oregon, close to where I live. Too close. I do understand that it is morally equivalent to a mass shooting in Ethiopia, Indonesia, the Netherlands or Australia, but something about events being close by have a bigger emotional impact.&lt;/p&gt;
+
+&lt;p&gt;The question I want to address in this article is whether legislation can help solve this problem. I&amp;rsquo;ll focus on whether it is effective to implement barriers to gun ownership.&lt;/p&gt;
+
+&lt;p&gt;The inspiration for this article is this graphic by Libby Isenstein:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pbs.twimg.com/media/COF4FxPUkAEmOkI.jpg&#34; alt=&#34;Libby Isenstein&#39;s infographic on guns&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My methodology is to see if there is a correlation between the number of gun-control-related laws in a state and the number of gun-related deaths. The columns in the above table will each count for up to one point. For example, if a state doesn&amp;rsquo;t require a permit for a gun, it gets 0, and if it does require a permit, it gets 1. For columns related to the difficulty of getting a gun, easy gets 0 points, moderate gets 0.5 points, and difficult gets 1 point.&lt;/p&gt;
+
+&lt;p&gt;These points are then added up, and we look at all the states (plus DC), as pairs &lt;code&gt;(sum of points, gun deaths per 100,000 people)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_6_1.png&#34; alt=&#34;scatterplot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This has a correlation coefficient of 0.52 (1.0 being a perfect fit), what that means is that there is a moderate trend between the degree of gun control and the number of gun-related deaths. It doesn&amp;rsquo;t prove that gun control laws cause fewer gun deaths, but it is at least consistent with that claim. And more importantly, it is evidence against the argument that more widespead access to guns make us all safer.&lt;/p&gt;
+
+&lt;p&gt;No person should die for no reason. If legislation can help solve this problem (there&amp;rsquo;s reason to think it can), then it&amp;rsquo;s our duty to make that come to pass. Unfortunately, certain interpretations of the Second Amendment currently in force have prevented many sane limits on access to guns, this article by &lt;a href=&#34;https://www.washingtonpost.com/opinions/the-five-extra-words-that-can-fix-the-second-amendment/2014/04/11/f8a19578-b8fa-11e3-96ae-f2c36d2b1245_story.html?postshare=2541443818572894&#34;&gt;John Paul Stevens in the Washington Post explain a little history behind that&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more detail on how to perform the analysis above, see below (requires familiarity with python, or a similar language).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import pandas as pd
+import numpy as np
+df = pd.read_csv(&amp;quot;guns.csv&amp;quot;)
+df.head()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;deaths&lt;/th&gt;
+      &lt;th&gt;state&lt;/th&gt;
+      &lt;th&gt;laws&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;2.6&lt;/td&gt;
+      &lt;td&gt;HI&lt;/td&gt;
+      &lt;td&gt;7.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;3.1&lt;/td&gt;
+      &lt;td&gt;MA&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;4.2&lt;/td&gt;
+      &lt;td&gt;NY&lt;/td&gt;
+      &lt;td&gt;6.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;4.4&lt;/td&gt;
+      &lt;td&gt;CT&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;5.3&lt;/td&gt;
+      &lt;td&gt;RI&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib.pyplot as plt
+%matplotlib inline
+plt.ylabel(&amp;quot;gun deaths per 100k&amp;quot;)
+plt.xlabel(&amp;quot;number of gun laws&amp;quot;)
+plt.scatter(df[&amp;quot;laws&amp;quot;], df[&amp;quot;deaths&amp;quot;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10d678850&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_3_1.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it looks like a downward trend, let&amp;rsquo;s see how well a linear model fits this data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+from sklearn import linear_model
+reg = linear_model.LinearRegression() 
+X = df[&#34;laws&#34;].values.reshape((len(df),1))
+y_true = df[&#34;deaths&#34;].values.reshape((len(df),1))
+
+reg.fit(X,y_true)
+y_pred = reg.predict(X)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.ylabel(&amp;quot;gun deaths per 100k&amp;quot;)
+plt.xlabel(&amp;quot;number of gun laws&amp;quot;)
+plt.plot(X,y_pred)
+plt.scatter(X,y_true)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10e980fd0&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_6_1.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It looks like a really good, fit, but to make it precist, we should find the $R^2$ score.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import r2_score
+r2_score(y_true, y_pred)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;0.52124939556633598
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>USA FREEDOM Act Failed Cloture in the Senate</title>
+      <link>/blog/2014/11/19/usa-freedom-act-failed-cloture-in-the-senate/</link>
+      <pubDate>Wed, 19 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/11/19/usa-freedom-act-failed-cloture-in-the-senate/</guid>
+      <description>&lt;p&gt;The Senate version of the &lt;a href=&#34;https://www.govtrack.us/congress/bills/113/s2685&#34;&gt;USA FREEDOM Act failed cloture*&lt;/a&gt; yesterday. Senator Patrick Leahy made changes to the &lt;a href=&#34;/blog/2014/05/23/usa-freedom-act-passes-house&#34;&gt;house version of the bill&lt;/a&gt;. This bill would have been a necessary, albeit incremental check on the NSA&amp;rsquo;s wide-reaching surveillance programs.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cloture is a procedure to end debate and move forward on a vote.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Logical consistency in Law</title>
+      <link>/blog/2014/10/27/logical-consistency-in-law/</link>
+      <pubDate>Mon, 27 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/10/27/logical-consistency-in-law/</guid>
+      <description>&lt;p&gt;Washington state has two contradictory initiatives on the ballot this year.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initiative 591 (I-591) would prevent background checks for gun purchases except when required by the federal government.&lt;/p&gt;
+
+&lt;p&gt;Initiative 594 (I-594) would ensure background checks for all gun purchases, including those conducted online and at gun shows.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;http://fivethirtyeight.com/datalab/background-checks-for-gun-sales-look-likely-to-pass-in-washington/&#34;&gt;FiveThirtyEight&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This kind of thing shouldn&amp;rsquo;t even be let onto the ballot. There should be something akin to a compiler that can weed out laws that are&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Contradictory to one another&lt;/li&gt;
+&lt;li&gt;Contradictory to existing law&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first requirement is easy, the second requirement is harder, I mentioned it &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Of course, Courts do serve this role, but only after laws are passed and people contest it. I think there is still room for cleaning the process up a bit and weeding out mutually contradictory laws that show up on the same ballot!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Git merge conflicts in the Law</title>
+      <link>/blog/2014/09/05/git-merge-conflicts-in-the-law/</link>
+      <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/09/05/git-merge-conflicts-in-the-law/</guid>
+      <description>&lt;p&gt;Short post, just wanted to share this:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;I am resolving git merge conflicts in the law. &lt;a href=&#34;https://twitter.com/hashtag/lovemyjob?src=hash&#34;&gt;#lovemyjob&lt;/a&gt;&lt;/p&gt;&amp;mdash; Joshua Tauberer (@JoshData) &lt;a href=&#34;https://twitter.com/JoshData/status/508001292078559232&#34;&gt;September 5, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;It reminded me of an earlier post I had on &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;viewing changes to law as a diff&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a big fan of &lt;a href=&#34;http://razor.occams.info/&#34;&gt;Joshua Tauberer&lt;/a&gt;&amp;rsquo;s work, his site &lt;a href=&#34;http://govtrack.us&#34;&gt;GovTrack.us&lt;/a&gt; has been a great resource for following what Congress is doing, (and what it&amp;rsquo;s &lt;a href=&#34;https://www.govtrack.us/blog/2013/12/18/closing-out-2013-with-policy-unfinished/&#34;&gt;not doing&lt;/a&gt;). If you haven&amp;rsquo;t seen it, I recommend you check it out.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>USA FREEDOM Act passes house</title>
+      <link>/blog/2014/05/23/usa-freedom-act-passes-house/</link>
+      <pubDate>Fri, 23 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/05/23/usa-freedom-act-passes-house/</guid>
+      <description>&lt;p&gt;About 9 months ago I wrote about &lt;a href=&#34;/blog/2013/08/13/an-unbalance-of-powers/&#34;&gt;NSA bulk spying and how the way the FISA court is being used upsets the balance of powers in the government&lt;/a&gt;, the &lt;a href=&#34;https://www.govtrack.us/congress/bills/113/hr2586&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;https://www.govtrack.us/congress/bills/113/hr2761&#34;&gt;bills&lt;/a&gt; I referenced have a 4% and 2% chance of being enacted, according to GovTrack. Both of those bills still haven&amp;rsquo;t left the House, and chances are they won&amp;rsquo;t.&lt;/p&gt;
+
+&lt;p&gt;A more promising bill is the USA FREEDOM Act, which just passed the House:&lt;/p&gt;
+
+&lt;script id=&#34;govtrack:widget:bill:113:hr3361:script&#34; src=&#34;https://www.govtrack.us/congress/bills/113/hr3361/widget.js&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Unforunately, Rep. Justin Amash noted that the changes to it are so bad, that most of the original co-sponsors are out:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Just how bad were changes to &lt;a href=&#34;https://twitter.com/search?q=%23USAFREEDOMAct&amp;amp;src=hash&#34;&gt;#USAFREEDOMAct&lt;/a&gt;? MAJORITY of 152 cosponsors voted NO. Roll call: &lt;a href=&#34;http://t.co/2kaG5hrmw1&#34;&gt;http://t.co/2kaG5hrmw1&lt;/a&gt; &lt;a href=&#34;http://t.co/13gUpANOEN&#34;&gt;http://t.co/13gUpANOEN&lt;/a&gt;&lt;/p&gt;&amp;mdash; Justin Amash (@repjustinamash) &lt;a href=&#34;https://twitter.com/repjustinamash/statuses/469883039125106689&#34;&gt;May 23, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, the &lt;a href=&#34;https://www.eff.org/deeplinks/2014/05/eff-dismayed-houses-gutted-usa-freedom-act&#34;&gt;EFF doesn&amp;rsquo;t approve&lt;/a&gt;. Fortunately, Sen. Patrick Leahy said he intends on &lt;a href=&#34;https://www.leahy.senate.gov/press/comment-of-senator-patrick-leahy-d-vt_chairman-senate-judiciary-committee-on-house-passage-of-the-usa-freedom-act-&#34;&gt;fixing a lot of those problems in the Senate version of the bill&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s easy to get cynical and fatalistic about the erosion of civil liberties and the problems in government, but recognizing the problems and paying attention, putting pressure on congress can make a difference. Stay rational and contact your &lt;a href=&#34;http://www.house.gov/representatives/find/&#34;&gt;representative&lt;/a&gt; and &lt;a href=&#34;https://www.senate.gov/general/contact_information/senators_cfm.cfm&#34;&gt;senators&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Remember that the Congress is the most powerful branch of government, it makes and destroys laws, with or without the President&amp;rsquo;s consent (1). Each and every member of congress cares about what we citizens think, because they wish to be re-elected, and we elect them. They are more accesible than you might think.&lt;/p&gt;
+
+&lt;p&gt;(1) Even if the President vetos a bill, Congress can still override with a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supermajority#United_States&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt; supermajority in both houses&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Assurance Contracts with Bitcoin</title>
+      <link>/blog/2014/05/02/assurance-contracts-with-bitcoin/</link>
+      <pubDate>Fri, 02 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/05/02/assurance-contracts-with-bitcoin/</guid>
+      <description>&lt;p&gt;This is a great &lt;a href=&#34;http://www.ariannasimpson.com/game-theory-assurance-contracts&#34;&gt;article by Arianna Simpson&lt;/a&gt; about using bitcoin to implement assurance contracts. The example she uses is crowdfunding.&lt;/p&gt;
+
+&lt;p&gt;This is an example of using &lt;a href=&#34;/blog/2014/02/23/how-contract-law-could-become-a-form-of-computing/&#34;&gt;cryptocurrencies to implement contract law&lt;/a&gt;. It completely removes the need for a third party enforcer, and it shows how security systems can not only augment, but actually replace institutions that use legal pressure to make people cooperate.&lt;/p&gt;
+
+&lt;p&gt;In &lt;a href=&#34;http://amzn.com/1118143302&#34;&gt;Bruce Schneier&amp;rsquo;s Liars and Outliers&lt;/a&gt;, he identitied three societal trust mechanisms:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Moral Pressure&lt;/li&gt;
+&lt;li&gt;Reputational Pressure&lt;/li&gt;
+&lt;li&gt;Institutional Pressure&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And then showed that security systems can augment and even replace certain forms of societal pressure to reduce the need for trust in individuals. Bitcoin and other blockchain-backed technologies can do this for many types of contract law. I am excited to see how well this works in practice.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How contract Law could become a form of computing</title>
+      <link>/blog/2014/02/23/how-contract-law-could-become-a-form-of-computing/</link>
+      <pubDate>Sun, 23 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/02/23/how-contract-law-could-become-a-form-of-computing/</guid>
+      <description>&lt;p&gt;Since 2012, when I first heard about Bitcoin, I&amp;rsquo;ve thought it was a very cool application of cryptography and peer-to-peer networks that solves the problem of double spending and runaway inflation. Other than that, I didn&amp;rsquo;t really think it was revolutionary, but a &lt;a href=&#34;http://thoughtinfection.com/2014/02/22/we-are-becoming-programmable-society/&#34;&gt;recent article&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/ThoughtInfected&#34;&gt;@ThoughtInfected&lt;/a&gt; has changed my mind.&lt;/p&gt;
+
+&lt;p&gt;The most thought-provoking quotes where:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It is just such a huge game changer that a program could hold wealth in a way that is inaccessible to anyone, and then distribute said wealth based on defined and agreed mathematical rules.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The twin technologies of cryptocurrencies and cryptocontracts are going to turn contract law into a programming language.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The bitcoin protocol includes a non-Turing complete interpreted language that can be used to create more complex transactions, and it can be used as a basis for so called &amp;lsquo;Smart Property&amp;rsquo; and self-enforcing contracts.&lt;/p&gt;
+
+&lt;p&gt;This idea of turning contract law into a form of computing is similar to what I&amp;rsquo;ve been wanting for a while, I&amp;rsquo;d like to see laws themselves be in a computable form, then interpretation of law would be replaced with a program that might resemble a SQL query. What bitcoin smart contracts give is a way to enforce contractual obligations without paying lawyers and police, and they take out the need for trust, since people will be &lt;em&gt;incapable of breaking the terms of the contract&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;A beneficial side effect of having computable laws is the ability to cross check them all for logical consistency, my ideal government would find all inconsistencies and eliminate them by vote, any pair of laws that cannot be consistently resolved would be deleted, and the territory covered by those laws would be unspecified.&lt;/p&gt;
+
+&lt;p&gt;An example of this is the current inconsistency between Federal and State Law regarding the recreational use of cannabis, it is illegal at the Federal Level, but legal in some states, such as Colorado and Washington. If these laws were being checked like some continuous integration server running software tests, it would fail upon seeing this contradiction, it would generate a ballot and put it to a vote. If the vote does not resolve the inconsistency, the conflicting laws are deleted. Then legislators would be forced to start anew, applying principles that are consistent with the current body of law.&lt;/p&gt;
+
+&lt;p&gt;But back to contract law, this not only eliminates the need for lawyers and courts in contracts, it also solves the problem that DRM attempted to solve. Musicians could create contracts that ensured people paid for the song they were listening to, and it would be enforced by the mathematical rules built into the bitcoin network, not the arbitrary whim of a company like Sony. Or ebooks could be sold by the authors themselves, and people could only pay for what they read, this would obviate the need for a middleman like Amazon. Removing middlemen would give artists a larger cut, and could reduce the prices for the consumer as well.&lt;/p&gt;
+
+&lt;p&gt;Cryptocontracts such as those built on Bitcoin could really be revolutionary, since they sidestep the often expensive dealings with the legal system, don&amp;rsquo;t require trust, and solve the problem of property in an age when infomation is copied freely.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Viewing NSA Accountability Act amendments as a diff</title>
+      <link>/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/</link>
+      <pubDate>Sat, 14 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/</guid>
+      <description>&lt;p&gt;A new bill (HR3070) was just introduced a few days ago by Rep. Michael Fitzpatrick [R-PA8]. The bill is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;To amend section 501 of the Foreign Intelligence Surveillance Act of 1978 to reform access to certain business records for foreign intelligence and international terrorism investigations, and for other purposes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The bill is unusually small, but notice section 2, subsection a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  SECTION 1. SHORT TITLE.
+  This Act may be cited as the ‘NSA Accountability Act’.
+
+  SECTION 2. REFORMS TO ACCESS TO CERTAIN BUSINESS RECORDS FOR FOREIGN INTELLIGENCE AND INTERNATIONAL TERRORISM INVESTIGATIONS.
+  (a) In General- Subsection (b)(2)(A) of section 501 of the Foreign Intelligence Surveillance Act of 1978 (50 U.S.C. 1861) is amended--
+
+    (1) in the matter preceding clause (i)--
+      (A) by inserting ‘specific and articulable’ before ‘facts showing’;
+      (B) by inserting ‘and material’ after ‘are relevant’; and
+      (C) by striking ‘clandestine intelligence activities’ and all that follows and inserting ‘clandestine intelligence activities and pertain only to an individual that is the subject of such investigation; and’; and
+
+  (2) by striking clauses (i) through (iii).
+
+  (b) Withholding of Funds- Notwithstanding any other provision of law, in the case of a violation of section 501 of the Foreign Intelligence Surveillance Act of 1978 (50 U.S.C. 1861) in a fiscal year, all unobligated funds made available for such fiscal year to carry out such section shall be withheld for the period beginning on the date of such violation and ending on September 30 of such fiscal year.
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s describing low level text editing operations, here&amp;rsquo;s how it would look as a colored git-style diff:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;diff --git &amp;quot;a/50_USC_\302\2471861.txt&amp;quot; &amp;quot;b/50_USC_\302\2471861.txt&amp;quot;
+index 59e32ec..4bc562a 100644
+--- &amp;quot;a/50_USC_\302\2471861.txt&amp;quot;
++++ &amp;quot;b/50_USC_\302\2471861.txt&amp;quot;
+@@ -12,10 +12,7 @@ Each application under this section—
+         (A) a judge of the court established by section 1803 (a) of this title; or
+         (B) a United States Magistrate Judge under chapter 43 of title 28, who is publicly designated by the Chief Justice of the United States to have the power to hear applications and grant orders for the production of tangible things under this section on behalf of a judge of that court; and
+     (2) shall include—
+-        (A) a statement of facts showing that there are reasonable grounds to believe that the tangible things sought are relevant to an authorized investigation (other than a threat assessment) conducted in accordance with subsection (a)(2) to obtain foreign intelligence information not concerning a United States person or to protect against international terrorism or clandestine intelligence activities, such things being presumptively relevant to an authorized investigation if the applicant shows in the statement of the facts that they pertain to—
+-            (i) a foreign power or an agent of a foreign power;
+-            (ii) the activities of a suspected agent of a foreign power who is the subject of such authorized investigation; or
+-            (iii) an individual in contact with, or known to, a suspected agent of a foreign power who is the subject of such authorized investigation; and
++        (A) a statement of specific and articulable facts showing that there are reasonable grounds to believe that the tangible things sought are relevant and material to an authorized investigation (other than a threat assessment) conducted in accordance with subsection (a)(2) to obtain foreign intelligence information not concerning a United States person or to protect against international terrorism or clandestine intelligence activities and pertain only to an individual that is the subject of such investigation; and
+         (B) an enumeration of the minimization procedures adopted by the Attorney General under subsection (g) that are applicable to the retention and dissemination by the Federal Bureau of Investigation of any tangible things to be made available to the Federal Bureau of Investigation based on the order requested in such application.
+ (c) Ex parte judicial order of approval
+     (1) Upon an application made pursuant to this section, if the judge finds that the application meets the requirements of subsections (a) and (b), the judge shall enter an ex parte order as requested, or as modified, approving the release of tangible things. Such order shall direct that minimization procedures adopted pursuant to subsection (g) be followed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The next logical step would be to put these documents (the whole United States Code and all other established law) into a git repository, then Congress could use &lt;a href=&#34;http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging&#34;&gt;branches&lt;/a&gt; to work on their drafts, and &lt;a href=&#34;https://help.github.com/articles/using-pull-requests&#34;&gt;pull requests&lt;/a&gt; for the various votes, merging or closing depending on the vote count.&lt;/p&gt;
+
+&lt;p&gt;I am not even close to the first person to think of this, here are a few that had a similar idea first:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.abevoelker.com/gitlaw-github-for-laws-and-legal-documents-a-tourniquet-for-american-liberty/&#34;&gt;Abe Voelker&lt;/a&gt; on GitLaw&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.docracy.com/application/about&#34;&gt;John Watkinson, Matt Hall, Veronica Picciafuocco, John Watkinson, Alvaro Casanova&lt;/a&gt; from Docracy&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.wired.com/wiredenterprise/2012/08/bundestag/&#34;&gt;Stefan Wehrmeyer&lt;/a&gt; with all of German Federal Law&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Requiring all law to be in this form is a good first step toward my ideal of Computable Law. The idea is basically that all laws have to be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;accessible by a computer&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;unambiguous enough to be interpreted by a computer, such that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;any relation to existing law can be discovered&lt;/li&gt;
+&lt;li&gt;consistency with existing law can be checked&lt;/li&gt;
+&lt;li&gt;hypothetical situations could be tested for legality&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using git and diff to view amendments would only work towards (1), the next step would require that all existing law is first accessible by computer. Then, it would have to be converted into a computer language such as &lt;a href=&#34;https://en.wikipedia.org/wiki/Prolog&#34;&gt;Prolog&lt;/a&gt; that alone would lead to much debate, particularly when ambiguities are encountered. Then, programs could be written to interpret it and compute verdicts to cases. Another benefit would be the ability to identify all contradictions, and then remove them.&lt;/p&gt;
+
+&lt;p&gt;The next step would be to have a robotic authority above all three &lt;a href=&#34;/blog/2013/08/13/an-unbalance-of-powers/&#34;&gt;(or four)&lt;/a&gt; branches of Government, that ensures our elected officials are behaving according to those rules. Law is ineffectual unless it is enforced, and law cannot be enforced by a robot that doesn&amp;rsquo;t understand the rules it is supposed to be enforcing.&lt;/p&gt;
+
+&lt;p&gt;If I had any intial point at all, it would be: &lt;em&gt;Legislators should use modern tools for recording changes to laws&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then we can get on to replacing them with machines.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An unbalance of powers</title>
+      <link>/blog/2013/08/13/an-unbalance-of-powers/</link>
+      <pubDate>Tue, 13 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/08/13/an-unbalance-of-powers/</guid>
+      <description>&lt;p&gt;About three months ago I wrote about the &lt;a href=&#34;/blog/2013/05/10/white-house-open-data-policy/&#34;&gt;White House Open Data Policy and the balance of the three main branches of government&lt;/a&gt;. This was shortly before the new evidence of the &lt;a href=&#34;https://www.eff.org/nsa-spying/timeline&#34;&gt;far-reaching NSA domestic surveillance programs&lt;/a&gt; was revealed by Edward Snowden.&lt;/p&gt;
+
+&lt;p&gt;What is interesting (and unsettling) about all the NSA&amp;rsquo;s surveillance activity is that it is authorized by the Foreign Intelligence Surveillance Court (FISA Court), which is effectively a &lt;a href=&#34;http://www.nytimes.com/2013/07/07/us/in-secret-court-vastly-broadens-powers-of-nsa.html?_r=0&#34;&gt;parallel Supreme Court&lt;/a&gt; that operates in secret.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/fisa_gov.png %}&lt;/p&gt;
+
+&lt;p&gt;I was somewhat naive to think that there was such a balance of powers. Right now, there is little visibility into what decisions the FISA Court makes, how they came to those decisions, and what that means for U.S. Citizens.&lt;/p&gt;
+
+&lt;p&gt;There are several bills moving through congress that are aimed at fixing this lack of balance. One that looks promising is H.R. 2586: FISA Court Accountability Act, which amends FISA to let congress designate FISA Court judges, and require the FISA court submit &amp;ldquo;an unclassified summary of each such decision, order, or opinion&amp;rdquo; to congress:&lt;/p&gt;
+
+&lt;script id=&#34;govtrack:widget:bill:113:hr2586:script&#34; src=&#34;http://www.govtrack.us/congress/bills/113/hr2586/widget.js&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Another is H.R. 2761: Presidential Appointment of FISA Court Judges Act, which will &amp;ldquo;require Presidential appointment and Senate confirmation of Foreign Intelligence Surveillance Court judges&amp;rdquo;:&lt;/p&gt;
+
+&lt;script id=&#34;govtrack:widget:bill:113:hr2761:script&#34; src=&#34;http://www.govtrack.us/congress/bills/113/hr2761/widget.js&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;I will be watching the progress of these bills closely, I don&amp;rsquo;t accept that there should exist a body of secret law that has a direct impact on the citizens of the United States.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>White House Open Data Policy</title>
+      <link>/blog/2013/05/10/white-house-open-data-policy/</link>
+      <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/05/10/white-house-open-data-policy/</guid>
+      <description>&lt;p&gt;Just yesterday, President Obama signed an &lt;a href=&#34;http://www.whitehouse.gov/the-press-office/2013/05/09/executive-order-making-open-and-machine-readable-new-default-government-&#34;&gt;executive order&lt;/a&gt; that requires government agencies to publish their data in &amp;ldquo;open, machine readable formats&amp;rdquo;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the default state of new and modernized Government information resources shall be open and machine readable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I have a hard time imagining better uses of the President&amp;rsquo;s dictator-like power than this.&lt;/p&gt;
+
+&lt;p&gt;Personally, I don&amp;rsquo;t believe the President (or any individual for that matter) should have the ability to make Laws without first submitting them to a review process and subsequently a vote. Executive Orders are problematic because they bypass Congress, it is a flaw in an otherwise reasonably balanced system:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/gov.png %}&lt;/p&gt;
+
+&lt;p&gt;However, the consequences of this particular executive order are in our favor, so this is a good thing, despite the fact that it came about because of a bad mechanism. Forcing the Bureaus to open up their data for public consumption enables individuals and groups outside the government to do things with that data that most of the bureaucrats could never have imagined.&lt;/p&gt;
+
+&lt;p&gt;All of this is great, &lt;em&gt;provided the data are accurate&lt;/em&gt;, it is entirely possible that data could be &amp;lsquo;fudged&amp;rsquo;, &amp;lsquo;massaged&amp;rsquo; or just plain made up. So in addition to the newly hackable government data, there should be a more active skepticism about the accuracy of that data. For example, if the Department of Homeland Security is reporting that there are cyber attacks coming from China, that data should be cross-checked with that of ISPs to ensure that there is a legitimate threat before any laws are passed or executive orders signed.&lt;/p&gt;
+
+&lt;p&gt;I think this is a good thing that came about for the wrong reasons, but the consequences are more important than the intentions, because the consequences really happen, intentions are just in the mind.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Terms of Service; Didn&#39;t Read: Making terms and conditions digestible</title>
+      <link>/blog/2012/09/18/terms-of-service-didnt-read-making-terms-and-conditions-digestible/</link>
+      <pubDate>Tue, 18 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/09/18/terms-of-service-didnt-read-making-terms-and-conditions-digestible/</guid>
+      <description>&lt;p&gt;Suppose you are signing up for some web service, and you are getting close to the end of the process. Inevitably, you are presented with the Terms, Conditions and Privacy Policy for the service.&lt;/p&gt;
+
+&lt;p&gt;If you are like me (and all people who don&amp;rsquo;t have a Law degree and several days to analyze all the details in the policy), you scroll to the bottom and accept. Maybe, if you are feeling extra clever, you search the page for dollar signs and keywords that might be relevant. You think to yourself, &lt;em&gt;it&amp;rsquo;s mostly just stuff that the company has there so it doesn&amp;rsquo;t get sued by foolish users, it can&amp;rsquo;t be that bad&lt;/em&gt;. This is probably true, but regardless, by clicking accept, you are agreeing to be &lt;em&gt;bound by law&lt;/em&gt; by those terms. That means that the cost of being wrong is very high.&lt;/p&gt;
+
+&lt;p&gt;This is the motivation for a project called &lt;a href=&#34;http://tos-dr.info&#34;&gt;Terms of Service; Didn&amp;rsquo;t Read&lt;/a&gt;, or ToS;DR for short. ToS;DR is a project that aims to summarize the terms, conditions and privacy policies of applications and services on the web. The process is simple, peple pick services they are interested in, Google for example, and then read some of the terms, and extract &amp;ldquo;points&amp;rdquo; that then get discussed, analyzed and rated. The result is then made available via an open API, and this can be incorporated into apps that make it easy to realize what you are about to (or already have) agreed to.&lt;/p&gt;
+
+&lt;p&gt;All of the data is published under the AGPL, a license that protects the data from being locked into a walled garden that is controlled by some small group. The data is, and always will be, free. In both senses of the word. The purpose of the data is to help us all be better informed without having to spend all of our time reading legal documents.&lt;/p&gt;
+
+&lt;p&gt;Here is what the summarized results look like:
+{% img /images/blogimg/tosdr_example.png %}&lt;/p&gt;
+
+&lt;p&gt;There is a hierarchy of detail, with the top level being the bare-minimum required to get what the terms say. Then, if you click &amp;ldquo;Expand&amp;rdquo;, you can see the quote from the original terms, and then if you want more detail, you can read the entire terms by following a link back to the source document.&lt;/p&gt;
+
+&lt;p&gt;ToS;DR also has Chrome and Firefox browser extensions so that you can see these bullet points for the website you are currently on.&lt;/p&gt;
+
+&lt;p&gt;Currently, this is all volunteer based, and there are many services that haven&amp;rsquo;t been thoroughly analyzed and rated yet. The project is using a Kickstarter-like service to raise 10,000 Euros so that they can support people working full time on this. There are higher tiers of contribution that give the contributor voting priveledges, so you can vote for a service that you would really like to have their terms exposed.&lt;/p&gt;
+
+&lt;p&gt;If you believe in this cause, you can contribute on the &lt;a href=&#34;https://groups.google.com/forum/?fromgroups#!forum/tosdr&#34;&gt;Google Group&lt;/a&gt; or &lt;a href=&#34;http://www.indiegogo.com/terms-of-service-didnt-read?a=1338010&#34;&gt;Donate&lt;/a&gt; to their fundraising campaign.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

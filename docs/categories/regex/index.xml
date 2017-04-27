@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Regex on tlehman@home</title>
+    <link>/categories/regex/index.xml</link>
+    <description>Recent content in Regex on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/regex/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Word frequencies after removing common words</title>
+      <link>/blog/2015/02/10/word-frequencies-after-removing-common-words/</link>
+      <pubDate>Tue, 10 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/02/10/word-frequencies-after-removing-common-words/</guid>
+      <description>
+
+&lt;p&gt;In taking the &lt;a href=&#34;https://class.coursera.org/mmds-002&#34;&gt;Coursera class on Mining Massive Datasets&lt;/a&gt;, the problem of computing word frequency for very large documents came up. I wanted some convenient tools for breaking documents into streams of words, and also a tool to remove common words like &amp;lsquo;the&amp;rsquo;, so I wrote up &lt;code&gt;words&lt;/code&gt; and &lt;code&gt;decommonize&lt;/code&gt;. The &lt;code&gt;decommonize&lt;/code&gt; script is just a big &lt;code&gt;grep -v &#39;(foo|bar|baz)&#39;&lt;/code&gt;, where the words foo, bar and baz come from the words in a file. I made a script &lt;code&gt;generate_decommonize&lt;/code&gt; that reads in a list of common words, and builds the regex for &lt;code&gt;grep -v&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;example-usage-of-words-and-decommonize&#34;&gt;Example usage of &lt;code&gt;words&lt;/code&gt; and &lt;code&gt;decommonize&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The full source code is available &lt;a href=&#34;https://github.com/tlehman/words&#34;&gt;here on github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After running &lt;code&gt;make install&lt;/code&gt;, you should have &lt;code&gt;words&lt;/code&gt; and &lt;code&gt;decommonize&lt;/code&gt; in your PATH, you can use them to find key words that are characteristic of a document, I chose&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the U.S. Declaration of Independence:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;
+$ words &lt; declaration_of_independence.txt | decommonize  | sort | uniq -c | sort -n | tail
+   4 time
+   5 among
+   5 most
+   5 powers
+   6 government
+   6 such
+   7 right
+   8 states
+   9 laws
+  10 people
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sherlock Holmes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;
+$ words &lt; doyle_sherlock_holmes.txt | decommonize  | sort | uniq -c | sort -n | tail
+ 174 think
+ 175 more
+ 177 over
+ 212 may
+ 212 should
+ 269 little
+ 274 mr
+ 288 man
+ 463 holmes
+ 466 upon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Working with Unix Processes (by @jstorimer)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;
+$ words &lt; working_with_unix_processes.txt | decommonize  | sort | uniq -c | sort -n | tail
+  73 signal
+  82 system
+  88 ruby
+  90 exit
+ 100 code
+ 100 parent
+ 143 its
+ 146 child
+ 184 processes
+ 444 process
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So &lt;code&gt;words&lt;/code&gt; breaks up the document into lower-case alphabetic words, then &lt;code&gt;decommonize&lt;/code&gt; greps out the common words, and &lt;code&gt;sort&lt;/code&gt; and &lt;code&gt;uniq -c&lt;/code&gt; are used to count instances of each decommonized word, and then the results are sorted.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>XKCD 1277: Ayn Rand and Regular Expressions</title>
+      <link>/blog/2013/10/14/xkcd-1277-ayn-rand-and-regular-expressions/</link>
+      <pubDate>Mon, 14 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/10/14/xkcd-1277-ayn-rand-and-regular-expressions/</guid>
+      <description>&lt;p&gt;Randall Munroe of XKCD is brilliant, today&amp;rsquo;s comic is no exception:&lt;/p&gt;
+
+&lt;p&gt;{%img &lt;a href=&#34;http://imgs.xkcd.com/comics/ayn_random.png&#34;&gt;http://imgs.xkcd.com/comics/ayn_random.png&lt;/a&gt; %}&lt;/p&gt;
+
+&lt;p&gt;While the Ayn Rand joke is amusing, the real clever joke in the alt text (that maddeningly disappears if you take too long to read)&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In a cavern deep below the Earth, Ayn Rand, Paul Ryan, Rand Paul, Ann Druyan, Paul Rudd, Alan Alda, and Duran Duran meet togther in the Secret Council of /(\b[plurandy]+\b ?){2}/i&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For those not familiar with regular expressions, the end of that sentence might look like nonsense, but it encodes the (much more amusing) similarity between all those names:&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with the list of names, assume they are in a file called &lt;code&gt;names&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cat names
+Ayn Rand
+Paul Ryan
+Rand Paul
+Ann Druyan
+Paul Rudd
+Alan Alda
+Duran Duran
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For each of the names, set them to lower case, split up the characters, then sort and count occurences:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cat names | xargs ruby -e &#39;puts ARGV.join.downcase.split(//)&#39; | sort | uniq -c
+     15 a
+      8 d
+      5 l
+     10 n
+      3 p
+      7 r
+      7 u
+      3 y
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that there are only 8 unique characters in that list, in &lt;a href=&#34;http://en.wikipedia.org/wiki/Regular_expression&#34;&gt;regular expressions&lt;/a&gt; the syntax &lt;code&gt;[plurandy]&lt;/code&gt; means &amp;lsquo;match any character in the set &lt;code&gt;{p,l,u,r,a,n,d,y}&lt;/code&gt;&amp;lsquo;&lt;/p&gt;
+
+&lt;p&gt;You can see in this diagram how the whole expression works:&lt;/p&gt;
+
+&lt;p&gt;{% img &lt;a href=&#34;https://www.debuggex.com/i/CzkCTSvo1uBAYkyi.png&#34;&gt;https://www.debuggex.com/i/CzkCTSvo1uBAYkyi.png&lt;/a&gt; %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-perl&#34;&gt;/(\b[plurandy]+\b ?){2}/i
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The character &lt;code&gt;\b&lt;/code&gt; matches a word boundary, which is a point between a word character and a non-word character, such as the point right before the beginning of the name, or after. The trailing &lt;code&gt;/i&lt;/code&gt; means case insensitive, the diagram explains the rest.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The above graphic is done in &lt;a href=&#34;https://www.debuggex.com/r/CzkCTSvo1uBAYkyi&#34;&gt;Debuggex&lt;/a&gt;, it is a fantastic tool for exploring and debugging regular expressions&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

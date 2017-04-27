@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>On Windows PowerShell</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>On Windows PowerShell</h1>
+			<div>
+				<p>If you use both Unix-like and Windows operating systems, then you have
+probably felt the nagging lack of a good command line for windows. The
+windows <code>cmd.exe</code> is a very lame DOS-like shell.</p>
+
+<p>There are always ports of a Unix-like environment to windows, such as
+<a href="http://www.cygwin.com">Cygwin</a>. However, since most of the
+configurations on Windows are not text files, this has limited utility.</p>
+
+<p>The best candidate for a native CLI for Windows is
+<a href="http://en.wikipedia.org/wiki/Powershell">PowerShell</a>,
+it&rsquo;s only about three years old (since the initial stable release),
+but it works very differently from Bash or Zsh.</p>
+
+<p>Bash and Zsh work primarily with strings, the output of one program can
+be piped in as input to another program, and all of the GNU tools we
+know and love like <code>grep</code> and <code>awk</code> are basically string processors.</p>
+
+<p>PowerShell works with native .NET objects, so the input to and output of a cmdlet is an object. This takes some getting used to if you are familiar with bash and working in a Unix environment. As an example, the <code>Get-Date</code> cmdlet returns an instance of the <code>DateTime</code> class, which has a <code>Year</code> method that returns an integer:</p>
+
+<pre><code>&gt; (Get-Date).Year
+2012
+
+&gt; (Get-History)[2..4]
+
+ Id CommandLine
+ -- -----------
+ 3  Get-Location
+ 4  Compare-Object $(Get-Content foo.bat) $(Get-Content bar.bat)
+ 5  (Get-Date).Year
+</code></pre>
+
+<p>This can enable a much richer command line experience, but as I am a
+PowerShell newcomer, I don&rsquo;t have many examples yet. I am not saying that one is better, just that they are tools grown for their own unique environments.</p>
+
+<p>Since Unix has been around longer and I am more familar with
+command-line interfaces on Unix, I wanted to make a mapping from common Unix command line tasks
+to PowerShell cmdlets. I know there are already a few <a href="http://windows-powershell-scripts.blogspot.com/2009/06/unix-equivalents-in-powershell.html">articles</a> about this, but I wanted to make a quick reference table that others could contribute to on GitHub.</p>
+
+<p>I give you: <a href="http://tobilehman.com/command-line">A Unix to PowerShell Rosetta Stone</a></p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

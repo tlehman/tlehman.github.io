@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bash on tlehman@home</title>
+    <link>/categories/bash/index.xml</link>
+    <description>Recent content in Bash on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/bash/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>script for logging standing desk state transitions</title>
+      <link>/blog/2014/08/18/script-for-logging-standing-desk-state-transitions/</link>
+      <pubDate>Mon, 18 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/08/18/script-for-logging-standing-desk-state-transitions/</guid>
+      <description>&lt;p&gt;At work I have an adjustible-height desk, that way it can be both a standing or a sitting desk.
+In order to better understand my own usage habits, I made the &lt;a href=&#34;https://github.com/tlehman/bin#desk&#34;&gt;desk&lt;/a&gt; script,
+ which logs state transitions.&lt;/p&gt;
+
+&lt;p&gt;Running &lt;code&gt;desk up&lt;/code&gt; records the time that the desk was moved up into a standing position, and &lt;code&gt;desk down&lt;/code&gt; records the
+time the desk was moved into the sitting position. Later, when I have a few months of data, I&amp;rsquo;ll do some analysis and
+see what the probabilities are in the following state transition diagram:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/desk.png %}&lt;/p&gt;
+
+&lt;p&gt;The script builds a CSV file, and implements a simple interface:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;desk up    # log transition to &amp;quot;up&amp;quot; state at current time
+desk down  # log transition to &amp;quot;down&amp;quot; state at current time
+desk log   # show last 5 state transitions along with time
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the source code&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;log_filename=&amp;quot;/path/to/log/file&amp;quot;
+
+function create_log_file_if_not_exists {
+  if [ ! -e $log_filename ]
+  then
+    echo &amp;quot;timestamp,state&amp;quot; &amp;gt; $log_filename
+  fi
+}
+
+function log_new_state {
+  create_log_file_if_not_exists
+
+  local state=$1
+  local timestamp=$(date --iso-8601=seconds)
+
+  echo &amp;quot;$timestamp,$state&amp;quot; &amp;gt;&amp;gt; $log_filename
+}
+
+function show_log {
+  create_log_file_if_not_exists
+
+  echo &amp;quot;timestamp                 state&amp;quot;
+  awk &amp;lt; $log_filename -F, &#39;NR &amp;gt; 1 {print $1&amp;quot;  &amp;quot;$2}&#39; | tail -5
+}
+
+if [ $1 = &amp;quot;up&amp;quot; ] || [ $1 = &amp;quot;down&amp;quot; ]
+then
+  log_new_state $1
+elif [ $1 = &amp;quot;log&amp;quot; ]
+then
+  show_log
+else
+  echo &amp;quot;Invalid command: $1&amp;quot;
+  exit 1
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will allow me to use a &lt;a href=&#34;https://en.wikipedia.org/wiki/Markov_chain&#34;&gt;Markov chain&lt;/a&gt; to model my sitting/standing
+habits. More on markov chains in a later blog post.&lt;/p&gt;
+
+&lt;p&gt;On the health benefits (or problems) with standing, I am not a medical professional, but I think alternating sitting
+and standing is probably better than all sitting or all standing.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Revisiting spaces in file names</title>
+      <link>/blog/2013/10/19/revisiting-spaces-in-file-names/</link>
+      <pubDate>Sat, 19 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/10/19/revisiting-spaces-in-file-names/</guid>
+      <description>&lt;p&gt;I don&amp;rsquo;t like spaces in file names, as I&amp;rsquo;ve &lt;a href=&#34;/blog/2012/10/29/spaces-in-filenames/&#34;&gt;written before&lt;/a&gt;, and as I&amp;rsquo;ve &lt;a href=&#34;/blog/2012/11/19/fixing-spaces-in-filenames/&#34;&gt;tried in vain to fix&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been working around this issue with a little hack that I call &lt;code&gt;wrap&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+# Read in lines, output lines with single quotes around them
+#
+# Example use:
+# 
+#   $ &amp;lt;command&amp;gt;
+#   output of command
+#   the output has spaces
+#   spaces are annoying
+#
+#   $ &amp;lt;command&amp;gt; | wrap
+#   &#39;output of command&#39;
+#   &#39;the output has spaces&#39;
+#   &#39;spaces are annoying&#39;
+#
+
+sed -e &amp;quot;s/\(.*\)/&#39;\1&#39;/&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It wraps each line with single quotes, however, the obvious problem with this is that sometimes lines have single quotes in them. For file names, it&amp;rsquo;s usually fine, since it&amp;rsquo;s unusual for file names to have quotes in them.&lt;/p&gt;
+
+&lt;p&gt;I recently came across &lt;a href=&#34;https://coderwall.com/p/lhilrq&#34;&gt;this awesome solution&lt;/a&gt; by &lt;a href=&#34;https://coderwall.com/debona&#34;&gt;@debona&lt;/a&gt;,
+it uses the &lt;a href=&#34;http://nixshell.wordpress.com/2007/09/26/ifs-internal-field-separator/&#34;&gt;IFS&lt;/a&gt; environment variable. IFS stands for Internal Field Separator.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the problem I run into when looping over a list file files that have spaces in the name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ find ~/Library/Saved\ Application\ State | head -5 | for file in $(cat -); do echo $file; done
+
+/Users/tlehman/Library/Saved
+Application
+State
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState/data.data
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState/window_2.data
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState/windows.plist
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The spaces are seen as delimiters, but by setting IFS to a newline, we can avoid this problem:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ IFS=&#39;
+&#39;
+$ find ~/Library/Saved\ Application\ State | head -5 | for file in $(cat -); do echo $file; done
+/Users/tlehman/Library/Saved Application State
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState/data.data
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState/window_2.data
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState/windows.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is just the kind of solution I was looking for, props to @debona for writing this up on Coderwall.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Analyzing Bash History and Fixing Typos</title>
+      <link>/blog/2013/06/18/analyzing-bash-history-and-fixing-typos/</link>
+      <pubDate>Tue, 18 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/06/18/analyzing-bash-history-and-fixing-typos/</guid>
+      <description>&lt;p&gt;At the command line, I frequently type things too fast, and typos abound. A single character can mean the difference between showing documentation and deleting files (&lt;code&gt;rm&lt;/code&gt; vs &lt;code&gt;ri&lt;/code&gt;), so autocorrect is definitely a bad idea in this context.&lt;/p&gt;
+
+&lt;p&gt;Instead of a generic autocorrect, a better idea is to find the most common mistakes. To do so, I used frequency analysis like in &lt;a href=&#34;/blog/2013/01/28/reinventing-the-wheel-or-how-i-learned-to-stop-coding-and-read-the-manpages/&#34;&gt;this post&lt;/a&gt; to narrow down what I use most at the shell:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ cat ~/.bash_history | 
+     awk -F\| &#39;{print $1}&#39; | 
+     sort | 
+     uniq -c | 
+     sort -n | 
+     tail -15
+
+ 157 rake routes
+ 221 dbtt
+ 232 git fetch -p
+ 300 rails c
+ 370 gi ts
+ 376 g gs
+ 403 git add .
+ 405 rails s
+ 406 git b
+ 433 exit
+ 435 git lg
+ 663 git diff
+1112 ls
+1898 clear
+4486 git s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice that &lt;code&gt;gi ts&lt;/code&gt; is extremely common, I meant to type &lt;code&gt;git s&lt;/code&gt; all those 376 times. As a solution, I could just alias it, but I would prefer a more general solution that would handle &lt;code&gt;gi tdiff&lt;/code&gt; and &lt;code&gt;gi tb&lt;/code&gt; as &lt;code&gt;git diff&lt;/code&gt; and &lt;code&gt;git b&lt;/code&gt; respectively.&lt;/p&gt;
+
+&lt;p&gt;I made the following script called &lt;code&gt;~/bin/gi&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+
+if   [[ $1 =~ &#39;ts&#39; ]]; then
+  git s
+elif [[ $1 =~ &#39;tb&#39; ]]; then
+  git b 
+elif [[ $1 =~ &#39;tdiff&#39; ]]; then
+  git diff
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So that &lt;code&gt;gi ts&lt;/code&gt; is no longer a mistake, it means what I meant it to mean. This saves me a few keystrokes, and it is a good example of why scripts in your path are generally better than aliases, since you can have logic in them.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Reinventing the wheel: Or how I learned to stop coding and read the manpages</title>
+      <link>/blog/2013/01/28/reinventing-the-wheel-or-how-i-learned-to-stop-coding-and-read-the-manpages/</link>
+      <pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/01/28/reinventing-the-wheel-or-how-i-learned-to-stop-coding-and-read-the-manpages/</guid>
+      <description>&lt;p&gt;About a month ago I &lt;a href=&#34;/blog/2012/12/30/building-command-line-utilities-in-ruby-that-play-well-with-the-rest-of-the-unix-utilities/&#34;&gt;wrote about a command line utility&lt;/a&gt; I made that calculates word and character frequencies. It was packaged as a ruby gem and it interacted well with the Unix pipeline interface.&lt;/p&gt;
+
+&lt;p&gt;Then, about 2 or 3 weeks later, I come across this post on Twitter:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p&gt;Show how many times each line in a sorted file is repeated: uniq -c&lt;/p&gt;&amp;mdash; Unix tool tip (@UnixToolTip) &lt;a href=&#34;https://twitter.com/UnixToolTip/status/292295351518498816&#34;&gt;January 18, 2013&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;And I realized that I could construct a one-liner that does what my gem did. Probably faster too. I know about uniq and sort, and I&amp;rsquo;ve used awk a little bit, but am not really familiar with most of it&amp;rsquo;s capabilities.&lt;/p&gt;
+
+&lt;p&gt;The two features I implemented in ruby were (1) counting word frequencies and (2) counting character frequencies. I defaulted everything to lower case and stripped out non-alphanumeric characters.&lt;/p&gt;
+
+&lt;p&gt;Using @UnixToolTip&amp;rsquo;s suggestion of &lt;code&gt;uniq -c&lt;/code&gt;, I came up with this alternative:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;for word in $(cat filename); do echo $word; done | sed &#39;s/[^a-zA-Z0-9]//g&#39; | tr &#39;[A-Z]&#39; &#39;[a-z]&#39; | sort | uniq -c | sort -nr | head
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This just outputs the file, splits everything up by whitespace, strips out anything that isn&amp;rsquo;t alphanumeric, then lowercases, sorts, and counts the number of repetitions using &lt;code&gt;uniq -c&lt;/code&gt;. The result of that is then sorted numerically, to get the most frequent items at the top of the output, and then displays just the top 10 lines using &lt;code&gt;head&lt;/code&gt;. There are some small numerical differences between this and my gem, and that is most likely because I split by word boundary in ruby, but split by whitespace on the bash one-liner.&lt;/p&gt;
+
+&lt;p&gt;For the problem I was trying to solve, I could have saved some time by digging through the manpages instead of writing another gem. I did enjoy working with the Rubygems packaging system, but I am starting to think that was overkill.&lt;/p&gt;
+
+&lt;p&gt;NOTE: For the character count feature, all I have to do is output one character per line, then I can insert that into the pipeline to get the desired output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;(CONTENTS OF FILENAME, 1 CHARACTER PER LINE) | sed &#39;s/[^a-zA-Z0-9]//g&#39; | tr &#39;[A-Z]&#39; &#39;[a-z]&#39; | sort | uniq -c | sort -nr | head
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I&amp;rsquo;m not sure how to do this at the moment, I think &lt;code&gt;awk&lt;/code&gt; can do it pretty simply, I&amp;rsquo;ll read the manpages, but for now I have to get to work.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fixing spaces in filenames</title>
+      <link>/blog/2012/11/19/fixing-spaces-in-filenames/</link>
+      <pubDate>Mon, 19 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/11/19/fixing-spaces-in-filenames/</guid>
+      <description>&lt;p&gt;Sorry this has taken so long, I&amp;rsquo;ve been working on the &lt;a href=&#34;https://www.coursera.org/course/crypto&#34;&gt;Cryptography Coursera class&lt;/a&gt;,
+to get rid of all spaces in all files below the current directory, the following bash script will do:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;for filename in $(find .); do
+  newfilename=$(echo $filename | sed &#39;s/ /_/g&#39;); 
+  mv $filename $newfilename
+done
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

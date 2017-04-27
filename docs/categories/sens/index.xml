@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sens on tlehman@home</title>
+    <link>/categories/sens/index.xml</link>
+    <description>Recent content in Sens on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/sens/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Review: Ending Aging by Dr. Aubrey de Grey (and some math about immortality)</title>
+      <link>/blog/2014/04/27/review-ending-aging-by-dr-aubrey-de-grey/</link>
+      <pubDate>Sun, 27 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/04/27/review-ending-aging-by-dr-aubrey-de-grey/</guid>
+      <description>
+
+&lt;p&gt;I just finished reading &lt;a href=&#34;https://en.wikipedia.org/wiki/Aubrey_de_Grey&#34;&gt;Dr. Aubrey de Grey&lt;/a&gt;&amp;rsquo;s &lt;em&gt;Ending Aging:  The Rejuvenation Breakthroughs that Could Reverse Human Aging in Our Lifetime (2007)&lt;/em&gt;, it was an accessible introduction to the biology of aging, and a way that it might be defeated. By default, I am skeptical about anti-aging techniques or claims of some sort of fountain of youth. I&amp;rsquo;ve heard de Gray&amp;rsquo;s idea on a podcast, and watched his TED talk. It sounded reasonable, but I wanted to learn more about the science to have a more informed opinion, so I read the book.&lt;/p&gt;
+
+&lt;div style=&#34;float: right; width: 50%&#34;&gt;
+  &lt;img src=&#34;/images/books/ending_aging.jpg&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The plan is referred to as SENS (Strategies for Engineered Negligible Senescence). After reading the book, I think it is a plausible plan for an approach to reverse the effects of aging. I&amp;rsquo;ll summarize the idea and highlight some things from the book that weren&amp;rsquo;t covered in de Gray&amp;rsquo;s TED talk or podcast interview.&lt;/p&gt;
+
+&lt;p&gt;The central assumption of the book is that aging is the accumulation of seven types of damage:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Mitochondrial DNA mutations&lt;/li&gt;
+&lt;li&gt;Nuclear DNA mutations&lt;/li&gt;
+&lt;li&gt;Intercellular junk &lt;em&gt;(e.g. &lt;a href=&#34;https://en.wikipedia.org/wiki/Lipofuscin&#34;&gt;lipofuscin&lt;/a&gt;)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Extracellular junk _(e.g. &lt;a href=&#34;https://en.wikipedia.org/wiki/Beta_amyloid&#34;&gt;beta amyloids&lt;/a&gt;)_&lt;/li&gt;
+&lt;li&gt;Glycation &lt;em&gt;(stiffens tissues leading to stroke, heart disease, etc.)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Cells not dying when they are supposed to &lt;em&gt;(e.g. cancer)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Cells dying when they are not supposed to&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Each of these types of damage is covered in detail in the book, along with one or more possible solutions. For example, number (7) can be treated by using stem cells to replace the lost cells, this has already been demonstrated to work, but there are political hurdles to stem cell research. A comprehensive plan to completely reverse the effects of aging may change this.&lt;/p&gt;
+
+&lt;p&gt;Another example is (1), he explained how mitochondria, which generate energy in the cells, have their own DNA, and they produce lots of reactive byproducts that damage the mitochondria&amp;rsquo;s own DNA. This can be fixed by saving a copy of the mitochondria DNA in the cell nucleus, where it is about 100 times less likely to mutate. Some forms of algae already do this, so it is not without precedent.&lt;/p&gt;
+
+&lt;p&gt;An interesting one is (5), or &lt;a href=&#34;https://en.wikipedia.org/wiki/Glycation&#34;&gt;glycation&lt;/a&gt;, which is the process that leads to the gradual stiffening of tissues. Glucose in the blood sometimes sticks to proteins and causes them to tangle up, this is what happens with caramelization, but at a much slower rate. There are already biotechnology companies that are working on drugs that target glycation endproducts, it is possible to undo the glycation damage, further research is needed before all forms of glycation are fixed, but it is simply a matter of money and time.&lt;/p&gt;
+
+&lt;p&gt;All of the types of damage but (6) seemed relatively straightfoward to solve. It is (6) that is the most troublesome. Assuming all the other types of damage are satisfactorily solved, cancer is still a big problem. In order to keep a human healthy indefinitely, you&amp;rsquo;d need to prevent cancer growth. There are many types of cancer, and within cancers there are many types of cells, but they all have something in common. They have an active telemorase enzyme, which is what replenishes the telomeres (segments of junk DNA at either end, which shorten with every cell division). Since cancerous cells&amp;rsquo; DNA keeps getting it&amp;rsquo;s telomere&amp;rsquo;s restored, they can reproduce indefinitely, this is the main threat of cancer, it can grow forever, until it disturbs its surroundings (your healthy tissue).&lt;/p&gt;
+
+&lt;p&gt;Aubrey de Grey has a solution for this, but it is the most extreme of the book: &lt;em&gt;Remove all telemorase genes from all cells of the human body&lt;/em&gt;. This means that the remaining human body only last about 10 years. Since nuclear DNA mutations are inevitable, and sometimes lead to cancers, having all your cells be unable to replenish their telomeres means that all cancers would eventually hit a wall (after about 50 cell divisions). Then, to solve the problem of your cells running out of telomeres, new stem cells could be engineered with a copy of your DNA (minus the gene for telemorase), and you could top off your stem cell supply every 5-10 years.&lt;/p&gt;
+
+&lt;p&gt;The problem with making all your cells immortal is that cancer will eventually win. By making all your cells mortal, even cancerous ones, you can continue to get SENS therapy until you no longer want to stay alive. If aging is indeed the sum of those 7 types of damage, then this panel of therapies will enable humans to live indefinite youthful lifespans.&lt;/p&gt;
+
+&lt;p&gt;So it appears possible to keep humans alive as long as they want to live, and prevent the decay and the eventual death of the body. This is fantastic, as the majority of healthcare spending is due to this decay. If SENS (or something like it) can be developed afforably, it would save nations trillions of dollars in healthcare and social security spending, as well as give people the choice to live for centuries.&lt;/p&gt;
+
+&lt;p&gt;There is a follow up question that the book didn&amp;rsquo;t address, but it was outside the scope of the book, so I&amp;rsquo;ll address it here.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&#34;moral-immortal&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;should-humans-pursue-indefinite-lifespans&#34;&gt;Should humans pursue indefinite lifespans?&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;
+Yes.&lt;/p&gt;
+
+&lt;p&gt;Why? Humans that have no intention of harming other humans deserve life. Removing things that cause harm to other humans is good. Aging leads to death for all humans, therefore aging should be removed.&lt;/p&gt;
+
+&lt;p&gt;Practically, our technological and social progress reflects this to some degree. Cars have become safer over the last 50 years, smoking is become less and less common.&lt;/p&gt;
+
+&lt;p&gt;Another bit of progress is in HIV/AIDs, it is now under control, for example, Magic Johnson has &lt;a href=&#34;http://www.livescience.com/16909-magic-johnson-hiv-aids-anniversary.html&#34;&gt;survived for 23 years with HIV&lt;/a&gt; and is able to live a normal life. With the advent of highly active antiretroviral therapy, anyone with HIV can live a normal life and not fall victim to AIDS.&lt;/p&gt;
+
+&lt;p&gt;Over the last century, &lt;a href=&#34;http://demog.berkeley.edu/~andrew/1918/figure2.html&#34;&gt;life expectancy has increased by a factor of 1.6&lt;/a&gt;, and is increasing still.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t think it&amp;rsquo;s controversial to say most people want to live forever. In fact, the major religions embody this since they all have some element of eternal life. The problem is that they are all fantasies, up until now, all living organisms eventually age and die, and when they die, they are gone forever.&lt;/p&gt;
+
+&lt;p&gt;Of course, the extension of life is not without some tradeoff, if you prevent old people from aging you prevent a lot of deaths, which has environmental consequences. With people living forever instead of dying and making room for the next generations, our current infrastructure would be strained, and it we would eventually run out of potable water, food, and land. These are just the immediate problems for humans, not to mention global warming, trash, and other unwholsome byproducts of human civilization.&lt;/p&gt;
+
+&lt;p&gt;Why then do I still think this should be done? Notice I said &amp;ldquo;our current infrastructure&amp;rdquo;. I don&amp;rsquo;t think our infrastructure and technologies will stay the same, they will grow and adapt as humans learn more and produce more.&lt;/p&gt;
+
+&lt;p&gt;Before we can answer the environmental question of should humans pursue indefinite lifespans, we should look at what is currently happening, what could happen, and then get back to the question.&lt;/p&gt;
+
+&lt;h3 id=&#34;current-demography&#34;&gt;Current demography&lt;/h3&gt;
+
+&lt;p&gt;There are three possible growth scenarios for the population: decrease, stay constant, increase. Right now the population is increasing, although &lt;a href=&#34;http://www.gapminder.org/videos/dont-panic-the-facts-about-population/&#34;&gt;using UN Data, Hans Rosling shows&lt;/a&gt; that the rate of population growth is slowing.&lt;/p&gt;
+
+&lt;p&gt;For the purposes of this article, it is useful to define a variable:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;$ r = \frac{\text{generation }n + 1}{ \text{generation } n } $&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Another variable that is related to r is the Total Fertility Rate (TFR), which can be thought of as the average number of children per couple. The &lt;a href=&#34;http://www.wolframalpha.com/input/?i=Total+Fertility+Rate&#34;&gt;global average right now is 2.609&lt;/a&gt;. At &amp;lsquo;replacement rate&amp;rsquo;, where TFR = 2, r = 1, since the previous generation is equal to the next generation.&lt;/p&gt;
+
+&lt;p&gt;Rosling&amp;rsquo;s talk shows how as health and wealth increase, TFR decreases, where in most developed countries it is about 2.&lt;/p&gt;
+
+&lt;p&gt;Now, let us suppose SENS works, and is affordable for everyone (perhaps as an alternative to retirement social security, or part of a life insurance opt out). Then, as people reproduced, if TFR &amp;gt; 2, it follows that population would grow. If nothing changed, then we would run out of resources and space.&lt;/p&gt;
+
+&lt;p&gt;If TFR = 2 and stayed that way (very unlikely it would stay constant, but let&amp;rsquo;s assume), then the population would grow linearly, minus the accidental death/suicide rate.&lt;/p&gt;
+
+&lt;p&gt;If TFR &amp;lt; 2, then it gets interesting, if TFR &amp;lt; 2, then the population of children would get smaller each subsequent generation. Call the current population p, for each member of the population, there would be an average number r of children (in the case of TFR=1.9, r = &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;1&lt;/sub&gt;.9 = 0.95).&lt;/p&gt;
+
+&lt;p&gt;Assume there is no death at all, then the population after one generation would be p + pr. Two generations later it would be p + pr + pr&lt;sup&gt;2&lt;/sup&gt;. After an infinite number of generations, it becomes:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+ $p + pr + pr^2 + pr^3 + pr^4 + &amp;hellip;$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;It is easy to show what this infinite series converges to, if you haven&amp;rsquo;t seen it before, or if you&amp;rsquo;ve just memorized the geometric series, I&amp;rsquo;ll show how to derive it:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+  p + pr + pr^2 + pr^3 + pr^4 + &amp;hellip; &amp;amp;= S
+\ r(p + pr + pr^2 + pr^3 + pr^4 + &amp;hellip;) &amp;amp;= rS
+\ pr + pr^2 + pr^3 + pr^4 + pr^5 + &amp;hellip; &amp;amp;= rS
+\ pr + pr^2 + pr^3 + pr^4 + pr^5 + &amp;hellip; &amp;amp;= S - p
+\ rS &amp;amp;= S - p
+\ rS - S &amp;amp;= -p
+\ (r - 1)S &amp;amp;= -p
+\ S &amp;amp;= p/(1-r)
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;So the series converges to p/(1-r), meaning a constant |r| &amp;lt; 1 would lead to a finite upper bound on the human population.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;rsquo;t show that the series converged if |r| &amp;lt; 1, but that is an elementary fact proven in most calculus classes, I&amp;rsquo;ll leave it to the reader as an exercise.&lt;/p&gt;
+
+&lt;p&gt;What this means is that under certain reasonable conditions (r &amp;lt; 1), you can have immortality &lt;em&gt;and&lt;/em&gt; procreation, without an explosion in population.&lt;/p&gt;
+
+&lt;p&gt;However, that eventuality depends on a constant r &amp;lt; 1, and it&amp;rsquo;s also asymptotic, so even if it&amp;rsquo;s eventually correct, it doesn&amp;rsquo;t give us any information about now, and the next few centuries.&lt;/p&gt;
+
+&lt;p&gt;In order to sustain human life, we need:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;water&lt;/li&gt;
+&lt;li&gt;energy&lt;/li&gt;
+&lt;li&gt;food&lt;/li&gt;
+&lt;li&gt;shelter&lt;/li&gt;
+&lt;li&gt;disposal of waste&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Some of these are interdependent, like 2 leads 1, if we have lots of energy, we can desalinate the ocean and get drinkable water. Also, 1 &amp;amp; 2 lead to 3, since water and energy (sunlight) lead to plants (food).&lt;/p&gt;
+
+&lt;p&gt;One problem with 3 is that food is currently grown in huge wide patches far away from urban centers. This doesn&amp;rsquo;t scale well, it uses a lot of surface area, pesticides and fuel to ship the food to cities and other urban centers. However, Dickson Despommier solved this with the &lt;a href=&#34;http://www.verticalfarm.com/&#34;&gt;vertical farm&lt;/a&gt;. It solves the area problem by stacking many levels on top of each other (where the word &amp;lsquo;vertical&amp;rsquo; comes from). It also solves the problem of fuel, since you can build these vertical farms in the city, &lt;a href=&#34;http://www.npr.org/blogs/thesalt/2012/11/06/164428031/sky-high-vegetables-vertical-farming-sprouts-in-singapore&#34;&gt;this is already being done in Singapore&lt;/a&gt;. And it is possible to build habitats for farm workers into the vertical farm itself, which means that 3 (food) can lead to 4 (shelter) in some cases.&lt;/p&gt;
+
+&lt;p&gt;Also, with the development of colonies in space, and on the Moon and Mars, overpopulation can be avoided by exporting Earthlings to new places. Any working space colony will necessarily have to be very efficient at recycling waste, so space colonization leads to 5 (disposal of waste).&lt;/p&gt;
+
+&lt;p&gt;All of this suggests that the problems we face now with our current population, infrastructure and technologies can be solved by building better infrastructure and technologies, and those technologies already exist in primitive form. Eliminating the disease of aging does mean that we will end up running out of resources and all starve. We can have more people, living longer lives, and together solve all the problems that prevent our species&amp;rsquo; long term survival.&lt;/p&gt;
+
+&lt;p&gt;Sources:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;de Grey A, Rae Michael. Ending Aging: The Rejuvenation Breakthroughs That Could Reverse Human Aging in Our Lifetimes&lt;/li&gt;
+&lt;li&gt;Gavrilov LA, Gavrilova NS. Demographic consequences of defeating aging. Rejuvenation Res. 2010;13:329–334. &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3192186/&#34;&gt;PMC free article&lt;/a&gt; &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/20426616&#34;&gt;PubMed&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

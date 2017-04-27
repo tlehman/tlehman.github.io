@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on tlehman@home</title>
+    <link>/categories/machine-learning/index.xml</link>
+    <description>Recent content in Machine Learning on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>word embeddings and semantics</title>
+      <link>/blog/2016/09/04/word-embeddings-and-semantics/</link>
+      <pubDate>Sun, 04 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2016/09/04/word-embeddings-and-semantics/</guid>
+      <description>
+
+&lt;p&gt;Can a machine understand what a word means? Right now machines routinely correct spelling and grammar, but are pretty useless when it comes to semantics.&lt;/p&gt;
+
+&lt;p&gt;Search engines are an exception, they have a rudimentary understanding of what words mean. One of the ways this can work is explored in Tomas Mikolov&amp;rsquo;s 2013 paper
+on &lt;strong&gt;word embeddings&lt;/strong&gt;. Word embeddings are mappings from sets of words to vectors, such that the distances between the vectors represent the semantic similarity
+of the words. These embeddings are learned by programs by scanning through large volumes of text, such as wikipedia articles and royalty-free books, and uses a
+sliding context to adjust the parameters of the embedding.&lt;/p&gt;
+
+&lt;p&gt;The goal is to learn a function &lt;code&gt;f&lt;/code&gt; from words to vectors such that the following equation holds:&lt;/p&gt;
+
+&lt;p&gt;$$ f(\text{waiter}) - f(\text{man}) + f(\text{woman}) = f(\text{waitress}) $$&lt;/p&gt;
+
+&lt;p&gt;Using the &amp;lsquo;skip-gram&amp;rsquo; technique in the Mikolov paper, we can get a pretty good function &lt;code&gt;f&lt;/code&gt;, for details, look at this &lt;a href=&#34;https://www.tensorflow.org/versions/r0.10/tutorials/word2vec/index.html&#34;&gt;tensorflow tutorial&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I ran the &lt;code&gt;word2vec_optimized.py&lt;/code&gt; program and generated the word embeddings, and here is a real session from that model:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;&amp;gt;&amp;gt;&amp;gt; model.analogy(&#39;man&#39;, &#39;woman&#39;, &#39;waiter&#39;)
+&#39;waitress&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;word2vec_optimized.py&lt;/code&gt; script ran through all the text, generated the embeddings and then did that calculation up above to find the appropriate analogy. There is a lot more to
+this that I want to explore, but so far it&amp;rsquo;s been surprising how well this works.&lt;/p&gt;
+
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Efficient estimation of word representations in vector space by Tomas Mikolov, Kai Chen, Greg Corrado, Jeffrey Dean (2013) &lt;em&gt;arXiv preprint arXiv:1301.3781&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

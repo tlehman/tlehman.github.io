@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Gun control and safety</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Gun control and safety</h1>
+			<div>
+				<p>Another mass shooting happened today. I don&rsquo;t usually write about this, but it happened in Roseberg, Oregon, close to where I live. Too close. I do understand that it is morally equivalent to a mass shooting in Ethiopia, Indonesia, the Netherlands or Australia, but something about events being close by have a bigger emotional impact.</p>
+
+<p>The question I want to address in this article is whether legislation can help solve this problem. I&rsquo;ll focus on whether it is effective to implement barriers to gun ownership.</p>
+
+<p>The inspiration for this article is this graphic by Libby Isenstein:</p>
+
+<p><img src="https://pbs.twimg.com/media/COF4FxPUkAEmOkI.jpg" alt="Libby Isenstein's infographic on guns" /></p>
+
+<p>My methodology is to see if there is a correlation between the number of gun-control-related laws in a state and the number of gun-related deaths. The columns in the above table will each count for up to one point. For example, if a state doesn&rsquo;t require a permit for a gun, it gets 0, and if it does require a permit, it gets 1. For columns related to the difficulty of getting a gun, easy gets 0 points, moderate gets 0.5 points, and difficult gets 1 point.</p>
+
+<p>These points are then added up, and we look at all the states (plus DC), as pairs <code>(sum of points, gun deaths per 100,000 people)</code></p>
+
+<p><img src="/images/blogimg/guns_output_6_1.png" alt="scatterplot" /></p>
+
+<p>This has a correlation coefficient of 0.52 (1.0 being a perfect fit), what that means is that there is a moderate trend between the degree of gun control and the number of gun-related deaths. It doesn&rsquo;t prove that gun control laws cause fewer gun deaths, but it is at least consistent with that claim. And more importantly, it is evidence against the argument that more widespead access to guns make us all safer.</p>
+
+<p>No person should die for no reason. If legislation can help solve this problem (there&rsquo;s reason to think it can), then it&rsquo;s our duty to make that come to pass. Unfortunately, certain interpretations of the Second Amendment currently in force have prevented many sane limits on access to guns, this article by <a href="https://www.washingtonpost.com/opinions/the-five-extra-words-that-can-fix-the-second-amendment/2014/04/11/f8a19578-b8fa-11e3-96ae-f2c36d2b1245_story.html?postshare=2541443818572894">John Paul Stevens in the Washington Post explain a little history behind that</a>.</p>
+
+<p>For more detail on how to perform the analysis above, see below (requires familiarity with python, or a similar language).</p>
+
+<pre><code>import pandas as pd
+import numpy as np
+df = pd.read_csv(&quot;guns.csv&quot;)
+df.head()
+</code></pre>
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>deaths</th>
+      <th>state</th>
+      <th>laws</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.6</td>
+      <td>HI</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.1</td>
+      <td>MA</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.2</td>
+      <td>NY</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.4</td>
+      <td>CT</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.3</td>
+      <td>RI</td>
+      <td>4.5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+%matplotlib inline
+plt.ylabel(&quot;gun deaths per 100k&quot;)
+plt.xlabel(&quot;number of gun laws&quot;)
+plt.scatter(df[&quot;laws&quot;], df[&quot;deaths&quot;])
+</code></pre>
+
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x10d678850&gt;
+</code></pre>
+
+<p><img src="/images/blogimg/guns_output_3_1.png" alt="png" /></p>
+
+<p>Since it looks like a downward trend, let&rsquo;s see how well a linear model fits this data.</p>
+
+<pre><code>
+from sklearn import linear_model
+reg = linear_model.LinearRegression() 
+X = df["laws"].values.reshape((len(df),1))
+y_true = df["deaths"].values.reshape((len(df),1))
+
+reg.fit(X,y_true)
+y_pred = reg.predict(X)
+</code></pre>
+
+<pre><code class="language-python">plt.ylabel(&quot;gun deaths per 100k&quot;)
+plt.xlabel(&quot;number of gun laws&quot;)
+plt.plot(X,y_pred)
+plt.scatter(X,y_true)
+</code></pre>
+
+<pre><code>&lt;matplotlib.collections.PathCollection at 0x10e980fd0&gt;
+</code></pre>
+
+<p><img src="/images/blogimg/guns_output_6_1.png" alt="png" /></p>
+
+<p>It looks like a really good, fit, but to make it precist, we should find the $R^2$ score.</p>
+
+<pre><code class="language-python">from sklearn.metrics import r2_score
+r2_score(y_true, y_pred)
+</code></pre>
+
+<pre><code>0.52124939556633598
+</code></pre>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

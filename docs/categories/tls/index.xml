@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tls on tlehman@home</title>
+    <link>/categories/tls/index.xml</link>
+    <description>Recent content in Tls on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/tls/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Set up Mailinabox with LetsEncrypt</title>
+      <link>/blog/2016/01/07/set-up-mailinabox-with-letsencrypt/</link>
+      <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2016/01/07/set-up-mailinabox-with-letsencrypt/</guid>
+      <description>&lt;p&gt;If you are not familiar with the &lt;a href=&#34;https://eff.org&#34;&gt;EFF&lt;/a&gt; or their great project &lt;a href=&#34;https://letsencrypt.org&#34;&gt;LetsEncrypt&lt;/a&gt;,
+don&amp;rsquo;t feel bad, even the &lt;a href=&#34;http://techcrunch.com/2016/01/07/who-the-f-is-the-eff-john-legere-wants-to-know/&#34;&gt;CEO of T-Mobile doesn&amp;rsquo;t know&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But seriously, this post is about combining the best of two projects:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://mailinabox.email/&#34;&gt;Mailinabox&lt;/a&gt; a standalone mail server that enables email as it should be&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://letsencrypt.org&#34;&gt;LetsEncrypt&lt;/a&gt; a non-profit TLS certificate authority&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mailinabox allows anyone with little patience to set up their own mail server with all the fixings, web client,
+spam filter, admin panel, etc. I recently just set it up, you can send email to &lt;img src=&#34;/images/email_address.png&#34; alt=&#34;mail at this domain&#34; /&gt; to contact me.&lt;/p&gt;
+
+&lt;p&gt;Once you set up a domain name and a server and then get Mailinabox running, the next step is to get LetsEncrypt working.&lt;/p&gt;
+
+&lt;p&gt;Since Mailinabox aims to automate almost everything, it is important to symlink the generated LetsEncrypt certificates to right place so Mailinabox knows where to find them.&lt;/p&gt;
+
+&lt;p&gt;The directory &lt;code&gt;/home/user-data/ssl&lt;/code&gt; is created by Mailinabox, and to use LetsEncrypt certificates there, you will have to symlink them to that directory.&lt;/p&gt;
+
+&lt;p&gt;I started by turning off nginx and running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ /letsencrypt-auto certonly --standalone -d tobilehman.com -d www.tobilehman.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That generated the following files in &lt;code&gt;/etc/letsencrypt/live/tobilehman.com/&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cert.pem&lt;/li&gt;
+&lt;li&gt;chain.pem&lt;/li&gt;
+&lt;li&gt;fullchain.pem&lt;/li&gt;
+&lt;li&gt;privkey.pem&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To use these in Mailinabox, you need to mkdir the directories under &lt;code&gt;/home/user-data/ssl/&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /home/user-data/ssl/tobilehman.com
+$ mkdir /home/user-data/ssl/www.tobilehman.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then symlink the &lt;code&gt;ssl_certificate.pem&lt;/code&gt; and &lt;code&gt;privkey.pem&lt;/code&gt; files to the right place:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ln -s /etc/letsencrypt/live/tobilehman.com/fullchain.pem /home/user-data/ssl/tobilehman.com/ssl_certificate.pem
+$ ln -s /etc/letsencrypt/live/tobilehman.com/privkey.pem /home/user-data/ssl/tobilehman.com/ssl_private_key.pem
+
+$ ln -s /etc/letsencrypt/live/tobilehman.com/fullchain.pem /home/user-data/ssl/www.tobilehman.com/ssl_certificate.pem
+$ ln -s /etc/letsencrypt/live/tobilehman.com/privkey.pem /home/user-data/ssl/www.tobilehman.com/ssl_private_key.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then finally, go to the directory that contains the mailinabox repository folder, and
+run &lt;code&gt;mailinabox/tools/web_update&lt;/code&gt;, and then start nginx up again. You should be good to go! If not, email me with
+some context, and we can figure out a solution.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

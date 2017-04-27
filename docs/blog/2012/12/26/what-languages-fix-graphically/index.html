@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>What languages fix: graphically</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>What languages fix: graphically</h1>
+			<div>
+				<p>Paul Graham&rsquo;s article <a href="http://www.paulgraham.com/fix.html">What languages fix</a> is about Kevin Kelleher&rsquo;s description of each programming language in terms of the problems with other languages that it fixes. I decided to make this into a graph where each node is a language, and the edge represents the relation &ldquo;x fixes y&rdquo;.</p>
+
+<p>Here is the list:</p>
+
+<ul>
+<li>Algol: Assembly language is too low-level.</li>
+<li>Pascal: Algol doesn&rsquo;t have enough data types.</li>
+<li>Modula: Pascal is too wimpy for systems programming.</li>
+<li>Simula: Algol isn&rsquo;t good enough at simulations.</li>
+<li>Smalltalk: Not everything in Simula is an object.</li>
+<li>Fortran: Assembly language is too low-level.</li>
+<li>Cobol: Fortran is scary.</li>
+<li>PL/1: Fortran doesn&rsquo;t have enough data types.</li>
+<li>Ada: Every existing language is missing something.</li>
+<li>Basic: Fortran is scary.</li>
+<li>APL: Fortran isn&rsquo;t good enough at manipulating arrays.</li>
+<li>J: APL requires its own character set.</li>
+<li>C: Assemby language is too low-level.</li>
+<li>C++: C is too low-level.</li>
+<li>Java: C++ is a kludge. And Microsoft is going to crush us.</li>
+<li>C#: Java is controlled by Sun.</li>
+<li>Lisp: Turing Machines are an awkward way to describe computation.</li>
+<li>Scheme: MacLisp is a kludge.</li>
+<li>T: Scheme has no libraries.</li>
+<li>Common Lisp: There are too many dialects of Lisp.</li>
+<li>Dylan: Scheme has no libraries, and Lisp syntax is scary.</li>
+<li>Perl: Shell scripts/awk/sed are not enough like programming languages.</li>
+<li>Python: Perl is a kludge.</li>
+<li>Ruby: Perl is a kludge, and Lisp syntax is scary.</li>
+<li>Prolog: Programming is not enough like logic.</li>
+</ul>
+
+<p>I put the above text into a file called &lsquo;fix.txt&rsquo; and then wrote the following ruby code to convert it into a directed graph in the DOT language:</p>
+
+<pre><code class="language-ruby"># make a graph of language solutions (inspired by: http://www.paulgraham.com/fix.html)
+
+fixes = File.open('fix.txt').read.split(&quot;\n&quot;)
+
+fixes.each do |fix|
+  language = fix.split(&quot;:&quot;).first
+  /\:(?&lt;fixed&gt;.*)\b(is(n't)?|are|doesn't)\b/ =~ fix
+  puts &quot;#{language} -&gt; #{fixed} [label=\&quot;fixes\&quot;]&quot;
+end
+</code></pre>
+
+<p>I had to tweak the output a bit, but the final result is a very nice summation of Kelleher&rsquo;s list:
+<a href="/images/blogimg/lang_fixes.png"><img src="/images/blogimg/lang_fixes.png"></a></p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

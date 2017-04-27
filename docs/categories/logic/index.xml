@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Logic on tlehman@home</title>
+    <link>/categories/logic/index.xml</link>
+    <description>Recent content in Logic on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/logic/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Logical consistency in Law</title>
+      <link>/blog/2014/10/27/logical-consistency-in-law/</link>
+      <pubDate>Mon, 27 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/10/27/logical-consistency-in-law/</guid>
+      <description>&lt;p&gt;Washington state has two contradictory initiatives on the ballot this year.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initiative 591 (I-591) would prevent background checks for gun purchases except when required by the federal government.&lt;/p&gt;
+
+&lt;p&gt;Initiative 594 (I-594) would ensure background checks for all gun purchases, including those conducted online and at gun shows.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;http://fivethirtyeight.com/datalab/background-checks-for-gun-sales-look-likely-to-pass-in-washington/&#34;&gt;FiveThirtyEight&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This kind of thing shouldn&amp;rsquo;t even be let onto the ballot. There should be something akin to a compiler that can weed out laws that are&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Contradictory to one another&lt;/li&gt;
+&lt;li&gt;Contradictory to existing law&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first requirement is easy, the second requirement is harder, I mentioned it &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Of course, Courts do serve this role, but only after laws are passed and people contest it. I think there is still room for cleaning the process up a bit and weeding out mutually contradictory laws that show up on the same ballot!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Lies Damned Lies and Statistics</title>
+      <link>/blog/2013/04/03/lies-damned-lies-and-statistics/</link>
+      <pubDate>Wed, 03 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/04/03/lies-damned-lies-and-statistics/</guid>
+      <description>&lt;p&gt;There is a quote, usually attributed to Mark Twain that goes something
+like:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;There are three kinds lies.
+Lies, Damned Lies, and Statistics.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;My interpretation of this is that statistics are supposed to be the
+worst kind of lie, or that the worst kinds of lies use
+statistics.&lt;/p&gt;
+
+&lt;p&gt;The thing that bothers me most about this quote (and the innumerable
+minor variations of it that get repeated) is that the word
+&amp;lsquo;statistics&amp;rsquo; comes at the end.&lt;/p&gt;
+
+&lt;p&gt;Why does that matter? Notice that the list is presented as a sequence,
+an increasing sequence of damned-ness, and the presence of the word
+&amp;lsquo;statistics&amp;rsquo; at the end is supposed to imply that it is &amp;lsquo;more damned&amp;rsquo;
+than damned lies.&lt;/p&gt;
+
+&lt;p&gt;This interpretation bothers me because the implied damned-ness is
+based on the initial correlation, and that correlation is only based
+on two data points. The quote depends on a misunderstanding of
+statistics. Anyone who has studied a little bit of statistics will
+know not to trust an inference based on a correlation in a data set
+of only two points!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

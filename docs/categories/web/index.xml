@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on tlehman@home</title>
+    <link>/categories/web/index.xml</link>
+    <description>Recent content in Web on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Set up Mailinabox with LetsEncrypt</title>
+      <link>/blog/2016/01/07/set-up-mailinabox-with-letsencrypt/</link>
+      <pubDate>Thu, 07 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2016/01/07/set-up-mailinabox-with-letsencrypt/</guid>
+      <description>&lt;p&gt;If you are not familiar with the &lt;a href=&#34;https://eff.org&#34;&gt;EFF&lt;/a&gt; or their great project &lt;a href=&#34;https://letsencrypt.org&#34;&gt;LetsEncrypt&lt;/a&gt;,
+don&amp;rsquo;t feel bad, even the &lt;a href=&#34;http://techcrunch.com/2016/01/07/who-the-f-is-the-eff-john-legere-wants-to-know/&#34;&gt;CEO of T-Mobile doesn&amp;rsquo;t know&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;But seriously, this post is about combining the best of two projects:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://mailinabox.email/&#34;&gt;Mailinabox&lt;/a&gt; a standalone mail server that enables email as it should be&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://letsencrypt.org&#34;&gt;LetsEncrypt&lt;/a&gt; a non-profit TLS certificate authority&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mailinabox allows anyone with little patience to set up their own mail server with all the fixings, web client,
+spam filter, admin panel, etc. I recently just set it up, you can send email to &lt;img src=&#34;/images/email_address.png&#34; alt=&#34;mail at this domain&#34; /&gt; to contact me.&lt;/p&gt;
+
+&lt;p&gt;Once you set up a domain name and a server and then get Mailinabox running, the next step is to get LetsEncrypt working.&lt;/p&gt;
+
+&lt;p&gt;Since Mailinabox aims to automate almost everything, it is important to symlink the generated LetsEncrypt certificates to right place so Mailinabox knows where to find them.&lt;/p&gt;
+
+&lt;p&gt;The directory &lt;code&gt;/home/user-data/ssl&lt;/code&gt; is created by Mailinabox, and to use LetsEncrypt certificates there, you will have to symlink them to that directory.&lt;/p&gt;
+
+&lt;p&gt;I started by turning off nginx and running:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ /letsencrypt-auto certonly --standalone -d tobilehman.com -d www.tobilehman.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That generated the following files in &lt;code&gt;/etc/letsencrypt/live/tobilehman.com/&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cert.pem&lt;/li&gt;
+&lt;li&gt;chain.pem&lt;/li&gt;
+&lt;li&gt;fullchain.pem&lt;/li&gt;
+&lt;li&gt;privkey.pem&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To use these in Mailinabox, you need to mkdir the directories under &lt;code&gt;/home/user-data/ssl/&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir /home/user-data/ssl/tobilehman.com
+$ mkdir /home/user-data/ssl/www.tobilehman.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then symlink the &lt;code&gt;ssl_certificate.pem&lt;/code&gt; and &lt;code&gt;privkey.pem&lt;/code&gt; files to the right place:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ln -s /etc/letsencrypt/live/tobilehman.com/fullchain.pem /home/user-data/ssl/tobilehman.com/ssl_certificate.pem
+$ ln -s /etc/letsencrypt/live/tobilehman.com/privkey.pem /home/user-data/ssl/tobilehman.com/ssl_private_key.pem
+
+$ ln -s /etc/letsencrypt/live/tobilehman.com/fullchain.pem /home/user-data/ssl/www.tobilehman.com/ssl_certificate.pem
+$ ln -s /etc/letsencrypt/live/tobilehman.com/privkey.pem /home/user-data/ssl/www.tobilehman.com/ssl_private_key.pem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then finally, go to the directory that contains the mailinabox repository folder, and
+run &lt;code&gt;mailinabox/tools/web_update&lt;/code&gt;, and then start nginx up again. You should be good to go! If not, email me with
+some context, and we can figure out a solution.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to set up LetsEncrypt (free SSL/TLS certs)</title>
+      <link>/blog/2015/11/11/how-to-set-up-letsencrypt-free-ssl-slash-tls-certs/</link>
+      <pubDate>Wed, 11 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/11/11/how-to-set-up-letsencrypt-free-ssl-slash-tls-certs/</guid>
+      <description>
+
+&lt;p&gt;First, for those who don&amp;rsquo;t know what LetsEncrypt is, it is a project by the &lt;a href=&#34;https://www.eff.org/&#34;&gt;EFF&lt;/a&gt; to create a legitimate certificate authority that doesn&amp;rsquo;t charge. Up until now, certificate authorities charged, creating a financial barrier for many to use SSL/TLS to secure their site. It&amp;rsquo;s true that the prices weren&amp;rsquo;t unreasonable, but it&amp;rsquo;s just enough to prevent many people from choosing to reap the benefits of encryption. As far back as 2012, Jeff Atwood argued in a &lt;a href=&#34;http://blog.codinghorror.com/should-all-web-traffic-be-encrypted/&#34;&gt;blog post&lt;/a&gt; that we should make SSL default for web pages, but acknowledged that it would take a while for it to be the default:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Maybe not tomorrow, maybe not next year, but over the medium to long term, adopting encrypted web connections as a standard for logged-in users is the healthiest direction for the future of the web. We need to work toward making HTTPS easier, faster, and most of all, the default for logged in users.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now that LetsEncrypt has entered a limited beta stage, anyone who applied and got accepted can get free certificates, and only has to follow a few easy steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ssh into your webserver&lt;/li&gt;
+&lt;li&gt;stop your web server program (nginx, apache, etc.)&lt;/li&gt;
+&lt;li&gt;clone the letsencrypt git repo: &lt;code&gt;git clone https://github.com/letsencrypt/letsencrypt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;cd into &lt;code&gt;letsencrypt/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;run the command: &lt;code&gt;./letsencrypt-auto --agree-dev-preview --server https://acme-v01.api.letsencrypt.org/directory auth&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;set up your certificate and private key with your web server&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;how-to-set-up-the-generated-certificates-with-your-web-server&#34;&gt;How to set up the generated certificates with your web server&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;ve had to do this with Apache2 and nginx, and both times I couldn&amp;rsquo;t find good documentation, so here&amp;rsquo;s what worked for me:&lt;/p&gt;
+
+&lt;h3 id=&#34;apache2&#34;&gt;Apache2&lt;/h3&gt;
+
+&lt;p&gt;In the Apache config file for the website that is for your approved LetsEncrypt domain (tobilehman.com in my case), &lt;code&gt;/etc/apache2/sites-enabled/tobilehman.com.conf&lt;/code&gt;, just add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;VirtualHost *:443&amp;gt;
+     SSLEngine On
+     SSLCertificateFile /etc/letsencrypt/live/tobilehman.com/cert.pem
+     SSLCertificateKeyFile /etc/letsencrypt/live/tobilehman.com/privkey.pem
+     SSLCertificateChainFile /etc/letsencrypt/live/tobilehman.com/chain.pem
+
+     ServerAdmin examplemail@example.com
+     ServerName tobilehman.com
+     ServerAlias www.tobilehman.com
+     DocumentRoot /var/www/tobilehman.com/public_html/
+     ErrorLog /var/www/tobilehman.com/logs/error.log
+     CustomLog /var/www/tobilehman.com/logs/access.log combined
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where you replace &lt;code&gt;tobilehman.com&lt;/code&gt; with your domain name, and add your email for &lt;code&gt;ServerAdmin&lt;/code&gt; too.&lt;/p&gt;
+
+&lt;h3 id=&#34;nginx&#34;&gt;nginx&lt;/h3&gt;
+
+&lt;p&gt;In the nginx config file for the website that is for your approved LetsEncrypt domain (goga.me in my case), &lt;code&gt;/etc/nginx/nginx.conf&lt;/code&gt;, just add to following to the &lt;code&gt;http&lt;/code&gt; section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {
+        listen 443;
+        ssl on;
+
+        ssl_certificate /etc/letsencrypt/live/goga.me/cert.pem;
+        ssl_certificate_key /etc/letsencrypt/live/goga.me/privkey.pem;
+        location / {
+                proxy_pass http://127.0.0.1:8080;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection &amp;quot;upgrade&amp;quot;;
+                proxy_read_timeout 3600;
+                proxy_send_timeout 3600;
+        }
+        root /home/rails/goga.me;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where you replace &lt;code&gt;goga.me&lt;/code&gt; with your domain name.&lt;/p&gt;
+
+&lt;p&gt;LetsEncrypt is just the beginning, but it&amp;rsquo;s a great practical first step towards a web that is SSL by default. Even for public content that doesn&amp;rsquo;t need the benefits of encryption, the integrity you get from SSL is worth it. If you are unfamiliar, this is the property of an SSL connection that you know that the page is from someone who controls the private key. To illustrate this, imagine that you visited &lt;code&gt;http://tobilehman.com&lt;/code&gt;, and that your router had some malware that redirected the HTTP request to an evil server that returned a fake tobilehman.com, if the connection was instead to &lt;code&gt;https://tobilehman.com&lt;/code&gt;, then any attempt to redirect that request to another evil server would be a dead giveaway, since that evil server can&amp;rsquo;t prove that it has access to the private key that is associated with &lt;code&gt;https://tobilehman.com&lt;/code&gt;. This alone is reason enough to use SSL everywhere, all the time. For everything. Even if securing the information from prying eyes isn&amp;rsquo;t a goal, the authenticity of the source is worth proving.&lt;/p&gt;
+
+&lt;p&gt;The EFF is a great organization, and if you can, donate to them. And sign up for LetsEncrypt, encrypt all the things.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Making a Go Game for the Web</title>
+      <link>/blog/2015/11/03/making-a-go-game-for-the-web/</link>
+      <pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/11/03/making-a-go-game-for-the-web/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;ve been feeling productive in the last few weeks. I just finished two Coursera classes, one in machine learning and one in Swift programming. I also finished my minimum viable go game: &lt;a href=&#34;http://goga.me&#34;&gt;goga.me&lt;/a&gt;. And we are working on a really exciting feature at work. I really like having lots of interesting things to work on. Anyway, enough feelings, you came here for games and code.&lt;/p&gt;
+
+&lt;p&gt;The game of Go is ancient, it has very few rules, but an unfathomable level of complexity emerges from all the possible ways the pieces can be put on the board. The graphics were very straightforward to implement, it&amp;rsquo;s just a square grid with some colored circles, I don&amp;rsquo;t usually work with graphics, so I experimented with some different web technologies to see what worked best.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gogame_screenshot_0.png&#34; alt=&#34;example go game&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;attempt-1-html5-canvas&#34;&gt;Attempt 1, HTML5 Canvas&lt;/h2&gt;
+
+&lt;p&gt;About a year ago I wrote a Go board using the HTML5 &amp;lt;canvas&amp;gt; element, &lt;a href=&#34;https://github.com/tlehman/go-websocket/blob/master/go_game.js&#34;&gt;here&amp;rsquo;s the source code&lt;/a&gt;, it doesn&amp;rsquo;t actually have a server side, I decided to ditch that approach, since canvas is really great for making arbitrarily complicated bitmap graphics, but I needed something much simpler. Also, when zooming in on a phone, the click event location was not the same as the location where the code drew a new piece.&lt;/p&gt;
+
+&lt;h2 id=&#34;attempt-2-svg&#34;&gt;Attempt 2, SVG&lt;/h2&gt;
+
+&lt;p&gt;After almost a year I came back to the project, I wrote out a rails backend for the data storage and game logic, and then learned SVG (Scalable Vector Graphics). Here&amp;rsquo;s &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/views/matches/show.html.erb&#34;&gt;the source code&lt;/a&gt;, what I like about SVG is that I can make the board positions part of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Document_Object_Model&#34;&gt;DOM&lt;/a&gt; and bind javascript events to the positions. This solves a problem with zooming, so that when I zoom in on a phone, the click event shows up in the right position.&lt;/p&gt;
+
+&lt;h2 id=&#34;websockets-enabling-live-back-and-forth-gameplay&#34;&gt;WebSockets, enabling live back and forth gameplay&lt;/h2&gt;
+
+&lt;p&gt;Another exciting technology that I spent some time learning about was &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API&#34;&gt;WebSockets&lt;/a&gt;, this allows two players to open a direct connection to one another, so that as soon as someone plays a piece, the other one knows. This way, the user does not have to refresh, it&amp;rsquo;s all live. I used the websockets-rails library to handle setting up a user-to-user connection through the rails backend. The &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/master/app/views/matches/show.html.erb#L67-L80&#34;&gt;source code to handle binding and triggering is here&lt;/a&gt;. To see it in action, &lt;a href=&#34;http://goga.me/users/sign_up&#34;&gt;make an account at goga.me&lt;/a&gt;, and then &lt;a href=&#34;http://goga.me/matches/new&#34;&gt;create a match&lt;/a&gt;, and click &amp;lsquo;Start Match&amp;rsquo;, that will start a match against yourself, you can open it up on multiple devices, and when you start playing, the other screen will immediately update, it&amp;rsquo;s pretty cool!&lt;/p&gt;
+
+&lt;h2 id=&#34;other-challenges&#34;&gt;Other challenges&lt;/h2&gt;
+
+&lt;p&gt;After getting the graphics and networking to work correctly, the only other major challenge was handling capturing. Capturing is where one color completely surrounds the other color, and the surrounded pieces get removed, you can see it in the following screen capture:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gogame_capturing.gif&#34; alt=&#34;example capturing in a go game&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The challenge is to determine the parts of the board that are connected. Since each piece can only be connected to it&amp;rsquo;s four neighboring pieces of the same color, you can start finding connected components by picking a point and walking to every piece connected to it that is the same color. A prime choice for this problem is a breadth first search:&lt;/p&gt;
+
+&lt;h2 id=&#34;breadth-first-search&#34;&gt;Breadth First Search&lt;/h2&gt;
+
+&lt;p&gt;To wrap my head around this algorithm I had to get out my trusty graph theory book. Here&amp;rsquo;s a summary of the algorithm and an example:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Input&lt;/strong&gt;: An unweighted graph and a start vertex u&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Idea&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Maintain a set R of vertices that have been reached but not searched and&lt;/li&gt;
+&lt;li&gt;a set S of vertices that have been searched.&lt;/li&gt;
+&lt;li&gt;The set R is maintained as a First-In First-Out list (&lt;a href=&#34;https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29&#34;&gt;queue&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Initialization&lt;/strong&gt;: R = {u}, S = ø, d(u,u) = 0&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Iteration&lt;/strong&gt;: As long as R &amp;neq; ø, we search from the first vertex v of R. The neighbors of v not in (S U R) are added to the back of R and then v is removed from the front of R and placed in S.&lt;/p&gt;
+
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;Let G be the adjacency graph of the following Go shape:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   1  2  3  4  5  6
+ 1    .  o  o  o  .
+ 2    .  .  .  .  .  &amp;lt;--- black component
+ 3    .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;v&lt;/th&gt;
+&lt;th&gt;R&lt;/th&gt;
+&lt;th&gt;S&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(2,1)&lt;/td&gt;
+&lt;td&gt;[(2,1)]&lt;/td&gt;
+&lt;td&gt;{}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,1)&lt;/td&gt;
+&lt;td&gt;[(2,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,2)&lt;/td&gt;
+&lt;td&gt;[(2,3),(3,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,3)&lt;/td&gt;
+&lt;td&gt;[(3,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(3,2)&lt;/td&gt;
+&lt;td&gt;[(4,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(4,2)&lt;/td&gt;
+&lt;td&gt;[(5,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(5,2)&lt;/td&gt;
+&lt;td&gt;[(6,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(6,2)&lt;/td&gt;
+&lt;td&gt;[(6,1)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(6,1)&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2),(6,1)}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt; &lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Once I worked through the steps with this example and several others, writing the code to implement it was very straightforward, here&amp;rsquo;s the &lt;a href=&#34;https://github.com/tlehman/go-websocket/blob/8094890048ca845c0fef416573b8aba533ca6ea9/jasmine/src/ComponentMap.js#L16-L51&#34;&gt;javascript version&lt;/a&gt; and the &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/presenters/board_presenter.rb#L24-L41&#34;&gt;ruby version&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My go game is at a good stopping point for now, I still need to fix a few edge cases and add a chat feature. Also, I realized how satisfying it is to take a bunch of stuff I learned and make something real with it. I plan on making a native mobile client to this (iOS and Android), but that will take some more time and work.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bison on tlehman@home</title>
+    <link>/categories/bison/index.xml</link>
+    <description>Recent content in Bison on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/bison/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Parsing nested expressions using Bison</title>
+      <link>/blog/2015/01/27/parsing-nested-expressions-using-bison/</link>
+      <pubDate>Tue, 27 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/01/27/parsing-nested-expressions-using-bison/</guid>
+      <description>&lt;p&gt;I modified my &lt;a href=&#34;/blog/2015/01/22/tip-calculation-using-bison-grammar/&#34;&gt;tipcalc&lt;/a&gt; program to handle expressions of arbitrary depth, so now it can handle input like &lt;code&gt;((($100 + 2%) + 2%) - 3%) + 3.5%&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The trick was to change the &lt;code&gt;start&lt;/code&gt; symbol to match &lt;code&gt;binary_expression&lt;/code&gt;, and then define &lt;code&gt;binary_expression&lt;/code&gt; recursively, like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;binary_expression:
+    dollars OP_PLUS percentage
+    |
+    dollars OP_MINUS percentage
+    |
+    LPAREN binary_expression RPAREN OP_PLUS percentage
+    |
+    LPAREN binary_expression RPAREN OP_MINUS percentage
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is what makes this new version a context-free grammar and not a regular grammar. Now, if you think that you could still handle this input with a regular expression, notice that adding percentages is not associative. For example, you might think we could drop the parens and just parse &lt;code&gt;$100 + 2% + 2% + 2%&lt;/code&gt; using &lt;code&gt;/\$\d+ (\+ \d\%)+/&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    \$\d+ (\+ \d\%)+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://www.debuggex.com/i/EaZiAO8PWJosT0b_.png&#34; alt=&#34;Regular expression visualization&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.debuggex.com/r/EaZiAO8PWJosT0b_&#34;&gt;Debuggex Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;However, if instead we wrote &lt;code&gt;$100 + 2% - 2% + 2%&lt;/code&gt;, associativity says we can reduce it to &lt;code&gt;$100 + 2%&lt;/code&gt;, however, when associated to the left &lt;code&gt;(($100 + 2%) - 2%) + 2%&lt;/code&gt; it is clear that the result is different from &lt;code&gt;$100 + 2%&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tip calculation using Bison grammar</title>
+      <link>/blog/2015/01/22/tip-calculation-using-bison-grammar/</link>
+      <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/01/22/tip-calculation-using-bison-grammar/</guid>
+      <description>&lt;p&gt;As long as I&amp;rsquo;ve been able to do arithmetic, I&amp;rsquo;ve been able to figure out calculating taxes and tips, it&amp;rsquo;s easy. Given a
+dollar value $17.91 we can figure out the total with a tip of 18% as $17.91*(1.18) = $21.14&lt;/p&gt;
+
+&lt;p&gt;However, it would be nice just to enter in &lt;code&gt;$17.91 + 18%&lt;/code&gt; and have the computer figure it out. So one time at lunch after
+calculating the tip for a burrito I decided to learn lex and bison, which can be used together to create a mini language.&lt;/p&gt;
+
+&lt;p&gt;The grammar I used was the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start:
+    dollars OP_PLUS percentage
+    |
+    dollars OP_MINUS percentage
+
+dollars:
+    TOKDOLLAR NUMBER
+
+percentage:
+    NUMBER TOKPERCENT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;OP_PLUS&lt;/code&gt; and &lt;code&gt;OP_MINUS&lt;/code&gt; come from &lt;code&gt;+&lt;/code&gt; and &lt;code&gt;-&lt;/code&gt;. Also, &lt;code&gt;TOKDOLLAR&lt;/code&gt; and &lt;code&gt;TOKPERCENT&lt;/code&gt; are &lt;code&gt;$&lt;/code&gt; and &lt;code&gt;%&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then, below each grammar rule, I added some C code that would be generated if the input matches that rule:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start:
+    dollars OP_PLUS percentage
+    {
+        double dollars = $1;
+        double percentage = ($3)/(100.0);
+        double total = dollars + dollars*percentage;
+        printf(&amp;quot;$%.2f&amp;quot;, total);
+    }
+    |
+    dollars OP_MINUS percentage
+    {
+        double dollars = $1;
+        double percentage = ($3)/(100.0);
+        double total = dollars - dollars*percentage;
+        printf(&amp;quot;$%.2f&amp;quot;, total);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The full source code is available &lt;a href=&#34;https://github.com/tlehman/tipcalc&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, it is true that this is no more powerful than a regular expression, however,
+I intend on modifying it to allow nested expressions like &lt;code&gt;(($2 + 4%) + 4%)&lt;/code&gt;, which
+would be useful for compound interest calculations. That would be more powerful than
+regular expressions, meaning it would be at least a &lt;a href=&#34;https://en.wikipedia.org/wiki/Context-free_grammar&#34;&gt;context-free grammar&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Update: &lt;a href=&#34;/blog/2015/01/27/parsing-nested-expressions-using-bison&#34;&gt;In the future, I wrote about implementing this&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

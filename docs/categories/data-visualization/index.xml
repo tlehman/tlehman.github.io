@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualization on tlehman@home</title>
+    <link>/categories/data-visualization/index.xml</link>
+    <description>Recent content in Data Visualization on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Visualizing the &#39;belongs to&#39; relation in rails app models</title>
+      <link>/blog/2014/07/22/visualizing-the-belongs-to-relation-in-rails-app-models/</link>
+      <pubDate>Tue, 22 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/07/22/visualizing-the-belongs-to-relation-in-rails-app-models/</guid>
+      <description>&lt;p&gt;When working on rails apps, I usually have to make a mental map of the models and how they interrelate.&lt;/p&gt;
+
+&lt;p&gt;An Active Record model can belong to another, but when you have more than half a dozen models, keeping all
+the belongs_to relations in mind quickly becomes impossible. As a solution to this, I made a command line
+program called &lt;a href=&#34;https://github.com/tlehman/bin#argraph&#34;&gt;argraph&lt;/a&gt;, for &amp;lsquo;ActiveRecord graph&amp;rsquo;, it produces a digraph in the
+&lt;a href=&#34;http://www.graphviz.org/doc/info/lang.html&#34;&gt;DOT language&lt;/a&gt;, which can be rendered as an image
+using &lt;a href=&#34;http://www.graphviz.org/&#34;&gt;GraphViz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The nodes are models, and the edges are the &amp;lsquo;belongs to&amp;rsquo; relation.&lt;/p&gt;
+
+&lt;p&gt;The way to use it is to check it out or fork my &lt;a href=&#34;https://github.com/tlehman/bin&#34;&gt;bin&lt;/a&gt; repo, make sure that directory
+is in your PATH variable, cd to the root of your rails app and run &lt;code&gt;argraph&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As an example, suppose you have the &lt;a href=&#34;https://github.com/discourse/discourse&#34;&gt;discourse&lt;/a&gt; rails app checked out,
+and you want to find out how some of it&amp;rsquo;s models are interrelated:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd discourse
+$ argraph Post Topic Category PostReply User UserAction UserHistory QuotedPost View UserAvatar
+digraph {
+ Post -&amp;gt; User
+ Post -&amp;gt; Topic
+ Topic -&amp;gt; Category
+ Topic -&amp;gt; User
+ Category -&amp;gt; Topic
+ Category -&amp;gt; User
+ PostReply -&amp;gt; Post
+ UserAction -&amp;gt; User
+ QuotedPost -&amp;gt; Post
+ QuotedPost -&amp;gt; QuotedPost
+ View -&amp;gt; User
+ UserAvatar -&amp;gt; User
+}
+$ !! | dot -Tpng &amp;gt; discourse.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above graph renders as:
+&lt;img src=&#34;https://i.imgur.com/YQOyHUn.png&#34; alt=&#34;discourse model graph&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can also run the command with no arguments, in which case it maps out all models, but on bigger apps, this can be hard to follow,
+so I found it useful to be able to explore subgraphs containing more models than my memory could fit, but not so many that the image
+was polluted and hard to follow.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Country code TLDs using GeoJSON on Github</title>
+      <link>/blog/2013/12/28/country-code-tlds-using-geojson-on-github/</link>
+      <pubDate>Sat, 28 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/12/28/country-code-tlds-using-geojson-on-github/</guid>
+      <description>&lt;p&gt;There are more country code top-level domains (ccTLDs) than there are countries, that is because territories such as &lt;a href=&#34;https://en.wikipedia.org/wiki/Wallis_and_Futuna&#34;&gt;Wallis and Futuna&lt;/a&gt; has the ccTLD &lt;code&gt;.wf&lt;/code&gt;, even though it&amp;rsquo;s a French territory, not a country.&lt;/p&gt;
+
+&lt;p&gt;There are so many that I have a hard time remembering them, and given one it&amp;rsquo;s hard to tell what country it belongs to, since &lt;a href=&#34;http://www.iso.org/iso/country_codes&#34;&gt;ISO 3166&lt;/a&gt; specifies that ccTLDs should be two characters long, that makes a maximum of 676 (26 squared) ccTLDs that could ever exist.&lt;/p&gt;
+
+&lt;p&gt;To solve the ccTLD→(Country/Territory)  problem, there is this great decoding table &lt;a href=&#34;http://www.iso.org/iso/home/standards/country_codes/iso-3166-1_decoding_table.htm&#34;&gt;here at iso.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For the other problem, (Country/Territory)→ccTLD, I made the following map using &lt;a href=&#34;http://geojson.org/&#34;&gt;GeoJSON&lt;/a&gt;&lt;/p&gt;
+
+&lt;script src=&#34;https://gist.github.com/tlehman/8166180.js&#34;&gt;&lt;/script&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Visualization of SICP Exercise 1.14</title>
+      <link>/blog/2013/04/07/visualization-of-sicp-exercise-1-dot-14/</link>
+      <pubDate>Sun, 07 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/04/07/visualization-of-sicp-exercise-1-dot-14/</guid>
+      <description>
+
+&lt;p&gt;I am currently working my way the &lt;a href=&#34;https://github.com/tlehman/sicp-exercises#readme&#34;&gt;Structure and Interpretation of
+Computer Programs&lt;/a&gt;
+and I&amp;rsquo;ve skipped past exercise 1.14, and come back to it after a bit
+of thinking, here&amp;rsquo;s the problem, and then the exercise.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-problem&#34;&gt;The Problem&lt;/h2&gt;
+
+&lt;p&gt;How many ways are there to make change of a given amount &lt;code&gt;a&lt;/code&gt; with the
+following kinds of coins?&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;pennies&lt;/li&gt;
+&lt;li&gt;nickels&lt;/li&gt;
+&lt;li&gt;dimes&lt;/li&gt;
+&lt;li&gt;quarters&lt;/li&gt;
+&lt;li&gt;half-dollars&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is a recursive solution to this combinatorial problem, which can
+readily be made into executable code in Scheme, this kind of solution
+is very standard in enumerative combinatorics:&lt;/p&gt;
+
+&lt;p&gt;The number of ways to change amount &lt;code&gt;a&lt;/code&gt; using &lt;code&gt;n&lt;/code&gt; kinds of coins
+equals:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the number of ways to change amount &lt;code&gt;a&lt;/code&gt; using all but the first
+kind of coin, plus&lt;/li&gt;
+&lt;li&gt;the number of ways to change amount &lt;code&gt;a - d&lt;/code&gt; using all &lt;code&gt;n&lt;/code&gt; kinds of
+coins, where &lt;code&gt;d&lt;/code&gt; is the denomination of the first kind of coin&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that those two items are mutually exclusive and exhaustive
+conditions, so the result can be calculated by simply adding the two
+values.&lt;/p&gt;
+
+&lt;p&gt;In scheme, the above list could be transliterated as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;	(+ (cc a (- n 1))
+	   (cc (- a d) n))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;(cc a n)&lt;/code&gt; computes the number of ways of changing amount &lt;code&gt;a&lt;/code&gt; with &lt;code&gt;n&lt;/code&gt;
+kinds of coins.&lt;/p&gt;
+
+&lt;p&gt;The full code for the &lt;code&gt;count-change&lt;/code&gt; procedure can be found
+&lt;a href=&#34;https://github.com/tlehman/sicp-exercises/blob/master/count-change.scm#L3&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-exercise&#34;&gt;The Exercise&lt;/h2&gt;
+
+&lt;p&gt;With the &lt;code&gt;count-change&lt;/code&gt; procedure at hand, Exercise 1.14 is to &amp;ldquo;draw
+the tree illustrating the process generated by the &lt;code&gt;count-change&lt;/code&gt;
+procedure in making change for 11 cents.&amp;rdquo;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-solution&#34;&gt;The Solution&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;count-change&lt;/code&gt; procedure uses the &lt;code&gt;(cc a n)&lt;/code&gt; procedure where
+&lt;code&gt;n = 5&lt;/code&gt;, and the &lt;code&gt;cc&lt;/code&gt; procedure naturally gives rise to a binary
+tree that locally looks like this:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/ccan.png %}&lt;/p&gt;
+
+&lt;p&gt;I prefer to make the computer go through all the steps and produce an
+image for me, so I took a break on 1.14 and thought about it for a
+while.&lt;/p&gt;
+
+&lt;p&gt;To represent the tree, I used the graph-description language
+&lt;a href=&#34;http://www.graphviz.org/pub/scm/graphviz2/doc/info/lang.html&#34;&gt;DOT&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To generate the tree, I started by adding a print statement around the
+recursion steps, the problem with that is that there can be distinct
+nodes that happen to have the same argument values, that is, the node
+in the tree may be labeled &lt;code&gt;(cc a n)&lt;/code&gt;, but there may also be multiple
+nodes with the same &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;n&lt;/code&gt; values. To avoid this, each node must
+be given a unique id, and then be displayed with the &lt;code&gt;(cc a n)&lt;/code&gt; label.&lt;/p&gt;
+
+&lt;p&gt;One way to label a binary tree&amp;rsquo;s nodes is to make the id be a map of
+the location of the node in the tree. For example, if a node of the
+tree has id &lt;code&gt;x&lt;/code&gt;, then the root&amp;rsquo;s children will be &lt;code&gt;xl&lt;/code&gt; and &lt;code&gt;xr&lt;/code&gt;,
+respectively, where &lt;code&gt;l&lt;/code&gt; stands for &amp;lsquo;left&amp;rsquo; and &lt;code&gt;r&lt;/code&gt; stands for &amp;lsquo;right&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;If the root&amp;rsquo;s id is &lt;code&gt;s&lt;/code&gt;, then a typical node would be labeled
+something like &lt;code&gt;sllrrl&lt;/code&gt;. Starting at the root, you can find the node
+by going left two times, right two times, and then left.&lt;/p&gt;
+
+&lt;p&gt;Here is the full source of the tree-generating code &lt;code&gt;cc-graph&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a name=&#34;quasiquote&#34;&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;
+(define (cc-graph amount kinds-of-coins)
+
+  (define display-node (lambda (label amount kinds-of-coins)
+                         (begin
+                           (display &amp;quot;  &amp;quot;)
+                           (display label)
+                           (display &amp;quot; [label=\&amp;quot;&amp;quot;)
+                           (display `(cc ,amount ,kinds-of-coins))
+                           (display &amp;quot;\&amp;quot;];&amp;quot;)
+                           (newline))))
+
+  (define display-edge (lambda (a b)
+                         (begin
+                           (display &amp;quot;  &amp;quot;)
+                           (display a)
+                           (display &amp;quot; -&amp;gt; &amp;quot;)
+                           (display b)
+                           (display &amp;quot;;&amp;quot;)
+                           (newline))))
+
+  (define base-case (lambda (amount kinds-of-coins)
+                      (or (&amp;lt; amount 0)
+                          (= kinds-of-coins 0)
+                          (= amount 0))))
+
+  (define left (lambda (label)
+                  (string-append label &amp;quot;l&amp;quot;)))
+
+  (define right (lambda (label)
+                  (string-append label &amp;quot;r&amp;quot;)))
+
+
+  ; label is the unique label of the function invocation
+  (define (recurse label amount kinds-of-coins)
+    (if (base-case amount kinds-of-coins)
+        (display-node label amount kinds-of-coins)
+        (begin
+          (display-node label amount kinds-of-coins)
+          (display-edge label (left label))
+          (display-edge label (right label))
+          (recurse (left label) amount (- kinds-of-coins 1))
+          (recurse (right label)
+                   (- amount (first-denomination kinds-of-coins))
+                   kinds-of-coins))))
+
+  (begin
+    (display &amp;quot;digraph {&amp;quot;)
+    (newline)
+    (recurse &amp;quot;s&amp;quot; amount kinds-of-coins)
+    (newline)
+    (display &amp;quot;}&amp;quot;)))
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, the output of running &lt;code&gt;(cc-graph 11 5)&lt;/code&gt;, then piping the
+results into GraphViz gives the desired tree:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/cc_11_5.png %}&lt;/p&gt;
+
+&lt;p&gt;I love this way of visualizing recursion, you can see how the problem
+is reduced into simpler sub-problems, and that there is a distinct
+&amp;lsquo;shape&amp;rsquo; to the computation.&lt;/p&gt;
+
+&lt;p&gt;There are more than 100 edges in that tree, I would not have wanted to
+do that by hand, all for a measley value of four.&lt;/p&gt;
+
+&lt;p&gt;The final value of &lt;code&gt;(cc 11 5)&lt;/code&gt; is 4, that is, there are 4 ways of
+making change for 11 cents. Unfortunately, this solution doesn&amp;rsquo;t say
+what exact combinations of coins, only that there are four.&lt;/p&gt;
+
+&lt;p&gt;Just thinking about it, you can make 11 cents with&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;11 pennies&lt;/li&gt;
+&lt;li&gt;6 pennies, 1 nickel&lt;/li&gt;
+&lt;li&gt;1 penny, 2 nickels&lt;/li&gt;
+&lt;li&gt;1 penny, 1 dime&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I would like to generalize &lt;code&gt;cc-graph&lt;/code&gt; so that I can get a
+visualization of any recursive function in Scheme, this will take more
+knowledge of the language and it&amp;rsquo;s introspective features, stay tuned!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>What languages fix: graphically</title>
+      <link>/blog/2012/12/26/what-languages-fix-graphically/</link>
+      <pubDate>Wed, 26 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/12/26/what-languages-fix-graphically/</guid>
+      <description>&lt;p&gt;Paul Graham&amp;rsquo;s article &lt;a href=&#34;http://www.paulgraham.com/fix.html&#34;&gt;What languages fix&lt;/a&gt; is about Kevin Kelleher&amp;rsquo;s description of each programming language in terms of the problems with other languages that it fixes. I decided to make this into a graph where each node is a language, and the edge represents the relation &amp;ldquo;x fixes y&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Here is the list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Algol: Assembly language is too low-level.&lt;/li&gt;
+&lt;li&gt;Pascal: Algol doesn&amp;rsquo;t have enough data types.&lt;/li&gt;
+&lt;li&gt;Modula: Pascal is too wimpy for systems programming.&lt;/li&gt;
+&lt;li&gt;Simula: Algol isn&amp;rsquo;t good enough at simulations.&lt;/li&gt;
+&lt;li&gt;Smalltalk: Not everything in Simula is an object.&lt;/li&gt;
+&lt;li&gt;Fortran: Assembly language is too low-level.&lt;/li&gt;
+&lt;li&gt;Cobol: Fortran is scary.&lt;/li&gt;
+&lt;li&gt;PL/1: Fortran doesn&amp;rsquo;t have enough data types.&lt;/li&gt;
+&lt;li&gt;Ada: Every existing language is missing something.&lt;/li&gt;
+&lt;li&gt;Basic: Fortran is scary.&lt;/li&gt;
+&lt;li&gt;APL: Fortran isn&amp;rsquo;t good enough at manipulating arrays.&lt;/li&gt;
+&lt;li&gt;J: APL requires its own character set.&lt;/li&gt;
+&lt;li&gt;C: Assemby language is too low-level.&lt;/li&gt;
+&lt;li&gt;C++: C is too low-level.&lt;/li&gt;
+&lt;li&gt;Java: C++ is a kludge. And Microsoft is going to crush us.&lt;/li&gt;
+&lt;li&gt;C#: Java is controlled by Sun.&lt;/li&gt;
+&lt;li&gt;Lisp: Turing Machines are an awkward way to describe computation.&lt;/li&gt;
+&lt;li&gt;Scheme: MacLisp is a kludge.&lt;/li&gt;
+&lt;li&gt;T: Scheme has no libraries.&lt;/li&gt;
+&lt;li&gt;Common Lisp: There are too many dialects of Lisp.&lt;/li&gt;
+&lt;li&gt;Dylan: Scheme has no libraries, and Lisp syntax is scary.&lt;/li&gt;
+&lt;li&gt;Perl: Shell scripts/awk/sed are not enough like programming languages.&lt;/li&gt;
+&lt;li&gt;Python: Perl is a kludge.&lt;/li&gt;
+&lt;li&gt;Ruby: Perl is a kludge, and Lisp syntax is scary.&lt;/li&gt;
+&lt;li&gt;Prolog: Programming is not enough like logic.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I put the above text into a file called &amp;lsquo;fix.txt&amp;rsquo; and then wrote the following ruby code to convert it into a directed graph in the DOT language:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;# make a graph of language solutions (inspired by: http://www.paulgraham.com/fix.html)
+
+fixes = File.open(&#39;fix.txt&#39;).read.split(&amp;quot;\n&amp;quot;)
+
+fixes.each do |fix|
+  language = fix.split(&amp;quot;:&amp;quot;).first
+  /\:(?&amp;lt;fixed&amp;gt;.*)\b(is(n&#39;t)?|are|doesn&#39;t)\b/ =~ fix
+  puts &amp;quot;#{language} -&amp;gt; #{fixed} [label=\&amp;quot;fixes\&amp;quot;]&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I had to tweak the output a bit, but the final result is a very nice summation of Kelleher&amp;rsquo;s list:
+&lt;a href=&#34;/images/blogimg/lang_fixes.png&#34;&gt;&lt;img src=&#34;/images/blogimg/lang_fixes.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Unix Processes and Their Parents Part 2</title>
+      <link>/blog/2012/10/28/unix-processes-and-their-parents-part-2/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/10/28/unix-processes-and-their-parents-part-2/</guid>
+      <description>&lt;p&gt;Based on a comment by Mark Essel from &lt;a href=&#34;/blog/2012/10/14/unix-processes-and-their-parents/&#34;&gt;part 1&lt;/a&gt; I have been trying
+to add more metadata to the process tree. I have given up on doing it in a one-liner, so I started using bash scripts.&lt;/p&gt;
+
+&lt;p&gt;Then, after a few hours of hacking bash, I got annoyed with the difficulty of very basic things such as incrementing
+integers and dealing with collections, so I switched over to Ruby, with some minor shelling out.&lt;/p&gt;
+
+&lt;p&gt;The result is &lt;a href=&#34;https://github.com/tlehman/procviz&#34;&gt;procviz&lt;/a&gt;, it is some ruby code for generating a graph representing
+the process tree at the time &lt;code&gt;Graph.new&lt;/code&gt; is called.&lt;/p&gt;
+
+&lt;p&gt;It generates DOT files just fine, but the images can get big if your system has a lot of stuff running. Also, the only
+metadata I have attached to the nodes so far is the command name:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/images/blogimg/proc_with_names.png&#34;&gt;
+  &lt;img src=&#34;/images/blogimg/proc_with_names.png&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to make this into a more interactive visualization, but so far I have had a hard time getting Sigma.js or Arbor.js
+to embed into this Octopress blog. I have been meaning to get a better understanding of javascript.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Visualizing Unix processes and their parents</title>
+      <link>/blog/2012/10/14/unix-processes-and-their-parents/</link>
+      <pubDate>Sun, 14 Oct 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/10/14/unix-processes-and-their-parents/</guid>
+      <description>&lt;p&gt;I am reading Jesse Storimer&amp;rsquo;s fantastic little book &lt;a href=&#34;http://workingwithunixprocesses.com/&#34;&gt;&amp;ldquo;Working with Unix Processes&amp;rdquo;&lt;/a&gt; right now, and inspiration struck after the second chapter &amp;ldquo;Processes Have Parents&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;When a Unix process is born, it is a literal copy of it&amp;rsquo;s parent process. For example, if I am typing &lt;em&gt;ls&lt;/em&gt; into a bash prompt, the bash process spawns a copy of itself using the &lt;em&gt;fork&lt;/em&gt; system call. The parent process (bash) has an id which is associated with the child process (ls). Using the Unix &lt;em&gt;ps&lt;/em&gt; command, you can see the parent process id of every process on the system.&lt;/p&gt;
+
+&lt;p&gt;The only process that has no parent is &lt;em&gt;sched&lt;/em&gt;, it has process id zero. The idea I had was to make a visualization of this branching tree of Unix processes. I am currently running Debian GNU/Linux, a Unix-like operating system. I came up with this one-liner that shows the (parent id -&amp;gt; child id) relation:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;ps axo ppid,pid | sed &amp;quot;s/\b / -&amp;gt; /g&amp;quot; | grep -v &amp;quot;PID&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first part calls &lt;em&gt;ps&lt;/em&gt; and gets all process ids, and their parents. Some sample output is this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ &amp;gt; ps axo ppid,pid
+ PPID   PID
+    0     1
+    0     2
+    2     3
+    2     6
+    2     7
+    2     8
+    2    10
+    2    12
+    2    13
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This output is piped into &lt;em&gt;sed&lt;/em&gt; (*s*tream *ed*itor), and the empty space between the numbers is replaced with an arrow &amp;ldquo;-&amp;gt;&amp;rdquo;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ &amp;gt; ps axo ppid,pid | sed &amp;quot;s/\b / -&amp;gt; /g&amp;quot;
+ PPID -&amp;gt;   PID
+    0 -&amp;gt;     1
+    0 -&amp;gt;     2
+    2 -&amp;gt;     3
+    2 -&amp;gt;     6
+    2 -&amp;gt;     7
+    2 -&amp;gt;     8
+    2 -&amp;gt;    10
+    2 -&amp;gt;    12
+    2 -&amp;gt;    13
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PPID is Parent Process Id, and PID is just Process Id. Finally, I use &lt;em&gt;grep -v &amp;ldquo;PID&amp;rdquo;&lt;/em&gt; to let all the lines through that don&amp;rsquo;t contain &amp;ldquo;PID&amp;rdquo;. This selects those lines that are actual process relations.&lt;/p&gt;
+
+&lt;p&gt;In this case, it just chops off the first line. Next, I wanted to convert this into a file that I can feed into &lt;a href=&#34;http://www.graphviz.org/&#34;&gt;GraphViz&lt;/a&gt;, an open source graph visualization tool. The format is pretty simple, an example is in order:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;digraph Foo {
+  1 -&amp;gt; 2
+  1 -&amp;gt; 3
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above file defines a graph called &amp;ldquo;Foo&amp;rdquo; that has three nodes and two edges, it looks like this:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/Foo.png %}&lt;/p&gt;
+
+&lt;p&gt;Now, all we have to do to the PPID-&amp;gt;PID output above is to wrap it in braces and prepend two words to the beginning.&lt;/p&gt;
+
+&lt;p&gt;We can use &lt;em&gt;echo &amp;ldquo;digraph proc { SOME COMMAND }&amp;rdquo;&lt;/em&gt; to wrap the output of our command, then dump the results in a file.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;echo &amp;quot;digraph proc { `ps axo ppid,pid | sed &amp;quot;s/\b / -&amp;gt; /g&amp;quot; | grep -v &amp;quot;PID&amp;quot;` } &amp;quot; &amp;gt;&amp;gt; proc.dot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally, GraphViz has several commands for rendering graphs in various ways. The first thing I tried was a symmetric layout, but that produced a hierarchical, &lt;em&gt;very wide&lt;/em&gt; image. So I tryed &lt;em&gt;circo&lt;/em&gt; which produces a radial layout:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;~ &amp;gt; echo &amp;quot;digraph proc { `ps axo ppid,pid | sed &amp;quot;s/\b / -&amp;gt; /g&amp;quot; | grep -v &amp;quot;PID&amp;quot;` } &amp;quot; &amp;gt;&amp;gt; proc.dot
+~ &amp;gt; circo proc.dot -Tpng &amp;gt;&amp;gt; radial_proc.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the radial layout:
+{% img /images/blogimg/radial_proc.png %}&lt;/p&gt;
+
+&lt;p&gt;You can see the original ancestor of all processes, &lt;em&gt;sched&lt;/em&gt; with PID 0 right in the center, then PID 1 which is called &lt;em&gt;init&lt;/em&gt; has a bunch of children. I am writing this post in vim in a bash shell in a gnome terminal emulator, the vim PID is 14819, but it is hard to see in this image, there is too much overlap.&lt;/p&gt;
+
+&lt;p&gt;Fortunately, we can modify the proc.dot file and include &lt;em&gt;overlap=false&lt;/em&gt; right above the PPID-&amp;gt;PID pairs. Also, I found from the man pages for the graphviz tools that the &lt;em&gt;splines=true&lt;/em&gt; option will draw the edges as splines (curves) instead of straight lines. Also, instead of using &lt;em&gt;circo&lt;/em&gt;, there is another tool called &lt;em&gt;neato&lt;/em&gt; that will render a more symmetrical graph than circo.&lt;/p&gt;
+
+&lt;p&gt;This rendering took &lt;em&gt;much&lt;/em&gt; longer than circo rendering, but is much nicer (click to enlarge):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/images/blogimg/sym_proc.png&#34;&gt;
+  &lt;img src=&#34;/images/blogimg/sym_proc.png&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I remember learning in my C programming class that Unix processes all had to be made with fork. It reminded me of asexual reproduction where two identical copies are made. I look forward to learning more about the Unix process model, and recommend Jesse&amp;rsquo;s book.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

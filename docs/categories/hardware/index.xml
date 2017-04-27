@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on tlehman@home</title>
+    <link>/categories/hardware/index.xml</link>
+    <description>Recent content in Hardware on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/hardware/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Kinesis Advantage Review</title>
+      <link>/blog/2012/07/16/kinesis-advantage-review/</link>
+      <pubDate>Mon, 16 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/07/16/kinesis-advantage-review/</guid>
+      <description>
+
+&lt;p&gt;After reading Phil Haack&amp;rsquo;s &lt;a href=&#34;http://haacked.com/archive/2012/04/16/The-Real-Pain-Of-Software-Development-2.aspx.aspx&#34;&gt;the Real Pain of Software Development (part 2)&lt;/a&gt; and several other stories of long-time programmers who have had pain in the wrists and back, I became a bit more concerned about trying to build good habits now to avoid problems later. Namely, finger movement.&lt;/p&gt;
+
+&lt;p&gt;I try to learn as many key-combinations as I can so that I can operate a computer faster. This is not really all that bad, but when I&amp;rsquo;m typing eight hours a day, for five days a week, those finger contortions can cumulatively cause damage that results in pain or numbnmess in the wrists and fingers.&lt;/p&gt;
+
+&lt;p&gt;Phil and many others suggest that using Dvorak instead of QWERTY is a good way to reduce finger motion. However, observe the following layout:
+{% img /images/blogimg/dvorak.png %}&lt;/p&gt;
+
+&lt;p&gt;Notice that control, tab and shift are meant for the pinky to press. When I am editing source code, there are a lot of habitual shortcuts I use that require shift, control and tab. I have had this lead to a cold pinky several times before, it&amp;rsquo;s annoying, and too much of that kind of strain will probably lead to further discomfort.&lt;/p&gt;
+
+&lt;p&gt;Enter the Kinesis Advantage. I was playing Go with a good friend of mine, and when I walked into his living room, he had one of these things sitting in front of a large glowing monitor:
+{% img /images/blogimg/kinesis_advantage.jpg %}&lt;/p&gt;
+
+&lt;p&gt;Notice that the control, alt, backspace, space, enter and super keys are right near the thumbs. This takes care of the pinky strain problem, and gives your thumbs something more to do than just hit the spacebar.&lt;/p&gt;
+
+&lt;p&gt;My friend told me that he also experienced pain in the wrists from typing frequently, and that this keyboard helped him get rid of that pain. When I put my hands into the bowls, I felt like I was learning to type again, but I wanted to try, so I ordered my own.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;rsquo;t want to bring it right into work and end up wasting time getting used to the new keyboard, I kept the it at home for the first week, while I got used to the shape. It took me about four days before I could type competently, but after that first hurdle, typing felt so much more comfortable, also, since my fingers weren&amp;rsquo;t moving as far, I could type faster than normally too.&lt;/p&gt;
+
+&lt;p&gt;Since I work in Linux, Windows and Mac OS X, I had to get used to the different keybindings, but after a week of switching between OSes on this keyboard, I actually feel like this is easier. I loved the keyboard so much, I spent another $300 to get one for work. I kept one at home and one at work, because I found myself carrying it to and from work each day, that was just too much, these things are pretty big.&lt;/p&gt;
+
+&lt;p&gt;Another thing that I am starting to appreciate about the Kinesis Advantage is that the keys use &lt;a href=&#34;http://www.codinghorror.com/blog/2010/10/the-keyboard-cult.html&#34;&gt;mechanical switches and not rubber domes&lt;/a&gt;. This is something that I heard about on Coding Horror, but didn&amp;rsquo;t really understand until I felt the difference. The mechanical switches feel more solid, and the particular switches used in the Kinesis depress easily, so you don&amp;rsquo;t have to type hard.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Overall I love this keyboard, I think it is worth the steep $300 price tag. I&amp;rsquo;ve read some other accounts of using this keyboard that say it took two weeks to get comfortable with it, which is consistent with my experience, so the time it takes to learn is less than a month. The benefit is greater comfort, less strain, and faster typing. If you are going to be typing a lot, it&amp;rsquo;s worth it to minimize the damage.&lt;/p&gt;
+
+&lt;p&gt;Also, it looks like something Data from Star Trek would use to control a simulation in the holodeck.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

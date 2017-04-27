@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on tlehman@home</title>
+    <link>/categories/python/index.xml</link>
+    <description>Recent content in Python on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Make a computer-controlled light switch with a Raspberry Pi</title>
+      <link>/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/</link>
+      <pubDate>Sun, 10 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/</guid>
+      <description>&lt;p&gt;To build a computer-controlled light switch, you will need:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.raspberrypi.org/&#34;&gt;Raspberry Pi&lt;/a&gt; ($35)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.adafruit.com/products/268&#34;&gt;Adafruit Powerswitch Tail 2&lt;/a&gt; ($25)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The powerswitch tail looks like an extension cord with some holes in it to wire it into your own circuit. Connect the powerswitch to the raspberry pi as in the image below (on is connected to pin 23):&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/rasbpi_adafruit.jpg %}&lt;/p&gt;
+
+&lt;p&gt;Then, the following python program will allow you to type &lt;code&gt;./switch on&lt;/code&gt; or &lt;code&gt;./switch off&lt;/code&gt; from the command line as root.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#!/usr/bin/env python
+# Turn switch on/off
+# by tlehman
+
+import RPi.GPIO as io
+import sys
+
+io.setmode(io.BCM)
+pin = 23
+io.setwarnings(False)
+io.setup(pin, io.OUT)                 # set pin 23 as output
+
+if len(sys.argv) &amp;gt; 1:
+    state = sys.argv[1]               # get command line argument (&#39;on&#39; or &#39;off&#39;)
+    io.output(pin, state == &#39;on&#39;)     # if state is on, let pin 23 connect the circuit, otherwise break the circuit
+else:
+    print(&amp;quot;Usage: &amp;quot;)
+    print(&amp;quot;  ./switch (on|off)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run this, carefully plug in a lamp (or other appliance that uses a standard 120V U.S. outlet), then&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo su
+./switch on
+./switch off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is a video of the light being switched off and then back on, not very exciting, but it works:&lt;/p&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;http://www.youtube.com/embed/IO_BZ0mRYyQ&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;This on it&amp;rsquo;s own is not very useful or amusing, but this can easily be tied together with any API or command line utility. For example, I plan to connect this to our continuous integration server at work so that every time the tests fail, the switch turns some lights off, this could be achieved with a cron job, or perhaps a hook on Jenkins that sends a signal to the raspberry pi, there are so many possbilities.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Extract array of frames from mp4 using Python OpenCV bindings</title>
+      <link>/blog/2013/01/20/extract-array-of-frames-from-mp4-using-python-opencv-bindings/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/01/20/extract-array-of-frames-from-mp4-using-python-opencv-bindings/</guid>
+      <description>
+
+&lt;p&gt;OpenCV is a mature Computer Vision library written in C++. There are python bindings available that make working with the library very convenient.&lt;/p&gt;
+
+&lt;p&gt;To extract the frames from an mp4 file using the Python OpenCV bindings, you first need python, and the &lt;code&gt;pip&lt;/code&gt; package manager for python.&lt;/p&gt;
+
+&lt;p&gt;Also, you will need a system package manager such as Portage for Gentoo Linux or Homebrew for Mac OS X. You will need to compile OpenCV with your specific python version, for this example I am using python 2.7, you can find out which version you have by running &lt;code&gt;python --version&lt;/code&gt;. This example will use Mac OS X 10.8.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-ffmpeg&#34;&gt;Install ffmpeg&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install ffmpeg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;build-opencv-with-python2-7-and-ffmpeg&#34;&gt;Build OpenCV with Python2.7 and ffmpeg&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install opencv --python27 --ffmpeg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am taking the &lt;a href=&#34;https://www.coursera.org/course/images&#34;&gt;Coursera Image and Video processing&lt;/a&gt; class right now, the example file I am using is one of &lt;a href=&#34;https://class.coursera.org/images-2012-001/lecture/download.mp4?lecture_id=7&#34;&gt;the lectures&lt;/a&gt;, I saved the file as &lt;code&gt;course-logistics.mp4&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To use OpenCV in python, you need to import cv2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import cv2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, to open the video file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;vidcap = cv2.VideoCapture(&#39;course-logistics.mp4&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The easiest way to extract frames is to use the &lt;code&gt;read()&lt;/code&gt; method on the vidcap object. It returns a &lt;a href=&#34;http://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences&#34;&gt;tuple&lt;/a&gt; where the first element is a success flag and the second is the image array. To extract the image array:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;success,image = vidcap.read()
+# image is an array of array of [R,G,B] values
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To convert the whole video to frames and save each one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;count = 0; 
+while success:
+	success,image = vidcap.read()
+	cv2.imwrite(&amp;quot;frame%d.jpg&amp;quot; % count, image)     # save frame as JPEG file
+	if cv2.waitKey(10) == 27:                     # exit if Escape is hit
+    	break
+	count += 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above loop runs until &lt;code&gt;success&lt;/code&gt; is false or the user hits the Escape key. Each iteration saves the current frame as a JPEG.&lt;/p&gt;
+
+&lt;p&gt;This is one way to extract a sequence of frames from a movie. Another way would be to change the body of the above while loop to do something else.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

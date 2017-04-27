@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>How many possible flags are there?</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>How many possible flags are there?</h1>
+			<div>
+				
+
+<p>I have been thinking about Mars a lot more lately, and about possible colonization. The <a href="http://mars-one.com/">Mars One</a> project is a non-governmental not-for-profit organization that is looking to send groups of four people, independent of nationality, to Mars in 2023.</p>
+
+<p>One thing that came to mind was independence, just as the early North American settlers declared independence from Great Britain, I think that Martian settlers would eventually declare independence from the countries of Earth, provided they had a sustainable, self-reliant colony.</p>
+
+<p>As a side effect, the Martian settlers would probably choose a new flag, and then the math geek in me wondered how far this could go, <strong>how many different flags are possible?</strong> As humanity grows, evolves and expands, assuming that each nation that emerged had a flag, how many unique flags could possibly be created?</p>
+
+<p>If we allow for any arbitrary size and aspect ratio, the number is infinite. However, most flags have the same aspect ratio, and their implementation as cloth is usually in fixed sizes.</p>
+
+<p>Note that flags are physically made of thread, we make the simplifying assumption that all flags are made of the same width thread, and that the thread is evenly spaced.</p>
+
+<p>Flags have some terminology, so a few definitions are in order:</p>
+
+<ul>
+<li><strong>Hoist</strong> is the width of the flag (vertical direction)</li>
+<li><strong>Fly</strong> is the length of the flag (horizontal direction)</li>
+<li><strong>Vexillology</strong> is the &ldquo;scientific study of the history, symbolism and usage of flags <a href="http://en.wikipedia.org/wiki/Vexillology">[1]</a></li>
+</ul>
+
+<p>We will call <strong>H</strong> the number of threads in the vertical direction, and <strong>F</strong> the number of threads in the horizontal direction.</p>
+
+<p>Assuming threads are evenly spaced, we can imagine the <strong>H*F</strong> crossing points on a grid, as in the image below:</p>
+
+<p>{% img /images/blogimg/flags/close_up.png %}</p>
+
+<p>Each crossing point is either above or below, so there are 2 distinct choices for each of the <strong>H*F</strong> crossing points, that means that there are 2<sup><sup>HF</sup></sup> possible flags, ignoring color.</p>
+
+<p>If we now consider the role of color, imagine that each of the <strong>H+F</strong> threads could have any of <strong>C</strong> distinct colors, then there would be C<sup><sup>(H+F)</sup></sup> possible color combinations.</p>
+
+<p>Since the under/over configuration of the points is independent from the color choices, it follows from the combinatorial principle of products that there are:</p>
+
+<p>{% latex %}
+$ 2^{HF}C^{(H+F)} $
+{% endlatex %}</p>
+
+<p>possible flags. This is the general solution, now let&rsquo;s find some real-world data and get some more constraints so we can compute some numbers. (*Everything following this formula is just finding the values of <strong>H</strong> and <strong>F</strong>, so if you don&rsquo;t care about the research, simplifying assumptions and data-wrangling, you can skip to the end*)</p>
+
+<p>Typically there are fixed aspect ratios, and some correlation exists between the height of the flagpole and the hoist/fly.</p>
+
+<h2 id="height-of-the-flagpole-versus-the-fly-and-hoist">Height of the flagpole versus the fly and hoist</h2>
+
+<p>Using the United States&rsquo; Deparment of Interior specifications as a model, we can use the following data to get an approximate relation between the height of a ground flag and the hoist/fly of the flag:</p>
+
+<p>Ground Flagpoles <a href="http://www.doi.gov/ofas/asd/upload/Flagsandseals9-25-12-2.pdf">[2]</a></p>
+
+<pre><code>height (ft)  hoist (ft)    fly (ft)   aspect ratio (hoist/fly)
+30           3.5           6.65       1.9
+40           5.0           9.5        1.9
+50           5.0           9.5        1.9
+60           8.95          17         1.89
+</code></pre>
+
+<p>Since the aspect ratio is approximately constant (as we would expect), the problem of finding the relation between height, hoist and fly reduces to a one-dimensional linear regression. We now try to find fly as a function of height, which is in the <strong>y</strong> direction:</p>
+
+<p>{% latex %}
+$ f(y) = a + by $
+{% endlatex %}</p>
+
+<p>Using the <a href="http://en.wikipedia.org/wiki/Least_squares">least squares method</a>, the values of a and b are found exactly, the above formula becomes:</p>
+
+<p>{% latex %}
+$ f(y) = 0.3105y + (-3.31) $
+{% endlatex %}</p>
+
+<p>So given a height <strong>y</strong>, the fly of the flag should be about <strong>(0.31)y - 3.31(ft)</strong>.</p>
+
+<h2 id="aspect-ratios">Aspect ratios</h2>
+
+<p>To find the aspect ratios of the current flags of Earth, I found <a href="https://en.wikipedia.org/wiki/User:SiBr4/List_of_national_flags_by_aspect_ratio">this</a> on wikipedia. I went to the edit view and then copied the wiki source. On Mac OS X, the <code>pbpaste</code> command writes the contents of the clipboard to standard out on the command line. On GNU/Linux under Xorg, you can use <code>xclip -o</code> to achieve the same thing.</p>
+
+<p>So I played around with the data and came up with this one-liner:</p>
+
+<pre><code class="language-bash">&gt; pbpaste | pre nts | awk -F\| '{print $3}' | sed 's/[\}]//g' | pcregrep '^\d' | sort -n | uniq -c
+   1 0.820
+   2 1
+   1 1.154
+   1 1.167
+   1 1.25
+   1 1.321
+   5 1.333
+   3 1.375
+   1 1.389
+   2 1.4
+   2 1.429
+   1 1.467
+ 114 1.5
+   1 1.571
+   5 1.6
+   1 1.618
+   1 1.636
+  22 1.667
+   2 1.75
+   1 1.772
+   1 1.864
+   4 1.9
+  83 2
+   1 2.545
+</code></pre>
+
+<p>Most countries use 1.5, 2 and 1.667. As fractions, these are <sup>3</sup>&frasl;<sub>2</sub>, <sup>2</sup>&frasl;<sub>1</sub>, <sup>5</sup>&frasl;<sub>3</sub>, respectively. Also, one country (Togo in Africa) uses 1.618 &#8776; &phi;, the Golden Ratio!</p>
+
+<p>Since the overwhelming majority of flags use the 1.5 and 2 ratios, let us assume for this problem that these are the only ratios that will be used. Since the United States flag uses the 1.9 ratio, we can approximate it as 2. Just for reference, Russia and China use 1.5 and U.S.A. uses 1.9, and the U.K. uses 2.</p>
+
+<p>Colonizers on other planets will initially be close to the ground and spread out. Since residential flags typically range between 15 and 20 feet, we will be safe and assume that the inital flag is 15 feet tall. From our formula, this means that the Fly will be (.3)(15ft) - (3.31ft) = 1.19 ft.</p>
+
+<h2 id="number-of-threads">Number of threads</h2>
+
+<p>To find the values of <strong>H</strong> and <strong>F</strong>, we need to know the width and spacing of the thread, a common size of polyester thread for making flags is <a href="http://www.thethreadexchange.com/miva/merchant.mvc?Screen=CTGY&amp;Category_Code=nylon-thread-069">Size 69</a>, which has a diameter of 0.2921 mm. So, assuming that the threads are all adjacent, the number of threads in the Fly direction will be (1.19ft)/(0.2921 mm) &#8776; 1241.</p>
+
+<p>The number of threads in the Hoist direction (assuming a ratio of 1.5) is 1241*(1.5) &#8776; 1861</p>
+
+<h2 id="number-of-colors-distinguishable-by-the-human-eye">Number of Colors Distinguishable by the Human Eye</h2>
+
+<p>This number is about 10,000,000 <a href="http://hypertextbook.com/facts/2006/JenniferLeong.shtml">[4]</a></p>
+
+<p>**The number of distinct, 15 foot, <sup>3</sup>&frasl;<sub>2</sub> flags made of size 69 polyester thread is **</p>
+
+<p>{% latex %}
+$ 2^{1861\times1241}(10,000,000)^{1861+1241} \approx 1.19 \times 10^{716943} $
+{% endlatex %}</p>
+
+<p>This is a 716,944 digit number, the number of possible flags is so much higher than <a href="http://www.wolframalpha.com/input/?i=number+of+particles+in+the+universe">the number of atoms in the observable Universe</a> that it isn&rsquo;t even plausible to assume that all of them could ever be exhausted.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

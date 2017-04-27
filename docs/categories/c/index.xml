@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C on tlehman@home</title>
+    <link>/categories/c/index.xml</link>
+    <description>Recent content in C on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/c/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Tip calculation using Bison grammar</title>
+      <link>/blog/2015/01/22/tip-calculation-using-bison-grammar/</link>
+      <pubDate>Thu, 22 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/01/22/tip-calculation-using-bison-grammar/</guid>
+      <description>&lt;p&gt;As long as I&amp;rsquo;ve been able to do arithmetic, I&amp;rsquo;ve been able to figure out calculating taxes and tips, it&amp;rsquo;s easy. Given a
+dollar value $17.91 we can figure out the total with a tip of 18% as $17.91*(1.18) = $21.14&lt;/p&gt;
+
+&lt;p&gt;However, it would be nice just to enter in &lt;code&gt;$17.91 + 18%&lt;/code&gt; and have the computer figure it out. So one time at lunch after
+calculating the tip for a burrito I decided to learn lex and bison, which can be used together to create a mini language.&lt;/p&gt;
+
+&lt;p&gt;The grammar I used was the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start:
+    dollars OP_PLUS percentage
+    |
+    dollars OP_MINUS percentage
+
+dollars:
+    TOKDOLLAR NUMBER
+
+percentage:
+    NUMBER TOKPERCENT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Where &lt;code&gt;OP_PLUS&lt;/code&gt; and &lt;code&gt;OP_MINUS&lt;/code&gt; come from &lt;code&gt;+&lt;/code&gt; and &lt;code&gt;-&lt;/code&gt;. Also, &lt;code&gt;TOKDOLLAR&lt;/code&gt; and &lt;code&gt;TOKPERCENT&lt;/code&gt; are &lt;code&gt;$&lt;/code&gt; and &lt;code&gt;%&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then, below each grammar rule, I added some C code that would be generated if the input matches that rule:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;start:
+    dollars OP_PLUS percentage
+    {
+        double dollars = $1;
+        double percentage = ($3)/(100.0);
+        double total = dollars + dollars*percentage;
+        printf(&amp;quot;$%.2f&amp;quot;, total);
+    }
+    |
+    dollars OP_MINUS percentage
+    {
+        double dollars = $1;
+        double percentage = ($3)/(100.0);
+        double total = dollars - dollars*percentage;
+        printf(&amp;quot;$%.2f&amp;quot;, total);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The full source code is available &lt;a href=&#34;https://github.com/tlehman/tipcalc&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, it is true that this is no more powerful than a regular expression, however,
+I intend on modifying it to allow nested expressions like &lt;code&gt;(($2 + 4%) + 4%)&lt;/code&gt;, which
+would be useful for compound interest calculations. That would be more powerful than
+regular expressions, meaning it would be at least a &lt;a href=&#34;https://en.wikipedia.org/wiki/Context-free_grammar&#34;&gt;context-free grammar&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Update: &lt;a href=&#34;/blog/2015/01/27/parsing-nested-expressions-using-bison&#34;&gt;In the future, I wrote about implementing this&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Counting bits in integers</title>
+      <link>/blog/2014/02/08/counting-bits-in-integers/</link>
+      <pubDate>Sat, 08 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/02/08/counting-bits-in-integers/</guid>
+      <description>&lt;p&gt;While working on the code to count the number of fifteens I had in a hand in cribbage, I found it would be useful to count the number of bits in an integer. The comment below explains why it is useful.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;    // Fifteens
+    //     A Fifteen is any combination of cards whose ranks sum up to 15.
+    //
+    //     To find fifteens, we need to look at all combinations of cards.
+    //     For example, for a hand of three cards:  5♣  10♥  5♥  we must
+    //     consider all 2^3 - 1 = 7 non-empty subsets:
+    //        Hand         | Bits | Sum
+    //        -------------|------|-----
+    //                 5♥  | 001  |  (5)
+    //            10♥      | 010  | (10)
+    //            10♥  5♥  | 011  | (15)  *
+    //        5♣           | 100  |  (5)
+    //        5♣       5♥  | 101  | (10)
+    //        5♣  10♥      | 110  | (15)  *
+    //        5♣  10♥  5♥  | 111  | (20)
+    //
+    //     There is a well known correspondence betweeen subsets and binary
+    //     representations of integers, illustrated in the &#39;Bits&#39; column above.
+    //     The number of bits that are equal to 1 is the cardinality of the 
+    //     corresponding subset.
+    //     Using this correspondence, we can enumerate all 2^n subsets by looping
+    //     an integer from 0 to (2^n - 1) and identifying the bits that are one
+    //     with the subset membership relation.
+    //
+    Card* subset[count];
+    for(i = 0; i &amp;lt; 2_TO_THE(count); ++i) {
+        zero_cards(subset);
+
+        // get bits of i
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since subsets and the bit representations of integers are in one-to-one correspondence, I can enumerate all subsets of an n-set by simply counting from 0 to 2&lt;sup&gt;n&lt;/sup&gt;-1, then I can use the bits in the loop variable to determine which element of the set is in the subset. From the example in the comment above, you can see that the bits of the row number line up with the elements in the subsets.&lt;/p&gt;
+
+&lt;p&gt;In order to finish this code, I wanted a way to count the number of bits in an integer. I looked around for an existing algorithm to do it, and I found this, from K&amp;amp;R:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;unsigned int v; // count the number of bits set in v
+unsigned int c; // c accumulates the total bits set in v
+for (c = 0; v; c++) {
+    v &amp;amp;= v - 1; // clear the least significant bit set
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I had no idea how it worked, so I tried to figure it out. The parts that I do understand are the roles of v and c, the former is the number for which we are counting bits, and the latter is the actual number of bits.&lt;/p&gt;
+
+&lt;p&gt;Why does &lt;code&gt;v &amp;amp; (v-1)&lt;/code&gt; clear the least significant bit?&lt;/p&gt;
+
+&lt;p&gt;To figure this out, I considered a general n-bit integer, represented in base 2, I thought about it as&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ v = v_1v_2&amp;hellip;v_n $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;If v is odd, then v&lt;sub&gt;n&lt;/sub&gt; = 1, so v-1 simply clears the least significant bit, and since the first n-1 bits are the same, the bitwise AND of v and v-1 is just v-1, which v with the least significant bit set to zero (cleared).&lt;/p&gt;
+
+&lt;p&gt;Otherwise, v is even, which means v&lt;sub&gt;n&lt;/sub&gt; = 0. What is v-1 in this case?&lt;/p&gt;
+
+&lt;p&gt;If v = 32 = 100000&lt;sub&gt;2&lt;/sub&gt; (base 2), then v-1 = 011111&lt;sub&gt;2&lt;/sub&gt;, so v&amp;amp;v-1 = 000000&lt;sub&gt;2&lt;/sub&gt;, which is v with it&amp;rsquo;s least significant bit set to zero.&lt;/p&gt;
+
+&lt;p&gt;So far, so good, but that is only one example, we need to prove it for a general even n-bit integer, not just 32.&lt;/p&gt;
+
+&lt;p&gt;Let v be an n-bit even integer, and v&lt;sub&gt;k&lt;/sub&gt;=1 is the least significant bit. Then v&lt;sub&gt;n&lt;/sub&gt;=0, and k &amp;lt; n.&lt;/p&gt;
+
+&lt;p&gt;We can then write v in the following way:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+  v &amp;amp;= v_1v_2v_3&amp;hellip;v&lt;em&gt;kv&lt;/em&gt;{k+1}&amp;hellip;v_n
+\  &amp;amp;= v_1v_2v_3&amp;hellip;10&amp;hellip;0
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Then, the number v&lt;sub&gt;k&lt;/sub&gt;v&lt;sub&gt;k-1&lt;/sub&gt;&amp;hellip;v&lt;sub&gt;n&lt;/sub&gt; = 2&lt;sup&gt;n-k&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;We can find v-1 by considering the subproblem of v&lt;sub&gt;k&lt;/sub&gt;v&lt;sub&gt;k+1&lt;/sub&gt;&amp;hellip;v&lt;sub&gt;n&lt;/sub&gt; - 1 = 2&lt;sup&gt;n-k&lt;/sup&gt;-1.&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+    &amp;amp;v&lt;em&gt;k &amp;amp;v&lt;/em&gt;{k+1} &amp;amp;v&lt;em&gt;{k+1} &amp;amp;&amp;hellip; &amp;amp;v&lt;/em&gt;{n-1} &amp;amp;v_n &amp;amp;- 1
+\  &amp;amp;1   &amp;amp;0       &amp;amp;0       &amp;amp;&amp;hellip; &amp;amp;0       &amp;amp;0   &amp;amp;- 1
+\ =  &amp;amp;0   &amp;amp;1       &amp;amp;1       &amp;amp;&amp;hellip; &amp;amp;1       &amp;amp;1
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Now, we can see that v and v-1 have the same first k-1 bits, with the last n-k+1 bits opposite, so that the bitwise AND clears the last n-k+1 bits. Since v has the last n-k bits equal to 0 and the k-th bit equal to one, it follows that v&amp;amp;(v-1) clears the least significant bit. This completes the proof.&lt;/p&gt;
+
+&lt;p&gt;Now, looking at the code again:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;unsigned int v; // count the number of bits set in v
+unsigned int c; // c accumulates the total bits set in v
+for (c = 0; v; c++) {
+    v &amp;amp;= v - 1; // clear the least significant bit set
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will clear the least significant bit, increment c, then if v is nonzero, repeat. Now this makes sense.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bootstrapping most of a C dev environment</title>
+      <link>/blog/2013/11/25/bootstrapping-most-of-a-c-dev-environment/</link>
+      <pubDate>Mon, 25 Nov 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/11/25/bootstrapping-most-of-a-c-dev-environment/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve taken a break from SICP and TAOCP in order to get a good foundation in the &lt;a href=&#34;http://c2.com/cgi/wiki?CeeLanguage&#34;&gt;C programming language&lt;/a&gt;, I&amp;rsquo;m familiar with it, but that is not good enough. The reason is because C exposes a lot more about how the computer works, understanding it is an important first step in understanding computers. Steve Yegge said it well:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You just have to know C. Why? Because for all practical purposes, every computer in the world you&amp;rsquo;ll ever use is a von Neumann machine, and C is a lightweight, expressive syntax for the von Neumann machine&amp;rsquo;s capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The SICP world-view is from a parallel world of computing that grew from John McCarthy&amp;rsquo;s LISP. There were even alternatives to the von Neumann architecture (Lisp Machines) that were built, which natively ran Lisp.&lt;/p&gt;
+
+&lt;p&gt;In the interest of &lt;a href=&#34;http://c2.com/cgi/wiki?ToGrok&#34;&gt;grokking&lt;/a&gt; computers (not just knowing how to put them together, configure and run scripts on them), I should really know C.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve started with the basic command line tools:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;cat(1)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;grep(1)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ls(1)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wc(1)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note: &lt;code&gt;foo(n)&lt;/code&gt; means that the command &lt;code&gt;foo&lt;/code&gt; is on manpage section &lt;code&gt;n&lt;/code&gt;, to view the manpage, type &lt;code&gt;man n foo&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For &lt;code&gt;cat(1)&lt;/code&gt;, it was a simple matter of using &lt;code&gt;read(2)&lt;/code&gt; and &lt;code&gt;write(2)&lt;/code&gt;, the only tricky thing is getting familiar with IO buffering, but other than that it&amp;rsquo;s trivial. After having written these tools, I&amp;rsquo;ve been using them to work on this code, so I would use my own &lt;code&gt;cat&lt;/code&gt; and my own &lt;code&gt;grep&lt;/code&gt; and &lt;code&gt;wc&lt;/code&gt; inspect the code I had just written, it was very rewarding.&lt;/p&gt;
+
+&lt;p&gt;From there I decided I should go further and write an editor, I researched to find the simplest editor that was common on Unix-like systems. I didn&amp;rsquo;t have to look far to find &lt;a href=&#34;http://c2.com/cgi/wiki?EdIsTheStandardTextEditor&#34;&gt;ed&lt;/a&gt;, it is a line-based editor, and after spending 30 minutes learning how to use it, I found the commands similar vi or vim, except that I had to imagine the text, I couldn&amp;rsquo;t see it as I typed. Then I&amp;rsquo;ll need a shell, then a C compiler, then an operating system.&lt;/p&gt;
+
+&lt;p&gt;I can probably handle a shell, but I&amp;rsquo;ll need to study a lot more before I put together a compiler and operating system.&lt;/p&gt;
+
+&lt;p&gt;My long term goal is to be able to write a whole develpment environment from scratch. Since Unix-like systems are built from small pieces, it makes it reasonably feasible to do it piece by piece.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Swap values in C without intermediate variable</title>
+      <link>/blog/2013/02/18/swap-values-in-c-without-intermediate-variable/</link>
+      <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/02/18/swap-values-in-c-without-intermediate-variable/</guid>
+      <description>&lt;p&gt;Using the following properties of the XOR function:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Associativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $(a \oplus b) \oplus c =  a \oplus (b \oplus c) $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Commutativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus b =  b \oplus a $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Identity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus 0 = a $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Self-Inverse&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus a = 0 $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;As a bit of trivia, note that all n-bit integers form an &lt;a href=&#34;http://en.wikipedia.org/wiki/Abelian_group&#34;&gt;Abelian Group&lt;/a&gt; under XOR. The proof of which can be found by using the obvious isomorphism of n-bit integers with &lt;code&gt;{0,1}&lt;/code&gt;&lt;sup&gt;n&lt;/sup&gt; under addition modulo 2. Note that addition modulo 2 is equivalent to bitwise XOR.&lt;/p&gt;
+
+&lt;p&gt;So, using the C programming language, we can use the convenient &lt;code&gt;^=&lt;/code&gt; operator as a way to swap the values of a and b without using an intermediate variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;  a ^= b;      // (a ^ b)
+  b ^= a;      // b ^ (a ^ b)   which is the original a
+  a ^= b;      // (a ^ b) ^ b   which is the original b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is a full working program that implements this operation using a C macro:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+
+#define show(a,b)	printf(&amp;quot;a = %d, b = %d\n&amp;quot;, a, b);
+
+#define swap(a,b) \
+  a^=b;  \
+  b^=a;  \
+  a^=b;
+
+int main(int argc, char *argv[]) {
+  int a = 3, b = 5;
+  show(a,b);
+
+  swap(a,b);
+
+  show(a,b);
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

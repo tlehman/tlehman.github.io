@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Appreciation on tlehman@home</title>
+    <link>/categories/appreciation/index.xml</link>
+    <description>Recent content in Appreciation on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/appreciation/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Git merge conflicts in the Law</title>
+      <link>/blog/2014/09/05/git-merge-conflicts-in-the-law/</link>
+      <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/09/05/git-merge-conflicts-in-the-law/</guid>
+      <description>&lt;p&gt;Short post, just wanted to share this:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;I am resolving git merge conflicts in the law. &lt;a href=&#34;https://twitter.com/hashtag/lovemyjob?src=hash&#34;&gt;#lovemyjob&lt;/a&gt;&lt;/p&gt;&amp;mdash; Joshua Tauberer (@JoshData) &lt;a href=&#34;https://twitter.com/JoshData/status/508001292078559232&#34;&gt;September 5, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;It reminded me of an earlier post I had on &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;viewing changes to law as a diff&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I am a big fan of &lt;a href=&#34;http://razor.occams.info/&#34;&gt;Joshua Tauberer&lt;/a&gt;&amp;rsquo;s work, his site &lt;a href=&#34;http://govtrack.us&#34;&gt;GovTrack.us&lt;/a&gt; has been a great resource for following what Congress is doing, (and what it&amp;rsquo;s &lt;a href=&#34;https://www.govtrack.us/blog/2013/12/18/closing-out-2013-with-policy-unfinished/&#34;&gt;not doing&lt;/a&gt;). If you haven&amp;rsquo;t seen it, I recommend you check it out.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

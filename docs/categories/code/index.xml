@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on tlehman@home</title>
+    <link>/categories/code/index.xml</link>
+    <description>Recent content in Code on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/code/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Why do we need more than one language?</title>
+      <link>/blog/2012/09/26/why-do-we-need-more-than-one-language/</link>
+      <pubDate>Wed, 26 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/09/26/why-do-we-need-more-than-one-language/</guid>
+      <description>&lt;p&gt;My dad asked me an interesting question recently, &lt;em&gt;why do we need more than one programming language?&lt;/em&gt;. I gave a short answer: &lt;em&gt;we don&amp;rsquo;t&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;And a long answer to a related question, &lt;em&gt;why are there so many programming languages?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We have them anyway for a number of reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Aesthetics (some people don&amp;rsquo;t like semicolons, case sensitivity, etc. (Lousy reason at face value, but I must say, reading code written in Ruby is usually much easier than reading code written in C++).&lt;/li&gt;
+&lt;li&gt;Specialization vs. Generalization is an eternal struggle
+
+&lt;ul&gt;
+&lt;li&gt;SQL is very useful as it is focused on querying data, but it is too specialized to do anything like make a website or firmware for a phone.&lt;/li&gt;
+&lt;li&gt;Lisp and Java are general purpose enough that you can do anything with them, but querying data using Java or Lisp is more work, since you have to set up the database connection and implement how the data is queried. In SQL, you just write the query and the database figures out the implementation details.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;why not?&lt;/em&gt; factor.
+
+&lt;ul&gt;
+&lt;li&gt;Case in point: &lt;a href=&#34;http://www.muppetlabs.com/~breadbox/bf/&#34;&gt;Brainfuck&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The Esperanto factor
+
+&lt;ul&gt;
+&lt;li&gt;Languages grow and adapt, and after a while, it gets out of control. Sometimes, people get together armed with decades of experience and skill and endeavor to create a language that makes coding easier, safer, and more fun.&lt;/li&gt;
+&lt;li&gt;Case in point: &lt;a href=&#34;http://golang.org/&#34;&gt;Go&lt;/a&gt; (some veteran C/C++/Java programmers at Google got together to create a new language that fixed some of the problems of the old languages, for example, when you create an array of integers in Go, all of them are set to zero initially, whereas in C++, the array is full of whatever happened to be in that memory last (garbage data)).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;The Empire factor
+
+&lt;ul&gt;
+&lt;li&gt;Apple doesn&amp;rsquo;t let you write Java on an iPhone, why? Because fuck you, we are Apple,  and we say you have to write Objective-C.&lt;/li&gt;
+&lt;li&gt;Microsoft doesn&amp;rsquo;t let you write Java on the Windows phone, because they made C# which is totally not a direct copy of Java in every meaningful way. Totally not.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Features and Abstraction
+
+&lt;ul&gt;
+&lt;li&gt;C can do everything, but C++ was invented to make data and procedural abstraction more convenient.&lt;/li&gt;
+&lt;li&gt;Java was invented to be a C++ replacement, where you didn&amp;rsquo;t have to manage your own memory.&lt;/li&gt;
+&lt;li&gt;Lisp can do everything and it is a beautiful Platonic ideal. But, like set theory, when you have to get work done and you have a deadline, in an environment where you have little room to experiment, it&amp;rsquo;s more useful to use shortcuts and take pre-packaged libraries and frameworks and languages that happen to have those libraries and frameworks available.&lt;/li&gt;
+&lt;li&gt;Perl, Python and Ruby all simplified a lot of the tasks that you could otherwise do in the other languages. This is due to the simpler syntax, lack of compile time, and ease of creating abstractions.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Overall, I think that the reasons we have so many languages are understandable. As nice as it would be to have a standard language, no language has arisen yet that would solve all the problems that software developers face, and even if it did, people would still make alternatives for reasons other than practicality.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Anagrams of words in ruby</title>
+      <link>/blog/2012/06/11/anagrams-of-words-in-ruby/</link>
+      <pubDate>Mon, 11 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/06/11/anagrams-of-words-in-ruby/</guid>
+      <description>&lt;p&gt;One thing that is nice about Ruby is the ability it gives you to peel open a class and stick new methods into an object or class while the program is running. As an example, we will use the Array#permutation method to implement an anagram method for any string. We start by opening up the class:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;class String
+  def anagram
+    self.split(//).permutation.map { |a| a.join }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;self.split(//) just splits the string into an array of characters, then permutation returns the list of all permutations, and finally, the map { |a| a.join } expression just takes all permutations and joins the permuted characters into strings.&lt;/p&gt;
+
+&lt;p&gt;Now, we can take a string such as “not” and call &amp;ldquo;not&amp;rdquo;.anagram, the output is then [&amp;ldquo;not&amp;rdquo;, &amp;ldquo;nto&amp;rdquo;, &amp;ldquo;ont&amp;rdquo;, &amp;ldquo;otn&amp;rdquo;, &amp;ldquo;tno&amp;rdquo;, &amp;ldquo;ton&amp;rdquo;].&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

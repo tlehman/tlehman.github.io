@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Parsing nested expressions using Bison</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Parsing nested expressions using Bison</h1>
+			<div>
+				<p>I modified my <a href="/blog/2015/01/22/tip-calculation-using-bison-grammar/">tipcalc</a> program to handle expressions of arbitrary depth, so now it can handle input like <code>((($100 + 2%) + 2%) - 3%) + 3.5%</code>.</p>
+
+<p>The trick was to change the <code>start</code> symbol to match <code>binary_expression</code>, and then define <code>binary_expression</code> recursively, like so:</p>
+
+<pre><code>binary_expression:
+    dollars OP_PLUS percentage
+    |
+    dollars OP_MINUS percentage
+    |
+    LPAREN binary_expression RPAREN OP_PLUS percentage
+    |
+    LPAREN binary_expression RPAREN OP_MINUS percentage
+</code></pre>
+
+<p>This is what makes this new version a context-free grammar and not a regular grammar. Now, if you think that you could still handle this input with a regular expression, notice that adding percentages is not associative. For example, you might think we could drop the parens and just parse <code>$100 + 2% + 2% + 2%</code> using <code>/\$\d+ (\+ \d\%)+/</code></p>
+
+<pre><code>    \$\d+ (\+ \d\%)+
+</code></pre>
+
+<p><img src="https://www.debuggex.com/i/EaZiAO8PWJosT0b_.png" alt="Regular expression visualization" /></p>
+
+<p><a href="https://www.debuggex.com/r/EaZiAO8PWJosT0b_">Debuggex Demo</a></p>
+
+<p>However, if instead we wrote <code>$100 + 2% - 2% + 2%</code>, associativity says we can reduce it to <code>$100 + 2%</code>, however, when associated to the left <code>(($100 + 2%) - 2%) + 2%</code> it is clear that the result is different from <code>$100 + 2%</code>.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

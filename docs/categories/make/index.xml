@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Make on tlehman@home</title>
+    <link>/categories/make/index.xml</link>
+    <description>Recent content in Make on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/make/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hooking Jenkins up to a computer-controlled light switch</title>
+      <link>/blog/2013/03/18/hooking-jenkins-up-to-a-computer-controlled-light-switch/</link>
+      <pubDate>Mon, 18 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/03/18/hooking-jenkins-up-to-a-computer-controlled-light-switch/</guid>
+      <description>&lt;p&gt;About a week ago I &lt;a href=&#34;/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/&#34;&gt;wrote about how to hook up a light switch to a raspberry pi&lt;/a&gt;. Having a computer-controlled light switch is nice, but the novelty wears off pretty quickly. The next question that arises usually is &lt;em&gt;how can I make this useful?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;At work, our continuous integration server, which runs &lt;a href=&#34;http://jenkins-ci.org/&#34;&gt;Jenkins&lt;/a&gt;, lets us know when one of the team members has broken the build. To make sure that we get the memo promptly so we can commence with the public shaming, we use tools that change color to indicate the current test status.&lt;/p&gt;
+
+&lt;p&gt;The problem with our current way of doing things is that there is no sound, and it requires that someone be at their computer. To remedy this situation, we wired up physical lights to a raspberry pi running a Debian GNU/Linux variant, and wrote this script to toggle the lights.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;On means Passing  (all jobs passed)&lt;/li&gt;
+&lt;li&gt;Off means Failing (at least one job failed)
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The data flows from Jenkins to the Raspberry-Pi as follows:&lt;/p&gt;
+
+&lt;div style=&#34;width:300px;margin:auto&#34;&gt;
+{% img /images/blogimg/tds.png %}
+&lt;/div&gt;
+
+&lt;p&gt;gpio stands for (General Purpose Input/Output), the utility is part of the &lt;a href=&#34;https://projects.drogon.net/raspberry-pi/wiringpi/&#34;&gt;wiringPi&lt;/a&gt; package&lt;/p&gt;
+
+&lt;p&gt;NOTE: You need to set the following environment variables:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;JENKINS_USERNAME&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;JENKINS_PASSWORD&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;JENKINS_HOSTNAME&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Dependencies:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://ruby-lang.org&#34;&gt;Ruby&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://projects.drogon.net/raspberry-pi/wiringpi/&#34;&gt;wiringPi&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl --user $JENKINS_USERNAME:$JENKINS_PASSWORD $JENKINS_HOSTNAME/api/json 2&amp;gt; /dev/null                      |   # (Jenkins Job Statuses)
+
+ruby -rjson -e &#39;puts (JSON.parse(STDIN.read)[&amp;quot;jobs&amp;quot;].map{|j| j[&amp;quot;color&amp;quot;]}.all?{|c| c==&amp;quot;blue&amp;quot;} ? &amp;quot;up&amp;quot;:&amp;quot;down&amp;quot;)&#39; |   # (JSON parser/extractor) 
+
+while read line; do   gpio write 4 $line;     done                                                               # (gpio utility)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This script runs on the raspberry pi itself.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Make a computer-controlled light switch with a Raspberry Pi</title>
+      <link>/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/</link>
+      <pubDate>Sun, 10 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/</guid>
+      <description>&lt;p&gt;To build a computer-controlled light switch, you will need:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.raspberrypi.org/&#34;&gt;Raspberry Pi&lt;/a&gt; ($35)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.adafruit.com/products/268&#34;&gt;Adafruit Powerswitch Tail 2&lt;/a&gt; ($25)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The powerswitch tail looks like an extension cord with some holes in it to wire it into your own circuit. Connect the powerswitch to the raspberry pi as in the image below (on is connected to pin 23):&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/rasbpi_adafruit.jpg %}&lt;/p&gt;
+
+&lt;p&gt;Then, the following python program will allow you to type &lt;code&gt;./switch on&lt;/code&gt; or &lt;code&gt;./switch off&lt;/code&gt; from the command line as root.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#!/usr/bin/env python
+# Turn switch on/off
+# by tlehman
+
+import RPi.GPIO as io
+import sys
+
+io.setmode(io.BCM)
+pin = 23
+io.setwarnings(False)
+io.setup(pin, io.OUT)                 # set pin 23 as output
+
+if len(sys.argv) &amp;gt; 1:
+    state = sys.argv[1]               # get command line argument (&#39;on&#39; or &#39;off&#39;)
+    io.output(pin, state == &#39;on&#39;)     # if state is on, let pin 23 connect the circuit, otherwise break the circuit
+else:
+    print(&amp;quot;Usage: &amp;quot;)
+    print(&amp;quot;  ./switch (on|off)&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To run this, carefully plug in a lamp (or other appliance that uses a standard 120V U.S. outlet), then&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo su
+./switch on
+./switch off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is a video of the light being switched off and then back on, not very exciting, but it works:&lt;/p&gt;
+
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;http://www.youtube.com/embed/IO_BZ0mRYyQ&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;This on it&amp;rsquo;s own is not very useful or amusing, but this can easily be tied together with any API or command line utility. For example, I plan to connect this to our continuous integration server at work so that every time the tests fail, the switch turns some lights off, this could be achieved with a cron job, or perhaps a hook on Jenkins that sends a signal to the raspberry pi, there are so many possbilities.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hello Arduino</title>
+      <link>/blog/2012/10/08/hello-arduino/</link>
+      <pubDate>Mon, 08 Oct 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/10/08/hello-arduino/</guid>
+      <description>&lt;p&gt;I have heard of Arduino and physical computing platforms before but have never really played with them. As preparation for building a robot, I wanted to get a feel for microcontrollers.&lt;/p&gt;
+
+&lt;p&gt;The &amp;ldquo;Hello World&amp;rdquo; of Arduino projects is getting an LED to blink, that part was easy. I wanted a bit of user input, so I got a little switch and wired it up. Here is a sample, it&amp;rsquo;s just a button that turns a light on and off. I made it so that the light would stay on until you pressed the button again.&lt;/p&gt;
+
+&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;http://www.youtube.com/embed/IeztYjunHQQ&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;A good friend of mine turned me on to &lt;a href=&#34;www.sparkfun.com&#34;&gt;SparkFun&lt;/a&gt;, It is a fantastic source for hobby electronics, very accessible. I got a claw that will be part of the robot, and controlling it isn&amp;rsquo;t too hard either, the Arduino IDE even provide sample source code to start out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;// Sweep
+// by BARRAGAN &amp;lt;http://barraganstudio.com&amp;gt; 
+// This example code is in the public domain.
+
+
+#include &amp;lt;Servo.h&amp;gt; 
+ 
+Servo myservo;  // create servo object to control a servo 
+                // a maximum of eight servo objects can be created 
+ 
+int pos = 0;    // variable to store the servo position 
+ 
+void setup() 
+{ 
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object 
+} 
+ 
+ 
+void loop() 
+{ 
+  for(pos = 0; pos &amp;lt; 180; pos += 1)  // goes from 0 degrees to 180 degrees 
+  {                                  // in steps of 1 degree 
+    myservo.write(pos);              // tell servo to go to position in variable &#39;pos&#39; 
+    delay(15);                       // waits 15ms for the servo to reach the position 
+  } 
+  for(pos = 180; pos&amp;gt;=1; pos-=1)     // goes from 180 degrees to 0 degrees 
+  {                                
+    myservo.write(pos);              // tell servo to go to position in variable &#39;pos&#39; 
+    delay(15);                       // waits 15ms for the servo to reach the position 
+  } 
+} 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After attaching the servo to the claw and wiring it up, the above code opens and closes the claw:
+&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;http://www.youtube.com/embed/ov1YXQ9U0W4&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, I wanted to give continuous input, so I got a &lt;a href=&#34;http://en.wikipedia.org/wiki/Voltage_divider#Applications&#34;&gt;potentiometer&lt;/a&gt; from SparkFun. Using &lt;a href=&#34;http://en.wikipedia.org/wiki/Pulse-width_modulation&#34;&gt;pulse-width modulation&lt;/a&gt;, an LED can be dimmed to an arbitrary degree, so I can use an LED to reflect the value that the Arduino is reading from the potentiometer. This would be a dimmer switch, the code was pretty simple, I&amp;rsquo;ve posted it after the video of the dimmer switch in action:&lt;/p&gt;
+
+&lt;iframe width=&#34;420&#34; height=&#34;315&#34; src=&#34;http://www.youtube.com/embed/FK0bt_S8Ajo&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Here is my source code for the dimmer switch, the setup routine just tells the 13th digital pin to be an output and the 7th digital pin to read input. The 13th pin was chosen for LED output for convenience, since the ground pin is right next to it, I could just plug the LED directly into the two close-by pins.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;// blink a few LEDs
+const int LED = 13;
+const int BUTTON = 7;
+
+int val = 0;    // store the state of the input pin
+int old_val = 0; // store the previous input state
+int state = 0;  // 0 = LED off, 1 = LED ON
+
+void setup()
+{
+  pinMode(LED, OUTPUT);
+  pinMode(BUTTON, INPUT);
+}
+
+void loop()
+{
+  val = digitalRead(BUTTON);                  // get the potentiometer value
+  
+  if((val == HIGH) &amp;amp;&amp;amp; (old_val == LOW)) {     // if light is on and was just off a moment ago
+    state = 1 - state;                        // change state
+    delay(10);                                // wait 10 miliseconds
+  }
+  
+  old_val = val;                              // store old potentiometer value
+  
+  if(state == 1) {
+    digitalWrite(LED, HIGH);                  // turn LED on
+  } else {
+    digitalWrite(LED, LOW);                   // turn LED off
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Make your own Nexus 7 charging stand</title>
+      <link>/blog/2012/08/26/make-your-own-nexus-7-charging-stand/</link>
+      <pubDate>Sun, 26 Aug 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/08/26/make-your-own-nexus-7-charging-stand/</guid>
+      <description>
+
+&lt;p&gt;If you have one of Google&amp;rsquo;s awesome &lt;a href=&#34;http://www.google.com/nexus/#/&#34;&gt;Nexus 7 tablets&lt;/a&gt;, but don&amp;rsquo;t have a
+stand, here is a great way to make your own, all you need is the
+original box.&lt;/p&gt;
+
+&lt;h2 id=&#34;step-1&#34;&gt;Step 1&lt;/h2&gt;
+
+&lt;p&gt;Start with the part of the box that held the tablet, shown below.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/nexus7stand/step1.JPG %}&lt;/p&gt;
+
+&lt;p&gt;Punch a hole in the middle of the bottom part, that will be where the
+USB cable goes.&lt;/p&gt;
+
+&lt;h2 id=&#34;step-2&#34;&gt;Step 2&lt;/h2&gt;
+
+&lt;p&gt;Orient the box that held the charger at such an angle that the tablet
+rests and holds the box in place (shown below).&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;{% img /images/blogimg/nexus7stand/step2.JPG %}&lt;/td&gt;
+    &lt;td&gt;{% img /images/blogimg/nexus7stand/step3.JPG %}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;step-3&#34;&gt;Step 3&lt;/h2&gt;
+
+&lt;p&gt;Use some duct tape to hold the box in place (shown below).&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;td&gt;{% img /images/blogimg/nexus7stand/step4.JPG %}&lt;/td&gt;
+    &lt;td&gt;{% img /images/blogimg/nexus7stand/step5.JPG %}&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Now the box stays put when you remove the tablet, this provides a firm
+foundation for the tablet in the future.&lt;/p&gt;
+
+&lt;h2 id=&#34;step-4&#34;&gt;Step 4&lt;/h2&gt;
+
+&lt;p&gt;Punch a hole in the side of the box, and run the USB cable used for
+charging through the hole (shown below).&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/nexus7stand/step6.JPG %}&lt;/p&gt;
+
+&lt;h2 id=&#34;step-5&#34;&gt;Step 5&lt;/h2&gt;
+
+&lt;p&gt;Plug the tablet in and then gently lower it into its resting place&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/nexus7stand/step7.JPG %}&lt;/p&gt;
+
+&lt;p&gt;And now you have a charging stand for your Nexus 7.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

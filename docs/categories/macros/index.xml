@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Macros on tlehman@home</title>
+    <link>/categories/macros/index.xml</link>
+    <description>Recent content in Macros on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/macros/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Swap values in C without intermediate variable</title>
+      <link>/blog/2013/02/18/swap-values-in-c-without-intermediate-variable/</link>
+      <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/02/18/swap-values-in-c-without-intermediate-variable/</guid>
+      <description>&lt;p&gt;Using the following properties of the XOR function:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Associativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $(a \oplus b) \oplus c =  a \oplus (b \oplus c) $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Commutativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus b =  b \oplus a $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Identity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus 0 = a $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Self-Inverse&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus a = 0 $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;As a bit of trivia, note that all n-bit integers form an &lt;a href=&#34;http://en.wikipedia.org/wiki/Abelian_group&#34;&gt;Abelian Group&lt;/a&gt; under XOR. The proof of which can be found by using the obvious isomorphism of n-bit integers with &lt;code&gt;{0,1}&lt;/code&gt;&lt;sup&gt;n&lt;/sup&gt; under addition modulo 2. Note that addition modulo 2 is equivalent to bitwise XOR.&lt;/p&gt;
+
+&lt;p&gt;So, using the C programming language, we can use the convenient &lt;code&gt;^=&lt;/code&gt; operator as a way to swap the values of a and b without using an intermediate variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;  a ^= b;      // (a ^ b)
+  b ^= a;      // b ^ (a ^ b)   which is the original a
+  a ^= b;      // (a ^ b) ^ b   which is the original b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is a full working program that implements this operation using a C macro:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+
+#define show(a,b)	printf(&amp;quot;a = %d, b = %d\n&amp;quot;, a, b);
+
+#define swap(a,b) \
+  a^=b;  \
+  b^=a;  \
+  a^=b;
+
+int main(int argc, char *argv[]) {
+  int a = 3, b = 5;
+  show(a,b);
+
+  swap(a,b);
+
+  show(a,b);
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

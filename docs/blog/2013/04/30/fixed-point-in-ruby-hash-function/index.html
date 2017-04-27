@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Fixed point in ruby hash function</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Fixed point in ruby hash function</h1>
+			<div>
+				<p>A fixed point of a function  \( f:S \to S \) is an element \(x \in
+S\) such that</p>
+
+<p>{% latex %}
+$ f(x) = x $
+{% endlatex %}</p>
+
+<p>That is, \(f\) is a no-op on \(x\). Some examples:</p>
+
+<ul>
+<li>The identity function on any set has all points as fixed points</li>
+<li>The absolute value function has any positive real number as a fixed
+point</li>
+<li>The <a href="http://fmota.eu/blog/base64-fixed-point.html">base64 encoding function has a string as a fixed point</a></li>
+</ul>
+
+<p>(Check out that link above, fmota wrote about how they discovered a
+fixed point in the base64 encoding function, it&rsquo;s very interesting)</p>
+
+<p>Ruby&rsquo;s <code>Fixnum</code> class has an instance method called <code>hash</code>. It is the
+<a href="http://en.wikipedia.org/wiki/Hash_function#Hash_tables">hash function</a>
+used by the <code>Hash</code> class to locate the value.</p>
+
+<p>One thing to note that is interesting,</p>
+
+<pre><code class="language-ruby">42.class == 42.hash.class # true
+</code></pre>
+
+<p>The integer literal <code>42</code> is an instance of Ruby&rsquo;s <code>Fixnum</code> class,
+which is exactly the type that is returned by <code>Fixnum#hash</code>. So, if we
+let <code>N</code> be the set of all <code>Fixnum</code> values, and <code>h</code> be the hash function,
+then the function</p>
+
+<p>{% latex %}
+$h: N \to N $
+{% endlatex %}</p>
+
+<p>Does <code>h</code> have a fixed point? Let&rsquo;s find out, the generic way to find a
+fixed point is to apply the function over and over and see if any of
+the iterates are the same:</p>
+
+<p>{% latex %}
+$ x, f(x), f(f(x)), f(f(f(x))), f(f(f(f(x)))), &hellip; $
+{% endlatex %}</p>
+
+<p>In Ruby, we could start with a value <code>n</code> and loop until the next step
+is the same as the current step:</p>
+
+<pre><code class="language-ruby">
+def find_fixed_point(n)
+  m = n.hash
+
+  while n != m
+    puts n
+
+    n = m
+    m = m.hash
+  end
+
+  puts n
+  puts m
+end
+
+find_fixed_point(42)
+</code></pre>
+
+<p>This code terminates in 62 steps, here is the output:</p>
+
+<pre><code>42
+1818615832163790001
+97302458964831319
+3241638738618469355
+-1538644867632915805
+4556542729113842835
+-707745146237515789
+4042604241838953267
+-3938749251519753037
+-3262109345615183437
+2726245977638182835
+2363300705344768947
+-1077013243652537421
+3673817879955862451
+4480325791167763379
+-3402798086540651597
+4108231692027892659
+742946247983240115
+3380480562708485043
+-3611524319884209229
+2461606551736423347
+2556374051055866803
+-853528980180560973
+301437974151041971
+-684460774007630925
+2785951334519935923
+1234765569947210675
+3485015807817552819
+-2988541774381313101
+-2969442663896050765
+3743208565546292147
+-2143850698816220237
+985968426639299507
+-2191943438346873933
+465213455999570867
+-1249312491853966413
+-1963857645314632781
+3582438201892410291
+146054934450017203
+-2298892513473850445
+-813726632499604557
+-1775501339152477261
+-4287223502620716109
+-2436529928794664013
+-3361799749893745741
+487423333182608307
+4144170308747006899
+1852752892089734067
+1009031649399542707
+-1504821367603326029
+-1663010304514714701
+1979275894121173939
+657469403487933363
+-3805597827236228173
+-608042091803176013
+3625341557925090227
+-4337022583265946701
+4381946295323333555
+-3544389048848739405
+-4409080177303874637
+3084909602640630707
+1931988098033783731
+-373854911179910221
+4237831107247477683
+4237831107247477683
+</code></pre>
+
+<p>So the integer <code>4237831107247477683</code> is a fixed point of
+<code>Fixnum#hash</code>, that means that in the implementation of <code>Hash</code>, the
+value <code>4237831107247477683</code> would have itself as a key.</p>
+
+<p>There are more examples (play with the code yourself!), and I would
+like to look deeper into why this hash function has a fixed point.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

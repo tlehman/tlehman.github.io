@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tlehman@home</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link href="/index.xml" rel="feed" type="application/rss+xml" title="tlehman@home">
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		
+		
+				<article>
+		<h1><a href="/blog/2012/11/19/fixing-spaces-in-filenames/">Fixing spaces in filenames</a></h1>
+		<time>19.11.2012 00:00</time>
+		
+		<div>
+			Sorry this has taken so long, I&rsquo;ve been working on the Cryptography Coursera class, to get rid of all spaces in all files below the current directory, the following bash script will do:
+for filename in $(find .); do newfilename=$(echo $filename | sed 's/ /_/g'); mv $filename $newfilename done  
+			
+		</div>
+	</article>
+		
+				<article>
+		<h1><a href="/blog/2012/10/29/spaces-in-filenames/">Spaces in filenames</a></h1>
+		<time>29.10.2012 00:00</time>
+		
+		<div>
+			I don&rsquo;t like spaces in filenames. This trend started when I started playing with the command line on Linux back when I was about 13. Working with the shell, each space had to be escaped, which is just enough of an annoyance to warrant avoiding spaces altogether as a basic principle.
+I got to thinking about this recently when I tried to find out how I could get rid of the space in the name of my Google Drive directory.
+			
+				<a href="/blog/2012/10/29/spaces-in-filenames/">Read more...</a>
+			
+		</div>
+	</article>
+		
+				<article>
+		<h1><a href="/blog/2012/10/28/unix-processes-and-their-parents-part-2/">Unix Processes and Their Parents Part 2</a></h1>
+		<time>28.10.2012 00:00</time>
+		
+		<div>
+			Based on a comment by Mark Essel from part 1 I have been trying to add more metadata to the process tree. I have given up on doing it in a one-liner, so I started using bash scripts.
+Then, after a few hours of hacking bash, I got annoyed with the difficulty of very basic things such as incrementing integers and dealing with collections, so I switched over to Ruby, with some minor shelling out.
+			
+				<a href="/blog/2012/10/28/unix-processes-and-their-parents-part-2/">Read more...</a>
+			
+		</div>
+	</article>
+		
+		<div>
+
+	<a href="/page/21/">Previous Page</a>
+
+22 of 28
+
+	<a href="/page/23/">Next Page</a>
+
+</div>
+	</main>
+<div>
+  <div class="col-group">
+
+    <div>
+      <h3>About</h3>
+      <p>
+        Computer programmer and amateur mathematician. Lives in rainy Portland, Oregon, United States.
+        <a href="/about">Read more</a>
+      </p>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li><a href="mailto:mail@tobilehman.com">mail@tobilehman.com</a></li>
+        <li>PGP fingerprint: <pre>FD0E 4D25 7D77 5AEB</pre></li>
+        <li><a href="https://github.com/tlehman">github:@tlehman</a></li>
+        <li><a href="https://keybase.io/tlehman/">keybase:@tlehman</a></li>
+        <li><a href="https://mastodon.technology/@tlehman">mastodon:@tlehman</a></li>
+        <li><a href="http://stackoverflow.com/users/46871/tlehman">stackoverflow:@tlehman</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Latest Posts</h3>
+      <ul>
+        
+        <li><a href="/posts/seeing-the-bulk-a-primer-on-dimensionality-reduction/">Seeing the bulk: a primer on dimensionality reduction</a></li>
+        
+        <li><a href="/blog/2016/09/04/word-embeddings-and-semantics/">word embeddings and semantics</a></li>
+        
+        <li><a href="/blog/2016/04/13/thing-explainer-in-emacs/">Thing explainer in emacs</a></li>
+        
+        <li><a href="/blog/2016/02/08/dockerize-all-the-things/">Dockerize all the things</a></li>
+        
+        <li><a href="/blog/2016/01/20/new-largest-mersenne-prime-found/">New largest Mersenne prime found</a></li>
+        
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

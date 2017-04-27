@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computervision on tlehman@home</title>
+    <link>/categories/computervision/index.xml</link>
+    <description>Recent content in Computervision on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/computervision/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Extract array of frames from mp4 using Python OpenCV bindings</title>
+      <link>/blog/2013/01/20/extract-array-of-frames-from-mp4-using-python-opencv-bindings/</link>
+      <pubDate>Sun, 20 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/01/20/extract-array-of-frames-from-mp4-using-python-opencv-bindings/</guid>
+      <description>
+
+&lt;p&gt;OpenCV is a mature Computer Vision library written in C++. There are python bindings available that make working with the library very convenient.&lt;/p&gt;
+
+&lt;p&gt;To extract the frames from an mp4 file using the Python OpenCV bindings, you first need python, and the &lt;code&gt;pip&lt;/code&gt; package manager for python.&lt;/p&gt;
+
+&lt;p&gt;Also, you will need a system package manager such as Portage for Gentoo Linux or Homebrew for Mac OS X. You will need to compile OpenCV with your specific python version, for this example I am using python 2.7, you can find out which version you have by running &lt;code&gt;python --version&lt;/code&gt;. This example will use Mac OS X 10.8.&lt;/p&gt;
+
+&lt;h2 id=&#34;install-ffmpeg&#34;&gt;Install ffmpeg&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install ffmpeg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;build-opencv-with-python2-7-and-ffmpeg&#34;&gt;Build OpenCV with Python2.7 and ffmpeg&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install opencv --python27 --ffmpeg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I am taking the &lt;a href=&#34;https://www.coursera.org/course/images&#34;&gt;Coursera Image and Video processing&lt;/a&gt; class right now, the example file I am using is one of &lt;a href=&#34;https://class.coursera.org/images-2012-001/lecture/download.mp4?lecture_id=7&#34;&gt;the lectures&lt;/a&gt;, I saved the file as &lt;code&gt;course-logistics.mp4&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To use OpenCV in python, you need to import cv2:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import cv2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, to open the video file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;vidcap = cv2.VideoCapture(&#39;course-logistics.mp4&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The easiest way to extract frames is to use the &lt;code&gt;read()&lt;/code&gt; method on the vidcap object. It returns a &lt;a href=&#34;http://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences&#34;&gt;tuple&lt;/a&gt; where the first element is a success flag and the second is the image array. To extract the image array:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;success,image = vidcap.read()
+# image is an array of array of [R,G,B] values
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To convert the whole video to frames and save each one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;count = 0; 
+while success:
+	success,image = vidcap.read()
+	cv2.imwrite(&amp;quot;frame%d.jpg&amp;quot; % count, image)     # save frame as JPEG file
+	if cv2.waitKey(10) == 27:                     # exit if Escape is hit
+    	break
+	count += 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above loop runs until &lt;code&gt;success&lt;/code&gt; is false or the user hits the Escape key. Each iteration saves the current frame as a JPEG.&lt;/p&gt;
+
+&lt;p&gt;This is one way to extract a sequence of frames from a movie. Another way would be to change the body of the above while loop to do something else.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

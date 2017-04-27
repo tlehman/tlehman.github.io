@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on tlehman@home</title>
+    <link>/categories/javascript/index.xml</link>
+    <description>Recent content in Javascript on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Making a Go Game for the Web</title>
+      <link>/blog/2015/11/03/making-a-go-game-for-the-web/</link>
+      <pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/11/03/making-a-go-game-for-the-web/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;ve been feeling productive in the last few weeks. I just finished two Coursera classes, one in machine learning and one in Swift programming. I also finished my minimum viable go game: &lt;a href=&#34;http://goga.me&#34;&gt;goga.me&lt;/a&gt;. And we are working on a really exciting feature at work. I really like having lots of interesting things to work on. Anyway, enough feelings, you came here for games and code.&lt;/p&gt;
+
+&lt;p&gt;The game of Go is ancient, it has very few rules, but an unfathomable level of complexity emerges from all the possible ways the pieces can be put on the board. The graphics were very straightforward to implement, it&amp;rsquo;s just a square grid with some colored circles, I don&amp;rsquo;t usually work with graphics, so I experimented with some different web technologies to see what worked best.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gogame_screenshot_0.png&#34; alt=&#34;example go game&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;attempt-1-html5-canvas&#34;&gt;Attempt 1, HTML5 Canvas&lt;/h2&gt;
+
+&lt;p&gt;About a year ago I wrote a Go board using the HTML5 &amp;lt;canvas&amp;gt; element, &lt;a href=&#34;https://github.com/tlehman/go-websocket/blob/master/go_game.js&#34;&gt;here&amp;rsquo;s the source code&lt;/a&gt;, it doesn&amp;rsquo;t actually have a server side, I decided to ditch that approach, since canvas is really great for making arbitrarily complicated bitmap graphics, but I needed something much simpler. Also, when zooming in on a phone, the click event location was not the same as the location where the code drew a new piece.&lt;/p&gt;
+
+&lt;h2 id=&#34;attempt-2-svg&#34;&gt;Attempt 2, SVG&lt;/h2&gt;
+
+&lt;p&gt;After almost a year I came back to the project, I wrote out a rails backend for the data storage and game logic, and then learned SVG (Scalable Vector Graphics). Here&amp;rsquo;s &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/views/matches/show.html.erb&#34;&gt;the source code&lt;/a&gt;, what I like about SVG is that I can make the board positions part of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Document_Object_Model&#34;&gt;DOM&lt;/a&gt; and bind javascript events to the positions. This solves a problem with zooming, so that when I zoom in on a phone, the click event shows up in the right position.&lt;/p&gt;
+
+&lt;h2 id=&#34;websockets-enabling-live-back-and-forth-gameplay&#34;&gt;WebSockets, enabling live back and forth gameplay&lt;/h2&gt;
+
+&lt;p&gt;Another exciting technology that I spent some time learning about was &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API&#34;&gt;WebSockets&lt;/a&gt;, this allows two players to open a direct connection to one another, so that as soon as someone plays a piece, the other one knows. This way, the user does not have to refresh, it&amp;rsquo;s all live. I used the websockets-rails library to handle setting up a user-to-user connection through the rails backend. The &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/master/app/views/matches/show.html.erb#L67-L80&#34;&gt;source code to handle binding and triggering is here&lt;/a&gt;. To see it in action, &lt;a href=&#34;http://goga.me/users/sign_up&#34;&gt;make an account at goga.me&lt;/a&gt;, and then &lt;a href=&#34;http://goga.me/matches/new&#34;&gt;create a match&lt;/a&gt;, and click &amp;lsquo;Start Match&amp;rsquo;, that will start a match against yourself, you can open it up on multiple devices, and when you start playing, the other screen will immediately update, it&amp;rsquo;s pretty cool!&lt;/p&gt;
+
+&lt;h2 id=&#34;other-challenges&#34;&gt;Other challenges&lt;/h2&gt;
+
+&lt;p&gt;After getting the graphics and networking to work correctly, the only other major challenge was handling capturing. Capturing is where one color completely surrounds the other color, and the surrounded pieces get removed, you can see it in the following screen capture:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gogame_capturing.gif&#34; alt=&#34;example capturing in a go game&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The challenge is to determine the parts of the board that are connected. Since each piece can only be connected to it&amp;rsquo;s four neighboring pieces of the same color, you can start finding connected components by picking a point and walking to every piece connected to it that is the same color. A prime choice for this problem is a breadth first search:&lt;/p&gt;
+
+&lt;h2 id=&#34;breadth-first-search&#34;&gt;Breadth First Search&lt;/h2&gt;
+
+&lt;p&gt;To wrap my head around this algorithm I had to get out my trusty graph theory book. Here&amp;rsquo;s a summary of the algorithm and an example:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Input&lt;/strong&gt;: An unweighted graph and a start vertex u&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Idea&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Maintain a set R of vertices that have been reached but not searched and&lt;/li&gt;
+&lt;li&gt;a set S of vertices that have been searched.&lt;/li&gt;
+&lt;li&gt;The set R is maintained as a First-In First-Out list (&lt;a href=&#34;https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29&#34;&gt;queue&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Initialization&lt;/strong&gt;: R = {u}, S = ø, d(u,u) = 0&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Iteration&lt;/strong&gt;: As long as R &amp;neq; ø, we search from the first vertex v of R. The neighbors of v not in (S U R) are added to the back of R and then v is removed from the front of R and placed in S.&lt;/p&gt;
+
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;Let G be the adjacency graph of the following Go shape:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   1  2  3  4  5  6
+ 1    .  o  o  o  .
+ 2    .  .  .  .  .  &amp;lt;--- black component
+ 3    .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;v&lt;/th&gt;
+&lt;th&gt;R&lt;/th&gt;
+&lt;th&gt;S&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(2,1)&lt;/td&gt;
+&lt;td&gt;[(2,1)]&lt;/td&gt;
+&lt;td&gt;{}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,1)&lt;/td&gt;
+&lt;td&gt;[(2,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,2)&lt;/td&gt;
+&lt;td&gt;[(2,3),(3,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,3)&lt;/td&gt;
+&lt;td&gt;[(3,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(3,2)&lt;/td&gt;
+&lt;td&gt;[(4,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(4,2)&lt;/td&gt;
+&lt;td&gt;[(5,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(5,2)&lt;/td&gt;
+&lt;td&gt;[(6,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(6,2)&lt;/td&gt;
+&lt;td&gt;[(6,1)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(6,1)&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2),(6,1)}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt; &lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Once I worked through the steps with this example and several others, writing the code to implement it was very straightforward, here&amp;rsquo;s the &lt;a href=&#34;https://github.com/tlehman/go-websocket/blob/8094890048ca845c0fef416573b8aba533ca6ea9/jasmine/src/ComponentMap.js#L16-L51&#34;&gt;javascript version&lt;/a&gt; and the &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/presenters/board_presenter.rb#L24-L41&#34;&gt;ruby version&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My go game is at a good stopping point for now, I still need to fix a few edge cases and add a chat feature. Also, I realized how satisfying it is to take a bunch of stuff I learned and make something real with it. I plan on making a native mobile client to this (iOS and Android), but that will take some more time and work.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Unix Processes and Their Parents Part 2</title>
+      <link>/blog/2012/10/28/unix-processes-and-their-parents-part-2/</link>
+      <pubDate>Sun, 28 Oct 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/10/28/unix-processes-and-their-parents-part-2/</guid>
+      <description>&lt;p&gt;Based on a comment by Mark Essel from &lt;a href=&#34;/blog/2012/10/14/unix-processes-and-their-parents/&#34;&gt;part 1&lt;/a&gt; I have been trying
+to add more metadata to the process tree. I have given up on doing it in a one-liner, so I started using bash scripts.&lt;/p&gt;
+
+&lt;p&gt;Then, after a few hours of hacking bash, I got annoyed with the difficulty of very basic things such as incrementing
+integers and dealing with collections, so I switched over to Ruby, with some minor shelling out.&lt;/p&gt;
+
+&lt;p&gt;The result is &lt;a href=&#34;https://github.com/tlehman/procviz&#34;&gt;procviz&lt;/a&gt;, it is some ruby code for generating a graph representing
+the process tree at the time &lt;code&gt;Graph.new&lt;/code&gt; is called.&lt;/p&gt;
+
+&lt;p&gt;It generates DOT files just fine, but the images can get big if your system has a lot of stuff running. Also, the only
+metadata I have attached to the nodes so far is the command name:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/images/blogimg/proc_with_names.png&#34;&gt;
+  &lt;img src=&#34;/images/blogimg/proc_with_names.png&#34;&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to make this into a more interactive visualization, but so far I have had a hard time getting Sigma.js or Arbor.js
+to embed into this Octopress blog. I have been meaning to get a better understanding of javascript.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MathJax for Octopress</title>
+      <link>/blog/2012/07/18/mathjax-for-octopress/</link>
+      <pubDate>Wed, 18 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/07/18/mathjax-for-octopress/</guid>
+      <description>&lt;p&gt;I have had many blogs in the past that had some mathematical flights of fancy on them. Part of it was a log of fun things I was exploring, and another part was just showing off the neat capabilities of the CodeCogs LaTeX equation editor or some wordpress plugin that did the same thing. In one rare case, I (incorrectly) debunked an argument that &lt;a href=&#34;http://28.media.tumblr.com/tumblr_lbxrvcK4pk1qbylvso1_400.png&#34;&gt;&amp;pi; = 4&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s not that &amp;pi; actually turned out to be equal to 4, it&amp;rsquo;s just that my argument was wrong. I learned a lot about convergence, and the true reason that the argument was false was much more subtle. I will reproduce this here in the next few posts.&lt;/p&gt;
+
+&lt;p&gt;For publishing math, you can use either MathML (a dialect of XML), or LaTeX (pronounced Lah-Tek). You can render LaTeX to an image or have it converted to selectable characters by JavaScript by &lt;a href=&#34;http://www.mathjax.org/&#34;&gt;MathJax&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I always used LaTeX to images because it was easier. The image could be embedded in ordinary HTML and that was it, it would always work. However, it didn&amp;rsquo;t scale with the text very well, and the individual characters could not be selected.&lt;/p&gt;
+
+&lt;p&gt;So, here is an awesome example of MathJax in action, displaying some beautiful mathematics: the first Fundamental Theorem of Calculus. We start by assuming a and b are real numbers, and that f is a continuous, real-valued function on the interval &lt;code&gt;[a,b]&lt;/code&gt;, and further that f is differentiable on the open interval &lt;code&gt;(a,b)&lt;/code&gt;. The first Fundamental theorem states that:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ \int_a^b f&amp;rsquo;(x) dx = f(b) - f(a) $
+{% endlatex %}&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Simplifying client-side web development with Angular.js</title>
+      <link>/blog/2012/07/08/simplifying-client-side-web-development-with-angular-dot-js/</link>
+      <pubDate>Sun, 08 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/07/08/simplifying-client-side-web-development-with-angular-dot-js/</guid>
+      <description>&lt;p&gt;For dealing with client-side web development there are a lot of ways to bind data to elements to HTML. However, none have stood out quite as well as &lt;a href=&#34;http://angular.js&#34;&gt;Angular.js&lt;/a&gt; from Google. There is a &lt;a href=&#34;http://www.youtube.com/watch?v=uFTFsKmkQnQ&amp;amp;feature=player_embedded&#34;&gt;good screencast&lt;/a&gt; giving a side-by-side comparison of a &amp;ldquo;hello name&amp;rdquo; app done in jQuery and then in Angular.&lt;/p&gt;
+
+&lt;p&gt;I have been meaning to play around with this library for a while, but I didn&amp;rsquo;t have any unique ways of applying it. However, just today, my girlfriend suggested that we try to Latinize our names, similar to how &lt;a href=&#34;http://en.wikipedia.org/wiki/Carl_Linnaeus&#34;&gt;Carl Linnaeus&lt;/a&gt; did. I thought it was a cool idea, and assumed that someone had already made an app that did just that. It turns out that no one has, however, I did find &lt;a href=&#34;http://www.ehow.com/how_7378149_convert-english-first-name-latin.html&#34;&gt;this article&lt;/a&gt; on ehow.com on how to turn an english first name to Latin. The rules are simple, but instead of spelling them out here, I&amp;rsquo;m going to link to the app that I made, and then dissect it. The dissection will show a little bit of Angular.js in action.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;/apps/latinizer&#34; target=&#34;_new&#34;&gt;Heres the app.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This app had to respond to the events triggered by changing the text in the text box, and also to the changing radio button. If I was using something like jQuery, I&amp;rsquo;d have to rig up handlers for all those events. Also, any time the name or the gender changes, I&amp;rsquo;d have to update the label that displayed the latinized name. This is not hard, but it does get tedious, especially for larger apps.&lt;/p&gt;
+
+&lt;p&gt;The way Angular handles this is by abstracting away all of the event handling, and making it so that the developer (me) can just bind a label to an object, and then bind controls to an object, and trigger all the updates automatically.&lt;/p&gt;
+
+&lt;p&gt;Using the Latinizer example, let&amp;rsquo;s start with the view:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!doctype html&amp;gt;
+&amp;lt;html ng-app&amp;gt;
+&amp;lt;head&amp;gt;
+    &amp;lt;script src=&amp;quot;http://code.angularjs.org/angular-1.0.1.min.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&amp;quot;latinizer.js&amp;quot; type=&amp;quot;text/javascript&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;title&amp;gt;Convert English name into Latin&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+    &amp;lt;div ng-controller=&amp;quot;LatinizerCtrl&amp;quot;&amp;gt;
+        &amp;lt;label&amp;gt;First Name:&amp;lt;/label&amp;gt;
+        &amp;lt;input type=&amp;quot;text&amp;quot; ng-model=&amp;quot;person.firstName&amp;quot; placeholder=&amp;quot;Enter First Name&amp;quot;&amp;gt;
+        &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;gender&amp;quot; value=&amp;quot;Male&amp;quot; ng-model=&amp;quot;person.gender&amp;quot;&amp;gt;Male
+        &amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;gender&amp;quot; value=&amp;quot;Female&amp;quot; ng-model=&amp;quot;person.gender&amp;quot;&amp;gt;Female
+        &amp;lt;br&amp;gt;
+        &amp;lt;br&amp;gt;
+        &amp;lt;h1&amp;gt;{{latinizeFirstName(person)}}&amp;lt;/h1&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    Note: the rules being used here are from 
+		&amp;lt;a href=&amp;quot;http://www.ehow.com/how_7378149_convert-english-first-name-latin.html&amp;quot;&amp;gt;this page&amp;lt;/a&amp;gt;.
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is just an ordinary html file that includes the angular.js library, and some of the elements have &amp;ldquo;ng-something&amp;rdquo; attributes. Those attributes tell angular where to get and set data.&lt;/p&gt;
+
+&lt;p&gt;Note the &amp;ldquo;ng-controller&amp;rdquo; element, it tells angular to use the controller named &amp;ldquo;LatinizerCtrl&amp;rdquo;, that is defined in the following javascript file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;		function LatinizerCtrl($scope) {
+    $scope.person = {
+        firstName:&amp;quot;&amp;quot;,
+        gender:&amp;quot;&amp;quot;
+    };
+
+    $scope.latinizeFirstName = function(person) {
+        var latinFirstName = person.firstName;
+
+        if(person.gender == &amp;quot;Male&amp;quot;) {
+            latinFirstName += &amp;quot;us&amp;quot;;
+        } else if(person.gender == &amp;quot;Female&amp;quot;) {
+            if(person.firstName.match(/y$/)) {
+                latinFirstName = latinFirstName.replace(/y$/, &amp;quot;i&amp;quot;);
+            }
+            latinFirstName += &amp;quot;a&amp;quot;;
+        }
+
+        if(person.firstName == &amp;quot;&amp;quot;) {
+            latinFirstName = &amp;quot;&amp;quot;;
+        }
+        return latinFirstName;
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first part of the controller sets up the &lt;code&gt;person&lt;/code&gt; model, it has a first name and a gender, then the &lt;code&gt;latinizerFirstName&lt;/code&gt; function takes the person, and based on their gender, gives them the appropriate latin first name.&lt;/p&gt;
+
+&lt;p&gt;I have not been able to find rules for converting last names to Latin. I have found large lists and tables of Latin surnames, but that is beyond the scope of this little exploration. Perhaps in the future I will make a server-side component, with a key-value store to convert surnames to Latin.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

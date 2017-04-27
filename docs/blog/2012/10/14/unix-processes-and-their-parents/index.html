@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Visualizing Unix processes and their parents</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Visualizing Unix processes and their parents</h1>
+			<div>
+				<p>I am reading Jesse Storimer&rsquo;s fantastic little book <a href="http://workingwithunixprocesses.com/">&ldquo;Working with Unix Processes&rdquo;</a> right now, and inspiration struck after the second chapter &ldquo;Processes Have Parents&rdquo;.</p>
+
+<p>When a Unix process is born, it is a literal copy of it&rsquo;s parent process. For example, if I am typing <em>ls</em> into a bash prompt, the bash process spawns a copy of itself using the <em>fork</em> system call. The parent process (bash) has an id which is associated with the child process (ls). Using the Unix <em>ps</em> command, you can see the parent process id of every process on the system.</p>
+
+<p>The only process that has no parent is <em>sched</em>, it has process id zero. The idea I had was to make a visualization of this branching tree of Unix processes. I am currently running Debian GNU/Linux, a Unix-like operating system. I came up with this one-liner that shows the (parent id -&gt; child id) relation:</p>
+
+<pre><code class="language-sh">ps axo ppid,pid | sed &quot;s/\b / -&gt; /g&quot; | grep -v &quot;PID&quot;
+</code></pre>
+
+<p>The first part calls <em>ps</em> and gets all process ids, and their parents. Some sample output is this:</p>
+
+<pre><code>~ &gt; ps axo ppid,pid
+ PPID   PID
+    0     1
+    0     2
+    2     3
+    2     6
+    2     7
+    2     8
+    2    10
+    2    12
+    2    13
+</code></pre>
+
+<p>This output is piped into <em>sed</em> (*s*tream *ed*itor), and the empty space between the numbers is replaced with an arrow &ldquo;-&gt;&rdquo;:</p>
+
+<pre><code>~ &gt; ps axo ppid,pid | sed &quot;s/\b / -&gt; /g&quot;
+ PPID -&gt;   PID
+    0 -&gt;     1
+    0 -&gt;     2
+    2 -&gt;     3
+    2 -&gt;     6
+    2 -&gt;     7
+    2 -&gt;     8
+    2 -&gt;    10
+    2 -&gt;    12
+    2 -&gt;    13
+...
+</code></pre>
+
+<p>PPID is Parent Process Id, and PID is just Process Id. Finally, I use <em>grep -v &ldquo;PID&rdquo;</em> to let all the lines through that don&rsquo;t contain &ldquo;PID&rdquo;. This selects those lines that are actual process relations.</p>
+
+<p>In this case, it just chops off the first line. Next, I wanted to convert this into a file that I can feed into <a href="http://www.graphviz.org/">GraphViz</a>, an open source graph visualization tool. The format is pretty simple, an example is in order:</p>
+
+<pre><code>digraph Foo {
+  1 -&gt; 2
+  1 -&gt; 3
+}
+</code></pre>
+
+<p>The above file defines a graph called &ldquo;Foo&rdquo; that has three nodes and two edges, it looks like this:</p>
+
+<p>{% img /images/blogimg/Foo.png %}</p>
+
+<p>Now, all we have to do to the PPID-&gt;PID output above is to wrap it in braces and prepend two words to the beginning.</p>
+
+<p>We can use <em>echo &ldquo;digraph proc { SOME COMMAND }&rdquo;</em> to wrap the output of our command, then dump the results in a file.</p>
+
+<pre><code class="language-sh">echo &quot;digraph proc { `ps axo ppid,pid | sed &quot;s/\b / -&gt; /g&quot; | grep -v &quot;PID&quot;` } &quot; &gt;&gt; proc.dot
+</code></pre>
+
+<p>Finally, GraphViz has several commands for rendering graphs in various ways. The first thing I tried was a symmetric layout, but that produced a hierarchical, <em>very wide</em> image. So I tryed <em>circo</em> which produces a radial layout:</p>
+
+<pre><code class="language-sh">~ &gt; echo &quot;digraph proc { `ps axo ppid,pid | sed &quot;s/\b / -&gt; /g&quot; | grep -v &quot;PID&quot;` } &quot; &gt;&gt; proc.dot
+~ &gt; circo proc.dot -Tpng &gt;&gt; radial_proc.png
+</code></pre>
+
+<p>Here&rsquo;s the radial layout:
+{% img /images/blogimg/radial_proc.png %}</p>
+
+<p>You can see the original ancestor of all processes, <em>sched</em> with PID 0 right in the center, then PID 1 which is called <em>init</em> has a bunch of children. I am writing this post in vim in a bash shell in a gnome terminal emulator, the vim PID is 14819, but it is hard to see in this image, there is too much overlap.</p>
+
+<p>Fortunately, we can modify the proc.dot file and include <em>overlap=false</em> right above the PPID-&gt;PID pairs. Also, I found from the man pages for the graphviz tools that the <em>splines=true</em> option will draw the edges as splines (curves) instead of straight lines. Also, instead of using <em>circo</em>, there is another tool called <em>neato</em> that will render a more symmetrical graph than circo.</p>
+
+<p>This rendering took <em>much</em> longer than circo rendering, but is much nicer (click to enlarge):</p>
+
+<p><a href="/images/blogimg/sym_proc.png">
+  <img src="/images/blogimg/sym_proc.png">
+</a></p>
+
+<p>I remember learning in my C programming class that Unix processes all had to be made with fork. It reminded me of asexual reproduction where two identical copies are made. I look forward to learning more about the Unix process model, and recommend Jesse&rsquo;s book.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

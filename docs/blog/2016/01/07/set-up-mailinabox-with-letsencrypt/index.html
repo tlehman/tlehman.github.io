@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Set up Mailinabox with LetsEncrypt</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Set up Mailinabox with LetsEncrypt</h1>
+			<div>
+				<p>If you are not familiar with the <a href="https://eff.org">EFF</a> or their great project <a href="https://letsencrypt.org">LetsEncrypt</a>,
+don&rsquo;t feel bad, even the <a href="http://techcrunch.com/2016/01/07/who-the-f-is-the-eff-john-legere-wants-to-know/">CEO of T-Mobile doesn&rsquo;t know</a>.</p>
+
+<p>But seriously, this post is about combining the best of two projects:</p>
+
+<ul>
+<li><a href="https://mailinabox.email/">Mailinabox</a> a standalone mail server that enables email as it should be</li>
+<li><a href="https://letsencrypt.org">LetsEncrypt</a> a non-profit TLS certificate authority</li>
+</ul>
+
+<p>Mailinabox allows anyone with little patience to set up their own mail server with all the fixings, web client,
+spam filter, admin panel, etc. I recently just set it up, you can send email to <img src="/images/email_address.png" alt="mail at this domain" /> to contact me.</p>
+
+<p>Once you set up a domain name and a server and then get Mailinabox running, the next step is to get LetsEncrypt working.</p>
+
+<p>Since Mailinabox aims to automate almost everything, it is important to symlink the generated LetsEncrypt certificates to right place so Mailinabox knows where to find them.</p>
+
+<p>The directory <code>/home/user-data/ssl</code> is created by Mailinabox, and to use LetsEncrypt certificates there, you will have to symlink them to that directory.</p>
+
+<p>I started by turning off nginx and running:</p>
+
+<pre><code>$ /letsencrypt-auto certonly --standalone -d tobilehman.com -d www.tobilehman.com
+</code></pre>
+
+<p>That generated the following files in <code>/etc/letsencrypt/live/tobilehman.com/</code>:</p>
+
+<ul>
+<li>cert.pem</li>
+<li>chain.pem</li>
+<li>fullchain.pem</li>
+<li>privkey.pem</li>
+</ul>
+
+<p>To use these in Mailinabox, you need to mkdir the directories under <code>/home/user-data/ssl/</code>:</p>
+
+<pre><code>$ mkdir /home/user-data/ssl/tobilehman.com
+$ mkdir /home/user-data/ssl/www.tobilehman.com
+</code></pre>
+
+<p>Then symlink the <code>ssl_certificate.pem</code> and <code>privkey.pem</code> files to the right place:</p>
+
+<pre><code>$ ln -s /etc/letsencrypt/live/tobilehman.com/fullchain.pem /home/user-data/ssl/tobilehman.com/ssl_certificate.pem
+$ ln -s /etc/letsencrypt/live/tobilehman.com/privkey.pem /home/user-data/ssl/tobilehman.com/ssl_private_key.pem
+
+$ ln -s /etc/letsencrypt/live/tobilehman.com/fullchain.pem /home/user-data/ssl/www.tobilehman.com/ssl_certificate.pem
+$ ln -s /etc/letsencrypt/live/tobilehman.com/privkey.pem /home/user-data/ssl/www.tobilehman.com/ssl_private_key.pem
+</code></pre>
+
+<p>And then finally, go to the directory that contains the mailinabox repository folder, and
+run <code>mailinabox/tools/web_update</code>, and then start nginx up again. You should be good to go! If not, email me with
+some context, and we can figure out a solution.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Spaces in filenames</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Spaces in filenames</h1>
+			<div>
+				<p>I don&rsquo;t like spaces in filenames. This trend started when I started playing with the command line on Linux
+back when I was about 13. Working with the shell, each space had to be escaped, which is just enough of an
+annoyance to warrant avoiding spaces altogether as a basic principle.</p>
+
+<p>I got to thinking about this recently when I tried to find out how I could get rid of the space in the name
+of my Google Drive directory. I use both Dropbox and Google Drive, and as a package, I prefer Dropbox because
+of their out-of-the-box Linux support. However, Google Drive allows for a smaller per-month charge, and at the
+time of this post, the cost per byte is about the same between the two. Also, when you install Dropbox, you
+don&rsquo;t have a stupid space in the middle of the directory name!</p>
+
+<p>Out of curiosity, I did a little experiment to find out how steadfastly I had been applying my own principle:</p>
+
+<pre><code class="language-bash">~ &gt; find Dropbox | wc -l
+    9909
+~ &gt; find Dropbox | grep &quot; &quot; | wc -l
+     834
+~ &gt; python -c &quot;print(834.0/9909.0)&quot;
+0.084165909779
+</code></pre>
+
+<p>So, 8.4% of my file and directory names have spaces in them. Apparently, my four years of dropbox usage have
+been rather unprincipled.</p>
+
+<p>Performing the same experiment on the Google Drive directory requires an extra step, since &ldquo;Google Drive&rdquo; is
+the name of the root directory, I had to shave off that part using sed:</p>
+
+<pre><code class="language-bash">~ &gt; find Google\ Drive | sed 's/Google Drive\///g' | wc -l
+    2263
+~ &gt; find Google\ Drive | sed 's/Google Drive\///g' | grep &quot; &quot; | wc -l
+      68
+~ &gt; python -c &quot;print(68.0/2263.0)&quot;
+0.0300486080424
+</code></pre>
+
+<p>So, correcting for the root directory&rsquo;s name, only 3% of the stuff in my Google Drive have spaces in the name.</p>
+
+<p>In practice, I only follow this principle about 92-97% of the time, I can improve on that with a simple script,
+once I have it made, I&rsquo;ll post it for others who agree about how files should be named.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

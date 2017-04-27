@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Bayesian Drunk Driving</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Bayesian Drunk Driving</h1>
+			<div>
+				
+
+<p>Driving drunk is illegal for a good reason, it&rsquo;s way riskier than driving sober. This article isn&rsquo;t about driving drunk
+though, it&rsquo;s more about the sloppy thought processes that can too easily confuse something as obvious as that first
+sentence. Here&rsquo;s an example of a bogus argument that appears to support the idea that drunk driving is actually safer:</p>
+
+<p><blockquote class="twitter-tweet" lang="en">
+<p>From a recent talk: <sup>1</sup>&frasl;<sub>3</sub> of accidents involve drunk drivers, so <sup>2</sup>&frasl;<sub>3</sub> don’t =&gt; sober drivers 2× as bad.</p>
+&mdash; Colin Beveridge (@icecolbeveridge)
+<a href="https://twitter.com/icecolbeveridge/status/587317304335147008">April 12, 2015</a>
+</blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>So the argument is as follows: In 2012, 10,322 people were killed in alcohol-impaired driving crashes,
+accounting for nearly one-third (31%) of all traffic-related deaths in the United States [1].
+That means that approximately one third of traffic-related deaths involve drunk driving, meaning that
+two thirds of traffic-related deaths don&rsquo;t involve drunk driving. Therefore, sober drivers are twice as
+likely to die in a traffic accident.</p>
+
+<p>If you think something is wrong with that argument, you are right, but it&rsquo;s not just because the conclusion
+intuitively seems wrong, it&rsquo;s because it involves a mistake in conditional probability. To see the mistake,
+it helps to introduce a litle notation, we will define:</p>
+
+<ul>
+<li>P(D) to be the probability that a person is drunk</li>
+<li>P(A) to be the probability that a person will die in a traffic-related accident</li>
+<li>P(D | A) <em>(pronounced probability of D given A)</em> is the probability that a person is drunk, given that
+there was a death in a traffic-related accident they were in</li>
+</ul>
+
+<p>So using the 2012 CDC data, we can assign 31%, P(D | A) = 0.31. This is that the probability of a drunk
+driver being involved <strong>given that there was a deadly driving accident</strong>.</p>
+
+<p>The first thing to point out is that the statement that &lsquo;sober drivers are twice as likely as drunk drivers
+to die in an accident&rsquo; is really a statement about P(A | D), that is, the probability of a deadly driving
+accident <strong>given that that person is drunk</strong>. We don&rsquo;t know this yet, however, we can figure it out using
+Bayes&rsquo; theorem.</p>
+
+<h2 id="bayes-theorem">Bayes&rsquo; Theorem</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes&rsquo; Theorem</a> is unusual in that it is extremely useful
+and easy to prove, but hard to really understand.
+This is something I learned several times in college, but never really understood it&rsquo;s importance until much
+later. To see how easy to prove it is, we go back to the definition of conditional probability:</p>
+
+<p>{% latex %}
+$P(X|Y) = P(X \cap Y)/P(Y)$
+{% endlatex %}</p>
+
+<p>Where P(X &cap; Y) is the probability of X and Y occurring. Since this is true for any pair of events X and Y,
+we can reverse them and get</p>
+
+<p>{% latex %}
+$P(Y|X) = P(Y \cap X)/P(X)$
+{% endlatex %}</p>
+
+<p>Also, remember that AND is commutative, so that P(X &cap; Y) = P(Y &cap; X), so we can multiply the above two
+equations by P(Y) and P(X), respectively, to get:</p>
+
+<p>{% latex %}
+$P(X|Y)P(Y) = P(X \cap Y) = P(Y \cap X) = P(Y|X)P(X)$
+{% endlatex %}</p>
+
+<p>This relates P(X|Y) to P(Y|X), P(X) and P(Y), we can solve the above equation to get:</p>
+
+<p>{% latex %}
+$P(X|Y) = {P(Y|X)P(X)\over P(Y)}$
+{% endlatex %}</p>
+
+<p>And that&rsquo;s it, we took the definition of conditional probability, did a little algebra, and out popped Bayes&rsquo;
+theorem, we can now apply this to the above drunk driving fallacy, and calculate the probability that we are
+interested in, that is, P(A | D).</p>
+
+<p>{% latex %}
+$P(A|D) = {P(D|A)P(A)\over P(D)}$
+{% endlatex %}</p>
+
+<p>Since we know P(D|A), we just need to find P(A) and P(D). Since the CDC data we are using is annual data,
+we need to take the number of casualties from deadly accidents in the United States for the year of 2012 (33,561)
+and divide by the number of drivers (211,814,830), that gives an estimate of P(A) = 33,<sup>561</sup>&frasl;<sub>211</sub>,814,830 =
+0.0001584, which is about 1 in 6,313.</p>
+
+<p>Next, we need to find the probability that a driver is drunk P(D), we will use the data from the study
+referenced in [3], and define &lsquo;drunk&rsquo; to be a BAC of &geq; 0.1%. Then P(D) = 0.00387 or about 1 in 258 (more
+on this calculation in the notes below).</p>
+
+<p>Now that we have:</p>
+
+<p>P(D|A) = 0.31 (* probability of a driver being drunk, given they were involved in an accident where someone died *),</p>
+
+<p>P(A) = 0.0001584 (* probability of a driver being involved in an accident where someone died *), and</p>
+
+<p>P(D) = 0.00387 (* probability of a driver being drunk *)</p>
+
+<p>We can figure out P(A|D) (* probability of a drunk driver getting into a deadly accident *)</p>
+
+<p>P(A|D) = P(D|A)P(A)/P(D) = (0.31*0.0001584)/0.00387 = 0.0127 (1.27 %)</p>
+
+<p>1.27% is not insignificant, it&rsquo;s about half the probability of rolling snake eyes in craps.
+Now, let&rsquo;s compare that to sober driving, we just need to calculate P(A|D<sup>c</sup>). We can use <a href="https://en.wikipedia.org/wiki/Law_of_total_probability">Kolmogorov&rsquo;s
+Theorem of total probability</a>, shuffle a few terms to
+get:</p>
+
+<p>P(A|D<sup>c</sup>) = (P(A) - P(A|D)P(D))/P(D<sup>c</sup>) = (0.0001584 - 0.0127*0.00387)/(1-0.00387) = .000109,
+which is about 1 in 9118.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>So the probability of getting in a deadly accident, given that you are drunk is 1.27%, and the probability of getting into
+a deadly accident, given that you are not drunk is .01%, that means that it is 127 times more likely that you will get into
+a deadly accident while drunk.</p>
+
+<h3 id="references">References</h3>
+
+<p>[1] Impaired Driving: Get the Facts <em>Centers for Disease Control</em>
+<a href="http://www.cdc.gov/Motorvehiclesafety/impaired_driving/impaired-drv_factsheet.html">
+[link]
+</a></p>
+
+<p>[2] Total licensed drivers <em>U.S. Department of Transportation Federal Highway Administration</em>
+<a href="http://www.fhwa.dot.gov/policyinformation/statistics/2012/dl22.cfma">
+[link]
+</a></p>
+
+<p>[3] Probability of arrest while driving under the influence (George A Beitel, Michael C Sharp, William D Glauz)
+<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1730617/pdf/v006p00158.pdf">
+[link]
+</a></p>
+
+<p><em>Notes on [3], we don&rsquo;t technically have P(D), but we do have P(D|A<sub>1</sub>), P(A<sub>1</sub>),
+and P(A<sub>1</sub>|D), where A<sub>1</sub> is the event that a person is arrested. We can then find
+P(D) = (P(D|A<sub>1</sub>)P(A<sub>1</sub>))/P(A<sub>1</sub>|D) = (0.06&times;0.000374)/0.0058 =
+.00387</em>.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

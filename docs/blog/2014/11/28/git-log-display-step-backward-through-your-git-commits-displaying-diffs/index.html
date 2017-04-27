@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>git log-display: step backward through your git commits displaying diffs</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>git log-display: step backward through your git commits displaying diffs</h1>
+			<div>
+				
+
+<p>When working with git at the command line, I frequently want to see the last changes made to a repository. To see the result of the last commit (diff&rsquo;d with it&rsquo;s parent commit), you can just type <code>git show</code>. Git assumes the <code>HEAD</code> pointer and just spits it out:</p>
+
+<pre><code class="language-diff">$ git show
+commit 112379bca37e89c719c54be1598eeea5dbeede82
+Author: Tobi Lehman &lt;tlehman@example.com&gt;
+Date:   Thu Nov 20 10:31:59 2014 -0800
+
+    add -r flag to regenerate fastroutes file
+
+diff --git a/fastroutes b/fastroutes
+index 55920ce..666a2ab 100755
+--- a/fastroutes
++++ b/fastroutes
+@@ -39,6 +39,10 @@ function main {
+ if [[ &quot;$1&quot; == &quot;-f&quot; ]]
+ then
+   show_current_filename
++elif [[ &quot;$1&quot; == &quot;-r&quot; ]]
++then
++  rm $cached_routes_filename
++  cache_routes
+ else
+   main
+ fi
+</code></pre>
+
+<p>Sometimes I want to step back through all the commits though, I can run <code>git show HEAD^</code> and <code>git show HEAD^^</code>, and keep appending <code>^</code> characters, but that gets old fast. Also, sometimes I just want to look at the commits that changed a file.</p>
+
+<p>To solve this, I wrote <a href="https://github.com/tlehman/bin/blob/master/git-log-display">git log-display</a>. Here&rsquo;s an example to see how it can be used:</p>
+
+<h3 id="git-log-display">git log-display</h3>
+
+<p>To see all the commits from HEAD all the way back to initial commit, run <code>git log-display</code>:</p>
+
+<p><img src="/images/blogimg/git-log-display.gif"></p>
+
+<p>To step back through commits, hit &lsquo;q&rsquo;, and to exit press &lsquo;Ctrl-C&rsquo;</p>
+
+<h3 id="git-log-display-filename">git log-display FILENAME</h3>
+
+<p>To see all the commits that make modifications to <code>FILENAME</code>, just run <code>git log-display $FILENAME</code>:</p>
+
+<p><img src="/images/blogimg/git-log-display-filename.gif"></p>
+
+<h3 id="git-subcommands">git subcommands</h3>
+
+<p>One nice thing about git is that you can make a subcommand <code>git foo</code> just by having an executable called <code>git-foo</code> somewhere in your <code>PATH</code> variable. So to install this, just copy <code>git-log-display</code> to a directory in your <code>PATH</code>.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

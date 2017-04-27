@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Visualizing the &#39;belongs to&#39; relation in rails app models</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Visualizing the &#39;belongs to&#39; relation in rails app models</h1>
+			<div>
+				<p>When working on rails apps, I usually have to make a mental map of the models and how they interrelate.</p>
+
+<p>An Active Record model can belong to another, but when you have more than half a dozen models, keeping all
+the belongs_to relations in mind quickly becomes impossible. As a solution to this, I made a command line
+program called <a href="https://github.com/tlehman/bin#argraph">argraph</a>, for &lsquo;ActiveRecord graph&rsquo;, it produces a digraph in the
+<a href="http://www.graphviz.org/doc/info/lang.html">DOT language</a>, which can be rendered as an image
+using <a href="http://www.graphviz.org/">GraphViz</a>.</p>
+
+<p>The nodes are models, and the edges are the &lsquo;belongs to&rsquo; relation.</p>
+
+<p>The way to use it is to check it out or fork my <a href="https://github.com/tlehman/bin">bin</a> repo, make sure that directory
+is in your PATH variable, cd to the root of your rails app and run <code>argraph</code>.</p>
+
+<p>As an example, suppose you have the <a href="https://github.com/discourse/discourse">discourse</a> rails app checked out,
+and you want to find out how some of it&rsquo;s models are interrelated:</p>
+
+<pre><code>$ cd discourse
+$ argraph Post Topic Category PostReply User UserAction UserHistory QuotedPost View UserAvatar
+digraph {
+ Post -&gt; User
+ Post -&gt; Topic
+ Topic -&gt; Category
+ Topic -&gt; User
+ Category -&gt; Topic
+ Category -&gt; User
+ PostReply -&gt; Post
+ UserAction -&gt; User
+ QuotedPost -&gt; Post
+ QuotedPost -&gt; QuotedPost
+ View -&gt; User
+ UserAvatar -&gt; User
+}
+$ !! | dot -Tpng &gt; discourse.png
+</code></pre>
+
+<p>The above graph renders as:
+<img src="https://i.imgur.com/YQOyHUn.png" alt="discourse model graph" /></p>
+
+<p>You can also run the command with no arguments, in which case it maps out all models, but on bigger apps, this can be hard to follow,
+so I found it useful to be able to explore subgraphs containing more models than my memory could fit, but not so many that the image
+was polluted and hard to follow.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

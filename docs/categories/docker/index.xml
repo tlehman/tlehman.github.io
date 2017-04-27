@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on tlehman@home</title>
+    <link>/categories/docker/index.xml</link>
+    <description>Recent content in Docker on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Dockerize all the things</title>
+      <link>/blog/2016/02/08/dockerize-all-the-things/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2016/02/08/dockerize-all-the-things/</guid>
+      <description>&lt;p&gt;Okay, maybe not &lt;em&gt;all&lt;/em&gt; the things, but the things that tend to litter your
+filesystem with libraries, dependencies and other crap that increases the&lt;br /&gt;
+chances of a conflict.&lt;/p&gt;
+
+&lt;p&gt;If you are not familiar with &lt;a href=&#34;https://www.docker.com/what-docker&#34;&gt;Docker&lt;/a&gt;,
+check it out, then come back here and troll my flaming fanboy drunk on kool aid
+ravings in the comments.&lt;/p&gt;
+
+&lt;p&gt;I write a lot of ruby and python code, and I also use a lot of ruby/python and
+javascript code other people wrote as well. For ruby, I use the rbenv version
+manager to isolate different versions of ruby from one another, this is because
+some applications use features that are only present in newer versions, and also
+I use bundler to isolate gems between different applications using the same ruby
+version.&lt;/p&gt;
+
+&lt;p&gt;This blog is generated from markdown using the octopress ruby project that
+generates HTML from the markdown I write. My version uses ruby 1.9.3, which is
+pretty old, but for a static site, there are no security risks, since by the
+time the blog is published, it&amp;rsquo;s just a bunch of html files.&lt;/p&gt;
+
+&lt;p&gt;On the python side, there are a lot of machine learning libraries and frameworks,
+like GraphLab, caffee, TensorFlow, etc. that all link into statically compiled
+C++ code. These take a long time to get set up manually, and they have a sprawling
+web of dependencies spanning multiple languages. Virtualenv makes it possible to
+isolate python projects from each other, but it&amp;rsquo;s yet another thing to remember
+and takes more time just to use properly.&lt;/p&gt;
+
+&lt;p&gt;Docker comes in as a more general way of isolating applications from one another.
+Instead of having each language and application using some specialized isolation
+tool, all applications can be run within docker containers, each of which is
+completely unaware of any other container. Each of these containers shares the
+same Linux kernel and hardware, so they are lightweight compared to virtual
+machines. It is also possible to selectively allow containers to communicate,
+that is what docker-compose is for.&lt;/p&gt;
+
+&lt;p&gt;Since Docker uses Linux-kernel-specific features like
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Cgroups&#34;&gt;control groups&lt;/a&gt;, if you are running
+Docker on any other operating system, you need to have a virtual machine, then
+within that virtual machine, all the containers share that kernel. I recently
+decided to get a high end laptop that runs linux, and it was specifically for
+doing all my personal development work using Docker as much as made sense.&lt;/p&gt;
+
+&lt;p&gt;So far I have my octopress blog, my goga.me (Go Game rails app), my Dato GraphLab
+machine learning environment, a node.js environment (never installing npm on my host),
+TensorFlow and the Google research deepdream code running in docker containers.
+The last two can make use of
+my GeForce GTX 970M with 1280 CUDA Cores, so it&amp;rsquo;s pretty sweet.&lt;/p&gt;
+
+&lt;p&gt;There are things that I don&amp;rsquo;t think should be dockerized, like &lt;a href=&#34;http://fritzing.org/home/&#34;&gt;Fritzing&lt;/a&gt;
+for electric circuits, and the Arduino IDE. Also my browser. So far it seems like
+anything that can be installed and run out of the box without configurations or
+numerous dependencies shouldn&amp;rsquo;t be made into containers.&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;d love to hear from more experienced Docker users about how it fits in their
+workflows, I just got started, so I&amp;rsquo;m probably still in the excited noob stage to
+really offer anything original.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

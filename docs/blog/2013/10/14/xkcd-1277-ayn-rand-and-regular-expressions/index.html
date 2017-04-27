@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>XKCD 1277: Ayn Rand and Regular Expressions</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>XKCD 1277: Ayn Rand and Regular Expressions</h1>
+			<div>
+				<p>Randall Munroe of XKCD is brilliant, today&rsquo;s comic is no exception:</p>
+
+<p>{%img <a href="http://imgs.xkcd.com/comics/ayn_random.png">http://imgs.xkcd.com/comics/ayn_random.png</a> %}</p>
+
+<p>While the Ayn Rand joke is amusing, the real clever joke in the alt text (that maddeningly disappears if you take too long to read)</p>
+
+<blockquote>
+<p>In a cavern deep below the Earth, Ayn Rand, Paul Ryan, Rand Paul, Ann Druyan, Paul Rudd, Alan Alda, and Duran Duran meet togther in the Secret Council of /(\b[plurandy]+\b ?){2}/i</p>
+</blockquote>
+
+<p>For those not familiar with regular expressions, the end of that sentence might look like nonsense, but it encodes the (much more amusing) similarity between all those names:</p>
+
+<p>Let&rsquo;s start with the list of names, assume they are in a file called <code>names</code></p>
+
+<pre><code class="language-bash">$ cat names
+Ayn Rand
+Paul Ryan
+Rand Paul
+Ann Druyan
+Paul Rudd
+Alan Alda
+Duran Duran
+</code></pre>
+
+<p>For each of the names, set them to lower case, split up the characters, then sort and count occurences:</p>
+
+<pre><code class="language-bash">cat names | xargs ruby -e 'puts ARGV.join.downcase.split(//)' | sort | uniq -c
+     15 a
+      8 d
+      5 l
+     10 n
+      3 p
+      7 r
+      7 u
+      3 y
+</code></pre>
+
+<p>Notice that there are only 8 unique characters in that list, in <a href="http://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> the syntax <code>[plurandy]</code> means &lsquo;match any character in the set <code>{p,l,u,r,a,n,d,y}</code>&lsquo;</p>
+
+<p>You can see in this diagram how the whole expression works:</p>
+
+<p>{% img <a href="https://www.debuggex.com/i/CzkCTSvo1uBAYkyi.png">https://www.debuggex.com/i/CzkCTSvo1uBAYkyi.png</a> %}</p>
+
+<pre><code class="language-perl">/(\b[plurandy]+\b ?){2}/i
+</code></pre>
+
+<p>The character <code>\b</code> matches a word boundary, which is a point between a word character and a non-word character, such as the point right before the beginning of the name, or after. The trailing <code>/i</code> means case insensitive, the diagram explains the rest.</p>
+
+<p><em>The above graphic is done in <a href="https://www.debuggex.com/r/CzkCTSvo1uBAYkyi">Debuggex</a>, it is a fantastic tool for exploring and debugging regular expressions</em></p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

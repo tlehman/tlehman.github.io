@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Replacing MyOpenID, keeping Federated Identity</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Replacing MyOpenID, keeping Federated Identity</h1>
+			<div>
+				<p>For those unfamiliar with OpenID, <a href="http://www.codinghorror.com/blog/2008/05/openid-does-the-world-really-need-yet-another-username-and-password.html">Jeff Atwood at Coding Horror has a nice description of OpenID</a>, it&rsquo;s benefits, drawbacks and user experience.</p>
+
+<p>For as long as I&rsquo;ve been using OpenID, I&rsquo;ve used <a href="https://www.myopenid.com/">JanRain&rsquo;s MyOpenID service</a>, but recently they announced that the service is being shut down. As a response to this, the folks at <a href="https://indieauth.com/">IndieAuth</a> decided to get together and add OpenID support to their service and create a viable replacement for MyOpenID.</p>
+
+<p>Here&rsquo;s a concise <a href="http://peat.org/2013/09/15/replacing-myopenid/">how-to on setting up your personal site to be an OpenID delegate</a>, using IndieAuth as the OpenID provider, and other services such as Github, Twitter, Google, etc. to provide proofs of identity. It allows you to use your personal URL as your username on OpenID-compliant web services.</p>
+
+<p>Here are some of the sites that currently support OpenID:</p>
+
+<ul>
+<li><a href="http://slashdot.org/">Slashdot</a></li>
+<li><a href="https://gitorious.org/login?method=openid">Gitorious</a></li>
+<li><a href="http://sourceforge.net/">Source Forge</a></li>
+<li><a href="http://stackoverflow.com/">Stack Overflow</a></li>
+<li><a href="http://status.net/">Status.net</a></li>
+<li><a href="http://opensourcebridge.org/wiki/Main_Page">Open Source Bridge wiki</a></li>
+<li><a href="http://openstreetmap.org/">OpenStreetMap</a></li>
+</ul>
+
+<p>The <a href="http://indiewebcamp.com/OpenID">Indie Web Camp wiki has a list that is kept up to date</a>.</p>
+
+<p>The reason you should care about OpenID is that it is a good way to own your identity, you can use a domain that you control to represent yourself, this is in line with the <a href="http://indiewebcamp.com/principles">1st principle of the independent web</a>. If you are uncomfortable using <a href="https://indieauth.com">https://indieauth.com</a>, the <a href="https://github.com/aaronpk/indieauth">source code is Apache licensed and on GitHub</a>, you can read through it, tweak it, and set it up on your own server. It is just a tool to enable you to authenticate on <em>your terms</em>, not those of some other company or organization.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

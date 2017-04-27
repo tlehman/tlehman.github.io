@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Politics on tlehman@home</title>
+    <link>/categories/politics/index.xml</link>
+    <description>Recent content in Politics on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/politics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Gun control and safety</title>
+      <link>/blog/2015/10/01/gun-control-and-safety/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/10/01/gun-control-and-safety/</guid>
+      <description>&lt;p&gt;Another mass shooting happened today. I don&amp;rsquo;t usually write about this, but it happened in Roseberg, Oregon, close to where I live. Too close. I do understand that it is morally equivalent to a mass shooting in Ethiopia, Indonesia, the Netherlands or Australia, but something about events being close by have a bigger emotional impact.&lt;/p&gt;
+
+&lt;p&gt;The question I want to address in this article is whether legislation can help solve this problem. I&amp;rsquo;ll focus on whether it is effective to implement barriers to gun ownership.&lt;/p&gt;
+
+&lt;p&gt;The inspiration for this article is this graphic by Libby Isenstein:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pbs.twimg.com/media/COF4FxPUkAEmOkI.jpg&#34; alt=&#34;Libby Isenstein&#39;s infographic on guns&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My methodology is to see if there is a correlation between the number of gun-control-related laws in a state and the number of gun-related deaths. The columns in the above table will each count for up to one point. For example, if a state doesn&amp;rsquo;t require a permit for a gun, it gets 0, and if it does require a permit, it gets 1. For columns related to the difficulty of getting a gun, easy gets 0 points, moderate gets 0.5 points, and difficult gets 1 point.&lt;/p&gt;
+
+&lt;p&gt;These points are then added up, and we look at all the states (plus DC), as pairs &lt;code&gt;(sum of points, gun deaths per 100,000 people)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_6_1.png&#34; alt=&#34;scatterplot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This has a correlation coefficient of 0.52 (1.0 being a perfect fit), what that means is that there is a moderate trend between the degree of gun control and the number of gun-related deaths. It doesn&amp;rsquo;t prove that gun control laws cause fewer gun deaths, but it is at least consistent with that claim. And more importantly, it is evidence against the argument that more widespead access to guns make us all safer.&lt;/p&gt;
+
+&lt;p&gt;No person should die for no reason. If legislation can help solve this problem (there&amp;rsquo;s reason to think it can), then it&amp;rsquo;s our duty to make that come to pass. Unfortunately, certain interpretations of the Second Amendment currently in force have prevented many sane limits on access to guns, this article by &lt;a href=&#34;https://www.washingtonpost.com/opinions/the-five-extra-words-that-can-fix-the-second-amendment/2014/04/11/f8a19578-b8fa-11e3-96ae-f2c36d2b1245_story.html?postshare=2541443818572894&#34;&gt;John Paul Stevens in the Washington Post explain a little history behind that&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more detail on how to perform the analysis above, see below (requires familiarity with python, or a similar language).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import pandas as pd
+import numpy as np
+df = pd.read_csv(&amp;quot;guns.csv&amp;quot;)
+df.head()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;deaths&lt;/th&gt;
+      &lt;th&gt;state&lt;/th&gt;
+      &lt;th&gt;laws&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;2.6&lt;/td&gt;
+      &lt;td&gt;HI&lt;/td&gt;
+      &lt;td&gt;7.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;3.1&lt;/td&gt;
+      &lt;td&gt;MA&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;4.2&lt;/td&gt;
+      &lt;td&gt;NY&lt;/td&gt;
+      &lt;td&gt;6.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;4.4&lt;/td&gt;
+      &lt;td&gt;CT&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;5.3&lt;/td&gt;
+      &lt;td&gt;RI&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib.pyplot as plt
+%matplotlib inline
+plt.ylabel(&amp;quot;gun deaths per 100k&amp;quot;)
+plt.xlabel(&amp;quot;number of gun laws&amp;quot;)
+plt.scatter(df[&amp;quot;laws&amp;quot;], df[&amp;quot;deaths&amp;quot;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10d678850&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_3_1.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it looks like a downward trend, let&amp;rsquo;s see how well a linear model fits this data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+from sklearn import linear_model
+reg = linear_model.LinearRegression() 
+X = df[&#34;laws&#34;].values.reshape((len(df),1))
+y_true = df[&#34;deaths&#34;].values.reshape((len(df),1))
+
+reg.fit(X,y_true)
+y_pred = reg.predict(X)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.ylabel(&amp;quot;gun deaths per 100k&amp;quot;)
+plt.xlabel(&amp;quot;number of gun laws&amp;quot;)
+plt.plot(X,y_pred)
+plt.scatter(X,y_true)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10e980fd0&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_6_1.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It looks like a really good, fit, but to make it precist, we should find the $R^2$ score.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import r2_score
+r2_score(y_true, y_pred)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;0.52124939556633598
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>White House releases first ever open source budget proposal</title>
+      <link>/blog/2015/02/03/white-house-releases-first-ever-open-source-budget-proposal/</link>
+      <pubDate>Tue, 03 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/02/03/white-house-releases-first-ever-open-source-budget-proposal/</guid>
+      <description>&lt;p&gt;The White House just released the &lt;a href=&#34;https://github.com/WhiteHouse/2016-budget-data&#34;&gt;first ever open source budget proposal&lt;/a&gt;. It is released on GitHub, and it&amp;rsquo;s a bunch of CSV files. This is not very difficult, it requires only a few extra clicks when exporting an Excel spreadsheet, but hosting it on GitHub also opens it up to &lt;a href=&#34;https://help.github.com/articles/using-pull-requests/&#34;&gt;Pull Requests&lt;/a&gt;, which I&amp;rsquo;ve &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;talked about before&lt;/a&gt; as being a much better tool for 21st century democracy. Instead of paper and a bunch of politicians in a room following procedure, we should intead have a digital system where all citizens can contribute as easily as they can update a facebook status or apply an instagram filter.&lt;/p&gt;
+
+&lt;p&gt;One huge caveat is in order though: there is no reason to assume that the White House and Congress will even consider pull requests, let alone apply them. This aside, I will experiment with this, I&amp;rsquo;ve already modified &lt;a href=&#34;https://github.com/dinedal/textql/pull/39&#34;&gt;textql&lt;/a&gt; so that I can easily query these CSV files from a SQLite database. If I have an idea about how I&amp;rsquo;d like to change the budget, I&amp;rsquo;ll submit the pull request and then follow it&amp;rsquo;s response, if any.&lt;/p&gt;
+
+&lt;p&gt;Caveats aside, I am impressed with the choice of technologies for making these public issues more accessible.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>USA FREEDOM Act Failed Cloture in the Senate</title>
+      <link>/blog/2014/11/19/usa-freedom-act-failed-cloture-in-the-senate/</link>
+      <pubDate>Wed, 19 Nov 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/11/19/usa-freedom-act-failed-cloture-in-the-senate/</guid>
+      <description>&lt;p&gt;The Senate version of the &lt;a href=&#34;https://www.govtrack.us/congress/bills/113/s2685&#34;&gt;USA FREEDOM Act failed cloture*&lt;/a&gt; yesterday. Senator Patrick Leahy made changes to the &lt;a href=&#34;/blog/2014/05/23/usa-freedom-act-passes-house&#34;&gt;house version of the bill&lt;/a&gt;. This bill would have been a necessary, albeit incremental check on the NSA&amp;rsquo;s wide-reaching surveillance programs.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cloture is a procedure to end debate and move forward on a vote.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Logical consistency in Law</title>
+      <link>/blog/2014/10/27/logical-consistency-in-law/</link>
+      <pubDate>Mon, 27 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/10/27/logical-consistency-in-law/</guid>
+      <description>&lt;p&gt;Washington state has two contradictory initiatives on the ballot this year.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Initiative 591 (I-591) would prevent background checks for gun purchases except when required by the federal government.&lt;/p&gt;
+
+&lt;p&gt;Initiative 594 (I-594) would ensure background checks for all gun purchases, including those conducted online and at gun shows.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;http://fivethirtyeight.com/datalab/background-checks-for-gun-sales-look-likely-to-pass-in-washington/&#34;&gt;FiveThirtyEight&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This kind of thing shouldn&amp;rsquo;t even be let onto the ballot. There should be something akin to a compiler that can weed out laws that are&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Contradictory to one another&lt;/li&gt;
+&lt;li&gt;Contradictory to existing law&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The first requirement is easy, the second requirement is harder, I mentioned it &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Of course, Courts do serve this role, but only after laws are passed and people contest it. I think there is still room for cleaning the process up a bit and weeding out mutually contradictory laws that show up on the same ballot!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Open Primaries in Oregon could render political parties irrelevant</title>
+      <link>/blog/2014/10/17/open-primaries-in-oregon-could-render-political-parties-irrelevant/</link>
+      <pubDate>Fri, 17 Oct 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/10/17/open-primaries-in-oregon-could-render-political-parties-irrelevant/</guid>
+      <description>&lt;p&gt;There is a promising measure on the Oregon ballot this year, &lt;a href=&#34;http://www.90fororegon.org/&#34;&gt;Measure 90&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If Measure 90 passes, it would replace the primary election system that is currently in place. Right now, voters must register with a political party first, and then vote for candidates in that party in the primary elections. The winners for the primary for each party then go on to the general election.&lt;/p&gt;
+
+&lt;p&gt;One huge problem with this approach is that voters must commit to a single party for the primary election. This means that it is not possible to vote for a senator in one party and a governor in a different party. I&amp;rsquo;ve written before that I don&amp;rsquo;t think &lt;a href=&#34;/blog/2014/01/10/political-parties-are-more-like-tribes-than-consistent-philosophies&#34;&gt;political parties are anything more than loosely organized tribal groups&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This also limits the ability for smaller parties (Independent, Green Party, Libertarian, etc.) to elect candidates, because in the primaries, voters must register with a party first. So if that person wants to vote for a few Democrats and a Green, or a few Republicans and a Libertarian, they would have to choose only one party and neglect the others. This tends to support the dominant parties, Republicans and Democrats, since they are the most numerous. There is a &lt;a href=&#34;/blog/2012/09/04/optimize-your-vote-using-statistics&#34;&gt;rational way to calculate the most effective tradeoff&lt;/a&gt;, but there is a better way.&lt;/p&gt;
+
+&lt;p&gt;Having to choose a party, and then choose a representative adds more layers between the citizen and the laws that ultimately passed. Right now, us citizens don&amp;rsquo;t vote directly on most laws, we elect representatives to do that for us. And without open primaries, we also cede even more power to the existing parties, instead, we should ignore parties and just vote for the representatives directly.&lt;/p&gt;
+
+&lt;p&gt;This is a great opportunity for Oregon residents to strip out an unnecessary layer of indirection from the election process, if you care about ending the Democratic/Republican-dominated primary elections, vote yes on Measure 90.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gini Coefficient and Income Distribution</title>
+      <link>/blog/2014/08/31/gini-coefficient-and-income-distribution/</link>
+      <pubDate>Sun, 31 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/08/31/gini-coefficient-and-income-distribution/</guid>
+      <description>&lt;p&gt;The gini coefficient is a measure of income inequality. It is calculated by ordering the given population by income, then calculating the cumulative distribution, and finding out how much it deviates from total equality.&lt;/p&gt;
+
+&lt;p&gt;So for example, assume there are four people, and everyone makes the exact same amount:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gini/equal_hist.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, the cumulative distribution just sums the values to the left, so for this hypothetical equal society of four, the cumulative distribution would look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gini/equal_cumulative.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;So, as you can see, the cumulative distribution would be a straight line. The gini coefficient is calculated as two times the area of the difference between this straight line and the actual distribution. Since in this hypothetical world, the distribution is totally equal, it follows that the gini coefficient is 0.&lt;/p&gt;
+
+&lt;p&gt;The way to read the gini coefficient is that 0 is totally equal, and 1 is totally unequal. In the totally unequal case, one person would make everything, and everyone else would make nothing:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gini/unequal_cumulative.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;As is probably obvious at this point, the gini coefficient can be any real number between 0 and 1, with lower meaning more equal, and higher meaning less equal.&lt;/p&gt;
+
+&lt;p&gt;However, reality is always more interesting (and messier). The real world gini coefficient in 2014 of the United States 0.42, and Switzerland is 0.31&lt;/p&gt;
+
+&lt;p&gt;By modeling the cumulative distribution function as a power, such as x&lt;sup&gt;n&lt;/sup&gt;, you can find an n that reproduces the same gini coefficient:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/gini/gini_us_ch.png %}&lt;/p&gt;
+
+&lt;p&gt;In 2013, the United States had a gini coefficient of 0.42, which corresponds to a distribution curve that is about x&lt;sup&gt;2.45&lt;/sup&gt;, by contrast, Switzerland has a gini coefficient of 0.31, which corresponds to a distribution curve that is about x&lt;sup&gt;1.9&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s important to note that the cumulative distribution function is most likely not a simple power, but this shape does give a decent guess at what the respective distributions might look like.&lt;/p&gt;
+
+&lt;p&gt;Also, the gini coefficient says nothing about the absolute standard of living, meaning that a rich country and a poor country could have the same gini coefficient. For example, Norway and Czech Republic both have a gini coefficient of about 0.25, but Norway&amp;rsquo;s GDP per capita is about 5 times more than Czech Republic&amp;rsquo;s.&lt;/p&gt;
+
+&lt;p&gt;Given these limitations, the gini coefficient is a useful number for getting an idea about how income is distributed in a given population.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>USA FREEDOM Act passes house</title>
+      <link>/blog/2014/05/23/usa-freedom-act-passes-house/</link>
+      <pubDate>Fri, 23 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/05/23/usa-freedom-act-passes-house/</guid>
+      <description>&lt;p&gt;About 9 months ago I wrote about &lt;a href=&#34;/blog/2013/08/13/an-unbalance-of-powers/&#34;&gt;NSA bulk spying and how the way the FISA court is being used upsets the balance of powers in the government&lt;/a&gt;, the &lt;a href=&#34;https://www.govtrack.us/congress/bills/113/hr2586&#34;&gt;two&lt;/a&gt; &lt;a href=&#34;https://www.govtrack.us/congress/bills/113/hr2761&#34;&gt;bills&lt;/a&gt; I referenced have a 4% and 2% chance of being enacted, according to GovTrack. Both of those bills still haven&amp;rsquo;t left the House, and chances are they won&amp;rsquo;t.&lt;/p&gt;
+
+&lt;p&gt;A more promising bill is the USA FREEDOM Act, which just passed the House:&lt;/p&gt;
+
+&lt;script id=&#34;govtrack:widget:bill:113:hr3361:script&#34; src=&#34;https://www.govtrack.us/congress/bills/113/hr3361/widget.js&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Unforunately, Rep. Justin Amash noted that the changes to it are so bad, that most of the original co-sponsors are out:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;&lt;p&gt;Just how bad were changes to &lt;a href=&#34;https://twitter.com/search?q=%23USAFREEDOMAct&amp;amp;src=hash&#34;&gt;#USAFREEDOMAct&lt;/a&gt;? MAJORITY of 152 cosponsors voted NO. Roll call: &lt;a href=&#34;http://t.co/2kaG5hrmw1&#34;&gt;http://t.co/2kaG5hrmw1&lt;/a&gt; &lt;a href=&#34;http://t.co/13gUpANOEN&#34;&gt;http://t.co/13gUpANOEN&lt;/a&gt;&lt;/p&gt;&amp;mdash; Justin Amash (@repjustinamash) &lt;a href=&#34;https://twitter.com/repjustinamash/statuses/469883039125106689&#34;&gt;May 23, 2014&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, the &lt;a href=&#34;https://www.eff.org/deeplinks/2014/05/eff-dismayed-houses-gutted-usa-freedom-act&#34;&gt;EFF doesn&amp;rsquo;t approve&lt;/a&gt;. Fortunately, Sen. Patrick Leahy said he intends on &lt;a href=&#34;https://www.leahy.senate.gov/press/comment-of-senator-patrick-leahy-d-vt_chairman-senate-judiciary-committee-on-house-passage-of-the-usa-freedom-act-&#34;&gt;fixing a lot of those problems in the Senate version of the bill&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s easy to get cynical and fatalistic about the erosion of civil liberties and the problems in government, but recognizing the problems and paying attention, putting pressure on congress can make a difference. Stay rational and contact your &lt;a href=&#34;http://www.house.gov/representatives/find/&#34;&gt;representative&lt;/a&gt; and &lt;a href=&#34;https://www.senate.gov/general/contact_information/senators_cfm.cfm&#34;&gt;senators&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Remember that the Congress is the most powerful branch of government, it makes and destroys laws, with or without the President&amp;rsquo;s consent (1). Each and every member of congress cares about what we citizens think, because they wish to be re-elected, and we elect them. They are more accesible than you might think.&lt;/p&gt;
+
+&lt;p&gt;(1) Even if the President vetos a bill, Congress can still override with a &lt;a href=&#34;https://en.wikipedia.org/wiki/Supermajority#United_States&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt; supermajority in both houses&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Political parties are more like tribes than consistent philosophies</title>
+      <link>/blog/2014/01/10/political-parties-are-more-like-tribes-than-consistent-philosophies/</link>
+      <pubDate>Fri, 10 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/01/10/political-parties-are-more-like-tribes-than-consistent-philosophies/</guid>
+      <description>&lt;p&gt;Much of political opinion is rationalized groupthink, &lt;a href=&#34;http://www.washingtonpost.com/blogs/wonkblog/wp/2014/01/10/the-depressing-psychological-theory-that-explains-washington/&#34;&gt;this article&lt;/a&gt; argues this by using a list of 5 political proposals written from a &lt;a href=&#34;http://www.rollingstone.com/politics/news/five-economic-reforms-millennials-should-be-fighting-for-20140103#ixzz2pMmIpUzc&#34;&gt;liberal viewpoint&lt;/a&gt;, and then re-written &lt;a href=&#34;http://www.washingtonpost.com/blogs/wonkblog/wp/2014/01/07/five-conservative-reforms-millennials-should-be-fighting-for/&#34;&gt;from a conservative viewpoint&lt;/a&gt;, the results are telling.&lt;/p&gt;
+
+&lt;p&gt;No substantive policy change occurred, but many liberals supported the liberal-flavored list, while many conservatives rejected it. When the conservative-flavored version was written (same exact policies), that divide was inverted.&lt;/p&gt;
+
+&lt;p&gt;The response suggests that most people judged it based on how it was framed, and in particular, whether it was their group or the other group endorsed the idea. This is a good reason that political parties should be abolished, or at least worked around.&lt;/p&gt;
+
+&lt;p&gt;This could be solved by sterilizing ballots. Instead of seeing a candidate&amp;rsquo;s name, party, or see who endorsed what policy, several equivalent voting ballots could be written by different people. This would require that the candidate&amp;rsquo;s name is replaced with some other unique identifier, say a CIN (Candidate Identification Number). The CIN could be paired with a list of policies, each of which have been re-written by neutral parties (perhaps a machine compiled them from some computer model). Then, people would answer a questionairre about which policies they supported the most, along with a weight, assigned by the voter. Then, a program could calculate the closest match, and that would be the person&amp;rsquo;s vote.&lt;/p&gt;
+
+&lt;p&gt;One obvious problem with my proposal is that if the software that calculated the closest match was closed source, it would be very easy for software developers to rig it one way or another. Two solutions come to mind:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make the voting software open source and submit it to a peer-review&lt;/li&gt;
+&lt;li&gt;Give the voter instructions on how to calculate the closest match, so that they can do it themselves, manually.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The options of using software or going manual are not mutually exclusive either. This is how people in the United States do their taxes, some delegate the calculations to software like TaxHawk or TurboTax, and some do it themselves with a calculator.&lt;/p&gt;
+
+&lt;p&gt;This proposal would solve the problem of tribal thinking in politics, and make voting a more logical activity that really did reflect the needs of the public.&lt;/p&gt;
+
+&lt;p&gt;I wrote about a &lt;a href=&#34;http://tobilehman.com/blog/2012/09/04/optimize-your-vote-using-statistics/&#34;&gt;similiar idea in 2012 to solve the problem of choosing the candidate you disliked the least&lt;/a&gt;,&lt;/p&gt;
+
+&lt;p&gt;Making people register with parties and then vote only exacerbates this, because they&amp;rsquo;ve made a commitment to a tribe before they&amp;rsquo;ve made a decision.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>An unbalance of powers</title>
+      <link>/blog/2013/08/13/an-unbalance-of-powers/</link>
+      <pubDate>Tue, 13 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/08/13/an-unbalance-of-powers/</guid>
+      <description>&lt;p&gt;About three months ago I wrote about the &lt;a href=&#34;/blog/2013/05/10/white-house-open-data-policy/&#34;&gt;White House Open Data Policy and the balance of the three main branches of government&lt;/a&gt;. This was shortly before the new evidence of the &lt;a href=&#34;https://www.eff.org/nsa-spying/timeline&#34;&gt;far-reaching NSA domestic surveillance programs&lt;/a&gt; was revealed by Edward Snowden.&lt;/p&gt;
+
+&lt;p&gt;What is interesting (and unsettling) about all the NSA&amp;rsquo;s surveillance activity is that it is authorized by the Foreign Intelligence Surveillance Court (FISA Court), which is effectively a &lt;a href=&#34;http://www.nytimes.com/2013/07/07/us/in-secret-court-vastly-broadens-powers-of-nsa.html?_r=0&#34;&gt;parallel Supreme Court&lt;/a&gt; that operates in secret.&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/fisa_gov.png %}&lt;/p&gt;
+
+&lt;p&gt;I was somewhat naive to think that there was such a balance of powers. Right now, there is little visibility into what decisions the FISA Court makes, how they came to those decisions, and what that means for U.S. Citizens.&lt;/p&gt;
+
+&lt;p&gt;There are several bills moving through congress that are aimed at fixing this lack of balance. One that looks promising is H.R. 2586: FISA Court Accountability Act, which amends FISA to let congress designate FISA Court judges, and require the FISA court submit &amp;ldquo;an unclassified summary of each such decision, order, or opinion&amp;rdquo; to congress:&lt;/p&gt;
+
+&lt;script id=&#34;govtrack:widget:bill:113:hr2586:script&#34; src=&#34;http://www.govtrack.us/congress/bills/113/hr2586/widget.js&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;Another is H.R. 2761: Presidential Appointment of FISA Court Judges Act, which will &amp;ldquo;require Presidential appointment and Senate confirmation of Foreign Intelligence Surveillance Court judges&amp;rdquo;:&lt;/p&gt;
+
+&lt;script id=&#34;govtrack:widget:bill:113:hr2761:script&#34; src=&#34;http://www.govtrack.us/congress/bills/113/hr2761/widget.js&#34; type=&#34;text/javascript&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;I will be watching the progress of these bills closely, I don&amp;rsquo;t accept that there should exist a body of secret law that has a direct impact on the citizens of the United States.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>White House Open Data Policy</title>
+      <link>/blog/2013/05/10/white-house-open-data-policy/</link>
+      <pubDate>Fri, 10 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/05/10/white-house-open-data-policy/</guid>
+      <description>&lt;p&gt;Just yesterday, President Obama signed an &lt;a href=&#34;http://www.whitehouse.gov/the-press-office/2013/05/09/executive-order-making-open-and-machine-readable-new-default-government-&#34;&gt;executive order&lt;/a&gt; that requires government agencies to publish their data in &amp;ldquo;open, machine readable formats&amp;rdquo;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the default state of new and modernized Government information resources shall be open and machine readable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I have a hard time imagining better uses of the President&amp;rsquo;s dictator-like power than this.&lt;/p&gt;
+
+&lt;p&gt;Personally, I don&amp;rsquo;t believe the President (or any individual for that matter) should have the ability to make Laws without first submitting them to a review process and subsequently a vote. Executive Orders are problematic because they bypass Congress, it is a flaw in an otherwise reasonably balanced system:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/gov.png %}&lt;/p&gt;
+
+&lt;p&gt;However, the consequences of this particular executive order are in our favor, so this is a good thing, despite the fact that it came about because of a bad mechanism. Forcing the Bureaus to open up their data for public consumption enables individuals and groups outside the government to do things with that data that most of the bureaucrats could never have imagined.&lt;/p&gt;
+
+&lt;p&gt;All of this is great, &lt;em&gt;provided the data are accurate&lt;/em&gt;, it is entirely possible that data could be &amp;lsquo;fudged&amp;rsquo;, &amp;lsquo;massaged&amp;rsquo; or just plain made up. So in addition to the newly hackable government data, there should be a more active skepticism about the accuracy of that data. For example, if the Department of Homeland Security is reporting that there are cyber attacks coming from China, that data should be cross-checked with that of ISPs to ensure that there is a legitimate threat before any laws are passed or executive orders signed.&lt;/p&gt;
+
+&lt;p&gt;I think this is a good thing that came about for the wrong reasons, but the consequences are more important than the intentions, because the consequences really happen, intentions are just in the mind.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Optimize your vote using statistics</title>
+      <link>/blog/2012/09/04/optimize-your-vote-using-statistics/</link>
+      <pubDate>Tue, 04 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/09/04/optimize-your-vote-using-statistics/</guid>
+      <description>&lt;p&gt;I used to hate the phrase &amp;ldquo;throwing your vote away.&amp;rdquo;. This is usually
+used in response to people voting for someone who is probably not going
+to win. Even though we have &lt;a href=&#34;http://en.wikipedia.org/wiki/List_of_political_parties_in_the_United_States#Major_political_parties&#34;&gt;five major parties&lt;/a&gt; in the United States, chances are, the winner is going to either a Republican or a Democrat.&lt;/p&gt;
+
+&lt;p&gt;The reason I hated that phrase so much is that it discourages people
+from voting for their ideal candidate for pragmatic reasons. Chances
+are, a non-Democrat, non-Republican is not going to win, so cut your
+losses and pick a candidate that you &lt;em&gt;dislike least&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, as I&amp;rsquo;ve gotten slightly older, I have come to appreciate how
+necessary compromise is. What has me more hopeful is that you can
+compromise with precision. I&amp;rsquo;ll explain what I mean by first giving some
+context.&lt;/p&gt;
+
+&lt;p&gt;Scott Hanselman &lt;a href=&#34;https://twitter.com/shanselman/status/243032228655951872&#34;&gt;mentioned this site on twitter today&lt;/a&gt; called &lt;a href=&#34;http://isidewith.com&#34;&gt;isidewith.com&lt;/a&gt;. It asks you a series of questions about issues that frequently arise in political debates. It then asks you to rate the importance of the issues, and then gives you a list of the percent with which you agree with all the candidates running for Present in 2012.&lt;/p&gt;
+
+&lt;p&gt;So, you can choose your ideal candidate based on how many issues you agree on. For example, I answered the questions and got this as a match:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Gary Johnson 83%&lt;/li&gt;
+&lt;li&gt;Jill Stein 82%&lt;/li&gt;
+&lt;li&gt;Barack Obama 81%&lt;/li&gt;
+&lt;li&gt;Mitt Romney 31%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;From these results, it looks like a very close call between Johnson,
+Stein and Obama. Based on these results, my ideal candidate is probably
+one of these three.&lt;/p&gt;
+
+&lt;p&gt;So here is where we can compromise with precision, since I have three
+almost identical matches (with respect to the battery of questions I
+answered about various political issues). I can now decide which of
+these three to vote on based on the likelihood they will win.&lt;/p&gt;
+
+&lt;p&gt;The original reason I was so bothered by this is was that I thought that
+ideals determined &lt;em&gt;one and only one&lt;/em&gt; ideal candidate. But by letting
+data about the issues determine which candidates were ideal, I
+allow for the possibility of multiple near-ideal matches.&lt;/p&gt;
+
+&lt;p&gt;Then, given the set of near ideal matches, I can take into account which
+is most likely to win, and cast my vote accordingly.&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s get to some statistics, since my title promised it, and
+because we can use this to actually calculate who you should vote for.
+In fact, if a good enough model can be generated to this effect, perhaps
+we could replace voting for a single individual with taking a test, and
+having a computer calculate your vote for you. That would be a much
+better way to have the candidate reflect the majority views in the
+United States.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with some definitions, the &lt;strong&gt;expected value&lt;/strong&gt; of a random
+variable X, where X can take on any of the n values {x&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip; x&lt;sub&gt;n&lt;/sub&gt;}
+with corresponding probabilities {p&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip; p&lt;sub&gt;n&lt;/sub&gt;}, is
+just the sum of those probabilities, times the corresponding value:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ E(X) = \sum_{i=1}^n p_ix_i $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;So the expected value is a sort of weighted average over all of the
+values the random variable could take on. The part of this I will be
+using is the p&lt;sub&gt;i&lt;/sub&gt; factor. Given this definition, there
+naturally follows an &amp;ldquo;expected maximum&amp;rdquo;, denoted Emax(X).&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ Emax(X) = \max{ p_ix&lt;em&gt;i }&lt;/em&gt;{i=1}^n $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;I make a further modification to
+this model and use the &lt;strong&gt;issues coefficient&lt;/strong&gt; c&lt;sub&gt;i&lt;/sub&gt;. For example, I was an 83% match with Gary Johnson, so if Johnson is represented by the value x&lt;sub&gt;i&lt;/sub&gt;, then c&lt;sub&gt;i&lt;/sub&gt; = 0.83.&lt;/p&gt;
+
+&lt;p&gt;So, using this model we have two values that need to be accounted
+for before we can decide who to vote for, there is p&lt;sub&gt;i&lt;/sub&gt;, which is the probability that the i-th candidate will win, and then there is c&lt;sub&gt;i&lt;/sub&gt;, the degree to which the voter agrees with the candidate on the relevant issues. Since we don&amp;rsquo;t know who is going to win, we set all x&lt;sub&gt;i&lt;/sub&gt; = 1, and we can ignore that altogether, so the expected maximum becomes:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ Emax(X) = \max{ c_ip&lt;em&gt;i }&lt;/em&gt;{i=1}^n $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Now, in my case, I have all of the four c&lt;sub&gt;i&lt;/sub&gt; values, but I don&amp;rsquo;t
+have the p&lt;sub&gt;i&lt;/sub&gt; values. To find these values, we could start with
+the number of electoral representatives per party. I have not been able to find
+this data, but If I did, I could calculate the perfect choice of a vote,
+one that would be balanced between idealism and pragmatism.&lt;/p&gt;
+
+&lt;p&gt;Note: If any of you can find data on the number of electoral
+representatives per political party, I will happily make this into an
+app that will calculate a suggestion based on this model. It will take
+your &lt;a href=&#34;http://isidewith.com&#34;&gt;isidewith.com&lt;/a&gt; data and then weigh that with
+the proportion of electoral votes for the corresponding party.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

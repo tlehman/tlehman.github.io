@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Hooking Jenkins up to a computer-controlled light switch</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Hooking Jenkins up to a computer-controlled light switch</h1>
+			<div>
+				<p>About a week ago I <a href="/blog/2013/03/10/make-a-computer-controlled-light-switch-with-a-raspberry-pi/">wrote about how to hook up a light switch to a raspberry pi</a>. Having a computer-controlled light switch is nice, but the novelty wears off pretty quickly. The next question that arises usually is <em>how can I make this useful?</em></p>
+
+<p>At work, our continuous integration server, which runs <a href="http://jenkins-ci.org/">Jenkins</a>, lets us know when one of the team members has broken the build. To make sure that we get the memo promptly so we can commence with the public shaming, we use tools that change color to indicate the current test status.</p>
+
+<p>The problem with our current way of doing things is that there is no sound, and it requires that someone be at their computer. To remedy this situation, we wired up physical lights to a raspberry pi running a Debian GNU/Linux variant, and wrote this script to toggle the lights.</p>
+
+<ul>
+<li>On means Passing  (all jobs passed)</li>
+<li>Off means Failing (at least one job failed)
+<br /></li>
+</ul>
+
+<p>The data flows from Jenkins to the Raspberry-Pi as follows:</p>
+
+<div style="width:300px;margin:auto">
+{% img /images/blogimg/tds.png %}
+</div>
+
+<p>gpio stands for (General Purpose Input/Output), the utility is part of the <a href="https://projects.drogon.net/raspberry-pi/wiringpi/">wiringPi</a> package</p>
+
+<p>NOTE: You need to set the following environment variables:</p>
+
+<ul>
+<li><p><code>JENKINS_USERNAME</code></p></li>
+
+<li><p><code>JENKINS_PASSWORD</code></p></li>
+
+<li><p><code>JENKINS_HOSTNAME</code></p></li>
+</ul>
+
+<p>Dependencies:</p>
+
+<ul>
+<li><p><a href="http://ruby-lang.org">Ruby</a></p></li>
+
+<li><p><a href="https://projects.drogon.net/raspberry-pi/wiringpi/">wiringPi</a></p></li>
+</ul>
+
+<pre><code class="language-bash">curl --user $JENKINS_USERNAME:$JENKINS_PASSWORD $JENKINS_HOSTNAME/api/json 2&gt; /dev/null                      |   # (Jenkins Job Statuses)
+
+ruby -rjson -e 'puts (JSON.parse(STDIN.read)[&quot;jobs&quot;].map{|j| j[&quot;color&quot;]}.all?{|c| c==&quot;blue&quot;} ? &quot;up&quot;:&quot;down&quot;)' |   # (JSON parser/extractor) 
+
+while read line; do   gpio write 4 $line;     done                                                               # (gpio utility)
+</code></pre>
+
+<p>This script runs on the raspberry pi itself.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

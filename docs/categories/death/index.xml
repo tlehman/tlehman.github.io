@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Death on tlehman@home</title>
+    <link>/categories/death/index.xml</link>
+    <description>Recent content in Death on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/death/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Gun control and safety</title>
+      <link>/blog/2015/10/01/gun-control-and-safety/</link>
+      <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/10/01/gun-control-and-safety/</guid>
+      <description>&lt;p&gt;Another mass shooting happened today. I don&amp;rsquo;t usually write about this, but it happened in Roseberg, Oregon, close to where I live. Too close. I do understand that it is morally equivalent to a mass shooting in Ethiopia, Indonesia, the Netherlands or Australia, but something about events being close by have a bigger emotional impact.&lt;/p&gt;
+
+&lt;p&gt;The question I want to address in this article is whether legislation can help solve this problem. I&amp;rsquo;ll focus on whether it is effective to implement barriers to gun ownership.&lt;/p&gt;
+
+&lt;p&gt;The inspiration for this article is this graphic by Libby Isenstein:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://pbs.twimg.com/media/COF4FxPUkAEmOkI.jpg&#34; alt=&#34;Libby Isenstein&#39;s infographic on guns&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;My methodology is to see if there is a correlation between the number of gun-control-related laws in a state and the number of gun-related deaths. The columns in the above table will each count for up to one point. For example, if a state doesn&amp;rsquo;t require a permit for a gun, it gets 0, and if it does require a permit, it gets 1. For columns related to the difficulty of getting a gun, easy gets 0 points, moderate gets 0.5 points, and difficult gets 1 point.&lt;/p&gt;
+
+&lt;p&gt;These points are then added up, and we look at all the states (plus DC), as pairs &lt;code&gt;(sum of points, gun deaths per 100,000 people)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_6_1.png&#34; alt=&#34;scatterplot&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This has a correlation coefficient of 0.52 (1.0 being a perfect fit), what that means is that there is a moderate trend between the degree of gun control and the number of gun-related deaths. It doesn&amp;rsquo;t prove that gun control laws cause fewer gun deaths, but it is at least consistent with that claim. And more importantly, it is evidence against the argument that more widespead access to guns make us all safer.&lt;/p&gt;
+
+&lt;p&gt;No person should die for no reason. If legislation can help solve this problem (there&amp;rsquo;s reason to think it can), then it&amp;rsquo;s our duty to make that come to pass. Unfortunately, certain interpretations of the Second Amendment currently in force have prevented many sane limits on access to guns, this article by &lt;a href=&#34;https://www.washingtonpost.com/opinions/the-five-extra-words-that-can-fix-the-second-amendment/2014/04/11/f8a19578-b8fa-11e3-96ae-f2c36d2b1245_story.html?postshare=2541443818572894&#34;&gt;John Paul Stevens in the Washington Post explain a little history behind that&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more detail on how to perform the analysis above, see below (requires familiarity with python, or a similar language).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import pandas as pd
+import numpy as np
+df = pd.read_csv(&amp;quot;guns.csv&amp;quot;)
+df.head()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;div&gt;
+&lt;table border=&#34;1&#34; class=&#34;dataframe&#34;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&#34;text-align: right;&#34;&gt;
+      &lt;th&gt;&lt;/th&gt;
+      &lt;th&gt;deaths&lt;/th&gt;
+      &lt;th&gt;state&lt;/th&gt;
+      &lt;th&gt;laws&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;td&gt;2.6&lt;/td&gt;
+      &lt;td&gt;HI&lt;/td&gt;
+      &lt;td&gt;7.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;td&gt;3.1&lt;/td&gt;
+      &lt;td&gt;MA&lt;/td&gt;
+      &lt;td&gt;5.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;2&lt;/th&gt;
+      &lt;td&gt;4.2&lt;/td&gt;
+      &lt;td&gt;NY&lt;/td&gt;
+      &lt;td&gt;6.0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;3&lt;/th&gt;
+      &lt;td&gt;4.4&lt;/td&gt;
+      &lt;td&gt;CT&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;4&lt;/th&gt;
+      &lt;td&gt;5.3&lt;/td&gt;
+      &lt;td&gt;RI&lt;/td&gt;
+      &lt;td&gt;4.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib.pyplot as plt
+%matplotlib inline
+plt.ylabel(&amp;quot;gun deaths per 100k&amp;quot;)
+plt.xlabel(&amp;quot;number of gun laws&amp;quot;)
+plt.scatter(df[&amp;quot;laws&amp;quot;], df[&amp;quot;deaths&amp;quot;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10d678850&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_3_1.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Since it looks like a downward trend, let&amp;rsquo;s see how well a linear model fits this data.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+from sklearn import linear_model
+reg = linear_model.LinearRegression() 
+X = df[&#34;laws&#34;].values.reshape((len(df),1))
+y_true = df[&#34;deaths&#34;].values.reshape((len(df),1))
+
+reg.fit(X,y_true)
+y_pred = reg.predict(X)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.ylabel(&amp;quot;gun deaths per 100k&amp;quot;)
+plt.xlabel(&amp;quot;number of gun laws&amp;quot;)
+plt.plot(X,y_pred)
+plt.scatter(X,y_true)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;matplotlib.collections.PathCollection at 0x10e980fd0&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/guns_output_6_1.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It looks like a really good, fit, but to make it precist, we should find the $R^2$ score.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import r2_score
+r2_score(y_true, y_pred)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;0.52124939556633598
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

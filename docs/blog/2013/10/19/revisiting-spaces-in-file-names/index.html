@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Revisiting spaces in file names</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Revisiting spaces in file names</h1>
+			<div>
+				<p>I don&rsquo;t like spaces in file names, as I&rsquo;ve <a href="/blog/2012/10/29/spaces-in-filenames/">written before</a>, and as I&rsquo;ve <a href="/blog/2012/11/19/fixing-spaces-in-filenames/">tried in vain to fix</a>.</p>
+
+<p>I&rsquo;ve been working around this issue with a little hack that I call <code>wrap</code>:</p>
+
+<pre><code class="language-bash">#!/bin/sh
+# Read in lines, output lines with single quotes around them
+#
+# Example use:
+# 
+#   $ &lt;command&gt;
+#   output of command
+#   the output has spaces
+#   spaces are annoying
+#
+#   $ &lt;command&gt; | wrap
+#   'output of command'
+#   'the output has spaces'
+#   'spaces are annoying'
+#
+
+sed -e &quot;s/\(.*\)/'\1'/&quot;
+</code></pre>
+
+<p>It wraps each line with single quotes, however, the obvious problem with this is that sometimes lines have single quotes in them. For file names, it&rsquo;s usually fine, since it&rsquo;s unusual for file names to have quotes in them.</p>
+
+<p>I recently came across <a href="https://coderwall.com/p/lhilrq">this awesome solution</a> by <a href="https://coderwall.com/debona">@debona</a>,
+it uses the <a href="http://nixshell.wordpress.com/2007/09/26/ifs-internal-field-separator/">IFS</a> environment variable. IFS stands for Internal Field Separator.</p>
+
+<p>Here&rsquo;s the problem I run into when looping over a list file files that have spaces in the name:</p>
+
+<pre><code class="language-bash">$ find ~/Library/Saved\ Application\ State | head -5 | for file in $(cat -); do echo $file; done
+
+/Users/tlehman/Library/Saved
+Application
+State
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState/data.data
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState/window_2.data
+/Users/tlehman/Library/Saved
+Application
+State/com.adobe.Reader.savedState/windows.plist
+
+</code></pre>
+
+<p>The spaces are seen as delimiters, but by setting IFS to a newline, we can avoid this problem:</p>
+
+<pre><code class="language-bash">$ IFS='
+'
+$ find ~/Library/Saved\ Application\ State | head -5 | for file in $(cat -); do echo $file; done
+/Users/tlehman/Library/Saved Application State
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState/data.data
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState/window_2.data
+/Users/tlehman/Library/Saved Application State/com.adobe.Reader.savedState/windows.plist
+</code></pre>
+
+<p>This is just the kind of solution I was looking for, props to @debona for writing this up on Coderwall.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

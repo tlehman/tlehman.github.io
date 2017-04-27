@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Extract array of frames from mp4 using Python OpenCV bindings</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Extract array of frames from mp4 using Python OpenCV bindings</h1>
+			<div>
+				
+
+<p>OpenCV is a mature Computer Vision library written in C++. There are python bindings available that make working with the library very convenient.</p>
+
+<p>To extract the frames from an mp4 file using the Python OpenCV bindings, you first need python, and the <code>pip</code> package manager for python.</p>
+
+<p>Also, you will need a system package manager such as Portage for Gentoo Linux or Homebrew for Mac OS X. You will need to compile OpenCV with your specific python version, for this example I am using python 2.7, you can find out which version you have by running <code>python --version</code>. This example will use Mac OS X 10.8.</p>
+
+<h2 id="install-ffmpeg">Install ffmpeg</h2>
+
+<pre><code>brew install ffmpeg
+</code></pre>
+
+<h2 id="build-opencv-with-python2-7-and-ffmpeg">Build OpenCV with Python2.7 and ffmpeg</h2>
+
+<pre><code>brew install opencv --python27 --ffmpeg
+</code></pre>
+
+<p>I am taking the <a href="https://www.coursera.org/course/images">Coursera Image and Video processing</a> class right now, the example file I am using is one of <a href="https://class.coursera.org/images-2012-001/lecture/download.mp4?lecture_id=7">the lectures</a>, I saved the file as <code>course-logistics.mp4</code>.</p>
+
+<p>To use OpenCV in python, you need to import cv2:</p>
+
+<pre><code class="language-python">import cv2
+</code></pre>
+
+<p>Then, to open the video file:</p>
+
+<pre><code class="language-python">vidcap = cv2.VideoCapture('course-logistics.mp4')
+</code></pre>
+
+<p>The easiest way to extract frames is to use the <code>read()</code> method on the vidcap object. It returns a <a href="http://docs.python.org/2/tutorial/datastructures.html#tuples-and-sequences">tuple</a> where the first element is a success flag and the second is the image array. To extract the image array:</p>
+
+<pre><code class="language-python">success,image = vidcap.read()
+# image is an array of array of [R,G,B] values
+</code></pre>
+
+<p>To convert the whole video to frames and save each one:</p>
+
+<pre><code class="language-python">count = 0; 
+while success:
+	success,image = vidcap.read()
+	cv2.imwrite(&quot;frame%d.jpg&quot; % count, image)     # save frame as JPEG file
+	if cv2.waitKey(10) == 27:                     # exit if Escape is hit
+    	break
+	count += 1
+</code></pre>
+
+<p>The above loop runs until <code>success</code> is false or the user hits the Escape key. Each iteration saves the current frame as a JPEG.</p>
+
+<p>This is one way to extract a sequence of frames from a movie. Another way would be to change the body of the above while loop to do something else.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

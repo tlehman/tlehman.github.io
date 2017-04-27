@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Word frequencies after removing common words</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Word frequencies after removing common words</h1>
+			<div>
+				
+
+<p>In taking the <a href="https://class.coursera.org/mmds-002">Coursera class on Mining Massive Datasets</a>, the problem of computing word frequency for very large documents came up. I wanted some convenient tools for breaking documents into streams of words, and also a tool to remove common words like &lsquo;the&rsquo;, so I wrote up <code>words</code> and <code>decommonize</code>. The <code>decommonize</code> script is just a big <code>grep -v '(foo|bar|baz)'</code>, where the words foo, bar and baz come from the words in a file. I made a script <code>generate_decommonize</code> that reads in a list of common words, and builds the regex for <code>grep -v</code>.</p>
+
+<h2 id="example-usage-of-words-and-decommonize">Example usage of <code>words</code> and <code>decommonize</code></h2>
+
+<p>The full source code is available <a href="https://github.com/tlehman/words">here on github</a>.</p>
+
+<p>After running <code>make install</code>, you should have <code>words</code> and <code>decommonize</code> in your PATH, you can use them to find key words that are characteristic of a document, I chose</p>
+
+<ul>
+<li>the U.S. Declaration of Independence:</li>
+</ul>
+
+<pre><code>
+$ words < declaration_of_independence.txt | decommonize  | sort | uniq -c | sort -n | tail
+   4 time
+   5 among
+   5 most
+   5 powers
+   6 government
+   6 such
+   7 right
+   8 states
+   9 laws
+  10 people
+</code></pre>
+
+<ul>
+<li>Sherlock Holmes</li>
+</ul>
+
+<pre><code>
+$ words < doyle_sherlock_holmes.txt | decommonize  | sort | uniq -c | sort -n | tail
+ 174 think
+ 175 more
+ 177 over
+ 212 may
+ 212 should
+ 269 little
+ 274 mr
+ 288 man
+ 463 holmes
+ 466 upon
+</code></pre>
+
+<ul>
+<li>Working with Unix Processes (by @jstorimer)</li>
+</ul>
+
+<pre><code>
+$ words < working_with_unix_processes.txt | decommonize  | sort | uniq -c | sort -n | tail
+  73 signal
+  82 system
+  88 ruby
+  90 exit
+ 100 code
+ 100 parent
+ 143 its
+ 146 child
+ 184 processes
+ 444 process
+</code></pre>
+
+<p>So <code>words</code> breaks up the document into lower-case alphabetic words, then <code>decommonize</code> greps out the common words, and <code>sort</code> and <code>uniq -c</code> are used to count instances of each decommonized word, and then the results are sorted.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

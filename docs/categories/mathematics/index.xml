@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mathematics on tlehman@home</title>
+    <link>/categories/mathematics/index.xml</link>
+    <description>Recent content in Mathematics on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/mathematics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>New largest Mersenne prime found</title>
+      <link>/blog/2016/01/20/new-largest-mersenne-prime-found/</link>
+      <pubDate>Wed, 20 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2016/01/20/new-largest-mersenne-prime-found/</guid>
+      <description>&lt;p&gt;The largest prime number was just found, and it is a &lt;a href=&#34;https://en.wikipedia.org/wiki/Mersenne_prime&#34;&gt;Mersenne prime&lt;/a&gt;, or a prime number of the form 2&lt;sup&gt;n&lt;/sup&gt; - 1. As of January 2016, 2&lt;sup&gt;74,207,281&lt;/sup&gt; - 1 is the largest known prime. Primes are interesting in their own right, but they also are indispensible in cryptography.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve known since Euclid that the number of primes is infinite, but it is still an open problem whether the number of Mersenne primes is infinite:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Conjecture   A Mersenne prime is a Mersenne number M&lt;sub&gt;n&lt;/sub&gt;  = 2&lt;sup&gt;p&lt;/sup&gt;  - 1  that is prime.
+Are there infinite number of Mersenne Primes?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;http://www.openproblemgarden.org/category/mersenne_prime&#34;&gt;Open Problem Garden&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Bayesian Drunk Driving</title>
+      <link>/blog/2015/04/23/bayesian-drunk-driving/</link>
+      <pubDate>Thu, 23 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/04/23/bayesian-drunk-driving/</guid>
+      <description>
+
+&lt;p&gt;Driving drunk is illegal for a good reason, it&amp;rsquo;s way riskier than driving sober. This article isn&amp;rsquo;t about driving drunk
+though, it&amp;rsquo;s more about the sloppy thought processes that can too easily confuse something as obvious as that first
+sentence. Here&amp;rsquo;s an example of a bogus argument that appears to support the idea that drunk driving is actually safer:&lt;/p&gt;
+
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; lang=&#34;en&#34;&gt;
+&lt;p&gt;From a recent talk: &lt;sup&gt;1&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt; of accidents involve drunk drivers, so &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt; don’t =&amp;gt; sober drivers 2× as bad.&lt;/p&gt;
+&amp;mdash; Colin Beveridge (@icecolbeveridge)
+&lt;a href=&#34;https://twitter.com/icecolbeveridge/status/587317304335147008&#34;&gt;April 12, 2015&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;So the argument is as follows: In 2012, 10,322 people were killed in alcohol-impaired driving crashes,
+accounting for nearly one-third (31%) of all traffic-related deaths in the United States [1].
+That means that approximately one third of traffic-related deaths involve drunk driving, meaning that
+two thirds of traffic-related deaths don&amp;rsquo;t involve drunk driving. Therefore, sober drivers are twice as
+likely to die in a traffic accident.&lt;/p&gt;
+
+&lt;p&gt;If you think something is wrong with that argument, you are right, but it&amp;rsquo;s not just because the conclusion
+intuitively seems wrong, it&amp;rsquo;s because it involves a mistake in conditional probability. To see the mistake,
+it helps to introduce a litle notation, we will define:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;P(D) to be the probability that a person is drunk&lt;/li&gt;
+&lt;li&gt;P(A) to be the probability that a person will die in a traffic-related accident&lt;/li&gt;
+&lt;li&gt;P(D | A) &lt;em&gt;(pronounced probability of D given A)&lt;/em&gt; is the probability that a person is drunk, given that
+there was a death in a traffic-related accident they were in&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So using the 2012 CDC data, we can assign 31%, P(D | A) = 0.31. This is that the probability of a drunk
+driver being involved &lt;strong&gt;given that there was a deadly driving accident&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first thing to point out is that the statement that &amp;lsquo;sober drivers are twice as likely as drunk drivers
+to die in an accident&amp;rsquo; is really a statement about P(A | D), that is, the probability of a deadly driving
+accident &lt;strong&gt;given that that person is drunk&lt;/strong&gt;. We don&amp;rsquo;t know this yet, however, we can figure it out using
+Bayes&amp;rsquo; theorem.&lt;/p&gt;
+
+&lt;h2 id=&#34;bayes-theorem&#34;&gt;Bayes&amp;rsquo; Theorem&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Bayes%27_theorem&#34;&gt;Bayes&amp;rsquo; Theorem&lt;/a&gt; is unusual in that it is extremely useful
+and easy to prove, but hard to really understand.
+This is something I learned several times in college, but never really understood it&amp;rsquo;s importance until much
+later. To see how easy to prove it is, we go back to the definition of conditional probability:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$P(X|Y) = P(X \cap Y)/P(Y)$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Where P(X &amp;cap; Y) is the probability of X and Y occurring. Since this is true for any pair of events X and Y,
+we can reverse them and get&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$P(Y|X) = P(Y \cap X)/P(X)$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Also, remember that AND is commutative, so that P(X &amp;cap; Y) = P(Y &amp;cap; X), so we can multiply the above two
+equations by P(Y) and P(X), respectively, to get:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$P(X|Y)P(Y) = P(X \cap Y) = P(Y \cap X) = P(Y|X)P(X)$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;This relates P(X|Y) to P(Y|X), P(X) and P(Y), we can solve the above equation to get:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$P(X|Y) = {P(Y|X)P(X)\over P(Y)}$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it, we took the definition of conditional probability, did a little algebra, and out popped Bayes&amp;rsquo;
+theorem, we can now apply this to the above drunk driving fallacy, and calculate the probability that we are
+interested in, that is, P(A | D).&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$P(A|D) = {P(D|A)P(A)\over P(D)}$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Since we know P(D|A), we just need to find P(A) and P(D). Since the CDC data we are using is annual data,
+we need to take the number of casualties from deadly accidents in the United States for the year of 2012 (33,561)
+and divide by the number of drivers (211,814,830), that gives an estimate of P(A) = 33,&lt;sup&gt;561&lt;/sup&gt;&amp;frasl;&lt;sub&gt;211&lt;/sub&gt;,814,830 =
+0.0001584, which is about 1 in 6,313.&lt;/p&gt;
+
+&lt;p&gt;Next, we need to find the probability that a driver is drunk P(D), we will use the data from the study
+referenced in [3], and define &amp;lsquo;drunk&amp;rsquo; to be a BAC of &amp;geq; 0.1%. Then P(D) = 0.00387 or about 1 in 258 (more
+on this calculation in the notes below).&lt;/p&gt;
+
+&lt;p&gt;Now that we have:&lt;/p&gt;
+
+&lt;p&gt;P(D|A) = 0.31 (* probability of a driver being drunk, given they were involved in an accident where someone died *),&lt;/p&gt;
+
+&lt;p&gt;P(A) = 0.0001584 (* probability of a driver being involved in an accident where someone died *), and&lt;/p&gt;
+
+&lt;p&gt;P(D) = 0.00387 (* probability of a driver being drunk *)&lt;/p&gt;
+
+&lt;p&gt;We can figure out P(A|D) (* probability of a drunk driver getting into a deadly accident *)&lt;/p&gt;
+
+&lt;p&gt;P(A|D) = P(D|A)P(A)/P(D) = (0.31*0.0001584)/0.00387 = 0.0127 (1.27 %)&lt;/p&gt;
+
+&lt;p&gt;1.27% is not insignificant, it&amp;rsquo;s about half the probability of rolling snake eyes in craps.
+Now, let&amp;rsquo;s compare that to sober driving, we just need to calculate P(A|D&lt;sup&gt;c&lt;/sup&gt;). We can use &lt;a href=&#34;https://en.wikipedia.org/wiki/Law_of_total_probability&#34;&gt;Kolmogorov&amp;rsquo;s
+Theorem of total probability&lt;/a&gt;, shuffle a few terms to
+get:&lt;/p&gt;
+
+&lt;p&gt;P(A|D&lt;sup&gt;c&lt;/sup&gt;) = (P(A) - P(A|D)P(D))/P(D&lt;sup&gt;c&lt;/sup&gt;) = (0.0001584 - 0.0127*0.00387)/(1-0.00387) = .000109,
+which is about 1 in 9118.&lt;/p&gt;
+
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;So the probability of getting in a deadly accident, given that you are drunk is 1.27%, and the probability of getting into
+a deadly accident, given that you are not drunk is .01%, that means that it is 127 times more likely that you will get into
+a deadly accident while drunk.&lt;/p&gt;
+
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+
+&lt;p&gt;[1] Impaired Driving: Get the Facts &lt;em&gt;Centers for Disease Control&lt;/em&gt;
+&lt;a href=&#34;http://www.cdc.gov/Motorvehiclesafety/impaired_driving/impaired-drv_factsheet.html&#34;&gt;
+[link]
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[2] Total licensed drivers &lt;em&gt;U.S. Department of Transportation Federal Highway Administration&lt;/em&gt;
+&lt;a href=&#34;http://www.fhwa.dot.gov/policyinformation/statistics/2012/dl22.cfma&#34;&gt;
+[link]
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[3] Probability of arrest while driving under the influence (George A Beitel, Michael C Sharp, William D Glauz)
+&lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1730617/pdf/v006p00158.pdf&#34;&gt;
+[link]
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Notes on [3], we don&amp;rsquo;t technically have P(D), but we do have P(D|A&lt;sub&gt;1&lt;/sub&gt;), P(A&lt;sub&gt;1&lt;/sub&gt;),
+and P(A&lt;sub&gt;1&lt;/sub&gt;|D), where A&lt;sub&gt;1&lt;/sub&gt; is the event that a person is arrested. We can then find
+P(D) = (P(D|A&lt;sub&gt;1&lt;/sub&gt;)P(A&lt;sub&gt;1&lt;/sub&gt;))/P(A&lt;sub&gt;1&lt;/sub&gt;|D) = (0.06&amp;times;0.000374)/0.0058 =
+.00387&lt;/em&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Gini Coefficient and Income Distribution</title>
+      <link>/blog/2014/08/31/gini-coefficient-and-income-distribution/</link>
+      <pubDate>Sun, 31 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/08/31/gini-coefficient-and-income-distribution/</guid>
+      <description>&lt;p&gt;The gini coefficient is a measure of income inequality. It is calculated by ordering the given population by income, then calculating the cumulative distribution, and finding out how much it deviates from total equality.&lt;/p&gt;
+
+&lt;p&gt;So for example, assume there are four people, and everyone makes the exact same amount:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gini/equal_hist.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;Then, the cumulative distribution just sums the values to the left, so for this hypothetical equal society of four, the cumulative distribution would look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gini/equal_cumulative.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;So, as you can see, the cumulative distribution would be a straight line. The gini coefficient is calculated as two times the area of the difference between this straight line and the actual distribution. Since in this hypothetical world, the distribution is totally equal, it follows that the gini coefficient is 0.&lt;/p&gt;
+
+&lt;p&gt;The way to read the gini coefficient is that 0 is totally equal, and 1 is totally unequal. In the totally unequal case, one person would make everything, and everyone else would make nothing:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gini/unequal_cumulative.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;As is probably obvious at this point, the gini coefficient can be any real number between 0 and 1, with lower meaning more equal, and higher meaning less equal.&lt;/p&gt;
+
+&lt;p&gt;However, reality is always more interesting (and messier). The real world gini coefficient in 2014 of the United States 0.42, and Switzerland is 0.31&lt;/p&gt;
+
+&lt;p&gt;By modeling the cumulative distribution function as a power, such as x&lt;sup&gt;n&lt;/sup&gt;, you can find an n that reproduces the same gini coefficient:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/gini/gini_us_ch.png %}&lt;/p&gt;
+
+&lt;p&gt;In 2013, the United States had a gini coefficient of 0.42, which corresponds to a distribution curve that is about x&lt;sup&gt;2.45&lt;/sup&gt;, by contrast, Switzerland has a gini coefficient of 0.31, which corresponds to a distribution curve that is about x&lt;sup&gt;1.9&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s important to note that the cumulative distribution function is most likely not a simple power, but this shape does give a decent guess at what the respective distributions might look like.&lt;/p&gt;
+
+&lt;p&gt;Also, the gini coefficient says nothing about the absolute standard of living, meaning that a rich country and a poor country could have the same gini coefficient. For example, Norway and Czech Republic both have a gini coefficient of about 0.25, but Norway&amp;rsquo;s GDP per capita is about 5 times more than Czech Republic&amp;rsquo;s.&lt;/p&gt;
+
+&lt;p&gt;Given these limitations, the gini coefficient is a useful number for getting an idea about how income is distributed in a given population.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Review: Ending Aging by Dr. Aubrey de Grey (and some math about immortality)</title>
+      <link>/blog/2014/04/27/review-ending-aging-by-dr-aubrey-de-grey/</link>
+      <pubDate>Sun, 27 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/04/27/review-ending-aging-by-dr-aubrey-de-grey/</guid>
+      <description>
+
+&lt;p&gt;I just finished reading &lt;a href=&#34;https://en.wikipedia.org/wiki/Aubrey_de_Grey&#34;&gt;Dr. Aubrey de Grey&lt;/a&gt;&amp;rsquo;s &lt;em&gt;Ending Aging:  The Rejuvenation Breakthroughs that Could Reverse Human Aging in Our Lifetime (2007)&lt;/em&gt;, it was an accessible introduction to the biology of aging, and a way that it might be defeated. By default, I am skeptical about anti-aging techniques or claims of some sort of fountain of youth. I&amp;rsquo;ve heard de Gray&amp;rsquo;s idea on a podcast, and watched his TED talk. It sounded reasonable, but I wanted to learn more about the science to have a more informed opinion, so I read the book.&lt;/p&gt;
+
+&lt;div style=&#34;float: right; width: 50%&#34;&gt;
+  &lt;img src=&#34;/images/books/ending_aging.jpg&#34;&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The plan is referred to as SENS (Strategies for Engineered Negligible Senescence). After reading the book, I think it is a plausible plan for an approach to reverse the effects of aging. I&amp;rsquo;ll summarize the idea and highlight some things from the book that weren&amp;rsquo;t covered in de Gray&amp;rsquo;s TED talk or podcast interview.&lt;/p&gt;
+
+&lt;p&gt;The central assumption of the book is that aging is the accumulation of seven types of damage:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Mitochondrial DNA mutations&lt;/li&gt;
+&lt;li&gt;Nuclear DNA mutations&lt;/li&gt;
+&lt;li&gt;Intercellular junk &lt;em&gt;(e.g. &lt;a href=&#34;https://en.wikipedia.org/wiki/Lipofuscin&#34;&gt;lipofuscin&lt;/a&gt;)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Extracellular junk _(e.g. &lt;a href=&#34;https://en.wikipedia.org/wiki/Beta_amyloid&#34;&gt;beta amyloids&lt;/a&gt;)_&lt;/li&gt;
+&lt;li&gt;Glycation &lt;em&gt;(stiffens tissues leading to stroke, heart disease, etc.)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Cells not dying when they are supposed to &lt;em&gt;(e.g. cancer)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Cells dying when they are not supposed to&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Each of these types of damage is covered in detail in the book, along with one or more possible solutions. For example, number (7) can be treated by using stem cells to replace the lost cells, this has already been demonstrated to work, but there are political hurdles to stem cell research. A comprehensive plan to completely reverse the effects of aging may change this.&lt;/p&gt;
+
+&lt;p&gt;Another example is (1), he explained how mitochondria, which generate energy in the cells, have their own DNA, and they produce lots of reactive byproducts that damage the mitochondria&amp;rsquo;s own DNA. This can be fixed by saving a copy of the mitochondria DNA in the cell nucleus, where it is about 100 times less likely to mutate. Some forms of algae already do this, so it is not without precedent.&lt;/p&gt;
+
+&lt;p&gt;An interesting one is (5), or &lt;a href=&#34;https://en.wikipedia.org/wiki/Glycation&#34;&gt;glycation&lt;/a&gt;, which is the process that leads to the gradual stiffening of tissues. Glucose in the blood sometimes sticks to proteins and causes them to tangle up, this is what happens with caramelization, but at a much slower rate. There are already biotechnology companies that are working on drugs that target glycation endproducts, it is possible to undo the glycation damage, further research is needed before all forms of glycation are fixed, but it is simply a matter of money and time.&lt;/p&gt;
+
+&lt;p&gt;All of the types of damage but (6) seemed relatively straightfoward to solve. It is (6) that is the most troublesome. Assuming all the other types of damage are satisfactorily solved, cancer is still a big problem. In order to keep a human healthy indefinitely, you&amp;rsquo;d need to prevent cancer growth. There are many types of cancer, and within cancers there are many types of cells, but they all have something in common. They have an active telemorase enzyme, which is what replenishes the telomeres (segments of junk DNA at either end, which shorten with every cell division). Since cancerous cells&amp;rsquo; DNA keeps getting it&amp;rsquo;s telomere&amp;rsquo;s restored, they can reproduce indefinitely, this is the main threat of cancer, it can grow forever, until it disturbs its surroundings (your healthy tissue).&lt;/p&gt;
+
+&lt;p&gt;Aubrey de Grey has a solution for this, but it is the most extreme of the book: &lt;em&gt;Remove all telemorase genes from all cells of the human body&lt;/em&gt;. This means that the remaining human body only last about 10 years. Since nuclear DNA mutations are inevitable, and sometimes lead to cancers, having all your cells be unable to replenish their telomeres means that all cancers would eventually hit a wall (after about 50 cell divisions). Then, to solve the problem of your cells running out of telomeres, new stem cells could be engineered with a copy of your DNA (minus the gene for telemorase), and you could top off your stem cell supply every 5-10 years.&lt;/p&gt;
+
+&lt;p&gt;The problem with making all your cells immortal is that cancer will eventually win. By making all your cells mortal, even cancerous ones, you can continue to get SENS therapy until you no longer want to stay alive. If aging is indeed the sum of those 7 types of damage, then this panel of therapies will enable humans to live indefinite youthful lifespans.&lt;/p&gt;
+
+&lt;p&gt;So it appears possible to keep humans alive as long as they want to live, and prevent the decay and the eventual death of the body. This is fantastic, as the majority of healthcare spending is due to this decay. If SENS (or something like it) can be developed afforably, it would save nations trillions of dollars in healthcare and social security spending, as well as give people the choice to live for centuries.&lt;/p&gt;
+
+&lt;p&gt;There is a follow up question that the book didn&amp;rsquo;t address, but it was outside the scope of the book, so I&amp;rsquo;ll address it here.&lt;/p&gt;
+
+&lt;p&gt;&lt;a id=&#34;moral-immortal&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;should-humans-pursue-indefinite-lifespans&#34;&gt;Should humans pursue indefinite lifespans?&lt;/h2&gt;
+
+&lt;p&gt;&lt;/a&gt;
+Yes.&lt;/p&gt;
+
+&lt;p&gt;Why? Humans that have no intention of harming other humans deserve life. Removing things that cause harm to other humans is good. Aging leads to death for all humans, therefore aging should be removed.&lt;/p&gt;
+
+&lt;p&gt;Practically, our technological and social progress reflects this to some degree. Cars have become safer over the last 50 years, smoking is become less and less common.&lt;/p&gt;
+
+&lt;p&gt;Another bit of progress is in HIV/AIDs, it is now under control, for example, Magic Johnson has &lt;a href=&#34;http://www.livescience.com/16909-magic-johnson-hiv-aids-anniversary.html&#34;&gt;survived for 23 years with HIV&lt;/a&gt; and is able to live a normal life. With the advent of highly active antiretroviral therapy, anyone with HIV can live a normal life and not fall victim to AIDS.&lt;/p&gt;
+
+&lt;p&gt;Over the last century, &lt;a href=&#34;http://demog.berkeley.edu/~andrew/1918/figure2.html&#34;&gt;life expectancy has increased by a factor of 1.6&lt;/a&gt;, and is increasing still.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t think it&amp;rsquo;s controversial to say most people want to live forever. In fact, the major religions embody this since they all have some element of eternal life. The problem is that they are all fantasies, up until now, all living organisms eventually age and die, and when they die, they are gone forever.&lt;/p&gt;
+
+&lt;p&gt;Of course, the extension of life is not without some tradeoff, if you prevent old people from aging you prevent a lot of deaths, which has environmental consequences. With people living forever instead of dying and making room for the next generations, our current infrastructure would be strained, and it we would eventually run out of potable water, food, and land. These are just the immediate problems for humans, not to mention global warming, trash, and other unwholsome byproducts of human civilization.&lt;/p&gt;
+
+&lt;p&gt;Why then do I still think this should be done? Notice I said &amp;ldquo;our current infrastructure&amp;rdquo;. I don&amp;rsquo;t think our infrastructure and technologies will stay the same, they will grow and adapt as humans learn more and produce more.&lt;/p&gt;
+
+&lt;p&gt;Before we can answer the environmental question of should humans pursue indefinite lifespans, we should look at what is currently happening, what could happen, and then get back to the question.&lt;/p&gt;
+
+&lt;h3 id=&#34;current-demography&#34;&gt;Current demography&lt;/h3&gt;
+
+&lt;p&gt;There are three possible growth scenarios for the population: decrease, stay constant, increase. Right now the population is increasing, although &lt;a href=&#34;http://www.gapminder.org/videos/dont-panic-the-facts-about-population/&#34;&gt;using UN Data, Hans Rosling shows&lt;/a&gt; that the rate of population growth is slowing.&lt;/p&gt;
+
+&lt;p&gt;For the purposes of this article, it is useful to define a variable:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;$ r = \frac{\text{generation }n + 1}{ \text{generation } n } $&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Another variable that is related to r is the Total Fertility Rate (TFR), which can be thought of as the average number of children per couple. The &lt;a href=&#34;http://www.wolframalpha.com/input/?i=Total+Fertility+Rate&#34;&gt;global average right now is 2.609&lt;/a&gt;. At &amp;lsquo;replacement rate&amp;rsquo;, where TFR = 2, r = 1, since the previous generation is equal to the next generation.&lt;/p&gt;
+
+&lt;p&gt;Rosling&amp;rsquo;s talk shows how as health and wealth increase, TFR decreases, where in most developed countries it is about 2.&lt;/p&gt;
+
+&lt;p&gt;Now, let us suppose SENS works, and is affordable for everyone (perhaps as an alternative to retirement social security, or part of a life insurance opt out). Then, as people reproduced, if TFR &amp;gt; 2, it follows that population would grow. If nothing changed, then we would run out of resources and space.&lt;/p&gt;
+
+&lt;p&gt;If TFR = 2 and stayed that way (very unlikely it would stay constant, but let&amp;rsquo;s assume), then the population would grow linearly, minus the accidental death/suicide rate.&lt;/p&gt;
+
+&lt;p&gt;If TFR &amp;lt; 2, then it gets interesting, if TFR &amp;lt; 2, then the population of children would get smaller each subsequent generation. Call the current population p, for each member of the population, there would be an average number r of children (in the case of TFR=1.9, r = &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;1&lt;/sub&gt;.9 = 0.95).&lt;/p&gt;
+
+&lt;p&gt;Assume there is no death at all, then the population after one generation would be p + pr. Two generations later it would be p + pr + pr&lt;sup&gt;2&lt;/sup&gt;. After an infinite number of generations, it becomes:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+ $p + pr + pr^2 + pr^3 + pr^4 + &amp;hellip;$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;It is easy to show what this infinite series converges to, if you haven&amp;rsquo;t seen it before, or if you&amp;rsquo;ve just memorized the geometric series, I&amp;rsquo;ll show how to derive it:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+  p + pr + pr^2 + pr^3 + pr^4 + &amp;hellip; &amp;amp;= S
+\ r(p + pr + pr^2 + pr^3 + pr^4 + &amp;hellip;) &amp;amp;= rS
+\ pr + pr^2 + pr^3 + pr^4 + pr^5 + &amp;hellip; &amp;amp;= rS
+\ pr + pr^2 + pr^3 + pr^4 + pr^5 + &amp;hellip; &amp;amp;= S - p
+\ rS &amp;amp;= S - p
+\ rS - S &amp;amp;= -p
+\ (r - 1)S &amp;amp;= -p
+\ S &amp;amp;= p/(1-r)
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;So the series converges to p/(1-r), meaning a constant |r| &amp;lt; 1 would lead to a finite upper bound on the human population.&lt;/p&gt;
+
+&lt;p&gt;I didn&amp;rsquo;t show that the series converged if |r| &amp;lt; 1, but that is an elementary fact proven in most calculus classes, I&amp;rsquo;ll leave it to the reader as an exercise.&lt;/p&gt;
+
+&lt;p&gt;What this means is that under certain reasonable conditions (r &amp;lt; 1), you can have immortality &lt;em&gt;and&lt;/em&gt; procreation, without an explosion in population.&lt;/p&gt;
+
+&lt;p&gt;However, that eventuality depends on a constant r &amp;lt; 1, and it&amp;rsquo;s also asymptotic, so even if it&amp;rsquo;s eventually correct, it doesn&amp;rsquo;t give us any information about now, and the next few centuries.&lt;/p&gt;
+
+&lt;p&gt;In order to sustain human life, we need:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;water&lt;/li&gt;
+&lt;li&gt;energy&lt;/li&gt;
+&lt;li&gt;food&lt;/li&gt;
+&lt;li&gt;shelter&lt;/li&gt;
+&lt;li&gt;disposal of waste&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Some of these are interdependent, like 2 leads 1, if we have lots of energy, we can desalinate the ocean and get drinkable water. Also, 1 &amp;amp; 2 lead to 3, since water and energy (sunlight) lead to plants (food).&lt;/p&gt;
+
+&lt;p&gt;One problem with 3 is that food is currently grown in huge wide patches far away from urban centers. This doesn&amp;rsquo;t scale well, it uses a lot of surface area, pesticides and fuel to ship the food to cities and other urban centers. However, Dickson Despommier solved this with the &lt;a href=&#34;http://www.verticalfarm.com/&#34;&gt;vertical farm&lt;/a&gt;. It solves the area problem by stacking many levels on top of each other (where the word &amp;lsquo;vertical&amp;rsquo; comes from). It also solves the problem of fuel, since you can build these vertical farms in the city, &lt;a href=&#34;http://www.npr.org/blogs/thesalt/2012/11/06/164428031/sky-high-vegetables-vertical-farming-sprouts-in-singapore&#34;&gt;this is already being done in Singapore&lt;/a&gt;. And it is possible to build habitats for farm workers into the vertical farm itself, which means that 3 (food) can lead to 4 (shelter) in some cases.&lt;/p&gt;
+
+&lt;p&gt;Also, with the development of colonies in space, and on the Moon and Mars, overpopulation can be avoided by exporting Earthlings to new places. Any working space colony will necessarily have to be very efficient at recycling waste, so space colonization leads to 5 (disposal of waste).&lt;/p&gt;
+
+&lt;p&gt;All of this suggests that the problems we face now with our current population, infrastructure and technologies can be solved by building better infrastructure and technologies, and those technologies already exist in primitive form. Eliminating the disease of aging does mean that we will end up running out of resources and all starve. We can have more people, living longer lives, and together solve all the problems that prevent our species&amp;rsquo; long term survival.&lt;/p&gt;
+
+&lt;p&gt;Sources:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;de Grey A, Rae Michael. Ending Aging: The Rejuvenation Breakthroughs That Could Reverse Human Aging in Our Lifetimes&lt;/li&gt;
+&lt;li&gt;Gavrilov LA, Gavrilova NS. Demographic consequences of defeating aging. Rejuvenation Res. 2010;13:329–334. &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3192186/&#34;&gt;PMC free article&lt;/a&gt; &lt;a href=&#34;http://www.ncbi.nlm.nih.gov/pubmed/20426616&#34;&gt;PubMed&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Abusing proverbs</title>
+      <link>/blog/2014/04/04/abusing-proverbs/</link>
+      <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/04/04/abusing-proverbs/</guid>
+      <description>&lt;p&gt;I recently became a father, and that experience has lead to me to wonder what my son will be like when he his older. It&amp;rsquo;s also lead me remember what I was like when I was younger. I usually didn&amp;rsquo;t take things my teachers said seriously, this has lead to good things and bad.&lt;/p&gt;
+
+&lt;p&gt;For the bad, I didn&amp;rsquo;t try hard in math in high school, my SAT Math scores were terrible, way below average. As a result, I had to take Math 095 (Intermediate Algebra) in college, which didn&amp;rsquo;t even count for credit. It wasn&amp;rsquo;t until the end of my freshmen year that I took calculus. After that first year I was hooked, and learned the joy of mathematics, I also realized that a lot of things I liked were enriched by learning some math. Rubiks Cubes, Computers, networks, 4-dimensional spaces, money, etc. However, even though I got really into math and eventually got a degree in it after 5 years, I did a great disservice to my (then) future self by ignoring math and my teachers.&lt;/p&gt;
+
+&lt;p&gt;As for the good, I remember arguing with my High School literature teacher about media, he was claiming that books were better than movies because they allow the reader to imagine the characters and settings in their own personal way. They also go much deeper into character development, something that is hard to match with a 90 minute movie. Even though I agree with these advantages, I wanted to be a contrarian and disagree with the teacher. I even came up with an argument as to why:&lt;/p&gt;
+
+&lt;p&gt;Since &amp;lsquo;a picture is worth a thousand words&amp;rsquo;, we can establish that:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$1 \text{ picture} = 1000 \text{ words}$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Then, since movies play at 24fps (frames per second), that means that for every second of movie, there are 24 pictures, or 24,000 words. Also, movies average about 90 minutes, so that means that 1 movie = (24,000*90 words) = 2,160,000 words.&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$1 \text{ movie} = 2,160,000 \text{ words}$
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Next, I looked at the books he was assigning us: Of Mice and Men (46,750 words), The Bean Trees (58,000 words), Black Like Me (48,000 words), these books have an average of 50,916 words so we can calculate exactly how much better a movie is than these books:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+\begin{align}
+  1 \text{ book} &amp;amp;= 50,916 \text{ words} &lt;br /&gt;
+  1 \text{ movie} &amp;amp;= 2,160,000 \text{ words} &lt;br /&gt;
+  1 \text{ movie} &amp;amp;= (2,160,000/50,916) \text{ books} = 42.42281 \text{ books}
+\end{align}
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Therefore, 1 movie &amp;#8776; 42 books. I had fun abusing proverbs to prove a point, and the teacher was amused, recognizing the humor.&lt;/p&gt;
+
+&lt;p&gt;I would like to help my son avoid some of the same mistakes I made and work hard where and when it matters. What&amp;rsquo;s ironic is that I worked hard on a pseudo-mathematical proof that movies are better than books, but I completely blew off my algebra homework.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Switching away from MathJax</title>
+      <link>/blog/2014/02/23/switching-away-from-mathjax/</link>
+      <pubDate>Sun, 23 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/02/23/switching-away-from-mathjax/</guid>
+      <description>&lt;p&gt;I am switching away from &lt;a href=&#34;/blog/2012/07/18/mathjax-for-octopress/&#34;&gt;MathJax for my math blogging&lt;/a&gt; for a few reasons, first one being that RSS readers won&amp;rsquo;t see rendered formulas, and second one being that rendering complex formulae such as tables of aligned equations can be very slow.&lt;/p&gt;
+
+&lt;p&gt;Instead, I&amp;rsquo;ve decided to use &lt;a href=&#34;http://www.flx.cat/jekyll/2013/11/10/liquid-latex-jekyll-plugin.html&#34;&gt;this Jekyll plugin&lt;/a&gt; to pre-render the formulae and insert images into the generated markup.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Counting bits in integers</title>
+      <link>/blog/2014/02/08/counting-bits-in-integers/</link>
+      <pubDate>Sat, 08 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/02/08/counting-bits-in-integers/</guid>
+      <description>&lt;p&gt;While working on the code to count the number of fifteens I had in a hand in cribbage, I found it would be useful to count the number of bits in an integer. The comment below explains why it is useful.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;    // Fifteens
+    //     A Fifteen is any combination of cards whose ranks sum up to 15.
+    //
+    //     To find fifteens, we need to look at all combinations of cards.
+    //     For example, for a hand of three cards:  5♣  10♥  5♥  we must
+    //     consider all 2^3 - 1 = 7 non-empty subsets:
+    //        Hand         | Bits | Sum
+    //        -------------|------|-----
+    //                 5♥  | 001  |  (5)
+    //            10♥      | 010  | (10)
+    //            10♥  5♥  | 011  | (15)  *
+    //        5♣           | 100  |  (5)
+    //        5♣       5♥  | 101  | (10)
+    //        5♣  10♥      | 110  | (15)  *
+    //        5♣  10♥  5♥  | 111  | (20)
+    //
+    //     There is a well known correspondence betweeen subsets and binary
+    //     representations of integers, illustrated in the &#39;Bits&#39; column above.
+    //     The number of bits that are equal to 1 is the cardinality of the 
+    //     corresponding subset.
+    //     Using this correspondence, we can enumerate all 2^n subsets by looping
+    //     an integer from 0 to (2^n - 1) and identifying the bits that are one
+    //     with the subset membership relation.
+    //
+    Card* subset[count];
+    for(i = 0; i &amp;lt; 2_TO_THE(count); ++i) {
+        zero_cards(subset);
+
+        // get bits of i
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since subsets and the bit representations of integers are in one-to-one correspondence, I can enumerate all subsets of an n-set by simply counting from 0 to 2&lt;sup&gt;n&lt;/sup&gt;-1, then I can use the bits in the loop variable to determine which element of the set is in the subset. From the example in the comment above, you can see that the bits of the row number line up with the elements in the subsets.&lt;/p&gt;
+
+&lt;p&gt;In order to finish this code, I wanted a way to count the number of bits in an integer. I looked around for an existing algorithm to do it, and I found this, from K&amp;amp;R:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;unsigned int v; // count the number of bits set in v
+unsigned int c; // c accumulates the total bits set in v
+for (c = 0; v; c++) {
+    v &amp;amp;= v - 1; // clear the least significant bit set
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I had no idea how it worked, so I tried to figure it out. The parts that I do understand are the roles of v and c, the former is the number for which we are counting bits, and the latter is the actual number of bits.&lt;/p&gt;
+
+&lt;p&gt;Why does &lt;code&gt;v &amp;amp; (v-1)&lt;/code&gt; clear the least significant bit?&lt;/p&gt;
+
+&lt;p&gt;To figure this out, I considered a general n-bit integer, represented in base 2, I thought about it as&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ v = v_1v_2&amp;hellip;v_n $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;If v is odd, then v&lt;sub&gt;n&lt;/sub&gt; = 1, so v-1 simply clears the least significant bit, and since the first n-1 bits are the same, the bitwise AND of v and v-1 is just v-1, which v with the least significant bit set to zero (cleared).&lt;/p&gt;
+
+&lt;p&gt;Otherwise, v is even, which means v&lt;sub&gt;n&lt;/sub&gt; = 0. What is v-1 in this case?&lt;/p&gt;
+
+&lt;p&gt;If v = 32 = 100000&lt;sub&gt;2&lt;/sub&gt; (base 2), then v-1 = 011111&lt;sub&gt;2&lt;/sub&gt;, so v&amp;amp;v-1 = 000000&lt;sub&gt;2&lt;/sub&gt;, which is v with it&amp;rsquo;s least significant bit set to zero.&lt;/p&gt;
+
+&lt;p&gt;So far, so good, but that is only one example, we need to prove it for a general even n-bit integer, not just 32.&lt;/p&gt;
+
+&lt;p&gt;Let v be an n-bit even integer, and v&lt;sub&gt;k&lt;/sub&gt;=1 is the least significant bit. Then v&lt;sub&gt;n&lt;/sub&gt;=0, and k &amp;lt; n.&lt;/p&gt;
+
+&lt;p&gt;We can then write v in the following way:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+  v &amp;amp;= v_1v_2v_3&amp;hellip;v&lt;em&gt;kv&lt;/em&gt;{k+1}&amp;hellip;v_n
+\  &amp;amp;= v_1v_2v_3&amp;hellip;10&amp;hellip;0
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Then, the number v&lt;sub&gt;k&lt;/sub&gt;v&lt;sub&gt;k-1&lt;/sub&gt;&amp;hellip;v&lt;sub&gt;n&lt;/sub&gt; = 2&lt;sup&gt;n-k&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;We can find v-1 by considering the subproblem of v&lt;sub&gt;k&lt;/sub&gt;v&lt;sub&gt;k+1&lt;/sub&gt;&amp;hellip;v&lt;sub&gt;n&lt;/sub&gt; - 1 = 2&lt;sup&gt;n-k&lt;/sup&gt;-1.&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;\begin{align}
+    &amp;amp;v&lt;em&gt;k &amp;amp;v&lt;/em&gt;{k+1} &amp;amp;v&lt;em&gt;{k+1} &amp;amp;&amp;hellip; &amp;amp;v&lt;/em&gt;{n-1} &amp;amp;v_n &amp;amp;- 1
+\  &amp;amp;1   &amp;amp;0       &amp;amp;0       &amp;amp;&amp;hellip; &amp;amp;0       &amp;amp;0   &amp;amp;- 1
+\ =  &amp;amp;0   &amp;amp;1       &amp;amp;1       &amp;amp;&amp;hellip; &amp;amp;1       &amp;amp;1
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Now, we can see that v and v-1 have the same first k-1 bits, with the last n-k+1 bits opposite, so that the bitwise AND clears the last n-k+1 bits. Since v has the last n-k bits equal to 0 and the k-th bit equal to one, it follows that v&amp;amp;(v-1) clears the least significant bit. This completes the proof.&lt;/p&gt;
+
+&lt;p&gt;Now, looking at the code again:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;unsigned int v; // count the number of bits set in v
+unsigned int c; // c accumulates the total bits set in v
+for (c = 0; v; c++) {
+    v &amp;amp;= v - 1; // clear the least significant bit set
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will clear the least significant bit, increment c, then if v is nonzero, repeat. Now this makes sense.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>History of Domain Names</title>
+      <link>/blog/2013/10/06/history-of-domain-names/</link>
+      <pubDate>Sun, 06 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/10/06/history-of-domain-names/</guid>
+      <description>&lt;p&gt;In trying to understand &lt;a href=&#34;https://en.wikipedia.org/wiki/Domain_Name_System&#34;&gt;DNS&lt;/a&gt; better, I stumbled upon this little bit of history in &lt;a href=&#34;http://www.ietf.org/rfc/rfc1034.txt&#34;&gt;RFC 1034&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;RFC 1034             Domain Concepts and Facilities        November 1987&lt;/p&gt;
+
+&lt;p&gt;2.1. The history of domain names&lt;/p&gt;
+
+&lt;p&gt;The impetus for the development of the domain system was growth in the
+Internet:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Host name to address mappings were maintained by the Network
+ Information Center (NIC) in a single file (HOSTS.TXT) which
+ was FTPed by all hosts [RFC-952, RFC-953].  The total network
+ bandwidth consumed in distributing a new version by this
+ scheme is proportional to the square of the number of hosts in
+ the network, and even when multiple levels of FTP are used,
+ the outgoing FTP load on the NIC host is considerable.
+ Explosive growth in the number of hosts didn&amp;rsquo;t bode well for
+ the future.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That is, there used to be a single file that mapped hostnames to IP addresses, and everyone on the network would fetch that file over ftp to stay up to date with the network.&lt;/p&gt;
+
+&lt;p&gt;To explain the quadratic growth (proportional to the square of the number of hosts), &lt;a href=&#34;https://self-evident.org/&#34;&gt;Nemo&lt;/a&gt; corrected my explanation with:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;the size of the HOSTS.TXT file is linear in the number of hosts, and the number of hosts that need to download the file is also linear in the number of hosts, therefore the total bandwidth required to distribute the file to all hosts is quadratic in the number of hosts&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Euclid&#39;s Algorithm in MIX assembly language vs Scheme</title>
+      <link>/blog/2013/09/29/euclid-gcd-algorithm-in-mix-assembly-language-vs-scheme/</link>
+      <pubDate>Sun, 29 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/09/29/euclid-gcd-algorithm-in-mix-assembly-language-vs-scheme/</guid>
+      <description>&lt;p&gt;I wrote my first assembly language program today, it was written in
+&lt;a href=&#34;https://en.wikipedia.org/wiki/MIX&#34;&gt;Donald Knuth&amp;rsquo;s MIX Assembly
+Language&lt;/a&gt;. Technically I&amp;rsquo;ve written
+some x86 assembly in a class in 2009, but it doesn&amp;rsquo;t count, it wasn&amp;rsquo;t
+a complete program, and I barely understood it.&lt;/p&gt;
+
+&lt;p&gt;It is an implementation of Euclid&amp;rsquo;s Algorithm to compute the greatest common divisor of two
+positive integers. Writing in an assembly language is so much more
+work than writing in a high-level language like Ruby, Scheme or even
+C. However, it gives a much better idea of how the computer actually
+works, and gives the programmer much more appreciation for all the
+nice abstractions we use in our day jobs and side projects.&lt;/p&gt;
+
+&lt;p&gt;The algorithm is the first example mentioned in &lt;a href=&#34;https://en.wikipedia.org/wiki/The_Art_of_Computer_Programming&#34;&gt;The Art of Computer Programming&lt;/a&gt;.
+I found that just reading the algorithm
+alone doesn&amp;rsquo;t give much insight as to why it works, but reviewing a
+little bit of discrete math first, one can see where the steps come
+from.&lt;/p&gt;
+
+&lt;p&gt;First, start by assuming that m and n are positive integers, with m &amp;gt;
+n, and then the greatest common divisor d is the unique smallest integer such that:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ \exists a,b \in \mathbb{Z} : am + bn = d  $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Then, let r = m mod n (the remainder of m divided by n), we will prove
+that&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ \gcd(m,n) = \gcd(n,r) $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;All we need to show is that there are integers s and t such that&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ sn + tr = d  $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Note that since r = m mod n, it follows that r - m is a multiple of n,
+this means:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ \exists k \in \mathbb{Z} \text{ such that }  r-m = kn $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Now, we take the integers a,b in the definition of gcd(m,n) above and
+add -ar to both sides of the equation:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+\begin{align}
+   am + bn &amp;amp; = d \newline
+\ am - ar + bn &amp;amp; = d - ar&lt;br /&gt;
+\ a(m - r) + bn &amp;amp; = d - ar
+\ kn + bn &amp;amp; = d - ar&lt;br /&gt;
+\ (k + b)n &amp;amp; = d - ar&lt;br /&gt;
+\ (k + b)n + ar &amp;amp; = d&lt;br /&gt;
+\end{align}&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;It is clear from the last equation above that s = (k+b) and t = a,
+which completes the proof.&lt;/p&gt;
+
+&lt;p&gt;Since gcd(m,n)=gcd(n,r), and r has the property that 0 &amp;le; r &amp;lt; n,
+we can reduce the problem to a smaller problem, and since the previous
+inequality always holds, it follows that r will eventually be 0, in
+which case n is the greatest common divisor.&lt;/p&gt;
+
+&lt;p&gt;This recursive form is very naturally captured in Scheme,
+Here&amp;rsquo;s the Scheme version (problem 2.01 in SICP):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;(define (gcd m n)
+  (if (= n 0)
+      m
+      (gcd n (remainder m n))))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To implement the same algorithm in MIX assembly language, we need to
+use much more primitive concepts. Firstly, we designate the X register
+to hold the value of m, the I1 register to hold the value of n, and
+proceed using the &lt;code&gt;DIV&lt;/code&gt; operation to find the remainder.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s the MIX assembly language version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;PRNT  EQU	19	* Typewriter terminal, stdout in MDK (GNU Mix Development Kit)
+DVSR  EQU	100	* store n for DIV operation
+SWAP  EQU	101	* swap to handle reg-to-reg transfers (inefficient)
+START ENTA	0
+      ENTX	165
+      ENT1	90
+E1    ST1	DVSR	* store n in DVSR
+      DIV	DVSR	* rA &amp;lt;- m//n; rX &amp;lt;- m%n
+E2    CMPX	=0=
+      JE	QUIT	* halt if r=0, then CONTENTS(DVSOR)=gcd(m,n)
+E3    STX	SWAP
+      LD1	SWAP	* n &amp;lt;- r
+      LDX	DVSR	* m &amp;lt;- n
+      ENTA	0
+      JMP	E1	* go to E1
+QUIT  LDA	DVSR    * rA &amp;lt;- gcd(m,n)
+      CHAR	0       * convert rA to character code
+      STX	DVSR	* store least significant digits in DVSR cell
+      OUT	DVSR(PRNT)
+      HLT
+      END	START
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I came up with the above code as an exercise in in MIX Assembly
+Language so that I could better understand the algorithms in the book.
+I have a hunch that it is not as efficient as it could be. I do a lot of
+swapping from registers to memory and back. Although to be fair, I
+couldn&amp;rsquo;t find a way to transfer data from a register to any of the other
+registers (kind of like the &lt;a href=&#34;https://en.wikibooks.org/wiki/X86_Assembly/Data_Transfer#Move&#34;&gt;MOV instruction in x86&lt;/a&gt; ),
+if someone knows of a way to do this, please correct me in
+the comments, I would like to know.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Monoids in Scheme</title>
+      <link>/blog/2013/09/07/monoids-in-scheme/</link>
+      <pubDate>Sat, 07 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/09/07/monoids-in-scheme/</guid>
+      <description>
+
+&lt;p&gt;There is a structure in abstract algebra called a monoid. There are several ways to define a monoid, but before we start, we should answer the obvious question: &lt;em&gt;why should you care?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The reason being aware of monoids is important is that they are everywhere, and knowing the properties of general monoids will lead to better understanding of their specific manifestations, such as the accumulator pattern or string concatenation. I&amp;rsquo;ll give a good example to start out with: linked lists.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/list.png&#34;&gt;&lt;/p&gt;
+
+&lt;p&gt;For the sake of simplicity, I am going to use scheme lists and the &lt;code&gt;append&lt;/code&gt; operation. In &lt;a href=&#34;https://mitpress.mit.edu/sicp/full-text/sicp/book/node32.html&#34;&gt;Section 2.2 of SICP&lt;/a&gt;, the closure property of was defined. &lt;em&gt;This is distinct from the notion of &lt;a href=&#34;http://stackoverflow.com/a/36639/46871&#34;&gt;closure&lt;/a&gt; of an expression over the surrounding environment&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;An operation &lt;code&gt;#&lt;/code&gt; is said to be &amp;lsquo;closed&amp;rsquo; in the sense that given two values &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt; of the same type, the expression &lt;code&gt;A # B&lt;/code&gt; is a value of the same type. In scheme-like prefix notation, we would write &lt;code&gt;(# A B)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Given a list &lt;code&gt;A&lt;/code&gt; and a list &lt;code&gt;B&lt;/code&gt;, we can concatenate the two lists and get a new list, &lt;code&gt;(append A B)&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;(append (append &#39;(a) &#39;(b)) &#39;(c))
+; =&amp;gt; (a b c)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another way to construct it is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-scheme&#34;&gt;(append &#39;(a) (append &#39;(b) &#39;(c)))
+; =&amp;gt; (a b c)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The fact that &lt;code&gt;(a b c)&lt;/code&gt; can be constructed in either way means that &lt;code&gt;append&lt;/code&gt; is an associative operation, and readers of this blog should recognize that &lt;a href=&#34;/blog/2013/09/02/quasiquoting-in-scheme-to-study-a-computation/&#34;&gt;&lt;code&gt;fold-left&lt;/code&gt; and &lt;code&gt;fold-right&lt;/code&gt; would give the same result in this case&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;set-theoretic-definition-of-a-monoid&#34;&gt;Set-theoretic Definition of a monoid&lt;/h2&gt;
+
+&lt;p&gt;This leads to the first two properties that define a general monoid, a monoid is:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ \text{a set } M \text{ with an associative operation } *:M \times M \to M $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Note: the closure property is implicit in the defintion of the operation as a function, since it is impossible for the output of the function to be anything outside of M.&lt;/p&gt;
+
+&lt;p&gt;The set M has an identity element e in M, it is defined by:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ \forall m \in M : e*m = m*e = m $
+{% endlatex %}&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;From the three properties that define of monoids (closure, associativity, identity), we can prove the uniqueness of the identity element:&lt;/p&gt;
+
+&lt;p&gt;Suppose &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; are identity elements, then:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}&lt;/p&gt;
+
+&lt;p&gt;$ a*b=b*a=b $&lt;/p&gt;
+
+&lt;p&gt;$ b*a=a*b=a $&lt;/p&gt;
+
+&lt;p&gt;$ a = b $&lt;/p&gt;
+
+&lt;p&gt;{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;This applies to all monoids, in our example, the set &lt;code&gt;M&lt;/code&gt; is the set of all Scheme lists, the operation is &lt;code&gt;append&lt;/code&gt;, and the unique identity element is the empty list.&lt;/p&gt;
+
+&lt;h3 id=&#34;further-reading&#34;&gt;Further Reading&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Dan Piponi (SIGFPE) wrote &lt;a href=&#34;http://blog.sigfpe.com/2009/01/haskell-monoids-and-their-uses.html&#34;&gt;a lot of good stuff about monoids in haskell&lt;/a&gt; at his blog &amp;lsquo;A Neighborhood of Infinity&lt;/li&gt;
+&lt;li&gt;Pete Clark wrote &lt;a href=&#34;http://math.uga.edu/~pete/semigroup.pdf&#34;&gt;a good introduction to semigroups and monoids&lt;/a&gt; on his UGA website&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How many possible flags are there?</title>
+      <link>/blog/2013/05/11/how-many-possible-flags-are-there/</link>
+      <pubDate>Sat, 11 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/05/11/how-many-possible-flags-are-there/</guid>
+      <description>
+
+&lt;p&gt;I have been thinking about Mars a lot more lately, and about possible colonization. The &lt;a href=&#34;http://mars-one.com/&#34;&gt;Mars One&lt;/a&gt; project is a non-governmental not-for-profit organization that is looking to send groups of four people, independent of nationality, to Mars in 2023.&lt;/p&gt;
+
+&lt;p&gt;One thing that came to mind was independence, just as the early North American settlers declared independence from Great Britain, I think that Martian settlers would eventually declare independence from the countries of Earth, provided they had a sustainable, self-reliant colony.&lt;/p&gt;
+
+&lt;p&gt;As a side effect, the Martian settlers would probably choose a new flag, and then the math geek in me wondered how far this could go, &lt;strong&gt;how many different flags are possible?&lt;/strong&gt; As humanity grows, evolves and expands, assuming that each nation that emerged had a flag, how many unique flags could possibly be created?&lt;/p&gt;
+
+&lt;p&gt;If we allow for any arbitrary size and aspect ratio, the number is infinite. However, most flags have the same aspect ratio, and their implementation as cloth is usually in fixed sizes.&lt;/p&gt;
+
+&lt;p&gt;Note that flags are physically made of thread, we make the simplifying assumption that all flags are made of the same width thread, and that the thread is evenly spaced.&lt;/p&gt;
+
+&lt;p&gt;Flags have some terminology, so a few definitions are in order:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hoist&lt;/strong&gt; is the width of the flag (vertical direction)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fly&lt;/strong&gt; is the length of the flag (horizontal direction)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vexillology&lt;/strong&gt; is the &amp;ldquo;scientific study of the history, symbolism and usage of flags &lt;a href=&#34;http://en.wikipedia.org/wiki/Vexillology&#34;&gt;[1]&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will call &lt;strong&gt;H&lt;/strong&gt; the number of threads in the vertical direction, and &lt;strong&gt;F&lt;/strong&gt; the number of threads in the horizontal direction.&lt;/p&gt;
+
+&lt;p&gt;Assuming threads are evenly spaced, we can imagine the &lt;strong&gt;H*F&lt;/strong&gt; crossing points on a grid, as in the image below:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/flags/close_up.png %}&lt;/p&gt;
+
+&lt;p&gt;Each crossing point is either above or below, so there are 2 distinct choices for each of the &lt;strong&gt;H*F&lt;/strong&gt; crossing points, that means that there are 2&lt;sup&gt;&lt;sup&gt;HF&lt;/sup&gt;&lt;/sup&gt; possible flags, ignoring color.&lt;/p&gt;
+
+&lt;p&gt;If we now consider the role of color, imagine that each of the &lt;strong&gt;H+F&lt;/strong&gt; threads could have any of &lt;strong&gt;C&lt;/strong&gt; distinct colors, then there would be C&lt;sup&gt;&lt;sup&gt;(H+F)&lt;/sup&gt;&lt;/sup&gt; possible color combinations.&lt;/p&gt;
+
+&lt;p&gt;Since the under/over configuration of the points is independent from the color choices, it follows from the combinatorial principle of products that there are:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ 2^{HF}C^{(H+F)} $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;possible flags. This is the general solution, now let&amp;rsquo;s find some real-world data and get some more constraints so we can compute some numbers. (*Everything following this formula is just finding the values of &lt;strong&gt;H&lt;/strong&gt; and &lt;strong&gt;F&lt;/strong&gt;, so if you don&amp;rsquo;t care about the research, simplifying assumptions and data-wrangling, you can skip to the end*)&lt;/p&gt;
+
+&lt;p&gt;Typically there are fixed aspect ratios, and some correlation exists between the height of the flagpole and the hoist/fly.&lt;/p&gt;
+
+&lt;h2 id=&#34;height-of-the-flagpole-versus-the-fly-and-hoist&#34;&gt;Height of the flagpole versus the fly and hoist&lt;/h2&gt;
+
+&lt;p&gt;Using the United States&amp;rsquo; Deparment of Interior specifications as a model, we can use the following data to get an approximate relation between the height of a ground flag and the hoist/fly of the flag:&lt;/p&gt;
+
+&lt;p&gt;Ground Flagpoles &lt;a href=&#34;http://www.doi.gov/ofas/asd/upload/Flagsandseals9-25-12-2.pdf&#34;&gt;[2]&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;height (ft)  hoist (ft)    fly (ft)   aspect ratio (hoist/fly)
+30           3.5           6.65       1.9
+40           5.0           9.5        1.9
+50           5.0           9.5        1.9
+60           8.95          17         1.89
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Since the aspect ratio is approximately constant (as we would expect), the problem of finding the relation between height, hoist and fly reduces to a one-dimensional linear regression. We now try to find fly as a function of height, which is in the &lt;strong&gt;y&lt;/strong&gt; direction:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ f(y) = a + by $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Using the &lt;a href=&#34;http://en.wikipedia.org/wiki/Least_squares&#34;&gt;least squares method&lt;/a&gt;, the values of a and b are found exactly, the above formula becomes:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ f(y) = 0.3105y + (-3.31) $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;So given a height &lt;strong&gt;y&lt;/strong&gt;, the fly of the flag should be about &lt;strong&gt;(0.31)y - 3.31(ft)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;aspect-ratios&#34;&gt;Aspect ratios&lt;/h2&gt;
+
+&lt;p&gt;To find the aspect ratios of the current flags of Earth, I found &lt;a href=&#34;https://en.wikipedia.org/wiki/User:SiBr4/List_of_national_flags_by_aspect_ratio&#34;&gt;this&lt;/a&gt; on wikipedia. I went to the edit view and then copied the wiki source. On Mac OS X, the &lt;code&gt;pbpaste&lt;/code&gt; command writes the contents of the clipboard to standard out on the command line. On GNU/Linux under Xorg, you can use &lt;code&gt;xclip -o&lt;/code&gt; to achieve the same thing.&lt;/p&gt;
+
+&lt;p&gt;So I played around with the data and came up with this one-liner:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;&amp;gt; pbpaste | pre nts | awk -F\| &#39;{print $3}&#39; | sed &#39;s/[\}]//g&#39; | pcregrep &#39;^\d&#39; | sort -n | uniq -c
+   1 0.820
+   2 1
+   1 1.154
+   1 1.167
+   1 1.25
+   1 1.321
+   5 1.333
+   3 1.375
+   1 1.389
+   2 1.4
+   2 1.429
+   1 1.467
+ 114 1.5
+   1 1.571
+   5 1.6
+   1 1.618
+   1 1.636
+  22 1.667
+   2 1.75
+   1 1.772
+   1 1.864
+   4 1.9
+  83 2
+   1 2.545
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Most countries use 1.5, 2 and 1.667. As fractions, these are &lt;sup&gt;3&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt;, &lt;sup&gt;2&lt;/sup&gt;&amp;frasl;&lt;sub&gt;1&lt;/sub&gt;, &lt;sup&gt;5&lt;/sup&gt;&amp;frasl;&lt;sub&gt;3&lt;/sub&gt;, respectively. Also, one country (Togo in Africa) uses 1.618 &amp;#8776; &amp;phi;, the Golden Ratio!&lt;/p&gt;
+
+&lt;p&gt;Since the overwhelming majority of flags use the 1.5 and 2 ratios, let us assume for this problem that these are the only ratios that will be used. Since the United States flag uses the 1.9 ratio, we can approximate it as 2. Just for reference, Russia and China use 1.5 and U.S.A. uses 1.9, and the U.K. uses 2.&lt;/p&gt;
+
+&lt;p&gt;Colonizers on other planets will initially be close to the ground and spread out. Since residential flags typically range between 15 and 20 feet, we will be safe and assume that the inital flag is 15 feet tall. From our formula, this means that the Fly will be (.3)(15ft) - (3.31ft) = 1.19 ft.&lt;/p&gt;
+
+&lt;h2 id=&#34;number-of-threads&#34;&gt;Number of threads&lt;/h2&gt;
+
+&lt;p&gt;To find the values of &lt;strong&gt;H&lt;/strong&gt; and &lt;strong&gt;F&lt;/strong&gt;, we need to know the width and spacing of the thread, a common size of polyester thread for making flags is &lt;a href=&#34;http://www.thethreadexchange.com/miva/merchant.mvc?Screen=CTGY&amp;amp;Category_Code=nylon-thread-069&#34;&gt;Size 69&lt;/a&gt;, which has a diameter of 0.2921 mm. So, assuming that the threads are all adjacent, the number of threads in the Fly direction will be (1.19ft)/(0.2921 mm) &amp;#8776; 1241.&lt;/p&gt;
+
+&lt;p&gt;The number of threads in the Hoist direction (assuming a ratio of 1.5) is 1241*(1.5) &amp;#8776; 1861&lt;/p&gt;
+
+&lt;h2 id=&#34;number-of-colors-distinguishable-by-the-human-eye&#34;&gt;Number of Colors Distinguishable by the Human Eye&lt;/h2&gt;
+
+&lt;p&gt;This number is about 10,000,000 &lt;a href=&#34;http://hypertextbook.com/facts/2006/JenniferLeong.shtml&#34;&gt;[4]&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;**The number of distinct, 15 foot, &lt;sup&gt;3&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2&lt;/sub&gt; flags made of size 69 polyester thread is **&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ 2^{1861\times1241}(10,000,000)^{1861+1241} \approx 1.19 \times 10^{716943} $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;This is a 716,944 digit number, the number of possible flags is so much higher than &lt;a href=&#34;http://www.wolframalpha.com/input/?i=number+of+particles+in+the+universe&#34;&gt;the number of atoms in the observable Universe&lt;/a&gt; that it isn&amp;rsquo;t even plausible to assume that all of them could ever be exhausted.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fixed point in ruby hash function</title>
+      <link>/blog/2013/04/30/fixed-point-in-ruby-hash-function/</link>
+      <pubDate>Tue, 30 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/04/30/fixed-point-in-ruby-hash-function/</guid>
+      <description>&lt;p&gt;A fixed point of a function  \( f:S \to S \) is an element \(x \in
+S\) such that&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ f(x) = x $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;That is, \(f\) is a no-op on \(x\). Some examples:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The identity function on any set has all points as fixed points&lt;/li&gt;
+&lt;li&gt;The absolute value function has any positive real number as a fixed
+point&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;http://fmota.eu/blog/base64-fixed-point.html&#34;&gt;base64 encoding function has a string as a fixed point&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(Check out that link above, fmota wrote about how they discovered a
+fixed point in the base64 encoding function, it&amp;rsquo;s very interesting)&lt;/p&gt;
+
+&lt;p&gt;Ruby&amp;rsquo;s &lt;code&gt;Fixnum&lt;/code&gt; class has an instance method called &lt;code&gt;hash&lt;/code&gt;. It is the
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash_function#Hash_tables&#34;&gt;hash function&lt;/a&gt;
+used by the &lt;code&gt;Hash&lt;/code&gt; class to locate the value.&lt;/p&gt;
+
+&lt;p&gt;One thing to note that is interesting,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;42.class == 42.hash.class # true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The integer literal &lt;code&gt;42&lt;/code&gt; is an instance of Ruby&amp;rsquo;s &lt;code&gt;Fixnum&lt;/code&gt; class,
+which is exactly the type that is returned by &lt;code&gt;Fixnum#hash&lt;/code&gt;. So, if we
+let &lt;code&gt;N&lt;/code&gt; be the set of all &lt;code&gt;Fixnum&lt;/code&gt; values, and &lt;code&gt;h&lt;/code&gt; be the hash function,
+then the function&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$h: N \to N $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Does &lt;code&gt;h&lt;/code&gt; have a fixed point? Let&amp;rsquo;s find out, the generic way to find a
+fixed point is to apply the function over and over and see if any of
+the iterates are the same:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ x, f(x), f(f(x)), f(f(f(x))), f(f(f(f(x)))), &amp;hellip; $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;In Ruby, we could start with a value &lt;code&gt;n&lt;/code&gt; and loop until the next step
+is the same as the current step:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+def find_fixed_point(n)
+  m = n.hash
+
+  while n != m
+    puts n
+
+    n = m
+    m = m.hash
+  end
+
+  puts n
+  puts m
+end
+
+find_fixed_point(42)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code terminates in 62 steps, here is the output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;42
+1818615832163790001
+97302458964831319
+3241638738618469355
+-1538644867632915805
+4556542729113842835
+-707745146237515789
+4042604241838953267
+-3938749251519753037
+-3262109345615183437
+2726245977638182835
+2363300705344768947
+-1077013243652537421
+3673817879955862451
+4480325791167763379
+-3402798086540651597
+4108231692027892659
+742946247983240115
+3380480562708485043
+-3611524319884209229
+2461606551736423347
+2556374051055866803
+-853528980180560973
+301437974151041971
+-684460774007630925
+2785951334519935923
+1234765569947210675
+3485015807817552819
+-2988541774381313101
+-2969442663896050765
+3743208565546292147
+-2143850698816220237
+985968426639299507
+-2191943438346873933
+465213455999570867
+-1249312491853966413
+-1963857645314632781
+3582438201892410291
+146054934450017203
+-2298892513473850445
+-813726632499604557
+-1775501339152477261
+-4287223502620716109
+-2436529928794664013
+-3361799749893745741
+487423333182608307
+4144170308747006899
+1852752892089734067
+1009031649399542707
+-1504821367603326029
+-1663010304514714701
+1979275894121173939
+657469403487933363
+-3805597827236228173
+-608042091803176013
+3625341557925090227
+-4337022583265946701
+4381946295323333555
+-3544389048848739405
+-4409080177303874637
+3084909602640630707
+1931988098033783731
+-373854911179910221
+4237831107247477683
+4237831107247477683
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So the integer &lt;code&gt;4237831107247477683&lt;/code&gt; is a fixed point of
+&lt;code&gt;Fixnum#hash&lt;/code&gt;, that means that in the implementation of &lt;code&gt;Hash&lt;/code&gt;, the
+value &lt;code&gt;4237831107247477683&lt;/code&gt; would have itself as a key.&lt;/p&gt;
+
+&lt;p&gt;There are more examples (play with the code yourself!), and I would
+like to look deeper into why this hash function has a fixed point.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Swap values in C without intermediate variable</title>
+      <link>/blog/2013/02/18/swap-values-in-c-without-intermediate-variable/</link>
+      <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/02/18/swap-values-in-c-without-intermediate-variable/</guid>
+      <description>&lt;p&gt;Using the following properties of the XOR function:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Associativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $(a \oplus b) \oplus c =  a \oplus (b \oplus c) $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Commutativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus b =  b \oplus a $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Identity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus 0 = a $
+{% endlatex %}&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Self-Inverse&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;{% latex %}
+  $a \oplus a = 0 $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;As a bit of trivia, note that all n-bit integers form an &lt;a href=&#34;http://en.wikipedia.org/wiki/Abelian_group&#34;&gt;Abelian Group&lt;/a&gt; under XOR. The proof of which can be found by using the obvious isomorphism of n-bit integers with &lt;code&gt;{0,1}&lt;/code&gt;&lt;sup&gt;n&lt;/sup&gt; under addition modulo 2. Note that addition modulo 2 is equivalent to bitwise XOR.&lt;/p&gt;
+
+&lt;p&gt;So, using the C programming language, we can use the convenient &lt;code&gt;^=&lt;/code&gt; operator as a way to swap the values of a and b without using an intermediate variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;  a ^= b;      // (a ^ b)
+  b ^= a;      // b ^ (a ^ b)   which is the original a
+  a ^= b;      // (a ^ b) ^ b   which is the original b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is a full working program that implements this operation using a C macro:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include &amp;lt;stdio.h&amp;gt;
+
+#define show(a,b)	printf(&amp;quot;a = %d, b = %d\n&amp;quot;, a, b);
+
+#define swap(a,b) \
+  a^=b;  \
+  b^=a;  \
+  a^=b;
+
+int main(int argc, char *argv[]) {
+  int a = 3, b = 5;
+  show(a,b);
+
+  swap(a,b);
+
+  show(a,b);
+  return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Optimize your vote using statistics</title>
+      <link>/blog/2012/09/04/optimize-your-vote-using-statistics/</link>
+      <pubDate>Tue, 04 Sep 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/09/04/optimize-your-vote-using-statistics/</guid>
+      <description>&lt;p&gt;I used to hate the phrase &amp;ldquo;throwing your vote away.&amp;rdquo;. This is usually
+used in response to people voting for someone who is probably not going
+to win. Even though we have &lt;a href=&#34;http://en.wikipedia.org/wiki/List_of_political_parties_in_the_United_States#Major_political_parties&#34;&gt;five major parties&lt;/a&gt; in the United States, chances are, the winner is going to either a Republican or a Democrat.&lt;/p&gt;
+
+&lt;p&gt;The reason I hated that phrase so much is that it discourages people
+from voting for their ideal candidate for pragmatic reasons. Chances
+are, a non-Democrat, non-Republican is not going to win, so cut your
+losses and pick a candidate that you &lt;em&gt;dislike least&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, as I&amp;rsquo;ve gotten slightly older, I have come to appreciate how
+necessary compromise is. What has me more hopeful is that you can
+compromise with precision. I&amp;rsquo;ll explain what I mean by first giving some
+context.&lt;/p&gt;
+
+&lt;p&gt;Scott Hanselman &lt;a href=&#34;https://twitter.com/shanselman/status/243032228655951872&#34;&gt;mentioned this site on twitter today&lt;/a&gt; called &lt;a href=&#34;http://isidewith.com&#34;&gt;isidewith.com&lt;/a&gt;. It asks you a series of questions about issues that frequently arise in political debates. It then asks you to rate the importance of the issues, and then gives you a list of the percent with which you agree with all the candidates running for Present in 2012.&lt;/p&gt;
+
+&lt;p&gt;So, you can choose your ideal candidate based on how many issues you agree on. For example, I answered the questions and got this as a match:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Gary Johnson 83%&lt;/li&gt;
+&lt;li&gt;Jill Stein 82%&lt;/li&gt;
+&lt;li&gt;Barack Obama 81%&lt;/li&gt;
+&lt;li&gt;Mitt Romney 31%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;From these results, it looks like a very close call between Johnson,
+Stein and Obama. Based on these results, my ideal candidate is probably
+one of these three.&lt;/p&gt;
+
+&lt;p&gt;So here is where we can compromise with precision, since I have three
+almost identical matches (with respect to the battery of questions I
+answered about various political issues). I can now decide which of
+these three to vote on based on the likelihood they will win.&lt;/p&gt;
+
+&lt;p&gt;The original reason I was so bothered by this is was that I thought that
+ideals determined &lt;em&gt;one and only one&lt;/em&gt; ideal candidate. But by letting
+data about the issues determine which candidates were ideal, I
+allow for the possibility of multiple near-ideal matches.&lt;/p&gt;
+
+&lt;p&gt;Then, given the set of near ideal matches, I can take into account which
+is most likely to win, and cast my vote accordingly.&lt;/p&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s get to some statistics, since my title promised it, and
+because we can use this to actually calculate who you should vote for.
+In fact, if a good enough model can be generated to this effect, perhaps
+we could replace voting for a single individual with taking a test, and
+having a computer calculate your vote for you. That would be a much
+better way to have the candidate reflect the majority views in the
+United States.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with some definitions, the &lt;strong&gt;expected value&lt;/strong&gt; of a random
+variable X, where X can take on any of the n values {x&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip; x&lt;sub&gt;n&lt;/sub&gt;}
+with corresponding probabilities {p&lt;sub&gt;1&lt;/sub&gt;, &amp;hellip; p&lt;sub&gt;n&lt;/sub&gt;}, is
+just the sum of those probabilities, times the corresponding value:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ E(X) = \sum_{i=1}^n p_ix_i $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;So the expected value is a sort of weighted average over all of the
+values the random variable could take on. The part of this I will be
+using is the p&lt;sub&gt;i&lt;/sub&gt; factor. Given this definition, there
+naturally follows an &amp;ldquo;expected maximum&amp;rdquo;, denoted Emax(X).&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ Emax(X) = \max{ p_ix&lt;em&gt;i }&lt;/em&gt;{i=1}^n $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;I make a further modification to
+this model and use the &lt;strong&gt;issues coefficient&lt;/strong&gt; c&lt;sub&gt;i&lt;/sub&gt;. For example, I was an 83% match with Gary Johnson, so if Johnson is represented by the value x&lt;sub&gt;i&lt;/sub&gt;, then c&lt;sub&gt;i&lt;/sub&gt; = 0.83.&lt;/p&gt;
+
+&lt;p&gt;So, using this model we have two values that need to be accounted
+for before we can decide who to vote for, there is p&lt;sub&gt;i&lt;/sub&gt;, which is the probability that the i-th candidate will win, and then there is c&lt;sub&gt;i&lt;/sub&gt;, the degree to which the voter agrees with the candidate on the relevant issues. Since we don&amp;rsquo;t know who is going to win, we set all x&lt;sub&gt;i&lt;/sub&gt; = 1, and we can ignore that altogether, so the expected maximum becomes:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ Emax(X) = \max{ c_ip&lt;em&gt;i }&lt;/em&gt;{i=1}^n $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Now, in my case, I have all of the four c&lt;sub&gt;i&lt;/sub&gt; values, but I don&amp;rsquo;t
+have the p&lt;sub&gt;i&lt;/sub&gt; values. To find these values, we could start with
+the number of electoral representatives per party. I have not been able to find
+this data, but If I did, I could calculate the perfect choice of a vote,
+one that would be balanced between idealism and pragmatism.&lt;/p&gt;
+
+&lt;p&gt;Note: If any of you can find data on the number of electoral
+representatives per political party, I will happily make this into an
+app that will calculate a suggestion based on this model. It will take
+your &lt;a href=&#34;http://isidewith.com&#34;&gt;isidewith.com&lt;/a&gt; data and then weigh that with
+the proportion of electoral votes for the corresponding party.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Probability of getting a numerical SHA-1 hash</title>
+      <link>/blog/2012/07/21/probability-of-getting-a-numerical-sha-1-hash/</link>
+      <pubDate>Sat, 21 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/07/21/probability-of-getting-a-numerical-sha-1-hash/</guid>
+      <description>&lt;p&gt;Git uses the &lt;a href=&#34;http://en.wikipedia.org/wiki/SHA-1&#34;&gt;SHA-1 hash function&lt;/a&gt; to ensure the integrity of the data it stores. One important property of this function is that if the input is changed very slightly, the output changes completely. The output is supposed to be indistinguishable from randomness.&lt;/p&gt;
+
+&lt;p&gt;Just yesterday, I was checking a git repository on GitHub, and I noticed
+this:&lt;/p&gt;
+
+&lt;p&gt;{% img /images/blogimg/sha1num.png %}&lt;/p&gt;
+
+&lt;p&gt;The 10 character substring of the full SHA-1 hash of the latest commit
+happened to be all numerical. How likely is this to happen?&lt;/p&gt;
+
+&lt;p&gt;Well, since good hash functions are supposed to produce output that is indistinguishable from randomness, we can assume they are randomly drawn from the sample space of all 40-character strings over the hexadecimal alphabet {0,1,2,&amp;hellip;,d,e,f}. The probability that a single character chosen from this alphabet is numerical is just &lt;sup&gt;10&lt;/sup&gt;&amp;frasl;&lt;sub&gt;16&lt;/sub&gt;&lt;/p&gt;
+
+&lt;p&gt;Since each of the 40 characters is independent and uniformly distributed, the probability that the entire string is numerical is:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+  $ \Pi_{i=1}^{40}{\frac{10}{16}} = \left( \frac{10}{16} \right)^{40} = 6.8423 \times 10^{-9} $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;That is 0.0000000068423, that is really small, but also, I was only looking at the first 10 characters, so the probability is going to be bigger, it is (&lt;sup&gt;10&lt;/sup&gt;&amp;frasl;&lt;sub&gt;16&lt;/sub&gt;)&lt;sup&gt;10&lt;/sup&gt; = 0.0090949, or 0.9%. In fact, this is big enough that I should expect to see this every 112 commits.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

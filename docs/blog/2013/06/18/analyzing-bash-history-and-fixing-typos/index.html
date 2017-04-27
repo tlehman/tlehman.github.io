@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Analyzing Bash History and Fixing Typos</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Analyzing Bash History and Fixing Typos</h1>
+			<div>
+				<p>At the command line, I frequently type things too fast, and typos abound. A single character can mean the difference between showing documentation and deleting files (<code>rm</code> vs <code>ri</code>), so autocorrect is definitely a bad idea in this context.</p>
+
+<p>Instead of a generic autocorrect, a better idea is to find the most common mistakes. To do so, I used frequency analysis like in <a href="/blog/2013/01/28/reinventing-the-wheel-or-how-i-learned-to-stop-coding-and-read-the-manpages/">this post</a> to narrow down what I use most at the shell:</p>
+
+<pre><code class="language-bash">$ cat ~/.bash_history | 
+     awk -F\| '{print $1}' | 
+     sort | 
+     uniq -c | 
+     sort -n | 
+     tail -15
+
+ 157 rake routes
+ 221 dbtt
+ 232 git fetch -p
+ 300 rails c
+ 370 gi ts
+ 376 g gs
+ 403 git add .
+ 405 rails s
+ 406 git b
+ 433 exit
+ 435 git lg
+ 663 git diff
+1112 ls
+1898 clear
+4486 git s
+</code></pre>
+
+<p>Notice that <code>gi ts</code> is extremely common, I meant to type <code>git s</code> all those 376 times. As a solution, I could just alias it, but I would prefer a more general solution that would handle <code>gi tdiff</code> and <code>gi tb</code> as <code>git diff</code> and <code>git b</code> respectively.</p>
+
+<p>I made the following script called <code>~/bin/gi</code>:</p>
+
+<pre><code class="language-bash">#!/bin/sh
+
+if   [[ $1 =~ 'ts' ]]; then
+  git s
+elif [[ $1 =~ 'tb' ]]; then
+  git b 
+elif [[ $1 =~ 'tdiff' ]]; then
+  git diff
+fi
+</code></pre>
+
+<p>So that <code>gi ts</code> is no longer a mistake, it means what I meant it to mean. This saves me a few keystrokes, and it is a good example of why scripts in your path are generally better than aliases, since you can have logic in them.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

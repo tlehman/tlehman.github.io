@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Making a Go Game for the Web</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Making a Go Game for the Web</h1>
+			<div>
+				
+
+<p>I&rsquo;ve been feeling productive in the last few weeks. I just finished two Coursera classes, one in machine learning and one in Swift programming. I also finished my minimum viable go game: <a href="http://goga.me">goga.me</a>. And we are working on a really exciting feature at work. I really like having lots of interesting things to work on. Anyway, enough feelings, you came here for games and code.</p>
+
+<p>The game of Go is ancient, it has very few rules, but an unfathomable level of complexity emerges from all the possible ways the pieces can be put on the board. The graphics were very straightforward to implement, it&rsquo;s just a square grid with some colored circles, I don&rsquo;t usually work with graphics, so I experimented with some different web technologies to see what worked best.</p>
+
+<p><img src="/images/blogimg/gogame_screenshot_0.png" alt="example go game" /></p>
+
+<h2 id="attempt-1-html5-canvas">Attempt 1, HTML5 Canvas</h2>
+
+<p>About a year ago I wrote a Go board using the HTML5 &lt;canvas&gt; element, <a href="https://github.com/tlehman/go-websocket/blob/master/go_game.js">here&rsquo;s the source code</a>, it doesn&rsquo;t actually have a server side, I decided to ditch that approach, since canvas is really great for making arbitrarily complicated bitmap graphics, but I needed something much simpler. Also, when zooming in on a phone, the click event location was not the same as the location where the code drew a new piece.</p>
+
+<h2 id="attempt-2-svg">Attempt 2, SVG</h2>
+
+<p>After almost a year I came back to the project, I wrote out a rails backend for the data storage and game logic, and then learned SVG (Scalable Vector Graphics). Here&rsquo;s <a href="https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/views/matches/show.html.erb">the source code</a>, what I like about SVG is that I can make the board positions part of the <a href="https://en.wikipedia.org/wiki/Document_Object_Model">DOM</a> and bind javascript events to the positions. This solves a problem with zooming, so that when I zoom in on a phone, the click event shows up in the right position.</p>
+
+<h2 id="websockets-enabling-live-back-and-forth-gameplay">WebSockets, enabling live back and forth gameplay</h2>
+
+<p>Another exciting technology that I spent some time learning about was <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">WebSockets</a>, this allows two players to open a direct connection to one another, so that as soon as someone plays a piece, the other one knows. This way, the user does not have to refresh, it&rsquo;s all live. I used the websockets-rails library to handle setting up a user-to-user connection through the rails backend. The <a href="https://github.com/tlehman/goga.me/blob/master/app/views/matches/show.html.erb#L67-L80">source code to handle binding and triggering is here</a>. To see it in action, <a href="http://goga.me/users/sign_up">make an account at goga.me</a>, and then <a href="http://goga.me/matches/new">create a match</a>, and click &lsquo;Start Match&rsquo;, that will start a match against yourself, you can open it up on multiple devices, and when you start playing, the other screen will immediately update, it&rsquo;s pretty cool!</p>
+
+<h2 id="other-challenges">Other challenges</h2>
+
+<p>After getting the graphics and networking to work correctly, the only other major challenge was handling capturing. Capturing is where one color completely surrounds the other color, and the surrounded pieces get removed, you can see it in the following screen capture:</p>
+
+<p><img src="/images/blogimg/gogame_capturing.gif" alt="example capturing in a go game" /></p>
+
+<p>The challenge is to determine the parts of the board that are connected. Since each piece can only be connected to it&rsquo;s four neighboring pieces of the same color, you can start finding connected components by picking a point and walking to every piece connected to it that is the same color. A prime choice for this problem is a breadth first search:</p>
+
+<h2 id="breadth-first-search">Breadth First Search</h2>
+
+<p>To wrap my head around this algorithm I had to get out my trusty graph theory book. Here&rsquo;s a summary of the algorithm and an example:</p>
+
+<p><strong>Input</strong>: An unweighted graph and a start vertex u</p>
+
+<p><strong>Idea</strong>:</p>
+
+<ul>
+<li>Maintain a set R of vertices that have been reached but not searched and</li>
+<li>a set S of vertices that have been searched.</li>
+<li>The set R is maintained as a First-In First-Out list (<a href="https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29">queue</a>)</li>
+</ul>
+
+<p><strong>Initialization</strong>: R = {u}, S = ø, d(u,u) = 0</p>
+
+<p><strong>Iteration</strong>: As long as R &neq; ø, we search from the first vertex v of R. The neighbors of v not in (S U R) are added to the back of R and then v is removed from the front of R and placed in S.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Let G be the adjacency graph of the following Go shape:</p>
+
+<pre><code>   1  2  3  4  5  6
+ 1    .  o  o  o  .
+ 2    .  .  .  .  .  &lt;--- black component
+ 3    .
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>v</th>
+<th>R</th>
+<th>S</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>(2,1)</td>
+<td>[(2,1)]</td>
+<td>{}</td>
+</tr>
+
+<tr>
+<td>(2,1)</td>
+<td>[(2,2)]</td>
+<td>{(2,1)}</td>
+</tr>
+
+<tr>
+<td>(2,2)</td>
+<td>[(2,3),(3,2)]</td>
+<td>{(2,1),(2,2)}</td>
+</tr>
+
+<tr>
+<td>(2,3)</td>
+<td>[(3,2)]</td>
+<td>{(2,1),(2,2),(2,3)}</td>
+</tr>
+
+<tr>
+<td>(3,2)</td>
+<td>[(4,2)]</td>
+<td>{(2,1),(2,2),(2,3),(3,2)}</td>
+</tr>
+
+<tr>
+<td>(4,2)</td>
+<td>[(5,2)]</td>
+<td>{(2,1),(2,2),(2,3),(3,2),(4,2)}</td>
+</tr>
+
+<tr>
+<td>(5,2)</td>
+<td>[(6,2)]</td>
+<td>{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2)}</td>
+</tr>
+
+<tr>
+<td>(6,2)</td>
+<td>[(6,1)]</td>
+<td>{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2)}</td>
+</tr>
+
+<tr>
+<td>(6,1)</td>
+<td>[]</td>
+<td>{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2),(6,1)}</td>
+</tr>
+</tbody>
+</table>
+
+<p><br> <br></p>
+
+<p>Once I worked through the steps with this example and several others, writing the code to implement it was very straightforward, here&rsquo;s the <a href="https://github.com/tlehman/go-websocket/blob/8094890048ca845c0fef416573b8aba533ca6ea9/jasmine/src/ComponentMap.js#L16-L51">javascript version</a> and the <a href="https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/presenters/board_presenter.rb#L24-L41">ruby version</a>.</p>
+
+<p>My go game is at a good stopping point for now, I still need to fix a few edge cases and add a chat feature. Also, I realized how satisfying it is to take a bunch of stuff I learned and make something real with it. I plan on making a native mobile client to this (iOS and Android), but that will take some more time and work.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

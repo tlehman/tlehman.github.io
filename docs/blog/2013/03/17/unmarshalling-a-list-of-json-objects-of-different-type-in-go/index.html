@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Unmarshalling a list of JSON objects of different type in Go</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Unmarshalling a list of JSON objects of different type in Go</h1>
+			<div>
+				<p>This post started with mattyw&rsquo;s blog post <a href="http://mattyjwilliams.blogspot.co.uk/2013/01/using-go-to-unmarshal-json-lists-with.html">Using go to unmarshal json lists with multiple types</a></p>
+
+<p>To summarize the article, we are given a JSON string of the form:</p>
+
+<pre><code class="language-json">{
+    &quot;things&quot;: [
+        {
+            &quot;name&quot;: &quot;Alice&quot;,
+            &quot;age&quot;: 37
+        },
+        {
+            &quot;city&quot;: &quot;Ipoh&quot;,
+            &quot;country&quot;: &quot;Malaysia&quot;
+        },
+        {
+            &quot;name&quot;: &quot;Bob&quot;,
+            &quot;age&quot;: 36
+        },
+        {
+            &quot;city&quot;: &quot;Northampton&quot;,
+            &quot;country&quot;: &quot;England&quot;
+        }
+    ]
+}
+</code></pre>
+
+<p>And our goal is to unmarshal it into a Go data structure. The article goes into more detail, and two solutions were proposed. A commenter came up with a third solution, and another commenter <a href="https://github.com/dustin/">dustin</a> proposed using his library called <a href="https://github.com/dustin/go-jsonpointer">jsonpointer</a>, which operates on the raw byte array of the json string, instead of unmarshalling first and then traversing the data structure.</p>
+
+<p>I used Dustin&rsquo;s library, and to great avail, the only gotcha was that json strings were returned with the double quotes in them and some trailing spaces, but I made a little function that returned a slice of the original bytes:</p>
+
+<pre><code class="language-go">func trimJsonBytes(toTrim []byte) []byte {
+    // implementation found in solution.go
+}
+</code></pre>
+
+<p>Here is the algorithm:</p>
+
+<pre><code>loop i:=0,1,2,...∞
+  if  /things/i/name  is empty
+    make a person
+    append it to the person array
+
+  else if /things/i/city is empty
+    make a place
+    append it to the places array
+
+  else 
+    end of array, break out of loop
+
+end loop
+</code></pre>
+
+<p>The full source code can be found <a href="https://github.com/tlehman/json_unmarshall_blogchallenge">here</a></p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>script for logging standing desk state transitions</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>script for logging standing desk state transitions</h1>
+			<div>
+				<p>At work I have an adjustible-height desk, that way it can be both a standing or a sitting desk.
+In order to better understand my own usage habits, I made the <a href="https://github.com/tlehman/bin#desk">desk</a> script,
+ which logs state transitions.</p>
+
+<p>Running <code>desk up</code> records the time that the desk was moved up into a standing position, and <code>desk down</code> records the
+time the desk was moved into the sitting position. Later, when I have a few months of data, I&rsquo;ll do some analysis and
+see what the probabilities are in the following state transition diagram:</p>
+
+<p>{% img /images/blogimg/desk.png %}</p>
+
+<p>The script builds a CSV file, and implements a simple interface:</p>
+
+<pre><code>desk up    # log transition to &quot;up&quot; state at current time
+desk down  # log transition to &quot;down&quot; state at current time
+desk log   # show last 5 state transitions along with time
+</code></pre>
+
+<p>Here&rsquo;s the source code</p>
+
+<pre><code class="language-bash">log_filename=&quot;/path/to/log/file&quot;
+
+function create_log_file_if_not_exists {
+  if [ ! -e $log_filename ]
+  then
+    echo &quot;timestamp,state&quot; &gt; $log_filename
+  fi
+}
+
+function log_new_state {
+  create_log_file_if_not_exists
+
+  local state=$1
+  local timestamp=$(date --iso-8601=seconds)
+
+  echo &quot;$timestamp,$state&quot; &gt;&gt; $log_filename
+}
+
+function show_log {
+  create_log_file_if_not_exists
+
+  echo &quot;timestamp                 state&quot;
+  awk &lt; $log_filename -F, 'NR &gt; 1 {print $1&quot;  &quot;$2}' | tail -5
+}
+
+if [ $1 = &quot;up&quot; ] || [ $1 = &quot;down&quot; ]
+then
+  log_new_state $1
+elif [ $1 = &quot;log&quot; ]
+then
+  show_log
+else
+  echo &quot;Invalid command: $1&quot;
+  exit 1
+fi
+</code></pre>
+
+<p>This will allow me to use a <a href="https://en.wikipedia.org/wiki/Markov_chain">Markov chain</a> to model my sitting/standing
+habits. More on markov chains in a later blog post.</p>
+
+<p>On the health benefits (or problems) with standing, I am not a medical professional, but I think alternating sitting
+and standing is probably better than all sitting or all standing.</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

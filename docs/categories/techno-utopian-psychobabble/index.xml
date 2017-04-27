@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Techno Utopian Psychobabble on tlehman@home</title>
+    <link>/categories/techno-utopian-psychobabble/index.xml</link>
+    <description>Recent content in Techno Utopian Psychobabble on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/techno-utopian-psychobabble/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Viewing NSA Accountability Act amendments as a diff</title>
+      <link>/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/</link>
+      <pubDate>Sat, 14 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/</guid>
+      <description>&lt;p&gt;A new bill (HR3070) was just introduced a few days ago by Rep. Michael Fitzpatrick [R-PA8]. The bill is:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;To amend section 501 of the Foreign Intelligence Surveillance Act of 1978 to reform access to certain business records for foreign intelligence and international terrorism investigations, and for other purposes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The bill is unusually small, but notice section 2, subsection a:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  SECTION 1. SHORT TITLE.
+  This Act may be cited as the ‘NSA Accountability Act’.
+
+  SECTION 2. REFORMS TO ACCESS TO CERTAIN BUSINESS RECORDS FOR FOREIGN INTELLIGENCE AND INTERNATIONAL TERRORISM INVESTIGATIONS.
+  (a) In General- Subsection (b)(2)(A) of section 501 of the Foreign Intelligence Surveillance Act of 1978 (50 U.S.C. 1861) is amended--
+
+    (1) in the matter preceding clause (i)--
+      (A) by inserting ‘specific and articulable’ before ‘facts showing’;
+      (B) by inserting ‘and material’ after ‘are relevant’; and
+      (C) by striking ‘clandestine intelligence activities’ and all that follows and inserting ‘clandestine intelligence activities and pertain only to an individual that is the subject of such investigation; and’; and
+
+  (2) by striking clauses (i) through (iii).
+
+  (b) Withholding of Funds- Notwithstanding any other provision of law, in the case of a violation of section 501 of the Foreign Intelligence Surveillance Act of 1978 (50 U.S.C. 1861) in a fiscal year, all unobligated funds made available for such fiscal year to carry out such section shall be withheld for the period beginning on the date of such violation and ending on September 30 of such fiscal year.
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It&amp;rsquo;s describing low level text editing operations, here&amp;rsquo;s how it would look as a colored git-style diff:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-diff&#34;&gt;diff --git &amp;quot;a/50_USC_\302\2471861.txt&amp;quot; &amp;quot;b/50_USC_\302\2471861.txt&amp;quot;
+index 59e32ec..4bc562a 100644
+--- &amp;quot;a/50_USC_\302\2471861.txt&amp;quot;
++++ &amp;quot;b/50_USC_\302\2471861.txt&amp;quot;
+@@ -12,10 +12,7 @@ Each application under this section—
+         (A) a judge of the court established by section 1803 (a) of this title; or
+         (B) a United States Magistrate Judge under chapter 43 of title 28, who is publicly designated by the Chief Justice of the United States to have the power to hear applications and grant orders for the production of tangible things under this section on behalf of a judge of that court; and
+     (2) shall include—
+-        (A) a statement of facts showing that there are reasonable grounds to believe that the tangible things sought are relevant to an authorized investigation (other than a threat assessment) conducted in accordance with subsection (a)(2) to obtain foreign intelligence information not concerning a United States person or to protect against international terrorism or clandestine intelligence activities, such things being presumptively relevant to an authorized investigation if the applicant shows in the statement of the facts that they pertain to—
+-            (i) a foreign power or an agent of a foreign power;
+-            (ii) the activities of a suspected agent of a foreign power who is the subject of such authorized investigation; or
+-            (iii) an individual in contact with, or known to, a suspected agent of a foreign power who is the subject of such authorized investigation; and
++        (A) a statement of specific and articulable facts showing that there are reasonable grounds to believe that the tangible things sought are relevant and material to an authorized investigation (other than a threat assessment) conducted in accordance with subsection (a)(2) to obtain foreign intelligence information not concerning a United States person or to protect against international terrorism or clandestine intelligence activities and pertain only to an individual that is the subject of such investigation; and
+         (B) an enumeration of the minimization procedures adopted by the Attorney General under subsection (g) that are applicable to the retention and dissemination by the Federal Bureau of Investigation of any tangible things to be made available to the Federal Bureau of Investigation based on the order requested in such application.
+ (c) Ex parte judicial order of approval
+     (1) Upon an application made pursuant to this section, if the judge finds that the application meets the requirements of subsections (a) and (b), the judge shall enter an ex parte order as requested, or as modified, approving the release of tangible things. Such order shall direct that minimization procedures adopted pursuant to subsection (g) be followed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The next logical step would be to put these documents (the whole United States Code and all other established law) into a git repository, then Congress could use &lt;a href=&#34;http://git-scm.com/book/en/Git-Branching-Basic-Branching-and-Merging&#34;&gt;branches&lt;/a&gt; to work on their drafts, and &lt;a href=&#34;https://help.github.com/articles/using-pull-requests&#34;&gt;pull requests&lt;/a&gt; for the various votes, merging or closing depending on the vote count.&lt;/p&gt;
+
+&lt;p&gt;I am not even close to the first person to think of this, here are a few that had a similar idea first:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.abevoelker.com/gitlaw-github-for-laws-and-legal-documents-a-tourniquet-for-american-liberty/&#34;&gt;Abe Voelker&lt;/a&gt; on GitLaw&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.docracy.com/application/about&#34;&gt;John Watkinson, Matt Hall, Veronica Picciafuocco, John Watkinson, Alvaro Casanova&lt;/a&gt; from Docracy&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.wired.com/wiredenterprise/2012/08/bundestag/&#34;&gt;Stefan Wehrmeyer&lt;/a&gt; with all of German Federal Law&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Requiring all law to be in this form is a good first step toward my ideal of Computable Law. The idea is basically that all laws have to be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;accessible by a computer&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;unambiguous enough to be interpreted by a computer, such that:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;any relation to existing law can be discovered&lt;/li&gt;
+&lt;li&gt;consistency with existing law can be checked&lt;/li&gt;
+&lt;li&gt;hypothetical situations could be tested for legality&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using git and diff to view amendments would only work towards (1), the next step would require that all existing law is first accessible by computer. Then, it would have to be converted into a computer language such as &lt;a href=&#34;https://en.wikipedia.org/wiki/Prolog&#34;&gt;Prolog&lt;/a&gt; that alone would lead to much debate, particularly when ambiguities are encountered. Then, programs could be written to interpret it and compute verdicts to cases. Another benefit would be the ability to identify all contradictions, and then remove them.&lt;/p&gt;
+
+&lt;p&gt;The next step would be to have a robotic authority above all three &lt;a href=&#34;/blog/2013/08/13/an-unbalance-of-powers/&#34;&gt;(or four)&lt;/a&gt; branches of Government, that ensures our elected officials are behaving according to those rules. Law is ineffectual unless it is enforced, and law cannot be enforced by a robot that doesn&amp;rsquo;t understand the rules it is supposed to be enforcing.&lt;/p&gt;
+
+&lt;p&gt;If I had any intial point at all, it would be: &lt;em&gt;Legislators should use modern tools for recording changes to laws&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then we can get on to replacing them with machines.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

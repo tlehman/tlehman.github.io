@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on tlehman@home</title>
+    <link>/categories/golang/index.xml</link>
+    <description>Recent content in Golang on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>White House releases first ever open source budget proposal</title>
+      <link>/blog/2015/02/03/white-house-releases-first-ever-open-source-budget-proposal/</link>
+      <pubDate>Tue, 03 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/02/03/white-house-releases-first-ever-open-source-budget-proposal/</guid>
+      <description>&lt;p&gt;The White House just released the &lt;a href=&#34;https://github.com/WhiteHouse/2016-budget-data&#34;&gt;first ever open source budget proposal&lt;/a&gt;. It is released on GitHub, and it&amp;rsquo;s a bunch of CSV files. This is not very difficult, it requires only a few extra clicks when exporting an Excel spreadsheet, but hosting it on GitHub also opens it up to &lt;a href=&#34;https://help.github.com/articles/using-pull-requests/&#34;&gt;Pull Requests&lt;/a&gt;, which I&amp;rsquo;ve &lt;a href=&#34;/blog/2013/09/14/viewing-nsa-accountability-act-amendments-as-a-diff/&#34;&gt;talked about before&lt;/a&gt; as being a much better tool for 21st century democracy. Instead of paper and a bunch of politicians in a room following procedure, we should intead have a digital system where all citizens can contribute as easily as they can update a facebook status or apply an instagram filter.&lt;/p&gt;
+
+&lt;p&gt;One huge caveat is in order though: there is no reason to assume that the White House and Congress will even consider pull requests, let alone apply them. This aside, I will experiment with this, I&amp;rsquo;ve already modified &lt;a href=&#34;https://github.com/dinedal/textql/pull/39&#34;&gt;textql&lt;/a&gt; so that I can easily query these CSV files from a SQLite database. If I have an idea about how I&amp;rsquo;d like to change the budget, I&amp;rsquo;ll submit the pull request and then follow it&amp;rsquo;s response, if any.&lt;/p&gt;
+
+&lt;p&gt;Caveats aside, I am impressed with the choice of technologies for making these public issues more accessible.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Unmarshalling a list of JSON objects of different type in Go</title>
+      <link>/blog/2013/03/17/unmarshalling-a-list-of-json-objects-of-different-type-in-go/</link>
+      <pubDate>Sun, 17 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/03/17/unmarshalling-a-list-of-json-objects-of-different-type-in-go/</guid>
+      <description>&lt;p&gt;This post started with mattyw&amp;rsquo;s blog post &lt;a href=&#34;http://mattyjwilliams.blogspot.co.uk/2013/01/using-go-to-unmarshal-json-lists-with.html&#34;&gt;Using go to unmarshal json lists with multiple types&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;To summarize the article, we are given a JSON string of the form:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;things&amp;quot;: [
+        {
+            &amp;quot;name&amp;quot;: &amp;quot;Alice&amp;quot;,
+            &amp;quot;age&amp;quot;: 37
+        },
+        {
+            &amp;quot;city&amp;quot;: &amp;quot;Ipoh&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;Malaysia&amp;quot;
+        },
+        {
+            &amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;,
+            &amp;quot;age&amp;quot;: 36
+        },
+        {
+            &amp;quot;city&amp;quot;: &amp;quot;Northampton&amp;quot;,
+            &amp;quot;country&amp;quot;: &amp;quot;England&amp;quot;
+        }
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And our goal is to unmarshal it into a Go data structure. The article goes into more detail, and two solutions were proposed. A commenter came up with a third solution, and another commenter &lt;a href=&#34;https://github.com/dustin/&#34;&gt;dustin&lt;/a&gt; proposed using his library called &lt;a href=&#34;https://github.com/dustin/go-jsonpointer&#34;&gt;jsonpointer&lt;/a&gt;, which operates on the raw byte array of the json string, instead of unmarshalling first and then traversing the data structure.&lt;/p&gt;
+
+&lt;p&gt;I used Dustin&amp;rsquo;s library, and to great avail, the only gotcha was that json strings were returned with the double quotes in them and some trailing spaces, but I made a little function that returned a slice of the original bytes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func trimJsonBytes(toTrim []byte) []byte {
+    // implementation found in solution.go
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here is the algorithm:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;loop i:=0,1,2,...∞
+  if  /things/i/name  is empty
+    make a person
+    append it to the person array
+
+  else if /things/i/city is empty
+    make a place
+    append it to the places array
+
+  else 
+    end of array, break out of loop
+
+end loop
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The full source code can be found &lt;a href=&#34;https://github.com/tlehman/json_unmarshall_blogchallenge&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on tlehman@home</title>
+    <link>/categories/ruby/index.xml</link>
+    <description>Recent content in Ruby on tlehman@home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Making a Go Game for the Web</title>
+      <link>/blog/2015/11/03/making-a-go-game-for-the-web/</link>
+      <pubDate>Tue, 03 Nov 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2015/11/03/making-a-go-game-for-the-web/</guid>
+      <description>
+
+&lt;p&gt;I&amp;rsquo;ve been feeling productive in the last few weeks. I just finished two Coursera classes, one in machine learning and one in Swift programming. I also finished my minimum viable go game: &lt;a href=&#34;http://goga.me&#34;&gt;goga.me&lt;/a&gt;. And we are working on a really exciting feature at work. I really like having lots of interesting things to work on. Anyway, enough feelings, you came here for games and code.&lt;/p&gt;
+
+&lt;p&gt;The game of Go is ancient, it has very few rules, but an unfathomable level of complexity emerges from all the possible ways the pieces can be put on the board. The graphics were very straightforward to implement, it&amp;rsquo;s just a square grid with some colored circles, I don&amp;rsquo;t usually work with graphics, so I experimented with some different web technologies to see what worked best.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gogame_screenshot_0.png&#34; alt=&#34;example go game&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;attempt-1-html5-canvas&#34;&gt;Attempt 1, HTML5 Canvas&lt;/h2&gt;
+
+&lt;p&gt;About a year ago I wrote a Go board using the HTML5 &amp;lt;canvas&amp;gt; element, &lt;a href=&#34;https://github.com/tlehman/go-websocket/blob/master/go_game.js&#34;&gt;here&amp;rsquo;s the source code&lt;/a&gt;, it doesn&amp;rsquo;t actually have a server side, I decided to ditch that approach, since canvas is really great for making arbitrarily complicated bitmap graphics, but I needed something much simpler. Also, when zooming in on a phone, the click event location was not the same as the location where the code drew a new piece.&lt;/p&gt;
+
+&lt;h2 id=&#34;attempt-2-svg&#34;&gt;Attempt 2, SVG&lt;/h2&gt;
+
+&lt;p&gt;After almost a year I came back to the project, I wrote out a rails backend for the data storage and game logic, and then learned SVG (Scalable Vector Graphics). Here&amp;rsquo;s &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/views/matches/show.html.erb&#34;&gt;the source code&lt;/a&gt;, what I like about SVG is that I can make the board positions part of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Document_Object_Model&#34;&gt;DOM&lt;/a&gt; and bind javascript events to the positions. This solves a problem with zooming, so that when I zoom in on a phone, the click event shows up in the right position.&lt;/p&gt;
+
+&lt;h2 id=&#34;websockets-enabling-live-back-and-forth-gameplay&#34;&gt;WebSockets, enabling live back and forth gameplay&lt;/h2&gt;
+
+&lt;p&gt;Another exciting technology that I spent some time learning about was &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API&#34;&gt;WebSockets&lt;/a&gt;, this allows two players to open a direct connection to one another, so that as soon as someone plays a piece, the other one knows. This way, the user does not have to refresh, it&amp;rsquo;s all live. I used the websockets-rails library to handle setting up a user-to-user connection through the rails backend. The &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/master/app/views/matches/show.html.erb#L67-L80&#34;&gt;source code to handle binding and triggering is here&lt;/a&gt;. To see it in action, &lt;a href=&#34;http://goga.me/users/sign_up&#34;&gt;make an account at goga.me&lt;/a&gt;, and then &lt;a href=&#34;http://goga.me/matches/new&#34;&gt;create a match&lt;/a&gt;, and click &amp;lsquo;Start Match&amp;rsquo;, that will start a match against yourself, you can open it up on multiple devices, and when you start playing, the other screen will immediately update, it&amp;rsquo;s pretty cool!&lt;/p&gt;
+
+&lt;h2 id=&#34;other-challenges&#34;&gt;Other challenges&lt;/h2&gt;
+
+&lt;p&gt;After getting the graphics and networking to work correctly, the only other major challenge was handling capturing. Capturing is where one color completely surrounds the other color, and the surrounded pieces get removed, you can see it in the following screen capture:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/blogimg/gogame_capturing.gif&#34; alt=&#34;example capturing in a go game&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The challenge is to determine the parts of the board that are connected. Since each piece can only be connected to it&amp;rsquo;s four neighboring pieces of the same color, you can start finding connected components by picking a point and walking to every piece connected to it that is the same color. A prime choice for this problem is a breadth first search:&lt;/p&gt;
+
+&lt;h2 id=&#34;breadth-first-search&#34;&gt;Breadth First Search&lt;/h2&gt;
+
+&lt;p&gt;To wrap my head around this algorithm I had to get out my trusty graph theory book. Here&amp;rsquo;s a summary of the algorithm and an example:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Input&lt;/strong&gt;: An unweighted graph and a start vertex u&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Idea&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Maintain a set R of vertices that have been reached but not searched and&lt;/li&gt;
+&lt;li&gt;a set S of vertices that have been searched.&lt;/li&gt;
+&lt;li&gt;The set R is maintained as a First-In First-Out list (&lt;a href=&#34;https://en.wikipedia.org/wiki/Queue_%28abstract_data_type%29&#34;&gt;queue&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Initialization&lt;/strong&gt;: R = {u}, S = ø, d(u,u) = 0&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Iteration&lt;/strong&gt;: As long as R &amp;neq; ø, we search from the first vertex v of R. The neighbors of v not in (S U R) are added to the back of R and then v is removed from the front of R and placed in S.&lt;/p&gt;
+
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+
+&lt;p&gt;Let G be the adjacency graph of the following Go shape:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;   1  2  3  4  5  6
+ 1    .  o  o  o  .
+ 2    .  .  .  .  .  &amp;lt;--- black component
+ 3    .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;v&lt;/th&gt;
+&lt;th&gt;R&lt;/th&gt;
+&lt;th&gt;S&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;(2,1)&lt;/td&gt;
+&lt;td&gt;[(2,1)]&lt;/td&gt;
+&lt;td&gt;{}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,1)&lt;/td&gt;
+&lt;td&gt;[(2,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,2)&lt;/td&gt;
+&lt;td&gt;[(2,3),(3,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(2,3)&lt;/td&gt;
+&lt;td&gt;[(3,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(3,2)&lt;/td&gt;
+&lt;td&gt;[(4,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(4,2)&lt;/td&gt;
+&lt;td&gt;[(5,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(5,2)&lt;/td&gt;
+&lt;td&gt;[(6,2)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(6,2)&lt;/td&gt;
+&lt;td&gt;[(6,1)]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2)}&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;(6,1)&lt;/td&gt;
+&lt;td&gt;[]&lt;/td&gt;
+&lt;td&gt;{(2,1),(2,2),(2,3),(3,2),(4,2),(5,2),(6,2),(6,1)}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br&gt; &lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;Once I worked through the steps with this example and several others, writing the code to implement it was very straightforward, here&amp;rsquo;s the &lt;a href=&#34;https://github.com/tlehman/go-websocket/blob/8094890048ca845c0fef416573b8aba533ca6ea9/jasmine/src/ComponentMap.js#L16-L51&#34;&gt;javascript version&lt;/a&gt; and the &lt;a href=&#34;https://github.com/tlehman/goga.me/blob/b585f4dec45d726615d73fca301c261d2df17167/app/presenters/board_presenter.rb#L24-L41&#34;&gt;ruby version&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My go game is at a good stopping point for now, I still need to fix a few edge cases and add a chat feature. Also, I realized how satisfying it is to take a bunch of stuff I learned and make something real with it. I plan on making a native mobile client to this (iOS and Android), but that will take some more time and work.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Visualizing the &#39;belongs to&#39; relation in rails app models</title>
+      <link>/blog/2014/07/22/visualizing-the-belongs-to-relation-in-rails-app-models/</link>
+      <pubDate>Tue, 22 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2014/07/22/visualizing-the-belongs-to-relation-in-rails-app-models/</guid>
+      <description>&lt;p&gt;When working on rails apps, I usually have to make a mental map of the models and how they interrelate.&lt;/p&gt;
+
+&lt;p&gt;An Active Record model can belong to another, but when you have more than half a dozen models, keeping all
+the belongs_to relations in mind quickly becomes impossible. As a solution to this, I made a command line
+program called &lt;a href=&#34;https://github.com/tlehman/bin#argraph&#34;&gt;argraph&lt;/a&gt;, for &amp;lsquo;ActiveRecord graph&amp;rsquo;, it produces a digraph in the
+&lt;a href=&#34;http://www.graphviz.org/doc/info/lang.html&#34;&gt;DOT language&lt;/a&gt;, which can be rendered as an image
+using &lt;a href=&#34;http://www.graphviz.org/&#34;&gt;GraphViz&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The nodes are models, and the edges are the &amp;lsquo;belongs to&amp;rsquo; relation.&lt;/p&gt;
+
+&lt;p&gt;The way to use it is to check it out or fork my &lt;a href=&#34;https://github.com/tlehman/bin&#34;&gt;bin&lt;/a&gt; repo, make sure that directory
+is in your PATH variable, cd to the root of your rails app and run &lt;code&gt;argraph&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;As an example, suppose you have the &lt;a href=&#34;https://github.com/discourse/discourse&#34;&gt;discourse&lt;/a&gt; rails app checked out,
+and you want to find out how some of it&amp;rsquo;s models are interrelated:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd discourse
+$ argraph Post Topic Category PostReply User UserAction UserHistory QuotedPost View UserAvatar
+digraph {
+ Post -&amp;gt; User
+ Post -&amp;gt; Topic
+ Topic -&amp;gt; Category
+ Topic -&amp;gt; User
+ Category -&amp;gt; Topic
+ Category -&amp;gt; User
+ PostReply -&amp;gt; Post
+ UserAction -&amp;gt; User
+ QuotedPost -&amp;gt; Post
+ QuotedPost -&amp;gt; QuotedPost
+ View -&amp;gt; User
+ UserAvatar -&amp;gt; User
+}
+$ !! | dot -Tpng &amp;gt; discourse.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The above graph renders as:
+&lt;img src=&#34;https://i.imgur.com/YQOyHUn.png&#34; alt=&#34;discourse model graph&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can also run the command with no arguments, in which case it maps out all models, but on bigger apps, this can be hard to follow,
+so I found it useful to be able to explore subgraphs containing more models than my memory could fit, but not so many that the image
+was polluted and hard to follow.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Fixed point in ruby hash function</title>
+      <link>/blog/2013/04/30/fixed-point-in-ruby-hash-function/</link>
+      <pubDate>Tue, 30 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2013/04/30/fixed-point-in-ruby-hash-function/</guid>
+      <description>&lt;p&gt;A fixed point of a function  \( f:S \to S \) is an element \(x \in
+S\) such that&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ f(x) = x $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;That is, \(f\) is a no-op on \(x\). Some examples:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The identity function on any set has all points as fixed points&lt;/li&gt;
+&lt;li&gt;The absolute value function has any positive real number as a fixed
+point&lt;/li&gt;
+&lt;li&gt;The &lt;a href=&#34;http://fmota.eu/blog/base64-fixed-point.html&#34;&gt;base64 encoding function has a string as a fixed point&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(Check out that link above, fmota wrote about how they discovered a
+fixed point in the base64 encoding function, it&amp;rsquo;s very interesting)&lt;/p&gt;
+
+&lt;p&gt;Ruby&amp;rsquo;s &lt;code&gt;Fixnum&lt;/code&gt; class has an instance method called &lt;code&gt;hash&lt;/code&gt;. It is the
+&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash_function#Hash_tables&#34;&gt;hash function&lt;/a&gt;
+used by the &lt;code&gt;Hash&lt;/code&gt; class to locate the value.&lt;/p&gt;
+
+&lt;p&gt;One thing to note that is interesting,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;42.class == 42.hash.class # true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The integer literal &lt;code&gt;42&lt;/code&gt; is an instance of Ruby&amp;rsquo;s &lt;code&gt;Fixnum&lt;/code&gt; class,
+which is exactly the type that is returned by &lt;code&gt;Fixnum#hash&lt;/code&gt;. So, if we
+let &lt;code&gt;N&lt;/code&gt; be the set of all &lt;code&gt;Fixnum&lt;/code&gt; values, and &lt;code&gt;h&lt;/code&gt; be the hash function,
+then the function&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$h: N \to N $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;Does &lt;code&gt;h&lt;/code&gt; have a fixed point? Let&amp;rsquo;s find out, the generic way to find a
+fixed point is to apply the function over and over and see if any of
+the iterates are the same:&lt;/p&gt;
+
+&lt;p&gt;{% latex %}
+$ x, f(x), f(f(x)), f(f(f(x))), f(f(f(f(x)))), &amp;hellip; $
+{% endlatex %}&lt;/p&gt;
+
+&lt;p&gt;In Ruby, we could start with a value &lt;code&gt;n&lt;/code&gt; and loop until the next step
+is the same as the current step:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;
+def find_fixed_point(n)
+  m = n.hash
+
+  while n != m
+    puts n
+
+    n = m
+    m = m.hash
+  end
+
+  puts n
+  puts m
+end
+
+find_fixed_point(42)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code terminates in 62 steps, here is the output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;42
+1818615832163790001
+97302458964831319
+3241638738618469355
+-1538644867632915805
+4556542729113842835
+-707745146237515789
+4042604241838953267
+-3938749251519753037
+-3262109345615183437
+2726245977638182835
+2363300705344768947
+-1077013243652537421
+3673817879955862451
+4480325791167763379
+-3402798086540651597
+4108231692027892659
+742946247983240115
+3380480562708485043
+-3611524319884209229
+2461606551736423347
+2556374051055866803
+-853528980180560973
+301437974151041971
+-684460774007630925
+2785951334519935923
+1234765569947210675
+3485015807817552819
+-2988541774381313101
+-2969442663896050765
+3743208565546292147
+-2143850698816220237
+985968426639299507
+-2191943438346873933
+465213455999570867
+-1249312491853966413
+-1963857645314632781
+3582438201892410291
+146054934450017203
+-2298892513473850445
+-813726632499604557
+-1775501339152477261
+-4287223502620716109
+-2436529928794664013
+-3361799749893745741
+487423333182608307
+4144170308747006899
+1852752892089734067
+1009031649399542707
+-1504821367603326029
+-1663010304514714701
+1979275894121173939
+657469403487933363
+-3805597827236228173
+-608042091803176013
+3625341557925090227
+-4337022583265946701
+4381946295323333555
+-3544389048848739405
+-4409080177303874637
+3084909602640630707
+1931988098033783731
+-373854911179910221
+4237831107247477683
+4237831107247477683
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So the integer &lt;code&gt;4237831107247477683&lt;/code&gt; is a fixed point of
+&lt;code&gt;Fixnum#hash&lt;/code&gt;, that means that in the implementation of &lt;code&gt;Hash&lt;/code&gt;, the
+value &lt;code&gt;4237831107247477683&lt;/code&gt; would have itself as a key.&lt;/p&gt;
+
+&lt;p&gt;There are more examples (play with the code yourself!), and I would
+like to look deeper into why this hash function has a fixed point.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building command line utilities in Ruby that play well with Unix</title>
+      <link>/blog/2012/12/30/building-command-line-utilities-in-ruby-that-play-well-with-the-rest-of-the-unix-utilities/</link>
+      <pubDate>Sun, 30 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/12/30/building-command-line-utilities-in-ruby-that-play-well-with-the-rest-of-the-unix-utilities/</guid>
+      <description>
+
+&lt;p&gt;The &lt;a href=&#34;http://en.wikipedia.org/wiki/Pipeline_%28Unix%29&#34;&gt;Unix pipeline&lt;/a&gt; is a beautiful thing, as long as Standard Input and Standard Output are handled correctly, programs can be kept small and predictable. Getting any sort of complex functionality is simply a matter of composing the appropriate command line utilties via the Unix pipeline.&lt;/p&gt;
+
+&lt;p&gt;When taking &lt;a href=&#34;https://www.coursera.org/course/crypto&#34;&gt;Coursera&amp;rsquo;s Cryptography I class&lt;/a&gt;, I learned about how all substitution ciphers could be cracked using character frequency analysis. Basically, in English plaintext, there is a very non-uniform distribution over the alphabet, as you can see here:&lt;/p&gt;
+
+&lt;p&gt;{% img &lt;a href=&#34;http://upload.wikimedia.org/wikipedia/commons/b/b0/English_letter_frequency_%28frequency%29.svg&#34;&gt;http://upload.wikimedia.org/wikipedia/commons/b/b0/English_letter_frequency_%28frequency%29.svg&lt;/a&gt; r%}&lt;/p&gt;
+
+&lt;p&gt;Using this, no matter how you scramble up the alphabet, given enough ciphertext, you can use this distribution to figure out how the alphabet was scrambled.&lt;/p&gt;
+
+&lt;p&gt;As I learned this, I wanted to test it on real data sets like Sherlock Holmes and Beowulf. There was a lot of English text, so I looked around for a command line utility that counted character or word frequency. I couldn&amp;rsquo;t find one, so I whipped together a ruby program.&lt;/p&gt;
+
+&lt;p&gt;Aside from substitution ciphers, I like knowing word and character frequencies for other reasons, and I was a bit annoyed that such a thing didn&amp;rsquo;t exist, so I made one. Since I&amp;rsquo;ve been doing Ruby development for about a year, I thought it was about time to learn how ruby gems are born.&lt;/p&gt;
+
+&lt;p&gt;Buildling a gem is very easy, one just has to run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;&amp;gt; bundle gem foo
+      create  foo/Gemfile
+      create  foo/Rakefile
+      create  foo/LICENSE.txt
+      create  foo/README.md
+      create  foo/.gitignore
+      create  foo/foo.gemspec
+      create  foo/lib/foo.rb
+      create  foo/lib/foo/version.rb
+Initializating git repo in /Users/tobi/foo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, cd into the &lt;code&gt;foo&lt;/code&gt; directory, hack away on the code, and then do a &lt;code&gt;rake release&lt;/code&gt;, which publishes to rubygems.org. Then, anyone else can just run &lt;code&gt;gem install foo&lt;/code&gt; and start using your program.&lt;/p&gt;
+
+&lt;p&gt;I wrote a gem called wordfreq that computed the word or character frequencies (if the -c flag was given), this was a quick way to verify the distribution above for the alphabet.&lt;/p&gt;
+
+&lt;p&gt;The thing I got hung up on was the Errno::EPIPE exception in Ruby. When I wrote wordfreq and then piped its output to &lt;code&gt;head&lt;/code&gt;, the Errno::EPIPE exception was thrown. I thought I was doing something wrong, but it turned out that I just needed to handle that exception, since utilities like &lt;code&gt;head&lt;/code&gt; and &lt;code&gt;tail&lt;/code&gt; stop reading after 10 lines. When &lt;code&gt;head&lt;/code&gt; or &lt;code&gt;tail&lt;/code&gt; stops reading, Ruby throws an Errno::EPIPE exception. The way I solved the problem was to handle the Errno::EPIPE exception by breaking out of the main loop.&lt;/p&gt;
+
+&lt;p&gt;Here is the github repository with the source code and documentation: &lt;a href=&#34;https://github.com/tlehman/wordfreq&#34;&gt;https://github.com/tlehman/wordfreq&lt;/a&gt;, or if you want to start using it, just run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install wordfreq
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Publishing gems is very easy with Bundler, and it is a great way to make small command line utilities. But make sure you respond appropriately when pipes close, that way your command lime tool will mesh nicely with the rest of the Unix tools.&lt;/p&gt;
+
+&lt;h2 id=&#34;further-reading&#34;&gt;Further Reading:&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://jstorimer.com/2011/12/12/writing-ruby-scripts-that-respect-pipelines.html&#34;&gt;Writing Ruby Scripts That Respect Pipelines (J. Storimer)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.ibm.com/developerworks/aix/library/au-spunix_pipeviewer/&#34;&gt;Speaking Unix: Peering into Pipes (M. Streicher)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Convention over configuration, unless those conventions don&#39;t make sense</title>
+      <link>/blog/2012/07/31/convention-over-configuration-unless-those-conventions-dont-make-sense/</link>
+      <pubDate>Tue, 31 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/07/31/convention-over-configuration-unless-those-conventions-dont-make-sense/</guid>
+      <description>&lt;p&gt;Ruby on Rails is a so-called opinionated framework, this means that it bakes in a bunch of conventions for how applications should be built. By following these conventions, you can write less code, and make more software. This is great, unless some of those conventions depend on something inconsistent or irregular.&lt;/p&gt;
+
+&lt;p&gt;One thing that is particularly inconsistent and irregular is the English
+language. Do you remember the rule for &lt;strong&gt;I&lt;/strong&gt;s and &lt;strong&gt;E&lt;/strong&gt;s? &amp;ldquo;I before E &lt;em&gt;except&lt;/em&gt;
+after C and &lt;em&gt;except&lt;/em&gt; after words &lt;em&gt;like&lt;/em&gt; neighbor and weigh&amp;hellip;&amp;ldquo;. This is
+typical of the English language, exceptions abound. There is no
+consistent rule we can give for combining the letters I and E in a
+sentence.&lt;/p&gt;
+
+&lt;p&gt;Similarly, pluralization follows no single scheme, there are words like
+&amp;lsquo;chair&amp;rsquo; that are pluralized as &amp;lsquo;chairs&amp;rsquo;, and then there are words like
+&amp;lsquo;sheep&amp;rsquo; that are their own plurals. Finally, there are words inherited
+from Latin like cactus, which can be pluralized as &amp;lsquo;cactii&amp;rsquo; or
+&amp;lsquo;cactuses&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;The reason I am bringing this up is that Ruby on Rails has a module
+called &lt;code&gt;ActiveSupport::Inflector&lt;/code&gt; that has pluralization methods built
+into it. One of the conventions used in rails applications is the
+following: if you have a data model representing a &lt;code&gt;thing&lt;/code&gt;, then rails
+generates a table in your database called &lt;code&gt;things&lt;/code&gt;, where each record in
+the database represents a single &lt;code&gt;thing&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The inflector module kicks in so that you don&amp;rsquo;t have to say what the
+name of the table will be, rails takes care of that for you. This works
+fine, most of the time. I recently had to fix an application that was
+failing because it has ambiguous routes, that means that a route has
+multiple possible controller actions it could trigger, this is not good,
+hence the error. The culprit was a model called &lt;code&gt;series&lt;/code&gt;. When you
+pluralize it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;ActiveSupport::Inflector.pluralize(&amp;quot;series&amp;quot;)
+ =&amp;gt; &amp;quot;series&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The result is the same word, this leads to ambiguous routes, since there
+is a &lt;code&gt;series_path&lt;/code&gt; (singular) and &lt;code&gt;series_path&lt;/code&gt; (plural) that are
+supposed to mean different things.&lt;/p&gt;
+
+&lt;p&gt;This problem took me a few days to solve, and it would have been a
+non-issue if I would just made my own database table names and route.
+Not because my conventions are better, but simply because I would have
+been forced to think about what things are called, instead of trusting
+that the conventions of the framework will yield consistent results.&lt;/p&gt;
+
+&lt;p&gt;I think that &amp;lsquo;convention over configuration&amp;rsquo; is a good idea, but only
+when the conventions are logical and make sense. At the vary least,
+there should be no ambiguities.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Switching to a static blog platform</title>
+      <link>/blog/2012/07/08/switching-to-a-static-blog-platform/</link>
+      <pubDate>Sun, 08 Jul 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/07/08/switching-to-a-static-blog-platform/</guid>
+      <description>&lt;p&gt;I have been looking for an alternative to WordPress for a while, one that I can understand at the code level. I found XavierShay&amp;rsquo;s &lt;a href=&#34;http://enkiblog.com/&#34;&gt;enki blog&lt;/a&gt; platform and I like it a lot, it is made in rails and uses OpenID for authentication. However, I found myself using a text editor to first write my posts and then pasting them into the web editor.&lt;/p&gt;
+
+&lt;p&gt;Most in-browser editors right now are not as nice as native ones. Also, blog content doesn&amp;rsquo;t need the full power of a relational database, so I looked around for a static blog generator, and found &lt;a href=&#34;http://octopress.org&#34;&gt;Octopress&lt;/a&gt;. It is self-described as &amp;ldquo;a blogging framework for hackers&amp;rdquo;. It is written in ruby and doesn&amp;rsquo;t require a database or authentication. I do prefer this approach, so I switched over.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Anagrams of words in ruby</title>
+      <link>/blog/2012/06/11/anagrams-of-words-in-ruby/</link>
+      <pubDate>Mon, 11 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/2012/06/11/anagrams-of-words-in-ruby/</guid>
+      <description>&lt;p&gt;One thing that is nice about Ruby is the ability it gives you to peel open a class and stick new methods into an object or class while the program is running. As an example, we will use the Array#permutation method to implement an anagram method for any string. We start by opening up the class:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;class String
+  def anagram
+    self.split(//).permutation.map { |a| a.join }
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;self.split(//) just splits the string into an array of characters, then permutation returns the list of all permutations, and finally, the map { |a| a.join } expression just takes all permutations and joins the permuted characters into strings.&lt;/p&gt;
+
+&lt;p&gt;Now, we can take a string such as “not” and call &amp;ldquo;not&amp;rdquo;.anagram, the output is then [&amp;ldquo;not&amp;rdquo;, &amp;ldquo;nto&amp;rdquo;, &amp;ldquo;ont&amp;rdquo;, &amp;ldquo;otn&amp;rdquo;, &amp;ldquo;tno&amp;rdquo;, &amp;ldquo;ton&amp;rdquo;].&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

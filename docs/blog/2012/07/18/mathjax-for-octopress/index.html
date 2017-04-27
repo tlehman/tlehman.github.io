@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>MathJax for Octopress</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>MathJax for Octopress</h1>
+			<div>
+				<p>I have had many blogs in the past that had some mathematical flights of fancy on them. Part of it was a log of fun things I was exploring, and another part was just showing off the neat capabilities of the CodeCogs LaTeX equation editor or some wordpress plugin that did the same thing. In one rare case, I (incorrectly) debunked an argument that <a href="http://28.media.tumblr.com/tumblr_lbxrvcK4pk1qbylvso1_400.png">&pi; = 4</a>.</p>
+
+<p>It&rsquo;s not that &pi; actually turned out to be equal to 4, it&rsquo;s just that my argument was wrong. I learned a lot about convergence, and the true reason that the argument was false was much more subtle. I will reproduce this here in the next few posts.</p>
+
+<p>For publishing math, you can use either MathML (a dialect of XML), or LaTeX (pronounced Lah-Tek). You can render LaTeX to an image or have it converted to selectable characters by JavaScript by <a href="http://www.mathjax.org/">MathJax</a>.</p>
+
+<p>I always used LaTeX to images because it was easier. The image could be embedded in ordinary HTML and that was it, it would always work. However, it didn&rsquo;t scale with the text very well, and the individual characters could not be selected.</p>
+
+<p>So, here is an awesome example of MathJax in action, displaying some beautiful mathematics: the first Fundamental Theorem of Calculus. We start by assuming a and b are real numbers, and that f is a continuous, real-valued function on the interval <code>[a,b]</code>, and further that f is differentiable on the open interval <code>(a,b)</code>. The first Fundamental theorem states that:</p>
+
+<p>{% latex %}
+  $ \int_a^b f&rsquo;(x) dx = f(b) - f(a) $
+{% endlatex %}</p>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>

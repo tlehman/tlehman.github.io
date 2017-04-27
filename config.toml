@@ -2,6 +2,7 @@ languageCode = "en-us"
 title = "tlehman@home"
 baseURL = "/"
 theme = "blank"
+publishDir = "docs"
 paginate = 3
 
 [[menu.main]]

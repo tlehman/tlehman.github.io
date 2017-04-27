@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Monoids in Scheme</title>
+	
+	
+	<link rel="stylesheet" href="/css/fonts.css">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<meta name="generator" content="Hugo 0.19" />
+</head>
+<body>
+	<header>
+		<a href="/">tlehman@home</a>
+		<nav class="menu">
+			<ul>
+				
+				<li><a href="/about/">About</a></li>
+				
+				<li><a href="/contact/">Contact</a></li>
+				
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<article>
+			<h1>Monoids in Scheme</h1>
+			<div>
+				
+
+<p>There is a structure in abstract algebra called a monoid. There are several ways to define a monoid, but before we start, we should answer the obvious question: <em>why should you care?</em></p>
+
+<p>The reason being aware of monoids is important is that they are everywhere, and knowing the properties of general monoids will lead to better understanding of their specific manifestations, such as the accumulator pattern or string concatenation. I&rsquo;ll give a good example to start out with: linked lists.</p>
+
+<p><img src="/images/blogimg/list.png"></p>
+
+<p>For the sake of simplicity, I am going to use scheme lists and the <code>append</code> operation. In <a href="https://mitpress.mit.edu/sicp/full-text/sicp/book/node32.html">Section 2.2 of SICP</a>, the closure property of was defined. <em>This is distinct from the notion of <a href="http://stackoverflow.com/a/36639/46871">closure</a> of an expression over the surrounding environment</em>.</p>
+
+<p>An operation <code>#</code> is said to be &lsquo;closed&rsquo; in the sense that given two values <code>A</code> and <code>B</code> of the same type, the expression <code>A # B</code> is a value of the same type. In scheme-like prefix notation, we would write <code>(# A B)</code>.</p>
+
+<p>Given a list <code>A</code> and a list <code>B</code>, we can concatenate the two lists and get a new list, <code>(append A B)</code></p>
+
+<pre><code class="language-scheme">(append (append '(a) '(b)) '(c))
+; =&gt; (a b c)
+</code></pre>
+
+<p>Another way to construct it is:</p>
+
+<pre><code class="language-scheme">(append '(a) (append '(b) '(c)))
+; =&gt; (a b c)
+</code></pre>
+
+<p>The fact that <code>(a b c)</code> can be constructed in either way means that <code>append</code> is an associative operation, and readers of this blog should recognize that <a href="/blog/2013/09/02/quasiquoting-in-scheme-to-study-a-computation/"><code>fold-left</code> and <code>fold-right</code> would give the same result in this case</a>.</p>
+
+<h2 id="set-theoretic-definition-of-a-monoid">Set-theoretic Definition of a monoid</h2>
+
+<p>This leads to the first two properties that define a general monoid, a monoid is:</p>
+
+<p>{% latex %}
+$ \text{a set } M \text{ with an associative operation } *:M \times M \to M $
+{% endlatex %}</p>
+
+<p>Note: the closure property is implicit in the defintion of the operation as a function, since it is impossible for the output of the function to be anything outside of M.</p>
+
+<p>The set M has an identity element e in M, it is defined by:</p>
+
+<p>{% latex %}
+$ \forall m \in M : e*m = m*e = m $
+{% endlatex %}</p>
+
+<hr>
+
+<p>From the three properties that define of monoids (closure, associativity, identity), we can prove the uniqueness of the identity element:</p>
+
+<p>Suppose <code>a</code> and <code>b</code> are identity elements, then:</p>
+
+<p>{% latex %}</p>
+
+<p>$ a*b=b*a=b $</p>
+
+<p>$ b*a=a*b=a $</p>
+
+<p>$ a = b $</p>
+
+<p>{% endlatex %}</p>
+
+<p>This applies to all monoids, in our example, the set <code>M</code> is the set of all Scheme lists, the operation is <code>append</code>, and the unique identity element is the empty list.</p>
+
+<h3 id="further-reading">Further Reading</h3>
+
+<ul>
+<li>Dan Piponi (SIGFPE) wrote <a href="http://blog.sigfpe.com/2009/01/haskell-monoids-and-their-uses.html">a lot of good stuff about monoids in haskell</a> at his blog &lsquo;A Neighborhood of Infinity</li>
+<li>Pete Clark wrote <a href="http://math.uga.edu/~pete/semigroup.pdf">a good introduction to semigroups and monoids</a> on his UGA website</li>
+</ul>
+
+			</div>
+			<div>
+				<ul id="tags">
+					
+				</ul>
+			</div>
+			<div>
+				
+			</div>
+		</article>
+	</main>
+	<footer>
+		<p>&copy; 2017 <a href="/">tlehman@home</a></p>
+	</footer>
+</body>
+</html>
