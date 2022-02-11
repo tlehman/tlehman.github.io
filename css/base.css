@@ -1,0 +1,164 @@
+
+* {
+    box-sizing: border-box; /* makes the width: property include the margin+padding */
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    /*border: 1px solid red;*/
+}
+
+/* dark mode and light theme */
+html[data-theme="dark"] {
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
+html[data-theme="dark"] a { color: lightblue; }
+html[data-theme="dark"] a:visited { color: lightblue; }
+html[data-theme="dark"] a:hover { color: white; }
+html[data-theme="dark"] blockquote { background-color: darkgray; }
+
+body.light-theme {
+    background-color: white;
+    color: black;
+}
+/* hack for nav */
+.col-2 {
+    padding: 5px;
+    padding-bottom: 2px;
+}
+.col-8 {
+    padding: 5px;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.hidden {
+    display: none;
+}
+#other-menu {
+    padding-left: 2em;
+}
+.sidebar {
+    overflow-x: hidden;
+    padding-left: 1em;
+    text-align: left;
+}
+.sidebar ul {
+    list-style-type: none;
+    display: block;
+}
+
+@media only screen and (max-width: 800px) {
+    .hidden-when-mobile {
+        display: none;
+    }
+    .sidebar ul {
+        list-style-type: none;
+        display: block;
+    }
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+    #terminal {
+        height: 90px;
+    }
+    /* get rid of spacer col-3's when snapping to mobile */
+    /* For mobile phones: */
+    .header-col-2 {
+        display: none;
+    }
+
+    nav ul {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    nav li {
+        float: left;
+        padding-left: 5px;
+        padding-right: 8px;
+    }
+
+    nav li a {
+        display: block;
+        text-align: center;
+        padding-left: 2px;
+        padding-right: 2px;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        text-decoration: underline;
+    }
+    .other-menu {
+        float: right;
+        overflow-x: hidden;
+    }
+    .other-menu li {
+        padding-left: 2px;
+        padding-right: 2px;
+        overflow-x: hidden;
+    }
+
+}
+
+
+/* Each row should be wrapped in a <div>. The number of columns inside a row should always add up to 12 */
+
+img { 
+    max-width: 100%;
+}
+
+video {
+    max-width: 100%;
+}
+
+/* Start Typography */
+body { 
+    font-size: 16px;
+    font-family: 'Source Serif Pro', Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.4;
+}
+/* End Typography */
+
+article {
+    max-width: 800px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+pre {
+    overflow-x: hidden;
+    overflow-x: hidden;
+    padding: 0.5em;
+}
+
+/* Begin Taxonomy Styling */
+.series-header {
+    padding: 10px;
+    border: 1px;
+    border-color: gray;
+    border-style: solid;
+}
+/* End Taxonomy Styling */
+
+.hidden {
+    display: none;
+}
+.hover-show-hidden:hover ul {
+    display: block;
+}

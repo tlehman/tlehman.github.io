@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>covid-19 on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/covid-19/</link>
+    <description>Recent content in covid-19 on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Mon, 19 Apr 2021 20:53:43 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/covid-19/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Game Theory of Masks</title>
+      <link>https://tobilehman.com/posts/game-theory-masks/</link>
+      <pubDate>Mon, 19 Apr 2021 20:53:43 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/game-theory-masks/</guid>
+      <description>I see a lot people mocking the CDC&amp;rsquo;s guidance to remain masked and social distanced even after vaccination. Obviously the point of vaccinations is not to have to take those precautionary measures. But what the CDC is probably doing is thinking about this game of imperfect information.
+If someone says they are vaccinated, you have no good way of knowing that, so there is a free rider problem.
+In game theory, there is a way of visualizing the incentives that guide the players.</description>
+    </item>
+    
+    <item>
+      <title>The SIR Model on novel coronavirus</title>
+      <link>https://tobilehman.com/posts/sir-model-epidemiology/</link>
+      <pubDate>Tue, 03 Mar 2020 11:43:42 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
+      <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
+The simplest model of disease spreading starts by breaking a population up into compartments:
+ S (Susceptible) I (Infected) R (Removed️)  Then, the model describes the flow between these compartments.
+  NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+    </item>
+    
+  </channel>
+</rss>

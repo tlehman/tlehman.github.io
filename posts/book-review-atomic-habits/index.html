@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Book Review: Atomic Habits" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/book-review-atomic-habits/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/book-review-atomic-habits/img/atomic-habits.jpg"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Book Review: Atomic Habits" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/book-review-atomic-habits/img/atomic-habits.jpg' />
+    
+
+    <title>
+        
+            Book Review: Atomic Habits : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Book Review: Atomic Habits</h1>
+
+    
+        <div class="post-meta">Sat, Oct 30, 2021 - 1100 Words </div>
+    
+
+    <div style="float: right">
+
+<figure>
+	<img src="/posts/book-review-atomic-habits/img/atomic-habits.jpg" alt="" />
+</figure>
+</div>
+<p><a href="https://jamesclear.com/atomic-habits">Atomic Habits</a> is written so clearly that I have a hard time believing &lsquo;James Clear&rsquo; isn&rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.</p>
+<p>Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal. But this book challenges that model. He quips:</p>
+<blockquote>
+<p>Winners and losers have the same goals.</p>
+</blockquote>
+<p>Instead of goals, we should be setting up systems for our future selves. You may be motivated now in the present, but future versions of you will have bad days, and you should make it easy for future you to repeat the desired behavior. You should make it easy.</p>
+<p>The author doesn&rsquo;t deny human agency, but he does acknowledge that we are shaped by our surroundings. We also shape our surroundings. So instead of depending on motivation and willpower to perform your desired behavior repeatedly, harness that motivation to reshape your environment. That will make the desired behavior easier to do.</p>
+<p>The most deeply weird and fascinating idea he introduces is identity hacking. He doesn&rsquo;t call it that, I did. He presents an onion-like model of human behavior where the outside layer is <strong>outcomes</strong>. The middle layer is <strong>processes</strong>, and the center is <strong>identity</strong>.</p>
+<p><img src="https://jamesclear.com/wp-content/uploads/2012/12/Layers-of-behavior-change.png" alt="onion model"></p>
+<p>This onion-layer model explains why goal/discipline habit formation so often fails. The reason is that it only tries to change the middle layer, processes. The reason we revert to our old behaviors so often is that we don&rsquo;t go deep enough.</p>
+
+
+<figure>
+	<img src="/posts/book-review-atomic-habits/img/deeper.jpg" alt="" />
+</figure>
+
+<p>Going deeper in this case means <i>changing your identity</i>. Instead of trying to lift more weights, <i>Become a bodybuilder</i>. Instead of trying to donate more to charity, <i>Become a philanthropist</i>. Instead of quitting drinking, <i>Become a teetotaler</i>. James Clear argues persuasively that <mark>the key to building a habit is deciding the kind of person you want to be, then proving that identity to yourself with small, consistent wins</mark>. Those wins can be pitifully small at first, but they need to be consistent, and they need to grow. He even says &ldquo;start with 2 minutes&rdquo;. Going to the gym for 2 minutes every day is better than going 1 hour every week and skipping every now and then. Incidentally, this also explains why CrossFit™ is good, the people who join it and stick with it <i>become the kind of person who does CrossFit, and talks about it all the time</i>. While it&rsquo;s annoying to us non-CrossFit people, cultish devotion to physical fitness is definitely effective. You have to kind of respect it.</p>
+<p>Don&rsquo;t go overboard with identity hacking though, I explore the question of how big your identity should be in an <a href="/posts/how-big-identity">earlier post</a>. Be very intentional about what you identify with. Committing to being labeled a certain way can have some benefits, but it has serious costs.</p>
+<p>Once you work backwards from your desired habit to find the identity whose expression is that desired habit, you need to start taking actions that prove that new identity to yourself. This is a process of &ldquo;proof of identity&rdquo;. For example, I wanted to quit drinking recently, so I decided I was going to become a teetotaler and set up a habit tracker. Now every day I don&rsquo;t drink, I check off the habit tracker and my streak increases. Seeing that unbroken streak of sobriety is a small win, and it grows over time. The way that habits grow over time is not just a linear streak of days, increasing one day per day. Habits tend to compound, like interest.</p>
+<blockquote>
+<p>Habits are the compound interest of self-improvement. The same way that money multiplies through compound interest, the effects of your habits multiply as you repeat them. They seem to make little difference on any given day and yet the impact they deliver over the months and years can be enormous. It is only when looking back two, five, or perhaps ten years later that the value of good habits and the cost of bad ones becomes strikingly apparent.</p>
+</blockquote>
+<p>For a primer on compound interest and the power of growth, see my earlier article <a href="/posts/compound-growth">compound growth</a>.</p>
+<p>Aside from identity and consistency, this book introduces a very useful operational model of human behavior, called the <strong>habit loop</strong>. I translated this model into JavaScript code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// The Habit Loop
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">alive</span>) {
+  <span style="color:#75715e">// Problem phase
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCueFromEnvironment</span>();
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">craving</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">predictCravingFrom</span>(<span style="color:#a6e22e">cue</span>);
+  <span style="color:#75715e">// Solution phase
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">respondToCraving</span>(<span style="color:#a6e22e">craving</span>);
+  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">reward</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">experienceReward</span>(<span style="color:#a6e22e">response</span>);
+  <span style="color:#a6e22e">updateAssocations</span>(<span style="color:#a6e22e">cue</span>, <span style="color:#a6e22e">reward</span>);
+}
+</code></pre></div><p>This loop is running all the time. It can be picked apart and modified to make future you more likely to stick with your desired habit.</p>
+<p>Starting from the first line, you can change the enviroment to give you the right cues at the right time. This he sums up as &ldquo;Make it Obvious&rdquo;, like for example, hanging your workout clothes near the door so you see them when you are near the door.</p>
+<p>The cue feeds into a predictor, where your brain predicts the outcome of that behavior and you have some emotional side effects. Those emotions and cravings lead to a response. This is the choice part, where you choose what to do. You want to set up your environment to make the right choices easier, and the bad choices harder.</p>
+<p>Finally, there&rsquo;s the reward. If you went running, that&rsquo;s an endorphin rush. If you saved money, it&rsquo;s the number going up in your bank account. That reward then gets associated to the cue, re-inforcing the behavior.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>James Clear has a template for how to build good habits, and how to dissolve bad habits. The long-term sustainability of those habits depends on altering your identity, something you should only do sparingly and after much reflection. He does a good job of talking about the downsides of habit formation as well. The book is well written, actionable, and thought-provoking. I never thought a self-help book would turn into a meditation on figuring out who you really are.</p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/habits">#habits</a></li>
+    
+        <li><a href="/tags/book-review">#book-review</a></li>
+    
+        <li><a href="/tags/programming">#programming</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

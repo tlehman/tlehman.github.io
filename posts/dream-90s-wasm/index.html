@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="The Dream of the 90s is alive in WebAssembly" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/dream-90s-wasm/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="The Dream of the 90s is alive in WebAssembly" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            The Dream of the 90s is alive in WebAssembly : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>The Dream of the 90s is alive in WebAssembly</h1>
+
+    
+        <div class="post-meta">Tue, Apr 23, 2019 - 800 Words </div>
+    
+
+    <p>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and
+Sun Microsystems releases Java 1.0.</p>
+
+
+<figure>
+	<img src="/posts/dream-90s-wasm/img/1995.png" alt="" />
+</figure>
+
+<p>Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers
+can</p>
+<blockquote>
+<p>Write Once, Run Everywhere.</p>
+</blockquote>
+<p>Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.</p>
+<p>The dream is that Java will enable people to create portable programs,
+so that a person with a web browser could download a new application without having to wait for a
+CD to arrive in the mail.</p>
+<p>This dream never really came to fruition at a large scale, one big bottleneck was internet speeds. In 1996, average
+modems were about 28.8Kbps to 33.6Kbps, which meant that it would take at least 7 hours to download a single
+CD&rsquo;s worth of information.</p>
+<p>Around the same time Sun made Java, Netscape made a slower scripting language for the web called JavaScript, which was
+so named because Netscape wanted to capitalize on all the Java hype.</p>
+<p>In 1997, JavaScript was standardized through the Ecma International standards organization, this made it possible for other vendors to make their own JavaScript interpreters, and ensure that they worked just like Netscape&rsquo;s.</p>
+<p>Next year in 1998, a little startup called Google wrote some of their search engine code in Java, and continued to
+write Java code as it grew from a tiny dorm room startup to one of the largest companies on Earth. We will come back to Google.</p>
+
+
+<figure>
+	<img src="/posts/dream-90s-wasm/img/google-1998.png" alt="" />
+</figure>
+
+<p>By 1999, web developers started building applications using JavaScript, using a technique called <a href="https://en.wikipedia.org/wiki/Ajax_(programming)">AJAX</a>, this was the beginning of JavaScript becoming a serious language for software engineering.</p>
+<p>In 2005 I started working as a programmer at 17, and I remember how cool AJAX was, but it was still slow compared to writing
+native applications in C++, Java or C#. Around that time I started reading Jeff Atwood&rsquo;s blog <a href="https://blog.codinghorror.com/">Coding Horror</a>.</p>
+<p>In 2007, Jeff Atwood stated <strong>Atwood&rsquo;s Law</strong>:</p>
+<blockquote>
+<p>any application that <em>can</em> be written in JavaScript, <em>will</em> eventually be written in JavaScript.</p>
+</blockquote>
+<p>At that point in time, the main browsers were Internet Explorer and Mozilla Firefox, and JavaScript was still slow, but computers
+and connection speeds kept increasing, and the practice of building AJAX applications kept being refined.</p>
+<p><a href="https://blog.codinghorror.com/the-principle-of-least-power/">https://blog.codinghorror.com/the-principle-of-least-power/</a></p>
+<p>Next year, in 2008, something exciting happened, well, two exciting things happened:</p>
+<ol>
+<li>Google releases the Chrome browser</li>
+<li>Obama is elected</li>
+</ol>
+<p>Chrome is so exciting because it has a JavaScript interpreter called V8 that makes JavaScript run significantly faster. V8 is
+so effective that <a href="https://nodejs.org/en/">node.js</a> uses it to run JavaScript code outside the browser.</p>
+<p>In 2010, Oracle, the overpriced database company, buys Sun Microsystems, so they now own Java. They proceed to sue Google over their use of Java. The <a href="https://en.wikipedia.org/wiki/Oracle_America,_Inc._v._Google,_Inc.">court case</a> has bounced between Google and Oracle, and might be settled by the Supreme Court in the future. At issue is whether APIs can be copyrighted. If you don&rsquo;t know what an API is, think of it like a user interface, where the user is a computer.</p>
+<p>Meanwhile, Java still kind of sucks to use, not least because Oracle is feeling litiguous about their intellectual property.</p>
+<p>2013 rolls around and <a href="https://en.wikipedia.org/wiki/Asm.js">asm.js</a> is released, it is a subset of JavaScript that is
+<em>really fast</em>, and is designed to be a &ldquo;target of compilers&rdquo;, which means you don&rsquo;t write it directly, you write code in a better
+language, and then the compiler converts your program into asm.js code, so it can be run efficiently in a browser. As soon as this
+starts working, some really smart people compile <a href="https://github.com/inolen/quakejs">Quake</a> so it runs in the browser!</p>
+<p>By 2015, <a href="https://webassembly.org/">wasm (WebAssembly)</a> is announced, it is to be an open standard compiler target that runs in a web browser. What makes wasm better than asm.js is that it has a binary format, instead of a text-encoded one. This means it can be more compact, and it doesn&rsquo;t need to be parsed by the browser that downloads it.</p>
+<p>Finally, today, in 2019, Mozilla announces an effort to standardize wasi (WebAssembly System Interface), which would allow wasm binaries to be run outside the browser, similar to compiled Java programs running on the JVM, or in an applet in the browser. This is the original Dream of the 90&rsquo;s, applications that can be written once, and run anywhere. You should definitely take the time to check out Mozilla&rsquo;s <a href="https://hacks.mozilla.org/2019/03/standardizing-wasi-a-webassembly-system-interface/">wasi explainer</a>, there are lots of great illustrations of what problems wasi solves, and how it solves them.</p>
+<p>I&rsquo;m optimistic that the dream will come true this time, because wasm is an open standard, and we have learned a lot since 1996, we can do it this time.</p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/wasm">#wasm</a></li>
+    
+        <li><a href="/tags/history">#history</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

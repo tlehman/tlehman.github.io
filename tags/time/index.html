@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="time" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/tags/time/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="time" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            time : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+    
+    
+    
+    
+        <h1>time posts</h1>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/epoch/'> Unix Epoch Time</a> </h2>
+    <div class="post-meta">Fri, Dec 10, 2021 - 400 Words </div>
+  </header>
+  Unix Epoch Time is the number of seconds since 1970-01-01 00:00:00 UTC (Coordinated Universal Time zone). This arbitrary moment in time is defined as &ldquo;the beginning&rdquo;, and this timezone used as the reference.
+The more you work with times, dates, time zones and daylight saving time, the more you will come to appreciate constant points of reference like this. Below is a tool for working with and understanding dates and times and epoch numbers.
+  <footer>
+    <a href='https://tobilehman.com/epoch/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/time-travel-topology/'> The Topology of Time Travel Stories</a> </h2>
+    <div class="post-meta">Fri, Apr 9, 2021 - 700 Words </div>
+  </header>
+  Everyone needs an obscure useless skill. ‐ @Noahpinion
+ Mine is identifying the topology of time travel stories.
+Click here if you know what topology is and just want to get to the time travel stuff
+a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &ldquo;Oiler&rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.
+  <footer>
+    <a href='https://tobilehman.com/posts/time-travel-topology/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/time-in-physics/'> Time in Physics</a> </h2>
+    <div class="post-meta">Thu, Dec 17, 2020 - 1600 Words </div>
+  </header>
+  In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.
+The reason the ancient Greeks didn&rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.
+  <footer>
+    <a href='https://tobilehman.com/posts/time-in-physics/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/timelapse/'> Timelapse</a> </h2>
+    <div class="post-meta">Sat, Sep 5, 2020 - 400 Words </div>
+  </header>
+  I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
+  I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.
+  <footer>
+    <a href='https://tobilehman.com/posts/timelapse/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/long-now/'> The Long Now Foundation</a> </h2>
+    <div class="post-meta">Sun, Dec 30, 2018 - 300 Words </div>
+  </header>
+  The world is changing fast, the last 100 years saw the creation of a global network of airplanes, computers, the internet, nuclear energy, and the discovery, sequencing and editing of the genome. The tendency of politics is to focus on the next election (at least in democracies). The tendency of business is to focus on the next quarter. The engines of our fast-changing modern world tend to focus our attention on the narrow world of right now.
+  <footer>
+    <a href='https://tobilehman.com/posts/long-now/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+    
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>physics on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/physics/</link>
+    <description>Recent content in physics on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 03 Feb 2022 08:37:07 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/physics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CWEB LaTeX Experiment</title>
+      <link>https://tobilehman.com/posts/cweb-latex-experiment/</link>
+      <pubDate>Thu, 03 Feb 2022 08:37:07 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/cweb-latex-experiment/</guid>
+      <description>I have written about literate programming a few times before. The big idea is to elevate documentation above the actual running source code. Source code is meant for humans to read, that&amp;rsquo;s why it has higher-level abstractions and comments. Literate programming flips the roles of comments and source code. The comments come first, and the source code is stripped out and tangled into a compilable form.
+I am still not totally sure what to think about it.</description>
+    </item>
+    
+    <item>
+      <title>Time in Physics</title>
+      <link>https://tobilehman.com/posts/time-in-physics/</link>
+      <pubDate>Thu, 17 Dec 2020 21:34:14 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/time-in-physics/</guid>
+      <description>In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&amp;rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.
+The reason the ancient Greeks didn&amp;rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.</description>
+    </item>
+    
+    <item>
+      <title>Conservation Confusion Clarified</title>
+      <link>https://tobilehman.com/posts/conservation-confusion-clarified/</link>
+      <pubDate>Tue, 05 Jan 2010 08:49:29 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/conservation-confusion-clarified/</guid>
+      <description>Ported from my old blog through Archive.org (donate to Archive.org here!)
+I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)
+After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject.</description>
+    </item>
+    
+  </channel>
+</rss>

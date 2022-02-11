@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="The Long Now Foundation" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/long-now/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="The Long Now Foundation" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            The Long Now Foundation : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>The Long Now Foundation</h1>
+
+    
+        <div class="post-meta">Sun, Dec 30, 2018 - 300 Words </div>
+    
+
+    <p>The world is changing fast, the last 100 years saw the creation of a global network of airplanes, computers, the internet,
+nuclear energy, and the discovery, sequencing and editing of the genome. The tendency of politics is to focus on the next election
+(at least in democracies). The tendency of business is to focus on the next quarter. The engines of our fast-changing modern
+world tend to focus our attention on the narrow world of <em>right now</em>. Because of this, we need a cultural institution that
+can counteract this and create tools to zoom out to a larger interval of time. That is what the <a href="https://longnow.org">Long Now Foundation</a>
+was created to do, it&rsquo;s purpose is to promote long-term thinking.</p>
+<p>Here is their visualization of the &ldquo;long now&rdquo;:</p>
+
+
+<figure>
+	<img src="/posts/long-now/img/long-now-diag.jpg" alt="" />
+</figure>
+
+<p>The long now contains about 20,000 years of history, with the current moment in the middle. One small trick they use to remind
+people of this wider interval of time is to write years using 5 digits, instead of 4. For example, the day after tomorrow, it
+will be the year 02019. That way, it will seem a bit more natural to talk about the year 15019, and how there will be a new
+<a href="https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question64.html">North Star</a> for the Earth.</p>
+<p>Another project they are working on is a clock that will tick for 10,000 years, as a physical embodiment of this long-term perspective.</p>
+<p>Today I joined, as member 9945, if you are interested, you can join <a href="https://longnow.org/membership/">here</a>.</p>
+<p>Have a Happy New Year 02019!</p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/time">#time</a></li>
+    
+        <li><a href="/tags/future">#future</a></li>
+    
+        <li><a href="/tags/history">#history</a></li>
+    
+        <li><a href="/tags/long-now">#long-now</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

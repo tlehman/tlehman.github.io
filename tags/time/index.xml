@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>time on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/time/</link>
+    <description>Recent content in time on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 10 Dec 2021 08:50:18 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unix Epoch Time</title>
+      <link>https://tobilehman.com/epoch/</link>
+      <pubDate>Fri, 10 Dec 2021 08:50:18 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/epoch/</guid>
+      <description>Unix Epoch Time is the number of seconds since 1970-01-01 00:00:00 UTC (Coordinated Universal Time zone). This arbitrary moment in time is defined as &amp;ldquo;the beginning&amp;rdquo;, and this timezone used as the reference.
+The more you work with times, dates, time zones and daylight saving time, the more you will come to appreciate constant points of reference like this. Below is a tool for working with and understanding dates and times and epoch numbers.</description>
+    </item>
+    
+    <item>
+      <title>The Topology of Time Travel Stories</title>
+      <link>https://tobilehman.com/posts/time-travel-topology/</link>
+      <pubDate>Fri, 09 Apr 2021 20:53:44 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/time-travel-topology/</guid>
+      <description>Everyone needs an obscure useless skill. ‐ @Noahpinion
+ Mine is identifying the topology of time travel stories.
+Click here if you know what topology is and just want to get to the time travel stuff
+a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
+    </item>
+    
+    <item>
+      <title>Time in Physics</title>
+      <link>https://tobilehman.com/posts/time-in-physics/</link>
+      <pubDate>Thu, 17 Dec 2020 21:34:14 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/time-in-physics/</guid>
+      <description>In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&amp;rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.
+The reason the ancient Greeks didn&amp;rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.</description>
+    </item>
+    
+    <item>
+      <title>Timelapse</title>
+      <link>https://tobilehman.com/posts/timelapse/</link>
+      <pubDate>Sat, 05 Sep 2020 21:01:22 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/timelapse/</guid>
+      <description>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
+  I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
+    </item>
+    
+    <item>
+      <title>The Long Now Foundation</title>
+      <link>https://tobilehman.com/posts/long-now/</link>
+      <pubDate>Sun, 30 Dec 2018 19:24:22 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/long-now/</guid>
+      <description>The world is changing fast, the last 100 years saw the creation of a global network of airplanes, computers, the internet, nuclear energy, and the discovery, sequencing and editing of the genome. The tendency of politics is to focus on the next election (at least in democracies). The tendency of business is to focus on the next quarter. The engines of our fast-changing modern world tend to focus our attention on the narrow world of right now.</description>
+    </item>
+    
+  </channel>
+</rss>

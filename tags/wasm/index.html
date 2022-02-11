@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="wasm" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/tags/wasm/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="wasm" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            wasm : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+    
+    
+    
+    
+        <h1>wasm posts</h1>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/rand-int-c/'> Generating random numbers in C</a> </h2>
+    <div class="post-meta">Thu, Dec 30, 2021 - 300 Words </div>
+  </header>
+  Assume your range is lower to upper, both of type int.
+Choose random number in range A random integer, uniformly distributed, over that interval is generated with:
+int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&rsquo;t &ldquo;seed&rdquo; the random number generator (RNG), then it will return the same sequence every time.
+  <footer>
+    <a href='https://tobilehman.com/posts/rand-int-c/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/compiling-c-to-wasm/'> Compiling C to WebAssembly</a> </h2>
+    <div class="post-meta">Mon, Sep 7, 2020 - 600 Words </div>
+  </header>
+  Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&rsquo;t get it.
+The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&rsquo;ve loved the game ever since.
+Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.
+  <footer>
+    <a href='https://tobilehman.com/posts/compiling-c-to-wasm/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/dream-90s-wasm/'> The Dream of the 90s is alive in WebAssembly</a> </h2>
+    <div class="post-meta">Tue, Apr 23, 2019 - 800 Words </div>
+  </header>
+  The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
+  Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
+ Write Once, Run Everywhere.
+ Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
+The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.
+  <footer>
+    <a href='https://tobilehman.com/posts/dream-90s-wasm/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+        
+    
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

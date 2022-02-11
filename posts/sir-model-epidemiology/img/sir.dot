@@ -1,0 +1,5 @@
+digraph {
+  S -> I [label="β"];
+  I -> R [label="γ"];
+  rankdir="LR";
+}

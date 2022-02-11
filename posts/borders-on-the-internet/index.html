@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Borders on the Internet" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/borders-on-the-internet/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Borders on the Internet" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Borders on the Internet : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Borders on the Internet</h1>
+
+    
+        <div class="post-meta">Wed, Aug 5, 2020 - 900 Words </div>
+    
+
+    <p>In the beginning, the internet was borderless. The first example of inter-netting, in 1977, connected computers in the U.S. the U.K. and Norway.</p>
+<p>In 1991, Tim Berners Lee created <a href="http://info.cern.ch/hypertext/WWW/TheProject.html">the first web page</a> along with all the supporting protocols to make it easy for anyone to access the internet by just pointing and clicking. The web was created as a research project at CERN, the physics research institution in Switzerland.</p>
+<p>During the 1990s, the web went commerical, and a new economy was born. It&rsquo;s growth was so astounding, that a young hedge fund quant named Jeff Bezos left his job on Wall Street to start a business selling books on the web.</p>
+<p>In 1997, EFF Founder John Perry Barlow <a href="https://www.eff.org/cyberspace-independence">declared the independence of Cyberspace</a>.
+In his words:</p>
+<blockquote>
+<p>Governments derive their just powers from the consent of the governed. You have neither solicited nor received ours. We did not invite you. You do not know us, nor do you know our world. Cyberspace does not lie within your borders.</p>
+</blockquote>
+<p>Then in the 21st century, three big things happened: the NASDAQ tech bubble burst, al-Qaida carried out the 2001-Sep-11 attacks, and the PRC (People&rsquo;s Republic of China 🇨🇳) joined World Trade Organziation.
+
+
+<figure>
+	<img src="/posts/borders-on-the-internet/img/nasdaq.gif" alt="" />
+</figure>
+</p>
+<p>The tech bubble bursting meant that a lot of internet companies never survived. It also lead to a lot of mainstream takes that the &ldquo;New Economy&rdquo; was over, and business would go back to the way it was. This NYTimes piece <a href="https://www.nytimes.com/2001/11/25/style/dot-com-is-dot-gone-and-the-dream-with-it.html">Dot-Com Is Dot-Gone, And the Dream With It</a> from 2001-Nov-25 is representative of the mood around this time.
+From that NYT article, (emphasis mine):</p>
+<blockquote>
+<p>To Amitai Etzioni, a sociologist at George Washington University, <strong>the country is experiencing an abrupt cultural shift away from the libertarian, individualistic values that were expressed in the celebration of the New Economy and toward more old-fashioned values</strong> in the wake of the terrorist attacks, when government is not The Problem and people are not The Market. &lsquo;&lsquo;There&rsquo;s been a sea change,&rsquo;&rsquo; he said. The surge in charitable giving and blood donations after Sept. 11, he said, underscores &lsquo;&lsquo;the sense that you&rsquo;re willing to give priority to the common good, to public safety and public health.&rsquo;&rsquo;</p>
+</blockquote>
+<p>The year 2001 was an inflection point. In response to the crash, investment in global internet companies dried up for years. In response to the terrorist attacks, the U.S. reorganized it&rsquo;s federal government and expanded the intelligence apparatus, then launched the Global War on Terror.</p>
+<p>When China joined the WTO, they got access to global markets, and began exporting their way to become the world&rsquo;s second largest economy, measured by GDP. The CCP (Chinese Communist Party) let their citizens access global markets to sell goods, but did not let their citizens access information on the global internet. The <a href="https://en.wikipedia.org/wiki/Great_Firewall">Great Firewall</a> created a &ldquo;Chinese internet&rdquo; separate from the global internet.</p>
+
+
+<figure>
+	<img src="/posts/borders-on-the-internet/img/china-gdp.png" alt="" />
+</figure>
+
+<p>Over the next decade, both Google and Facebook emerged from Stanford and Harvard dorm rooms as leaders on the global internet. Despite their abundant wealth and patience, Google pulled out of China in 2010, and Facebook was banned in China.</p>
+<p>In 2013, Edward Snowden revealed a large domestic surveillance program that the NSA had created as part of the post-9/11 War on Terror. One of the lasting effects of those revelations is a wider sensitivity to privacy on the internet.</p>
+<p>As Google and Facebook&rsquo;s ad businesses grew, we started to hear about privacy issues around ad-tech a lot more, and Shoshanna Zuboff coined the term &ldquo;surveillance capitalism&rdquo; to describe this new business model. In response to the success of American ad-tech giants, the European Union 🇪🇺 created GDPR (the General Data Protection Regulation) in 2018. Under GDPR, any company that had the personal data of one of the 500 million EU citizens would have to hire an expensive team to ensure compliance with these regulations. Many companies just <a href="https://www.techdirt.com/articles/20180509/14021739811/companies-respond-to-gdpr-blocking-all-eu-users.shtml">blocked EU users</a> to avoid having to hire a compliance team.</p>
+<p>This blocking of EU users created an effective &ldquo;EU firewall&rdquo; by ensuring that the half-billion citizens of the EU couldn&rsquo;t easily access websites outside of the EU. The only exception were the large corporations that can afford to hire a compliance team.</p>
+<p>Today in 2020, as relations between the U.S. and the China evolve towards greater hostility, the State Department announced the <a href="https://www.state.gov/announcing-the-expansion-of-the-clean-network-to-safeguard-americas-assets/">Clean Network</a>, which sounds an <em>awful lot</em> like a U.S.-led Great Wall around our part of the internet.</p>
+<p>John Perry Barlow&rsquo;s vision of a borderless Cyberspace, ungoverned by the legacy nation-states, has decisively lost. There are technical ways around these firewalls, but this friction will deter many, reducing the <a href="https://en.wikipedia.org/wiki/Metcalfe%27s_law">network effects quadratically</a>, and I expect that much of the workarounds to these firewalls will be made illegal and very expensive.</p>
+<p>Borders have been drawn on the internet. I am not saying this is bad or good, just documenting a historically significant development. I am reserving judgement as I watch this play out in real-time.</p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/internet">#internet</a></li>
+    
+        <li><a href="/tags/history">#history</a></li>
+    
+        <li><a href="/tags/geopolitics">#geopolitics</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

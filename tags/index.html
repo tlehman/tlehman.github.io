@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Tags" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/tags/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Tags" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Tags : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+    
+    
+    
+    
+        <h1>Tags posts</h1>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/literate-programming/'> literate-programming</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/long-now/'> long-now</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/physics/'> physics</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/tools/'> tools</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/algorithms/'> algorithms</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/programming/'> programming</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/wasm/'> wasm</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/book-review/'> book-review</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/energy/'> energy</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/future/'> future</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/game-theory/'> game-theory</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/history/'> history</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/progress/'> progress</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/technology/'> technology</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/time/'> time</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/unix/'> unix</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/economics/'> economics</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/finance/'> finance</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/dns/'> dns</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/ens/'> ens</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/ethereum/'> ethereum</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/governance/'> governance</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/protocols/'> protocols</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/habits/'> habits</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/identity/'> identity</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/scale/'> scale</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/self/'> self</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/covid-19/'> covid-19</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/math/'> math</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/sci-fi/'> sci-fi</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/time-travel/'> time-travel</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/topology/'> topology</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/open-source/'> open-source</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/stewardship/'> stewardship</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/causality/'> causality</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/climate/'> climate</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/disaster/'> disaster</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/goats/'> goats</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/zoning/'> zoning</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/diy/'> diy</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/video/'> video</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/geopolitics/'> geopolitics</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/internet/'> internet</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/justice/'> justice</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/law/'> law</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/race/'> race</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/cellular-automata/'> cellular-automata</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/coronavirus/'> coronavirus</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/deep-dive/'> deep-dive</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/diff-eq/'> diff-eq</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/epidemiology/'> epidemiology</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/adtech/'> adtech</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/business/'> business</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/digital-audio/'> digital-audio</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/hobby/'> hobby</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/music/'> music</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/review/'> review</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/compression/'> compression</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/interactive/'> interactive</a> </h2>
+  </header>
+  
+</article>
+        
+            
+<article class="tag">
+  <header>
+    <h2><a href='https://tobilehman.com/tags/probability/'> probability</a> </h2>
+  </header>
+  
+</article>
+        
+    
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

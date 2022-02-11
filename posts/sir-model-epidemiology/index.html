@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="The SIR Model on novel coronavirus" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/sir-model-epidemiology/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="The SIR Model on novel coronavirus" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            The SIR Model on novel coronavirus : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>The SIR Model on novel coronavirus</h1>
+
+    
+        <div class="post-meta">Tue, Mar 3, 2020 - 800 Words </div>
+    
+
+    <p>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.</p>
+<p>The simplest model of disease spreading starts by breaking a population up into compartments:</p>
+<ul>
+<li>S (Susceptible)</li>
+<li>I (Infected)</li>
+<li>R (Removed️)</li>
+</ul>
+<p>Then, the model describes the flow between these compartments.</p>
+
+
+<figure>
+	<img src="/posts/sir-model-epidemiology/img/sir.png" alt="" />
+</figure>
+
+<p>NOTE: This version of the model works over short periods and ignores births and natural deaths.</p>
+<p>The equations to describe these flows are given by these non-linear <a href="https://en.wikipedia.org/wiki/Differential_equation">differential equations</a>, if you haven&rsquo;t taken calculus, check out the yellow note below the equations to see what these terms mean. The number N is the population size, and an assumption of the model is that S + I + R = N.</p>
+<p>$$ \frac{dS}{dt} = -\frac{\beta I S}{N} $$
+$$ \frac{dI}{dt} = \frac{\beta I S}{N} - \gamma I $$
+$$ \frac{dR}{dt} = \gamma I $$</p>
+<div class="yellow-note">
+The quantity dS/dt is not a fraction, it means <b>the rate of change of S over time</b>. Similarly, dR/dt is the rate of change of R over time. Differential equations describe how numbers change over time.
+<p>Crucially, solving differential equations is how we get a prediction out of this model.</p>
+</div>
+<p>One thing to notice right away is that the overall change of S + I + R over time is zero, notice that:</p>
+<p>$$ \frac{dS}{dt} + \frac{dI}{dt} + \frac{dR}{dt} = 0 $$</p>
+<p>This reflects the simplifying assumption that births and natural deaths are not part of the model. Now that we have a feel for the shape of the model, the flow between the compartments, we can start to estimate the parameters β and γ and then predict how large this thing can get.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Basic_reproduction_number">basic reproduction number</a> is related to the model parameters β and γ like so:</p>
+<p>$$ R_0 = \frac{\beta}{\gamma} $$</p>
+<p>For the COVID-19 virus, the estimate for R<sub>0</sub> is anywhere from 1.4 to 6.49, which is a large range. For the purposes in this post, I&rsquo;ll do a best-case scenario to get the most optimisitic outcome the model will allow.</p>
+<p>From the equations, we can see that the R compartment (dead) grows at a rate of γI, so γ is the <strong>fatality</strong> rate. From the Wikipedia article as of 2020-03-03, the estimate for the γ of COVID-19 is 1% - 3%.</p>
+<h2 id="solving-the-equations">Solving the equations</h2>
+<p>We can solve the equations with <a href="https://www.wolfram.com/mathematica/">Mathematica</a>&rsquo;s <code>NDSolve</code> function. To get some concrete predictions, we need to set the parameters using real world values. Using the latest estimates <sub><a href="/posts/sir-model-epidemiology/#1">1</a></sub> of R<sub>0</sub> between 1.4 and 6.49, we calculate the best-case scenario:</p>
+<h3 id="best-case-scenario-rsub0sub--14">Best-case scenario, R<sub>0</sub> = 1.4</h3>
+<p>Using the real values <code>γ = 0.02</code> (meaning 2% of people infected by the virus die from the disease), and assuming <code>R₀ = 1.4</code> (meaning for each person infected, they infect an average of 1.4 new people).</p>
+
+
+<figure>
+	<img src="/posts/sir-model-epidemiology/img/SIR_R01.4.png" alt="" />
+</figure>
+
+<p>What this model is telling us is that, even under the best-case scenario, if this isn&rsquo;t contained, it could wipe out <strong>half of the Earth&rsquo;s population</strong>. Now, obviously this is just a model, and there are subtleties that are missing, like the window of time when a member of the infected population is actually contagious, and the fatality rate differs based on things like age, health, etc. Another thing this model does is assume people are uniformly intermingling, so this is going to overestimate the outcome, but this is a better approximation of the outcome than just assuming it&rsquo;s like the flu. As a reminder, flu has γ = 0.001, fully 20 times less than novel coronavirus-19, and kills around 30,000 people per year. Since we don&rsquo;t yet have a vaccine, or herd immunity, and we already know the fatality rate is <em>at least</em> an order of magnitude larger than flu, we should probably take this seriously.</p>
+<h3 id="worst-case-scenario-rsub0sub--649">Worst-case scenario, R<sub>0</sub> = 6.49</h3>
+<p>This graphic was too depressing, so I am leaving it out.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>It&rsquo;s easy to see the current death count of around 3,000 and note that in a world of 7.8 billion people, that&rsquo;s not so big, but <a href="https://tobilehman.com/posts/compound-growth">exponential growth</a> defies many of our human intuitions. Infectious diseases can go global really fast if we are not careful. There is precedent, back in the 14th century, the <a href="https://en.wikipedia.org/wiki/Black_Death">Black Death</a> wiped out between 30%-60% of Europe&rsquo;s population. Listen to health experts, wash your hands, avoid unnecessary travel, and Don&rsquo;t Panic.</p>
+<p>Citations:</p>
+<p><a name="1">1. Ying Liu, Albert A Gayle, Annelies Wilder-Smith, Joacim Rocklöv, The reproductive number of COVID-19 is higher compared to SARS coronavirus, Journal of Travel Medicine, , taaa021, <a href="https://doi.org/10.1093/jtm/taaa021">https://doi.org/10.1093/jtm/taaa021</a></a></p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/epidemiology">#epidemiology</a></li>
+    
+        <li><a href="/tags/math">#math</a></li>
+    
+        <li><a href="/tags/covid-19">#covid-19</a></li>
+    
+        <li><a href="/tags/coronavirus">#coronavirus</a></li>
+    
+        <li><a href="/tags/deep-dive">#deep-dive</a></li>
+    
+        <li><a href="/tags/future">#future</a></li>
+    
+        <li><a href="/tags/diff-eq">#diff-eq</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Notes on GPU Programming" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/gpus/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Notes on GPU Programming" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Notes on GPU Programming : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Notes on GPU Programming</h1>
+
+    <p><i>These notes are <a href="https://developer.nvidia.com/cuda-toolkit">CUDA</a>-specific</i></p>
+<p>Programming using a GPU requires thinking in two memory spaces. There&rsquo;s the <code>host</code> and the <code>device</code>. The host is powered by your CPU. Your CPU is very clever, has lots of tricks like <a href="https://en.wikipedia.org/wiki/Speculative_execution">speculative execution</a>. The device is powered by the GPU. The GPU is not as clever, but it is built for problems that can be broken up into lots of parallel subproblems.</p>
+<p>The types of problems best suited to CPUs look like this:
+$$ C_1 \to C_2 \to &hellip; \to C_n $$
+Where \(C_k\) can&rsquo;t be started until \(C_{k-1}\) is complete.</p>
+<p>The types of problems best suited to GPUs look like this:
+$$ \begin{aligned} G_1 &amp; \\ G_2 &amp; \\ &hellip; \\ G_n \end{aligned} $$
+Where \(G_i\) can be computed independently of all other \(G_j\)</p>
+<p>The Mandelbrot set fractal has the property of being <strong>embarrasingly parallel</strong>. That&rsquo;s another way of saying that each subproblem can be solved independently of all the other subproblems. The reason for this is that they <mark>depend only on the coordinates of a point</mark> in the <a href="https://tobilehman.com/posts/imaginary-numbers-are-real">complex plane</a>. For the Mandelbrot set, you take a point $$z_0 = x + i y$$ and then send it to $$z_1 = z_0^2 + z_0$$</p>
+<p>If that sequence \( {z_n} \) stays bounded, then it&rsquo;s in the set, if it grows unbounded, then it&rsquo;s outside the set. The boundary is where all the action is.</p>
+<p>The basic model for programming a GPU is to break each problem up into <strong>blocks</strong> that can be executed independently on streaming multiprocessors (SM). The simple act
+of breaking the problem into blocks is the first step to exploiting parallelization. Each block also has up to 1024 <strong>threads</strong> that can run concurrently on that block.</p>
+<p>Next you need to copy the memory from the host to the device: <code>cudaMemcpy(hostPtr, devicePtr, size, cudaMemcpyHostToDevice)</code></p>
+<p>And finally, use the special CUDA C syntax to launch your C function on the GPU device, <code>kernel&lt;&lt;&lt;numBlocks, numThreadsPerBlock&gt;&gt;&gt;(arg1byVal, arg2byVal)</code>.</p>
+<p>There are problems that are not embarassingly parallel, like training a neural network, but they can still benefit from parallelization on a GPU.</p>
+<p>TODO: illustrate how backpropagation works and how it uses CUDA to accelerate the computation.</p>
+
+</article>
+
+<script>
+    const listItems = [];
+</script>
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

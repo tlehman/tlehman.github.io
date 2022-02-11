@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.92.1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Tobi Lehman.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com" />
+        <meta property="og:image" content="https://tobilehman.com/images/tobilehman-com.png" />
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman">
+        <meta name="twitter:title" content="TobiLehman.com">
+        <meta name="twitter:description" content="Tobi's web blog">
+        <meta name="twitter:image" content="https://tobilehman.com/images/tobilehman-com-2021-12-09.png">
+    
+
+    <title>
+        
+            tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var pwd = "/home/tobi";
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div id="content">
+      
+        
+<div class="row">
+    <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+    <div class="col-8">
+    <article>
+        <p>
+          Welcome to <a href="https://tobilehman.com">tobilehman.com</a> (the terminal is real).
+          This site has my <a href="/posts">blog posts</a>,
+          the <a href="/projects">projects</a> I've worked on, and
+          a section <a href="/about">about me</a>.
+        </p><p>
+    <h3>Recent Posts</h3>
+    <ul>
+        
+            
+            <li><a href="https://tobilehman.com/posts/cweb-latex-experiment/">CWEB LaTeX Experiment</a> (2022-February-3)</li>
+            
+        
+            
+        
+            
+            <li><a href="https://tobilehman.com/posts/literate-quicksort/">Literate Quicksort</a> (2021-December-31)</li>
+            
+        
+            
+            <li><a href="https://tobilehman.com/posts/rand-int-c/">Generating random numbers in C</a> (2021-December-30)</li>
+            
+        
+            
+            <li><a href="https://tobilehman.com/posts/book-review-wheres-my-flying-car/">Book Review: Where&#39;s My Flying Car?</a> (2021-December-26)</li>
+            
+        
+    </ul>
+</p>
+<h3>Technical Deep Dives</h3>
+        <p>
+          <ul>
+            <li class="hover-show-hidden"><a href="/posts/sir-model-epidemiology">The SIR Model on novel coronavirus (2020)</a>
+              <ul class="hidden">
+                <li>Note: this is not supposed to be original research. It's more of an explainer on the math behind the SIR model, loosely applied to COVID-19. </li>
+              </ul>
+            </li>
+            <li><a href="/posts/imaginary-numbers-are-real">Imaginary Numbers are Real (2019)</a></li>
+            <li><a href="/posts/lossy-image-compression">Lossy Image Compression (2018)</a></li>
+            <li><a href="/pdf/ooo.pdf">Object-Oriented Orbits, a physics simulator (2016)</a></li>
+          </ul>
+        </p>
+
+        <h3>Book Reviews</h3>
+        <p>
+          <ul>
+            <li><a href='/posts/book-review-wheres-my-flying-car/'>Book Review: Where's My Flying Car?</a></li>
+            <li><a href='/posts/book-review-perez-trfc/'> Book Review: Technological Revolutions and Financial Capital</a></li>
+            <li><a href='/posts/book-review-atomic-habits/'> Book Review: Atomic Habits</a></li>
+            <li><a href='/posts/book-review-working-in-public/'>Book Review: Working in Public</a></li>
+          </ul>
+        </p>
+
+        <h3>What I believe</h3>
+        <p>
+        I believe every problem can be solved. I also acknowledge that every solution creates it's own problems.
+        
+        One example of this: nuclear energy solves the problems of intermittency and large land footprint that renewables have. It also solves the problem of CO<sub>2</sub> emissions that fossil fuels have. But it also produces small amounts of solid waste and occasionally melts down.
+        The problem of solid waste and occasional meltdowns are far less problematic than constant air pollution and constant power outages because of weather and batteries running out. If you disagree, first look at the <a href="https://ourworldindata.org/safest-sources-of-energy">deaths per TWh by energy source</a>.
+        Further, the meltdown problem is also solvable with newer reactor types.
+        </p>
+
+        <p>
+          To make this more formal: Let \( \frac{dS}{dt} \) be the rate of solution production, and \( \frac{dP}{dt} \) be the rate of problem production, including problems created by new solutions.
+        I believe that $$ \frac{dS}{dt} > \frac{dP}{dt} $$
+
+        This implies that human life is getting better over time, defined by the ratio \( S / P \) going up.
+        And that is a good thing. I also don't believe we should take this for granted, we should diligently find ways of solving more problems and continue the upward march 
+        of progress in human wellbeing. Progress is happening along many dimensions: \( \vec{\text{social}} \), \( \vec{\text{technological}} \), 
+        and \( \vec{\text{economic}} \). 
+        </p>
+
+    </article>
+
+    </div>
+    <div class="col-2">
+      <h3><a id="blogroll">Blogroll</a></h3>
+      <ul>
+        <li><a href="https://guzey.com/">Alexey Guzey</a></li>
+        <li><a href="https://brianlovin.com/writing">Brian Lovin</a></li>
+        <li><a href="https://blog.codinghorror.com/">Coding Horror</a></li>
+        <li><a href="https://jvns.ca/">Julia Evans</a></li>
+        <li><a href="https://julian.digital/">Julian Lehr</a></li>
+        <li><a href="https://omar.website/">Omar Rizwan</a></li>
+        <li><a href="https://rootsofprogress.org">Roots of Progress</a></li>
+      </ul>
+      <h3><a id="non-profits">Non-Profits</a></h3>
+      <ul>
+        <li><a href="https://archive.org">Archive.org</a></li>
+        <li><a href="https://blackgirlscode.com">Black Girls Code</a></li>
+        <li><a href="https://thebreakthrough.org/">Breakthrough Institute</a></li>
+        <li><a href="https://longnow.org/ideas">Long Now</a></li>
+        <li><a href="https://rootsofprogress.org">Roots of Progress</a></li>
+      </ul>
+    </div>
+</div>
+      
+    </div>
+    
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

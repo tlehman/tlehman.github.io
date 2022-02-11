@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Wildfire West" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/wildfire-west/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/wildfire-west/img/cause.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Wildfire West" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/wildfire-west/img/cause.png' />
+    
+
+    <title>
+        
+            Wildfire West : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Wildfire West</h1>
+
+    
+        <div class="post-meta">Thu, Sep 10, 2020 - 500 Words </div>
+    
+
+    <p>The <a href="https://www.nytimes.com/2020/09/10/us/wildfires-live-updates.html">West Coast is on fire</a></p>
+<p>This post is addressing the question of causality. When reading social media, I noticed three patterns:</p>
+<ol>
+<li>arguing about climate change and causality (e.g. <em>climate change caused this</em> and <em>no-it-didn&rsquo;t</em> back and forth)</li>
+<li>rumors about the whole thing being caused by Antifa or Boog arsonists (<a href="https://www.kgw.com/article/news/verify/did-antifa-set-fires-in-oregon-wildfires-medford-douglas-county-verify/283-9d0f6f88-6b49-4e8e-bb31-982b904c5545">multiple police departments have debunked this</a>)</li>
+<li>dismissals based on &lsquo;fires being natural&rsquo;</li>
+</ol>
+<p>The real cause of the fires is not a single cause. It&rsquo;s multiple compounding causes. Here I analyze several threads leading to the conditions that turn small fires into disasters.</p>
+
+
+<figure>
+	<img src="/posts/wildfire-west/img/cause.png" alt="" />
+</figure>
+
+<p>The above diagram shows the multiple interlocking causes. There is more to this, and I am not pretending to be an expert, but I can show that the simple question of &ldquo;what&rsquo;s the single root cause?&rdquo; is the wrong question to ask. The right question is: how do we prevent this in the future?</p>
+<p>We can&rsquo;t do the obvious, which is doing controlled burns, that will encroach on residential areas. We might be able to clear those areas out with goats, this is something I&rsquo;m looking into, stay tuned.</p>
+<p>We can definitely change zoning laws, that would help reduce sprawl in the future, preventing this problem from getting worse. By liberalizing zoning laws, we could legalize dense housing, and allow developers to build enough housing inside city limits to take the pressure off of the existing housing stock. Rents would go down as a result. This is the expected result of the <a href="https://en.wikipedia.org/wiki/Law_of_demand">Law of Demand</a>.</p>
+<p>Aside from local zoning laws, we should definitely do a national climate project like some versions of the <a href="https://en.wikipedia.org/wiki/Green_New_Deal">Green New Deal</a>. The version with the most promise is the one that uses nuclear fission and geothermal for the baseload, and then solar, wind and hydro for the intermittent load.</p>
+<p>Oregon&rsquo;s Governor, Kate Brown recently said:</p>
+<blockquote>
+<p>To put that in perspective, in the last 10 years, we see an average of 500,000 acres burn in an entire year. We&rsquo;ve seen that nearly double in the past three days.</p>
+</blockquote>
+<p>That fact, of the total acreage being burnt being more than twice the historical average, contradicts the claim that this is just natural and normal. It&rsquo;s not normal, and it&rsquo;s a problem that we need to solve. Let&rsquo;s get to work.</p>
+<div class="alert alert-info">Email me at <a href="mailto:mail@tobilehman.com">mail@tobilehman.com</a> to coordinate on solutions. We need climate change action, zoning reform, electric infrastructure renovation, and possibly goats. Lots of goats. </div>
+<style>
+a[href*='kgw.com']::after {
+    background-image: url("https://www.kgw.com/assets/favicons/KGW.png?ver=2.4.9.1")
+}
+</style>
+
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/climate">#climate</a></li>
+    
+        <li><a href="/tags/disaster">#disaster</a></li>
+    
+        <li><a href="/tags/causality">#causality</a></li>
+    
+        <li><a href="/tags/zoning">#zoning</a></li>
+    
+        <li><a href="/tags/economics">#economics</a></li>
+    
+        <li><a href="/tags/goats">#goats</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

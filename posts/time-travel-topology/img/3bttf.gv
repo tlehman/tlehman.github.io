@@ -1,0 +1,8 @@
+digraph {
+"Marty's dad meet's his mom" -> "Marty meets Doc at Twin Pines mall" -> "Doc sends Einstein 1 minute into the future"; "Doc gets killed by terrorists"
+"Marty travels back to 1955" -> "Marty's dad meet's his mom";
+"Marty's dad meet's his mom" -> 
+'Marty gets hit by car
+- Marty is nursed to health by Lorraine (his mom, a babe)
+
+}

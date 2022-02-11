@@ -1,0 +1,9 @@
+digraph {
+  rankdir=LR;
+  b -> m;
+  m -> e;
+
+  b [label="beginning"];
+  m [label="middle"];
+  e [label="end"];
+}

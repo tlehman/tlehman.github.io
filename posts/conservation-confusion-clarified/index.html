@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Conservation Confusion Clarified" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/conservation-confusion-clarified/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Conservation Confusion Clarified" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Conservation Confusion Clarified : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Conservation Confusion Clarified</h1>
+
+    
+        <div class="post-meta">Tue, Jan 5, 2010 - 700 Words </div>
+    
+
+    <p><em>Ported from my <a href="https://web.archive.org/web/20100608193437/http://www.axiomaticdoubt.com/?m=201001">old blog</a> through Archive.org (<a href="https://archive.org/donate/">donate to Archive.org here!</a>)</em></p>
+<p>I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)</p>
+<p>After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject. I found a great typed compilation of lecture notes by mathematician John Baez. I chose his material because I enjoy his ramblings at his blog, the n-Category Cafe (although I only understand about one eighth of what he and his colleagues post).</p>
+<p>In Baez’s notes on classical mechanics, he approached energy conservation from an analytic perspective, and used Noether’s theorem to derive the principle of conservation of energy! I was taken aback, did this mean that my book was missing this? Unlike politics, if two scientific claims are in conflict, at least one of them is wrong. So is it the case that energy conservation is only empirical or is it necessary?</p>
+<p>My little brother arrived in Portland to hang out for a portion of the break, and on the day of his arrival, we had lunch with the parents of one of his friends from school. It turns out her dad had a Masters in physics, so I asked him about the nature of energy conservation, and he wasn’t able to say, I was a bit uneasy that I hadn’t found a resolution to the problem. Nevertheless, I enjoyed the break with my little brother and roommate, watching movies and writing code for my employers (behaviors that are largely immune to such metaphysical puzzles).</p>
+<p>Come Christmas time, my little brother and I had made it back home to be with the rest of the family, we exchanged gifts, and my parents got me the hardback set of the Feynman Lectures on Physics, which are a typed collection of notes from Richard Feynman’s undergraduate physics course at Caltech. The oddball, Nobel-Prize-winning Feynman always has a way of expressing the most abstruse ideas in palatable ways, and exuding an air of admirable epistemic humility.</p>
+<p>By the time I returned home I had read through the first four sections, and when I got to section five, the topic of energy conservation came up. Attentively, I read through the section and learned something that I hadn’t initially considered. According to Feynman, if we assume continuous temporal translational symmetry, then we can derive the conservation of energy. But without making that assumption, we can induce from experiments that energy conservation still holds in our universe (empirically).</p>
+<p>This means that the notion that energy conservation is necessary rests on the assumption that it does not matter when you do an experiment, as long as all local conditions are the same. In other words, it is true if and only if the laws of physics don’t change with time.</p>
+<p>One thing about Noether’s theorem that I didn’t mention is that the converse is true, meaning that if energy is conserved, then there is a continuous temporal translational symmetry. So, assuming that all experiments that have verified the conservation of energy are accurate, we can deduce that the laws of physics don’t change with time. Since energy conservation is true if and only if the laws of physics are time-invariant, if we later observe unassailable evidence that say for example the Coulomb’s law describing the force between two charged particles changes with time, we can conclude that energy conservation doesn’t necessarily hold.</p>
+<p>The problem is solved, from what I learned from Dr. Feynman, my school’s textbook is being conservative (no pun intended), Baez’s notes are being liberal in assuming temporal symmetry, and Feyman’s notes demonstrate that ultimately, we don’t know, but we do know what follows in either case. Baez’s assumptions are reasonable, but we don’t know for sure if they hold for our Universe.</p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/math">#math</a></li>
+    
+        <li><a href="/tags/physics">#physics</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

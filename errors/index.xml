@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Errors on tobilehman.com:~</title>
+    <link>https://tobilehman.com/errors/</link>
+    <description>Recent content in Errors on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Tue, 18 Feb 2020 18:46:40 -0800</lastBuildDate><atom:link href="https://tobilehman.com/errors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>404 Not Found</title>
+      <link>https://tobilehman.com/errors/404/</link>
+      <pubDate>Tue, 18 Feb 2020 18:46:40 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/errors/404/</guid>
+      <description>While you&amp;rsquo;re here, check out some of my old posts </description>
+    </item>
+    
+  </channel>
+</rss>

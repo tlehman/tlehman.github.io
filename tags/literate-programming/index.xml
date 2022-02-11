@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>literate-programming on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/literate-programming/</link>
+    <description>Recent content in literate-programming on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 03 Feb 2022 08:37:07 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/literate-programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CWEB LaTeX Experiment</title>
+      <link>https://tobilehman.com/posts/cweb-latex-experiment/</link>
+      <pubDate>Thu, 03 Feb 2022 08:37:07 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/cweb-latex-experiment/</guid>
+      <description>I have written about literate programming a few times before. The big idea is to elevate documentation above the actual running source code. Source code is meant for humans to read, that&amp;rsquo;s why it has higher-level abstractions and comments. Literate programming flips the roles of comments and source code. The comments come first, and the source code is stripped out and tangled into a compilable form.
+I am still not totally sure what to think about it.</description>
+    </item>
+    
+    <item>
+      <title>Literate Quicksort</title>
+      <link>https://tobilehman.com/posts/literate-quicksort/</link>
+      <pubDate>Fri, 31 Dec 2021 07:01:33 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
+      <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
+  Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+    </item>
+    
+    <item>
+      <title>Generating random numbers in C</title>
+      <link>https://tobilehman.com/posts/rand-int-c/</link>
+      <pubDate>Thu, 30 Dec 2021 11:40:09 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/rand-int-c/</guid>
+      <description>Assume your range is lower to upper, both of type int.
+Choose random number in range A random integer, uniformly distributed, over that interval is generated with:
+int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&amp;rsquo;t &amp;ldquo;seed&amp;rdquo; the random number generator (RNG), then it will return the same sequence every time.</description>
+    </item>
+    
+  </channel>
+</rss>

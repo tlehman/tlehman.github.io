@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/crib/static/css/main.7e519544.chunk.css",
+    "main.js": "/crib/static/js/main.2e25a47d.chunk.js",
+    "main.js.map": "/crib/static/js/main.2e25a47d.chunk.js.map",
+    "runtime-main.js": "/crib/static/js/runtime-main.7eacacdc.js",
+    "runtime-main.js.map": "/crib/static/js/runtime-main.7eacacdc.js.map",
+    "crib/static/js/2.2d27a602.chunk.js": "/static/js/2.2d27a602.chunk.js",
+    "crib/static/js/2.2d27a602.chunk.js.map": "/static/js/2.2d27a602.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.0ffefaf62cb35ec4a28e62518cd1ded7.js": "/precache-manifest.0ffefaf62cb35ec4a28e62518cd1ded7.js",
+    "service-worker.js": "/service-worker.js",
+    "crib/static/css/main.7e519544.chunk.css.map": "/static/css/main.7e519544.chunk.css.map",
+    "crib/static/js/2.2d27a602.chunk.js.LICENSE.txt": "/static/js/2.2d27a602.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "crib/static/js/runtime-main.7eacacdc.js",
+    "crib/static/js/2.2d27a602.chunk.js",
+    "crib/static/css/main.7e519544.chunk.css",
+    "crib/static/js/main.2e25a47d.chunk.js"
+  ]
+}

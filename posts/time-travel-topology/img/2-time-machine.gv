@@ -1,0 +1,10 @@
+digraph {
+  "Alex proposes to Emma" -> "Emma dies" -> "Alex builds time machine" -> "Alex travels in time";
+  "Alex travels in time" -> "Alex proposes to Emma" [color=red,label="read-only backward travel"];
+  "Alex travels in time" -> "2030" [color=green,label="forward travel"];
+  "Alex builds time machine" -> "20th century" -> "2030";
+  "2030" -> "2031-2036" -> "2037, moon exploded";
+  "2030" -> "2037, moon exploded"[color=green,label="forward travel"];
+  "2037, moon exploded" -> "a whole bunch of time" -> "802701, future sucks";
+  "2037, moon exploded" -> "802701, future sucks" [color=green,label="forward travel"];
+}

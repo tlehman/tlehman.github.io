@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Dunbar&#39;s number, Random Graphs and Sapiens" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/dunbar-random-graphs-sapiens/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Dunbar&#39;s number, Random Graphs and Sapiens" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Dunbar&#39;s number, Random Graphs and Sapiens : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
+    <script src="/js/xterm.min.js"></script>
+    <link rel="stylesheet" href="/css/xterm.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+
+<script src="/js/tobishell.js"></script>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+    localStorage.setItem('more-showing', true);
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+    localStorage.setItem('more-showing', false);
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+<script>
+if(localStorage.getItem('more-showing') == "true") {
+    more();
+}
+</script>
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Dunbar&#39;s number, Random Graphs and Sapiens</h1>
+
+    
+        <div class="post-meta">Mon, May 25, 2020 - 1200 Words </div>
+    
+
+    <p>Why is human society so flexible? In 1000 years, we have had the <a href="https://en.wikipedia.org/wiki/East%E2%80%93West_Schism">Great Schism of 1054</a>, the <a href="https://en.wikipedia.org/wiki/Norman_conquest_of_England">Norman Invasion of 1066</a>, the <a href="https://en.wikipedia.org/wiki/Magna_Carta">Magna Carta (1215)</a>, the Mongol Empire, the Ming Dynasty in China, the Portuguese and Spanish maritime empires, the <a href="https://en.wikipedia.org/wiki/Thirty_Years%27_War">Thirty Years War (1618-1648)</a> and the <a href="https://en.wikipedia.org/wiki/Westphalian_sovereignty">creation of the idea of &ldquo;Sovereign Nation-States&rdquo;</a>, the Dutch Empire, the British Empire and the creation of <a href="https://en.wikipedia.org/wiki/East_India_Company">joint-stock companies</a>. The Reformation led to new religions. All those protestant sects that broke away from the Catholic church had the effect of sparking a revolution in <a href="https://en.wikipedia.org/wiki/Reformation#Literacy">literacy</a> and <a href="https://en.wikipedia.org/wiki/The_Protestant_Ethic_and_the_Spirit_of_Capitalism">commerce</a>. The spread of printing also lead to a revolution in <a href="https://www.nature.com/articles/550454a.pdf?origin=ppub">science</a>. The American and French revolutions (1780s) lead to the creation of republics with freedom of religion, and freedom of speech. The Ottoman empire (1840s-1920) united many different Islamic territories into a single polity. The Russian revolution (1917) experimented with a radically different idea and created an empire that was the first to achieve spaceflight, and lasted almost a century. The Americans did <a href="https://www.spacex.com/">SpaceX</a> and <a href="https://en.wikipedia.org/wiki/Tiger_King">Tiger King</a>.</p>
+<p>No other species had this interesting of a 1000-year run, and that begs the question: what is so different about humans that <em>history</em> is not the same as <em>evolutionary history</em>?</p>
+<p>The historian Yuval Noah Harari argues that humans are unique because of their ability to flexibly work together in large numbers. The psychologist Robin Dunbar found the limit for the number of unique relationships humans can keep in their memory. It&rsquo;s about <a href="https://www.bbc.com/future/article/20191001-dunbars-number-why-we-can-only-maintain-150-relationships">150</a>.</p>
+<p>Harari argues that humans can flexibly work together in large numbers because of our ability to use &ldquo;fictive language&rdquo;, or speak about things that don&rsquo;t exist. As examples of fictional entities that large numbers of humans can coordinate around, he talks about gods, money, corporations, and nations.</p>
+<p>These are things most humans treat as important, but which don&rsquo;t exist outside of human brains. It&rsquo;s true that there are real, physical artifacts built in service of these fictions, but they only have meaning to humans who believe in those things.</p>
+<p>To a modern day tourist, the Pyramids in Cairo are just really big, neat stacks of rocks. But to an Egyptian living under the Pharaoh, they symbolized the ultimate authority and glory.</p>
+<p>Think about paper $100 bills. The material they are printed on is almost identical to the material a $1 bill is printed on. The big difference is that almost all humans treat one as a hundred times more valuable than the other.</p>
+<p>Humans can trust in those fictional things and work around the limitations of Dunbar&rsquo;s number. Instead of maintaining millions of individual relationships with all the people involved in maintaining an empire, each person can trust in their neighbors, their local lord, the lord&rsquo;s governor, and the emperor, and finally, a god or gods above that. This can neatly fit within 150, and leave space for new relationships. This also forms a hierarchical structure, a form which appears again and again throughout history.</p>
+<p><em>I am not saying it&rsquo;s good, I&rsquo;m saying it solves a problem. The problem is that large, coordinated groups of people are better at defending themselves, providing for their people, and surviving than small, uncoordinated bands of people. Teamwork at scale is unstoppable.</em></p>
+<p>I want to explore the intersection of two ideas in this essay, using a mathematical tool called random graphs.</p>
+<p>A graph is an object made of smaller objects, called vertices. Each vertex can link to other vertices through &ldquo;edges&rdquo;. Here&rsquo;s a random graph with 10 vertices and 15 edges:</p>
+
+
+<figure>
+	<img src="/posts/dunbar-random-graphs-sapiens/img/rg10-15.png" alt="" />
+</figure>
+
+<p>Since each human relationship is time-consuming to maintain, there is a natural pressure keeping the number of relationships per-person small. But, since larger groups of coordinated actors (citizens, believers, currency users) tend to do better economically and militarily, that means that surviving groups of humans will be among the largest.</p>
+<p>These opposing forces can be formulated in the language of graph theory: a vertex&rsquo;s edge count should be small, but the number of vertices in a connected component should be as large as possible.</p>
+<p>As an experiment, let&rsquo;s take 1500 people, and look at the graphs that appear with only 500 total relationships.</p>
+
+
+<figure>
+	<img src="/posts/dunbar-random-graphs-sapiens/img/rg1500-500.png" alt="" />
+</figure>
+
+<p>This forms a lot of small hierarchical groups, where the most connected is the chief, or the king, or whatever you call it, and a lot of isolated &ldquo;dust&rdquo; of individuals who are totally alone.</p>
+<p>In this scenario, the bigger clusters of people could absorb the individuals, and the clusters could fight among each other for land and scarce resources. Or, they could form alliances around trade or marriage, and use their larger size to beat all their common competitors.</p>
+<p>Assume time passes, and trade alliances form, royal families merge, defectors and revolutionaries break away but the trend is generally toward consolidation. Take the same population of around 1500 and double the number of relationships. Suppose this happens because the trade networks enable positive-sum growth, people get more nutrition, and venture out, trading with their former enemies. The economy grows, and the healthier, richer population begins forming new relationships.</p>
+
+
+<figure>
+	<img src="/posts/dunbar-random-graphs-sapiens/img/rg1500-1000.png" alt="" />
+</figure>
+
+<p>I ran a few simulations, in all of them, they have one giant cluster, I call it The Empire. It completely dominates in terms of size, connectivity, and still has the nice property of most people only needing at most 4 or 5 close relationships:</p>
+
+
+<figure>
+	<img src="/posts/dunbar-random-graphs-sapiens/img/histogram.png" alt="" />
+</figure>
+
+<p>Flexibility comes from this low average vertex count. Why? If you only have to convince 4 or 5 of your most trusted relationships to defect, you can break an Empire in half and have a good chance at ruling and defending it.</p>
+<p>Although, if you start introducing breaks into the graph, you need something to hold it together so it doesn&rsquo;t fragment back down to where we started. Belief is the special sauce that keeps clusters coherent after a break in the graph occurs.</p>
+<p>Starting with my first example: The Great Schism of 1054, the Christian church had survived from 330 AD to 1054 AD, but it split into the Western Roman Catholic church and the Eastern Orthodox Church. The two halves remained coherent and exist to this day, and it&rsquo;s because the members still believe, it&rsquo;s just at one side changed the parameters of belief <em>ever so slightly,</em> and the clusters stayed internally coherent, even as they competed for believers and continued to evolve and expand.</p>
+<p>The other, more familiar example is the British Empire and the United States of America. The Yanks wrote down a constitution that was very similar to the British constitution (which, weirdly, <a href="https://en.wikipedia.org/wiki/Constitution_of_the_United_Kingdom">was never written down</a>). The similarity of the two systems helped to get buy-in from other fellow defectors, so that when the British empire broke in two, the two would quickly become equals, and then the new empire would eventually dominate.</p>
+<p>In conclusion, I think belief is very important, whether it&rsquo;s belief in a faith, or in a constitution, or in the value of a currency. The Dunbar number is not really a limit if you have the right structure, held together with something as potent as humans believing in the same thing.</p>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/history">#history</a></li>
+    
+        <li><a href="/tags/math">#math</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/programming/</link>
+    <description>Recent content in programming on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 31 Dec 2021 07:01:33 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Literate Quicksort</title>
+      <link>https://tobilehman.com/posts/literate-quicksort/</link>
+      <pubDate>Fri, 31 Dec 2021 07:01:33 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
+      <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
+  Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+    </item>
+    
+    <item>
+      <title>Generating random numbers in C</title>
+      <link>https://tobilehman.com/posts/rand-int-c/</link>
+      <pubDate>Thu, 30 Dec 2021 11:40:09 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/rand-int-c/</guid>
+      <description>Assume your range is lower to upper, both of type int.
+Choose random number in range A random integer, uniformly distributed, over that interval is generated with:
+int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&amp;rsquo;t &amp;ldquo;seed&amp;rdquo; the random number generator (RNG), then it will return the same sequence every time.</description>
+    </item>
+    
+    <item>
+      <title>Book Review: Atomic Habits</title>
+      <link>https://tobilehman.com/posts/book-review-atomic-habits/</link>
+      <pubDate>Sat, 30 Oct 2021 14:19:20 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/book-review-atomic-habits/</guid>
+      <description>Atomic Habits is written so clearly that I have a hard time believing &amp;lsquo;James Clear&amp;rsquo; isn&amp;rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.
+Before I read this, I thought of habits using the goal/discipline model.</description>
+    </item>
+    
+    <item>
+      <title>Book Review: Working in Public</title>
+      <link>https://tobilehman.com/posts/book-review-working-in-public/</link>
+      <pubDate>Tue, 20 Oct 2020 21:22:39 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/book-review-working-in-public/</guid>
+      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.
+In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
+    </item>
+    
+    <item>
+      <title>Compiling C to WebAssembly</title>
+      <link>https://tobilehman.com/posts/compiling-c-to-wasm/</link>
+      <pubDate>Mon, 07 Sep 2020 21:09:07 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/compiling-c-to-wasm/</guid>
+      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.
+The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.
+Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
+    </item>
+    
+    <item>
+      <title>Timelapse</title>
+      <link>https://tobilehman.com/posts/timelapse/</link>
+      <pubDate>Sat, 05 Sep 2020 21:01:22 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/timelapse/</guid>
+      <description>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
+  I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
+    </item>
+    
+    <item>
+      <title>Conway&#39;s Game of Life</title>
+      <link>https://tobilehman.com/posts/game-of-life/</link>
+      <pubDate>Tue, 14 Apr 2020 19:42:32 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/game-of-life/</guid>
+      <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.
+If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;:   Not this multi-player board game:   I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
+    </item>
+    
+    <item>
+      <title>Piano  ♪</title>
+      <link>https://tobilehman.com/posts/piano/</link>
+      <pubDate>Tue, 21 Jan 2020 19:37:48 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/piano/</guid>
+      <description>To start the decade off right, I decided to learn the piano. I am paying for lessons from Ethan Maier, he&amp;rsquo;s excellent, I&amp;rsquo;ve been enjoying learning from him and practicing.
+Since I only have a piano at home, I wanted to make one that I could use on the go. Here is the simplest way I could think of to make a portable piano program:
+There is an standard for simple web graphics called SVG, which lets you define custom shapes that show up in any web browser.</description>
+    </item>
+    
+  </channel>
+</rss>
