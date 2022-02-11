@@ -9,6 +9,16 @@
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
     <lastBuildDate>Thu, 03 Feb 2022 08:37:07 -0800</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>What I believe</title>
+      <link>https://tobilehman.com/beliefs/</link>
+      <pubDate>Thu, 10 Feb 2022 11:51:45 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/beliefs/</guid>
+      <description>Table of contents  Problems are solveable  Problems are solvable I believe every problem can be solved. I also acknowledge that every solution creates it&amp;rsquo;s own problems
+One example of this: nuclear energy solves the problems of intermittency and large land footprint that renewables have. It also solves the problem of CO2 emissions that fossil fuels have. But it also produces small amounts of solid waste and occasionally melts down.</description>
+    </item>
+    
+    <item>
       <title>CWEB LaTeX Experiment</title>
       <link>https://tobilehman.com/posts/cweb-latex-experiment/</link>
       <pubDate>Thu, 03 Feb 2022 08:37:07 -0800</pubDate>
@@ -74,7 +84,7 @@ The more you work with times, dates, time zones and daylight saving time, the mo
       <pubDate>Thu, 09 Dec 2021 09:15:10 -0800</pubDate>
       
       <guid>https://tobilehman.com/changelog/</guid>
-      <description>February 2022  2022-02-08  Added lcp-0.3.pdf   2022-02-04  Added lcp-0.2.pdf Posted CWEB LaTeX Experiment    January 2022  2022-01-02  Added comments using Commento.io Added a Recent Posts section to the frontpage    December 2021  2021-12-31  Added OOO to frontpage, since it&amp;rsquo;s kind of hidden Added a Blogroll and a Non-Profits list to the front page   2021-12-30  Posted a literate program.</description>
+      <description>February 2022  2022-02-11  Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort. The removal will speed up page load times by 25%. This change also preserves the look and feel of the terminal, but without the interactivity.   2022-02-08  Added lcp-0.3.pdf   2022-02-04  Added lcp-0.2.pdf Posted CWEB LaTeX Experiment    January 2022  2022-01-02  Added comments using Commento.</description>
     </item>
     
     <item>

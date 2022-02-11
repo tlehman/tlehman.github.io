@@ -42,8 +42,6 @@
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
     <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
-    <script src="/js/xterm.min.js"></script>
-    <link rel="stylesheet" href="/css/xterm.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -55,12 +53,13 @@ const title = document.getElementsByTagName('meta');
 <body><div class="row">
     <div class="col-2 header-col-2"></div>
     <div class="col-8 centered" style="max-width: 100%; padding: 0">
-        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
     </div>
     <div class="col-2 header-col-2"></div>
 </div>
-
-<script src="/js/tobishell.js"></script>
 <div class="row">
             <div class="col-2"><style>
 .more-hidden::after {
@@ -113,6 +112,7 @@ function toggleMoreLess() {
         <div id="other-menu" class="hidden">
             <li><a href="/archive">Archive</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/beliefs">Beliefs</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
             <li><a href="/links">Links</a></li>
@@ -136,6 +136,11 @@ if(localStorage.getItem('more-showing') == "true") {
 
     <h3 id="february-2022">February 2022</h3>
 <ul>
+<li>2022-02-11
+<ul>
+<li>Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort. The removal will speed up page load times by 25%. This change also preserves the look and feel of the terminal, but without the interactivity.</li>
+</ul>
+</li>
 <li>2022-02-08
 <ul>
 <li>Added <a href="/pdf/lcp-0.3.pdf">lcp-0.3.pdf</a></li>

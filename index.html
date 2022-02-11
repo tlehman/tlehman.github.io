@@ -34,8 +34,6 @@
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
     <link rel="stylesheet" href="/css/custom-2022-01-02.css"></link>
-    <script src="/js/xterm.min.js"></script>
-    <link rel="stylesheet" href="/css/xterm.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -47,12 +45,13 @@ const title = document.getElementsByTagName('meta');
 <body><div class="row">
     <div class="col-2 header-col-2"></div>
     <div class="col-8 centered" style="max-width: 100%; padding: 0">
-        <div id="terminal" style="max-width: 100%; overflow-x: hidden;"></div>
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
     </div>
     <div class="col-2 header-col-2"></div>
 </div>
-
-<script src="/js/tobishell.js"></script>
 <div id="content">
       
         
@@ -108,6 +107,7 @@ function toggleMoreLess() {
         <div id="other-menu" class="hidden">
             <li><a href="/archive">Archive</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/beliefs">Beliefs</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
             <li><a href="/links">Links</a></li>
@@ -127,11 +127,13 @@ if(localStorage.getItem('more-showing') == "true") {
     <div class="col-8">
     <article>
         <p>
-          Welcome to <a href="https://tobilehman.com">tobilehman.com</a> (the terminal is real).
+          Welcome to <a href="https://tobilehman.com">tobilehman.com</a>.
           This site has my <a href="/posts">blog posts</a>,
           the <a href="/projects">projects</a> I've worked on, and
           a section <a href="/about">about me</a>.
-        </p><p>
+        </p>
+
+        <p>Here's my <a href="https://github.com/tlehman">Github profile</a> for a sample of my work.</p><p>
     <h3>Recent Posts</h3>
     <ul>
         
@@ -158,6 +160,7 @@ if(localStorage.getItem('more-showing') == "true") {
 <h3>Technical Deep Dives</h3>
         <p>
           <ul>
+            <li><a href="/pdf/lcp-0.3.pdf">Literate Classical Physics (2022)</a></li>
             <li class="hover-show-hidden"><a href="/posts/sir-model-epidemiology">The SIR Model on novel coronavirus (2020)</a>
               <ul class="hidden">
                 <li>Note: this is not supposed to be original research. It's more of an explainer on the math behind the SIR model, loosely applied to COVID-19. </li>
@@ -179,24 +182,7 @@ if(localStorage.getItem('more-showing') == "true") {
           </ul>
         </p>
 
-        <h3>What I believe</h3>
-        <p>
-        I believe every problem can be solved. I also acknowledge that every solution creates it's own problems.
-        
-        One example of this: nuclear energy solves the problems of intermittency and large land footprint that renewables have. It also solves the problem of CO<sub>2</sub> emissions that fossil fuels have. But it also produces small amounts of solid waste and occasionally melts down.
-        The problem of solid waste and occasional meltdowns are far less problematic than constant air pollution and constant power outages because of weather and batteries running out. If you disagree, first look at the <a href="https://ourworldindata.org/safest-sources-of-energy">deaths per TWh by energy source</a>.
-        Further, the meltdown problem is also solvable with newer reactor types.
-        </p>
 
-        <p>
-          To make this more formal: Let \( \frac{dS}{dt} \) be the rate of solution production, and \( \frac{dP}{dt} \) be the rate of problem production, including problems created by new solutions.
-        I believe that $$ \frac{dS}{dt} > \frac{dP}{dt} $$
-
-        This implies that human life is getting better over time, defined by the ratio \( S / P \) going up.
-        And that is a good thing. I also don't believe we should take this for granted, we should diligently find ways of solving more problems and continue the upward march 
-        of progress in human wellbeing. Progress is happening along many dimensions: \( \vec{\text{social}} \), \( \vec{\text{technological}} \), 
-        and \( \vec{\text{economic}} \). 
-        </p>
 
     </article>
 

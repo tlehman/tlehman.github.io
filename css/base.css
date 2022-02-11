@@ -62,6 +62,31 @@ body.light-theme {
     list-style-type: none;
     display: block;
 }
+#terminal {
+    height: 90px;
+    color: white;
+    text-align: left;
+    padding-top: 0em;
+    padding-left: 0em;
+    background-color: black;
+}
+#terminal pre {
+    text-align: left;
+    overflow-x: scroll;
+    padding-top: 0;
+    padding-left: 0.5em;
+}
+@keyframes cursor-blink {
+    0% {
+        opacity: 0;
+    }
+}
+#cursor {
+    width: 1em;
+    height: 1em;
+    background-color: white;
+    animation: cursor-blink 1.5s steps(2) infinite;
+}
 
 @media only screen and (max-width: 800px) {
     .hidden-when-mobile {
@@ -77,6 +102,11 @@ body.light-theme {
     }
     #terminal {
         height: 90px;
+        color: white;
+        text-align: left;
+        padding-top: 0em;
+        padding-left: 1em;
+        background-color: black;
     }
     /* get rid of spacer col-3's when snapping to mobile */
     /* For mobile phones: */
