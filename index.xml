@@ -84,7 +84,7 @@ The more you work with times, dates, time zones and daylight saving time, the mo
       <pubDate>Thu, 09 Dec 2021 09:15:10 -0800</pubDate>
       
       <guid>https://tobilehman.com/changelog/</guid>
-      <description>February 2022  2022-02-11  Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort. The removal will speed up page load times by 25%. This change also preserves the look and feel of the terminal, but without the interactivity.   2022-02-08  Added lcp-0.3.pdf   2022-02-04  Added lcp-0.2.pdf Posted CWEB LaTeX Experiment    January 2022  2022-01-02  Added comments using Commento.</description>
+      <description>February 2022  2022-02-13  Added lcp-0.4.pdf, I made a nice ray-tracing diagram to explain the rendering code: diagram   2022-02-11  Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort. The removal will speed up page load times by 25%. This change also preserves the look and feel of the terminal, but without the interactivity.   2022-02-08  Added lcp-0.</description>
     </item>
     
     <item>
