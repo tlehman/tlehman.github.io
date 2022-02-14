@@ -135,7 +135,7 @@ if(localStorage.getItem('more-showing') == "true") {
     <h1>Imaginary Numbers Are Real</h1>
 
     
-        <div class="post-meta">Wed, Aug 21, 2019 - 1600 Words </div>
+        <div class="post-meta">Wed, Aug 21, 2019 - 1500 Words </div>
     
 
     <script src="/js/math-canvas.js"></script>
@@ -243,13 +243,7 @@ $$ e^{ix} = \cos(x) + i\sin(x) $$
 <span style="color: red" id="px-mult-red">b = 2.2e<sup>-0.3i</sup></span>, the product is
 <span style="color: purple" id="px-mult-purple">c = 1.1e<sup>0</sup></span></p>
 <p>Click or tap below to move the blue point, pay attention to the blue number above also, since it has the radius and angle information in it. The way to read this presentation of complex numbers is: <code>radius</code> * e<sup>i<code>angle</code></sup></p>
-<p>&lt;canvas id=&ldquo;example-2&rdquo; class=&ldquo;polar-plot&rdquo;
-data-rmax=&ldquo;4&rdquo;
-data-point-red='{&ldquo;r&rdquo;: 2.2, &ldquo;theta&rdquo;: -0.3}'
-data-point-blue='{&ldquo;r&rdquo;: 0.5, &ldquo;theta&rdquo;: 0.3}'
-data-point-purple='{&ldquo;r&rdquo;: 1.1, &ldquo;theta&rdquo;: 0.0}'
-&gt;
-</canvas></p>
+<p><canvas id="example-2" class="polar-plot" data-rmax="4" data-point-red='{"r": 2.2, "theta": -0.3}' data-point-blue='{"r": 0.5, "theta": 0.3}' data-point-purple='{"r": 1.1, "theta": 0.0}'></canvas></p>
 <p>After playing around with a bunch of values, can you guess the rule? The geometric rule for multiplying complex numbers is multiply the radiuses and add the angles. This kind of beauty is lurking underneath all that old high school homework, obscured by rote memorization and inadequate tools for teachers. There&rsquo;s a whole flat world out there that makes Euclidean geometry computable with symbols in such an elegant way. I just had to share that, imaginary numbers are not some arbitrary contrivance, they are <em>real</em>.</p>
 
 <script src="/posts/imaginary-numbers-are-real/examples.js">
