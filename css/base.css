@@ -72,7 +72,7 @@ body.light-theme {
 }
 #terminal pre {
     text-align: left;
-    overflow-x: scroll;
+    overflow-x: hidden;
     padding-top: 0;
     padding-left: 0.5em;
 }
