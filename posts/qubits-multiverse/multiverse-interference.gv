@@ -1,0 +1,19 @@
+digraph multiverse {
+    a[label="(1/√2)|0〉+ (1/√2)|1〉", pos="2,4!"];
+    b[label="|0〉", pos="0,2!"];
+    c[label="|1〉", pos="4,2!"];
+    d[label="ɑ|0〉+ β|1〉", pos="2,0!"];
+
+    subgraph {
+        edge[dir=none, color=lightgray];
+        b -> c [label="interference is possible", fontcolor=gray];
+    }
+    
+    subgraph {
+        a -> b;
+        a -> c;
+        b -> d;
+
+        c -> d;
+    }
+}

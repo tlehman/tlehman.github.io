@@ -2,25 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/tags/decision-theory/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/multiverse/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/physics/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/qubits/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/qubits-multiverse/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/time/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/tags/long-now/</loc>
     <lastmod>2022-02-13T23:22:38-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</loc>
     <lastmod>2022-02-13T23:22:38-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2022-02-13T23:22:38-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/protocols/</loc>
     <lastmod>2022-02-13T23:22:38-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/standards/</loc>
-    <lastmod>2022-02-13T23:22:38-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2022-02-13T23:22:38-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2022-02-13T23:22:38-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/web/</loc>
@@ -33,9 +51,6 @@
     <lastmod>2022-02-03T08:37:07-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/literate-programming/</loc>
-    <lastmod>2022-02-03T08:37:07-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/physics/</loc>
     <lastmod>2022-02-03T08:37:07-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/tools/</loc>
@@ -82,9 +97,6 @@
   </url><url>
     <loc>https://tobilehman.com/links/</loc>
     <lastmod>2021-12-10T18:15:11-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/time/</loc>
-    <lastmod>2021-12-10T08:50:18-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/unix/</loc>
     <lastmod>2021-12-10T08:50:18-08:00</lastmod>

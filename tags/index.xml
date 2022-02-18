@@ -7,7 +7,52 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 13 Feb 2022 23:22:38 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Feb 2022 08:28:59 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>decision-theory</title>
+      <link>https://tobilehman.com/tags/decision-theory/</link>
+      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/decision-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multiverse</title>
+      <link>https://tobilehman.com/tags/multiverse/</link>
+      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/multiverse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>physics</title>
+      <link>https://tobilehman.com/tags/physics/</link>
+      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/physics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>qubits</title>
+      <link>https://tobilehman.com/tags/qubits/</link>
+      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/qubits/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time</title>
+      <link>https://tobilehman.com/tags/time/</link>
+      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/time/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>long-now</title>
       <link>https://tobilehman.com/tags/long-now/</link>
@@ -50,15 +95,6 @@
       <pubDate>Thu, 03 Feb 2022 08:37:07 -0800</pubDate>
       
       <guid>https://tobilehman.com/tags/literate-programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>physics</title>
-      <link>https://tobilehman.com/tags/physics/</link>
-      <pubDate>Thu, 03 Feb 2022 08:37:07 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/physics/</guid>
       <description></description>
     </item>
     
@@ -158,15 +194,6 @@
       <pubDate>Sun, 26 Dec 2021 12:49:54 -0800</pubDate>
       
       <guid>https://tobilehman.com/tags/technology/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>time</title>
-      <link>https://tobilehman.com/tags/time/</link>
-      <pubDate>Fri, 10 Dec 2021 08:50:18 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/time/</guid>
       <description></description>
     </item>
     

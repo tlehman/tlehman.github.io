@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 13 Feb 2022 23:22:38 -0800</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Feb 2022 08:28:59 -0800</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</title>
+      <link>https://tobilehman.com/posts/qubits-multiverse/</link>
+      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/qubits-multiverse/</guid>
+      <description>Have you ever had a decision that was hard to make because both sides of the decision were great in their own way? Where you stress over the decision and wish you could split into two copies of yourself? Some decision theorists recommend flipping a coin, but there is a better way.
+Coin flips suffer from the problem of quantum decoherence. This is a jargon-y way to say it&amp;rsquo;s a large, entangled lump of atoms that behaves classically.</description>
+    </item>
+    
     <item>
       <title>PDFs and the Permanent Web</title>
       <link>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</link>
@@ -75,7 +85,7 @@ The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candi
       <pubDate>Fri, 10 Dec 2021 18:15:11 -0800</pubDate>
       
       <guid>https://tobilehman.com/links/</guid>
-      <description> Two body orbit simulator: https://evgenii.com/blog/two-body-problem-simulator/ My ethereum domain name: tobilehman.eth  </description>
+      <description> Quantum Country: quantum computing for the very curious: https://quantum.country/  spaced repetition online book to teach the fundamentals of quantum computing   Two body orbit simulator: https://evgenii.com/blog/two-body-problem-simulator/ My ethereum domain name: tobilehman.eth  </description>
     </item>
     
     <item>

@@ -1,0 +1,20 @@
+digraph multiverse {
+    a[label="(1/√2)|0〉+ (1/√2)|1〉", pos="2,4!"];
+    b[label="|0〉", pos="0,2!"];
+    c[label="|1〉", pos="4,2!"];
+    d[label="tobi sees |0〉", pos="0,0!"];
+    e[label="tobi sees |1〉", pos="4,0!"];
+
+    subgraph {
+        edge[dir=none, color=lightgray];
+        b -> c [label="interference is not possible", fontcolor=gray];
+        d -> e [label="interference is not possible", fontcolor=gray];
+    }
+    
+    subgraph {
+        a -> b;
+        a -> c;
+        b -> d;
+        c -> e;
+    }
+}

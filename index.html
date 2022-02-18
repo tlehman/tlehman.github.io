@@ -73,7 +73,6 @@ function more() {
     m.classList.add('more-showing');
     o.classList.remove('hidden');
     m.innerText = "Less";
-    localStorage.setItem('more-showing', true);
 }
 
 function less() {
@@ -83,7 +82,6 @@ function less() {
     m.classList.remove('more-showing');
     m.innerText = "More";
     o.classList.add('hidden');
-    localStorage.setItem('more-showing', false);
 }
 
 function toggleMoreLess() {
@@ -118,11 +116,6 @@ function toggleMoreLess() {
     </ul>
 </nav>
 
-<script>
-if(localStorage.getItem('more-showing') == "true") {
-    more();
-}
-</script>
 </div>
     <div class="col-8">
     <article>
@@ -138,9 +131,13 @@ if(localStorage.getItem('more-showing') == "true") {
     <ul>
         
             
-            <li><a href="https://tobilehman.com/posts/pdfs-and-the-permanent-web/">PDFs and the Permanent Web</a> (2022-February-13)</li>
+        
+            
+            <li><a href="https://tobilehman.com/posts/qubits-multiverse/">Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</a> (2022-February-18)</li>
             
         
+            
+            <li><a href="https://tobilehman.com/posts/pdfs-and-the-permanent-web/">PDFs and the Permanent Web</a> (2022-February-13)</li>
             
         
             
@@ -149,10 +146,6 @@ if(localStorage.getItem('more-showing') == "true") {
         
             
             <li><a href="https://tobilehman.com/posts/literate-quicksort/">Literate Quicksort</a> (2021-December-31)</li>
-            
-        
-            
-            <li><a href="https://tobilehman.com/posts/rand-int-c/">Generating random numbers in C</a> (2021-December-30)</li>
             
         
     </ul>
