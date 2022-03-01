@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 18 Feb 2022 08:28:59 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Feb 2022 16:28:45 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go</title>
+      <link>https://tobilehman.com/tags/go/</link>
+      <pubDate>Mon, 28 Feb 2022 16:28:45 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://tobilehman.com/tags/programming/</link>
+      <pubDate>Mon, 28 Feb 2022 16:28:45 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>time</title>
+      <link>https://tobilehman.com/tags/time/</link>
+      <pubDate>Mon, 28 Feb 2022 16:28:45 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/tags/time/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>decision-theory</title>
       <link>https://tobilehman.com/tags/decision-theory/</link>
@@ -41,15 +68,6 @@
       <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
       
       <guid>https://tobilehman.com/tags/qubits/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>time</title>
-      <link>https://tobilehman.com/tags/time/</link>
-      <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/time/</guid>
       <description></description>
     </item>
     
@@ -113,15 +131,6 @@
       <pubDate>Fri, 31 Dec 2021 07:01:33 -0800</pubDate>
       
       <guid>https://tobilehman.com/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://tobilehman.com/tags/programming/</link>
-      <pubDate>Fri, 31 Dec 2021 07:01:33 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/programming/</guid>
       <description></description>
     </item>
     

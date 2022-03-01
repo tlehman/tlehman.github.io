@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 18 Feb 2022 08:28:59 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Feb 2022 16:28:45 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Latency Numbers Every Programmer Should Know</title>
+      <link>https://tobilehman.com/posts/latency-numbers/</link>
+      <pubDate>Mon, 28 Feb 2022 16:28:45 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/latency-numbers/</guid>
+      <description>There&amp;rsquo;s an indispensible file called Latency Numbers Every Programmer Should Know, originally by Jeff Dean of Google. I use a Roam Research plugin to do spaced repetition and memorize these numbers. But memorizing them is not good enough, I should also measure these numbers and see how close the values are in practice.
+I created a Repl in Go to directly measure these numbers. I started with mutex lock/unlock. Locally, I get about 19ns, but the repl gives me between 12-14ns.</description>
+    </item>
+    
     <item>
       <title>Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</title>
       <link>https://tobilehman.com/posts/qubits-multiverse/</link>
