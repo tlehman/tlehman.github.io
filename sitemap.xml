@@ -2,25 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/tags/history/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/hyperconverged-infrastructure/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/k8s/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/kubernetes/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/linux/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/moving-to-suse/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/open-source/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/tags/go/</loc>
     <lastmod>2022-02-28T16:28:45-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/latency-numbers/</loc>
     <lastmod>2022-02-28T16:28:45-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2022-02-28T16:28:45-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/programming/</loc>
     <lastmod>2022-02-28T16:28:45-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2022-02-28T16:28:45-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/time/</loc>
-    <lastmod>2022-02-28T16:28:45-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2022-02-28T16:28:45-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/decision-theory/</loc>
@@ -90,9 +111,6 @@
     <lastmod>2021-12-26T12:49:54-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/game-theory/</loc>
-    <lastmod>2021-12-26T12:49:54-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/history/</loc>
     <lastmod>2021-12-26T12:49:54-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/progress/</loc>
@@ -198,9 +216,6 @@
     <lastmod>2020-12-17T21:34:14-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/book-review-working-in-public/</loc>
-    <lastmod>2020-10-20T21:22:39-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/open-source/</loc>
     <lastmod>2020-10-20T21:22:39-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/stewardship/</loc>

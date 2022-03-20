@@ -7,7 +7,61 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 28 Feb 2022 16:28:45 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Mar 2022 13:13:42 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>history</title>
+      <link>https://tobilehman.com/tags/history/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/history/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hyperconverged-infrastructure</title>
+      <link>https://tobilehman.com/tags/hyperconverged-infrastructure/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/hyperconverged-infrastructure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>k8s</title>
+      <link>https://tobilehman.com/tags/k8s/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://tobilehman.com/tags/kubernetes/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://tobilehman.com/tags/linux/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open-source</title>
+      <link>https://tobilehman.com/tags/open-source/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>go</title>
       <link>https://tobilehman.com/tags/go/</link>
@@ -180,15 +234,6 @@
     </item>
     
     <item>
-      <title>history</title>
-      <link>https://tobilehman.com/tags/history/</link>
-      <pubDate>Sun, 26 Dec 2021 12:49:54 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/history/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>progress</title>
       <link>https://tobilehman.com/tags/progress/</link>
       <pubDate>Sun, 26 Dec 2021 12:49:54 -0800</pubDate>
@@ -347,15 +392,6 @@
       <pubDate>Fri, 09 Apr 2021 20:53:44 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/topology/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>open-source</title>
-      <link>https://tobilehman.com/tags/open-source/</link>
-      <pubDate>Tue, 20 Oct 2020 21:22:39 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/open-source/</guid>
       <description></description>
     </item>
     

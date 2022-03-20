@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 28 Feb 2022 16:28:45 -0800</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Mar 2022 13:13:42 -0700</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving to SUSE</title>
+      <link>https://tobilehman.com/posts/moving-to-suse/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/moving-to-suse/</guid>
+      <description>After 3.6 years at Amazon, I&amp;rsquo;ve decided to move to another company to work on open source software. The company is SUSE, they make a Linux distribution and sell cloud computing services, among other things.
+At Amazon I worked on AWS Elemental&amp;rsquo;s Live (video streaming software), a small video encoding device, and the Amazon Scout robotics project. At Scout I built software that controls the robots when autonomy fails, and I worked on safety features and performance optimization of a distributed application that ran on a cluster of servers managed by AWS Fargate.</description>
+    </item>
+    
     <item>
       <title>Latency Numbers Every Programmer Should Know</title>
       <link>https://tobilehman.com/posts/latency-numbers/</link>
@@ -114,7 +124,7 @@ The more you work with times, dates, time zones and daylight saving time, the mo
       <pubDate>Thu, 09 Dec 2021 09:15:10 -0800</pubDate>
       
       <guid>https://tobilehman.com/changelog/</guid>
-      <description>February 2022  2022-02-16  Added lcp-0.5.pdf, I worked out the ray tracing math and reorganized the text to make the document flow better.   2022-02-13  Added lcp-0.4.pdf, I made a nice ray-tracing diagram to explain the rendering code: diagram   2022-02-11  Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort. The removal will speed up page load times by 25%.</description>
+      <description>February 2022  2022-03-19  Wrote about Moving to SUSE   2022-02-16  Added lcp-0.5.pdf, I worked out the ray tracing math and reorganized the text to make the document flow better.   2022-02-13  Added lcp-0.4.pdf, I made a nice ray-tracing diagram to explain the rendering code: diagram   2022-02-11  Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort.</description>
     </item>
     
     <item>
@@ -513,8 +523,8 @@ After the term ended and I entered winter break I did what every reclusive antis
       
       <guid>https://tobilehman.com/about/</guid>
       <description>I am an experienced software engineer with a background in math.  a[href*=&#39;pdx.edu&#39;]::after { background-image: url(&#34;https://www.pdx.edu/themes/custom/pdxd8/favicon.ico&#34;) }  I studied mathematics and computer science at PSU.
-I currently work at Amazon Scout, developing teleoperations software to drive the robots.
-Some notable things I did  I built the network recovery software for the AWS Elemental Link in 2020 I wrote a 2D physics simulator and presented it in 2016  Object-Oriented Orbits source code Object-Oriented Orbits slides   I was the sole winner of the 2011 Putnam Mathematical Competition at PSU.</description>
+I currently work at SUSE developing the Harvester Hyperconverged Infrastructure project.
+Some notable things I did  I built core parts of the telemonitoring software for the Amazon Scout delivery robots. I built the network recovery software for the AWS Elemental Link in 2020 I wrote a 2D physics simulator and presented it in 2016  Object-Oriented Orbits source code Object-Oriented Orbits slides   I was the sole winner of the 2011 Putnam Mathematical Competition at PSU.</description>
     </item>
     
     <item>

@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 20 Oct 2020 21:22:39 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Mar 2022 13:13:42 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving to SUSE</title>
+      <link>https://tobilehman.com/posts/moving-to-suse/</link>
+      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/moving-to-suse/</guid>
+      <description>After 3.6 years at Amazon, I&amp;rsquo;ve decided to move to another company to work on open source software. The company is SUSE, they make a Linux distribution and sell cloud computing services, among other things.
+At Amazon I worked on AWS Elemental&amp;rsquo;s Live (video streaming software), a small video encoding device, and the Amazon Scout robotics project. At Scout I built software that controls the robots when autonomy fails, and I worked on safety features and performance optimization of a distributed application that ran on a cluster of servers managed by AWS Fargate.</description>
+    </item>
+    
     <item>
       <title>Book Review: Working in Public</title>
       <link>https://tobilehman.com/posts/book-review-working-in-public/</link>
