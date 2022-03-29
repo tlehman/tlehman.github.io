@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 18 Mar 2022 13:13:42 -0700</lastBuildDate><atom:link href="https://tobilehman.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Mar 2022 13:47:55 -0700</lastBuildDate><atom:link href="https://tobilehman.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dapper Build tool: consist builds with docker</title>
+      <link>https://tobilehman.com/posts/dapper-build-consistent/</link>
+      <pubDate>Tue, 29 Mar 2022 13:47:55 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/dapper-build-consistent/</guid>
+      <description>This articles shows how to use the dapper build tool from Rancher Labs.
+The basic idea is to use Docker containers, copy* your source files into the container environment, then compile, then copy the build artefacts out.
+(* on Linux you can also use the mount mode to avoid copying the files.)
+How to use it: you start by installing Go so you can compile Dapper. I know, I know, but if you will humor me, I will convince you that Go is the last programming language compiler you will need to install on your host.</description>
+    </item>
+    
     <item>
       <title>Moving to SUSE</title>
       <link>https://tobilehman.com/posts/moving-to-suse/</link>
