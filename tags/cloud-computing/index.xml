@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cloud-computing on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/cloud-computing/</link>
+    <description>Recent content in cloud-computing on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 15 Apr 2022 19:04:54 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/cloud-computing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cybernetics in the Age of the Cloud</title>
+      <link>https://tobilehman.com/posts/cybernetics-age-of-cloud/</link>
+      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/cybernetics-age-of-cloud/</guid>
+      <description>There&amp;rsquo;s an old saying:
+ There is no such thing as the cloud, there&amp;rsquo;s just someone else&amp;rsquo;s computer.
+ That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&amp;rsquo;s true that there isn&amp;rsquo;t a cloud there, it&amp;rsquo;s also true in the same way that there is no &amp;ldquo;computer&amp;rdquo; there.</description>
+    </item>
+    
+  </channel>
+</rss>

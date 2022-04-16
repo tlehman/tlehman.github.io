@@ -7,7 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 29 Mar 2022 13:47:55 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 15 Apr 2022 19:04:54 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cloud-computing</title>
+      <link>https://tobilehman.com/tags/cloud-computing/</link>
+      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/cloud-computing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>control-theory</title>
+      <link>https://tobilehman.com/tags/control-theory/</link>
+      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/control-theory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cybernetics</title>
+      <link>https://tobilehman.com/tags/cybernetics/</link>
+      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/cybernetics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://tobilehman.com/tags/kubernetes/</link>
+      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>containers</title>
       <link>https://tobilehman.com/tags/containers/</link>
@@ -77,15 +113,6 @@
       <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://tobilehman.com/tags/kubernetes/</link>
-      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
