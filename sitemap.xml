@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/tags/dns/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/how-to/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/kubernetes/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/protocols/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/security/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/ssl/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/tls/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</loc>
+    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/tags/cloud-computing/</loc>
     <lastmod>2022-04-15T19:04:54-07:00</lastmod>
   </url><url>
@@ -12,18 +45,6 @@
     <lastmod>2022-04-15T19:04:54-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/cybernetics-age-of-cloud/</loc>
-    <lastmod>2022-04-15T19:04:54-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/kubernetes/</loc>
-    <lastmod>2022-04-15T19:04:54-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2022-04-15T19:04:54-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2022-04-15T19:04:54-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2022-04-15T19:04:54-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/containers/</loc>
@@ -87,9 +108,6 @@
     <lastmod>2022-02-13T23:22:38-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</loc>
-    <lastmod>2022-02-13T23:22:38-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/protocols/</loc>
     <lastmod>2022-02-13T23:22:38-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/standards/</loc>
@@ -169,9 +187,6 @@
   </url><url>
     <loc>https://tobilehman.com/tags/finance/</loc>
     <lastmod>2021-11-21T06:45:23-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/dns/</loc>
-    <lastmod>2021-11-09T21:05:17-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/ens/</loc>
     <lastmod>2021-11-09T21:05:17-08:00</lastmod>

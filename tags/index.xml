@@ -7,7 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 15 Apr 2022 19:04:54 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 09:55:05 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dns</title>
+      <link>https://tobilehman.com/tags/dns/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>how-to</title>
+      <link>https://tobilehman.com/tags/how-to/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/how-to/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://tobilehman.com/tags/kubernetes/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protocols</title>
+      <link>https://tobilehman.com/tags/protocols/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/protocols/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>security</title>
+      <link>https://tobilehman.com/tags/security/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssl</title>
+      <link>https://tobilehman.com/tags/ssl/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tls</title>
+      <link>https://tobilehman.com/tags/tls/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/tls/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cloud-computing</title>
       <link>https://tobilehman.com/tags/cloud-computing/</link>
@@ -32,15 +95,6 @@
       <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/cybernetics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://tobilehman.com/tags/kubernetes/</link>
-      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -189,15 +243,6 @@
     </item>
     
     <item>
-      <title>protocols</title>
-      <link>https://tobilehman.com/tags/protocols/</link>
-      <pubDate>Sun, 13 Feb 2022 23:22:38 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/protocols/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>standards</title>
       <link>https://tobilehman.com/tags/standards/</link>
       <pubDate>Sun, 13 Feb 2022 23:22:38 -0800</pubDate>
@@ -329,15 +374,6 @@
       <pubDate>Sun, 21 Nov 2021 06:45:23 -0800</pubDate>
       
       <guid>https://tobilehman.com/tags/finance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dns</title>
-      <link>https://tobilehman.com/tags/dns/</link>
-      <pubDate>Tue, 09 Nov 2021 21:05:17 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/dns/</guid>
       <description></description>
     </item>
     

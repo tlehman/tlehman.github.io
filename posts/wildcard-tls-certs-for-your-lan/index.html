@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Wildcard TLS Certificates for Your LAN" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/img/cert-valid.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Wildcard TLS Certificates for Your LAN" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/img/cert-valid.png' />
+    
+
+    <title>
+        
+            Wildcard TLS Certificates for Your LAN : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-05-05.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/beliefs">Beliefs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/tags">#Tags</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Wildcard TLS Certificates for Your LAN</h1>
+
+    
+        <div class="post-meta">Thu, May 5, 2022 - 900 Words </div>
+    
+
+    <p><em><a href="#how-to">for the impatient, skip to the how-to</a></em></p>
+<p>This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &ldquo;⚠️ Your connection is not secure&rdquo; errors:</p>
+
+
+<figure>
+	<img src="/posts/wildcard-tls-certs-for-your-lan/img/cert-invalid.png" alt="" />
+</figure>
+
+<p>The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:</p>
+<ol>
+<li>Authenticate the website to the user (prove it is <em>really</em> that site, and not a <a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack#Authentication">MITM</a>) and</li>
+<li>Secure the contents of the data that flows between the user and the website</li>
+</ol>
+<p>When you ignore this <span style="color: #ff0000"><del>https</del></span> error you are forgoing function #1, authentication, but you still get #2. So this is safe behavior if you are on your LAN and you are confident that someone else on your LAN is not trying to MITM you.</p>
+<p>There are other practical downsides to not having a trusted TLS certificate, tools like <code>kubectl</code> have to be overridden with <code>kubectl --insecure-skip-tls-verify</code>. Also, it&rsquo;s aesthetically pleasing to have a nice lock in the address bar instead of a scary exclamation triangle.</p>
+
+
+<figure>
+	<img src="/posts/wildcard-tls-certs-for-your-lan/img/cert-valid.png" alt="" />
+</figure>
+
+<h1 id="how-to">How to</h1>
+<div class="yellow-note-noscroll">
+WARNING: forwarding traffic from the internet to computers on your home network carries risk. In this article, this forwarding rule is only used to get the certificate from LetsEncrypt. Since the free certificates are only good for 3 months, this entails opening up port forwarding rules every three months to renew the certificate. 
+By applying the contents of this article, you assume the risk of managing a public endpoint on the internet for a short period of time, and this website or it's author are not liable for any damages that may or may not occur as a result of creating a public internet endpoint.
+</div>
+<p>First, buy a domain name for your personal LAN. I chose <code>lehman.house</code> but any domain will do. Second, make sure your router has the ability to forward incoming traffic to port 80 and 443. This is so that <a href="https://letsencrypt.org">LetsEncrypt</a>, a trusted free Certificate Authority, can verify that you control the domain.</p>
+<p>Once you have purchased your domain, create two DNS type-A records, one for the domain and one wildcard subdomains.</p>
+<style> th,td{ border: 1px solid gray; } </style>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Host</th>
+<th>Answer</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>*.lehman.house</td>
+<td>123.321.55.73</td>
+<td>300</td>
+</tr>
+<tr>
+<td>A</td>
+<td>lehman.house</td>
+<td>123.321.55.73</td>
+<td>300</td>
+</tr>
+</tbody>
+</table>
+<p>Where you change Host to your domain, and Answer to your router&rsquo;s IP. You can find your router&rsquo;s IP by <a href="https://www.google.com/search?q=what+is+my+ip">Googling &ldquo;What is my IP?&quot;</a>. If you use OpenWRT, then you can ssh into your router and run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># get public IP address of OpenWRT router</span>
+ifstatus wan |  jsonfilter -e <span style="color:#e6db74">&#39;@[&#34;ipv4-address&#34;][0].address&#39;</span> 
+</code></pre></div><p>Then, set up a Linux machine to run <a href="https://certbot.eff.org/">certbot</a>, and follow the instructions. If you want a good default, choose &ldquo;My HTTP website is running nginx on Ubuntu 20&rdquo;.</p>
+<p>If you want a quick webserver, ssh into your Ubuntu 20 machine and <code>sudo apt install nginx</code>, double check that it&rsquo;s installed and running by running <code>systemctl status nginx</code>, if it says <span style="color: #00ff00">active (running)</span>
+, then you are good. Double check that the webserver is working by trying to visit <code>http://$UBUNTU-IP</code> where <code>$UBUNTU-IP</code> is the IP address of the ubuntu machine on your LAN, those IPs are not public, and they usually start with <code>192.</code> or <code>10.</code></p>
+<p>Now, temporarily open up port 80 (for http) and 443 (for https) on your router. This will be a Port Forwarding rule that forwards TCP connections from your Public IP to the Private IP of your Ubuntu machine.</p>
+<p>If you are using OpenWRT on your router, the forwarding rule will look like this:</p>
+
+
+<figure>
+	<img src="/posts/wildcard-tls-certs-for-your-lan/img/openwrt-fwd.png" alt="" />
+</figure>
+
+<p>Now you need to request the certificates, ssh into your Ubuntu machine and run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">export $DOMAIN<span style="color:#f92672">=</span>lehman.house <span style="color:#75715e"># change this</span>
+
+sudo certbot certonly --manual -d *.$DOMAIN -d $DOMAIN --agree-tos <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --manual-public-ip-logging-ok <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --preferred-challenges dns-01 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --server https://acme-v02.api.letsencrypt.org/directory <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --register-unsafely-without-email <span style="color:#ae81ff">\ </span>
+  --rsa-key-size <span style="color:#ae81ff">4096</span>
+</code></pre></div><p>The <code>--preferred-challenges dns-01</code> will generate a &ldquo;DNS challenge&rdquo;, where you will have to create a DNS TXT record with the unique value that cerbot generates for you. Once you create this TXT record, certbot can finish verification. Certbot then installs the certificates for you.</p>
+<p>Those certificates will live in <code>/etc/letsencrypt/live/$DOMAIN/</code> as symlinks:</p>
+<ul>
+<li>cert.pem</li>
+<li>chain.pem</li>
+<li>fullchain.pem</li>
+<li>privkey.pem</li>
+</ul>
+<p>Follow the symlinks with <code>ls -l</code> and get the files, you can then copy them to other devices on your LAN.</p>
+<p><strong>Remember to disable the Port Forwarding Rule</strong> if you don&rsquo;t want to maintain and harden an endpoint on the internet. You can now use this wildcard certificate for any subdomain on your LAN.</p>
+<h1 id="how-to-get-cool-names">How to get cool names</h1>
+<p>I used OpenWRT, since it has a DNS server that runs on it and you can create custom DNS rules like:</p>
+
+
+<figure>
+	<img src="/posts/wildcard-tls-certs-for-your-lan/img/openwrt-dns.png" alt="" />
+</figure>
+
+<p>But if you aren&rsquo;t using OpenWRT, you can still point your computers at a custom DNS server, the Pi-Hole project is one option if you have a spare Raspberry Pi laying around, or you can even add custom DNS rules to your computer by editing the <code>/etc/hosts</code> file.</p>
+<p>Once you can reach computers on your LAN using a subdomain of your domain, and that server is configured to serve up your certificates, then your browser and <code>kubectl</code> will be able to use HTTPs without having to override the safety warning.</p>
+<p>For example, I work on <a href="https://harvesterhci.io">Harvester</a>, a Kubernetes-based cluster operating system that supports virtualization. By setting the <code>ssl-certificates</code> setting, I can access the UI and have a valid certificate for both browsing and command line operations:</p>
+
+
+<figure>
+	<img src="/posts/wildcard-tls-certs-for-your-lan/img/harvester.png" alt="" />
+</figure>
+
+<style>
+a[href*='letsencrypt.org']::after {
+    background-image: url("https://letsencrypt.org/favicon.ico")
+}
+</style>
+
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/tls">#tls</a></li>
+    
+        <li><a href="/tags/ssl">#ssl</a></li>
+    
+        <li><a href="/tags/protocols">#protocols</a></li>
+    
+        <li><a href="/tags/security">#security</a></li>
+    
+        <li><a href="/tags/how-to">#how-to</a></li>
+    
+        <li><a href="/tags/dns">#dns</a></li>
+    
+        <li><a href="/tags/kubernetes">#kubernetes</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

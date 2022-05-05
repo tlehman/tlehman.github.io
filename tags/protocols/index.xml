@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 13 Feb 2022 23:22:38 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/protocols/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 May 2022 09:55:05 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/protocols/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wildcard TLS Certificates for Your LAN</title>
+      <link>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</link>
+      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</guid>
+      <description>for the impatient, skip to the how-to
+This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &amp;ldquo;⚠️ Your connection is not secure&amp;rdquo; errors:
+  The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
+ Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website  When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
+    </item>
+    
     <item>
       <title>PDFs and the Permanent Web</title>
       <link>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</link>
