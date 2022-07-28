@@ -37,7 +37,7 @@ I created a Repl in Go to directly measure these numbers. I started with mutex l
       
       <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
       <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-  Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@ int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) 
       
       <guid>https://tobilehman.com/posts/book-review-atomic-habits/</guid>
       <description>Atomic Habits is written so clearly that I have a hard time believing &amp;lsquo;James Clear&amp;rsquo; isn&amp;rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.
-Before I read this, I thought of habits using the goal/discipline model.</description>
+Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ Six years ago, I wrote this cribbage score calculator in C. It takes a string li
       
       <guid>https://tobilehman.com/posts/timelapse/</guid>
       <description>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
-  I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
+I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
     </item>
     
     <item>
@@ -99,7 +99,7 @@ Six years ago, I wrote this cribbage score calculator in C. It takes a string li
       
       <guid>https://tobilehman.com/posts/game-of-life/</guid>
       <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.
-If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;:   Not this multi-player board game:   I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
+If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
     </item>
     
     <item>

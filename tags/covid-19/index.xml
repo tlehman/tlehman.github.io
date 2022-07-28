@@ -27,8 +27,8 @@ In game theory, there is a way of visualizing the incentives that guide the play
       <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
       <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
 The simplest model of disease spreading starts by breaking a population up into compartments:
- S (Susceptible) I (Infected) R (Removed️)  Then, the model describes the flow between these compartments.
-  NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
+NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
     </item>
     
   </channel>

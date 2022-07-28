@@ -15,7 +15,7 @@
       
       <guid>https://tobilehman.com/posts/time-travel-topology/</guid>
       <description>Everyone needs an obscure useless skill. ‐ @Noahpinion
- Mine is identifying the topology of time travel stories.
+Mine is identifying the topology of time travel stories.
 Click here if you know what topology is and just want to get to the time travel stuff
 a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
     </item>
@@ -57,7 +57,7 @@ Six years ago, I wrote this cribbage score calculator in C. It takes a string li
       
       <guid>https://tobilehman.com/posts/game-of-life/</guid>
       <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.
-If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;:   Not this multi-player board game:   I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
+If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
     </item>
     
     <item>
@@ -68,8 +68,8 @@ If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ld
       <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
       <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
 The simplest model of disease spreading starts by breaking a population up into compartments:
- S (Susceptible) I (Infected) R (Removed️)  Then, the model describes the flow between these compartments.
-  NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
+NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
     </item>
     
     <item>
@@ -79,8 +79,8 @@ The simplest model of disease spreading starts by breaking a population up into 
       
       <guid>https://tobilehman.com/posts/compound-growth/</guid>
       <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
- “Once you start thinking about growth, it’s hard to think about anything else.”
- &amp;ndash; Robert Lucas, Nobel prize-winning economist
+“Once you start thinking about growth, it’s hard to think about anything else.”
+&amp;ndash; Robert Lucas, Nobel prize-winning economist
 Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
     </item>
     
@@ -91,8 +91,7 @@ Before launching into an explanation, I want to start with a question: “Would 
       
       <guid>https://tobilehman.com/posts/imaginary-numbers-are-real/</guid>
       <description>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &amp;ldquo;how long until the weekend?&amp;rdquo;, which can produce equations like $$ x + 2 = 5 $$
-Natural number equations give rise to a solution space that looks like this: 
-When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
+Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
     </item>
     
     <item>

@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 05 May 2022 09:55:05 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Jul 2022 12:34:44 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s</title>
+      <link>https://tobilehman.com/tags/k8s/</link>
+      <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://tobilehman.com/tags/kubernetes/</link>
+      <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry-pi</title>
+      <link>https://tobilehman.com/tags/raspberry-pi/</link>
+      <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>dns</title>
       <link>https://tobilehman.com/tags/dns/</link>
@@ -23,15 +50,6 @@
       <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/how-to/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://tobilehman.com/tags/kubernetes/</link>
-      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -158,15 +176,6 @@
       <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/hyperconverged-infrastructure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>k8s</title>
-      <link>https://tobilehman.com/tags/k8s/</link>
-      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/k8s/</guid>
       <description></description>
     </item>
     

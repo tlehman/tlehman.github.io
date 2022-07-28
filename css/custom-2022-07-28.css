@@ -1,0 +1,332 @@
+html, body {
+  margin: 0px;
+}
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+@font-face {
+  font-family: 'Source Serif Pro';
+  src: url('/fonts/source-serif/SourceSerifPro-Regular.ttf');
+}
+@font-face {
+  font-family: 'Source Serif Pro';
+  src: url('/fonts/source-serif/SourceSerifPro-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Source Serif Pro';
+  src: url('/fonts/source-serif/SourceSerifPro-Italic.ttf');
+  font-style: italic;
+}
+
+/** annotated links start */
+a {
+    text-decoration: underline;
+}
+a:visited {
+  color: blue;
+}
+a::after {
+    content: "";
+    display: inline-block;
+    position: static;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    height: 1.1em;
+    width: 1em;
+    margin: 0 0 0 2px;
+    opacity: 0.60;
+    text-decoration: underline;
+}
+
+a[href*='/*']::after { width: 0em; }
+a[href*='docs.google.com']::after { background-image: url("/images/icons/docs.ico"); }
+a[href*='replit.com']::after { background-image: url("/images/icons/replit.png"); }
+a[href*='repl.it']::after { background-image: url("/images/icons/replit.png"); }
+a[href*='bitcoin:']::after { background-image: url("/images/icons/bitcoin.ico"); }
+a[href*='bitcoin.org']::after { background-image: url("/images/icons/bitcoin.ico"); }
+a[href*='.eth']::after { background-image: url("/images/icons/ethereum.png"); }
+a[href*='ethereum.org']::after { background-image: url("/images/icons/ethereum.png"); }
+a[href*='brave.com']::after { background-image: url("/images/icons/brave.png"); }
+a[href*='basicattentiontoken.org']::after { background-image: url("/images/icons/bat.png"); }
+a[href*='nber.org']::after { background-image: url("/images/icons/nber.ico"); }
+a[href*='arxiv.org']::after { background-image: url("/images/icons/arxiv.ico"); }
+a[href*='nih.gov']::after { background-image: url("/images/icons/nih.ico"); }
+a[href*='state.gov']::after { background-image: url("/images/icons/stategov.png"); }
+a[href*='nature.com']::after { background-image: url("/images/icons/nature.svg"); }
+a[href*='spacex.com']::after { background-image: url("/images/icons/spacex.ico"); }
+a[href*='neuralink.com']::after { background-image: url("/images/icons/neuralink.png"); }
+a[href*='lesswrong.org']::after { background-image: url("/images/icons/lesswrong.ico"); }
+a[href*='stlouisfed.org']::after { background-image: url("/images/icons/fred.ico"); }
+a[href*='federalreserve.gov']::after { background-image: url("/images/icons/frb.ico"); }
+a[href*='jamesclear.com']::after { background-image: url("/images/icons/jc.png"); }
+a[href*='reddit.com']::after { background-image: url("/images/icons/reddit.ico"); }
+a[href*='amazon.com']::after { background-image: url("/images/icons/amazon.svg"); }
+a[href*='blog.aboutamazon.com']::after { background-image: url("https://blog.aboutamazon.com/favicon-32x32.png"); }
+a[href*='mozilla.org']::after { background-image: url("/images/icons/mozilla.png"); }
+a[href*='youtube.com']::after { background-image: url("/images/icons/youtube.ico"); }
+a[href*='twitter.com']::after { background-image: url("/images/icons/twitter.ico"); }
+a[href*='github.com']::after { background-image: url("/images/icons/github.svg"); }
+a[href*='wikipedia.org']::after { background-image: url("/images/icons/wikipedia.svg"); }
+a[href*='investopedia.com']::after { background-image: url("/images/icons/investopedia.ico"); }
+a[href*='wolfram.com']::after { background-image: url("/images/icons/mathematica.svg"); }
+a[href*='medrxiv.org']::after { background-image: url("/images/icons/medrxiv.ico");}
+a[href*='npr.org']::after { background-image: url("/images/icons/npr.png");}
+a[href*='rust-lang.org']::after { background-image: url("/images/icons/rust.svg"); }
+a[href*='eff.org']::after { background-image: url("/images/icons/eff.ico");}
+a[href*='archive.org']::after { background-image: url("/images/icons/archive.jpg");}
+a[href*='cern.ch']::after { background-image: url("/images/icons/cern.ico");}
+a[href*='techdirt.com']::after { background-image: url("/images/icons/techdirt.ico");}
+a[href*='wiringpi.com']::after { background-image: url("/images/icons/wiringpi.png");}
+a[href*='nvidia.com']::after { background-image: url("/images/icons/nvidia.ico");}
+a[href*='literateprogramming.com']::after { background-image: url("/images/icons/litprog.ico");}
+a[href*='replit.com']::after { background-image: url("/images/icons/replit.png");}
+a[href*='repl.it']::after { background-image: url("/images/icons/replit.png");}
+a[href*='/gpus']::after { background-image: url("/images/icons/nvidia.ico");}
+a[href*='wyoleg.gov']::after { background-image: url("/images/icons/wyoming.png");}
+a[href*='icann.org']::after { background-image: url("/images/icons/icann.ico");}
+a[href*='js.org']::after { background-image: url("/images/icons/js.png");}
+a[href*='.js']::after { background-image: url("/images/icons/js.png");}
+a[href*='rootsofprogress.org']::after { background-image: url("/images/icons/rootsofprogress.png"); }
+a[href*='ourworldindata.org']::after { background-image: url("/images/icons/ourworldindata.ico"); }
+a[href*='longnow.org']::after { background-image: url("/images/icons/longnow.ico"); }
+a[href*='blackgirlscode.com']::after { background-image: url("/images/icons/bgc.png"); }
+
+
+
+/* S3 bucket archive link styles */
+a[href*='amazonaws.com']::after { background-image: url("/images/icons/amazon.svg") }
+
+/* TODO put all ::after styles in auto-generated file */
+a[href*='tobilehman.com/about']::after { width: 0em; }
+a[href*='tobilehman.com/epoch']::after { width: 0em; }
+a[href*='tobilehman.com/index.xml']::after { width: 0em; }
+a[href*='tobilehman.com/changelog']::after { width: 0em; }
+a[href*='tobilehman.com/interest']::after { width: 0em; }
+a[href*='tobilehman.com/projects']::after { width: 0em; }
+a[href*='tobilehman.com/posts']::after { width: 0em; }
+a[href*='tobilehman.com/tags']::after {  width: 0em; }
+
+a[href*='/about']::after { width: 0em; }
+a[href*='/epoch']::after { width: 0em; }
+a[href*='/changelog']::after { width: 0em; }
+a[href*='/book-club']::after { width: 0em; }
+a[href*='/index.xml']::after { width: 0em; }
+a[href*='/interest']::after { width: 0em; }
+a[href*='/projects']::after { width: 0em; }
+a[href*='/posts']::after { width: 0em; }
+a[href*='/tags']::after {  width: 0em; }
+
+
+a[href*='mailto']::after { background-image: url("/images/icons/mail.svg"); }
+
+/*a[href*='../../']::after { background-image: url("/favicon.ico"); }*/
+a[href*='nytimes.com']::after { background-image: url("/images/icons/nyt.ico"); }
+a[href*='washingtonpost.com']::after { background-image: url("/images/icons/wapo.png"); }
+a[href*='theguardian.com']::after { background-image: url("/images/icons/theguardian.ico"); }
+a[href*='theatlantic.com']::after { background-image: url("/images/icons/theatlantic.ico"); }
+a[href*='housing.wiki']::after { background-image: url("/images/icons/housewiki.png"); }
+a[href*='reason.com']::after { background-image: url("/images/icons/reason.png"); }
+a[href*='naacp.org']::after { background-image: url("/images/icons/naacp.ico"); }
+a[href*='aclu.org']::after { background-image: url("/images/icons/aclu.png"); }
+a[href*='theappeal.org']::after { background-image: url("/images/icons/theappeal.png"); }
+a[href*='joincampaignzero.org']::after { background-image: url("/images/icons/joincampaignzero.ico"); }
+a[href*='supportblackowned.com']::after { background-image: url("/images/icons/sbo.png"); }
+/** annotated links end */
+
+.green-note {
+  padding: 1em;
+  border-style: solid;
+  border-color: lightgray;
+  background-color: lightgreen;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.yellow-note {
+  padding: 1em;
+  border-style: solid;
+  border-color: lightgray;
+  background-color: lightyellow;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.yellow-note-noscroll {
+  padding: 1em;
+  border-style: solid;
+  border-color: lightgray;
+  background-color: lightyellow;
+}
+
+.yellow-note-noscroll {
+  padding: 1em;
+  border-style: solid;
+  border-color: lightgray;
+  background-color: lightyellow;
+}
+
+.sidescroll {
+  width: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.sidescroll > span {
+  display: inline-block;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert {
+  padding: 0;
+  margin-bottom: 2em;
+}
+
+.float-vertical-align {
+  border: 1px solid red;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+/** timeline styles **/
+.timeline-container {
+   width: 95%;
+   padding: 0px 0;
+   margin: 0px auto;
+   position: relative;
+   overflow: hidden;
+   z-index: 1;
+}
+.timeline-container:before {
+   height: 100%;
+   position: absolute;
+   content: '';
+   display: block;
+   margin-left: -1px;
+   top: 0px;
+   left: 8px;
+   width: 3px;
+   background: #CCD1D9;
+   z-index: -1;
+}
+
+.timeline-block {
+   width: 100%;
+   margin-bottom: 30px;
+}
+.timeline-block-right {
+   float: none;
+}
+
+.timeline-block-left {
+   float: none;
+   direction: ltr;
+}
+.marker {
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   border: 2px solid #F5F7FA;
+   position: absolute;
+   background: #4FC1E9;
+   margin-top: 10px;
+   z-index: 9999;
+}
+
+.timeline-content {
+  width: 95%;
+  top: -15px;
+  padding-left: 15px;
+  color: #666
+}
+
+@media screen and (max-width: 800px) {
+    .timeline-content {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    .timeline-container {
+        width: 80%;
+        padding: 50px 0;
+        margin: 50px auto;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .timeline-container:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -1px;
+        width: 3px;
+        height: 100%;
+        background: #CCD1D9;
+        z-index: 1;
+    }
+    
+    .timeline-block {
+        width: -webkit-calc(50% + 8px);
+        width: -moz-calc(50% + 8px);
+        width: calc(50% + 8px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        justify-content: space-between;
+        clear: both;
+    }
+    
+    .timeline-block-right {
+        float: right;
+    }
+    
+    .timeline-block-left {
+        float: left;
+        direction: rtl;
+    }
+ 
+ }
+
+/** end timeline styles **/
+
+/* internal link styles */
+a[href*='https://tobilehman.com']::after { background-image: url("/favicon-16x16.png") }
+
+/* file types */
+a[href*='.pdf']::after { background-image: url("/images/icons/pdf.png"); }
+a[href*='.txt']::after { background-image: url("/images/icons/txt.png"); }
+
+/* auto-generated css caching from css-favicon-append.go */
+a[href*='suse.com']::after { background-image: url("/images/icons/suse.ico"); }
+a[href*='harvesterhci.io']::after { background-image: url("/images/icons/harvester.ico"); }
+a[href*='kubernetes.io']::after { background-image: url("/images/icons/k8s.png"); }
+a[href*='golang.org']::after { background-image: url("/images/icons/go.ico"); }
+a[href*='openwrt.org']::after { background-image: url("/images/icons/openwrt.ico"); }
+a[href*='media.mit.edu']::after { background-image: url("/images/icons/mitmedia.ico"); }
+a[href*='9p.io']::after { background-image: url("/images/icons/plan9.gif"); }
+a[href*='google.com']::after { background-image: url("/images/icons/google.ico"); }
+a[href*='raspberrypi.org']::after { background-image: url("/images/icons/raspberrypi.png"); }

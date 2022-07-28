@@ -37,9 +37,9 @@ Six years ago, I wrote this cribbage score calculator in C. It takes a string li
       
       <guid>https://tobilehman.com/posts/dream-90s-wasm/</guid>
       <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-  Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
- Write Once, Run Everywhere.
- Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
+Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
+Write Once, Run Everywhere.
+Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
 The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
     </item>
     

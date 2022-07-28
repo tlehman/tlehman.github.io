@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 05 May 2022 09:55:05 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Jul 2022 12:34:44 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K3s Cluster on Raspberry Pis</title>
+      <link>https://tobilehman.com/posts/k3s-cluster-pis/</link>
+      <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/k3s-cluster-pis/</guid>
+      <description>I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&amp;rsquo;s how to make one of these:
+List of hardware 3 Raspberry Pi 3 Model B&amp;rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.</description>
+    </item>
+    
     <item>
       <title>Wildcard TLS Certificates for Your LAN</title>
       <link>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</link>
@@ -16,19 +26,8 @@
       <guid>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</guid>
       <description>for the impatient, skip to the how-to
 This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &amp;ldquo;⚠️ Your connection is not secure&amp;rdquo; errors:
-  The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
- Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website  When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
-    </item>
-    
-    <item>
-      <title>Cybernetics in the Age of the Cloud</title>
-      <link>https://tobilehman.com/posts/cybernetics-age-of-cloud/</link>
-      <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/posts/cybernetics-age-of-cloud/</guid>
-      <description>There&amp;rsquo;s an old saying:
- There is no such thing as the cloud, there&amp;rsquo;s just someone else&amp;rsquo;s computer.
- That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&amp;rsquo;s true that there isn&amp;rsquo;t a cloud there, it&amp;rsquo;s also true in the same way that there is no &amp;ldquo;computer&amp;rdquo; there.</description>
+The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
+Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
     </item>
     
     <item>

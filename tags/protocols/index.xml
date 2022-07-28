@@ -16,8 +16,8 @@
       <guid>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</guid>
       <description>for the impatient, skip to the how-to
 This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &amp;ldquo;⚠️ Your connection is not secure&amp;rdquo; errors:
-  The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
- Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website  When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
+The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
+Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ This article explains how to get a TLS Certificate for your LAN so you can use h
       
       <guid>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</guid>
       <description>I remember reading this article Deurbanising the web from January 2021. It argued that the web had gotten so bad that they wanted to do something drastic, so they converted the web pages on their site to PDF. The badness they were complaining about was familiar, too many ads, too much surveillance. Link rot, infinite scrolls, paywalls, GDPR cookie consent buttons, etc. The reason they chose PDFs?
-Reasons why Lab6 argued PDFs were a good format for web pages  it&amp;rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom  At first I was skeptical.</description>
+Reasons why Lab6 argued PDFs were a good format for web pages it&amp;rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom At first I was skeptical.</description>
     </item>
     
     <item>
@@ -47,7 +47,7 @@ What is a DAO? A DAO is sort of like a corporation, but it&amp;rsquo;s stored on
       
       <guid>https://tobilehman.com/posts/history-dns/</guid>
       <description>In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
- RFC 1034 Domain Concepts and Facilities November 1987
+RFC 1034 Domain Concepts and Facilities November 1987
 2.1. The history of domain names
 The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
     </item>

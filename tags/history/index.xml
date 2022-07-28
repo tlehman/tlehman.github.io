@@ -93,9 +93,9 @@ If Chinese Communist party officials are abusing, brainwashing and sometimes kil
       
       <guid>https://tobilehman.com/posts/dream-90s-wasm/</guid>
       <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-  Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
- Write Once, Run Everywhere.
- Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
+Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
+Write Once, Run Everywhere.
+Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
 The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
     </item>
     
@@ -115,7 +115,7 @@ The dream is that Java will enable people to create portable programs, so that a
       
       <guid>https://tobilehman.com/posts/armistice-day/</guid>
       <description>One hundred years ago today, the armistice was signed that ended World War 1. Now is a good time to reflect on the last century and get some perspective. Below is a chart of all the combat deaths per 100,000 people going back to the year 1900.
-  One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.</description>
+One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.</description>
     </item>
     
     <item>
@@ -125,7 +125,7 @@ The dream is that Java will enable people to create portable programs, so that a
       
       <guid>https://tobilehman.com/posts/history-dns/</guid>
       <description>In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
- RFC 1034 Domain Concepts and Facilities November 1987
+RFC 1034 Domain Concepts and Facilities November 1987
 2.1. The history of domain names
 The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
     </item>

@@ -2,16 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/posts/k3s-cluster-pis/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/k8s/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/kubernetes/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/raspberry-pi/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/tags/dns/</loc>
     <lastmod>2022-05-05T09:55:05-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/how-to/</loc>
-    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/kubernetes/</loc>
-    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
     <lastmod>2022-05-05T09:55:05-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/protocols/</loc>
@@ -23,13 +38,7 @@
     <loc>https://tobilehman.com/tags/ssl/</loc>
     <lastmod>2022-05-05T09:55:05-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/tls/</loc>
-    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2022-05-05T09:55:05-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</loc>
@@ -69,9 +78,6 @@
     <lastmod>2022-03-18T13:13:42-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/hyperconverged-infrastructure/</loc>
-    <lastmod>2022-03-18T13:13:42-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/k8s/</loc>
     <lastmod>2022-03-18T13:13:42-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/linux/</loc>

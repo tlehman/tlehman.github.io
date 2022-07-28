@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-05-05.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-07-28.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -128,13 +128,28 @@ function toggleMoreLess() {
     
 <article class="post">
   <header>
+    <h2><a href='https://tobilehman.com/posts/k3s-cluster-pis/'> K3s Cluster on Raspberry Pis</a> </h2>
+    <div class="post-meta">Thu, Jul 28, 2022 - 500 Words </div>
+  </header>
+  I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&rsquo;s how to make one of these:
+List of hardware 3 Raspberry Pi 3 Model B&rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.
+  <footer>
+    <a href='https://tobilehman.com/posts/k3s-cluster-pis/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
+  
+    
+<article class="post">
+  <header>
     <h2><a href='https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/'> Wildcard TLS Certificates for Your LAN</a> </h2>
     <div class="post-meta">Thu, May 5, 2022 - 900 Words </div>
   </header>
   for the impatient, skip to the how-to
 This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &ldquo;⚠️ Your connection is not secure&rdquo; errors:
-  The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
- Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website  When you ignore this https error you are forgoing function #1, authentication, but you still get #2.
+The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
+Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.
   <footer>
     <a href='https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/'>
       <nobr>Read more &rarr;</nobr>
@@ -149,8 +164,8 @@ This article explains how to get a TLS Certificate for your LAN so you can use h
     <div class="post-meta">Fri, Apr 15, 2022 - 2000 Words </div>
   </header>
   There&rsquo;s an old saying:
- There is no such thing as the cloud, there&rsquo;s just someone else&rsquo;s computer.
- That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&rsquo;s true that there isn&rsquo;t a cloud there, it&rsquo;s also true in the same way that there is no &ldquo;computer&rdquo; there.
+There is no such thing as the cloud, there&rsquo;s just someone else&rsquo;s computer.
+That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&rsquo;s true that there isn&rsquo;t a cloud there, it&rsquo;s also true in the same way that there is no &ldquo;computer&rdquo; there.
   <footer>
     <a href='https://tobilehman.com/posts/cybernetics-age-of-cloud/'>
       <nobr>Read more &rarr;</nobr>
@@ -194,7 +209,7 @@ At Amazon I worked on AWS Elemental&rsquo;s Live (video streaming software), a s
 <article class="post">
   <header>
     <h2><a href='https://tobilehman.com/posts/latency-numbers/'> Latency Numbers Every Programmer Should Know</a> </h2>
-    <div class="post-meta">Mon, Feb 28, 2022 - 200 Words </div>
+    <div class="post-meta">Mon, Feb 28, 2022 - 100 Words </div>
   </header>
   There&rsquo;s an indispensible file called Latency Numbers Every Programmer Should Know, originally by Jeff Dean of Google. I use a Roam Research plugin to do spaced repetition and memorize these numbers. But memorizing them is not good enough, I should also measure these numbers and see how close the values are in practice.
 I created a Repl in Go to directly measure these numbers. I started with mutex lock/unlock. Locally, I get about 19ns, but the repl gives me between 12-14ns.
@@ -227,7 +242,7 @@ Coins are made of lots of atoms, and many of those atoms are entangled with each
     <div class="post-meta">Sun, Feb 13, 2022 - 900 Words </div>
   </header>
   I remember reading this article Deurbanising the web from January 2021. It argued that the web had gotten so bad that they wanted to do something drastic, so they converted the web pages on their site to PDF. The badness they were complaining about was familiar, too many ads, too much surveillance. Link rot, infinite scrolls, paywalls, GDPR cookie consent buttons, etc. The reason they chose PDFs?
-Reasons why Lab6 argued PDFs were a good format for web pages  it&rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom  At first I was skeptical.
+Reasons why Lab6 argued PDFs were a good format for web pages it&rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom At first I was skeptical.
   <footer>
     <a href='https://tobilehman.com/posts/pdfs-and-the-permanent-web/'>
       <nobr>Read more &rarr;</nobr>
@@ -257,7 +272,7 @@ I am still not totally sure what to think about it.
     <div class="post-meta">Fri, Dec 31, 2021 - 600 Words </div>
   </header>
   This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-  Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.
+Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.
   <footer>
     <a href='https://tobilehman.com/posts/literate-quicksort/'>
       <nobr>Read more &rarr;</nobr>
@@ -300,7 +315,7 @@ The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candi
 <article class="post">
   <header>
     <h2><a href='https://tobilehman.com/posts/book-review-perez-trfc/'> Book Review: Technological Revolutions and Financial Capital</a> </h2>
-    <div class="post-meta">Sun, Nov 21, 2021 - 2700 Words </div>
+    <div class="post-meta">Sun, Nov 21, 2021 - 2600 Words </div>
   </header>
   This book develops a theory of a cyclical pattern in the economy. The pattern describes how certain new technologies spread to become a whole new way of structuring society. The author Carlota Perez calls this a technological revolution and it&rsquo;s associated &ldquo;techno-economic paradigm&rdquo;.
 In this review I want to summarize her theory using less jargon. Even though the book reads like an academic text, and the jargon is used consistently, I want to dig into the idea in more common language.
@@ -333,7 +348,7 @@ What is a DAO? A DAO is sort of like a corporation, but it&rsquo;s stored on the
     <div class="post-meta">Sat, Oct 30, 2021 - 1100 Words </div>
   </header>
   Atomic Habits is written so clearly that I have a hard time believing &lsquo;James Clear&rsquo; isn&rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.
-Before I read this, I thought of habits using the goal/discipline model.
+Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal.
   <footer>
     <a href='https://tobilehman.com/posts/book-review-atomic-habits/'>
       <nobr>Read more &rarr;</nobr>
@@ -349,7 +364,7 @@ Before I read this, I thought of habits using the goal/discipline model.
   </header>
   Arguments are best when they don&rsquo;t engage either member&rsquo;s identities. For this reason, Paul Graham says to keep your identity small. The title summarizes it well, but the why is important.
 If you are interested in the truth, then be prepared to follow arguments where they lead instead of letting the identity of the author interfere with your reasoning.
-  For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.
+For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.
   <footer>
     <a href='https://tobilehman.com/posts/how-big-identity/'>
       <nobr>Read more &rarr;</nobr>
@@ -380,7 +395,7 @@ In game theory, there is a way of visualizing the incentives that guide the play
     <div class="post-meta">Fri, Apr 9, 2021 - 700 Words </div>
   </header>
   Everyone needs an obscure useless skill. ‐ @Noahpinion
- Mine is identifying the topology of time travel stories.
+Mine is identifying the topology of time travel stories.
 Click here if you know what topology is and just want to get to the time travel stuff
 a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &ldquo;Oiler&rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.
   <footer>
@@ -424,11 +439,11 @@ In addition, she also analyses the main problems of maintenance that threaten th
 <article class="post">
   <header>
     <h2><a href='https://tobilehman.com/posts/wildfire-west/'> Wildfire West</a> </h2>
-    <div class="post-meta">Thu, Sep 10, 2020 - 500 Words </div>
+    <div class="post-meta">Thu, Sep 10, 2020 - 400 Words </div>
   </header>
   The West Coast is on fire
 This post is addressing the question of causality. When reading social media, I noticed three patterns:
- arguing about climate change and causality (e.g. climate change caused this and no-it-didn&rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &lsquo;fires being natural&rsquo;  The real cause of the fires is not a single cause.
+arguing about climate change and causality (e.g. climate change caused this and no-it-didn&rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &lsquo;fires being natural&rsquo; The real cause of the fires is not a single cause.
   <footer>
     <a href='https://tobilehman.com/posts/wildfire-west/'>
       <nobr>Read more &rarr;</nobr>
@@ -459,7 +474,7 @@ Six years ago, I wrote this cribbage score calculator in C. It takes a string li
     <div class="post-meta">Sat, Sep 5, 2020 - 400 Words </div>
   </header>
   I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
-  I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.
+I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.
   <footer>
     <a href='https://tobilehman.com/posts/timelapse/'>
       <nobr>Read more &rarr;</nobr>
@@ -518,7 +533,7 @@ If Chinese Communist party officials are abusing, brainwashing and sometimes kil
     <div class="post-meta">Tue, Apr 14, 2020 - 500 Words </div>
   </header>
   John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &ldquo;recreational math&rdquo; contributions: The Game of Life.
-If you haven&rsquo;t heard, It&rsquo;s this zero player computer &ldquo;game&rdquo;:   Not this multi-player board game:   I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.
+If you haven&rsquo;t heard, It&rsquo;s this zero player computer &ldquo;game&rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.
   <footer>
     <a href='https://tobilehman.com/posts/game-of-life/'>
       <nobr>Read more &rarr;</nobr>
@@ -534,8 +549,8 @@ If you haven&rsquo;t heard, It&rsquo;s this zero player computer &ldquo;game&rdq
   </header>
   Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
 The simplest model of disease spreading starts by breaking a population up into compartments:
- S (Susceptible) I (Infected) R (Removed️)  Then, the model describes the flow between these compartments.
-  NOTE: This version of the model works over short periods and ignores births and natural deaths.
+S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
+NOTE: This version of the model works over short periods and ignores births and natural deaths.
   <footer>
     <a href='https://tobilehman.com/posts/sir-model-epidemiology/'>
       <nobr>Read more &rarr;</nobr>
@@ -550,8 +565,8 @@ The simplest model of disease spreading starts by breaking a population up into 
     <div class="post-meta">Tue, Feb 25, 2020 - 2900 Words </div>
   </header>
   There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
- “Once you start thinking about growth, it’s hard to think about anything else.”
- &ndash; Robert Lucas, Nobel prize-winning economist
+“Once you start thinking about growth, it’s hard to think about anything else.”
+&ndash; Robert Lucas, Nobel prize-winning economist
 Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?
   <footer>
     <a href='https://tobilehman.com/posts/compound-growth/'>
@@ -568,7 +583,7 @@ Before launching into an explanation, I want to start with a question: “Would 
   </header>
   Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.
 The two common ways of making money from online content are:
- Free content with ads Subscription content without ads  Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
+Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
 The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&rsquo;t want to sign up for yet another monthly subscription.
   <footer>
     <a href='https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/'>
@@ -581,7 +596,7 @@ The trouble with subscriptions is that people can quickly feel saturated. Once y
 <article class="post">
   <header>
     <h2><a href='https://tobilehman.com/posts/piano/'> Piano  ♪</a> </h2>
-    <div class="post-meta">Tue, Jan 21, 2020 - 700 Words </div>
+    <div class="post-meta">Tue, Jan 21, 2020 - 600 Words </div>
   </header>
   To start the decade off right, I decided to learn the piano. I am paying for lessons from Ethan Maier, he&rsquo;s excellent, I&rsquo;ve been enjoying learning from him and practicing.
 Since I only have a piano at home, I wanted to make one that I could use on the go. Here is the simplest way I could think of to make a portable piano program:
@@ -614,8 +629,7 @@ There is an standard for simple web graphics called SVG, which lets you define c
     <div class="post-meta">Wed, Aug 21, 2019 - 1500 Words </div>
   </header>
   Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &ldquo;how long until the weekend?&rdquo;, which can produce equations like $$ x + 2 = 5 $$
-Natural number equations give rise to a solution space that looks like this: 
-When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).
+Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).
   <footer>
     <a href='https://tobilehman.com/posts/imaginary-numbers-are-real/'>
       <nobr>Read more &rarr;</nobr>
@@ -630,9 +644,9 @@ When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0
     <div class="post-meta">Tue, Apr 23, 2019 - 800 Words </div>
   </header>
   The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-  Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
- Write Once, Run Everywhere.
- Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
+Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
+Write Once, Run Everywhere.
+Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
 The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.
   <footer>
     <a href='https://tobilehman.com/posts/dream-90s-wasm/'>
@@ -678,7 +692,7 @@ the pixels on most screens emit three different colors of light: red , green and
     <div class="post-meta">Sun, Nov 11, 2018 - 200 Words </div>
   </header>
   One hundred years ago today, the armistice was signed that ended World War 1. Now is a good time to reflect on the last century and get some perspective. Below is a chart of all the combat deaths per 100,000 people going back to the year 1900.
-  One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.
+One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.
   <footer>
     <a href='https://tobilehman.com/posts/armistice-day/'>
       <nobr>Read more &rarr;</nobr>
@@ -708,7 +722,7 @@ If you are still not sure why switching is the better strategy, I have made the 
     <div class="post-meta">Sun, Oct 6, 2013 - 300 Words </div>
   </header>
   In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
- RFC 1034 Domain Concepts and Facilities November 1987
+RFC 1034 Domain Concepts and Facilities November 1987
 2.1. The history of domain names
 The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].
   <footer>
@@ -737,6 +751,8 @@ After the term ended and I entered winter break I did what every reclusive antis
 
 <script>
   const listItems = [
+  
+    "https://tobilehman.com/posts/k3s-cluster-pis/" ,
   
     "https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/" ,
   

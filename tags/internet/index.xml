@@ -25,7 +25,7 @@ In 1991, Tim Berners Lee created the first web page along with all the supportin
       
       <guid>https://tobilehman.com/posts/history-dns/</guid>
       <description>In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
- RFC 1034 Domain Concepts and Facilities November 1987
+RFC 1034 Domain Concepts and Facilities November 1987
 2.1. The history of domain names
 The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
     </item>

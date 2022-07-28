@@ -36,8 +36,8 @@ In this review I want to summarize her theory using less jargon. Even though the
       <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
       <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
 The simplest model of disease spreading starts by breaking a population up into compartments:
- S (Susceptible) I (Infected) R (Removed️)  Then, the model describes the flow between these compartments.
-  NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
+NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
     </item>
     
     <item>
@@ -47,8 +47,8 @@ The simplest model of disease spreading starts by breaking a population up into 
       
       <guid>https://tobilehman.com/posts/compound-growth/</guid>
       <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
- “Once you start thinking about growth, it’s hard to think about anything else.”
- &amp;ndash; Robert Lucas, Nobel prize-winning economist
+“Once you start thinking about growth, it’s hard to think about anything else.”
+&amp;ndash; Robert Lucas, Nobel prize-winning economist
 Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
     </item>
     

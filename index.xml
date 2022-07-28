@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 05 May 2022 09:55:05 -0700</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Jul 2022 12:34:44 -0700</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K3s Cluster on Raspberry Pis</title>
+      <link>https://tobilehman.com/posts/k3s-cluster-pis/</link>
+      <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/k3s-cluster-pis/</guid>
+      <description>I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&amp;rsquo;s how to make one of these:
+List of hardware 3 Raspberry Pi 3 Model B&amp;rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.</description>
+    </item>
+    
     <item>
       <title>Wildcard TLS Certificates for Your LAN</title>
       <link>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</link>
@@ -16,8 +26,8 @@
       <guid>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</guid>
       <description>for the impatient, skip to the how-to
 This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &amp;ldquo;⚠️ Your connection is not secure&amp;rdquo; errors:
-  The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
- Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website  When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
+The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
+Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
     </item>
     
     <item>
@@ -27,8 +37,8 @@ This article explains how to get a TLS Certificate for your LAN so you can use h
       
       <guid>https://tobilehman.com/posts/cybernetics-age-of-cloud/</guid>
       <description>There&amp;rsquo;s an old saying:
- There is no such thing as the cloud, there&amp;rsquo;s just someone else&amp;rsquo;s computer.
- That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&amp;rsquo;s true that there isn&amp;rsquo;t a cloud there, it&amp;rsquo;s also true in the same way that there is no &amp;ldquo;computer&amp;rdquo; there.</description>
+There is no such thing as the cloud, there&amp;rsquo;s just someone else&amp;rsquo;s computer.
+That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&amp;rsquo;s true that there isn&amp;rsquo;t a cloud there, it&amp;rsquo;s also true in the same way that there is no &amp;ldquo;computer&amp;rdquo; there.</description>
     </item>
     
     <item>
@@ -80,7 +90,7 @@ Coins are made of lots of atoms, and many of those atoms are entangled with each
       
       <guid>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</guid>
       <description>I remember reading this article Deurbanising the web from January 2021. It argued that the web had gotten so bad that they wanted to do something drastic, so they converted the web pages on their site to PDF. The badness they were complaining about was familiar, too many ads, too much surveillance. Link rot, infinite scrolls, paywalls, GDPR cookie consent buttons, etc. The reason they chose PDFs?
-Reasons why Lab6 argued PDFs were a good format for web pages  it&amp;rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom  At first I was skeptical.</description>
+Reasons why Lab6 argued PDFs were a good format for web pages it&amp;rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom At first I was skeptical.</description>
     </item>
     
     <item>
@@ -89,8 +99,9 @@ Reasons why Lab6 argued PDFs were a good format for web pages  it&amp;rsquo;s a 
       <pubDate>Thu, 10 Feb 2022 11:51:45 -0700</pubDate>
       
       <guid>https://tobilehman.com/beliefs/</guid>
-      <description>Table of contents  Problems are solveable  Problems are solvable I believe every problem can be solved. I also acknowledge that every solution creates it&amp;rsquo;s own problems
-One example of this: nuclear energy solves the problems of intermittency and large land footprint that renewables have. It also solves the problem of CO2 emissions that fossil fuels have. But it also produces small amounts of solid waste and occasionally melts down.</description>
+      <description>Table of contents Problems are solveable Problems are solvable I believe every problem can be solved. I also acknowledge that every solution creates it&amp;rsquo;s own problems
+One example of this: nuclear energy solves the problems of intermittency and large land footprint that renewables have. It also solves the problem of CO2 emissions that fossil fuels have. But it also produces small amounts of solid waste and occasionally melts down.
+The problem of solid waste and occasional meltdowns are far less problematic than constant air pollution and constant power outages because of weather and batteries running out.</description>
     </item>
     
     <item>
@@ -110,7 +121,7 @@ I am still not totally sure what to think about it.</description>
       
       <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
       <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-  Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
     </item>
     
     <item>
@@ -140,7 +151,7 @@ The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candi
       <pubDate>Fri, 10 Dec 2021 18:15:11 -0800</pubDate>
       
       <guid>https://tobilehman.com/links/</guid>
-      <description> Quantum Country: quantum computing for the very curious: https://quantum.country/  spaced repetition online book to teach the fundamentals of quantum computing   Two body orbit simulator: https://evgenii.com/blog/two-body-problem-simulator/ My ethereum domain name: tobilehman.eth  </description>
+      <description> Quantum Country: quantum computing for the very curious: https://quantum.country/ spaced repetition online book to teach the fundamentals of quantum computing Two body orbit simulator: https://evgenii.com/blog/two-body-problem-simulator/ My ethereum domain name: tobilehman.eth </description>
     </item>
     
     <item>
@@ -159,7 +170,7 @@ The more you work with times, dates, time zones and daylight saving time, the mo
       <pubDate>Thu, 09 Dec 2021 09:15:10 -0800</pubDate>
       
       <guid>https://tobilehman.com/changelog/</guid>
-      <description>February 2022  2022-05-05  Wrote about Wildcard TLS certs for your LAN   2022-03-29  Wrote about Dapper build tool   2022-03-19  Wrote about Moving to SUSE   2022-02-16  Added lcp-0.5.pdf, I worked out the ray tracing math and reorganized the text to make the document flow better.   2022-02-13  Added lcp-0.4.pdf, I made a nice ray-tracing diagram to explain the rendering code: diagram   2022-02-11  Removed the tobishell.</description>
+      <description>February 2022 2022-05-05 Wrote about Wildcard TLS certs for your LAN 2022-03-29 Wrote about Dapper build tool 2022-03-19 Wrote about Moving to SUSE 2022-02-16 Added lcp-0.5.pdf, I worked out the ray tracing math and reorganized the text to make the document flow better. 2022-02-13 Added lcp-0.4.pdf, I made a nice ray-tracing diagram to explain the rendering code: diagram 2022-02-11 Removed the tobishell.js, it was too terminal-like to not want to keep adding features, but not worth all the effort.</description>
     </item>
     
     <item>
@@ -168,7 +179,7 @@ The more you work with times, dates, time zones and daylight saving time, the mo
       <pubDate>Wed, 08 Dec 2021 13:52:40 -0800</pubDate>
       
       <guid>https://tobilehman.com/notes/</guid>
-      <description> Notes on interest rates Notes on GPU programming  </description>
+      <description> Notes on interest rates Notes on GPU programming </description>
     </item>
     
     <item>
@@ -209,7 +220,7 @@ What is a DAO? A DAO is sort of like a corporation, but it&amp;rsquo;s stored on
       
       <guid>https://tobilehman.com/posts/book-review-atomic-habits/</guid>
       <description>Atomic Habits is written so clearly that I have a hard time believing &amp;lsquo;James Clear&amp;rsquo; isn&amp;rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.
-Before I read this, I thought of habits using the goal/discipline model.</description>
+Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal.</description>
     </item>
     
     <item>
@@ -220,7 +231,7 @@ Before I read this, I thought of habits using the goal/discipline model.</descri
       <guid>https://tobilehman.com/posts/how-big-identity/</guid>
       <description>Arguments are best when they don&amp;rsquo;t engage either member&amp;rsquo;s identities. For this reason, Paul Graham says to keep your identity small. The title summarizes it well, but the why is important.
 If you are interested in the truth, then be prepared to follow arguments where they lead instead of letting the identity of the author interfere with your reasoning.
-  For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.</description>
+For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.</description>
     </item>
     
     <item>
@@ -229,7 +240,7 @@ If you are interested in the truth, then be prepared to follow arguments where t
       <pubDate>Wed, 13 Oct 2021 11:51:45 -0700</pubDate>
       
       <guid>https://tobilehman.com/archive/</guid>
-      <description>2011-06-10 (Zombie outbreak with the &amp;lsquo;28 Days Later&amp;rsquo; effect) zombies-szr-model.pdf  This cites the paper by Philip Munz, Ioan Hudea, Joe Imad, and Robert J. Smith. Called &amp;ldquo;When zombies attack!: Mathematical modellings of an outbreak of zombie infection&amp;rdquo;. In Infectious Disease Modelling Research Progress, pages 133-150. Nova Science, 2009. This in the tradition of XKCD&amp;rsquo;s &amp;ldquo;What If&amp;rdquo;, where real mathematical tools are abused for the purpose of answering silly questions.</description>
+      <description>2011-06-10 (Zombie outbreak with the &amp;lsquo;28 Days Later&amp;rsquo; effect) zombies-szr-model.pdf This cites the paper by Philip Munz, Ioan Hudea, Joe Imad, and Robert J. Smith. Called &amp;ldquo;When zombies attack!: Mathematical modellings of an outbreak of zombie infection&amp;rdquo;. In Infectious Disease Modelling Research Progress, pages 133-150. Nova Science, 2009. This in the tradition of XKCD&amp;rsquo;s &amp;ldquo;What If&amp;rdquo;, where real mathematical tools are abused for the purpose of answering silly questions. I&amp;rsquo;m happy with how the result turned out.</description>
     </item>
     
     <item>
@@ -249,8 +260,8 @@ The types of problems best suited to CPUs look like this: $$ C_1 \to C_2 \to &am
       <pubDate>Thu, 09 Sep 2021 14:55:11 -0700</pubDate>
       
       <guid>https://tobilehman.com/interest/</guid>
-      <description>a[href*=&#39;cnbc.com&#39;]::after { background-image: url(&#34;https://www.cnbc.com/favicon.ico&#34;) }  This page is about interest rates, negative interest rates, and complex interest rates. I think interest rates are interesting because they represent the value of time.
-Table of Contents  Interest rates  Central Banking (The Federal Reserve) The long-term decline of interest rates   Negative interest rates Complex interest rates  Ethereum Smart Contract Implementation     &amp;ldquo;Compound interest is the eighth wonder of the world.</description>
+      <description>This page is about interest rates, negative interest rates, and complex interest rates. I think interest rates are interesting because they represent the value of time.
+Table of Contents Interest rates Central Banking (The Federal Reserve) The long-term decline of interest rates Negative interest rates Complex interest rates Ethereum Smart Contract Implementation &amp;ldquo;Compound interest is the eighth wonder of the world. He who understands it, earns it &amp;hellip; he who doesn&amp;rsquo;t &amp;hellip; pays it.</description>
     </item>
     
     <item>
@@ -283,7 +294,7 @@ In game theory, there is a way of visualizing the incentives that guide the play
       
       <guid>https://tobilehman.com/posts/time-travel-topology/</guid>
       <description>Everyone needs an obscure useless skill. ‐ @Noahpinion
- Mine is identifying the topology of time travel stories.
+Mine is identifying the topology of time travel stories.
 Click here if you know what topology is and just want to get to the time travel stuff
 a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
     </item>
@@ -316,7 +327,7 @@ In addition, she also analyses the main problems of maintenance that threaten th
       <guid>https://tobilehman.com/posts/wildfire-west/</guid>
       <description>The West Coast is on fire
 This post is addressing the question of causality. When reading social media, I noticed three patterns:
- arguing about climate change and causality (e.g. climate change caused this and no-it-didn&amp;rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &amp;lsquo;fires being natural&amp;rsquo;  The real cause of the fires is not a single cause.</description>
+arguing about climate change and causality (e.g. climate change caused this and no-it-didn&amp;rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &amp;lsquo;fires being natural&amp;rsquo; The real cause of the fires is not a single cause.</description>
     </item>
     
     <item>
@@ -337,7 +348,7 @@ Six years ago, I wrote this cribbage score calculator in C. It takes a string li
       
       <guid>https://tobilehman.com/posts/timelapse/</guid>
       <description>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
-  I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
+I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
     </item>
     
     <item>
@@ -376,7 +387,7 @@ If Chinese Communist party officials are abusing, brainwashing and sometimes kil
       
       <guid>https://tobilehman.com/posts/game-of-life/</guid>
       <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.
-If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;:   Not this multi-player board game:   I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
+If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
     </item>
     
     <item>
@@ -387,8 +398,8 @@ If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ld
       <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
       <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
 The simplest model of disease spreading starts by breaking a population up into compartments:
- S (Susceptible) I (Infected) R (Removed️)  Then, the model describes the flow between these compartments.
-  NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
+NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
     </item>
     
     <item>
@@ -398,8 +409,8 @@ The simplest model of disease spreading starts by breaking a population up into 
       
       <guid>https://tobilehman.com/posts/compound-growth/</guid>
       <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
- “Once you start thinking about growth, it’s hard to think about anything else.”
- &amp;ndash; Robert Lucas, Nobel prize-winning economist
+“Once you start thinking about growth, it’s hard to think about anything else.”
+&amp;ndash; Robert Lucas, Nobel prize-winning economist
 Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
     </item>
     
@@ -420,7 +431,7 @@ Before launching into an explanation, I want to start with a question: “Would 
       <guid>https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/</guid>
       <description>Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.
 The two common ways of making money from online content are:
- Free content with ads Subscription content without ads  Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
+Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
 The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&amp;rsquo;t want to sign up for yet another monthly subscription.</description>
     </item>
     
@@ -431,7 +442,7 @@ The trouble with subscriptions is that people can quickly feel saturated. Once y
       
       <guid>https://tobilehman.com/thanks/</guid>
       <description>Instead of writing a dry and formal list of acknowledgements, I want to thank the many people and communities that built the tools I use to make this website.
-Thank you to:  to RoyaltyFreeTube for the synthwave graphics on Throw-Forward Friday the Hugo static website framework the Go Programming Language @luizdepra&amp;rsquo;s &amp;ldquo;Coder&amp;rdquo; theme for Hugo  This website is stored in Amazon S3, securely and quickly delivered with Amazon CloudFront</description>
+Thank you to: to RoyaltyFreeTube for the synthwave graphics on Throw-Forward Friday the Hugo static website framework the Go Programming Language @luizdepra&amp;rsquo;s &amp;ldquo;Coder&amp;rdquo; theme for Hugo This website is stored in Amazon S3, securely and quickly delivered with Amazon CloudFront</description>
     </item>
     
     <item>
@@ -461,8 +472,7 @@ There is an standard for simple web graphics called SVG, which lets you define c
       
       <guid>https://tobilehman.com/posts/imaginary-numbers-are-real/</guid>
       <description>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &amp;ldquo;how long until the weekend?&amp;rdquo;, which can produce equations like $$ x + 2 = 5 $$
-Natural number equations give rise to a solution space that looks like this: 
-When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
+Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
     </item>
     
     <item>
@@ -472,9 +482,9 @@ When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0
       
       <guid>https://tobilehman.com/posts/dream-90s-wasm/</guid>
       <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-  Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
- Write Once, Run Everywhere.
- Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
+Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
+Write Once, Run Everywhere.
+Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
 The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
     </item>
     
@@ -505,7 +515,7 @@ the pixels on most screens emit three different colors of light: red , green and
       
       <guid>https://tobilehman.com/posts/armistice-day/</guid>
       <description>One hundred years ago today, the armistice was signed that ended World War 1. Now is a good time to reflect on the last century and get some perspective. Below is a chart of all the combat deaths per 100,000 people going back to the year 1900.
-  One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.</description>
+One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.</description>
     </item>
     
     <item>
@@ -525,7 +535,7 @@ If you are still not sure why switching is the better strategy, I have made the 
       
       <guid>https://tobilehman.com/posts/history-dns/</guid>
       <description>In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
- RFC 1034 Domain Concepts and Facilities November 1987
+RFC 1034 Domain Concepts and Facilities November 1987
 2.1. The history of domain names
 The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
     </item>
@@ -547,8 +557,8 @@ After the term ended and I entered winter break I did what every reclusive antis
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tobilehman.com/influences/</guid>
-      <description>Influences  a[href*=&#39;pdx.edu&#39;]::after { background-image: url(&#34;https://www.pdx.edu/themes/custom/pdxd8/favicon.ico&#34;) }   a[href*=&#39;codinghorror.com&#39;]::after { background-image: url(&#34;https://blog.codinghorror.com/favicon.png&#34;) }   a[href*=&#39;gwern.net&#39;]::after { background-image: url(&#34;https://www.gwern.net/static/img/favicon.ico&#34;) }  These are the people and ideas that influenced me, and for whose work I am grateful.
- Coding Horror&amp;rsquo;s Jeff Atwood  I started reading this blog in 2005 when I was learning to write code. I discovered it through Google Reader.   Professor Karla Fant  Her classes on algorithms and data structures in C++ have stuck in my memory vividly.</description>
+      <description>Influences These are the people and ideas that influenced me, and for whose work I am grateful.
+Coding Horror&amp;rsquo;s Jeff Atwood I started reading this blog in 2005 when I was learning to write code. I discovered it through Google Reader. Professor Karla Fant Her classes on algorithms and data structures in C++ have stuck in my memory vividly. Her teaching style is unique, high energy, and dense with nerdy movie references.</description>
     </item>
     
     <item>
@@ -557,9 +567,9 @@ After the term ended and I entered winter break I did what every reclusive antis
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tobilehman.com/about/</guid>
-      <description>I am an experienced software engineer with a background in math.  a[href*=&#39;pdx.edu&#39;]::after { background-image: url(&#34;https://www.pdx.edu/themes/custom/pdxd8/favicon.ico&#34;) }  I studied mathematics and computer science at PSU.
+      <description>I am an experienced software engineer with a background in math. I studied mathematics and computer science at PSU.
 I currently work at SUSE developing the Harvester Hyperconverged Infrastructure project.
-Some notable things I did  I built core parts of the telemonitoring software for the Amazon Scout delivery robots. I built the network recovery software for the AWS Elemental Link in 2020 I wrote a 2D physics simulator and presented it in 2016  Object-Oriented Orbits source code Object-Oriented Orbits slides   I was the sole winner of the 2011 Putnam Mathematical Competition at PSU.</description>
+Some notable things I did I built core parts of the telemonitoring software for the Amazon Scout delivery robots. I built the network recovery software for the AWS Elemental Link in 2020 I wrote a 2D physics simulator and presented it in 2016 Object-Oriented Orbits source code Object-Oriented Orbits slides I was the sole winner of the 2011 Putnam Mathematical Competition at PSU.</description>
     </item>
     
     <item>
@@ -583,9 +593,7 @@ To calculate the number of sats per U.S. penny, I wrote a sats calculator</descr
       <guid>https://tobilehman.com/sats/</guid>
       <description>There are at most 21 million Bitcoin, the currency code for it is BTC, and the Unicode character for it is ₿
 By definition, 1 bitcoin is 100 million &amp;ldquo;sats&amp;rdquo;, short for Satoshi. Sats are labeled with §
-₿ 1 = §100,000,000 = 
-1¢ = 
-  If you think this is valuable, then tip me some sats or BATs. (BAT works if you are using the Brave web browser).</description>
+₿ 1 = §100,000,000 = 1¢ = If you think this is valuable, then tip me some sats or BATs. (BAT works if you are using the Brave web browser). </description>
     </item>
     
     <item>
@@ -594,7 +602,7 @@ By definition, 1 bitcoin is 100 million &amp;ldquo;sats&amp;rdquo;, short for Sa
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tobilehman.com/subscribe/</guid>
-      <description> RSS Feed  </description>
+      <description> RSS Feed </description>
     </item>
     
   </channel>

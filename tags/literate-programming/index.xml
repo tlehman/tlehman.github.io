@@ -25,7 +25,7 @@ I am still not totally sure what to think about it.</description>
       
       <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
       <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-  Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
     </item>
     
     <item>

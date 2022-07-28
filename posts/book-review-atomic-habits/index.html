@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-05-05.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-07-28.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -161,17 +161,17 @@ function toggleMoreLess() {
 </blockquote>
 <p>For a primer on compound interest and the power of growth, see my earlier article <a href="/posts/compound-growth">compound growth</a>.</p>
 <p>Aside from identity and consistency, this book introduces a very useful operational model of human behavior, called the <strong>habit loop</strong>. I translated this model into JavaScript code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// The Habit Loop
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">alive</span>) {
-  <span style="color:#75715e">// Problem phase
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCueFromEnvironment</span>();
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">craving</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">predictCravingFrom</span>(<span style="color:#a6e22e">cue</span>);
-  <span style="color:#75715e">// Solution phase
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">respondToCraving</span>(<span style="color:#a6e22e">craving</span>);
-  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">reward</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">experienceReward</span>(<span style="color:#a6e22e">response</span>);
-  <span style="color:#a6e22e">updateAssocations</span>(<span style="color:#a6e22e">cue</span>, <span style="color:#a6e22e">reward</span>);
-}
-</code></pre></div><p>This loop is running all the time. It can be picked apart and modified to make future you more likely to stick with your desired habit.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// The Habit Loop
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">alive</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Problem phase
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">cue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getCueFromEnvironment</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">craving</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">predictCravingFrom</span>(<span style="color:#a6e22e">cue</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Solution phase
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">respondToCraving</span>(<span style="color:#a6e22e">craving</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">reward</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">experienceReward</span>(<span style="color:#a6e22e">response</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">updateAssocations</span>(<span style="color:#a6e22e">cue</span>, <span style="color:#a6e22e">reward</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This loop is running all the time. It can be picked apart and modified to make future you more likely to stick with your desired habit.</p>
 <p>Starting from the first line, you can change the enviroment to give you the right cues at the right time. This he sums up as &ldquo;Make it Obvious&rdquo;, like for example, hanging your workout clothes near the door so you see them when you are near the door.</p>
 <p>The cue feeds into a predictor, where your brain predicts the outcome of that behavior and you have some emotional side effects. Those emotions and cravings lead to a response. This is the choice part, where you choose what to do. You want to set up your environment to make the right choices easier, and the bad choices harder.</p>
 <p>Finally, there&rsquo;s the reward. If you went running, that&rsquo;s an endorphin rush. If you saved money, it&rsquo;s the number going up in your bank account. That reward then gets associated to the cue, re-inforcing the behavior.</p>

@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-05-05.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-07-28.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -145,13 +145,13 @@ install on your host.</p>
 </ol>
 <p>The <code>Dockerfile.dapper</code> is a regular Dockerfile. As an example, create one with your favorite programming language
 you don&rsquo;t have installed, let&rsquo;s say it&rsquo;s OCaml.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ocaml/opam:debian-10-ocaml-4.12</span><span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>Then you can open a shell in that container by running <code>dapper -s</code>. Or if
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ocaml/opam:debian-10-ocaml-4.12</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Then you can open a shell in that container by running <code>dapper -s</code>. Or if
 you wanted to run it as a one-liner, try running the opam compiler:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">% dapper opam --version
-...<span style="color:#f92672">(</span>docker build output<span style="color:#f92672">)</span>...
-2.0.10
-</code></pre></div><style>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>% dapper opam --version
+</span></span><span style="display:flex;"><span>...<span style="color:#f92672">(</span>docker build output<span style="color:#f92672">)</span>...
+</span></span><span style="display:flex;"><span>2.0.10
+</span></span></code></pre></div><style>
 a[href*='nixos.org']::after {
     background-image: url("https://nixos.org/favicon.png")
 }

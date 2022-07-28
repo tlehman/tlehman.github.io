@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-05-05.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-07-28.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -133,13 +133,13 @@ function toggleMoreLess() {
 
     <p>The story of open source software most of us believe is wrong. The production of open source software isn&rsquo;t like some egalitarian commune, it&rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, <a href="https://www.amazon.com/Nadia-Eghbal/e/B08BDZQ7XJ/ref=dp_byline_cont_pop_book_1">Nadia Eghbal</a> captures the living history of open source software.</p>
 <p>In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software. As an example of the importance of individuals, look at the command line tool <code>curl</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl % git log --pretty<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;%an&#34;</span> | sort | uniq -c | sort -n | tail -5
- <span style="color:#ae81ff">483</span> Gisle Vanem
-<span style="color:#ae81ff">1094</span> Dan Fandrich
-<span style="color:#ae81ff">1915</span> Steve Holme
-<span style="color:#ae81ff">2587</span> Yang Tse
-<span style="color:#ae81ff">15073</span> Daniel Stenberg
-</code></pre></div><p>This is one of several representative examples the author gives. The driving force behind open source projects is a small number of individuals. Initially, people tend to be intrinsically motivated, and then many will carry on with maintenance out of a sense of duty, but that is rarely sustainable. Later in the book, <a href="https://www.amazon.com/gp/product/B08BDGXVK9/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i0">Working in Public</a> dives deep into issues around maintenance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl % git log --pretty<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;%an&#34;</span> | sort | uniq -c | sort -n | tail -5
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">483</span> Gisle Vanem
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1094</span> Dan Fandrich
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1915</span> Steve Holme
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2587</span> Yang Tse
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15073</span> Daniel Stenberg
+</span></span></code></pre></div><p>This is one of several representative examples the author gives. The driving force behind open source projects is a small number of individuals. Initially, people tend to be intrinsically motivated, and then many will carry on with maintenance out of a sense of duty, but that is rarely sustainable. Later in the book, <a href="https://www.amazon.com/gp/product/B08BDGXVK9/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i0">Working in Public</a> dives deep into issues around maintenance.</p>
 <h2 id="the-four-quadrant-model-of-open-source-projects">The four quadrant model of open source projects</h2>
 <p>To add more precision to the analysis, the book introduces a four-part categorization of open source project types. The two dimensions are contributor growth and user growth.</p>
 <p>Projects with low contributor growth and low user growth are <strong>Toys</strong>, an example is my <a href="https://github.com/tlehman/newtonian">2D physics simulator</a>, it&rsquo;s not a serious simulation project and it only has 10 stars on github.
@@ -150,7 +150,7 @@ These four categories help add resolution to the discussion, and it&rsquo;s a un
 <h3 id="governance-of-open-source">Governance of open source</h3>
 <p>For Stadiums, the small number of contributors drastically simplifies governance. Many stadiums, like the programming language Clojure or Ruby, have BDFLs, or Benevolent Dictators for Life, who do almost all of the work of production, and make almost all the rules for what gets merged and what doesn&rsquo;t. Governance in that case is just simple dictatorship.
 But for Federations, things can get much more complicated. The book talks about <a href="https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/adding-a-code-of-conduct-to-your-project">Codes of Conduct</a>, which list out the rules for how contributors should treat other contributors. My thinking on these documents has evolved. Originally, my exposure to Codes of Conduct was in 2013, when I thought they were a distraction. My view at that time was that code was code. And if the code worked, it didn&rsquo;t matter if the author was a jerk, it&rsquo;s free labor, accept the code and ignore the asshole behind it.
-However, there is no a priori reason to assume that the jerks are the best or most prolific contributors. And for Federations specifically, if 80% of the commits come from 20% of your contributors, and some small number of jerks are alienating that 20%, then the project will suffer. This is a problem that needs a robust solution. The solution involves contributors policing other contributors' behavior, but that can easily go awry. <strong>The role of the Code of Conduct is a way to build legitimacy in policing of bad behavior in the contributor community.</strong>
+However, there is no a priori reason to assume that the jerks are the best or most prolific contributors. And for Federations specifically, if 80% of the commits come from 20% of your contributors, and some small number of jerks are alienating that 20%, then the project will suffer. This is a problem that needs a robust solution. The solution involves contributors policing other contributors&rsquo; behavior, but that can easily go awry. <strong>The role of the Code of Conduct is a way to build legitimacy in policing of bad behavior in the contributor community.</strong>
 This is something that Working in Public spelled out very eloquently, and it explains why I&rsquo;ve come to appreciate these documents.</p>
 <h2 id="economics-of-open-source">Economics of open source</h2>
 <p>The most interesting chapter is &ldquo;Roles, Incentives and relationships&rdquo; which applies ideas from economics to try and analyze the production of open source software.

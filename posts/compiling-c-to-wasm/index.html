@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-05-05.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-07-28.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -167,22 +167,22 @@ $$ S = \{{ 5♣, 10♥, 5♥ \}} $$</p>
 </pre>
 <p>Well, it&rsquo;s 8 if you count the empty set. Since my code is a janky little C program, you need to compile it and run it at the command line. But thanks to a glorious new technology called <a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a>, you can compile C programs to an assembly language that runs natively in a browser, and then call into it with JavaScript.</p>
 <p>WebAssembly, or wasm, can be emitted by first installing emscripten, and then changing the makefile like so:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff"> hand: cribbage.o cards.o hand.o
-<span style="color:#f92672">-       gcc-4.7 -g3 tmp/*.o -o bin/hand
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 tmp/*.o -o bin/hand.js
-</span><span style="color:#a6e22e"></span>
- cribbage.o:
-<span style="color:#f92672">-       gcc-4.7 -g3 -c src/cribbage.c -o tmp/cribbage.o
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 -c src/cribbage.c -o tmp/cribbage.o
-</span><span style="color:#a6e22e"></span>
- cards.o:
-<span style="color:#f92672">-       gcc-4.7 -g3 -c src/cards.c -o tmp/cards.o
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 -c src/cards.c -o tmp/cards.o
-</span><span style="color:#a6e22e"></span>
- hand.o:
-<span style="color:#f92672">-       gcc-4.7 -g3 -c src/hand.c -o tmp/hand.o
-</span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 -c src/hand.c -o tmp/hand.o
-</span></code></pre></div><p>Remarkably, that totally worked. Then you can import the compiled <code>hand.js</code> output into the browser and call into it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-diff" data-lang="diff"><span style="display:flex;"><span> hand: cribbage.o cards.o hand.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-       gcc-4.7 -g3 tmp/*.o -o bin/hand
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 tmp/*.o -o bin/hand.js
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>
+</span></span><span style="display:flex;"><span> cribbage.o:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-       gcc-4.7 -g3 -c src/cribbage.c -o tmp/cribbage.o
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 -c src/cribbage.c -o tmp/cribbage.o
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>
+</span></span><span style="display:flex;"><span> cards.o:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-       gcc-4.7 -g3 -c src/cards.c -o tmp/cards.o
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 -c src/cards.c -o tmp/cards.o
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e"></span>
+</span></span><span style="display:flex;"><span> hand.o:
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-       gcc-4.7 -g3 -c src/hand.c -o tmp/hand.o
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672"></span><span style="color:#a6e22e">+       emcc -O3 -s WASM=1 -c src/hand.c -o tmp/hand.o
+</span></span></span></code></pre></div><p>Remarkably, that totally worked. Then you can import the compiled <code>hand.js</code> output into the browser and call into it:</p>
 <p>The standard output goes to <code>console.log</code>, here is my cribbage calculator working with almost no effort:</p>
 
 
