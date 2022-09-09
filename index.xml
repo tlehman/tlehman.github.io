@@ -578,11 +578,11 @@ Some notable things I did I built core parts of the telemonitoring software for 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tobilehman.com/projects/</guid>
-      <description>An experiment in classical physics simulation and rendering (WIP) lcp.
+      <description>A Kubernetes controller to enable PCI passthrough for VMs: https://github.com/tlehman/harvester
+An experiment in classical physics simulation and rendering (WIP) lcp.
 For converting from Unix Epoch Time to ISO 8601-ish date strings, I wrote Unix Epoch Time
 I wrote pdf2png to make a fast PDF to PNG converter, uses C.
-I wrote manipulate-mediastream to learn how to process data from a WebRTC stream and render it in an HTML5 &amp;lt;canvas&amp;gt; element
-To calculate the number of sats per U.S. penny, I wrote a sats calculator</description>
+I wrote manipulate-mediastream to learn how to process data from a WebRTC stream and render it in an HTML5 &amp;lt;canvas&amp;gt; element</description>
     </item>
     
     <item>
