@@ -2,6 +2,39 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/posts/book-review-time-loops/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/book-review/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/dreams/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/math/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/physics/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/qubits/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/time/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/time-travel/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2022-10-13T21:10:35-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/posts/k3s-cluster-pis/</loc>
     <lastmod>2022-07-28T12:34:44-07:00</lastmod>
   </url><url>
@@ -11,16 +44,7 @@
     <loc>https://tobilehman.com/tags/kubernetes/</loc>
     <lastmod>2022-07-28T12:34:44-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/raspberry-pi/</loc>
-    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2022-07-28T12:34:44-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2022-07-28T12:34:44-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/dns/</loc>
@@ -92,19 +116,10 @@
     <loc>https://tobilehman.com/posts/latency-numbers/</loc>
     <lastmod>2022-02-28T16:28:45-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/time/</loc>
-    <lastmod>2022-02-28T16:28:45-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/decision-theory/</loc>
     <lastmod>2022-02-18T08:28:59-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/multiverse/</loc>
-    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/physics/</loc>
-    <lastmod>2022-02-18T08:28:59-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/qubits/</loc>
     <lastmod>2022-02-18T08:28:59-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/qubits-multiverse/</loc>
@@ -147,9 +162,6 @@
     <lastmod>2021-12-30T11:40:09-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/book-review-wheres-my-flying-car/</loc>
-    <lastmod>2021-12-26T12:49:54-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/book-review/</loc>
     <lastmod>2021-12-26T12:49:54-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/energy/</loc>
@@ -242,16 +254,10 @@
     <loc>https://tobilehman.com/posts/game-theory-masks/</loc>
     <lastmod>2021-04-19T20:53:43-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/math/</loc>
-    <lastmod>2021-04-09T20:53:44-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/sci-fi/</loc>
     <lastmod>2021-04-09T20:53:44-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/time-travel-topology/</loc>
-    <lastmod>2021-04-09T20:53:44-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/time-travel/</loc>
     <lastmod>2021-04-09T20:53:44-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/topology/</loc>
@@ -409,6 +415,12 @@
   </url><url>
     <loc>https://tobilehman.com/posts/history-dns/</loc>
     <lastmod>2013-10-06T20:09:01-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/movies/</loc>
+    <lastmod>2013-04-24T15:59:10-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/time-travel-rules-movies/</loc>
+    <lastmod>2013-04-24T15:59:10-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/conservation-confusion-clarified/</loc>
     <lastmod>2010-01-05T08:49:29-08:00</lastmod>

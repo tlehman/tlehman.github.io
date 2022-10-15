@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 28 Jul 2022 12:34:44 -0700</lastBuildDate><atom:link href="https://tobilehman.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Oct 2022 21:10:35 -0700</lastBuildDate><atom:link href="https://tobilehman.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book Review: Time Loops</title>
+      <link>https://tobilehman.com/posts/book-review-time-loops/</link>
+      <pubDate>Thu, 13 Oct 2022 21:10:35 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/book-review-time-loops/</guid>
+      <description>The book Time Loops by Eric Wargo makes a careful argument for the reality of precognitive dreams.
+My personal interest in this topic has to do with my obsession with time and to an extent, time travel.
+The author starts the book by summarizing a number of examples of dreams that came true, and closely studies an early dream pioneer named J.W. Dunne who wrote An Experiment with Time. What stands out about Dunne is how he made the distinction between dreaming about events out in the world vs events as experienced by the future self.</description>
+    </item>
+    
     <item>
       <title>K3s Cluster on Raspberry Pis</title>
       <link>https://tobilehman.com/posts/k3s-cluster-pis/</link>
@@ -418,6 +429,16 @@ If you are still not sure why switching is the better strategy, I have made the 
 RFC 1034 Domain Concepts and Facilities November 1987
 2.1. The history of domain names
 The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
+    </item>
+    
+    <item>
+      <title>Time Travel Rules in Movies</title>
+      <link>https://tobilehman.com/posts/time-travel-rules-movies/</link>
+      <pubDate>Wed, 24 Apr 2013 15:59:10 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/time-travel-rules-movies/</guid>
+      <description>I mapped out the rules of various time travel movies:
+Here&amp;rsquo;s the source code for the graphviz file.</description>
     </item>
     
     <item>
