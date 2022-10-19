@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-10-13.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-10-17.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -129,6 +129,21 @@ function toggleMoreLess() {
     
     
         <h1>open-source posts</h1>
+        
+            
+<article class="post">
+  <header>
+    <h2><a href='https://tobilehman.com/posts/suse-harvester-pci/'> PCI Device passthrough on Harvester</a> </h2>
+    <div class="post-meta">Mon, Oct 17, 2022 - 700 Words </div>
+  </header>
+  I want to share something that I&rsquo;ve been working on for the last three months. Release 1.1.0-rc3 now has working PCI passthrough. Any PCI device in your cluster can now be passed through the hypervisor directly to a VM. This allows virtual machines to directly control a device, like a GPU, without any expensive virtualization layer in the way.
+In the diagram above, the guest (VM) has direct memory access to the host&rsquo;s memory for the device.
+  <footer>
+    <a href='https://tobilehman.com/posts/suse-harvester-pci/'>
+      <nobr>Read more &rarr;</nobr>
+    </a>
+  </footer>
+</article>
         
             
 <article class="post">

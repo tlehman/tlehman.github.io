@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="PCI Device passthrough on Harvester" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/suse-harvester-pci/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/suse-harvester-pci/img/harvester-gpu.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="PCI Device passthrough on Harvester" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/suse-harvester-pci/img/harvester-gpu.png' />
+    
+
+    <title>
+        
+            PCI Device passthrough on Harvester : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-10-17.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/tags">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/beliefs">Beliefs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>PCI Device passthrough on Harvester</h1>
+
+    
+        <div class="post-meta">Mon, Oct 17, 2022 - 700 Words </div>
+    
+
+    <p>I want to share something that I&rsquo;ve been working on for the last three months. <a href="https://github.com/harvester/harvester/releases">Release 1.1.0-rc3</a> now has working PCI passthrough. Any PCI device in your cluster can now be passed through the hypervisor directly to a VM. This allows virtual machines to directly control a device, like a GPU, without any expensive virtualization layer in the way.</p>
+
+
+<figure>
+	<img src="/posts/suse-harvester-pci/img/vfio-device-assignment-viommu.png" alt="" />
+</figure>
+
+<p>In the diagram above, the guest (VM) has direct memory access to the host&rsquo;s memory for the device. This means that the hypervisor does not have to copy the data from the host to the guest, through a slow software layer.</p>
+<p>PCI passthrough enables VMs to use GPUs to accelerate machine learning workloads, graphics rendering jobs, or anything that could benefit from fast, hardware-accelerated vector math. It also allows for high-volume networked workloads in virtual machines. Virtual machines have a software layer between them and the hardware. By default,  high-bandwidth (e.g. 10Gbps) network interfaces can&rsquo;t be maxxed out because the virtual ethernet device can act as a bottleneck.</p>
+<h2 id="how-do-you-do-pci-passthrough-on-harvester">How do you do PCI passthrough on Harvester?</h2>
+<p>You need to create a virtual machine, enable the devices for passthrough, and then attach them to your virtual machine. After that, the virtual machine owns the devices and can control them as if it were the host.</p>
+<p>Below is a screen recording of me enabling PCI Devices for passthrough, attaching them to a VM, installing a linux distribution in the VM (with nvidia drivers), then compiling and running NVIDIA CUDA code and running multiple jobs on the GPU.</p>
+<script>
+function seekPlay(offset) {
+    var demo = document.getElementById('demo');
+    demo.currentTime = offset;
+    demo.play();
+}
+</script>
+<div id="toc">
+<ul>
+<li><a href="#toc" onclick="seekPlay(8);">0:08 enabling passthrough on PCI devices </a></li>
+<li><a href="#toc" onclick="seekPlay(14);">0:14 attach PCI devices to VM</a></li>
+<li><a href="#toc" onclick="seekPlay(38);">0:38 installing NVIDIA drivers</a></li>
+<li><a href="#toc" onclick="seekPlay(60 + 33);">1:32 running <code>nvidia-smi</code> to inspect the device from the vm</a></li>
+<li><a href="#toc" onclick="seekPlay(2*60 + 19);">2:19 compiling NVIDIA CUDA code to run on the device</a></li>
+<li><a href="#toc" onclick="seekPlay(3*60 + 00);">3:00 running compiled CUDA code on device</a></li>
+<li><a href="#toc" onclick="seekPlay(4*60 + 19);">4:19 running 10 parallel jobs on the device</a></li>
+</ul>
+<video id="demo" height="auto" controls="controls" preload="metadata" onclick="this.play()">
+ <source type="video/mp4" src="https://s3.us-east-1.amazonaws.com/tobilehman.com-archive/harvester-gpu-demo.mp4">
+</video>
+<p>If you are interested in trying this out, feel free to go to <a href="https://github.com/harvester/harvester/releases">releases</a> and install it. If you find any issues, please submit them <a href="https://github.com/harvester/harvester/issues">here</a>.</p>
+<h2 id="what-is-harvester">What is Harvester?</h2>
+<p><a href="https://harvesterhci.io">Harvester</a> is an operating system for distributed computing. You can install it onto x86_64 computers and have them all join together in a cluster. This cluster is managed by an interface called <a href="https://kubernetes.io">Kubernetes</a>. What makes Harvester special is the ability to manage VMs on your own hardware, using Kubernetes.</p>
+<p>Harvester uses a stable Kubernetes distribution called RKE2. It also comes with a hypervisor called <a href="https://kubevirt.io">KubeVirt</a>. KubeVirt lets you run VMs on a Kubernetes cluster, all managed through a single control plane.</p>
+<p>The term &ldquo;hyperconverged&rdquo; means that storage and compute are part of the same machine. In practice this means that you can take a server or a PC and install Harvester on it. The software allows for other nodes to make use of resources on other machines.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Hyperconvergence.jpg">
+<h2 id="how-does-passthrough-work-under-the-hood">How does passthrough work under the hood?</h2>
+<p>There are a few technologies that enabled this. The device uses DMA (Direct memory access) to copy data directly into memory without going through the CPU. Then the CPU itself uses an IOMMU (Input/Output memory management unit). The IOMMU allows the device to have a contiguous address space and then quickly map that to physical memory space, which might not be contiguous.</p>
+<p>The Linux kernel needs to be booted with the <code>intel_iommu=on</code> and <code>iommu=pt</code> (pt for passthrough) kernel parameters.</p>
+<p>After booting, you can enable passthrough on your PCI device by binding it&rsquo;s PCI address to the <a href="https://github.com/torvalds/linux/blob/master/drivers/vfio/pci/vfio_pci.c">vfio-pci</a> driver.</p>
+<p>Once a PCI device is enabled for passthrough, a VM can access the device and install it&rsquo;s own drivers on it. In Harvester specifically, VMs are managed by KubeVirt, which uses a Pod running qemu. KubeVirt exposes an interface to attach host PCI Devices to the VM&rsquo;s Pod.</p>
+<p>The source code for the Kubernetes controller that manages the list of PCI devices and claims to those devices is <a href="https://github.com/harvester/pcidevices">here</a>. That controller is now part of Harvester (as of release 1.1.0).</p>
+<h3 id="sources">Sources:</h3>
+<ul>
+<li>The passthrough diagram came from this great article: <a href="https://blog.sakuragawa.moe/vt-d-vfio-and-gpu-passthrough-virtualization-in-a-nutshell-rhel8/">https://blog.sakuragawa.moe/vt-d-vfio-and-gpu-passthrough-virtualization-in-a-nutshell-rhel8/</a></li>
+</ul>
+
+</article>
+<script defer src="https://cdn.commento.io/js/commento.js"></script>
+<div id="commento"></div>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/pci">#pci</a></li>
+    
+        <li><a href="/tags/gpu">#gpu</a></li>
+    
+        <li><a href="/tags/vm">#vm</a></li>
+    
+        <li><a href="/tags/open-source">#open-source</a></li>
+    
+        <li><a href="/tags/hyperconverged-infrastructure">#hyperconverged-infrastructure</a></li>
+    
+        <li><a href="/tags/linux">#linux</a></li>
+    
+        <li><a href="/tags/kubernetes">#kubernetes</a></li>
+    
+        <li><a href="/tags/vfio">#vfio</a></li>
+    
+        <li><a href="/tags/deep-dive">#deep-dive</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

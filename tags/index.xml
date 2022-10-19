@@ -7,7 +7,88 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 13 Oct 2022 21:10:35 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Oct 2022 14:33:01 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>deep-dive</title>
+      <link>https://tobilehman.com/tags/deep-dive/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/deep-dive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gpu</title>
+      <link>https://tobilehman.com/tags/gpu/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/gpu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hyperconverged-infrastructure</title>
+      <link>https://tobilehman.com/tags/hyperconverged-infrastructure/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/hyperconverged-infrastructure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kubernetes</title>
+      <link>https://tobilehman.com/tags/kubernetes/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://tobilehman.com/tags/linux/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open-source</title>
+      <link>https://tobilehman.com/tags/open-source/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pci</title>
+      <link>https://tobilehman.com/tags/pci/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/pci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vfio</title>
+      <link>https://tobilehman.com/tags/vfio/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/vfio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vm</title>
+      <link>https://tobilehman.com/tags/vm/</link>
+      <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/vm/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>book-review</title>
       <link>https://tobilehman.com/tags/book-review/</link>
@@ -77,15 +158,6 @@
       <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://tobilehman.com/tags/kubernetes/</link>
-      <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/kubernetes/</guid>
       <description></description>
     </item>
     
@@ -230,33 +302,6 @@
       <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/history/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hyperconverged-infrastructure</title>
-      <link>https://tobilehman.com/tags/hyperconverged-infrastructure/</link>
-      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/hyperconverged-infrastructure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://tobilehman.com/tags/linux/</link>
-      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>open-source</title>
-      <link>https://tobilehman.com/tags/open-source/</link>
-      <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/open-source/</guid>
       <description></description>
     </item>
     
@@ -635,15 +680,6 @@
       <pubDate>Tue, 03 Mar 2020 11:43:42 -0800</pubDate>
       
       <guid>https://tobilehman.com/tags/coronavirus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>deep-dive</title>
-      <link>https://tobilehman.com/tags/deep-dive/</link>
-      <pubDate>Tue, 03 Mar 2020 11:43:42 -0800</pubDate>
-      
-      <guid>https://tobilehman.com/tags/deep-dive/</guid>
       <description></description>
     </item>
     

@@ -41,7 +41,7 @@
     
     <script src="/js/base.js"></script>
     <link rel="stylesheet" href="/css/base.css"></link>
-    <link rel="stylesheet" href="/css/custom-2022-10-13.css"></link>
+    <link rel="stylesheet" href="/css/custom-2022-10-17.css"></link>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
@@ -123,751 +123,746 @@ function toggleMoreLess() {
 </div>
             <div class="col-8">
                 <div id="content">
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/book-review-time-loops/'> Book Review: Time Loops</a> </h2>
-    <div class="post-meta">Thu, Oct 13, 2022 - 1500 Words </div>
-  </header>
-  The book Time Loops by Eric Wargo makes a careful argument for the reality of precognitive dreams.
-My personal interest in this topic has to do with my obsession with time and to an extent, time travel.
-The author starts the book by summarizing a number of examples of dreams that came true, and closely studies an early dream pioneer named J.W. Dunne who wrote An Experiment with Time. What stands out about Dunne is how he made the distinction between dreaming about events out in the world vs events as experienced by the future self.
-  <footer>
-    <a href='https://tobilehman.com/posts/book-review-time-loops/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/k3s-cluster-pis/'> K3s Cluster on Raspberry Pis</a> </h2>
-    <div class="post-meta">Thu, Jul 28, 2022 - 500 Words </div>
-  </header>
-  I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&rsquo;s how to make one of these:
-List of hardware 3 Raspberry Pi 3 Model B&rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.
-  <footer>
-    <a href='https://tobilehman.com/posts/k3s-cluster-pis/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/'> Wildcard TLS Certificates for Your LAN</a> </h2>
-    <div class="post-meta">Thu, May 5, 2022 - 900 Words </div>
-  </header>
-  for the impatient, skip to the how-to
-This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &ldquo;⚠️ Your connection is not secure&rdquo; errors:
-The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
-Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.
-  <footer>
-    <a href='https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/cybernetics-age-of-cloud/'> Cybernetics in the Age of the Cloud</a> </h2>
-    <div class="post-meta">Fri, Apr 15, 2022 - 2000 Words </div>
-  </header>
-  There&rsquo;s an old saying:
-There is no such thing as the cloud, there&rsquo;s just someone else&rsquo;s computer.
-That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&rsquo;s true that there isn&rsquo;t a cloud there, it&rsquo;s also true in the same way that there is no &ldquo;computer&rdquo; there.
-  <footer>
-    <a href='https://tobilehman.com/posts/cybernetics-age-of-cloud/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/dapper-build-consistent/'> Dapper Build tool: consistent builds with docker</a> </h2>
-    <div class="post-meta">Tue, Mar 29, 2022 - 500 Words </div>
-  </header>
-  This articles shows how to use the dapper build tool from Rancher Labs.
-The basic idea is to use Docker containers, copy* your source files into the container environment, then compile, then copy the build artefacts out.
-(* on Linux you can also use the mount mode to avoid copying the files.)
-How to use it: you start by installing Go so you can compile Dapper. I know, I know, but if you will humor me, I will convince you that Go is the last programming language compiler you will need to install on your host.
-  <footer>
-    <a href='https://tobilehman.com/posts/dapper-build-consistent/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/moving-to-suse/'> Moving to SUSE</a> </h2>
-    <div class="post-meta">Fri, Mar 18, 2022 - 400 Words </div>
-  </header>
-  After 3.6 years at Amazon, I&rsquo;ve decided to move to another company to work on open source software. The company is SUSE, they make a Linux distribution and sell cloud computing services, among other things.
-At Amazon I worked on AWS Elemental&rsquo;s Live (video streaming software), a small video encoding device, and the Amazon Scout robotics project. At Scout I built software that controls the robots when autonomy fails, and I worked on safety features and performance optimization of a distributed application that ran on a cluster of servers managed by AWS Fargate.
-  <footer>
-    <a href='https://tobilehman.com/posts/moving-to-suse/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/latency-numbers/'> Latency Numbers Every Programmer Should Know</a> </h2>
-    <div class="post-meta">Mon, Feb 28, 2022 - 100 Words </div>
-  </header>
-  There&rsquo;s an indispensible file called Latency Numbers Every Programmer Should Know, originally by Jeff Dean of Google. I use a Roam Research plugin to do spaced repetition and memorize these numbers. But memorizing them is not good enough, I should also measure these numbers and see how close the values are in practice.
-I created a Repl in Go to directly measure these numbers. I started with mutex lock/unlock. Locally, I get about 19ns, but the repl gives me between 12-14ns.
-  <footer>
-    <a href='https://tobilehman.com/posts/latency-numbers/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/qubits-multiverse/'> Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</a> </h2>
-    <div class="post-meta">Fri, Feb 18, 2022 - 500 Words </div>
-  </header>
-  Have you ever had a decision that was hard to make because both sides of the decision were great in their own way? Where you stress over the decision and wish you could split into two copies of yourself? Some decision theorists recommend flipping a coin, but there is a better way.
-Coins are made of lots of atoms, and many of those atoms are entangled with each other and with the environment.
-  <footer>
-    <a href='https://tobilehman.com/posts/qubits-multiverse/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/pdfs-and-the-permanent-web/'> PDFs and the Permanent Web</a> </h2>
-    <div class="post-meta">Sun, Feb 13, 2022 - 900 Words </div>
-  </header>
-  I remember reading this article Deurbanising the web from January 2021. It argued that the web had gotten so bad that they wanted to do something drastic, so they converted the web pages on their site to PDF. The badness they were complaining about was familiar, too many ads, too much surveillance. Link rot, infinite scrolls, paywalls, GDPR cookie consent buttons, etc. The reason they chose PDFs?
-Reasons why Lab6 argued PDFs were a good format for web pages it&rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom At first I was skeptical.
-  <footer>
-    <a href='https://tobilehman.com/posts/pdfs-and-the-permanent-web/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/cweb-latex-experiment/'> CWEB LaTeX Experiment</a> </h2>
-    <div class="post-meta">Thu, Feb 3, 2022 - 600 Words </div>
-  </header>
-  I have written about literate programming a few times before. The big idea is to elevate documentation above the actual running source code. Source code is meant for humans to read, that&rsquo;s why it has higher-level abstractions and comments. Literate programming flips the roles of comments and source code. The comments come first, and the source code is stripped out and tangled into a compilable form.
-I am still not totally sure what to think about it.
-  <footer>
-    <a href='https://tobilehman.com/posts/cweb-latex-experiment/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/literate-quicksort/'> Literate Quicksort</a> </h2>
-    <div class="post-meta">Fri, Dec 31, 2021 - 600 Words </div>
-  </header>
-  This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.
-  <footer>
-    <a href='https://tobilehman.com/posts/literate-quicksort/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/rand-int-c/'> Generating random numbers in C</a> </h2>
-    <div class="post-meta">Thu, Dec 30, 2021 - 300 Words </div>
-  </header>
-  Assume your range is lower to upper, both of type int.
-Choose random number in range A random integer, uniformly distributed, over that interval is generated with:
-int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&rsquo;t &ldquo;seed&rdquo; the random number generator (RNG), then it will return the same sequence every time.
-  <footer>
-    <a href='https://tobilehman.com/posts/rand-int-c/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/book-review-wheres-my-flying-car/'> Book Review: Where&#39;s My Flying Car?</a> </h2>
-    <div class="post-meta">Sun, Dec 26, 2021 - 2300 Words </div>
-  </header>
-  This book has two parts, one looks back and asks why flying cars never came to market, and the other looks forward to what possibilities lay ahead. The author has a background in chip design and nanotechnology, and even became a pilot so he could better evaluate the feasibility of flying car designs.
-The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candidate for a flying car.
-  <footer>
-    <a href='https://tobilehman.com/posts/book-review-wheres-my-flying-car/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/book-review-perez-trfc/'> Book Review: Technological Revolutions and Financial Capital</a> </h2>
-    <div class="post-meta">Sun, Nov 21, 2021 - 2600 Words </div>
-  </header>
-  This book develops a theory of a cyclical pattern in the economy. The pattern describes how certain new technologies spread to become a whole new way of structuring society. The author Carlota Perez calls this a technological revolution and it&rsquo;s associated &ldquo;techno-economic paradigm&rdquo;.
-In this review I want to summarize her theory using less jargon. Even though the book reads like an academic text, and the jargon is used consistently, I want to dig into the idea in more common language.
-  <footer>
-    <a href='https://tobilehman.com/posts/book-review-perez-trfc/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/ens-and-dns/'> ENS, DNS and the future of internet names</a> </h2>
-    <div class="post-meta">Tue, Nov 9, 2021 - 400 Words </div>
-  </header>
-  Today a DAO just distributed 1.5 billion dollars worth of ENS tokens. They were distributed to owners of .eth domains. DAO is short for &ldquo;Decentralized Autonomous Organization&rdquo;.
-What is a DAO? A DAO is sort of like a corporation, but it&rsquo;s stored on the Ethereum blockchain. Wyoming passed a DAO law that links on-chain DAOs to real corporations. The corporation that currently manages the Domain Name Service (DNS) is ICANN.
-  <footer>
-    <a href='https://tobilehman.com/posts/ens-and-dns/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/book-review-atomic-habits/'> Book Review: Atomic Habits</a> </h2>
-    <div class="post-meta">Sat, Oct 30, 2021 - 1100 Words </div>
-  </header>
-  Atomic Habits is written so clearly that I have a hard time believing &lsquo;James Clear&rsquo; isn&rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.
-Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal.
-  <footer>
-    <a href='https://tobilehman.com/posts/book-review-atomic-habits/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/how-big-identity/'> How big should your identity be?</a> </h2>
-    <div class="post-meta">Tue, Oct 26, 2021 - 500 Words </div>
-  </header>
-  Arguments are best when they don&rsquo;t engage either member&rsquo;s identities. For this reason, Paul Graham says to keep your identity small. The title summarizes it well, but the why is important.
-If you are interested in the truth, then be prepared to follow arguments where they lead instead of letting the identity of the author interfere with your reasoning.
-For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.
-  <footer>
-    <a href='https://tobilehman.com/posts/how-big-identity/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/game-theory-masks/'> The Game Theory of Masks</a> </h2>
-    <div class="post-meta">Mon, Apr 19, 2021 - 400 Words </div>
-  </header>
-  I see a lot people mocking the CDC&rsquo;s guidance to remain masked and social distanced even after vaccination. Obviously the point of vaccinations is not to have to take those precautionary measures. But what the CDC is probably doing is thinking about this game of imperfect information.
-If someone says they are vaccinated, you have no good way of knowing that, so there is a free rider problem.
-In game theory, there is a way of visualizing the incentives that guide the players.
-  <footer>
-    <a href='https://tobilehman.com/posts/game-theory-masks/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/time-travel-topology/'> The Topology of Time Travel Stories</a> </h2>
-    <div class="post-meta">Fri, Apr 9, 2021 - 700 Words </div>
-  </header>
-  Everyone needs an obscure useless skill. ‐ @Noahpinion
-Mine is identifying the topology of time travel stories.
-Click here if you know what topology is and just want to get to the time travel stuff
-a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &ldquo;Oiler&rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.
-  <footer>
-    <a href='https://tobilehman.com/posts/time-travel-topology/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/time-in-physics/'> Time in Physics</a> </h2>
-    <div class="post-meta">Thu, Dec 17, 2020 - 1600 Words </div>
-  </header>
-  In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.
-The reason the ancient Greeks didn&rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.
-  <footer>
-    <a href='https://tobilehman.com/posts/time-in-physics/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/book-review-working-in-public/'> Book Review: Working in Public</a> </h2>
-    <div class="post-meta">Tue, Oct 20, 2020 - 1900 Words </div>
-  </header>
-  The story of open source software most of us believe is wrong. The production of open source software isn&rsquo;t like some egalitarian commune, it&rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.
-In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.
-  <footer>
-    <a href='https://tobilehman.com/posts/book-review-working-in-public/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/wildfire-west/'> Wildfire West</a> </h2>
-    <div class="post-meta">Thu, Sep 10, 2020 - 400 Words </div>
-  </header>
-  The West Coast is on fire
-This post is addressing the question of causality. When reading social media, I noticed three patterns:
-arguing about climate change and causality (e.g. climate change caused this and no-it-didn&rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &lsquo;fires being natural&rsquo; The real cause of the fires is not a single cause.
-  <footer>
-    <a href='https://tobilehman.com/posts/wildfire-west/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/compiling-c-to-wasm/'> Compiling C to WebAssembly</a> </h2>
-    <div class="post-meta">Mon, Sep 7, 2020 - 600 Words </div>
-  </header>
-  Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&rsquo;t get it.
-The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&rsquo;ve loved the game ever since.
-Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.
-  <footer>
-    <a href='https://tobilehman.com/posts/compiling-c-to-wasm/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/timelapse/'> Timelapse</a> </h2>
-    <div class="post-meta">Sat, Sep 5, 2020 - 400 Words </div>
-  </header>
-  I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
-I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.
-  <footer>
-    <a href='https://tobilehman.com/posts/timelapse/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/borders-on-the-internet/'> Borders on the Internet</a> </h2>
-    <div class="post-meta">Wed, Aug 5, 2020 - 900 Words </div>
-  </header>
-  In the beginning, the internet was borderless. The first example of inter-netting, in 1977, connected computers in the U.S. the U.K. and Norway.
-In 1991, Tim Berners Lee created the first web page along with all the supporting protocols to make it easy for anyone to access the internet by just pointing and clicking. The web was created as a research project at CERN, the physics research institution in Switzerland.
-  <footer>
-    <a href='https://tobilehman.com/posts/borders-on-the-internet/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/black-lives-matter/'> Black Lives Matter</a> </h2>
-    <div class="post-meta">Fri, Jun 5, 2020 - 1300 Words </div>
-  </header>
-  This should not be controversial, but some people read too much into this sentence. If people read it as &ldquo;only black lives matter&rdquo;, then they are reading it wrong. Read it literally. No one should dispute that all lives matter. The problem is that police, and some civilians, treat black lives as if they don&rsquo;t matter.
-If Chinese Communist party officials are abusing, brainwashing and sometimes killing Uighurs in Eastern China, it&rsquo;s appropriate to say &ldquo;Uighur lives matter!
-  <footer>
-    <a href='https://tobilehman.com/posts/black-lives-matter/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/dunbar-random-graphs-sapiens/'> Dunbar&#39;s number, Random Graphs and Sapiens</a> </h2>
-    <div class="post-meta">Mon, May 25, 2020 - 1200 Words </div>
-  </header>
-  Why is human society so flexible? In 1000 years, we have had the Great Schism of 1054, the Norman Invasion of 1066, the Magna Carta (1215), the Mongol Empire, the Ming Dynasty in China, the Portuguese and Spanish maritime empires, the Thirty Years War (1618-1648) and the creation of the idea of &ldquo;Sovereign Nation-States&rdquo;, the Dutch Empire, the British Empire and the creation of joint-stock companies. The Reformation led to new religions.
-  <footer>
-    <a href='https://tobilehman.com/posts/dunbar-random-graphs-sapiens/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/game-of-life/'> Conway&#39;s Game of Life</a> </h2>
-    <div class="post-meta">Tue, Apr 14, 2020 - 500 Words </div>
-  </header>
-  John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &ldquo;recreational math&rdquo; contributions: The Game of Life.
-If you haven&rsquo;t heard, It&rsquo;s this zero player computer &ldquo;game&rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.
-  <footer>
-    <a href='https://tobilehman.com/posts/game-of-life/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/sir-model-epidemiology/'> The SIR Model on novel coronavirus</a> </h2>
-    <div class="post-meta">Tue, Mar 3, 2020 - 800 Words </div>
-  </header>
-  Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
-The simplest model of disease spreading starts by breaking a population up into compartments:
-S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
-NOTE: This version of the model works over short periods and ignores births and natural deaths.
-  <footer>
-    <a href='https://tobilehman.com/posts/sir-model-epidemiology/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/compound-growth/'> Compound Growth 📈 </a> </h2>
-    <div class="post-meta">Tue, Feb 25, 2020 - 2900 Words </div>
-  </header>
-  There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
-“Once you start thinking about growth, it’s hard to think about anything else.”
-&ndash; Robert Lucas, Nobel prize-winning economist
-Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?
-  <footer>
-    <a href='https://tobilehman.com/posts/compound-growth/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/'> Ads, Subscriptions, and the Missing Middle</a> </h2>
-    <div class="post-meta">Mon, Feb 17, 2020 - 1300 Words </div>
-  </header>
-  Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.
-The two common ways of making money from online content are:
-Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
-The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&rsquo;t want to sign up for yet another monthly subscription.
-  <footer>
-    <a href='https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/piano/'> Piano  ♪</a> </h2>
-    <div class="post-meta">Tue, Jan 21, 2020 - 600 Words </div>
-  </header>
-  To start the decade off right, I decided to learn the piano. I am paying for lessons from Ethan Maier, he&rsquo;s excellent, I&rsquo;ve been enjoying learning from him and practicing.
-Since I only have a piano at home, I wanted to make one that I could use on the go. Here is the simplest way I could think of to make a portable piano program:
-There is an standard for simple web graphics called SVG, which lets you define custom shapes that show up in any web browser.
-  <footer>
-    <a href='https://tobilehman.com/posts/piano/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/2010s-decade-in-review/'> The Twenty-Tens, a decade in review</a> </h2>
-    <div class="post-meta">Mon, Dec 30, 2019 - 1600 Words </div>
-  </header>
-  I think New Year is the best holiday, for two reasons. First, everyone celebrates it, and second, I love clocks rolling over. Something about numbers going up is really satisfying too (2020, it&rsquo;s the highest year ever!). This New Year is also the start of a new decade, so I&rsquo;m feeling more like reminiscing and want to wrap up the last decade into something like a sensible story I can file away in my memory.
-  <footer>
-    <a href='https://tobilehman.com/posts/2010s-decade-in-review/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/imaginary-numbers-are-real/'> Imaginary Numbers Are Real</a> </h2>
-    <div class="post-meta">Wed, Aug 21, 2019 - 1500 Words </div>
-  </header>
-  Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &ldquo;how long until the weekend?&rdquo;, which can produce equations like $$ x + 2 = 5 $$
-Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).
-  <footer>
-    <a href='https://tobilehman.com/posts/imaginary-numbers-are-real/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/dream-90s-wasm/'> The Dream of the 90s is alive in WebAssembly</a> </h2>
-    <div class="post-meta">Tue, Apr 23, 2019 - 800 Words </div>
-  </header>
-  The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
-Write Once, Run Everywhere.
-Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
-The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.
-  <footer>
-    <a href='https://tobilehman.com/posts/dream-90s-wasm/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/long-now/'> The Long Now Foundation</a> </h2>
-    <div class="post-meta">Sun, Dec 30, 2018 - 300 Words </div>
-  </header>
-  The world is changing fast, the last 100 years saw the creation of a global network of airplanes, computers, the internet, nuclear energy, and the discovery, sequencing and editing of the genome. The tendency of politics is to focus on the next election (at least in democracies). The tendency of business is to focus on the next quarter. The engines of our fast-changing modern world tend to focus our attention on the narrow world of right now.
-  <footer>
-    <a href='https://tobilehman.com/posts/long-now/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/lossy-image-compression/'> Lossy Image Compression</a> </h2>
-    <div class="post-meta">Fri, Nov 30, 2018 - 900 Words </div>
-  </header>
-  Every time you take a picture on your phone, most of the data is thrown away. Lossy image compression is the art of throwing away what your eyes won&rsquo;t notice.
-Note: at no point will this blog cover middle-out compression
-the pixels on most screens emit three different colors of light: red , green and blue . The reason those colors where chosen is that human color perception is enabled by cone cells, with cells that respond to red, green and blue light.
-  <footer>
-    <a href='https://tobilehman.com/posts/lossy-image-compression/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/armistice-day/'> Armistice Day</a> </h2>
-    <div class="post-meta">Sun, Nov 11, 2018 - 200 Words </div>
-  </header>
-  One hundred years ago today, the armistice was signed that ended World War 1. Now is a good time to reflect on the last century and get some perspective. Below is a chart of all the combat deaths per 100,000 people going back to the year 1900.
-One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.
-  <footer>
-    <a href='https://tobilehman.com/posts/armistice-day/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/monty-hall/'> Visualizing the Monty Hall Problem</a> </h2>
-    <div class="post-meta">Thu, Feb 25, 2016 - 300 Words </div>
-  </header>
-  The Monty Hall Problem is a great example of why our intuitions cannot be trusted when it comes to probability. If you are not familiar with the problem, the wikipedia link above gives a good description of the problem and it’s historical significance. There are examples of Ph.D’s not getting it, it’s just counterintuitive.
-If you are still not sure why switching is the better strategy, I have made the following diagram that visualizes all of the possible outcomes and their probabilites.
-  <footer>
-    <a href='https://tobilehman.com/posts/monty-hall/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/history-dns/'> History of Domain Names</a> </h2>
-    <div class="post-meta">Sun, Oct 6, 2013 - 300 Words </div>
-  </header>
-  In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
-RFC 1034 Domain Concepts and Facilities November 1987
-2.1. The history of domain names
-The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].
-  <footer>
-    <a href='https://tobilehman.com/posts/history-dns/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/time-travel-rules-movies/'> Time Travel Rules in Movies</a> </h2>
-    <div class="post-meta">Wed, Apr 24, 2013 - 100 Words </div>
-  </header>
-  I mapped out the rules of various time travel movies:
-Here&rsquo;s the source code for the graphviz file.
-  <footer>
-    <a href='https://tobilehman.com/posts/time-travel-rules-movies/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-    
-<article class="post">
-  <header>
-    <h2><a href='https://tobilehman.com/posts/conservation-confusion-clarified/'> Conservation Confusion Clarified</a> </h2>
-    <div class="post-meta">Tue, Jan 5, 2010 - 700 Words </div>
-  </header>
-  Ported from my old blog through Archive.org (donate to Archive.org here!)
-I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)
-After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject.
-  <footer>
-    <a href='https://tobilehman.com/posts/conservation-confusion-clarified/'>
-      <nobr>Read more &rarr;</nobr>
-    </a>
-  </footer>
-</article>
-  
-
-<script>
-  const listItems = [
-  
-    "https://tobilehman.com/posts/book-review-time-loops/" ,
-  
-    "https://tobilehman.com/posts/k3s-cluster-pis/" ,
-  
-    "https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/" ,
-  
-    "https://tobilehman.com/posts/cybernetics-age-of-cloud/" ,
-  
-    "https://tobilehman.com/posts/dapper-build-consistent/" ,
-  
-    "https://tobilehman.com/posts/moving-to-suse/" ,
-  
-    "https://tobilehman.com/posts/latency-numbers/" ,
-  
-    "https://tobilehman.com/posts/qubits-multiverse/" ,
-  
-    "https://tobilehman.com/posts/pdfs-and-the-permanent-web/" ,
-  
-    "https://tobilehman.com/posts/cweb-latex-experiment/" ,
-  
-    "https://tobilehman.com/posts/literate-quicksort/" ,
-  
-    "https://tobilehman.com/posts/rand-int-c/" ,
-  
-    "https://tobilehman.com/posts/book-review-wheres-my-flying-car/" ,
-  
-    "https://tobilehman.com/posts/book-review-perez-trfc/" ,
-  
-    "https://tobilehman.com/posts/ens-and-dns/" ,
-  
-    "https://tobilehman.com/posts/book-review-atomic-habits/" ,
-  
-    "https://tobilehman.com/posts/how-big-identity/" ,
-  
-    "https://tobilehman.com/posts/game-theory-masks/" ,
-  
-    "https://tobilehman.com/posts/time-travel-topology/" ,
-  
-    "https://tobilehman.com/posts/time-in-physics/" ,
-  
-    "https://tobilehman.com/posts/book-review-working-in-public/" ,
-  
-    "https://tobilehman.com/posts/wildfire-west/" ,
-  
-    "https://tobilehman.com/posts/compiling-c-to-wasm/" ,
-  
-    "https://tobilehman.com/posts/timelapse/" ,
-  
-    "https://tobilehman.com/posts/borders-on-the-internet/" ,
-  
-    "https://tobilehman.com/posts/black-lives-matter/" ,
-  
-    "https://tobilehman.com/posts/dunbar-random-graphs-sapiens/" ,
-  
-    "https://tobilehman.com/posts/game-of-life/" ,
-  
-    "https://tobilehman.com/posts/sir-model-epidemiology/" ,
-  
-    "https://tobilehman.com/posts/compound-growth/" ,
-  
-    "https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/" ,
-  
-    "https://tobilehman.com/posts/piano/" ,
-  
-    "https://tobilehman.com/posts/2010s-decade-in-review/" ,
-  
-    "https://tobilehman.com/posts/imaginary-numbers-are-real/" ,
-  
-    "https://tobilehman.com/posts/dream-90s-wasm/" ,
-  
-    "https://tobilehman.com/posts/long-now/" ,
-  
-    "https://tobilehman.com/posts/lossy-image-compression/" ,
-  
-    "https://tobilehman.com/posts/armistice-day/" ,
-  
-    "https://tobilehman.com/posts/monty-hall/" ,
-  
-    "https://tobilehman.com/posts/history-dns/" ,
-  
-    "https://tobilehman.com/posts/time-travel-rules-movies/" ,
-  
-    "https://tobilehman.com/posts/conservation-confusion-clarified/" ,
-  
-];
-</script>
+  <ul>
+  
+    <li>
+      2022-10-17 <a href="https://tobilehman.com/posts/suse-harvester-pci/">PCI Device passthrough on Harvester</a>
+      <span>
+        <div>
+        
+        <a href="/tags/pci" class="tag">#pci</a>
+        
+        <a href="/tags/gpu" class="tag">#gpu</a>
+        
+        <a href="/tags/vm" class="tag">#vm</a>
+        
+        <a href="/tags/open-source" class="tag">#open-source</a>
+        
+        <a href="/tags/hyperconverged-infrastructure" class="tag">#hyperconverged-infrastructure</a>
+        
+        <a href="/tags/linux" class="tag">#linux</a>
+        
+        <a href="/tags/kubernetes" class="tag">#kubernetes</a>
+        
+        <a href="/tags/vfio" class="tag">#vfio</a>
+        
+        <a href="/tags/deep-dive" class="tag">#deep-dive</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-10-13 <a href="https://tobilehman.com/posts/book-review-time-loops/">Book Review: Time Loops</a>
+      <span>
+        <div>
+        
+        <a href="/tags/book-review" class="tag">#book-review</a>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        <a href="/tags/time-travel" class="tag">#time-travel</a>
+        
+        <a href="/tags/dreams" class="tag">#dreams</a>
+        
+        <a href="/tags/qubits" class="tag">#qubits</a>
+        
+        <a href="/tags/physics" class="tag">#physics</a>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-07-28 <a href="https://tobilehman.com/posts/k3s-cluster-pis/">K3s Cluster on Raspberry Pis</a>
+      <span>
+        <div>
+        
+        <a href="/tags/raspberry-pi" class="tag">#raspberry-pi</a>
+        
+        <a href="/tags/k8s" class="tag">#k8s</a>
+        
+        <a href="/tags/kubernetes" class="tag">#kubernetes</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-05-05 <a href="https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/">Wildcard TLS Certificates for Your LAN</a>
+      <span>
+        <div>
+        
+        <a href="/tags/tls" class="tag">#tls</a>
+        
+        <a href="/tags/ssl" class="tag">#ssl</a>
+        
+        <a href="/tags/protocols" class="tag">#protocols</a>
+        
+        <a href="/tags/security" class="tag">#security</a>
+        
+        <a href="/tags/how-to" class="tag">#how-to</a>
+        
+        <a href="/tags/dns" class="tag">#dns</a>
+        
+        <a href="/tags/kubernetes" class="tag">#kubernetes</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-04-15 <a href="https://tobilehman.com/posts/cybernetics-age-of-cloud/">Cybernetics in the Age of the Cloud</a>
+      <span>
+        <div>
+        
+        <a href="/tags/cybernetics" class="tag">#cybernetics</a>
+        
+        <a href="/tags/control-theory" class="tag">#control-theory</a>
+        
+        <a href="/tags/cloud-computing" class="tag">#cloud-computing</a>
+        
+        <a href="/tags/k8s" class="tag">#k8s</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-03-29 <a href="https://tobilehman.com/posts/dapper-build-consistent/">Dapper Build tool: consistent builds with docker</a>
+      <span>
+        <div>
+        
+        <a href="/tags/docker" class="tag">#docker</a>
+        
+        <a href="/tags/containers" class="tag">#containers</a>
+        
+        <a href="/tags/immutability" class="tag">#immutability</a>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/go" class="tag">#go</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-03-18 <a href="https://tobilehman.com/posts/moving-to-suse/">Moving to SUSE</a>
+      <span>
+        <div>
+        
+        <a href="/tags/open-source" class="tag">#open-source</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/hyperconverged-infrastructure" class="tag">#hyperconverged-infrastructure</a>
+        
+        <a href="/tags/linux" class="tag">#linux</a>
+        
+        <a href="/tags/k8s" class="tag">#k8s</a>
+        
+        <a href="/tags/kubernetes" class="tag">#kubernetes</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-28 <a href="https://tobilehman.com/posts/latency-numbers/">Latency Numbers Every Programmer Should Know</a>
+      <span>
+        <div>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/go" class="tag">#go</a>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-18 <a href="https://tobilehman.com/posts/qubits-multiverse/">Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</a>
+      <span>
+        <div>
+        
+        <a href="/tags/decision-theory" class="tag">#decision-theory</a>
+        
+        <a href="/tags/physics" class="tag">#physics</a>
+        
+        <a href="/tags/qubits" class="tag">#qubits</a>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        <a href="/tags/multiverse" class="tag">#multiverse</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-13 <a href="https://tobilehman.com/posts/pdfs-and-the-permanent-web/">PDFs and the Permanent Web</a>
+      <span>
+        <div>
+        
+        <a href="/tags/long-now" class="tag">#long-now</a>
+        
+        <a href="/tags/standards" class="tag">#standards</a>
+        
+        <a href="/tags/protocols" class="tag">#protocols</a>
+        
+        <a href="/tags/web" class="tag">#web</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-03 <a href="https://tobilehman.com/posts/cweb-latex-experiment/">CWEB LaTeX Experiment</a>
+      <span>
+        <div>
+        
+        <a href="/tags/physics" class="tag">#physics</a>
+        
+        <a href="/tags/tools" class="tag">#tools</a>
+        
+        <a href="/tags/literate-programming" class="tag">#literate-programming</a>
+        
+        <a href="/tags/long-now" class="tag">#long-now</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-12-31 <a href="https://tobilehman.com/posts/literate-quicksort/">Literate Quicksort</a>
+      <span>
+        <div>
+        
+        <a href="/tags/algorithms" class="tag">#algorithms</a>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/literate-programming" class="tag">#literate-programming</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-12-30 <a href="https://tobilehman.com/posts/rand-int-c/">Generating random numbers in C</a>
+      <span>
+        <div>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/literate-programming" class="tag">#literate-programming</a>
+        
+        <a href="/tags/wasm" class="tag">#wasm</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-12-26 <a href="https://tobilehman.com/posts/book-review-wheres-my-flying-car/">Book Review: Where&#39;s My Flying Car?</a>
+      <span>
+        <div>
+        
+        <a href="/tags/book-review" class="tag">#book-review</a>
+        
+        <a href="/tags/future" class="tag">#future</a>
+        
+        <a href="/tags/game-theory" class="tag">#game-theory</a>
+        
+        <a href="/tags/technology" class="tag">#technology</a>
+        
+        <a href="/tags/progress" class="tag">#progress</a>
+        
+        <a href="/tags/energy" class="tag">#energy</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-11-21 <a href="https://tobilehman.com/posts/book-review-perez-trfc/">Book Review: Technological Revolutions and Financial Capital</a>
+      <span>
+        <div>
+        
+        <a href="/tags/economics" class="tag">#economics</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/book-review" class="tag">#book-review</a>
+        
+        <a href="/tags/finance" class="tag">#finance</a>
+        
+        <a href="/tags/future" class="tag">#future</a>
+        
+        <a href="/tags/technology" class="tag">#technology</a>
+        
+        <a href="/tags/progress" class="tag">#progress</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-11-09 <a href="https://tobilehman.com/posts/ens-and-dns/">ENS, DNS and the future of internet names</a>
+      <span>
+        <div>
+        
+        <a href="/tags/ethereum" class="tag">#ethereum</a>
+        
+        <a href="/tags/ens" class="tag">#ens</a>
+        
+        <a href="/tags/dns" class="tag">#dns</a>
+        
+        <a href="/tags/protocols" class="tag">#protocols</a>
+        
+        <a href="/tags/governance" class="tag">#governance</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-10-30 <a href="https://tobilehman.com/posts/book-review-atomic-habits/">Book Review: Atomic Habits</a>
+      <span>
+        <div>
+        
+        <a href="/tags/habits" class="tag">#habits</a>
+        
+        <a href="/tags/book-review" class="tag">#book-review</a>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-10-26 <a href="https://tobilehman.com/posts/how-big-identity/">How big should your identity be?</a>
+      <span>
+        <div>
+        
+        <a href="/tags/self" class="tag">#self</a>
+        
+        <a href="/tags/identity" class="tag">#identity</a>
+        
+        <a href="/tags/scale" class="tag">#scale</a>
+        
+        <a href="/tags/habits" class="tag">#habits</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-04-19 <a href="https://tobilehman.com/posts/game-theory-masks/">The Game Theory of Masks</a>
+      <span>
+        <div>
+        
+        <a href="/tags/covid-19" class="tag">#covid-19</a>
+        
+        <a href="/tags/game-theory" class="tag">#game-theory</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-04-09 <a href="https://tobilehman.com/posts/time-travel-topology/">The Topology of Time Travel Stories</a>
+      <span>
+        <div>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        <a href="/tags/time-travel" class="tag">#time-travel</a>
+        
+        <a href="/tags/sci-fi" class="tag">#sci-fi</a>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/topology" class="tag">#topology</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-12-17 <a href="https://tobilehman.com/posts/time-in-physics/">Time in Physics</a>
+      <span>
+        <div>
+        
+        <a href="/tags/physics" class="tag">#physics</a>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-10-20 <a href="https://tobilehman.com/posts/book-review-working-in-public/">Book Review: Working in Public</a>
+      <span>
+        <div>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/open-source" class="tag">#open-source</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/economics" class="tag">#economics</a>
+        
+        <a href="/tags/stewardship" class="tag">#stewardship</a>
+        
+        <a href="/tags/book-review" class="tag">#book-review</a>
+        
+        <a href="/tags/book-review" class="tag">#book-review</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-09-10 <a href="https://tobilehman.com/posts/wildfire-west/">Wildfire West</a>
+      <span>
+        <div>
+        
+        <a href="/tags/climate" class="tag">#climate</a>
+        
+        <a href="/tags/disaster" class="tag">#disaster</a>
+        
+        <a href="/tags/causality" class="tag">#causality</a>
+        
+        <a href="/tags/zoning" class="tag">#zoning</a>
+        
+        <a href="/tags/economics" class="tag">#economics</a>
+        
+        <a href="/tags/goats" class="tag">#goats</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-09-07 <a href="https://tobilehman.com/posts/compiling-c-to-wasm/">Compiling C to WebAssembly</a>
+      <span>
+        <div>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/wasm" class="tag">#wasm</a>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-09-05 <a href="https://tobilehman.com/posts/timelapse/">Timelapse</a>
+      <span>
+        <div>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        <a href="/tags/video" class="tag">#video</a>
+        
+        <a href="/tags/long-now" class="tag">#long-now</a>
+        
+        <a href="/tags/diy" class="tag">#diy</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-08-05 <a href="https://tobilehman.com/posts/borders-on-the-internet/">Borders on the Internet</a>
+      <span>
+        <div>
+        
+        <a href="/tags/internet" class="tag">#internet</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/geopolitics" class="tag">#geopolitics</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-06-05 <a href="https://tobilehman.com/posts/black-lives-matter/">Black Lives Matter</a>
+      <span>
+        <div>
+        
+        <a href="/tags/justice" class="tag">#justice</a>
+        
+        <a href="/tags/race" class="tag">#race</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/law" class="tag">#law</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-05-25 <a href="https://tobilehman.com/posts/dunbar-random-graphs-sapiens/">Dunbar&#39;s number, Random Graphs and Sapiens</a>
+      <span>
+        <div>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-04-14 <a href="https://tobilehman.com/posts/game-of-life/">Conway&#39;s Game of Life</a>
+      <span>
+        <div>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/cellular-automata" class="tag">#cellular-automata</a>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-03-03 <a href="https://tobilehman.com/posts/sir-model-epidemiology/">The SIR Model on novel coronavirus</a>
+      <span>
+        <div>
+        
+        <a href="/tags/epidemiology" class="tag">#epidemiology</a>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/covid-19" class="tag">#covid-19</a>
+        
+        <a href="/tags/coronavirus" class="tag">#coronavirus</a>
+        
+        <a href="/tags/deep-dive" class="tag">#deep-dive</a>
+        
+        <a href="/tags/future" class="tag">#future</a>
+        
+        <a href="/tags/diff-eq" class="tag">#diff-eq</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-02-25 <a href="https://tobilehman.com/posts/compound-growth/">Compound Growth 📈 </a>
+      <span>
+        <div>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/economics" class="tag">#economics</a>
+        
+        <a href="/tags/future" class="tag">#future</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-02-17 <a href="https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/">Ads, Subscriptions, and the Missing Middle</a>
+      <span>
+        <div>
+        
+        <a href="/tags/economics" class="tag">#economics</a>
+        
+        <a href="/tags/adtech" class="tag">#adtech</a>
+        
+        <a href="/tags/finance" class="tag">#finance</a>
+        
+        <a href="/tags/business" class="tag">#business</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-01-21 <a href="https://tobilehman.com/posts/piano/">Piano  ♪</a>
+      <span>
+        <div>
+        
+        <a href="/tags/music" class="tag">#music</a>
+        
+        <a href="/tags/programming" class="tag">#programming</a>
+        
+        <a href="/tags/hobby" class="tag">#hobby</a>
+        
+        <a href="/tags/digital-audio" class="tag">#digital-audio</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2019-12-30 <a href="https://tobilehman.com/posts/2010s-decade-in-review/">The Twenty-Tens, a decade in review</a>
+      <span>
+        <div>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/review" class="tag">#review</a>
+        
+        <a href="/tags/goats" class="tag">#goats</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2019-08-21 <a href="https://tobilehman.com/posts/imaginary-numbers-are-real/">Imaginary Numbers Are Real</a>
+      <span>
+        <div>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/deep-dive" class="tag">#deep-dive</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2019-04-23 <a href="https://tobilehman.com/posts/dream-90s-wasm/">The Dream of the 90s is alive in WebAssembly</a>
+      <span>
+        <div>
+        
+        <a href="/tags/wasm" class="tag">#wasm</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2018-12-30 <a href="https://tobilehman.com/posts/long-now/">The Long Now Foundation</a>
+      <span>
+        <div>
+        
+        <a href="/tags/time" class="tag">#time</a>
+        
+        <a href="/tags/future" class="tag">#future</a>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/long-now" class="tag">#long-now</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2018-11-30 <a href="https://tobilehman.com/posts/lossy-image-compression/">Lossy Image Compression</a>
+      <span>
+        <div>
+        
+        <a href="/tags/compression" class="tag">#compression</a>
+        
+        <a href="/tags/deep-dive" class="tag">#deep-dive</a>
+        
+        <a href="/tags/interactive" class="tag">#interactive</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2018-11-11 <a href="https://tobilehman.com/posts/armistice-day/">Armistice Day</a>
+      <span>
+        <div>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2016-02-25 <a href="https://tobilehman.com/posts/monty-hall/">Visualizing the Monty Hall Problem</a>
+      <span>
+        <div>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/probability" class="tag">#probability</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2013-10-06 <a href="https://tobilehman.com/posts/history-dns/">History of Domain Names</a>
+      <span>
+        <div>
+        
+        <a href="/tags/history" class="tag">#history</a>
+        
+        <a href="/tags/internet" class="tag">#internet</a>
+        
+        <a href="/tags/dns" class="tag">#dns</a>
+        
+        <a href="/tags/protocols" class="tag">#protocols</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2013-04-24 <a href="https://tobilehman.com/posts/time-travel-rules-movies/">Time Travel Rules in Movies</a>
+      <span>
+        <div>
+        
+        <a href="/tags/time-travel" class="tag">#time-travel</a>
+        
+        <a href="/tags/movies" class="tag">#movies</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2010-01-05 <a href="https://tobilehman.com/posts/conservation-confusion-clarified/">Conservation Confusion Clarified</a>
+      <span>
+        <div>
+        
+        <a href="/tags/math" class="tag">#math</a>
+        
+        <a href="/tags/physics" class="tag">#physics</a>
+        
+        </div>
+      </span>
+    </li>
+  
+  </ul>
 
                 </div>
             </div>
