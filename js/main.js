@@ -6,3 +6,4 @@ MathJax.Hub.Register.StartupHook("End",function () {
     console.log("running callback for " + el);
   }
 });
+
