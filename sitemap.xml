@@ -2,19 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/tags/ai/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/chatgpt-hci-eli5/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/hyperconverged/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/llm/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/open-source/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2023-01-01T09:16:10-08:00</lastmod>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/synchronicity/</loc>
     <lastmod>2023-01-01T09:16:10-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2023-01-01T09:16:10-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/time/</loc>
-    <lastmod>2023-01-01T09:16:10-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2023-01-01T09:16:10-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/year-of-the-rabbit/</loc>
@@ -38,16 +53,10 @@
     <loc>https://tobilehman.com/tags/gpu/</loc>
     <lastmod>2022-10-17T14:33:01-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/hyperconverged-infrastructure/</loc>
-    <lastmod>2022-10-17T14:33:01-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/kubernetes/</loc>
     <lastmod>2022-10-17T14:33:01-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/linux/</loc>
-    <lastmod>2022-10-17T14:33:01-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/open-source/</loc>
     <lastmod>2022-10-17T14:33:01-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/pci/</loc>

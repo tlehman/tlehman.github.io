@@ -143,13 +143,13 @@ function toggleMoreLess() {
 <p>At the end of the partitioning step, the variable <code>i</code> points to the pivot, everything to the left is less than <code>6</code>, and everything to the right is bigger than <code>6</code>. Now the <span style="color: #ff9c24">pivot</span> is in it&rsquo;s final sorted position, and the <span style="color: #0000ff">left</span>
  and <span style="color: #ff0000">right</span>
  sub-arrays can be sorted independently.  At this point, we can make two recursive calls on the left and right sub-arrays.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>quicksort(numbers, start, pivot); <span style="color:#75715e">// sort left sub-array
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>quicksort(numbers, pivot, end);   <span style="color:#75715e">// sort right sub-array
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#a6e22e">quicksort</span>(numbers, start, pivot); <span style="color:#75715e">// sort left sub-array
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">quicksort</span>(numbers, pivot, end);   <span style="color:#75715e">// sort right sub-array
 </span></span></span></code></pre></div><p>This will create a <a href="https://en.wikipedia.org/wiki/Binary_tree">binary tree</a> of recursive function calls, until it bottoms out at sub-arrays with 0 or 1 element in them.
 That base case is handled by a conditional that only recurses if <code>end - start &gt; 2</code>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">quicksort</span>(<span style="color:#66d9ef">int</span> numbers[], <span style="color:#66d9ef">int</span> start, <span style="color:#66d9ef">int</span> end) {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(end <span style="color:#f92672">-</span> start <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> pivot <span style="color:#f92672">=</span> partition(numbers, start, end);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> pivot <span style="color:#f92672">=</span> <span style="color:#a6e22e">partition</span>(numbers, start, end);
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;&lt;&lt;</span>recurse<span style="color:#f92672">&gt;&gt;&gt;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
@@ -170,20 +170,20 @@ unprocessed part of the array.</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> start; j <span style="color:#f92672">&lt;</span> end<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; j<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(numbers[j] <span style="color:#f92672">&lt;=</span> pivot) {
 </span></span><span style="display:flex;"><span>      i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-</span></span><span style="display:flex;"><span>      swap(<span style="color:#f92672">&amp;</span>numbers[j], <span style="color:#f92672">&amp;</span>numbers[i]);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">swap</span>(<span style="color:#f92672">&amp;</span>numbers[j], <span style="color:#f92672">&amp;</span>numbers[i]);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  swap(<span style="color:#f92672">&amp;</span>numbers[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>], <span style="color:#f92672">&amp;</span>numbers[end]); <span style="color:#75715e">// Move pivot to between left and right
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">swap</span>(<span style="color:#f92672">&amp;</span>numbers[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>], <span style="color:#f92672">&amp;</span>numbers[end]); <span style="color:#75715e">// Move pivot to between left and right
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span></code></pre></div><h2 id="define-the-input-and-read-in-unsorted-numbers">Define the input and read in unsorted numbers</h2>
 <p>Let&rsquo;s name array to be sorted: <code>numbers</code>. Let <code>n</code> be the size of the unsorted array. For this program, I generated a list of 1,000,000 unsorted integers in this file: <a href="unsorted_integers.txt">unsorted_integers.txt</a>, they are newline-delimited. This code block defines the parameters and reads all the million integers into the <code>numbers</code> array.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> numbers[n];
-</span></span><span style="display:flex;"><span>FILE <span style="color:#f92672">*</span>file <span style="color:#f92672">=</span> fopen(<span style="color:#e6db74">&#34;unsorted_integers.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+</span></span><span style="display:flex;"><span>FILE <span style="color:#f92672">*</span>file <span style="color:#f92672">=</span> <span style="color:#a6e22e">fopen</span>(<span style="color:#e6db74">&#34;unsorted_integers.txt&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> m <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; m <span style="color:#f92672">&lt;</span> n; m<span style="color:#f92672">++</span>) {
-</span></span><span style="display:flex;"><span>  fscanf(file, <span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>numbers[m]);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fscanf</span>(file, <span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#f92672">&amp;</span>numbers[m]);
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>fclose(file);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fclose</span>(file);
 </span></span></code></pre></div><h2 id="the-main-program">The main program</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;  // for printf</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt; // for FILE</span><span style="color:#75715e">
@@ -194,7 +194,7 @@ unprocessed part of the array.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;&lt;&lt;</span>quicksort function<span style="color:#f92672">&gt;&gt;&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> main(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;&lt;&lt;</span>read in unsorted numbers<span style="color:#f92672">&gt;&gt;&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>llm on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/llm/</link>
+    <description>Recent content in llm on tobilehman.com:~</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 10 Feb 2023 12:15:19 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Asking ChatGPT to explain hyperconverged infrastructure</title>
+      <link>https://tobilehman.com/posts/chatgpt-hci-eli5/</link>
+      <pubDate>Fri, 10 Feb 2023 12:15:19 -0800</pubDate>
+      
+      <guid>https://tobilehman.com/posts/chatgpt-hci-eli5/</guid>
+      <description>In my post last year, Moving to SUSE I said I would spend more time explaining what Hyperconverged Infrastructure (HCI) was.
+The way I would describe HCI is that it&amp;rsquo;s a way of structuring a data center so that the storage, compute, and networking resources are all bundled into the same boxes, and then software abstracts over it, allowing nodes to use resources of other machines.
+An example of something that&amp;rsquo;s not HCI is a SAN, or a Storage-Area Network.</description>
+    </item>
+    
+  </channel>
+</rss>

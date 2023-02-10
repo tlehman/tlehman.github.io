@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>open-source on tobilehman.com:~</title>
-    <link>https://tobilehman.com/tags/open-source/</link>
-    <description>Recent content in open-source on tobilehman.com:~</description>
+    <title>hyperconverged on tobilehman.com:~</title>
+    <link>https://tobilehman.com/tags/hyperconverged/</link>
+    <description>Recent content in hyperconverged on tobilehman.com:~</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 10 Feb 2023 12:15:19 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/open-source/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 10 Feb 2023 12:15:19 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/hyperconverged/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Asking ChatGPT to explain hyperconverged infrastructure</title>
       <link>https://tobilehman.com/posts/chatgpt-hci-eli5/</link>
@@ -37,16 +37,6 @@ In the diagram above, the guest (VM) has direct memory access to the host&amp;rs
       <guid>https://tobilehman.com/posts/moving-to-suse/</guid>
       <description>After 3.6 years at Amazon, I&amp;rsquo;ve decided to move to another company to work on open source software. The company is SUSE, they make a Linux distribution and sell cloud computing services, among other things.
 At Amazon I worked on AWS Elemental&amp;rsquo;s Live (video streaming software), a small video encoding device, and the Amazon Scout robotics project. At Scout I built software that controls the robots when autonomy fails, and I worked on safety features and performance optimization of a distributed application that ran on a cluster of servers managed by AWS Fargate.</description>
-    </item>
-    
-    <item>
-      <title>Book Review: Working in Public</title>
-      <link>https://tobilehman.com/posts/book-review-working-in-public/</link>
-      <pubDate>Tue, 20 Oct 2020 21:22:39 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/posts/book-review-working-in-public/</guid>
-      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.
-In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
     </item>
     
   </channel>
