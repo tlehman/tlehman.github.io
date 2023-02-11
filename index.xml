@@ -6,7 +6,7 @@
     <description>Recent content on tobilehman.com:~</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
+    <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
     <lastBuildDate>Fri, 10 Feb 2023 12:15:19 -0800</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Asking ChatGPT to explain hyperconverged infrastructure</title>
@@ -301,8 +301,7 @@ For example, suppose two scientists are publicly debating the precise value of c
       
       <guid>https://tobilehman.com/gpus/</guid>
       <description>These notes are CUDA-specific
-Programming using a GPU requires thinking in two memory spaces. There&amp;rsquo;s the host and the device. The host is powered by your CPU. Your CPU is very clever, has lots of tricks like speculative execution. The device is powered by the GPU. The GPU is not as clever, but it is built for problems that can be broken up into lots of parallel subproblems.
-The types of problems best suited to CPUs look like this: $$ C_1 \to C_2 \to &amp;hellip; \to C_n $$ Where \(C_k\) can&amp;rsquo;t be started until \(C_{k-1}\) is complete.</description>
+Table of Contents Introduction Blocks versus Threads Shared Memory CUDA C Introduction Programming using a GPU requires thinking in two memory spaces. There&amp;rsquo;s the host and the device. The host is powered by your CPU. Your CPU is very clever, has lots of tricks like speculative execution. The device is powered by the GPU. The GPU is not as clever, but it is built for problems that can be broken up into lots of parallel subproblems.</description>
     </item>
     
     <item>

@@ -127,6 +127,14 @@ function toggleMoreLess() {
     <h1>Notes on GPU Programming</h1>
 
     <p><i>These notes are <a href="https://developer.nvidia.com/cuda-toolkit">CUDA</a>-specific</i></p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#blocks-vs-threads">Blocks versus Threads</a></li>
+<li><a href="#shared-memory">Shared Memory</a></li>
+<li><a href="#cuda-c">CUDA C</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
 <p>Programming using a GPU requires thinking in two memory spaces. There&rsquo;s the <code>host</code> and the <code>device</code>. The host is powered by your CPU. Your CPU is very clever, has lots of tricks like <a href="https://en.wikipedia.org/wiki/Speculative_execution">speculative execution</a>. The device is powered by the GPU. The GPU is not as clever, but it is built for problems that can be broken up into lots of parallel subproblems.</p>
 <p>The types of problems best suited to CPUs look like this:
 $$ C_1 \to C_2 \to &hellip; \to C_n $$
@@ -142,6 +150,15 @@ of breaking the problem into blocks is the first step to exploiting parallelizat
 <p>And finally, use the special CUDA C syntax to launch your C function on the GPU device, <code>kernel&lt;&lt;&lt;numBlocks, numThreadsPerBlock&gt;&gt;&gt;(arg1byVal, arg2byVal)</code>.</p>
 <p>There are problems that are not embarassingly parallel, like training a neural network, but they can still benefit from parallelization on a GPU.</p>
 <p>TODO: illustrate how backpropagation works and how it uses CUDA to accelerate the computation.</p>
+<h2 id="blocks-vs-threads">Blocks vs Threads</h2>
+<p>The CUDA programming model breaks everything up in to blocks and threads. Blocks contain many threads.</p>
+<p>Each block has many threads. The GPU has many SMs (Streaming multiprocessors)</p>
+<p>A block is assigned to an available SM, and it runs all the threads until it completes.</p>
+<p>(image below taken from this <a href="https://developer.download.nvidia.com/compute/DevZone/docs/html/C/doc/CUDA_C_Programming_Guide.pdf">official NVIDIA CUDA C programming guide</a>)
+<img src="/images/gpu/blocks-threads.png" alt=""></p>
+<p>Different NVIDIA Cards have different numbers of SMs.</p>
+<h1 id="shared-memory">Shared Memory</h1>
+<h1 id="cuda-c">CUDA C</h1>
 
 </article>
 
@@ -164,7 +181,7 @@ of breaking the problem into blocks is the first step to exploiting parallelizat
       
         <div class="footer-copyright text-center py-3">&#169; 
           <span class="copyright">
-            Copyright 2010-2022 Tobi Lehman. All rights reserved.
+            Copyright 2010-2023 Tobi Lehman. All rights reserved.
           </span>
         </div>
         
