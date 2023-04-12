@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/posts/bluesky-at-protocol/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/dns/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/protocols/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/social-media/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/tags/ai/</loc>
     <lastmod>2023-02-10T12:15:19-08:00</lastmod>
   </url><url>
@@ -15,15 +36,6 @@
     <lastmod>2023-02-10T12:15:19-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/open-source/</loc>
-    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2023-02-10T12:15:19-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/synchronicity/</loc>
@@ -98,13 +110,7 @@
     <loc>https://tobilehman.com/tags/raspberry-pi/</loc>
     <lastmod>2022-07-28T12:34:44-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/dns/</loc>
-    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/how-to/</loc>
-    <lastmod>2022-05-05T09:55:05-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/protocols/</loc>
     <lastmod>2022-05-05T09:55:05-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/security/</loc>

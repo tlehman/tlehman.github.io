@@ -7,7 +7,34 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 10 Feb 2023 12:15:19 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 08:54:47 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dns</title>
+      <link>https://tobilehman.com/tags/dns/</link>
+      <pubDate>Wed, 12 Apr 2023 08:54:47 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/dns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protocols</title>
+      <link>https://tobilehman.com/tags/protocols/</link>
+      <pubDate>Wed, 12 Apr 2023 08:54:47 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/protocols/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>social-media</title>
+      <link>https://tobilehman.com/tags/social-media/</link>
+      <pubDate>Wed, 12 Apr 2023 08:54:47 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/tags/social-media/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>ai</title>
       <link>https://tobilehman.com/tags/ai/</link>
@@ -216,29 +243,11 @@
     </item>
     
     <item>
-      <title>dns</title>
-      <link>https://tobilehman.com/tags/dns/</link>
-      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/dns/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>how-to</title>
       <link>https://tobilehman.com/tags/how-to/</link>
       <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
       
       <guid>https://tobilehman.com/tags/how-to/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>protocols</title>
-      <link>https://tobilehman.com/tags/protocols/</link>
-      <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
-      
-      <guid>https://tobilehman.com/tags/protocols/</guid>
       <description></description>
     </item>
     

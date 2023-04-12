@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 10 Feb 2023 12:15:19 -0800</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Apr 2023 08:54:47 -0700</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bluesky and the AT Protocol</title>
+      <link>https://tobilehman.com/posts/bluesky-at-protocol/</link>
+      <pubDate>Wed, 12 Apr 2023 08:54:47 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/bluesky-at-protocol/</guid>
+      <description>A new social media platform called Bluesky just launched. It has the look and feel of Twitter, but there&amp;rsquo;s something unique about it. It uses the AT Protocol. This is different from Mastodon, which is an open source Ruby on Rails app that provides some &amp;ldquo;instance to instance federation features&amp;rdquo;.
+How Mastodon federation works, and why AT is different Anyone who wants to make a Mastodon instance just needs to check out a copy of the code and then deploy it with their own URL.</description>
+    </item>
+    
     <item>
       <title>Asking ChatGPT to explain hyperconverged infrastructure</title>
       <link>https://tobilehman.com/posts/chatgpt-hci-eli5/</link>
