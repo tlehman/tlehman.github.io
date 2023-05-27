@@ -2,25 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/tags/audio/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/birds/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/compression/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/deep-dive/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/fouriers-finches/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/time/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/posts/bluesky-at-protocol/</loc>
     <lastmod>2023-04-12T08:54:47-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/dns/</loc>
     <lastmod>2023-04-12T08:54:47-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/protocols/</loc>
     <lastmod>2023-04-12T08:54:47-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/social-media/</loc>
-    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2023-04-12T08:54:47-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2023-04-12T08:54:47-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/ai/</loc>
@@ -41,9 +59,6 @@
     <loc>https://tobilehman.com/tags/synchronicity/</loc>
     <lastmod>2023-01-01T09:16:10-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/time/</loc>
-    <lastmod>2023-01-01T09:16:10-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/posts/year-of-the-rabbit/</loc>
     <lastmod>2023-01-01T09:16:10-08:00</lastmod>
   </url><url>
@@ -58,9 +73,6 @@
   </url><url>
     <loc>https://tobilehman.com/tags/topology/</loc>
     <lastmod>2022-12-14T20:40:06-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/deep-dive/</loc>
-    <lastmod>2022-10-17T14:33:01-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/gpu/</loc>
     <lastmod>2022-10-17T14:33:01-07:00</lastmod>
@@ -410,9 +422,6 @@
     <loc>https://tobilehman.com/thanks/</loc>
     <lastmod>2020-02-14T12:44:38-08:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/tags/digital-audio/</loc>
-    <lastmod>2020-01-21T19:37:48-08:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/hobby/</loc>
     <lastmod>2020-01-21T19:37:48-08:00</lastmod>
   </url><url>
@@ -436,9 +445,6 @@
   </url><url>
     <loc>https://tobilehman.com/posts/long-now/</loc>
     <lastmod>2018-12-30T19:24:22-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/compression/</loc>
-    <lastmod>2018-11-30T19:27:47-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/interactive/</loc>
     <lastmod>2018-11-30T19:27:47-08:00</lastmod>

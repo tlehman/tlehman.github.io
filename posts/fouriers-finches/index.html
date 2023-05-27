@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Fourier&#39;s Finches: A Primer on Digital Audio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/fouriers-finches/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/fouriers-finches/img/finch.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Fourier&#39;s Finches: A Primer on Digital Audio" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/fouriers-finches/img/finch.png' />
+    
+
+    <title>
+        
+            Fourier&#39;s Finches: A Primer on Digital Audio : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2023-05-26.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/tags">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/beliefs">Beliefs</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Fourier&#39;s Finches: A Primer on Digital Audio</h1>
+
+    
+        <div class="post-meta">Fri, May 26, 2023 - 400 Words </div>
+    
+
+    <p>As far as I know, Jean-Baptiste Joseph Fourier never took an interest in birds, but he was a legendary mathematician who&rsquo;s work enabled our modern techniques for digital audio. Fourier discovered a mathematical transformation that converts a time signal into a frequency signal. This would let us, for example, record a finch&rsquo;s birdsong and decompose it to find the major frequencies. This would be useful for compressing the audio file. By studying the anatomy of the ear, you can throw away all the frequencies that the ear wouldn&rsquo;t hear anyway. This same technique generalizes to <a href="/posts/lossy-image-compression">digital image compression</a> too.</p>
+
+
+<figure>
+	<img src="/posts/fouriers-finches/img/finch.png" alt="" />
+</figure>
+
+<p>Let&rsquo;s start with a house finch, here&rsquo;s what one might sound like:</p>
+<script src="https://unpkg.com/wavesurfer.js"></script>
+<div id="waveform"></div>
+<script>
+var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'violet',
+    progressColor: 'purple'
+});
+function playpause() {
+  if(wavesurfer.isPlaying()) {
+    wavesurfer.pause();
+  } else {
+    wavesurfer.play();
+  }
+}
+wavesurfer.load('./audio/hofi.wav');
+wavesurfer.on('ready', function () {
+  var wfelem = document.getElementById("waveform");
+  wfelem.addEventListener("click", playpause);
+});
+</script>
+<p>The Fourier Transform takes the time signal, a function \( f(t) \), and transforms it to the frequency signal using this integral:</p>
+<p>$$ \hat{f}(\omega) = \int^{\infty}_{-\infty}f(t)e^{-2\pi i\omega } dt $$</p>
+<p>The \( e^{ix} \) function is deeply connected to circles, to understand why, see my earlier <a href="/posts/imaginary-numbers-are-real">post</a>. The integral is like a continuous addition of a bunch of infinitesimal slices. So imagine summing over a bunch of time slices, all spaced out by \( \omega \). This sweeps over the whole time signal and then allows you to decompose the signal into frequencies. If you take this Fourier transform of the house finch file, it looks like this:</p>
+
+
+<figure>
+	<img src="/posts/fouriers-finches/img/hofi-fft.png" alt="" />
+</figure>
+
+<p>So this view of audio data will allow you to compress the file and save a lot of space without losing too much quality. Once you throw away the frequencies that the ear can&rsquo;t hear, then you invert the transform to get a time signal that now takes less information to store.</p>
+<p>What&rsquo;s the actual structure of the WAV file? The first 44 bytes of the file are the header, which contains metadata like this:</p>
+
+
+<figure>
+	<img src="/posts/fouriers-finches/img/wave-file-header.png" alt="" />
+</figure>
+
+<p>In the data sub-chunk, the discretized samples of the waveform are stored as floating point numbers. They are literally the \(f(t)\) values. If the file is a stereo file, then the samples are interleaved.</p>
+<p>Sources:
+<a href="http://myweb.ttu.edu/nmcintyr/Ornithology/">http://myweb.ttu.edu/nmcintyr/Ornithology/</a></p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/deep-dive">#deep-dive</a></li>
+    
+        <li><a href="/tags/audio">#audio</a></li>
+    
+        <li><a href="/tags/birds">#birds</a></li>
+    
+        <li><a href="/tags/compression">#compression</a></li>
+    
+        <li><a href="/tags/time">#time</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2023 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

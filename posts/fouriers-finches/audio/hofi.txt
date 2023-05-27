@@ -1,0 +1,3 @@
+bird: House Finch
+size: 279k
+mono, 16-bit, 22050 Hz, 6.5 seconds

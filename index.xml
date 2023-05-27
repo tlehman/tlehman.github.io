@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 12 Apr 2023 08:54:47 -0700</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 May 2023 15:06:48 -0700</lastBuildDate><atom:link href="https://tobilehman.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fourier&#39;s Finches: A Primer on Digital Audio</title>
+      <link>https://tobilehman.com/posts/fouriers-finches/</link>
+      <pubDate>Fri, 26 May 2023 15:06:48 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/fouriers-finches/</guid>
+      <description>As far as I know, Jean-Baptiste Joseph Fourier never took an interest in birds, but he was a legendary mathematician who&amp;rsquo;s work enabled our modern techniques for digital audio. Fourier discovered a mathematical transformation that converts a time signal into a frequency signal. This would let us, for example, record a finch&amp;rsquo;s birdsong and decompose it to find the major frequencies. This would be useful for compressing the audio file. By studying the anatomy of the ear, you can throw away all the frequencies that the ear wouldn&amp;rsquo;t hear anyway.</description>
+    </item>
+    
     <item>
       <title>Bluesky and the AT Protocol</title>
       <link>https://tobilehman.com/posts/bluesky-at-protocol/</link>
@@ -638,8 +647,8 @@ Coding Horror&amp;rsquo;s Jeff Atwood I started reading this blog in 2005 when I
       
       <guid>https://tobilehman.com/about/</guid>
       <description>I am an experienced software engineer with a background in math. I studied mathematics and computer science at PSU.
-I currently work at SUSE developing the Harvester Hyperconverged Infrastructure project.
-Some notable things I did I built core parts of the telemonitoring software for the Amazon Scout delivery robots. I built the network recovery software for the AWS Elemental Link in 2020 I wrote a 2D physics simulator and presented it in 2016 Object-Oriented Orbits source code Object-Oriented Orbits slides I was the sole winner of the 2011 Putnam Mathematical Competition at PSU.</description>
+I currently work at Apple as a contractor, working on network optimization using the ServiceTalk Java library.
+Some notable things I did I wrote the PCI Passthrough Kubernetes operator for SUSE&amp;rsquo;s Harvester hyperconverged infrastructure operating system. Here&amp;rsquo;s my post explaining what it does and how it works I built core parts of the telemonitoring software for the Amazon Scout delivery robots.</description>
     </item>
     
     <item>
