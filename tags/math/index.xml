@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 14 Dec 2022 20:40:06 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 08:34:57 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Curse of Ideological Dimensionality</title>
+      <link>https://tobilehman.com/posts/curse-ideological-dimensionality/</link>
+      <pubDate>Thu, 03 Aug 2023 08:34:57 -0700</pubDate>
+      
+      <guid>https://tobilehman.com/posts/curse-ideological-dimensionality/</guid>
+      <description>The left-right axis is so simplistic, right? People&amp;rsquo;s complex views can&amp;rsquo;t be projected down to 1-dimension, so Very Online people have invented higher-dimensional spaces to tag themselves in, like this political plane:
+The two dimensions in that plane only cover social and economic issues, but what about technology, violence, spirituality, sexuality, or the bulldozer-vetocracy axis?
+Vitalik Buterin, the creator of Ethereum, wrote a very good article arguing for this bulldozer-vetocracy axis.</description>
+    </item>
+    
     <item>
       <title>The Topology of the Tower of Babylon</title>
       <link>https://tobilehman.com/posts/topological-fiction/</link>

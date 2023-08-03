@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="The Curse of Ideological Dimensionality" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/curse-ideological-dimensionality/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/curse-ideological-dimensionality/img/id-cube.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="The Curse of Ideological Dimensionality" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/curse-ideological-dimensionality/img/id-cube.png' />
+    
+
+    <title>
+        
+            The Curse of Ideological Dimensionality : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="/js/base.js"></script>
+    <link rel="stylesheet" href="/css/base.css"></link>
+    <link rel="stylesheet" href="/css/custom-2023-05-26.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/tags">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="/archive">Archive</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="/links">Links</a></li>
+            <li><a href="/notes">Notes</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>The Curse of Ideological Dimensionality</h1>
+
+    
+        <div class="post-meta">Thu, Aug 3, 2023 - 900 Words </div>
+    
+
+    <div style="max-width: 200px; float: right">
+<img src="/posts/curse-ideological-dimensionality/img/polcompass.png">
+</div>
+<p>The left-right axis is so simplistic, right? People&rsquo;s complex views can&rsquo;t be projected down to 1-dimension, so Very Online people have invented higher-dimensional spaces to tag themselves in, like this political plane:</p>
+<p>The two dimensions in that plane only cover social and economic issues, but what about technology, violence, spirituality, sexuality, or the <a href="https://vitalik.ca/general/2021/12/19/bullveto.html">bulldozer-vetocracy axis</a>?</p>
+<img src="https://vitalik.ca/images/bullveto/compass3.png">
+<p>Vitalik Buterin, the creator of <a href="https://ethereum.org/">Ethereum</a>, wrote a very good article arguing for this bulldozer-vetocracy axis. This is compelling because there are many real instances of left-progressives siding with right-conservatives in vetoing new housing units from being built. This prevents the housing market from absorbing new people who moved into an area and tends to drive up property values. The vetocrats want the built environment to stay as it currently is. The bulldozacrats want to smash old structures and build new ones and lean into the dynamism and vitality of a growing city. The standard terms liberal and conservative don&rsquo;t really capture this divide in practice. A new axis is warranted. We need more dimensions.</p>
+<p>In AI, machine learning and statistics, data is usually organized into high-dimensional spaces. To visualize this, imagine the familiar 3-dimensional space you are in now, you can specify a point by choosing a single reference point and then measuring three distances (length, width and height) relative to that point. In this way, you can describe any point in the universe with just three numbers we call <em>coordinates</em>: $$(x_1, x_2, x_3)$$</p>
+<p>Now if you just add more coordinates you can still calculate distances and make shapes and use tools from linear algebra and geometry and calculus. For example, a hot new application of LLMs (<a href="https://en.wikipedia.org/wiki/Large_language_model">Large language models</a> like GPT-4) is <strong>Vector search</strong> tools. Vector search makes use of the mathematical structure of high dimensional spaces.</p>
+<h2 id="a-tangent-on-embeddings-and-transformer-models">A tangent on embeddings and transformer models</h2>
+<p>LLMs convert sentences like &ldquo;How can I write a USB device driver in C that will blink an LED?&rdquo; into tokens, like
+<code>[&quot;How&quot;, &quot;can&quot;, &quot;I&quot;, &quot;write&quot;, ..., &quot;will&quot;, &quot;blink&quot;, &quot;an&quot;, &quot;LED&quot;, &quot;?&quot;]</code>.
+Then it converts the tokens to numbers. Each token is then mapped to a vector of fixed dimension.</p>
+<p>$$\text{&ldquo;How can I &hellip;. blink an LED&rdquo;}$$</p>
+<p>$$\downarrow$$</p>
+<p>$$[\text{&ldquo;How&rdquo;},&hellip;,\text{&ldquo;LED&rdquo;}]$$</p>
+<p>$$\downarrow$$</p>
+<p>$$[1042, &hellip;, 72]$$</p>
+<p>$$\downarrow$$</p>
+<p>$$[v_1, v_2, &hellip;, v_k] \text{   where } v_i \in \mathbb{R}^n$$</p>
+<p>Now, this encoding of the input sentence also needs the <strong>positional encoding</strong> of the vectors in the sentence. This is because vector addition is commutative: \(v_i + v_j = v_j + v_i\). Commutativity destroys the order of the original sentence.</p>
+<p>The way the positional encoding is done in the paper <a href="https://arxiv.org/pdf/1706.03762.pdf">Attention is all you need (2017)</a> is by using a <a href="/tags/fourier/">Fourier transform</a>-style encoding of the position. The position is a number \(p\) and then the positional encoding is:</p>
+<p>$$PE_{(p, 2i)} = \sin\left(\frac{p}{10000^{2i/n}}\right)$$</p>
+<p>$$PE_{(p, 2i+1)} = \cos\left(\frac{p}{10000^{2i/n}}\right)$$</p>
+<p>So the position of the word &ldquo;USB&rdquo; in the input sentence will cause it&rsquo;s positional encoding to have a lower wavelength than the one for &ldquo;LED&rdquo;.</p>
+<p>Note that all the token embeddings \(v_i\) and positional encodings \(PE_p\) are all the same number of dimensions, this allows them to be added together. In the transformer model architecture from that paper, you can see how the embeddings are added to the positional encodings:</p>
+
+
+<figure>
+	<img src="/posts/curse-ideological-dimensionality/img/transformer.png" alt="" />
+</figure>
+
+<p>So LLMs represent any text data as a vector in an n-dimensional space \(\mathbb{R}^n\), this is the basis of vector search. Once you have this embedding, you can search for similar data, <em>even if there are no common words between the original sentences</em>. This is because the training of the transformer will capture semantic information in order to better predict the next token in a sequence.</p>
+<h2 id="back-to-the-curse-of-dimensionality">Back to the curse of dimensionality</h2>
+<p>Okay, so now you have an idea how text data might be represented as points in a high-dimensional space. Here&rsquo;s where we introduce the <strong>curse of dimensionality</strong> and talk about how this affects political identification.</p>
+<h3><a href="https://en.wikipedia.org/wiki/Curse_of_dimensionality">The curse of dimensionality</a></h3>
+<p>Consider an \(n\)-dimensional <span style="color: #ff0000">cube</span>
+, with an \(n\)-dimensional <span style="color: #0000ff">sphere</span>
+ inscribed in it:</p>
+<table>
+<tr>
+<th>image</th>
+<th>dimension n = </th>
+</tr>
+<tr>
+<td><img style="max-width: 33%" src="/posts/curse-ideological-dimensionality/img/cube2.png"></td>
+<td>2</td>
+</tr>
+<tr>
+<td><img style="max-width: 33%" src="/posts/curse-ideological-dimensionality/img/cube3.png"></td>
+<td>3</td>
+</tr>
+</table>
+<p>As the number \(n\) of dimensions increases, a larger and larger fraction of the points will be <span style="color: #ff0000">red points near the extremes</span>
+. This is not a statement about any party or faction, this is a geometric fact. As the number of dimensions increases, most points are near the surface of the cube, not near the center. Think about how weird this is. In 1 dimension, if you randomly drop grains of sand, <a href="https://www.youtube.com/watch?v=AwEaHCjgeXk">they land in a normal distribution</a>, that is, <strong>most points are near the center</strong>.</p>
+<h2 id="the-curse-of-ideological-dimensionality">The curse of ideological dimensionality</h2>
+<p>This means that if there is only a single dimension of political identification (left-right), then it&rsquo;s easier to build a reasonable center in a democratic system. But as you increase the dimensions along which people can freely identify, you will end up with increasingly bizarre and extreme factions that make literally no sense but somehow embody a collective zeal that propels them to have actual political impact in the real world. There is opportunity in this dimensional freedom, but also obvious risks. My only advice to people worried about becoming some bespoke extremist is to <a href="/tags/identity">keep your identity small</a>.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="/tags/math">#math</a></li>
+    
+        <li><a href="/tags/politics">#politics</a></li>
+    
+        <li><a href="/tags/ai">#ai</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2023 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tobilehman.com/tags/ai/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/math/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/politics/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/tags/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/posts/curse-ideological-dimensionality/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
+    <loc>https://tobilehman.com/</loc>
+    <lastmod>2023-08-03T08:34:57-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/tags/audio/</loc>
     <lastmod>2023-05-26T15:06:48-07:00</lastmod>
   </url><url>
@@ -14,19 +35,13 @@
     <loc>https://tobilehman.com/tags/deep-dive/</loc>
     <lastmod>2023-05-26T15:06:48-07:00</lastmod>
   </url><url>
+    <loc>https://tobilehman.com/tags/fourier/</loc>
+    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
+  </url><url>
     <loc>https://tobilehman.com/posts/fouriers-finches/</loc>
     <lastmod>2023-05-26T15:06:48-07:00</lastmod>
   </url><url>
-    <loc>https://tobilehman.com/posts/</loc>
-    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/</loc>
-    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
-  </url><url>
     <loc>https://tobilehman.com/tags/time/</loc>
-    <lastmod>2023-05-26T15:06:48-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/</loc>
     <lastmod>2023-05-26T15:06:48-07:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/bluesky-at-protocol/</loc>
@@ -40,9 +55,6 @@
   </url><url>
     <loc>https://tobilehman.com/tags/social-media/</loc>
     <lastmod>2023-04-12T08:54:47-07:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/ai/</loc>
-    <lastmod>2023-02-10T12:15:19-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/chatgpt-hci-eli5/</loc>
     <lastmod>2023-02-10T12:15:19-08:00</lastmod>
@@ -63,9 +75,6 @@
     <lastmod>2023-01-01T09:16:10-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/tags/fiction/</loc>
-    <lastmod>2022-12-14T20:40:06-08:00</lastmod>
-  </url><url>
-    <loc>https://tobilehman.com/tags/math/</loc>
     <lastmod>2022-12-14T20:40:06-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/posts/topological-fiction/</loc>
@@ -471,7 +480,6 @@
     <lastmod>2010-01-05T08:49:29-08:00</lastmod>
   </url><url>
     <loc>https://tobilehman.com/influences/</loc>
-    <priority>0</priority>
   </url><url>
     <loc>https://tobilehman.com/about/</loc>
   </url><url>
