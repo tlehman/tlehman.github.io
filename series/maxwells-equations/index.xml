@@ -6,12 +6,12 @@
     <description>Recent content in maxwells-equations on tobilehman.com:~</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright 2010-2022 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 15 Nov 2022 07:04:00 -0800</lastBuildDate><atom:link href="https://tobilehman.com/series/maxwells-equations/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
+    <lastBuildDate>Fri, 11 Aug 2023 16:04:00 -0800</lastBuildDate><atom:link href="https://tobilehman.com/series/maxwells-equations/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Understanding Gauss&#39;s Law</title>
       <link>https://tobilehman.com/posts/gauss-law/</link>
-      <pubDate>Tue, 15 Nov 2022 07:04:00 -0800</pubDate>
+      <pubDate>Fri, 11 Aug 2023 16:04:00 -0800</pubDate>
       
       <guid>https://tobilehman.com/posts/gauss-law/</guid>
       <description>This is part of a Series on Understanding Maxwell&#39;s Equations Maxwell&amp;rsquo;s equations describe the dynamics of the electric and magnetic fields. At the end of this series we will set the charge equal to zero and derive a wave equation that happens to travel at the speed of light. That wave turns out to be actual light!
