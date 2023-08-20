@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-08-18 Fri 09:57 -->
+<!-- 2023-08-20 Sun 10:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flexframe docs</title>
@@ -193,7 +193,6 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="/css/custom-2023-05-26.css" />
 </head>
 <body>
 <div id="content" class="content">
@@ -202,30 +201,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0f5789c">1. Introduction</a>
+<li><a href="#orgb1a16c3">1. Introduction</a>
 <ul>
-<li><a href="#org115487d">1.1. Initialize the camera</a></li>
-<li><a href="#org65cb410">1.2. Initialize the display</a></li>
-<li><a href="#org5e2c5d1">1.3. Main capture and display loop</a></li>
-<li><a href="#org3190c29">1.4. Capturing frames</a></li>
-<li><a href="#orga63141c">1.5. Converting OpenCV frame matrices (<code>Mat</code> s) to Java AWT Buffered Images</a></li>
-<li><a href="#org117224b">1.6. Updating the display</a></li>
-<li><a href="#orgdda7186">1.7. Set up the namespace and dependencies</a></li>
-<li><a href="#orgc23456b">1.8. Set up the entry point</a></li>
+<li><a href="#orgc9e2aeb">1.1. Initialize the camera</a></li>
+<li><a href="#org2aba657">1.2. Initialize the display</a></li>
+<li><a href="#org4b4fead">1.3. Main capture and display loop</a></li>
+<li><a href="#org251d7ba">1.4. Capturing frames</a></li>
+<li><a href="#orgad686f0">1.5. Converting OpenCV frame matrices (<code>Mat</code> s) to Java AWT Buffered Images</a></li>
+<li><a href="#org0d18f20">1.6. Updating the display</a></li>
+<li><a href="#orge59a24e">1.7. Set up the namespace and dependencies</a></li>
+<li><a href="#org699cbaa">1.8. Set up the entry point</a></li>
 </ul>
 </li>
-<li><a href="#orga29328d">2. Appendix</a>
+<li><a href="#org559d130">2. Appendix</a>
 <ul>
-<li><a href="#org85a5b09">2.1. How to tangle this literate program into working clojure code.</a></li>
-<li><a href="#org203cd93">2.2. <span class="todo TODO">TODO</span> How to compile this into a jar file</a></li>
+<li><a href="#org29e5502">2.1. How to tangle this literate program into working clojure code.</a></li>
+<li><a href="#orgf35ef24">2.2. <span class="todo TODO">TODO</span> How to compile this into a jar file</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0f5789c" class="outline-2">
-<h2 id="org0f5789c"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgb1a16c3" class="outline-2">
+<h2 id="orgb1a16c3"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Flexframe is a literate <a href="https://clojure.org">Clojure</a> program to better understand video streams and frame processing.
@@ -236,15 +235,15 @@ It uses <a href="https://opencv.org">OpenCV</a>'s Java library as well as Swing 
 </p>
 </div>
 
-<div id="outline-container-org115487d" class="outline-3">
-<h3 id="org115487d"><span class="section-number-3">1.1.</span> Initialize the camera</h3>
+<div id="outline-container-orgc9e2aeb" class="outline-3">
+<h3 id="orgc9e2aeb"><span class="section-number-3">1.1.</span> Initialize the camera</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The <code>initialize-camera</code> function returns an <a href="https://javadoc.io/static/org.bytedeco.javacpp-presets/opencv/3.1.0-1.2/org/bytedeco/javacpp/opencv_videoio.VideoCapture.html"><code>org.bytedeco.opencv.opencv_videoio.VideoCapture</code></a> object.
 </p>
 
 <p>
-(See <a href="#orgdda7186">1.7</a> for more about what the <code>ns</code> macro is doing)
+(See <a href="#orge59a24e">1.7</a> for more about what the <code>ns</code> macro is doing)
 </p>
 
 <div class="org-src-container">
@@ -268,8 +267,8 @@ The <code>initialize-camera</code> function returns an <a href="https://javadoc.
 </div>
 </div>
 
-<div id="outline-container-org65cb410" class="outline-3">
-<h3 id="org65cb410"><span class="section-number-3">1.2.</span> Initialize the display</h3>
+<div id="outline-container-org2aba657" class="outline-3">
+<h3 id="org2aba657"><span class="section-number-3">1.2.</span> Initialize the display</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 This creates the Swing JFrame object that displays the current frame.
@@ -307,8 +306,8 @@ and just replace the images as they streamed in.
 </div>
 </div>
 
-<div id="outline-container-org5e2c5d1" class="outline-3">
-<h3 id="org5e2c5d1"><span class="section-number-3">1.3.</span> Main capture and display loop</h3>
+<div id="outline-container-org4b4fead" class="outline-3">
+<h3 id="org4b4fead"><span class="section-number-3">1.3.</span> Main capture and display loop</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Now that we have the camera and the display, we can capture frames from the camera and then
@@ -317,7 +316,7 @@ working we will start doing some basic image processing and manipulation of the 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure" id="org484881e"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">capture-frame</span> <span style="color: #66D9EF;">[</span><span style="color: #F8F8F2; background-color: #272822;">^</span><span style="color: #66D9EF;">org.bytedeco.opencv.opencv_videoio.VideoCapture</span> capture<span style="color: #66D9EF;">]</span>
+<pre class="src src-clojure" id="org7dccf62"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">capture-frame</span> <span style="color: #66D9EF;">[</span><span style="color: #F8F8F2; background-color: #272822;">^</span><span style="color: #66D9EF;">org.bytedeco.opencv.opencv_videoio.VideoCapture</span> capture<span style="color: #66D9EF;">]</span>
   <span style="color: #E6DB74;">"Take the VideoCapture object and read it into an OpenCV Mat"</span>
   <span style="color: #66D9EF;">(</span><span style="color: #F92672;">let</span> <span style="color: #A6E22E;">[</span>frame <span style="color: #E6DB74;">(</span>Mat.<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">]</span>
     <span style="color: #A6E22E;">(</span>.read capture frame<span style="color: #A6E22E;">)</span>
@@ -358,15 +357,15 @@ Now that you see the "shape" of the program, lets dig into these three functions
 </div>
 </div>
 
-<div id="outline-container-org3190c29" class="outline-3">
-<h3 id="org3190c29"><span class="section-number-3">1.4.</span> Capturing frames</h3>
+<div id="outline-container-org251d7ba" class="outline-3">
+<h3 id="org251d7ba"><span class="section-number-3">1.4.</span> Capturing frames</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Frames are matrices, or more specifically, <code>org.bytedeco.opencv.opencv_core.Mat</code> objects.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure" id="org36f8dbb"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">capture-frame</span> <span style="color: #66D9EF;">[</span><span style="color: #F8F8F2; background-color: #272822;">^</span><span style="color: #66D9EF;">org.bytedeco.opencv.opencv_videoio.VideoCapture</span> capture<span style="color: #66D9EF;">]</span>
+<pre class="src src-clojure" id="org3bc85ca"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">capture-frame</span> <span style="color: #66D9EF;">[</span><span style="color: #F8F8F2; background-color: #272822;">^</span><span style="color: #66D9EF;">org.bytedeco.opencv.opencv_videoio.VideoCapture</span> capture<span style="color: #66D9EF;">]</span>
   <span style="color: #E6DB74;">"Take the VideoCapture object and read it into an OpenCV Mat"</span>
   <span style="color: #66D9EF;">(</span><span style="color: #F92672;">let</span> <span style="color: #A6E22E;">[</span>frame <span style="color: #E6DB74;">(</span>Mat.<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">]</span>
     <span style="color: #A6E22E;">(</span>.read capture frame<span style="color: #A6E22E;">)</span>
@@ -376,15 +375,15 @@ Frames are matrices, or more specifically, <code>org.bytedeco.opencv.opencv_core
 </div>
 </div>
 
-<div id="outline-container-orga63141c" class="outline-3">
-<h3 id="orga63141c"><span class="section-number-3">1.5.</span> Converting OpenCV frame matrices (<code>Mat</code> s) to Java AWT Buffered Images</h3>
+<div id="outline-container-orgad686f0" class="outline-3">
+<h3 id="orgad686f0"><span class="section-number-3">1.5.</span> Converting OpenCV frame matrices (<code>Mat</code> s) to Java AWT Buffered Images</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Now that you have <code>frame</code>, we need to convert it to a <code>java.awt.image.BufferedImage</code>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure" id="org488e248"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">mat-to-buffered-image</span> <span style="color: #66D9EF;">[</span><span style="color: #F8F8F2; background-color: #272822;">^</span><span style="color: #66D9EF;">org.bytedeco.opencv.opencv_core.Mat</span> mat<span style="color: #66D9EF;">]</span>
+<pre class="src src-clojure" id="org8b475b7"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">mat-to-buffered-image</span> <span style="color: #66D9EF;">[</span><span style="color: #F8F8F2; background-color: #272822;">^</span><span style="color: #66D9EF;">org.bytedeco.opencv.opencv_core.Mat</span> mat<span style="color: #66D9EF;">]</span>
   <span style="color: #66D9EF;">(</span><span style="color: #F92672;">let</span> <span style="color: #A6E22E;">[</span>open-cv-converter <span style="color: #E6DB74;">(</span>OpenCVFrameConverter$ToMat.<span style="color: #E6DB74;">)</span>
         java2d-converter <span style="color: #E6DB74;">(</span>Java2DFrameConverter.<span style="color: #E6DB74;">)</span>
         frame <span style="color: #E6DB74;">(</span>.convert open-cv-converter mat<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">]</span>
@@ -409,11 +408,11 @@ by the <a href="http://bytedeco.org/javacv/apidocs/org/bytedeco/javacv/Java2DFra
 </div>
 </div>
 
-<div id="outline-container-org117224b" class="outline-3">
-<h3 id="org117224b"><span class="section-number-3">1.6.</span> Updating the display</h3>
+<div id="outline-container-org0d18f20" class="outline-3">
+<h3 id="org0d18f20"><span class="section-number-3">1.6.</span> Updating the display</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
-Remember in <a href="#org65cb410">1.2</a> how there was a map with the <code>jframe</code> window and the <code>label</code>.
+Remember in <a href="#org2aba657">1.2</a> how there was a map with the <code>jframe</code> window and the <code>label</code>.
 </p>
 
 <p>
@@ -422,7 +421,7 @@ After that, it calls <code>.setIcon</code> on that label to set the new <code>Im
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure" id="orgc4dc513"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">update-display</span> <span style="color: #66D9EF;">[</span>display image<span style="color: #66D9EF;">]</span>
+<pre class="src src-clojure" id="org49b9f4d"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">defn</span> <span style="color: #A6E22E;">update-display</span> <span style="color: #66D9EF;">[</span>display image<span style="color: #66D9EF;">]</span>
   <span style="color: #E6DB74;">"Update the JFrame's ImageLabel with a new image"</span>
   <span style="color: #66D9EF;">(</span><span style="color: #F92672;">let</span> <span style="color: #A6E22E;">[</span>label <span style="color: #E6DB74;">(</span><span style="color: #AE81FF;">:label</span> display<span style="color: #E6DB74;">)</span>
         icon <span style="color: #E6DB74;">(</span>ImageIcon. image<span style="color: #E6DB74;">)</span><span style="color: #A6E22E;">]</span>
@@ -433,8 +432,8 @@ After that, it calls <code>.setIcon</code> on that label to set the new <code>Im
 </div>
 
 
-<div id="outline-container-orgdda7186" class="outline-3">
-<h3 id="orgdda7186"><span class="section-number-3">1.7.</span> Set up the namespace and dependencies</h3>
+<div id="outline-container-orge59a24e" class="outline-3">
+<h3 id="orge59a24e"><span class="section-number-3">1.7.</span> Set up the namespace and dependencies</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 This defines the main namespace that the program's functions will live in.
@@ -442,7 +441,7 @@ It also tells Clojure to generate a Java class, this is used for compiling the p
 </p>
 
 <div class="org-src-container">
-<pre class="src src-clojure" id="orgd7085ca"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">ns</span> <span style="color: #66D9EF;">flexframe.core</span>
+<pre class="src src-clojure" id="org0f1aaf1"><span style="color: #AE81FF;">(</span><span style="color: #F92672;">ns</span> <span style="color: #66D9EF;">flexframe.core</span>
   <span style="color: #66D9EF;">(</span><span style="color: #AE81FF;">:gen-class</span><span style="color: #66D9EF;">)</span> <span style="color: #75715E;">; This tells Clojure to generate a Java class, useful for compiling to a jar file</span>
   <span style="color: #66D9EF;">(</span><span style="color: #AE81FF;">:import</span> <span style="color: #A6E22E;">[</span>org.bytedeco.opencv.global opencv_highgui<span style="color: #A6E22E;">]</span>
            <span style="color: #A6E22E;">[</span>org.bytedeco.opencv.opencv_core Mat CvArr<span style="color: #A6E22E;">]</span>
@@ -457,8 +456,8 @@ It also tells Clojure to generate a Java class, this is used for compiling the p
 </div>
 </div>
 
-<div id="outline-container-orgc23456b" class="outline-3">
-<h3 id="orgc23456b"><span class="section-number-3">1.8.</span> Set up the entry point</h3>
+<div id="outline-container-org699cbaa" class="outline-3">
+<h3 id="org699cbaa"><span class="section-number-3">1.8.</span> Set up the entry point</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 Finally, we need to call the main <code>capture-and-display</code> function.
@@ -472,12 +471,12 @@ Finally, we need to call the main <code>capture-and-display</code> function.
 </div>
 </div>
 
-<div id="outline-container-orga29328d" class="outline-2">
-<h2 id="orga29328d"><span class="section-number-2">2.</span> Appendix</h2>
+<div id="outline-container-org559d130" class="outline-2">
+<h2 id="org559d130"><span class="section-number-2">2.</span> Appendix</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org85a5b09" class="outline-3">
-<h3 id="org85a5b09"><span class="section-number-3">2.1.</span> How to tangle this literate program into working clojure code.</h3>
+<div id="outline-container-org29e5502" class="outline-3">
+<h3 id="org29e5502"><span class="section-number-3">2.1.</span> How to tangle this literate program into working clojure code.</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Open this this org file in Emacs, and then run <code>org-babel-tangle</code>
@@ -485,15 +484,15 @@ Open this this org file in Emacs, and then run <code>org-babel-tangle</code>
 </div>
 </div>
 
-<div id="outline-container-org203cd93" class="outline-3">
-<h3 id="org203cd93"><span class="section-number-3">2.2.</span> <span class="todo TODO">TODO</span> How to compile this into a jar file</h3>
+<div id="outline-container-orgf35ef24" class="outline-3">
+<h3 id="orgf35ef24"><span class="section-number-3">2.2.</span> <span class="todo TODO">TODO</span> How to compile this into a jar file</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2023-08-16</p>
 <p class="author">Author: Tobi Lehman &lt;mail@tobilehman.com&gt;</p>
-<p class="date">Created: 2023-08-18 Fri 09:57</p>
+<p class="date">Created: 2023-08-20 Sun 10:59</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
