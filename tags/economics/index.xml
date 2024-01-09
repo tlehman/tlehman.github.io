@@ -7,61 +7,42 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 21 Nov 2021 06:45:23 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/economics/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Nov 2021 06:45:23 -0800</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/economics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Book Review: Technological Revolutions and Financial Capital</title>
       <link>https://tobilehman.com/posts/book-review-perez-trfc/</link>
       <pubDate>Sun, 21 Nov 2021 06:45:23 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-perez-trfc/</guid>
-      <description>This book develops a theory of a cyclical pattern in the economy. The pattern describes how certain new technologies spread to become a whole new way of structuring society. The author Carlota Perez calls this a technological revolution and it&amp;rsquo;s associated &amp;ldquo;techno-economic paradigm&amp;rdquo;.
-In this review I want to summarize her theory using less jargon. Even though the book reads like an academic text, and the jargon is used consistently, I want to dig into the idea in more common language.</description>
+      <description>This book develops a theory of a cyclical pattern in the economy. The pattern describes how certain new technologies spread to become a whole new way of structuring society. The author Carlota Perez calls this a technological revolution and it&amp;rsquo;s associated &amp;ldquo;techno-economic paradigm&amp;rdquo;.&#xA;In this review I want to summarize her theory using less jargon. Even though the book reads like an academic text, and the jargon is used consistently, I want to dig into the idea in more common language.</description>
     </item>
-    
     <item>
       <title>Book Review: Working in Public</title>
       <link>https://tobilehman.com/posts/book-review-working-in-public/</link>
       <pubDate>Tue, 20 Oct 2020 21:22:39 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-working-in-public/</guid>
-      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.
-In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
+      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.&#xA;In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
     </item>
-    
     <item>
       <title>Wildfire West</title>
       <link>https://tobilehman.com/posts/wildfire-west/</link>
       <pubDate>Thu, 10 Sep 2020 15:55:50 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/wildfire-west/</guid>
-      <description>The West Coast is on fire
-This post is addressing the question of causality. When reading social media, I noticed three patterns:
-arguing about climate change and causality (e.g. climate change caused this and no-it-didn&amp;rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &amp;lsquo;fires being natural&amp;rsquo; The real cause of the fires is not a single cause.</description>
+      <description>The West Coast is on fire&#xA;This post is addressing the question of causality. When reading social media, I noticed three patterns:&#xA;arguing about climate change and causality (e.g. climate change caused this and no-it-didn&amp;rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &amp;lsquo;fires being natural&amp;rsquo; The real cause of the fires is not a single cause.</description>
     </item>
-    
     <item>
       <title>Compound Growth 📈 </title>
       <link>https://tobilehman.com/posts/compound-growth/</link>
       <pubDate>Tue, 25 Feb 2020 22:19:55 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/compound-growth/</guid>
-      <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
-“Once you start thinking about growth, it’s hard to think about anything else.”
-&amp;ndash; Robert Lucas, Nobel prize-winning economist
-Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
+      <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.&#xA;“Once you start thinking about growth, it’s hard to think about anything else.”&#xA;&amp;ndash; Robert Lucas, Nobel prize-winning economist&#xA;Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
     </item>
-    
     <item>
       <title>Ads, Subscriptions, and the Missing Middle</title>
       <link>https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/</link>
       <pubDate>Mon, 17 Feb 2020 20:21:15 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/</guid>
-      <description>Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.
-The two common ways of making money from online content are:
-Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
-The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&amp;rsquo;t want to sign up for yet another monthly subscription.</description>
+      <description>Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.&#xA;The two common ways of making money from online content are:&#xA;Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.&#xA;The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&amp;rsquo;t want to sign up for yet another monthly subscription.</description>
     </item>
-    
   </channel>
 </rss>

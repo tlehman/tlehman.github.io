@@ -7,16 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 31 Dec 2021 07:01:33 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 31 Dec 2021 07:01:33 -0800</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Literate Quicksort</title>
       <link>https://tobilehman.com/posts/literate-quicksort/</link>
       <pubDate>Fri, 31 Dec 2021 07:01:33 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
-      <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+      <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.&#xA;Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
     </item>
-    
   </channel>
 </rss>

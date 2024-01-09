@@ -7,144 +7,98 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 03 Aug 2023 08:34:57 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 08:34:57 -0700</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/math/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Curse of Ideological Dimensionality</title>
       <link>https://tobilehman.com/posts/curse-ideological-dimensionality/</link>
       <pubDate>Thu, 03 Aug 2023 08:34:57 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/curse-ideological-dimensionality/</guid>
-      <description>The left-right axis is so simplistic, right? People&amp;rsquo;s complex views can&amp;rsquo;t be projected down to 1-dimension, so Very Online people have invented higher-dimensional spaces to tag themselves in, like this political plane:
-The two dimensions in that plane only cover social and economic issues, but what about technology, violence, spirituality, sexuality, or the bulldozer-vetocracy axis?
-Vitalik Buterin, the creator of Ethereum, wrote a very good article arguing for this bulldozer-vetocracy axis.</description>
+      <description>The left-right axis is so simplistic, right? People&amp;rsquo;s complex views can&amp;rsquo;t be projected down to 1-dimension, so Very Online people have invented higher-dimensional spaces to tag themselves in, like this political plane:&#xA;The two dimensions in that plane only cover social and economic issues, but what about technology, violence, spirituality, sexuality, or the bulldozer-vetocracy axis?&#xA;Vitalik Buterin, the creator of Ethereum, wrote a very good article arguing for this bulldozer-vetocracy axis.</description>
     </item>
-    
     <item>
       <title>The Topology of the Tower of Babylon</title>
       <link>https://tobilehman.com/posts/topological-fiction/</link>
       <pubDate>Wed, 14 Dec 2022 20:40:06 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/topological-fiction/</guid>
       <description>The story &amp;ldquo;The Tower of Babylon&amp;rdquo;, by Ted Chiang, is the first example of topological fiction I&amp;rsquo;ve come across that wasn&amp;rsquo;t obnoxiously about topology from the start. I&amp;rsquo;ve read fiction before, like Flatterland by Ian Stewart, that was styled after Edwin Abbot&amp;rsquo;s classic 1884 story, Flatland. Flatterland explores non-Euclidean geometry, fractal geometry, and topology, all using the classic Flatland tropes. I&amp;rsquo;m familiar with the genre. But Chiang&amp;rsquo;s &amp;ldquo;The Tower of Babylon&amp;rdquo; had the gravitas of a biblical story, with the subtlety of a proper piece of literature, and climaxed in the realization of a deep topological truth: that a world can be finite, but have no boundary.</description>
     </item>
-    
     <item>
       <title>Book Review: Time Loops</title>
       <link>https://tobilehman.com/posts/book-review-time-loops/</link>
       <pubDate>Thu, 13 Oct 2022 21:10:35 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-time-loops/</guid>
-      <description>The book Time Loops by Eric Wargo makes a careful argument for the reality of precognitive dreams.
-My personal interest in this topic has to do with my obsession with time and to an extent, time travel.
-The author starts the book by summarizing a number of examples of dreams that came true, and closely studies an early dream pioneer named J.W. Dunne who wrote An Experiment with Time. What stands out about Dunne is how he made the distinction between dreaming about events out in the world vs events as experienced by the future self.</description>
+      <description>The book Time Loops by Eric Wargo makes a careful argument for the reality of precognitive dreams.&#xA;My personal interest in this topic has to do with my obsession with time and to an extent, time travel.&#xA;The author starts the book by summarizing a number of examples of dreams that came true, and closely studies an early dream pioneer named J.W. Dunne who wrote An Experiment with Time. What stands out about Dunne is how he made the distinction between dreaming about events out in the world vs events as experienced by the future self.</description>
     </item>
-    
     <item>
       <title>The Topology of Time Travel Stories</title>
       <link>https://tobilehman.com/posts/time-travel-topology/</link>
       <pubDate>Fri, 09 Apr 2021 20:53:44 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/time-travel-topology/</guid>
-      <description>Everyone needs an obscure useless skill. ‐ @Noahpinion
-Mine is identifying the topology of time travel stories.
-Click here if you know what topology is and just want to get to the time travel stuff
-a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
+      <description>Everyone needs an obscure useless skill. ‐ @Noahpinion&#xA;Mine is identifying the topology of time travel stories.&#xA;Click here if you know what topology is and just want to get to the time travel stuff&#xA;a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
     </item>
-    
     <item>
       <title>Time in Physics</title>
       <link>https://tobilehman.com/posts/time-in-physics/</link>
       <pubDate>Thu, 17 Dec 2020 21:34:14 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/time-in-physics/</guid>
-      <description>In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&amp;rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.
-The reason the ancient Greeks didn&amp;rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.</description>
+      <description>In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&amp;rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.&#xA;The reason the ancient Greeks didn&amp;rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.</description>
     </item>
-    
     <item>
       <title>Compiling C to WebAssembly</title>
       <link>https://tobilehman.com/posts/compiling-c-to-wasm/</link>
       <pubDate>Mon, 07 Sep 2020 21:09:07 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/compiling-c-to-wasm/</guid>
-      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.
-The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.
-Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
+      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.&#xA;The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.&#xA;Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
     </item>
-    
     <item>
       <title>Dunbar&#39;s number, Random Graphs and Sapiens</title>
       <link>https://tobilehman.com/posts/dunbar-random-graphs-sapiens/</link>
       <pubDate>Mon, 25 May 2020 18:22:14 +0000</pubDate>
-      
       <guid>https://tobilehman.com/posts/dunbar-random-graphs-sapiens/</guid>
       <description>Why is human society so flexible? In 1000 years, we have had the Great Schism of 1054, the Norman Invasion of 1066, the Magna Carta (1215), the Mongol Empire, the Ming Dynasty in China, the Portuguese and Spanish maritime empires, the Thirty Years War (1618-1648) and the creation of the idea of &amp;ldquo;Sovereign Nation-States&amp;rdquo;, the Dutch Empire, the British Empire and the creation of joint-stock companies. The Reformation led to new religions.</description>
     </item>
-    
     <item>
       <title>Conway&#39;s Game of Life</title>
       <link>https://tobilehman.com/posts/game-of-life/</link>
       <pubDate>Tue, 14 Apr 2020 19:42:32 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/game-of-life/</guid>
-      <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.
-If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
+      <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.&#xA;If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
     </item>
-    
     <item>
       <title>The SIR Model on novel coronavirus</title>
       <link>https://tobilehman.com/posts/sir-model-epidemiology/</link>
       <pubDate>Tue, 03 Mar 2020 11:43:42 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
-      <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
-The simplest model of disease spreading starts by breaking a population up into compartments:
-S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
-NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+      <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.&#xA;The simplest model of disease spreading starts by breaking a population up into compartments:&#xA;S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.&#xA;NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
     </item>
-    
     <item>
       <title>Compound Growth 📈 </title>
       <link>https://tobilehman.com/posts/compound-growth/</link>
       <pubDate>Tue, 25 Feb 2020 22:19:55 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/compound-growth/</guid>
-      <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
-“Once you start thinking about growth, it’s hard to think about anything else.”
-&amp;ndash; Robert Lucas, Nobel prize-winning economist
-Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
+      <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.&#xA;“Once you start thinking about growth, it’s hard to think about anything else.”&#xA;&amp;ndash; Robert Lucas, Nobel prize-winning economist&#xA;Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
     </item>
-    
     <item>
       <title>Imaginary Numbers Are Real</title>
       <link>https://tobilehman.com/posts/imaginary-numbers-are-real/</link>
       <pubDate>Wed, 21 Aug 2019 15:34:03 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/imaginary-numbers-are-real/</guid>
-      <description>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &amp;ldquo;how long until the weekend?&amp;rdquo;, which can produce equations like $$ x + 2 = 5 $$
-Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
+      <description>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &amp;ldquo;how long until the weekend?&amp;rdquo;, which can produce equations like $$ x + 2 = 5 $$&#xA;Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
     </item>
-    
     <item>
       <title>Visualizing the Monty Hall Problem</title>
       <link>https://tobilehman.com/posts/monty-hall/</link>
       <pubDate>Thu, 25 Feb 2016 22:44:00 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/monty-hall/</guid>
-      <description>The Monty Hall Problem is a great example of why our intuitions cannot be trusted when it comes to probability. If you are not familiar with the problem, the wikipedia link above gives a good description of the problem and it’s historical significance. There are examples of Ph.D’s not getting it, it’s just counterintuitive.
-If you are still not sure why switching is the better strategy, I have made the following diagram that visualizes all of the possible outcomes and their probabilites.</description>
+      <description>The Monty Hall Problem is a great example of why our intuitions cannot be trusted when it comes to probability. If you are not familiar with the problem, the wikipedia link above gives a good description of the problem and it’s historical significance. There are examples of Ph.D’s not getting it, it’s just counterintuitive.&#xA;If you are still not sure why switching is the better strategy, I have made the following diagram that visualizes all of the possible outcomes and their probabilites.</description>
     </item>
-    
     <item>
       <title>Conservation Confusion Clarified</title>
       <link>https://tobilehman.com/posts/conservation-confusion-clarified/</link>
       <pubDate>Tue, 05 Jan 2010 08:49:29 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/conservation-confusion-clarified/</guid>
-      <description>Ported from my old blog through Archive.org (donate to Archive.org here!)
-I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)
-After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject.</description>
+      <description>Ported from my old blog through Archive.org (donate to Archive.org here!)&#xA;I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)&#xA;After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject.</description>
     </item>
-    
   </channel>
 </rss>

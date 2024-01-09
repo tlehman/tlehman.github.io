@@ -7,27 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Dec 2021 12:49:54 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/game-theory/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Dec 2021 12:49:54 -0800</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/game-theory/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Book Review: Where&#39;s My Flying Car?</title>
       <link>https://tobilehman.com/posts/book-review-wheres-my-flying-car/</link>
       <pubDate>Sun, 26 Dec 2021 12:49:54 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-wheres-my-flying-car/</guid>
-      <description>This book has two parts, one looks back and asks why flying cars never came to market, and the other looks forward to what possibilities lay ahead. The author has a background in chip design and nanotechnology, and even became a pilot so he could better evaluate the feasibility of flying car designs.
-The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candidate for a flying car.</description>
+      <description>This book has two parts, one looks back and asks why flying cars never came to market, and the other looks forward to what possibilities lay ahead. The author has a background in chip design and nanotechnology, and even became a pilot so he could better evaluate the feasibility of flying car designs.&#xA;The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candidate for a flying car.</description>
     </item>
-    
     <item>
       <title>The Game Theory of Masks</title>
       <link>https://tobilehman.com/posts/game-theory-masks/</link>
       <pubDate>Mon, 19 Apr 2021 20:53:43 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/game-theory-masks/</guid>
-      <description>I see a lot people mocking the CDC&amp;rsquo;s guidance to remain masked and social distanced even after vaccination. Obviously the point of vaccinations is not to have to take those precautionary measures. But what the CDC is probably doing is thinking about this game of imperfect information.
-If someone says they are vaccinated, you have no good way of knowing that, so there is a free rider problem.
-In game theory, there is a way of visualizing the incentives that guide the players.</description>
+      <description>I see a lot people mocking the CDC&amp;rsquo;s guidance to remain masked and social distanced even after vaccination. Obviously the point of vaccinations is not to have to take those precautionary measures. But what the CDC is probably doing is thinking about this game of imperfect information.&#xA;If someone says they are vaccinated, you have no good way of knowing that, so there is a free rider problem.&#xA;In game theory, there is a way of visualizing the incentives that guide the players.</description>
     </item>
-    
   </channel>
 </rss>

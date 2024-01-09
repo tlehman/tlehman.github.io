@@ -7,41 +7,28 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 30 Dec 2021 11:40:09 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/wasm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Dec 2021 11:40:09 -0800</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/wasm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Generating random numbers in C</title>
       <link>https://tobilehman.com/posts/rand-int-c/</link>
       <pubDate>Thu, 30 Dec 2021 11:40:09 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/rand-int-c/</guid>
-      <description>Assume your range is lower to upper, both of type int.
-Choose random number in range A random integer, uniformly distributed, over that interval is generated with:
-int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&amp;rsquo;t &amp;ldquo;seed&amp;rdquo; the random number generator (RNG), then it will return the same sequence every time.</description>
+      <description>Assume your range is lower to upper, both of type int.&#xA;Choose random number in range A random integer, uniformly distributed, over that interval is generated with:&#xA;int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&amp;rsquo;t &amp;ldquo;seed&amp;rdquo; the random number generator (RNG), then it will return the same sequence every time.</description>
     </item>
-    
     <item>
       <title>Compiling C to WebAssembly</title>
       <link>https://tobilehman.com/posts/compiling-c-to-wasm/</link>
       <pubDate>Mon, 07 Sep 2020 21:09:07 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/compiling-c-to-wasm/</guid>
-      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.
-The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.
-Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
+      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.&#xA;The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.&#xA;Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
     </item>
-    
     <item>
       <title>The Dream of the 90s is alive in WebAssembly</title>
       <link>https://tobilehman.com/posts/dream-90s-wasm/</link>
       <pubDate>Tue, 23 Apr 2019 19:59:57 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/dream-90s-wasm/</guid>
-      <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
-Write Once, Run Everywhere.
-Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
-The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
+      <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.&#xA;Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can&#xA;Write Once, Run Everywhere.&#xA;Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.&#xA;The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
     </item>
-    
   </channel>
 </rss>

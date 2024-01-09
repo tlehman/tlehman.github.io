@@ -7,16 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 28 Jul 2022 12:34:44 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Jul 2022 12:34:44 -0700</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>K3s Cluster on Raspberry Pis</title>
       <link>https://tobilehman.com/posts/k3s-cluster-pis/</link>
       <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/k3s-cluster-pis/</guid>
-      <description>I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&amp;rsquo;s how to make one of these:
-List of hardware 3 Raspberry Pi 3 Model B&amp;rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.</description>
+      <description>I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&amp;rsquo;s how to make one of these:&#xA;List of hardware 3 Raspberry Pi 3 Model B&amp;rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.</description>
     </item>
-    
   </channel>
 </rss>

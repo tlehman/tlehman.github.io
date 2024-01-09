@@ -7,520 +7,350 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Thu, 03 Aug 2023 08:34:57 -0700</lastBuildDate><atom:link href="https://tobilehman.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 03 Aug 2023 08:34:57 -0700</lastBuildDate>
+    <atom:link href="https://tobilehman.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Curse of Ideological Dimensionality</title>
       <link>https://tobilehman.com/posts/curse-ideological-dimensionality/</link>
       <pubDate>Thu, 03 Aug 2023 08:34:57 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/curse-ideological-dimensionality/</guid>
-      <description>The left-right axis is so simplistic, right? People&amp;rsquo;s complex views can&amp;rsquo;t be projected down to 1-dimension, so Very Online people have invented higher-dimensional spaces to tag themselves in, like this political plane:
-The two dimensions in that plane only cover social and economic issues, but what about technology, violence, spirituality, sexuality, or the bulldozer-vetocracy axis?
-Vitalik Buterin, the creator of Ethereum, wrote a very good article arguing for this bulldozer-vetocracy axis.</description>
+      <description>The left-right axis is so simplistic, right? People&amp;rsquo;s complex views can&amp;rsquo;t be projected down to 1-dimension, so Very Online people have invented higher-dimensional spaces to tag themselves in, like this political plane:&#xA;The two dimensions in that plane only cover social and economic issues, but what about technology, violence, spirituality, sexuality, or the bulldozer-vetocracy axis?&#xA;Vitalik Buterin, the creator of Ethereum, wrote a very good article arguing for this bulldozer-vetocracy axis.</description>
     </item>
-    
     <item>
       <title>Fourier&#39;s Finches: A Primer on Digital Audio</title>
       <link>https://tobilehman.com/posts/fouriers-finches/</link>
       <pubDate>Fri, 26 May 2023 15:06:48 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/fouriers-finches/</guid>
       <description>As far as I know, Jean-Baptiste Joseph Fourier never took an interest in birds, but he was a legendary mathematician who&amp;rsquo;s work enabled our modern techniques for digital audio. Fourier discovered a mathematical transformation that converts a time signal into a frequency signal. This would let us, for example, record a finch&amp;rsquo;s birdsong and decompose it to find the major frequencies. This would be useful for compressing the audio file. By studying the anatomy of the ear, you can throw away all the frequencies that the ear wouldn&amp;rsquo;t hear anyway.</description>
     </item>
-    
     <item>
       <title>Bluesky and the AT Protocol</title>
       <link>https://tobilehman.com/posts/bluesky-at-protocol/</link>
       <pubDate>Wed, 12 Apr 2023 08:54:47 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/bluesky-at-protocol/</guid>
-      <description>A new social media platform called Bluesky just launched. It has the look and feel of Twitter, but there&amp;rsquo;s something unique about it. It uses the AT Protocol. This is different from Mastodon, which is an open source Ruby on Rails app that provides some &amp;ldquo;instance to instance federation features&amp;rdquo;.
-How Mastodon federation works, and why AT is different Anyone who wants to make a Mastodon instance just needs to check out a copy of the code and then deploy it with their own URL.</description>
+      <description>A new social media platform called Bluesky just launched. It has the look and feel of Twitter, but there&amp;rsquo;s something unique about it. It uses the AT Protocol. This is different from Mastodon, which is an open source Ruby on Rails app that provides some &amp;ldquo;instance to instance federation features&amp;rdquo;.&#xA;How Mastodon federation works, and why AT is different Anyone who wants to make a Mastodon instance just needs to check out a copy of the code and then deploy it with their own URL.</description>
     </item>
-    
     <item>
       <title>Asking ChatGPT to explain hyperconverged infrastructure</title>
       <link>https://tobilehman.com/posts/chatgpt-hci-eli5/</link>
       <pubDate>Fri, 10 Feb 2023 12:15:19 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/chatgpt-hci-eli5/</guid>
-      <description>In my post last year, Moving to SUSE I said I would spend more time explaining what Hyperconverged Infrastructure (HCI) was.
-The way I would describe HCI is that it&amp;rsquo;s a way of structuring a data center so that the storage, compute, and networking resources are all bundled into the same boxes, and then software abstracts over it, allowing nodes to use resources of other machines.
-An example of something that&amp;rsquo;s not HCI is a SAN, or a Storage-Area Network.</description>
+      <description>In my post last year, Moving to SUSE I said I would spend more time explaining what Hyperconverged Infrastructure (HCI) was.&#xA;The way I would describe HCI is that it&amp;rsquo;s a way of structuring a data center so that the storage, compute, and networking resources are all bundled into the same boxes, and then software abstracts over it, allowing nodes to use resources of other machines.&#xA;An example of something that&amp;rsquo;s not HCI is a SAN, or a Storage-Area Network.</description>
     </item>
-    
     <item>
       <title>Year of the Rabbit</title>
       <link>https://tobilehman.com/posts/year-of-the-rabbit/</link>
       <pubDate>Sun, 01 Jan 2023 09:16:10 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/year-of-the-rabbit/</guid>
-      <description>The year 2022 for me was good, better than I expected. The things I am most greatful for:
-Our third child, first daughter, was born ❤️ I joined a great team at SUSE We sold our Renton house and bought our perfect house in Portland We met a family who adopted one of our rabbits, which lead to a cluster of amazing synchronicities that continue to surprise me The last part is symbolically appropriate going into 2023, which in the Chinese zodiac is the Year of the Rabbit.</description>
+      <description>The year 2022 for me was good, better than I expected. The things I am most greatful for:&#xA;Our third child, first daughter, was born ❤️ I joined a great team at SUSE We sold our Renton house and bought our perfect house in Portland We met a family who adopted one of our rabbits, which lead to a cluster of amazing synchronicities that continue to surprise me The last part is symbolically appropriate going into 2023, which in the Chinese zodiac is the Year of the Rabbit.</description>
     </item>
-    
     <item>
       <title>The Topology of the Tower of Babylon</title>
       <link>https://tobilehman.com/posts/topological-fiction/</link>
       <pubDate>Wed, 14 Dec 2022 20:40:06 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/topological-fiction/</guid>
       <description>The story &amp;ldquo;The Tower of Babylon&amp;rdquo;, by Ted Chiang, is the first example of topological fiction I&amp;rsquo;ve come across that wasn&amp;rsquo;t obnoxiously about topology from the start. I&amp;rsquo;ve read fiction before, like Flatterland by Ian Stewart, that was styled after Edwin Abbot&amp;rsquo;s classic 1884 story, Flatland. Flatterland explores non-Euclidean geometry, fractal geometry, and topology, all using the classic Flatland tropes. I&amp;rsquo;m familiar with the genre. But Chiang&amp;rsquo;s &amp;ldquo;The Tower of Babylon&amp;rdquo; had the gravitas of a biblical story, with the subtlety of a proper piece of literature, and climaxed in the realization of a deep topological truth: that a world can be finite, but have no boundary.</description>
     </item>
-    
     <item>
       <title>PCI Device passthrough on Harvester</title>
       <link>https://tobilehman.com/posts/suse-harvester-pci/</link>
       <pubDate>Mon, 17 Oct 2022 14:33:01 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/suse-harvester-pci/</guid>
-      <description>I want to share something that I&amp;rsquo;ve been working on for the last three months. Release 1.1.0-rc3 now has working PCI passthrough. Any PCI device in your cluster can now be passed through the hypervisor directly to a VM. This allows virtual machines to directly control a device, like a GPU, without any expensive virtualization layer in the way.
-In the diagram above, the guest (VM) has direct memory access to the host&amp;rsquo;s memory for the device.</description>
+      <description>I want to share something that I&amp;rsquo;ve been working on for the last three months. Release 1.1.0-rc3 now has working PCI passthrough. Any PCI device in your cluster can now be passed through the hypervisor directly to a VM. This allows virtual machines to directly control a device, like a GPU, without any expensive virtualization layer in the way.&#xA;In the diagram above, the guest (VM) has direct memory access to the host&amp;rsquo;s memory for the device.</description>
     </item>
-    
     <item>
       <title>Book Review: Time Loops</title>
       <link>https://tobilehman.com/posts/book-review-time-loops/</link>
       <pubDate>Thu, 13 Oct 2022 21:10:35 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-time-loops/</guid>
-      <description>The book Time Loops by Eric Wargo makes a careful argument for the reality of precognitive dreams.
-My personal interest in this topic has to do with my obsession with time and to an extent, time travel.
-The author starts the book by summarizing a number of examples of dreams that came true, and closely studies an early dream pioneer named J.W. Dunne who wrote An Experiment with Time. What stands out about Dunne is how he made the distinction between dreaming about events out in the world vs events as experienced by the future self.</description>
+      <description>The book Time Loops by Eric Wargo makes a careful argument for the reality of precognitive dreams.&#xA;My personal interest in this topic has to do with my obsession with time and to an extent, time travel.&#xA;The author starts the book by summarizing a number of examples of dreams that came true, and closely studies an early dream pioneer named J.W. Dunne who wrote An Experiment with Time. What stands out about Dunne is how he made the distinction between dreaming about events out in the world vs events as experienced by the future self.</description>
     </item>
-    
     <item>
       <title>K3s Cluster on Raspberry Pis</title>
       <link>https://tobilehman.com/posts/k3s-cluster-pis/</link>
       <pubDate>Thu, 28 Jul 2022 12:34:44 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/k3s-cluster-pis/</guid>
-      <description>I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&amp;rsquo;s how to make one of these:
-List of hardware 3 Raspberry Pi 3 Model B&amp;rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.</description>
+      <description>I wanted to build a HA (High Availability) Kubernetes cluster out of Raspberry Pis. I succeeded in doing so, here&amp;rsquo;s how to make one of these:&#xA;List of hardware 3 Raspberry Pi 3 Model B&amp;rsquo;s 1 TPLink 5 Port 10/100 Mbps Ethernet Switch (I had this laying around for 6 years and slapped a Kubernetes sticker on it) A bunch of short ethernet cables and USB micro cables Software The latest version of k3s (a lightweight kubernetes distribution) supports an embedded etcd instance, instead of previous versions that depended on an external MySQL database.</description>
     </item>
-    
     <item>
       <title>Wildcard TLS Certificates for Your LAN</title>
       <link>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</link>
       <pubDate>Thu, 05 May 2022 09:55:05 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/wildcard-tls-certs-for-your-lan/</guid>
-      <description>for the impatient, skip to the how-to
-This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &amp;ldquo;⚠️ Your connection is not secure&amp;rdquo; errors:
-The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:
-Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
+      <description>for the impatient, skip to the how-to&#xA;This article explains how to get a TLS Certificate for your LAN so you can use https:// and not have to ignore these &amp;ldquo;⚠️ Your connection is not secure&amp;rdquo; errors:&#xA;The reason that the browser throws this error is that TLS (and SSL before it) were designed to perform two functions:&#xA;Authenticate the website to the user (prove it is really that site, and not a MITM) and Secure the contents of the data that flows between the user and the website When you ignore this https error you are forgoing function #1, authentication, but you still get #2.</description>
     </item>
-    
     <item>
       <title>Cybernetics in the Age of the Cloud</title>
       <link>https://tobilehman.com/posts/cybernetics-age-of-cloud/</link>
       <pubDate>Fri, 15 Apr 2022 19:04:54 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/cybernetics-age-of-cloud/</guid>
-      <description>There&amp;rsquo;s an old saying:
-There is no such thing as the cloud, there&amp;rsquo;s just someone else&amp;rsquo;s computer.
-That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&amp;rsquo;s true that there isn&amp;rsquo;t a cloud there, it&amp;rsquo;s also true in the same way that there is no &amp;ldquo;computer&amp;rdquo; there.</description>
+      <description>There&amp;rsquo;s an old saying:&#xA;There is no such thing as the cloud, there&amp;rsquo;s just someone else&amp;rsquo;s computer.&#xA;That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud. But while it&amp;rsquo;s true that there isn&amp;rsquo;t a cloud there, it&amp;rsquo;s also true in the same way that there is no &amp;ldquo;computer&amp;rdquo; there.</description>
     </item>
-    
     <item>
       <title>Dapper Build tool: consistent builds with docker</title>
       <link>https://tobilehman.com/posts/dapper-build-consistent/</link>
       <pubDate>Tue, 29 Mar 2022 13:47:55 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/dapper-build-consistent/</guid>
-      <description>This articles shows how to use the dapper build tool from Rancher Labs.
-The basic idea is to use Docker containers, copy* your source files into the container environment, then compile, then copy the build artefacts out.
-(* on Linux you can also use the mount mode to avoid copying the files.)
-How to use it: you start by installing Go so you can compile Dapper. I know, I know, but if you will humor me, I will convince you that Go is the last programming language compiler you will need to install on your host.</description>
+      <description>This articles shows how to use the dapper build tool from Rancher Labs.&#xA;The basic idea is to use Docker containers, copy* your source files into the container environment, then compile, then copy the build artefacts out.&#xA;(* on Linux you can also use the mount mode to avoid copying the files.)&#xA;How to use it: you start by installing Go so you can compile Dapper. I know, I know, but if you will humor me, I will convince you that Go is the last programming language compiler you will need to install on your host.</description>
     </item>
-    
     <item>
       <title>Moving to SUSE</title>
       <link>https://tobilehman.com/posts/moving-to-suse/</link>
       <pubDate>Fri, 18 Mar 2022 13:13:42 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/moving-to-suse/</guid>
-      <description>After 3.6 years at Amazon, I&amp;rsquo;ve decided to move to another company to work on open source software. The company is SUSE, they make a Linux distribution and sell cloud computing services, among other things.
-At Amazon I worked on AWS Elemental&amp;rsquo;s Live (video streaming software), a small video encoding device, and the Amazon Scout robotics project. At Scout I built software that controls the robots when autonomy fails, and I worked on safety features and performance optimization of a distributed application that ran on a cluster of servers managed by AWS Fargate.</description>
+      <description>After 3.6 years at Amazon, I&amp;rsquo;ve decided to move to another company to work on open source software. The company is SUSE, they make a Linux distribution and sell cloud computing services, among other things.&#xA;At Amazon I worked on AWS Elemental&amp;rsquo;s Live (video streaming software), a small video encoding device, and the Amazon Scout robotics project. At Scout I built software that controls the robots when autonomy fails, and I worked on safety features and performance optimization of a distributed application that ran on a cluster of servers managed by AWS Fargate.</description>
     </item>
-    
     <item>
       <title>Latency Numbers Every Programmer Should Know</title>
       <link>https://tobilehman.com/posts/latency-numbers/</link>
       <pubDate>Mon, 28 Feb 2022 16:28:45 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/latency-numbers/</guid>
-      <description>There&amp;rsquo;s an indispensible file called Latency Numbers Every Programmer Should Know, originally by Jeff Dean of Google. I use a Roam Research plugin to do spaced repetition and memorize these numbers. But memorizing them is not good enough, I should also measure these numbers and see how close the values are in practice.
-I created a Repl in Go to directly measure these numbers. I started with mutex lock/unlock. Locally, I get about 19ns, but the repl gives me between 12-14ns.</description>
+      <description>There&amp;rsquo;s an indispensible file called Latency Numbers Every Programmer Should Know, originally by Jeff Dean of Google. I use a Roam Research plugin to do spaced repetition and memorize these numbers. But memorizing them is not good enough, I should also measure these numbers and see how close the values are in practice.&#xA;I created a Repl in Go to directly measure these numbers. I started with mutex lock/unlock. Locally, I get about 19ns, but the repl gives me between 12-14ns.</description>
     </item>
-    
     <item>
       <title>Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</title>
       <link>https://tobilehman.com/posts/qubits-multiverse/</link>
       <pubDate>Fri, 18 Feb 2022 08:28:59 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/qubits-multiverse/</guid>
-      <description>Have you ever had a decision that was hard to make because both sides of the decision were great in their own way? Where you stress over the decision and wish you could split into two copies of yourself? Some decision theorists recommend flipping a coin, but there is a better way.
-Coins are made of lots of atoms, and many of those atoms are entangled with each other and with the environment.</description>
+      <description>Have you ever had a decision that was hard to make because both sides of the decision were great in their own way? Where you stress over the decision and wish you could split into two copies of yourself? Some decision theorists recommend flipping a coin, but there is a better way.&#xA;Coins are made of lots of atoms, and many of those atoms are entangled with each other and with the environment.</description>
     </item>
-    
     <item>
       <title>PDFs and the Permanent Web</title>
       <link>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</link>
       <pubDate>Sun, 13 Feb 2022 23:22:38 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/pdfs-and-the-permanent-web/</guid>
-      <description>I remember reading this article Deurbanising the web from January 2021. It argued that the web had gotten so bad that they wanted to do something drastic, so they converted the web pages on their site to PDF. The badness they were complaining about was familiar, too many ads, too much surveillance. Link rot, infinite scrolls, paywalls, GDPR cookie consent buttons, etc. The reason they chose PDFs?
-Reasons why Lab6 argued PDFs were a good format for web pages it&amp;rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom At first I was skeptical.</description>
+      <description>I remember reading this article Deurbanising the web from January 2021. It argued that the web had gotten so bad that they wanted to do something drastic, so they converted the web pages on their site to PDF. The badness they were complaining about was familiar, too many ads, too much surveillance. Link rot, infinite scrolls, paywalls, GDPR cookie consent buttons, etc. The reason they chose PDFs?&#xA;Reasons why Lab6 argued PDFs were a good format for web pages it&amp;rsquo;s a file standard format still has media and links easy to copy and backup (avoids link rot and lost pages) freedom At first I was skeptical.</description>
     </item>
-    
     <item>
       <title>CWEB LaTeX Experiment</title>
       <link>https://tobilehman.com/posts/cweb-latex-experiment/</link>
       <pubDate>Thu, 03 Feb 2022 08:37:07 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/cweb-latex-experiment/</guid>
-      <description>I have written about literate programming a few times before. The big idea is to elevate documentation above the actual running source code. Source code is meant for humans to read, that&amp;rsquo;s why it has higher-level abstractions and comments. Literate programming flips the roles of comments and source code. The comments come first, and the source code is stripped out and tangled into a compilable form.
-I am still not totally sure what to think about it.</description>
+      <description>I have written about literate programming a few times before. The big idea is to elevate documentation above the actual running source code. Source code is meant for humans to read, that&amp;rsquo;s why it has higher-level abstractions and comments. Literate programming flips the roles of comments and source code. The comments come first, and the source code is stripped out and tangled into a compilable form.&#xA;I am still not totally sure what to think about it.</description>
     </item>
-    
     <item>
       <title>Literate Quicksort</title>
       <link>https://tobilehman.com/posts/literate-quicksort/</link>
       <pubDate>Fri, 31 Dec 2021 07:01:33 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/literate-quicksort/</guid>
-      <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.
-Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
+      <description>This post is a literate program, it both explains and implements quicksort. Quicksort is a fast, recursive sorting algorithm. The big idea is to take an array of \( n \) unsorted integers, choose a pivot element, and then recursively sort the two arrays on either side of the pivot.&#xA;Once a pivot is selected, every number to the left of the pivot is smaller, and every one to the right is bigger.</description>
     </item>
-    
     <item>
       <title>Generating random numbers in C</title>
       <link>https://tobilehman.com/posts/rand-int-c/</link>
       <pubDate>Thu, 30 Dec 2021 11:40:09 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/rand-int-c/</guid>
-      <description>Assume your range is lower to upper, both of type int.
-Choose random number in range A random integer, uniformly distributed, over that interval is generated with:
-int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&amp;rsquo;t &amp;ldquo;seed&amp;rdquo; the random number generator (RNG), then it will return the same sequence every time.</description>
+      <description>Assume your range is lower to upper, both of type int.&#xA;Choose random number in range A random integer, uniformly distributed, over that interval is generated with:&#xA;int random_number(int lower, int upper) { return (rand() % (upper - lower + 1)) + lower; } But in C, the rand() function is deterministic. That means that if you don&amp;rsquo;t &amp;ldquo;seed&amp;rdquo; the random number generator (RNG), then it will return the same sequence every time.</description>
     </item>
-    
     <item>
       <title>Book Review: Where&#39;s My Flying Car?</title>
       <link>https://tobilehman.com/posts/book-review-wheres-my-flying-car/</link>
       <pubDate>Sun, 26 Dec 2021 12:49:54 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-wheres-my-flying-car/</guid>
-      <description>This book has two parts, one looks back and asks why flying cars never came to market, and the other looks forward to what possibilities lay ahead. The author has a background in chip design and nanotechnology, and even became a pilot so he could better evaluate the feasibility of flying car designs.
-The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candidate for a flying car.</description>
+      <description>This book has two parts, one looks back and asks why flying cars never came to market, and the other looks forward to what possibilities lay ahead. The author has a background in chip design and nanotechnology, and even became a pilot so he could better evaluate the feasibility of flying car designs.&#xA;The autogyro, developed in the 1930s by Juan de la Cierva, was a promising candidate for a flying car.</description>
     </item>
-    
     <item>
       <title>Book Review: Technological Revolutions and Financial Capital</title>
       <link>https://tobilehman.com/posts/book-review-perez-trfc/</link>
       <pubDate>Sun, 21 Nov 2021 06:45:23 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-perez-trfc/</guid>
-      <description>This book develops a theory of a cyclical pattern in the economy. The pattern describes how certain new technologies spread to become a whole new way of structuring society. The author Carlota Perez calls this a technological revolution and it&amp;rsquo;s associated &amp;ldquo;techno-economic paradigm&amp;rdquo;.
-In this review I want to summarize her theory using less jargon. Even though the book reads like an academic text, and the jargon is used consistently, I want to dig into the idea in more common language.</description>
+      <description>This book develops a theory of a cyclical pattern in the economy. The pattern describes how certain new technologies spread to become a whole new way of structuring society. The author Carlota Perez calls this a technological revolution and it&amp;rsquo;s associated &amp;ldquo;techno-economic paradigm&amp;rdquo;.&#xA;In this review I want to summarize her theory using less jargon. Even though the book reads like an academic text, and the jargon is used consistently, I want to dig into the idea in more common language.</description>
     </item>
-    
     <item>
       <title>ENS, DNS and the future of internet names</title>
       <link>https://tobilehman.com/posts/ens-and-dns/</link>
       <pubDate>Tue, 09 Nov 2021 21:05:17 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/ens-and-dns/</guid>
-      <description>Today a DAO just distributed 1.5 billion dollars worth of ENS tokens. They were distributed to owners of .eth domains. DAO is short for &amp;ldquo;Decentralized Autonomous Organization&amp;rdquo;.
-What is a DAO? A DAO is sort of like a corporation, but it&amp;rsquo;s stored on the Ethereum blockchain. Wyoming passed a DAO law that links on-chain DAOs to real corporations. The corporation that currently manages the Domain Name Service (DNS) is ICANN.</description>
+      <description>Today a DAO just distributed 1.5 billion dollars worth of ENS tokens. They were distributed to owners of .eth domains. DAO is short for &amp;ldquo;Decentralized Autonomous Organization&amp;rdquo;.&#xA;What is a DAO? A DAO is sort of like a corporation, but it&amp;rsquo;s stored on the Ethereum blockchain. Wyoming passed a DAO law that links on-chain DAOs to real corporations. The corporation that currently manages the Domain Name Service (DNS) is ICANN.</description>
     </item>
-    
     <item>
       <title>Book Review: Atomic Habits</title>
       <link>https://tobilehman.com/posts/book-review-atomic-habits/</link>
       <pubDate>Sat, 30 Oct 2021 14:19:20 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-atomic-habits/</guid>
-      <description>Atomic Habits is written so clearly that I have a hard time believing &amp;lsquo;James Clear&amp;rsquo; isn&amp;rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.
-Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal.</description>
+      <description>Atomic Habits is written so clearly that I have a hard time believing &amp;lsquo;James Clear&amp;rsquo; isn&amp;rsquo;t a clever pen name. That clarity comes from experience and practice. His story about recovering from a major head injury and returning to sports is inspiring. His recovery is a big source of practical knowledge about how to build good habits.&#xA;Before I read this, I thought of habits using the goal/discipline model. You start by setting a goal, then you apply discipline in doing something repeatedly to reach that goal.</description>
     </item>
-    
     <item>
       <title>How big should your identity be?</title>
       <link>https://tobilehman.com/posts/how-big-identity/</link>
       <pubDate>Tue, 26 Oct 2021 13:51:17 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/how-big-identity/</guid>
-      <description>Arguments are best when they don&amp;rsquo;t engage either member&amp;rsquo;s identities. For this reason, Paul Graham says to keep your identity small. The title summarizes it well, but the why is important.
-If you are interested in the truth, then be prepared to follow arguments where they lead instead of letting the identity of the author interfere with your reasoning.
-For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.</description>
+      <description>Arguments are best when they don&amp;rsquo;t engage either member&amp;rsquo;s identities. For this reason, Paul Graham says to keep your identity small. The title summarizes it well, but the why is important.&#xA;If you are interested in the truth, then be prepared to follow arguments where they lead instead of letting the identity of the author interfere with your reasoning.&#xA;For example, suppose two scientists are publicly debating the precise value of climate sensitivity, but one of the scientists is from Berkeley, where you also went.</description>
     </item>
-    
     <item>
       <title>The Game Theory of Masks</title>
       <link>https://tobilehman.com/posts/game-theory-masks/</link>
       <pubDate>Mon, 19 Apr 2021 20:53:43 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/game-theory-masks/</guid>
-      <description>I see a lot people mocking the CDC&amp;rsquo;s guidance to remain masked and social distanced even after vaccination. Obviously the point of vaccinations is not to have to take those precautionary measures. But what the CDC is probably doing is thinking about this game of imperfect information.
-If someone says they are vaccinated, you have no good way of knowing that, so there is a free rider problem.
-In game theory, there is a way of visualizing the incentives that guide the players.</description>
+      <description>I see a lot people mocking the CDC&amp;rsquo;s guidance to remain masked and social distanced even after vaccination. Obviously the point of vaccinations is not to have to take those precautionary measures. But what the CDC is probably doing is thinking about this game of imperfect information.&#xA;If someone says they are vaccinated, you have no good way of knowing that, so there is a free rider problem.&#xA;In game theory, there is a way of visualizing the incentives that guide the players.</description>
     </item>
-    
     <item>
       <title>The Topology of Time Travel Stories</title>
       <link>https://tobilehman.com/posts/time-travel-topology/</link>
       <pubDate>Fri, 09 Apr 2021 20:53:44 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/time-travel-topology/</guid>
-      <description>Everyone needs an obscure useless skill. ‐ @Noahpinion
-Mine is identifying the topology of time travel stories.
-Click here if you know what topology is and just want to get to the time travel stuff
-a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
+      <description>Everyone needs an obscure useless skill. ‐ @Noahpinion&#xA;Mine is identifying the topology of time travel stories.&#xA;Click here if you know what topology is and just want to get to the time travel stuff&#xA;a brief introduction to topology The original study of shapes was geometry, popularized by a Greek mathematician named Euclid. Starting about 2000 years after that, a Swiss mathematician named Euler (pronounced &amp;ldquo;Oiler&amp;rdquo;) accidentally inventented topology while trying to solve the Seven Bridges of Königsberg problem.</description>
     </item>
-    
     <item>
       <title>Time in Physics</title>
       <link>https://tobilehman.com/posts/time-in-physics/</link>
       <pubDate>Thu, 17 Dec 2020 21:34:14 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/time-in-physics/</guid>
-      <description>In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&amp;rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.
-The reason the ancient Greeks didn&amp;rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.</description>
+      <description>In 1666, when the Plague was ripping through England, Isaac Newton went into quarantine outside the city and developed calculus. Calculus is an application of Euclid&amp;rsquo;s geometry to problems involving time. Geometry models space, calculus models space and time.&#xA;The reason the ancient Greeks didn&amp;rsquo;t develop calculus is because of tools. The ancient Greeks had rulers and compasses but not reliable clocks. They used the rulers and compasses to do geometry, and discovered many eternal truths about space and shape.</description>
     </item>
-    
     <item>
       <title>Book Review: Working in Public</title>
       <link>https://tobilehman.com/posts/book-review-working-in-public/</link>
       <pubDate>Tue, 20 Oct 2020 21:22:39 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-working-in-public/</guid>
-      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.
-In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
+      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.&#xA;In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
     </item>
-    
     <item>
       <title>Wildfire West</title>
       <link>https://tobilehman.com/posts/wildfire-west/</link>
       <pubDate>Thu, 10 Sep 2020 15:55:50 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/wildfire-west/</guid>
-      <description>The West Coast is on fire
-This post is addressing the question of causality. When reading social media, I noticed three patterns:
-arguing about climate change and causality (e.g. climate change caused this and no-it-didn&amp;rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &amp;lsquo;fires being natural&amp;rsquo; The real cause of the fires is not a single cause.</description>
+      <description>The West Coast is on fire&#xA;This post is addressing the question of causality. When reading social media, I noticed three patterns:&#xA;arguing about climate change and causality (e.g. climate change caused this and no-it-didn&amp;rsquo;t back and forth) rumors about the whole thing being caused by Antifa or Boog arsonists (multiple police departments have debunked this) dismissals based on &amp;lsquo;fires being natural&amp;rsquo; The real cause of the fires is not a single cause.</description>
     </item>
-    
     <item>
       <title>Compiling C to WebAssembly</title>
       <link>https://tobilehman.com/posts/compiling-c-to-wasm/</link>
       <pubDate>Mon, 07 Sep 2020 21:09:07 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/compiling-c-to-wasm/</guid>
-      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.
-The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.
-Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
+      <description>Ten years ago, a coworker tried to teach me cribbage on my last day at work, but I didn&amp;rsquo;t get it.&#xA;The following year, I met my future wife, and she was a cribbage fan. She taught me, and I&amp;rsquo;ve loved the game ever since.&#xA;Six years ago, I wrote this cribbage score calculator in C. It takes a string like JH 2C 3C 3S JS, and returns the full accounting of the score in a game of cribbage.</description>
     </item>
-    
     <item>
       <title>Timelapse</title>
       <link>https://tobilehman.com/posts/timelapse/</link>
       <pubDate>Sat, 05 Sep 2020 21:01:22 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/timelapse/</guid>
-      <description>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.
-I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
+      <description>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months prior, my dad and I built an overhang that provides shade.&#xA;I used a pillar supporting the overhang to point this timelapse camera at the tree. I bought that camera because of it&amp;rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives me raw material to compress a large amount of time into a nice video.</description>
     </item>
-    
     <item>
       <title>Borders on the Internet</title>
       <link>https://tobilehman.com/posts/borders-on-the-internet/</link>
       <pubDate>Wed, 05 Aug 2020 21:19:51 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/borders-on-the-internet/</guid>
-      <description>In the beginning, the internet was borderless. The first example of inter-netting, in 1977, connected computers in the U.S. the U.K. and Norway.
-In 1991, Tim Berners Lee created the first web page along with all the supporting protocols to make it easy for anyone to access the internet by just pointing and clicking. The web was created as a research project at CERN, the physics research institution in Switzerland.</description>
+      <description>In the beginning, the internet was borderless. The first example of inter-netting, in 1977, connected computers in the U.S. the U.K. and Norway.&#xA;In 1991, Tim Berners Lee created the first web page along with all the supporting protocols to make it easy for anyone to access the internet by just pointing and clicking. The web was created as a research project at CERN, the physics research institution in Switzerland.</description>
     </item>
-    
     <item>
       <title>Black Lives Matter</title>
       <link>https://tobilehman.com/posts/black-lives-matter/</link>
       <pubDate>Fri, 05 Jun 2020 12:22:15 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/black-lives-matter/</guid>
-      <description>This should not be controversial, but some people read too much into this sentence. If people read it as &amp;ldquo;only black lives matter&amp;rdquo;, then they are reading it wrong. Read it literally. No one should dispute that all lives matter. The problem is that police, and some civilians, treat black lives as if they don&amp;rsquo;t matter.
-If Chinese Communist party officials are abusing, brainwashing and sometimes killing Uighurs in Eastern China, it&amp;rsquo;s appropriate to say &amp;ldquo;Uighur lives matter!</description>
+      <description>This should not be controversial, but some people read too much into this sentence. If people read it as &amp;ldquo;only black lives matter&amp;rdquo;, then they are reading it wrong. Read it literally. No one should dispute that all lives matter. The problem is that police, and some civilians, treat black lives as if they don&amp;rsquo;t matter.&#xA;If Chinese Communist party officials are abusing, brainwashing and sometimes killing Uighurs in Eastern China, it&amp;rsquo;s appropriate to say &amp;ldquo;Uighur lives matter!</description>
     </item>
-    
     <item>
       <title>Dunbar&#39;s number, Random Graphs and Sapiens</title>
       <link>https://tobilehman.com/posts/dunbar-random-graphs-sapiens/</link>
       <pubDate>Mon, 25 May 2020 18:22:14 +0000</pubDate>
-      
       <guid>https://tobilehman.com/posts/dunbar-random-graphs-sapiens/</guid>
       <description>Why is human society so flexible? In 1000 years, we have had the Great Schism of 1054, the Norman Invasion of 1066, the Magna Carta (1215), the Mongol Empire, the Ming Dynasty in China, the Portuguese and Spanish maritime empires, the Thirty Years War (1618-1648) and the creation of the idea of &amp;ldquo;Sovereign Nation-States&amp;rdquo;, the Dutch Empire, the British Empire and the creation of joint-stock companies. The Reformation led to new religions.</description>
     </item>
-    
     <item>
       <title>Conway&#39;s Game of Life</title>
       <link>https://tobilehman.com/posts/game-of-life/</link>
       <pubDate>Tue, 14 Apr 2020 19:42:32 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/game-of-life/</guid>
-      <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.
-If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
+      <description>John H. Conway has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &amp;ldquo;recreational math&amp;rdquo; contributions: The Game of Life.&#xA;If you haven&amp;rsquo;t heard, It&amp;rsquo;s this zero player computer &amp;ldquo;game&amp;rdquo;: Not this multi-player board game: I scare-quoted game because there are no actual players. It is an example of a cellular automaton, which is a simple program that evolves over time according to a fixed, simple set of rules.</description>
     </item>
-    
     <item>
       <title>The SIR Model on novel coronavirus</title>
       <link>https://tobilehman.com/posts/sir-model-epidemiology/</link>
       <pubDate>Tue, 03 Mar 2020 11:43:42 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/sir-model-epidemiology/</guid>
-      <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.
-The simplest model of disease spreading starts by breaking a population up into compartments:
-S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.
-NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
+      <description>Since a deadly virus appears to be spreading across the globe, I thought it would be useful to explore how this spread is modeled mathematically, and make some predictions about how quickly this can grow.&#xA;The simplest model of disease spreading starts by breaking a population up into compartments:&#xA;S (Susceptible) I (Infected) R (Removed️) Then, the model describes the flow between these compartments.&#xA;NOTE: This version of the model works over short periods and ignores births and natural deaths.</description>
     </item>
-    
     <item>
       <title>Compound Growth 📈 </title>
       <link>https://tobilehman.com/posts/compound-growth/</link>
       <pubDate>Tue, 25 Feb 2020 22:19:55 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/compound-growth/</guid>
-      <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.
-“Once you start thinking about growth, it’s hard to think about anything else.”
-&amp;ndash; Robert Lucas, Nobel prize-winning economist
-Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
+      <description>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.&#xA;“Once you start thinking about growth, it’s hard to think about anything else.”&#xA;&amp;ndash; Robert Lucas, Nobel prize-winning economist&#xA;Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?</description>
     </item>
-    
     <item>
       <title>Ads, Subscriptions, and the Missing Middle</title>
       <link>https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/</link>
       <pubDate>Mon, 17 Feb 2020 20:21:15 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/ads-subscriptions-and-the-missing-middle/</guid>
-      <description>Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.
-The two common ways of making money from online content are:
-Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.
-The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&amp;rsquo;t want to sign up for yet another monthly subscription.</description>
+      <description>Publishers need to make a living. Journalists, video producers, musicians, and bloggers all have to pay their bills.&#xA;The two common ways of making money from online content are:&#xA;Free content with ads Subscription content without ads Sometimes publishers use both, but with a reduced number of ads for subscribers, magazine-style.&#xA;The trouble with subscriptions is that people can quickly feel saturated. Once you subscribe to WaPo, NYTimes, WSJ, you might want to read that LATimes article, but don&amp;rsquo;t want to sign up for yet another monthly subscription.</description>
     </item>
-    
     <item>
       <title>Piano  ♪</title>
       <link>https://tobilehman.com/posts/piano/</link>
       <pubDate>Tue, 21 Jan 2020 19:37:48 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/piano/</guid>
-      <description>To start the decade off right, I decided to learn the piano. I am paying for lessons from Ethan Maier, he&amp;rsquo;s excellent, I&amp;rsquo;ve been enjoying learning from him and practicing.
-Since I only have a piano at home, I wanted to make one that I could use on the go. Here is the simplest way I could think of to make a portable piano program:
-There is an standard for simple web graphics called SVG, which lets you define custom shapes that show up in any web browser.</description>
+      <description>To start the decade off right, I decided to learn the piano. I am paying for lessons from Ethan Maier, he&amp;rsquo;s excellent, I&amp;rsquo;ve been enjoying learning from him and practicing.&#xA;Since I only have a piano at home, I wanted to make one that I could use on the go. Here is the simplest way I could think of to make a portable piano program:&#xA;There is an standard for simple web graphics called SVG, which lets you define custom shapes that show up in any web browser.</description>
     </item>
-    
     <item>
       <title>The Twenty-Tens, a decade in review</title>
       <link>https://tobilehman.com/posts/2010s-decade-in-review/</link>
       <pubDate>Mon, 30 Dec 2019 08:14:33 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/2010s-decade-in-review/</guid>
       <description>I think New Year is the best holiday, for two reasons. First, everyone celebrates it, and second, I love clocks rolling over. Something about numbers going up is really satisfying too (2020, it&amp;rsquo;s the highest year ever!). This New Year is also the start of a new decade, so I&amp;rsquo;m feeling more like reminiscing and want to wrap up the last decade into something like a sensible story I can file away in my memory.</description>
     </item>
-    
     <item>
       <title>Imaginary Numbers Are Real</title>
       <link>https://tobilehman.com/posts/imaginary-numbers-are-real/</link>
       <pubDate>Wed, 21 Aug 2019 15:34:03 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/imaginary-numbers-are-real/</guid>
-      <description>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &amp;ldquo;how long until the weekend?&amp;rdquo;, which can produce equations like $$ x + 2 = 5 $$
-Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
+      <description>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &amp;ldquo;how long until the weekend?&amp;rdquo;, which can produce equations like $$ x + 2 = 5 $$&#xA;Natural number equations give rise to a solution space that looks like this: When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</description>
     </item>
-    
     <item>
       <title>The Dream of the 90s is alive in WebAssembly</title>
       <link>https://tobilehman.com/posts/dream-90s-wasm/</link>
       <pubDate>Tue, 23 Apr 2019 19:59:57 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/dream-90s-wasm/</guid>
-      <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.
-Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can
-Write Once, Run Everywhere.
-Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.
-The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
+      <description>The year is 1996, Bill Clinton is president, the World Wide Web is 7 years old, and Sun Microsystems releases Java 1.0.&#xA;Sun Microsystems markets Java to the world as the ultimate in software portability, so that programmers can&#xA;Write Once, Run Everywhere.&#xA;Assuming, of course, that you have first downloaded the Java Runtime, and enabled the Java plugin in your browser.&#xA;The dream is that Java will enable people to create portable programs, so that a person with a web browser could download a new application without having to wait for a CD to arrive in the mail.</description>
     </item>
-    
     <item>
       <title>The Long Now Foundation</title>
       <link>https://tobilehman.com/posts/long-now/</link>
       <pubDate>Sun, 30 Dec 2018 19:24:22 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/long-now/</guid>
       <description>The world is changing fast, the last 100 years saw the creation of a global network of airplanes, computers, the internet, nuclear energy, and the discovery, sequencing and editing of the genome. The tendency of politics is to focus on the next election (at least in democracies). The tendency of business is to focus on the next quarter. The engines of our fast-changing modern world tend to focus our attention on the narrow world of right now.</description>
     </item>
-    
     <item>
       <title>Lossy Image Compression</title>
       <link>https://tobilehman.com/posts/lossy-image-compression/</link>
       <pubDate>Fri, 30 Nov 2018 19:27:47 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/lossy-image-compression/</guid>
-      <description>Every time you take a picture on your phone, most of the data is thrown away. Lossy image compression is the art of throwing away what your eyes won&amp;rsquo;t notice.
-Note: at no point will this blog cover middle-out compression
-the pixels on most screens emit three different colors of light: red , green and blue . The reason those colors where chosen is that human color perception is enabled by cone cells, with cells that respond to red, green and blue light.</description>
+      <description>Every time you take a picture on your phone, most of the data is thrown away. Lossy image compression is the art of throwing away what your eyes won&amp;rsquo;t notice.&#xA;Note: at no point will this blog cover middle-out compression&#xA;the pixels on most screens emit three different colors of light: red , green and blue . The reason those colors where chosen is that human color perception is enabled by cone cells, with cells that respond to red, green and blue light.</description>
     </item>
-    
     <item>
       <title>Armistice Day</title>
       <link>https://tobilehman.com/posts/armistice-day/</link>
       <pubDate>Sun, 11 Nov 2018 22:02:49 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/armistice-day/</guid>
-      <description>One hundred years ago today, the armistice was signed that ended World War 1. Now is a good time to reflect on the last century and get some perspective. Below is a chart of all the combat deaths per 100,000 people going back to the year 1900.
-One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.</description>
+      <description>One hundred years ago today, the armistice was signed that ended World War 1. Now is a good time to reflect on the last century and get some perspective. Below is a chart of all the combat deaths per 100,000 people going back to the year 1900.&#xA;One of the things that stands out about this is the sheer scale of WW1 and WW2 compared to every other war during that time.</description>
     </item>
-    
     <item>
       <title>Visualizing the Monty Hall Problem</title>
       <link>https://tobilehman.com/posts/monty-hall/</link>
       <pubDate>Thu, 25 Feb 2016 22:44:00 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/monty-hall/</guid>
-      <description>The Monty Hall Problem is a great example of why our intuitions cannot be trusted when it comes to probability. If you are not familiar with the problem, the wikipedia link above gives a good description of the problem and it’s historical significance. There are examples of Ph.D’s not getting it, it’s just counterintuitive.
-If you are still not sure why switching is the better strategy, I have made the following diagram that visualizes all of the possible outcomes and their probabilites.</description>
+      <description>The Monty Hall Problem is a great example of why our intuitions cannot be trusted when it comes to probability. If you are not familiar with the problem, the wikipedia link above gives a good description of the problem and it’s historical significance. There are examples of Ph.D’s not getting it, it’s just counterintuitive.&#xA;If you are still not sure why switching is the better strategy, I have made the following diagram that visualizes all of the possible outcomes and their probabilites.</description>
     </item>
-    
     <item>
       <title>History of Domain Names</title>
       <link>https://tobilehman.com/posts/history-dns/</link>
       <pubDate>Sun, 06 Oct 2013 20:09:01 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/history-dns/</guid>
-      <description>In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:
-RFC 1034 Domain Concepts and Facilities November 1987
-2.1. The history of domain names
-The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
+      <description>In trying to understand DNS better, I stumbled upon this little bit of history in RFC 1034:&#xA;RFC 1034 Domain Concepts and Facilities November 1987&#xA;2.1. The history of domain names&#xA;The impetus for the development of the domain system was growth in the Internet: Host name to address mappings were maintained by the Network Information Center (NIC) in a single file (HOSTS.TXT) which was FTPed by all hosts [RFC-952, RFC-953].</description>
     </item>
-    
     <item>
       <title>Time Travel Rules in Movies</title>
       <link>https://tobilehman.com/posts/time-travel-rules-movies/</link>
       <pubDate>Wed, 24 Apr 2013 15:59:10 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/time-travel-rules-movies/</guid>
-      <description>I mapped out the rules of various time travel movies:
-Here&amp;rsquo;s the source code for the graphviz file.</description>
+      <description>I mapped out the rules of various time travel movies:&#xA;Here&amp;rsquo;s the source code for the graphviz file.</description>
     </item>
-    
     <item>
       <title>Conservation Confusion Clarified</title>
       <link>https://tobilehman.com/posts/conservation-confusion-clarified/</link>
       <pubDate>Tue, 05 Jan 2010 08:49:29 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/conservation-confusion-clarified/</guid>
-      <description>Ported from my old blog through Archive.org (donate to Archive.org here!)
-I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)
-After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject.</description>
+      <description>Ported from my old blog through Archive.org (donate to Archive.org here!)&#xA;I took a kinematics class last term, and I was surprised to learn from the textbook that the law of conservation of energy was an empirical fact and not a necessary result of something more general. This means that no one has ever found a counterexample to it. (All claims of perpetual motion have been debunked)&#xA;After the term ended and I entered winter break I did what every reclusive antisocial nerd who doesn’t play video games does, I pursued my curiosity by reading alternate materials on the subject.</description>
     </item>
-    
   </channel>
 </rss>

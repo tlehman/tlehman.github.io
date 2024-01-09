@@ -7,16 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 20 Oct 2020 21:22:39 -0700</lastBuildDate><atom:link href="https://tobilehman.com/tags/stewardship/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Oct 2020 21:22:39 -0700</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/stewardship/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Book Review: Working in Public</title>
       <link>https://tobilehman.com/posts/book-review-working-in-public/</link>
       <pubDate>Tue, 20 Oct 2020 21:22:39 -0700</pubDate>
-      
       <guid>https://tobilehman.com/posts/book-review-working-in-public/</guid>
-      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.
-In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
+      <description>The story of open source software most of us believe is wrong. The production of open source software isn&amp;rsquo;t like some egalitarian commune, it&amp;rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, Nadia Eghbal captures the living history of open source software.&#xA;In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software.</description>
     </item>
-    
   </channel>
 </rss>

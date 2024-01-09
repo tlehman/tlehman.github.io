@@ -7,15 +7,14 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright 2010-2023 Tobi Lehman. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 14 Dec 2022 20:40:06 -0800</lastBuildDate><atom:link href="https://tobilehman.com/tags/fiction/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Dec 2022 20:40:06 -0800</lastBuildDate>
+    <atom:link href="https://tobilehman.com/tags/fiction/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Topology of the Tower of Babylon</title>
       <link>https://tobilehman.com/posts/topological-fiction/</link>
       <pubDate>Wed, 14 Dec 2022 20:40:06 -0800</pubDate>
-      
       <guid>https://tobilehman.com/posts/topological-fiction/</guid>
       <description>The story &amp;ldquo;The Tower of Babylon&amp;rdquo;, by Ted Chiang, is the first example of topological fiction I&amp;rsquo;ve come across that wasn&amp;rsquo;t obnoxiously about topology from the start. I&amp;rsquo;ve read fiction before, like Flatterland by Ian Stewart, that was styled after Edwin Abbot&amp;rsquo;s classic 1884 story, Flatland. Flatterland explores non-Euclidean geometry, fractal geometry, and topology, all using the classic Flatland tropes. I&amp;rsquo;m familiar with the genre. But Chiang&amp;rsquo;s &amp;ldquo;The Tower of Babylon&amp;rdquo; had the gravitas of a biblical story, with the subtlety of a proper piece of literature, and climaxed in the realization of a deep topological truth: that a world can be finite, but have no boundary.</description>
     </item>
-    
   </channel>
 </rss>
