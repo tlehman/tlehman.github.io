@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Surreal numbers">
+<meta name="twitter:description" content="Yesterday I introduced Transfinite numbers, and today is going to be surreal. The real numbers ℝ ...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="weoTyBE6VSLyaH9pTTep2IPUKk0jmcVt9PJXeHAjuDOqNAjBCpXyt3o_ISGQWZB8LXSO7Ec_zKfMP6ruccW0VQ" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Surreal numbers</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        88 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        1362 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-11-22</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>Yesterday I introduced <a href="transfinite-numbers.html">Transfinite numbers</a>, and today is going to be surreal. The real numbers ℝ are usually visualized as a number line:<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eE9UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--00e024dc68dcc7db4a17273777486b209771c255" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1c7ffd1694c4ee509bd843abfe360831132a9f68/real_number_line.jpg" filename="real_number_line.jpg" filesize="4963" width="457" height="79" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1c7ffd1694c4ee509bd843abfe360831132a9f68/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/real_number_line.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">real_number_line.jpg</span>
+      <span class="attachment__size">4.85 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br>The real number line ℝ contains 0, all the positive integers and negative integers, all the fractions (rationals), and all the irrational numbers like √2, π and e. The previous post introduced <strong>transfinite ordinal numbers</strong>, which I'll hand-wave at here to give an intuition, but read the previous post if this isn't clear to you:<br><br>0,1,2,3,...,ω,ω+1,ω+2,....,2ω,3ω,....,ω²,ω³,...<br><br>The transfinite ordinal number ω is the smallest non-finite ordinal number. It's the number that comes <em>after</em> counting up from 0, one at a time, after a countably infinite number of steps. It doesn't stop. What we will get to in this post is the definition of the surreal number line. It includes the reals, the transfinite ordinals, and as a bonus, it contains the infinitesimals, which are infinitely small numbers that Isaac Newton worked with when he invented calculus.<br><br>The source material for this post is a lovely little book, <em>Surreal Numbers,</em> by Donald E. Knuth, the Yoda of Computer Science. He's a mathematician, a devout Lutheran, a computer scientist, an artist, a perfectionist, a scholar and a gentleman. He's the kind of obsessive who set out to write a book, <em>the Art of Computer Programming</em>, in 1962, and then it ballooned into multiple volumes, and he's still not done today, but the volumes he has released so far are excellent, and no I have not finished reading them either.<br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eE56OWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--a335103f2c91d51f5ab04dde5c648f29b521d68e" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1a35407fc3dc07ee1b8518576edac6c146df35f9/surreal_numbers.jpg" filename="surreal_numbers.jpg" filesize="21710" width="288" height="445" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBGZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1a35407fc3dc07ee1b8518576edac6c146df35f9/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/surreal_numbers.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">surreal_numbers.jpg</span>
+      <span class="attachment__size">21.2 KB</span>
+  </figcaption>
+</figure></action-text-attachment><a href="https://www.youtube.com/watch?v=mPn2AdMH7UQ">Here</a> is an excellent Numberphile video interviewing D.E. Knuth about the surreal numbers.<br><br>In the book, Alice and Bill are on a deserted island and become bored with their life, and then decide to seek out something intellectually stimulating, only to discover an ancient stone with what appears to be a genesis story on it:<br><br>
+</div><blockquote>In the beginning, everything was void, and J. H. W. H. Conway began to create numbers. Conway said, "Let there be two rules which bring forth all numbers large and small. This shall be the first rule: Every number corresponds to two sets of previously created numbers, such that no member of the left set is greater than or equal to any member of the right set.<br><br>And the second rule shall be this: One number is less than or equal to another number if and only if no member of the first number's left set is greater than or equal to the second number, and no member of the second number's right set is less than or equal to the first number." And Conway examined these two rules he had made, and behold! They were very good.<br><br>And the first number was created from the void left set and the void right set. Conway called this number "zero," and said that it shall be a sign to separate positive numbers from negative numbers. Conway proved that zero was less than or equal to zero, and he saw that it was good.<br><br>And the evening and the morning were the day of zero. On the next day, two more numbers were created, one with zero as its left set and one with zero as its right set.<br><br>And Conway called the former number "one," and the latter he called "minus one." And he proved that minus one is less than but not equal to zero and zero is less than but not equal to one. And the evening</blockquote><div>
+<br>From this fragment, they recover a definition of number, and a rule for deciding which of the two numbers is bigger than the other. As a spoiler, these are the surreal numbers.<br><br>Translating it from the prose into mathematical notation:<br><br>
+</div><h1>Definition of a Surreal Number</h1><div>
+<br>A number \(x\) is a <strong>surreal number</strong> if:<br><br>$$x = (X_L, X_R) \text { where } X_L \not\geq X_R $$<br><br>So a surreal number is defined as a pair of sets of surreal numbers. This recursive definition bottoms out at 0. That is, we can start by defining 0 as:<br><br>$$0 = (\empty, \empty)$$<br><br>Where \( \empty \) is just the empty set: \( \empty = \{ \} \). Once you have 0, you can start building 1 and -1, and Alice discovers that any \( (\empty, X_R)\) or \( (X_L, \empty)\) will be a valid surreal number, so it follows that there must be infinitely many surreal numbers.<br><br>
+</div><h1>Definition of the ordering relation ≤ on the surreals</h1><div>
+<br>If \(x\) and \(y\) are surreal numbers, then we define \(x \leq y\) as:<br><br>$$x \leq y \text{ means } X_L \not\geq y \text{ and } x \not\geq Y_R$$<br><br>
+</div><h1>Recursively constructing the surreals</h1><div>Using the definitions above, Alice and Bill construct 0, 1, -1, and four mystery numbers that they call a, b, c and d:<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eU1qOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--0926f424d8e67f3e07b1fa19ba138fb4d87802c3" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cfbed255f1d218bb1ddfd8a169c036ce6a201e50/surreals_day4.jpg" filename="surreals_day4.jpg" filesize="606907" width="2946" height="1638" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cfbed255f1d218bb1ddfd8a169c036ce6a201e50/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/surreals_day4.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">surreals_day4.jpg</span>
+      <span class="attachment__size">593 KB</span>
+  </figcaption>
+</figure></action-text-attachment>They discover that b = 1/2, c = 3/4 and d = 1/4. If this construction method continues for n days, then there will be 2ⁿ surreal numbers, growing exponentially in the number of days. If you carry this out for a countably infinite number of days, that is: ω days, then you do not get the entire surreal number line, but you do get a set called the <a href="https://en.wikipedia.org/wiki/Dyadic_rational">Dyadic rational numbers</a>. These numbers have a few interesting properties, first: they all form finite binary sequences when expressed in base 2. Second: they are <a href="https://en.wikipedia.org/wiki/Dense_set">dense</a> in the reals, which means that you can construct sequences of dyadic rationals which <a href="https://en.wikipedia.org/wiki/Sequence#Limits_and_convergence">converge</a> to any real number. In this way, the Dyadic rationals can be put into sets to represent real numbers like π or e which are neither dyadic rationals nor even rational. <br><br>So after ω days we can begin constructing the reals ℝ. After ℝ though, we can go higher, for example, how do you write ω as a surreal number?<br><br>What about ω = (ℕ, ∅)?<br><br>Is it larger than any natural number n? Since n = ({n-1}, ∅) Consider the expression:<br><br>$$n \leq \omega$$<br><br>Checking the definition, we write <br><br>$$X_L = \{n-1\}, X_R = \empty, Y_L = \mathbb{N}, Y_R = \empty$$<br><br> We know that there are no natural numbers n-1 that are ≥ ω, nor are there any elements in the empty set ∅ which are ≤ n. So after all the finite integers and dyadic rationals have been constructed, the first transfinite ordinal can be constructed as ω = (ℕ, ∅)<br><br>This recursive process can keep continuing up through the heights of the transfinite ordinals, through <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html">Cantor's paradise</a>, to produce the whole glorious line (this is best visualized as a tree):<br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eU5EOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--d2e0177100a5f728fe4ab8f6e32243c849255663" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--67b8a5b00cf1beec851eaded67885dfad7d751c5/surreal_number_tree.jpg" filename="surreal_number_tree.jpg" filesize="481061" width="977" height="1205" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBIUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--67b8a5b00cf1beec851eaded67885dfad7d751c5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/surreal_number_tree.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">surreal_number_tree.jpg</span>
+      <span class="attachment__size">470 KB</span>
+  </figcaption>
+</figure></action-text-attachment> <br>The number ε (epsilon) in the tree above is a number that is greater than 0, but smaller than all positive real numbers. This is the first so-called <em>infinitesimal</em>. Infinitesimals are something that Isaac Newton used to invent calculus, but the joyless rigor police teamed up with Emperor Napoleon and Augustine-Louis Cauchy to cancel our beloved infinitesimals and replace them with limits of sequences of real numbers. It wasn't until J.H. Conway discovered the surreal numbers that the truth behind Newton's infinitesimals could be proven and integrated into Cantor's paradise. (Okay, this is not exactly how the history played out, but still, Newton was <em>right</em>, Cauchy delivered rigor, but every calculus student learning Cauchy's limit definition of the derivative has been robbed of a very intuitive understanding of calculus).<br><br>If you want to differentiate a function f(x), you can use ε and compute:<br><br>$$ f'(x) = \frac{d}{dx}f(x) = \frac{f(x + ε) - f(x)}{ε}$$<br><br>And it's actually just a fraction, where f(x + ε)-f(x) is infinitesimal, and ε is infinitesimal, and the fraction is a real number. Newton waved his hand and did this without the proofs made possible by the definition of surreal numbers, but his intuition was correct. Newton was right.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/infinity.html">#infinity</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Asking ChatGPT to explain hyperconverged infrastructure" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/chatgpt-hci-eli5/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Asking ChatGPT to explain hyperconverged infrastructure" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Asking ChatGPT to explain hyperconverged infrastructure : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Asking ChatGPT to explain hyperconverged infrastructure</h1>
+
+    
+        <div class="post-meta">Fri, Feb 10, 2023 - 1200 Words </div>
+    
+
+    <p>In my post last year, <a href="../moving-to-suse/index.html">Moving to SUSE</a> I said I would spend more time explaining what Hyperconverged Infrastructure (HCI) was.</p>
+<p>The way I would describe HCI is that it&rsquo;s a way of structuring a data center so that the storage, compute, and networking resources are all bundled into
+the same boxes, and then software abstracts over it, allowing nodes to use resources of other machines.</p>
+<p>An example of something that&rsquo;s <em>not</em> HCI is a SAN, or a Storage-Area Network. SANs bundle all the storage into a large cluster of hard drives and controllers,
+and then only focus on storage. Another counterexample is a physical network switch. That&rsquo;s a piece of hardware that only does networking. HCI could hypothetically
+be built on top of a bunch of common PCs or rack servers, and then you can expand the storage by just adding another PC to the cluster. The HCI solution, like Harvester,
+would take the node and then expose the storage and compute on that node as part of the whole cluster&rsquo;s pool of allocatable resources.</p>
+<p>Okay, that&rsquo;s HCI in a nutshell. But the last few weeks have been all about ChatGPT and LLMs (Large Language Models). I decided to ask it what HCI is:</p>
+<ul>
+<li>Me: Explain hyperconverged infrastructure like I&rsquo;m 5</li>
+<li>GPT: Hyperconverged infrastructure is like a big, strong box that helps keep all the pieces of your computer stuff together and working well. Imagine you have a bunch of toys, like blocks, cars, and dolls, and you want to keep them all in one place so you can easily find and play with them. That&rsquo;s what hyperconverged infrastructure does for computers. It puts all the important parts, like the memory, storage, and processing, into one big box so it&rsquo;s easier for the computer to find what it needs and get things done faster. And just like how you can add more toys to your toy box as you get more, you can add more parts to the hyperconverged infrastructure box as you need more computer power.</li>
+</ul>
+<p>Not bad for 5, I tried 15 next:</p>
+<ul>
+<li>Me: Explain hyperconverged infrastructure like I&rsquo;m 15</li>
+<li>GPT: Hyperconverged infrastructure is a type of data center architecture where multiple IT components, such as computing, storage, and networking, are bundled together and managed as a single entity. In other words, instead of having separate systems for storage, computing, and networking, all these components are combined into a single, integrated solution. This makes it easier to manage and maintain the infrastructure, and it can also improve performance and reduce costs compared to a traditional data center setup. Think of it like a video game console, like an Xbox or PlayStation. All the necessary components, like the CPU, GPU, RAM, and storage, are integrated into one compact unit. In the same way, hyperconverged infrastructure integrates multiple IT components into a single, streamlined solution. This allows for greater efficiency, scalability, and ease of use.</li>
+</ul>
+<p>Then I started asking it questions about HCI:</p>
+<ul>
+<li>Me: So can I make hyperconverged infrastructure out of a bunch of common PCs?</li>
+<li>GPT: Yes, in theory, you could build a hyperconverged infrastructure using a group of common PCs, but it would likely not be as efficient or reliable as a commercially-available hyperconverged infrastructure solution. Commercially-available hyperconverged infrastructure solutions are specifically designed and optimized for this purpose, and they often use specialized hardware and software to improve performance, reliability, and manageability. For example, they may use shared storage systems and high-speed networks to ensure data is accessible to all components of the infrastructure, and they may use specialized software to manage and automate tasks such as data protection and resource allocation. Building a hyperconverged infrastructure from scratch using a group of common PCs would require a significant amount of time, expertise, and effort to set up and maintain, and it may not provide the level of performance, reliability, and manageability that you would expect from a commercial solution.</li>
+<li>Me: What about an open source hyperconverged infrastructure solution?</li>
+<li>GPT: Yes, there are open source hyperconverged infrastructure solutions available that you could use to build your own hyperconverged infrastructure. These solutions typically include software that allows you to manage and automate various aspects of the infrastructure, such as storage, computing, and networking. Using an open source hyperconverged infrastructure solution can be a cost-effective way to build your own hyperconverged infrastructure, as the software is often free to use. However, like building a hyperconverged infrastructure using a group of common PCs, using an open source solution requires a significant amount of technical expertise to set up and maintain, and may not provide the same level of performance, reliability, and manageability as a commercially-available hyperconverged infrastructure solution. Examples of open source hyperconverged infrastructure solutions include Kubernetes, OpenStack, and Proxmox. If you are considering using an open source solution, it&rsquo;s important to carefully assess your technical expertise and the resources available to you before making a decision.</li>
+</ul>
+<p>I noticed it started naming actual solutions, so I asked it to compare my team&rsquo;s solution to the one it named (boldness emphasis is mine)</p>
+<ul>
+<li>
+<p>Me: Another example is Harvester, compare Harvester and OpenStack</p>
+</li>
+<li>
+<p>GPT: Harvester and OpenStack are both open source software solutions for building and managing hyperconverged infrastructure. However, they have some differences in terms of their features and capabilities. <strong>Harvester is a relatively new open source project</strong> that aims to provide a <strong>simple and easy-to-use solution</strong> for building and managing hyperconverged infrastructure. It <strong>focuses on ease of use and affordability</strong>, making it a good option for small to medium-sized businesses and organizations with limited IT resources.  OpenStack, on the other hand, is a much larger and more established open source project with a broader range of features and capabilities. It is a highly flexible and scalable platform that can be used to build large-scale, enterprise-grade data centers. OpenStack is a good option for large businesses and organizations with extensive IT resources and a need for a more flexible and customizable solution. In terms of differences, <strong>Harvester is designed to be more straightforward and easier to use, while OpenStack is designed to be more flexible and customizable</strong>. Harvester also tends to have a smaller footprint and simpler installation process compared to OpenStack. On the other hand, OpenStack offers a wider range of features and capabilities, including support for a broader range of operating systems, and more advanced networking, storage, and security features. Ultimately, the choice between Harvester and OpenStack will depend on your specific needs and requirements, and it&rsquo;s important to carefully assess your technical expertise and the resources available to you before making a decision.</p>
+</li>
+</ul>
+<p>This is not bad for an LLM (Large Language Model), I was surprised at how well it did. I&rsquo;m lookging forward to GPT-4 and the next generation of LLMs, these could be extremely useful.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/open-source.html">#open-source</a></li>
+    
+        <li><a href="../../tags/llm.html">#llm</a></li>
+    
+        <li><a href="../../tags/ai.html">#ai</a></li>
+    
+        <li><a href="../../tags/hyperconverged.html">#hyperconverged</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

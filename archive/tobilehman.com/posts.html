@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Posts" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Posts" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Posts : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" href="css/base.css"></link>
+    <link rel="stylesheet" href="css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="links.html">Links</a></li>
+            <li><a href="notes.html">Notes</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+  <ul>
+  
+    <li>
+      2023-08-03 <a href="posts/curse-ideological-dimensionality/index.html">The Curse of Ideological Dimensionality</a>
+      <span>
+        <div>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/politics.html" class="tag">#politics</a>
+        
+        <a href="tags/ai.html" class="tag">#ai</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2023-05-26 <a href="posts/fouriers-finches/index.html">Fourier&#39;s Finches: A Primer on Digital Audio</a>
+      <span>
+        <div>
+        
+        <a href="tags/deep-dive.html" class="tag">#deep-dive</a>
+        
+        <a href="tags/audio.html" class="tag">#audio</a>
+        
+        <a href="tags/birds.html" class="tag">#birds</a>
+        
+        <a href="tags/compression.html" class="tag">#compression</a>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/fourier.html" class="tag">#fourier</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2023-04-12 <a href="posts/bluesky-at-protocol/index.html">Bluesky and the AT Protocol</a>
+      <span>
+        <div>
+        
+        <a href="tags/dns.html" class="tag">#dns</a>
+        
+        <a href="tags/protocols.html" class="tag">#protocols</a>
+        
+        <a href="tags/social-media.html" class="tag">#social-media</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2023-02-10 <a href="posts/chatgpt-hci-eli5/index.html">Asking ChatGPT to explain hyperconverged infrastructure</a>
+      <span>
+        <div>
+        
+        <a href="tags/open-source.html" class="tag">#open-source</a>
+        
+        <a href="tags/llm.html" class="tag">#llm</a>
+        
+        <a href="tags/ai.html" class="tag">#ai</a>
+        
+        <a href="tags/hyperconverged.html" class="tag">#hyperconverged</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2023-01-01 <a href="posts/year-of-the-rabbit/index.html">Year of the Rabbit</a>
+      <span>
+        <div>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/synchronicity.html" class="tag">#synchronicity</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-12-14 <a href="posts/topological-fiction/index.html">The Topology of the Tower of Babylon</a>
+      <span>
+        <div>
+        
+        <a href="tags/topology.html" class="tag">#topology</a>
+        
+        <a href="tags/fiction.html" class="tag">#fiction</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-10-17 <a href="posts/suse-harvester-pci.html">PCI Device passthrough on Harvester</a>
+      <span>
+        <div>
+        
+        <a href="tags/pci.html" class="tag">#pci</a>
+        
+        <a href="tags/gpu.html" class="tag">#gpu</a>
+        
+        <a href="tags/vm.html" class="tag">#vm</a>
+        
+        <a href="tags/open-source.html" class="tag">#open-source</a>
+        
+        <a href="tags/hyperconverged.html" class="tag">#hyperconverged</a>
+        
+        <a href="tags/linux.html" class="tag">#linux</a>
+        
+        <a href="tags/kubernetes.html" class="tag">#kubernetes</a>
+        
+        <a href="tags/vfio.html" class="tag">#vfio</a>
+        
+        <a href="tags/deep-dive.html" class="tag">#deep-dive</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-10-13 <a href="posts/book-review-time-loops/index.html">Book Review: Time Loops</a>
+      <span>
+        <div>
+        
+        <a href="tags/book-review.html" class="tag">#book-review</a>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/time-travel.html" class="tag">#time-travel</a>
+        
+        <a href="tags/dreams.html" class="tag">#dreams</a>
+        
+        <a href="tags/qubits.html" class="tag">#qubits</a>
+        
+        <a href="tags/physics.html" class="tag">#physics</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-07-28 <a href="posts/k3s-cluster-pis/index.html">K3s Cluster on Raspberry Pis</a>
+      <span>
+        <div>
+        
+        <a href="tags/raspberry-pi.html" class="tag">#raspberry-pi</a>
+        
+        <a href="tags/k8s.html" class="tag">#k8s</a>
+        
+        <a href="tags/kubernetes.html" class="tag">#kubernetes</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-05-05 <a href="posts/wildcard-tls-certs-for-your-lan/index.html">Wildcard TLS Certificates for Your LAN</a>
+      <span>
+        <div>
+        
+        <a href="tags/tls.html" class="tag">#tls</a>
+        
+        <a href="tags/ssl.html" class="tag">#ssl</a>
+        
+        <a href="tags/protocols.html" class="tag">#protocols</a>
+        
+        <a href="tags/security.html" class="tag">#security</a>
+        
+        <a href="tags/how-to.html" class="tag">#how-to</a>
+        
+        <a href="tags/dns.html" class="tag">#dns</a>
+        
+        <a href="tags/kubernetes.html" class="tag">#kubernetes</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-04-15 <a href="posts/cybernetics-age-of-cloud/index.html">Cybernetics in the Age of the Cloud</a>
+      <span>
+        <div>
+        
+        <a href="tags/cybernetics.html" class="tag">#cybernetics</a>
+        
+        <a href="tags/control-theory.html" class="tag">#control-theory</a>
+        
+        <a href="tags/cloud-computing.html" class="tag">#cloud-computing</a>
+        
+        <a href="tags/k8s.html" class="tag">#k8s</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-03-29 <a href="posts/dapper-build-consistent/index.html">Dapper Build tool: consistent builds with docker</a>
+      <span>
+        <div>
+        
+        <a href="tags/docker.html" class="tag">#docker</a>
+        
+        <a href="tags/containers.html" class="tag">#containers</a>
+        
+        <a href="tags/immutability.html" class="tag">#immutability</a>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/go.html" class="tag">#go</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-03-18 <a href="posts/moving-to-suse/index.html">Moving to SUSE</a>
+      <span>
+        <div>
+        
+        <a href="tags/open-source.html" class="tag">#open-source</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/hyperconverged.html" class="tag">#hyperconverged</a>
+        
+        <a href="tags/linux.html" class="tag">#linux</a>
+        
+        <a href="tags/k8s.html" class="tag">#k8s</a>
+        
+        <a href="tags/kubernetes.html" class="tag">#kubernetes</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-28 <a href="posts/latency-numbers/index.html">Latency Numbers Every Programmer Should Know</a>
+      <span>
+        <div>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/go.html" class="tag">#go</a>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-18 <a href="posts/qubits-multiverse.html">Qubits and the Multiverse: how to 𝚐𝚒𝚝-𝚋𝚛𝚊𝚗𝚌𝚑 your life</a>
+      <span>
+        <div>
+        
+        <a href="tags/decision-theory.html" class="tag">#decision-theory</a>
+        
+        <a href="tags/physics.html" class="tag">#physics</a>
+        
+        <a href="tags/qubits.html" class="tag">#qubits</a>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/multiverse.html" class="tag">#multiverse</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-13 <a href="posts/pdfs-and-the-permanent-web/index.html">PDFs and the Permanent Web</a>
+      <span>
+        <div>
+        
+        <a href="tags/long-now.html" class="tag">#long-now</a>
+        
+        <a href="tags/standards.html" class="tag">#standards</a>
+        
+        <a href="tags/protocols.html" class="tag">#protocols</a>
+        
+        <a href="tags/web.html" class="tag">#web</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2022-02-03 <a href="posts/cweb-latex-experiment.html">CWEB LaTeX Experiment</a>
+      <span>
+        <div>
+        
+        <a href="tags/physics.html" class="tag">#physics</a>
+        
+        <a href="tags/tools.html" class="tag">#tools</a>
+        
+        <a href="tags/literate-programming.html" class="tag">#literate-programming</a>
+        
+        <a href="tags/long-now.html" class="tag">#long-now</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-12-31 <a href="posts/literate-quicksort/index.html">Literate Quicksort</a>
+      <span>
+        <div>
+        
+        <a href="tags/algorithms.html" class="tag">#algorithms</a>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/literate-programming.html" class="tag">#literate-programming</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-12-30 <a href="posts/rand-int-c/index.html">Generating random numbers in C</a>
+      <span>
+        <div>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/literate-programming.html" class="tag">#literate-programming</a>
+        
+        <a href="tags/wasm.html" class="tag">#wasm</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-12-26 <a href="posts/book-review-wheres-my-flying-car/index.html">Book Review: Where&#39;s My Flying Car?</a>
+      <span>
+        <div>
+        
+        <a href="tags/book-review.html" class="tag">#book-review</a>
+        
+        <a href="tags/future.html" class="tag">#future</a>
+        
+        <a href="tags/game-theory.html" class="tag">#game-theory</a>
+        
+        <a href="tags/technology.html" class="tag">#technology</a>
+        
+        <a href="tags/progress.html" class="tag">#progress</a>
+        
+        <a href="tags/energy.html" class="tag">#energy</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-11-21 <a href="posts/book-review-perez-trfc/index.html">Book Review: Technological Revolutions and Financial Capital</a>
+      <span>
+        <div>
+        
+        <a href="tags/economics.html" class="tag">#economics</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/book-review.html" class="tag">#book-review</a>
+        
+        <a href="tags/finance.html" class="tag">#finance</a>
+        
+        <a href="tags/future.html" class="tag">#future</a>
+        
+        <a href="tags/technology.html" class="tag">#technology</a>
+        
+        <a href="tags/progress.html" class="tag">#progress</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-11-09 <a href="posts/ens-and-dns/index.html">ENS, DNS and the future of internet names</a>
+      <span>
+        <div>
+        
+        <a href="tags/ethereum.html" class="tag">#ethereum</a>
+        
+        <a href="tags/ens.html" class="tag">#ens</a>
+        
+        <a href="tags/dns.html" class="tag">#dns</a>
+        
+        <a href="tags/protocols.html" class="tag">#protocols</a>
+        
+        <a href="tags/governance.html" class="tag">#governance</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-10-30 <a href="posts/book-review-atomic-habits/index.html">Book Review: Atomic Habits</a>
+      <span>
+        <div>
+        
+        <a href="tags/habits.html" class="tag">#habits</a>
+        
+        <a href="tags/book-review.html" class="tag">#book-review</a>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-10-26 <a href="posts/how-big-identity.html">How big should your identity be?</a>
+      <span>
+        <div>
+        
+        <a href="tags/self.html" class="tag">#self</a>
+        
+        <a href="tags/identity.html" class="tag">#identity</a>
+        
+        <a href="tags/scale.html" class="tag">#scale</a>
+        
+        <a href="tags/habits.html" class="tag">#habits</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-04-19 <a href="posts/game-theory-masks/index.html">The Game Theory of Masks</a>
+      <span>
+        <div>
+        
+        <a href="tags/covid-19.html" class="tag">#covid-19</a>
+        
+        <a href="tags/game-theory.html" class="tag">#game-theory</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2021-04-09 <a href="posts/time-travel-topology.html">The Topology of Time Travel Stories</a>
+      <span>
+        <div>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/time-travel.html" class="tag">#time-travel</a>
+        
+        <a href="tags/sci-fi.html" class="tag">#sci-fi</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/topology.html" class="tag">#topology</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-12-17 <a href="posts/time-in-physics.html">Time in Physics</a>
+      <span>
+        <div>
+        
+        <a href="tags/physics.html" class="tag">#physics</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-10-20 <a href="posts/book-review-working-in-public/index.html">Book Review: Working in Public</a>
+      <span>
+        <div>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/open-source.html" class="tag">#open-source</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/economics.html" class="tag">#economics</a>
+        
+        <a href="tags/stewardship.html" class="tag">#stewardship</a>
+        
+        <a href="tags/book-review.html" class="tag">#book-review</a>
+        
+        <a href="tags/book-review.html" class="tag">#book-review</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-09-10 <a href="posts/wildfire-west/index.html">Wildfire West</a>
+      <span>
+        <div>
+        
+        <a href="tags/climate.html" class="tag">#climate</a>
+        
+        <a href="tags/disaster.html" class="tag">#disaster</a>
+        
+        <a href="tags/causality.html" class="tag">#causality</a>
+        
+        <a href="tags/zoning.html" class="tag">#zoning</a>
+        
+        <a href="tags/economics.html" class="tag">#economics</a>
+        
+        <a href="tags/goats.html" class="tag">#goats</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-09-07 <a href="posts/compiling-c-to-wasm/index.html">Compiling C to WebAssembly</a>
+      <span>
+        <div>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/wasm.html" class="tag">#wasm</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-09-05 <a href="posts/timelapse.html">Timelapse</a>
+      <span>
+        <div>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/video.html" class="tag">#video</a>
+        
+        <a href="tags/long-now.html" class="tag">#long-now</a>
+        
+        <a href="tags/diy.html" class="tag">#diy</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-08-05 <a href="posts/borders-on-the-internet/index.html">Borders on the Internet</a>
+      <span>
+        <div>
+        
+        <a href="tags/internet.html" class="tag">#internet</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/geopolitics.html" class="tag">#geopolitics</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-06-05 <a href="posts/black-lives-matter/index.html">Black Lives Matter</a>
+      <span>
+        <div>
+        
+        <a href="tags/justice.html" class="tag">#justice</a>
+        
+        <a href="tags/race.html" class="tag">#race</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/law.html" class="tag">#law</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-05-25 <a href="posts/dunbar-random-graphs-sapiens/index.html">Dunbar&#39;s number, Random Graphs and Sapiens</a>
+      <span>
+        <div>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-04-14 <a href="posts/game-of-life/index.html">Conway&#39;s Game of Life</a>
+      <span>
+        <div>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/cellular-automata.html" class="tag">#cellular-automata</a>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-03-03 <a href="posts/sir-model-epidemiology.html">The SIR Model on novel coronavirus</a>
+      <span>
+        <div>
+        
+        <a href="tags/epidemiology.html" class="tag">#epidemiology</a>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/covid-19.html" class="tag">#covid-19</a>
+        
+        <a href="tags/coronavirus.html" class="tag">#coronavirus</a>
+        
+        <a href="tags/deep-dive.html" class="tag">#deep-dive</a>
+        
+        <a href="tags/future.html" class="tag">#future</a>
+        
+        <a href="tags/diff-eq.html" class="tag">#diff-eq</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-02-25 <a href="posts/compound-growth.html">Compound Growth 📈 </a>
+      <span>
+        <div>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/economics.html" class="tag">#economics</a>
+        
+        <a href="tags/future.html" class="tag">#future</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-02-17 <a href="posts/ads-subscriptions-and-the-missing-middle/index.html">Ads, Subscriptions, and the Missing Middle</a>
+      <span>
+        <div>
+        
+        <a href="tags/economics.html" class="tag">#economics</a>
+        
+        <a href="tags/adtech.html" class="tag">#adtech</a>
+        
+        <a href="tags/finance.html" class="tag">#finance</a>
+        
+        <a href="tags/business.html" class="tag">#business</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2020-01-21 <a href="posts/piano/index.html">Piano  ♪</a>
+      <span>
+        <div>
+        
+        <a href="tags/music.html" class="tag">#music</a>
+        
+        <a href="tags/programming.html" class="tag">#programming</a>
+        
+        <a href="tags/hobby.html" class="tag">#hobby</a>
+        
+        <a href="tags/audio.html" class="tag">#audio</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2019-12-30 <a href="posts/2010s-decade-in-review/index.html">The Twenty-Tens, a decade in review</a>
+      <span>
+        <div>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/review.html" class="tag">#review</a>
+        
+        <a href="tags/goats.html" class="tag">#goats</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2019-08-21 <a href="posts/imaginary-numbers-are-real.html">Imaginary Numbers Are Real</a>
+      <span>
+        <div>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/deep-dive.html" class="tag">#deep-dive</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2019-04-23 <a href="posts/dream-90s-wasm/index.html">The Dream of the 90s is alive in WebAssembly</a>
+      <span>
+        <div>
+        
+        <a href="tags/wasm.html" class="tag">#wasm</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2018-12-30 <a href="posts/long-now/index.html">The Long Now Foundation</a>
+      <span>
+        <div>
+        
+        <a href="tags/time.html" class="tag">#time</a>
+        
+        <a href="tags/future.html" class="tag">#future</a>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/long-now.html" class="tag">#long-now</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2018-11-30 <a href="posts/lossy-image-compression.html">Lossy Image Compression</a>
+      <span>
+        <div>
+        
+        <a href="tags/compression.html" class="tag">#compression</a>
+        
+        <a href="tags/deep-dive.html" class="tag">#deep-dive</a>
+        
+        <a href="tags/interactive.html" class="tag">#interactive</a>
+        
+        <a href="tags/fourier.html" class="tag">#fourier</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2018-11-11 <a href="posts/armistice-day/index.html">Armistice Day</a>
+      <span>
+        <div>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2016-02-25 <a href="posts/monty-hall/index.html">Visualizing the Monty Hall Problem</a>
+      <span>
+        <div>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/probability.html" class="tag">#probability</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2013-10-06 <a href="posts/history-dns/index.html">History of Domain Names</a>
+      <span>
+        <div>
+        
+        <a href="tags/history.html" class="tag">#history</a>
+        
+        <a href="tags/internet.html" class="tag">#internet</a>
+        
+        <a href="tags/dns.html" class="tag">#dns</a>
+        
+        <a href="tags/protocols.html" class="tag">#protocols</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2013-04-24 <a href="posts/time-travel-rules-movies/index.html">Time Travel Rules in Movies</a>
+      <span>
+        <div>
+        
+        <a href="tags/time-travel.html" class="tag">#time-travel</a>
+        
+        <a href="tags/movies.html" class="tag">#movies</a>
+        
+        </div>
+      </span>
+    </li>
+  
+    <li>
+      2010-01-05 <a href="posts/conservation-confusion-clarified.html">Conservation Confusion Clarified</a>
+      <span>
+        <div>
+        
+        <a href="tags/math.html" class="tag">#math</a>
+        
+        <a href="tags/physics.html" class="tag">#physics</a>
+        
+        </div>
+      </span>
+    </li>
+  
+  </ul>
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

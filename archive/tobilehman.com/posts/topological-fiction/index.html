@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="The Topology of the Tower of Babylon" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/topological-fiction/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/topological-fiction/img/torus.jpeg"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="The Topology of the Tower of Babylon" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/topological-fiction/img/torus.jpeg' />
+    
+
+    <title>
+        
+            The Topology of the Tower of Babylon : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>The Topology of the Tower of Babylon</h1>
+
+    
+        <div class="post-meta">Wed, Dec 14, 2022 - 700 Words </div>
+    
+
+    <p>The story &ldquo;The Tower of Babylon&rdquo;, by Ted Chiang, is the first example of topological fiction I&rsquo;ve come across that wasn&rsquo;t obnoxiously about topology from the start. I&rsquo;ve read fiction before, like Flatterland by Ian Stewart, that was styled after Edwin Abbot&rsquo;s classic 1884 story, Flatland. Flatterland explores non-Euclidean geometry, fractal geometry, and topology, all using the classic Flatland tropes. I&rsquo;m familiar with the genre. But Chiang&rsquo;s &ldquo;The Tower of Babylon&rdquo; had the gravitas of a biblical story, with the subtlety of a proper piece of literature, and climaxed in the realization of a deep topological truth: that a world can be finite, but have no boundary.</p>
+<p>The Tower of Babylon starts out in Babylon, in the time that the book of Genesis was recording. The protagonist was an Elamite named Hillalum. As the story went on, Hillalum saw the construction of the tower of Babel as it rose from the city of Babylon and finally hit the firmament of heaven. He and his team, in cooperation with the Egyptians, tunneled up through the granite-like firmament to try and penetrate into heaven. They hit the waters, the original waters in the book of Genesis that were separated from the waters below. They seal the tunnel and Hillalum is trapped above. He barely survives, and keeps traveling up until he reaches dry ground. Thinking he is in Heaven, he is confused when it looks like Earth. He finds another man walking nearby and asks him where it is. He says it&rsquo;s Shinar, which is on Earth. Hillalum realizes he&rsquo;s traveled in a loop, from Earth all the way up the tower, through the firmament and back to Earth, with no miracles occuring along the way. At no point did Yahweh move him from heaven to earth, he simply followed a path and it lead back to where he started.</p>
+<p>This is an example of what topologists would call a non-contractible loop. A contractible loop would be like walking in a circle on the surface of the earth. No matter how large that loop is on the surface of earth, you can continuously shrink it until it&rsquo;s finally a point. But if you traveled along Hillalum&rsquo;s path, it would not be possible to shrink it down to a point, since it &ldquo;wraps around&rdquo; the world and leads men back to earth after their technological ascent up their tower. That loop can&rsquo;t be contracted because space itself conspires to prevent it.</p>
+<p>To visualize this, Hillalum imagines a cylinder seal, but there&rsquo;s another step you can take to make a 2-dimensional space totally finite and with no boundaries, it turns the cylinder into a torus:</p>
+
+
+<figure>
+	<img src="img/torus.jpeg" alt="" />
+</figure>
+
+<p>The red path is Hillalum&rsquo;s path. It starts in Shinar, goes up a constructed tower to heaven, runs into the firmament that divides the heavens from the earth, bores through the firmament, but exits in Shinar. All the while, there are no miracles or anything that interferes with the continuity of space. This is like if a Flatlander made a large tower on a 2-dimensional torus and discovered that it lead right back to where it came from. It is in a finite 2-dimensional space, with no boundary.</p>
+<p>The world that Hillalum inhabits is finite and without boundary. It is 3-dimensional but has the same basic structure as the torus: travel far enough in one direction and return to where you started. But also has the existence of non-contractible paths. That&rsquo;s what makes it a torus and not a sphere. Spheres are such that all of their loops are contractible.</p>
+<p>The topology might not have been THE POINT, but I think it was a brilliantly told introduction to that important topological idea (finite without boundary). And the point of that idea being explored was to probe how a god could set a world up so that it&rsquo;s inhabitants didn&rsquo;t have any arbitrary boundaries. Even the firmament was like a fence. Not a real boundary, it was penetrable. But even when you penetrated the boundary, the place you ended up was right where you started.</p>
+<p>This story is currently my favorite example of this idea, of how a space can be both finite and boundless.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/topology.html">#topology</a></li>
+    
+        <li><a href="../../tags/fiction.html">#fiction</a></li>
+    
+        <li><a href="../../tags/math.html">#math</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

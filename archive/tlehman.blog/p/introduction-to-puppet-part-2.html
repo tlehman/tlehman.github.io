@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Introduction to Puppet: Part 2">
+<meta name="twitter:description" content="This post is all about running and refining the puppet manifest defined in part 1. That manifest ...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="gDxfINF9WiFXFskch6Hxi9m6FOKM0X028Ze36EPiNibr4kQpytL9tN9Bl1Raz8gvdxqwQ-h3dPzJWkp-QgQ6QA" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Introduction to Puppet: Part 2</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        34 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        400 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2024-01-02</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>This post is all about running and refining the puppet manifest defined in <a href="introduction-to-puppet.html">part 1</a>. That manifest defined a blog similar to this one.<br><br>You will need a VM before you start, here are a few options to pick from:</div><ul>
+<li>
+<a href="https://lightsail.aws.amazon.com/">AWS LightSail VM</a> (you can use any VM with a public IP available)<ul><li>
+<em><del>I'm using a 512 MB RAM, 2 vCPUs, 20 GB SSD, cheapest available.</del></em><ul><li>Update: This is not enough ram to run <a href="https://bundler.io/">bundler</a>, which is what ruby uses to install all the dependencies that <a href="https://rubyonrails.org/">rails</a> needs. Instead I am using a 2 GB RAM, 2 vCPUs, 60 GB SSD (free for first 3 months)</li></ul>
+</li></ul>
+</li>
+<li><a href="https://www.linode.com/">Linode</a></li>
+<li><a href="https://www.digitalocean.com/">DigitalOcean</a></li>
+<li>a local VM works, but only if you enable <a href="https://docs.oracle.com/en/virtualization/virtualbox/6.0/user/network_bridged.html">bridged networking</a>, so that you can visit it's IP address on your host.</li>
+</ul><h1>Steps</h1><ol>
+<li>Set up Puppet Agent host</li>
+<li>Install puppet</li>
+<li>Run 'puppet apply' and observe the results!</li>
+<li><a href="https://en.wikipedia.org/wiki/Gnomes_(South_Park)">...</a></li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Gnomes_(South_Park)">Profit</a>!</li>
+</ol><div><br></div><h1>1. Set up Puppet Agent host</h1><div>Once you have your VM up and running (I'm using LightSail), you should be able to <a href="https://en.wikipedia.org/wiki/Secure_Shell">ssh</a> into it.<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJanBuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eE1ETS9aWGh3YVhKbGMxOXBiZ1k2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--7762f5c7e9e730ed619a9baf1674c6a3c562da19" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBiQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--aad89aeb6f5b533a53a936ad2b3a833d8659f873/lightsail.png" filename="lightsail.png" filesize="59878" width="400" height="407" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBiQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--aad89aeb6f5b533a53a936ad2b3a833d8659f873/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/lightsail.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">lightsail.png</span>
+      <span class="attachment__size">58.5 KB</span>
+  </figcaption>
+</figure></action-text-attachment>
+</div><div>This will be the puppet agent that we run the manifest on.<br><br>You will want to set up a Static IP on that instance, so that you can access it from the internet.<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJanBuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eE1EUS9aWGh3YVhKbGMxOXBiZ1k2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--894c727cb19e8e88a6e2e7333ea70d4c2c1e519c" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBiUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a3ae79b9ea14dcfc850428107f77d0e6d874a26f/staticip.png" filename="staticip.png" filesize="28063" width="400" height="140" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBiUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a3ae79b9ea14dcfc850428107f77d0e6d874a26f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/staticip.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">staticip.png</span>
+      <span class="attachment__size">27.4 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br><br>
+</div><h1>2. Install puppet</h1><div>
+<br>Here is the <a href="https://www.puppet.com/docs/puppet/8/install_puppet">official documentation on installing puppet</a>, but if you are using Ubuntu 22.04 (Jammy), you can do this:</div><pre>wget https://apt.puppet.com/puppet8-release-jammy.deb
+sudo dpkg -i puppet8-release-jammy.deb
+sudo apt update
+sudo apt install puppet</pre><div><br></div><h1>3. Run 'puppet apply' and observe the results!</h1><div>
+<br>Recall the puppet manifest from part 1, I made a <a href="https://gist.github.com/tlehman/ffde3cba30ca41343445754ae829cb87">gist</a> here for convenience.<br><br>While running the puppet apply, I found an error in the manifest:</div><pre>Error: Evaluation Error: Error while evaluating a Function Call, Could not find template 'modulename/nginx.conf.erb' (file: /home/ubuntu/blog_setup.pp, line: 12, column: 16) on node ip-172-26-10-216.us-west-2.compute.internal</pre><div><br></div><div>This is because there is no <a href="https://www.puppet.com/docs/puppet/8/modules_fundamentals.html">Puppet Module</a> named 'modulename'. We will fix this in Part 3. For now this will just cover the mechanics of running puppet apply, and getting an actionable error we can fix and then get closer to the finish line.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/puppet.html">#puppet</a>
+        <a href="../tags/programming.html">#programming</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Cybernetics in the Age of the Cloud" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/cybernetics-age-of-cloud/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/cybernetics-age-of-cloud/img/cloud-cybernetics.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Cybernetics in the Age of the Cloud" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/cybernetics-age-of-cloud/img/cloud-cybernetics.png' />
+    
+
+    <title>
+        
+            Cybernetics in the Age of the Cloud : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Cybernetics in the Age of the Cloud</h1>
+
+    
+        <div class="post-meta">Fri, Apr 15, 2022 - 2000 Words </div>
+    
+
+    <p>There&rsquo;s an old saying:</p>
+<blockquote>
+<p>There is no such thing as the cloud, there&rsquo;s just someone else&rsquo;s computer.</p>
+</blockquote>
+<p>That saying is true on the object level, a cloud provider is just a service that runs your app on a bunch of computers that belong to the service owner, like AWS or Google Cloud.
+But while it&rsquo;s true that there isn&rsquo;t a cloud there, it&rsquo;s also true in the same way that there is no &ldquo;computer&rdquo; there. The operating system provides a way to control a bunch of separate devices, like a CPU, a hard disk, a WiFi antenna, etc. The operating system&rsquo;s job is to abstract over the hardware details and present the user with a view of those devices as a single unified system.</p>
+<p><a href="https://kubernetes.io">Kubernetes</a> is like an operating system for a whole cluster of computers, so instead of managing \( n \) computers as individual nodes, the user can write out the desired configuration and the Kubernetes system will monitor the state of the cluster and decide which actions it needs to do in order to get the actual state closer to the desired state.</p>
+<p>This is a closed-loop control system. The discipline of control theory grew out an interdisciplinary movement from the 1940s called Cybernetics.
+One of the first Cyberneticists, Norbert Wiener, wrote <a href="https://www.amazon.com/Cybernetics-Second-Control-Communication-Machine/dp/168422621X">Cybernetics: or Control and Communication in the Animal and the Machine</a>. The big idea in the book is that complex systems, whether biological, social or technological, are self-regulated by the feedback of information.</p>
+
+
+<figure>
+	<img src="img/cloud-cybernetics.png" alt="" />
+</figure>
+
+<p>The original reason Wiener&rsquo;s team was assembled was to develop an intelligent gun that would track a moving aircraft. The philosophical work of cybernetics was free-riding off of  cybernetics&rsquo; applied military purpose. The narrow goal of developing a theory of control systems for intelligent weapons was accomplished. The war effort also accelerated the development of computer science. Luminaries like Alan Turing and Jon von Neumann worked directly on many problems that helped the Allies win World War 2. Computers exist partly because we needed a better way to blow up our enemies.</p>
+<p><a href="https://en.wikipedia.org/wiki/Rich_Hickey">Rich Hickey</a> has a memorable quote about data and computers:</p>
+<blockquote>
+<p>If you put together two pieces of data, you get data. If you put together two computers, you get trouble.</p>
+</blockquote>
+<p>The purpose of an OS is to unify a bunch of devices.
+The trouble Hickey was referring to came from the lack of such unity when working with multiple computers.
+Network protocols succeeded in allowing the internet to be born, but they are awkward. In order to connect two computers, a
+programmer has to create a socket, bind the socket to an address and port, then accept messages, then deal with buffering, packet loss,
+errors in transmission, etc. etc. Also, depending on the topology of the network, it may not be possible for two computers to communicate directly with
+each other, so they may need a third party and possibly a custom protocol to establish a direct peer-to-peer connection.</p>
+<p>One way to unify a fleet of computers came out of Bell Labs, where Unix was created. It was called <a href="https://9p.io/plan9">Plan 9</a>. The big idea was to make everything a file. The GUI, other computers, literally everything was represented as a file. Then, if you wanted to control multiple computers, you would just simultaneously write a file to multiple locations in the filesystem.</p>
+<p>Plan 9 never took off, but one of the Plan 9 developers, <a href="https://en.wikipedia.org/wiki/Rob_Pike">Rob Pike</a>, went to Google and developed the <a href="https://golang.org">Go programming language</a>. Google then used Go in their early open source versions of <a href="https://kubernetes.io">Kubernetes</a>.</p>
+<p>The trouble of putting many computers together was a big enough problem that multiple teams of geniuses have attempted to solve it.</p>
+<p>The immense growth potential of software means that successful companies have to keep adding computers to their fleets as their customer base grows. Amazon, Google, Facebook and Uber all solved this problem in slightly different ways, but there were a few things they did in common.</p>
+<p>All these companies defined new abstractions like autoscaling groups and redundant databases that would prevent data loss when one of the computers in the fleet inevitably crapped out.</p>
+<p>Google&rsquo;s internal system, Borg, was named after the hive-mind aliens from Star Trek that identified as a single entity, annexing individuals into their hive-mind and erasing their independence.</p>
+<p><style>
+a[href*='geekwire.com']::after {
+    background-image: url("https://www.geekwire.com/favicon.ico")
+}
+</style>
+
+They open-sourced Borg and eventually <a href="https://www.geekwire.com/2016/ever-come-kooky-kubernetes-name-heptio/">settled on calling it Kubernetes</a>, because the operating the system is like driving a container ship. The Greek word for &ldquo;pilot of ship&rdquo; is κυβερνήτης (Kubernetes). The Greek word &ldquo;kuber&rdquo; is close to the english word &ldquo;governor&rdquo;, or boss. The root word of &ldquo;gubernatorial&rdquo; is &ldquo;gubernator&rdquo;, which comes from gubernare (to steer, or to govern), which comes from the Greek word kubernan.</p>
+<p>The founders of Cybernetics were studying this same kind of thing before computers, and used the same word κυβερνήτης as an inspiration. &ldquo;Cyber&rdquo; derives from &ldquo;kuber&rdquo;.</p>
+<p>The Kubernetes system that exists today is built on a really simple control loop with feedback, in the cybernetic tradition, but for a digital system, not an analog one.</p>
+<p><img src="https://firebasestorage.googleapis.com/v0/b/firescript-577a2.appspot.com/o/imgs%2Fapp%2Ftlehman%2F3a3gKrMq_8.png?alt=media&amp;token=3517d8b8-5758-4814-977d-2a223f2b886d" alt=""></p>
+<p>There&rsquo;s a great essay by Peter Asaro called <a href="https://peterasaro.org/writing/What%20happened%20to%20cybernetics.pdf">&ldquo;What happened to cybernetics?&rdquo;</a> that answers the question of why we don&rsquo;t use this term any more. If you look at a Google ngrams search of the term &ldquo;cybernetics&rdquo;, you will see it peaked around 1970.</p>
+
+
+<figure>
+	<img src="img/ngrams-cybernetics.png" alt="" />
+</figure>
+
+<blockquote>
+<p>Did it disappear because it failed in its revolutionary goals, or did it disappear because it was so successful that it is now merely taken for granted?</p>
+</blockquote>
+<p>He gives three different answers, based on what you think cybernetics <em>was</em>.</p>
+<p>The narrow view is that cybernetics is the study of negative feedback loops and their centrality in so much of nature. This narrow view is now common knowledge in engineering disciplines and the social sciences. It&rsquo;s familiar enough that it almost seems banal. If this is what you mean, then cybernetics is not a useful term because it&rsquo;s too vague, and &ldquo;negative feedback loops&rdquo;, or &ldquo;control systems&rdquo; are better because of their specificity.</p>
+<p>If you do a search for &ldquo;control theory&rdquo; on ngrams, you will see it is still widely used:</p>
+
+
+<figure>
+	<img src="img/ngrams-control.png" alt="" />
+</figure>
+
+<p>The broad view is that cybernetics was a new scientific paradigm:</p>
+<blockquote>
+<p>In its self-centered retellings of the history of science and human civilization as leading <strong>ultimately and inevitably</strong> to the science of cybernetics, it created its own mythology. The age of matter was passing away, and the age of form was coming. The age of industry, symbolized by the steam engine, was giving way to the age of information, symbolized by the computer. And where physics had promised to give humanity domination over matter and energy, <strong>cybernetics now promised to give humanity domination over information and organization</strong>. This was how cybernetics saw itself as replacing physics as the science upon which all others would be based. Cybernetics was thereby nothing if not radical and revolutionary. It sought to overthrow the entire scientific order as handed down from Newton, and with it the social and political order.</p>
+</blockquote>
+<p>This new paradigm has preceded the rise of the microprocessor, the internet, control of RNA and DNA sequences, and the broad application
+of machine learning to industry.</p>
+<blockquote>
+<p>If we accept this broad view, then we are already living in the Age of Cybernetics, though maybe we just call it the Age of Information. It does not matter that nobody practices anything called ‘cybernetics’ because everybody is always already cybernetic, everywhere and all the time.</p>
+</blockquote>
+<p>Finally, he explores the third view, the &ldquo;Internal view&rdquo;. The basic idea of self-regulating systems is a predecessor to the idea of artificial intelligence, and the political rift in the AI research community around <a href="https://web.media.mit.edu/~minsky/papers/SymbolicVs.Connectionist.html">symbolic versus connectionist</a> approaches caused funding to be diverted away from the more &ldquo;cybernetic&rdquo; of the two approaches.</p>
+<p>Asaro also goes into something he calls &ldquo;2nd order cybernetics&rdquo;, which was lead by physicist Hans van Foerster. His flavor of cybernetic thinking was was inspired by the Uncertainty Principle from physics. The observer is part of the system system being observed, and that creates fundamental limits on what can be known and controlled by a system.</p>
+<style>
+a[href*='palladiummag.com']::after {
+    background-image: url("https://palladiummag.com/wp-content/uploads/2018/09/logo-2-150x150.jpg")
+}
+</style>
+
+<p>In 1958 he started a lab doing cybernetics research, the Biological Computer Laboratory (BCL) at the University of Illinois. One of the researchers at BCL, Stafford Beer, was tapped by Chilean president Salvadore Allende to reorganize the Chilean economy around a cybernetic vision with a centralized computer, all under the direction of Allende. The CIA-orchestrated coup d&rsquo;état that installed Augusto Pinochet saw the end of this applied cybernetics project, but the legacy of that project lives on in the successful tech companies that invented the cloud. That legacy is explored beautifully in this Palladium Piece: <a href="https://palladiummag.com/2020/09/23/how-capitalist-giants-use-socialist-cybernetic-planning/">How Capitalist Giants Use Socialist Cybernetic Planning</a> by Nicolas Villarreal.</p>
+<p>The three views Asaro gives in each of his answers are delivered like Golidlocks&rsquo; porridge: too narrow, too broad, just right! The last one is nuanced and has threads of history that lead from the atomic bomb being developed all the way to Google&rsquo;s development of the cloud. It&rsquo;s the one that&rsquo;s situated in history, and tested against the real world.</p>
+<p>After exploring these three answers, Asaro concludes, cybernetics &ldquo;ate it&rsquo;s own tail&rdquo;:</p>
+<blockquote>
+<p>Just as 2nd order cybernetics brought itself into existence autopoetically, it destroyed itself by failing to believe in itself any longer.
+But it stands ready to rise from the ashes and be reborn–anywhere, anytime–through autopoetic love, or through a cocktail making robot who begins to question its own existence and motives.</p>
+</blockquote>
+<p>While this addresses the self-conscious movement of thinkers and researchers who &ldquo;do cybernetics&rdquo; he also adds that cybernetics is an ontology. An ontology is a philosophy of what exists. The ontology of Newtonian physics contains solid matter, gravitational forces, and light. The ontology of quantum field theory contains scalar fields that spread out over all of space and time.
+The ontology of cybernetics contains feedback loops of information.</p>
+<blockquote>
+<p>Fundamentally, cybernetics is a new ontology. Andy Pickering has called it an ontology of becoming. The universe is not made up of matter, particles or energy. Nor is it made up of ideas, words, and symbols. It is not numerals, or universals, or plenum, or atoms, or monads. <strong>The world is made up to feedback loops of information</strong>. Not bits and numbers, calculations and data. This is the mistake of those who underestimate information, the delusion that information is static, stable, capable of being captured and controlled. Information is dynamic, changing. Information flows. <mark>It bears reflecting on the fact that information is measured on expectation</mark> and it is the message which is least is expected which carries the most information. The most predictable message is the least informative.</p>
+</blockquote>
+<p>The ontology of cybernetics is fundamentally temporal. It is closer to &ldquo;Presentism&rdquo; than eternalism. I wrote more about this divide in the philosophy of time here at <a href="../time-in-physics.html">Time in Physics</a>.</p>
+<p><a href="https://kubernetes.io/">Kubernetes</a> has an open-ended ontology of its own. New things can be defined and added through <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/">CustomResourceDefinitions</a> (CRDs). These new resources are then automatically controlled by the main control loop. This allows people to expand the set of things that Kubernetes will handle for them.</p>
+<p>What is so exciting about Kubernetes is that it puts these cybernetic ideas to use in a way that simplifies developing software for billions of users. The standardized, open-source nature of the kubernetes distributions like k3s, microk8s and RKE means that no one company or country has a monopoly on this power. It&rsquo;s something that anyone with a little hardware and a little knowledge can put to use. It&rsquo;s both an engine of further centralization and a way of creating new centers. Those new centers are set up to grow. The next billion-user application could start with a high school kid running <a href="https://k3s.io/">k3s</a> on a raspberry pi.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/cybernetics.html">#cybernetics</a></li>
+    
+        <li><a href="../../tags/control-theory.html">#control-theory</a></li>
+    
+        <li><a href="../../tags/cloud-computing.html">#cloud-computing</a></li>
+    
+        <li><a href="../../tags/k8s.html">#k8s</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Conway&#39;s Game of Life" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/game-of-life/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Conway&#39;s Game of Life" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Conway&#39;s Game of Life : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Conway&#39;s Game of Life</h1>
+
+    
+        <div class="post-meta">Tue, Apr 14, 2020 - 500 Words </div>
+    
+
+    <p><a href="https://en.wikipedia.org/wiki/John_Horton_Conway">John H. Conway</a> has passed away, his contributions to math are too numerous for me to list in this post. What I wanted to explore in this post is one of his &ldquo;recreational math&rdquo; contributions: The Game of Life.</p>
+<p>If you haven&rsquo;t heard, It&rsquo;s this zero player computer &ldquo;game&rdquo;:
+
+
+<figure>
+	<img src="img/glider-gun.gif" alt="" />
+</figure>
+
+Not this multi-player board game:
+
+
+<figure>
+	<img src="img/board-game-of-life.jpg" alt="" />
+</figure>
+</p>
+<p>I scare-quoted <em>game</em> because there are no actual players. It is an example of a <a href="https://en.wikipedia.org/wiki/Cellular_automaton">cellular automaton</a>, which is a simple program that evolves over time according to a fixed, simple set of rules. To play the game, start with a rectangular grid, each square on the grid can be &ldquo;alive&rdquo; or &ldquo;dead&rdquo;, represented with a color. Conventionally, black is alive and white is dead.</p>
+<p>Those rules can be represented like this:</p>
+<ul>
+<li>Any live cell with two or three live neighbors survives.</li>
+<li>Any dead cell with three live neighbors becomes a live cell.</li>
+<li>All other live cells die in the next generation. Similarly, all other dead cells stay dead.</li>
+</ul>
+<p>So these three rules, plus an initial state, will determine the infinite future of the game. Let&rsquo;s implement this in JavaScript and then sit back and watch!</p>
+<p>Conway originally implemented this game on a Go board, but running it on a computer lets us see more patterns over a longer time period. This is where the true complexity emerges from these simple rules.</p>
+<p>I will make the grid with HTML5 Canvas, I used the same technology when creating my <a href="../imaginary-numbers-are-real.html">imaginary number explainer last year</a>.</p>
+<canvas class="ca-life" id="game-of-life1" data-cells-wide="50" data-cells-high="50">
+</canvas>
+<p>Above is a randomly generated initial condition, with 20% of the cells being alive. To start the game, click this button:</p>
+<p><input type="button" onclick="start()" value="Start"></input>
+<input type="button" onclick="stop()" value="Stop"></input>
+<input type="button" onclick="randomize()" value="Randomize"></input></p>
+<p>Notice the patterns that emerge, all of this arises from three simple rules. The game is not as complicated as real life. However, it contains in it a lesson about real life: <strong>even if you have complete control over the present, you will probably lose control of the future</strong>. I can conclude this because the rules underlying the universe are more complicated than life. If <a href="https://writings.stephenwolfram.com/2020/04/finally-we-may-have-a-path-to-the-fundamental-theory-of-physics-and-its-beautiful/">Stephen Wolfram is right</a>, then the rules underlying the universe might <em>actually</em> be cellular automaton rules.</p>
+<p>In a later post I would love to explore Conway&rsquo;s Surreal numbers, they are numbers that contain the real numbers as well as the infinite numbers and the infinitesimal numbers.</p>
+<p>For now I wish you safety, health and delightful things to think about as many of us shelter in place. Best part about a zero-player game is that you don&rsquo;t need any players around, great for quarantine.</p>
+<div class="yellow-note">
+<b>Notes on implementation</b>:
+The state of the grid is a pair of Int8Arrays. To evolve the game forward one time step, I loop through one, update the other, and then swap them. Finally there is a render function, which takes the current Int8Array and draws it as a bunch of squares (1 = Black, 0 = White).
+The code is <a href="game-of-life.js">here</a>
+</div>
+
+<script src="game-of-life.js">
+</script>
+
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/math.html">#math</a></li>
+    
+        <li><a href="../../tags/cellular-automata.html">#cellular-automata</a></li>
+    
+        <li><a href="../../tags/programming.html">#programming</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

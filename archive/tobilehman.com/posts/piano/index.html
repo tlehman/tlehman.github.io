@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Piano  ♪" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/piano/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Piano  ♪" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Piano  ♪ : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Piano  ♪</h1>
+
+    
+        <div class="post-meta">Tue, Jan 21, 2020 - 600 Words </div>
+    
+
+    <p>To start the decade off right, I decided to learn the piano. I am paying for lessons from <a href="https://www.ethanmaier.com/about">Ethan Maier</a>, he&rsquo;s excellent, I&rsquo;ve been enjoying learning from him and practicing.</p>
+<p>Since I only have a piano at home, I wanted to make one that I could use on the go. Here is the simplest way I could think of to make a portable piano program:</p>
+<p>There is an standard for simple web graphics called <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a>, which lets you define custom shapes that show up in any web browser. For example, here&rsquo;s a rectangle that looks like a piano key:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span></code></pre></div><p>which renders as:</p>
+<div style="width: 100%; scroll-direction: horizontal; overflow-x: auto">
+<svg width="400" height="200">
+<rect width="50" height="200" x="0" fill="white" stroke="black" ></rect>
+</svg>
+</div>
+<p>If you look at all the attributes like <code>x</code>, <code>fill</code>, <code>width</code>, you can probably guess how to draw the rest of the piano keys. Starting with the eight keys in an octave, and the five flat keys (the ones that are usually black):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;svg</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;400&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;0&#34;</span>   <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;100&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;150&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;250&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;300&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- flat keys --&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;37&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;87&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;137&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;237&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;287&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/svg&gt;</span>
+</span></span></code></pre></div><p>which renders as this beautiful piano:</p>
+<div style="width: 100%; scroll-direction: horizontal; overflow-x: auto">
+<svg width="400" height="200">
+  <rect x="0"   fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="50" fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="100" fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="150" fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="200" fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="250" fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="300" fill="white" stroke="black" width="50" height="200"></rect>
+  <rect x="37" y="0" fill="black" width="25" height="112"></rect>
+  <rect x="87" y="0" fill="black" width="25" height="112"></rect>
+  <rect x="137" y="0" fill="black" width="25" height="112"></rect>
+  <rect x="237" y="0" fill="black" width="25" height="112"></rect>
+  <rect x="287" y="0" fill="black" width="25" height="112"></rect>
+</svg>
+</div>
+<p>All we need now is some sound!</p>
+<p>To start, we need an <code>AudioContext</code>, which is part of the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">audioContext</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> (window.<span style="color:#a6e22e">AudioContext</span> <span style="color:#f92672">||</span> window.<span style="color:#a6e22e">webkitAudioContext</span>);
+</span></span></code></pre></div><p>Then we need a gain node, which represents a change in volume, we want this node to connect to our <code>AudioContext</code> and make some noise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">masterGainNode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">audioContext</span>.<span style="color:#a6e22e">createGain</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">masterGainNode</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">audioContext</span>.<span style="color:#a6e22e">destination</span>);
+</span></span></code></pre></div><p>The function <code>playTone(freq)</code>, defined below, will use the <code>AudioContext</code> to create an oscillator.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">playTone</span>(<span style="color:#a6e22e">freq</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">osc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">audioContext</span>.<span style="color:#a6e22e">createOscillator</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">osc</span>.<span style="color:#a6e22e">connect</span>(<span style="color:#a6e22e">masterGainNode</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">sineTerms</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Float32Array</span>([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>]);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cosineTerms</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Float32Array</span>(<span style="color:#a6e22e">sineTerms</span>.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">customWaveform</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">audioContext</span>.<span style="color:#a6e22e">createPeriodicWave</span>(<span style="color:#a6e22e">cosineTerms</span>, <span style="color:#a6e22e">sineTerms</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">osc</span>.<span style="color:#a6e22e">setPeriodicWave</span>(<span style="color:#a6e22e">customWaveform</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">osc</span>.<span style="color:#a6e22e">frequency</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">freq</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">osc</span>.<span style="color:#a6e22e">start</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">osc</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Putting it all together, let&rsquo;s play a C note, this one is at 523.251 Hz:</p>
+<script>
+var audioContext = new (window.AudioContext || window.webkitAudioContext);
+var masterGainNode = audioContext.createGain();
+masterGainNode.connect(audioContext.destination);
+function playTone(freq) {
+  var osc = audioContext.createOscillator();
+  osc.connect(masterGainNode);
+  sineTerms = new Float32Array([0, 0, 1, 0, 1]);
+  cosineTerms = new Float32Array(sineTerms.length);
+  customWaveform = audioContext.createPeriodicWave(cosineTerms, sineTerms);
+  osc.setPeriodicWave(customWaveform);
+  osc.frequency.value = freq;
+  osc.start();
+  setTimeout(function() {
+    osc.stop();
+  }, 500);
+  return osc;
+}
+</script>
+<p><input type="button" onClick="playTone(523.251130601197269)" value="Play C note"></input></p>
+<p>We can wire this up to the SVG piano above by setting each key it&rsquo;s unique frequency:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;svg</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;400&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- F note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(349.2282)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- G note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(391.9954)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- A note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;100&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(440.0000)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- B note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;150&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(493.8833)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- C note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(523.2511)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- D note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;250&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(587.3295)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- E note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;300&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(659.2551)&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#a6e22e">stroke=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;50&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- F# note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;37&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(369.9944)&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- G# note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;87&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(415.3046)&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- A# note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;137&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(466.16376)&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- C# note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;237&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(554.3652)&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">&lt;!-- D# note --&gt;</span><span style="color:#f92672">&lt;rect</span> <span style="color:#a6e22e">x=</span><span style="color:#e6db74">&#34;287&#34;</span> <span style="color:#a6e22e">onClick=</span><span style="color:#e6db74">&#34;playTone(622.2539)&#34;</span> <span style="color:#a6e22e">y=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">fill=</span><span style="color:#e6db74">&#34;black&#34;</span> <span style="color:#a6e22e">width=</span><span style="color:#e6db74">&#34;25&#34;</span> <span style="color:#a6e22e">height=</span><span style="color:#e6db74">&#34;112&#34;</span><span style="color:#f92672">&gt;&lt;/rect&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/svg&gt;</span>
+</span></span></code></pre></div><h2 id="the-end-result">The end result</h2>
+<p>It doesn&rsquo;t sound as glorious as the real thing, but that&rsquo;s because it&rsquo;s just a simple sine wave oscillator playing each tone. As I learn more about audio, I&rsquo;ll improve this. For now, we will have this humble web-piano:</p>
+<div style="width: 100%; scroll-direction: horizontal; overflow-x: auto">
+<svg width="400" height="200">
+  <!-- F note --><rect x="0" onClick="playTone(349.2282)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- G note --><rect x="50" onClick="playTone(391.9954)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- A note --><rect x="100" onClick="playTone(440.0000)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- B note --><rect x="150" onClick="playTone(493.8833)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- C note --><rect x="200" onClick="playTone(523.2511)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- D note --><rect x="250" onClick="playTone(587.3295)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- E note --><rect x="300" onClick="playTone(659.2551)" fill="white" stroke="black" width="50" height="200"></rect>
+  <!-- F# note --><rect x="37" onClick="playTone(369.9944)" y="0" fill="black" width="25" height="112"></rect>
+  <!-- G# note --><rect x="87" onClick="playTone(415.3046)" y="0" fill="black" width="25" height="112"></rect>
+  <!-- A# note --><rect x="137" onClick="playTone(466.16376)" y="0" fill="black" width="25" height="112"></rect>
+  <!-- C# note --><rect x="237" onClick="playTone(554.3652)" y="0" fill="black" width="25" height="112"></rect>
+  <!-- D# note --><rect x="287" onClick="playTone(622.2539)" y="0" fill="black" width="25" height="112"></rect>
+</svg>
+</div>
+<p>The only thing I love more than learning new things is synthesizing new things, this has been really fun to write, code and play, and I hope you enjoyed reading it!</p>
+<p>(These note frequencies are borrowed from this great <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Simple_synth">Mozilla tutorial</a>)</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/music.html">#music</a></li>
+    
+        <li><a href="../../tags/programming.html">#programming</a></li>
+    
+        <li><a href="../../tags/hobby.html">#hobby</a></li>
+    
+        <li><a href="../../tags/audio.html">#audio</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

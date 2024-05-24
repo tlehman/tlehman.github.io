@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="ENS, DNS and the future of internet names" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/ens-and-dns/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/ens-and-dns/img/ens-dns.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="ENS, DNS and the future of internet names" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/ens-and-dns/img/ens-dns.png' />
+    
+
+    <title>
+        
+            ENS, DNS and the future of internet names : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>ENS, DNS and the future of internet names</h1>
+
+    
+        <div class="post-meta">Tue, Nov 9, 2021 - 400 Words </div>
+    
+
+    <p>Today <a href="https://twitter.com/nileshtrivedi/status/1458002617439825920">a DAO just distributed 1.5 billion dollars worth of ENS tokens</a>. They were distributed to owners of .eth domains. DAO is short for &ldquo;Decentralized Autonomous Organization&rdquo;.</p>
+<p><strong>What is a DAO?</strong> A DAO is sort of like a corporation, but it&rsquo;s stored on the Ethereum blockchain. <a href="https://www.wyoleg.gov/Legislation/2021/SF0038">Wyoming passed a DAO law</a> that links on-chain DAOs to real corporations. The corporation that currently manages the Domain Name Service (DNS) is <a href="https://www.icann.org/">ICANN</a>.</p>
+<p><strong>What is DNS again?</strong> DNS is the system that translates names like &ldquo;google.com&rdquo; to IP addresses like 142.250.189.238
+Remember when Facebook went down for 6 hours last month? That was a DNS failure. When autocratic regimes want to block the internet? They do it by blocking it at the DNS level. Like when <a href="https://www.cnet.com/tech/services-and-software/google-confirms-turkey-is-blocking-its-dns-service/">Turkey blocked Google&rsquo;s DNS server</a>, 8.8.8.8 back in 2014.</p>
+<p><strong>Just what is ENS and how is it different from DNS?</strong> ENS is the Ethereum Name Service. Instead of registering the mapping between names and IP addresses with an ICANN-approved top-level-domain like .com, you can register a name ending in .eth in the public blockchain. The public blockchain is immutable, so it can&rsquo;t be accidentally deleted, nor can it be censored by tyrants.</p>
+<p><strong>What are the $ENS tokens that just got airdropped today?</strong> The tokens can be sold, or used for governance of the ENS protocol. In exchange for voting, .eth domain holders who bought before October 31st are eligible to <a href="https://claim.ens.domains/">claim their ENS tokens</a>. Using these tokens, you can vote on the constitution, vote on other protocol design decisions, and also get rewards for registering further domains.</p>
+<p><strong>How was the $3 billion total of $ENS tokens distributed?</strong></p>
+<ul>
+<li>50% Community Treasury</li>
+<li>25% Airdropped to early adopters</li>
+<li>19% to Core Contributors</li>
+<li>6% combined to other (see <a href="https://twitter.com/ensdomains/status/1455754478477619200">tweet</a>)</li>
+</ul>
+<p>This is an experiment in protocol governance that pays open source contributors and early adopters. If this project succeeds, then it will be an alternative to DNS on the web, <a href="https://www.theguardian.com/technology/2016/mar/14/icann-internet-control-domain-names-iana">free of the politics of ICANN</a>.</p>
+<p><style>
+a[href*='cnet.com']::after {
+    background-image: url("https://www.cnet.com/a/fly/bundles/cnetcss/images/core/icon/favicon-16.png")
+}
+</style>
+
+<style>
+a[href*='ens.domains']::after {
+    background-image: url("https://claim.ens.domains/favicon-16x16.png")
+}
+</style>
+</p>
+
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+    class="twitter-share-button"
+    data-show-count="false">Tweet</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/ethereum.html">#ethereum</a></li>
+    
+        <li><a href="../../tags/ens.html">#ens</a></li>
+    
+        <li><a href="../../tags/dns.html">#dns</a></li>
+    
+        <li><a href="../../tags/protocols.html">#protocols</a></li>
+    
+        <li><a href="../../tags/governance.html">#governance</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

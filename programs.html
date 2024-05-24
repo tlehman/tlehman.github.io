@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tobi@host:~/programs</title>
+    <style>
+      body {
+          background-color: black;
+          color: white;
+          font-family: monospace;
+	  font-size: 20px;
+	  line-height: 1.3em;
+          margin: 0;
+          padding: 20px;
+      }
+
+      .prompt {
+          display: flex;
+          align-items: center;
+      }
+
+      .prompt::before {
+          content: "tobi@host:~/programs$ ";
+          white-space: pre;
+      }
+
+      .cursor {
+          width: 10px;
+          height: 20px;
+          background-color: white;
+          margin-left: 5px;
+          animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+          from, to {
+              background-color: transparent;
+          }
+          50% {
+              background-color: white;
+          }
+      }
+
+      .links {
+          margin-top: 10px;
+      }
+
+      .links a {
+          display: block;
+          color: lightblue;
+          text-decoration: none;
+      }
+
+      .links a:hover {
+          text-decoration: underline;
+      }
+    </style>
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./img/android-chrome-512x512.png">
+  </head>
+  <body>
+    <div class="prompt">
+      <span class="input">ls</span>
+    </div>
+    <div class="links">
+      <a href="https://github.com/tlehman/pls">pls.clj</a>
+      <a href="https://github.com/tlehman/pcidevices">pcidevices.go</a>
+      <a href="https://github.com/tlehman/redis-mass">redis_protocol.go</a>
+      <a href="https://github.com/tlehman/ccc">ccc.go</a>
+      <a href="https://gist.github.com/tlehman/534cf9fbb1864d2a7c29396e25238f3b">roam-api.sh</a>
+      <a href="https://github.com/tlehman/dist">dist.c</a>
+      <a href="https://gist.github.com/tlehman/c850d814b7e50b852db6e72aa3c07938">threading.c</a>
+      <a href="https://github.com/tlehman/snappie">snappie.c</a>
+      <a href="https://gist.github.com/tlehman/909d60393457a484294890370c059c20">backtracking_mkp.c</a>
+      <a href="https://gist.github.com/tlehman/ab4c06f86be5a12d1870">balance.rb</a>
+      <a href="https://github.com/tlehman/fmtnum">fmtnum.rb</a>
+      <a href="https://gist.github.com/tlehman/d1faa9f2bd3c8270f04cc0746c200ece">units.cpp</a>
+      <a href="https://github.com/tlehman/mac-to-win-cpp">cross-compile-boost.cpp</a>
+      <a href="https://github.com/tlehman/matrix_adt">matrix-adt.cpp</a>
+      <a href="https://github.com/tlehman/sudoku_cpp">sudoku.cpp</a>
+      <a href="https://github.com/tlehman/PlayingCards">PlayingCards.java</a>
+      <a href="https://github.com/tlehman/gogame">gogame.rs</a>
+      <a href="https://github.com/tlehman/tapl">tapl.rs</a>
+      <a href="https://github.com/tlehman/go-websocket">go_game.js</a>
+      <a href="https://github.com/tlehman/mandelbrot">mandelbrot.go</a>
+      <a href="https://github.com/tlehman/fractals-elm">fractals.elm</a>
+      <a href="https://github.com/tlehman/sicp-exercises">sicp-exercises.scm</a>
+      <a href="./archive/tobilehman.com/posts/piano/index.html">piano♪.html</a>
+      <a href="https://github.com/tlehman/cincludegraph">cincludegraph.py</a>
+    </div>
+    <div class="prompt">
+      <div class="cursor"></div>
+    </div>
+  </body>
+</html>

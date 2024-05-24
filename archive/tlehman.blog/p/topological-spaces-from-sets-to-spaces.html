@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Topological spaces: from sets to spaces">
+<meta name="twitter:description" content="What is the simplest kind of space you can define in mathematics? It helps to start with a famili...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="JhvhMFEOlfabhqC4gL3KJtN7lSb_fbwfEXdQSBxlslhNxfo5SqEyYxPR_vBd0_OCfdsxh5vbtdUpuq3eHYO-Pg" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Topological spaces: from sets to spaces</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        50 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        2058 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-12-22</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>What is the simplest kind of space you can define in mathematics? It helps to start with a familiar example of a space, like the one used in Euclidean geometry. The 2-dimensional Euclidean space can be modeled with ℝ², a Cartesian plane built out of two copies of ℝ, the real numbers. Here's an image of ℝ²:<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4M05UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--3b27de8b9bc6d001d36ee3427be289a69aedf50c" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--408fbcb0a37ad81805d725682a2e0ab97de76114/R2.png" filename="R2.png" filesize="55656" width="400" height="397" previewable="true" presentation="gallery" caption="ℝ²"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--408fbcb0a37ad81805d725682a2e0ab97de76114/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/R2.png">
+
+  <figcaption class="attachment__caption">
+      ℝ²
+  </figcaption>
+</figure></action-text-attachment><br>What's wrong with just using ℝ²? Well it turns out that there is a <em>bunch </em>of baggage that comes with working in this space. Defining the distance between two points u,v ∈ ℝ² uses the Pythagorean theorem: <br><br>$$d(u,v) = \sqrt{(u_x - v_x)^2 + (u_y - v_y)^2}$$<br><br>This is only one many possible <a href="https://en.wikipedia.org/wiki/Metric_space">metrics</a> we can define on the set of points ℝ². Another example of a metric on ℝ² would be the taxicab metric, this measures the distance between u and v by measuring the x-offset and the y-offset. This red path below is an example of a straight path in the taxicab metric:<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4M05qOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--402542816e7cea644429f54bf2e24f1a42224c4b" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7d9f84b4795dbe1f9ecc02648e7bcdeb88df3aba/R2_taxicab.png" filename="R2_taxicab.png" filesize="64165" width="400" height="408" previewable="true" presentation="gallery" caption="ℝ² with taxicab metric"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7d9f84b4795dbe1f9ecc02648e7bcdeb88df3aba/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/R2_taxicab.png">
+
+  <figcaption class="attachment__caption">
+      ℝ² with taxicab metric
+  </figcaption>
+</figure></action-text-attachment>
+</div><div>Another name for the taxicab metric for ℝⁿ is the \(\ell^1\)-norm. Technically, you use a norm to define a metric, but the ideas are closely related. The <a href="https://www.cs.cornell.edu/courses/cs4780/2015fa/web/lecturenotes/lecturenote02.html">k-nearest-neighbors algorithm in machine learning</a> makes use of this metric.<br><br>Okay, so we can take ℝⁿ and equip it with two different metrics, which changes the geometry, but what <em>doesn't </em>change? Topology studies the things that don't change about a space when you continuously deform it's geometry. For example, consider a "lower case i" shape in ℝ², if you imagine continuously deforming the metric so that it turns into the  symbol:</div><div> <br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4NU1UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--331c2fb7f582c383df0f549c34d486a0000262ce" content-type="image/gif" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBZQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3eb70291a76393957c4571cc5cae6b7900f4971/homotopy.gif" filename="homotopy.gif" filesize="335310" width="405" height="517" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--gif">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBZQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3eb70291a76393957c4571cc5cae6b7900f4971/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJWjJsbUJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--d1654caa20d211e5bed1d962f22a4f5e30301198/homotopy.gif">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">homotopy.gif</span>
+      <span class="attachment__size">327 KB</span>
+  </figcaption>
+</figure></action-text-attachment>
+</div><div>
+<br>This transformation is an example of a <a href="https://en.wikipedia.org/wiki/Homotopy">homotopy</a>, it is a topology-preserving transformation that relates all the spaces in the animation as being "topologically equivalent". (Okay, technically a <a href="https://en.wikipedia.org/wiki/Homeomorphism">homeomorphism</a> is the full equivalence, but homotopy is a useful tool in figuring out which spaces <em>aren't</em> homeomorphic).<br><br>Homotopy also makes an appearance in type theory, by way of HoTT (<a href="https://homotopytypetheory.org/book/">Homotopy Type Theory</a>). You can also use homotopy to study a <a href="group-theory-rubiks-cubes-and-the-standard-model.html">group</a> that is an invariant of a topological space. But let's get back to topology, what even is it?<br><br>
+</div><h1>Definition of a topology</h1><div>
+<br>So what's the definition of a topology? We need points. So there's a set \(X\), the elements of which we call <strong>points</strong>. What about distance? Topology can be invariant under changes in the distance between points, so we need a weaker notion of distance. We need some way of saying that some points are "closer" to a point than other points, without necessarily bringing in the baggage of the real numbers and metric functions. <br><br>This weaker notion of distance turns out to be characterized by the notion of an <strong>open set</strong>, but before I go write down the definition of open set, I first want to motivate it. When I first read the definition of open sets as a drunk undergraduate, it made no sense. The second time, as a sober undergraduate, it still made no sense. Only after I took an advanced calculus class did it finally click. The key was understanding the role of continuous functions and how they are defined.<br><br>
+</div><h1>the role of continuous functions in topology</h1><div>
+<br>The definition of a topology is also the simplest structure you can impose on two sets X and Y which would give meaning to the notion of continuity of a function \( f : X \to Y \). To make this concrete, consider the function \(f(x) = x^2\), a quadratic function. Here is it's plot:<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4M09EOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--f62cd27a0248ebcd98b16bcfb4280e7b3bb8cdd0" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1d387eed951981901ccf6c5936430b1811709ca7/R2_x2.png" filename="R2_x2.png" filesize="66364" width="400" height="409" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBVdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1d387eed951981901ccf6c5936430b1811709ca7/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/R2_x2.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">R2_x2.png</span>
+      <span class="attachment__size">64.8 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br>How do we prove that the function \(f(x) = x^2\) is continuous in advanced calculus? Typically, you prove continuity <em>at a point</em>, so pick a point \(x_0 \in \mathbb{R}\), then we will get into epsilons and deltas.<br><br>
+</div><h1>proof of the continuity of \(f(x) = x^2\) at the point \(x_0\)</h1><div>
+<br>The basic idea behind the ε-δ-proof (epsilon-delta proof) of continuity is this: a function \(f\) is continuous at a point \(x_0\) if small differences in the input near \(x_0\) translate to small differences in the output near \(f(x_0)\).<br><br>To make this more precise:</div><ol>
+<li>The proof starts with a value ε &gt; 0 (it can be arbitrarily small, but must be finite, no <a href="surreal-numbers.html">infinitesimals</a>)</li>
+<li>Next, you need to show that there exists a δ &gt; 0 such that:<ol><li>For every \( | x - x_0 | &lt; \delta \), it is also true that: \( | f(x)-f(x_0) | &lt; \epsilon \)</li></ol>
+</li>
+</ol><div>
+<br>Looking at the proof requirements above, what you need to do to show continuity of f at \(x_0\) is to start by constraining the output to a small ε-neighborhood of points, and then show that there exists a δ-neighborhood in the input space that keeps the output bounded inside the ε-neighborhood. <br><br>In other words, bound the output, then prove there is an input that keeps it within those bounds.<br><br>
+</div><h1>The role of open intervals in proving the continuity of \(f\)</h1><div>
+<br>Let's visualize this:<br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4M09UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--0cc60e5e972b8f28276a706171ce0281e7a1dada" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3a9362fd8b6ad2a5ff983c398a8e2b82124534a/neighborhoods.png" filename="neighborhoods.png" filesize="26310" width="500" height="281" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b3a9362fd8b6ad2a5ff983c398a8e2b82124534a/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/neighborhoods.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">neighborhoods.png</span>
+      <span class="attachment__size">25.7 KB</span>
+  </figcaption>
+</figure></action-text-attachment>
+</div><div>The interval \( (x_0 - \delta, x_0 + \delta) \) is the δ-neighborhood, and the interval \( (f(x_0) - \epsilon, f(x_0) + \epsilon) \) is the ε-neighborhood. Notice that the neighborhoods are <a href="https://mathworld.wolfram.com/OpenInterval.html">open intervals</a>. In ℝ with the standard topology, an interval is open if it doesn't include it's boundary points. Why does openness matter? The reason is that open intervals have the property that every point in it has a smaller open interval around it. Open intervals all the way down. This openness property can be generalized in terms of pure sets. This turns out to be useful in a huge category of spaces that are weirder and way less well-behaved than ℝⁿ.<br><br>
+</div><h1>Definition of a topology in terms of open sets</h1><div>
+<br>A topological space is a pair \( (X, \tau) \) where \(X\) is a set and \(\tau \subset P(X)\) is a collection of subsets of \(X\), subject to the following constraints:<br><br>
+</div><ol>
+<li>Empty set and whole set are open: \( \empty, X \in \tau \)</li>
+<li>Finite intersections of open sets are open: \( \forall U,V \in \tau: U \cap V \in \tau \)</li>
+<li>Intersections of open sets are open: if \( \{ U_\alpha \} \) is any collection of open sets in \(\tau\) (even <a href="transfinite-numbers.html">transfinitely many</a>), then the union is open \( \cup_\alpha U_\alpha \in \tau\)</li>
+</ol><div>
+<br>If you noticed from context, I am using "open" to mean the set is in \(\tau\). You can prove that open intervals of real numbers are open by this definition, if you want. But these three axioms can be used with any sets and they work as a basis for studying continuous functions on much weirder spaces.<br><br>Even finite sets like \( \{1,2,3\} \) can be equipped with topologies, this image shows some \( \tau\)s that are valid and two that are not: <br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4NE1EOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--bba8239b1da07e1840e916c82ad960a04c7bb5c1" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ae661b4176d8ab0f986889da5b8be1204911c0d9/fintop.png" filename="fintop.png" filesize="72910" width="400" height="354" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ae661b4176d8ab0f986889da5b8be1204911c0d9/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/fintop.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">fintop.png</span>
+      <span class="attachment__size">71.2 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br><br>This definition of open sets is so basic it's hard to see how it has anything at all to do with space. But think about our ε-δ-proof above, open intervals are essential. Using this more abstract definition of open sets, we can define continuity in a general topological space:<br><br>
+</div><h1>Definition of continuous function in a general topological space</h1><div>
+<br>Let \( (X, \tau) \) and \( (Y, \tau') \) be two topological spaces, and \( f : X \to Y \) is a function between them.<br><br>Then, \(f\) is continuous if for every open set \( U \in \tau' \) in Y, the pre-image \( f^{-1}(U) \in \tau \) is open in X. The pre-image  \( f^{-1}(U) \) is just the set of all points \( x\in X \) such that \( f(x) \in U \). Now, it turns out that this is equivalent to the ε-δ-proof in the case of real numbers! You can see this because the ε-neighborhoods are special cases of the open \(U\) sets in \(Y\). <br><br>All you need is open sets. And openness is recursively defined, where \( \empty, X \in \tau \) are open, then finite intersections and arbitrary unions of open sets are open. The rest can be freely chosen, so you can add open sets to a topology to get a "finer" topology, or remove open sets to get a "coarser" topology, but you need to make sure you are satisfying (2.) and (3.) in order for it to still be a topology.<br><br>
+</div><h1>Definition of homeomorphism</h1><div>
+<br>Two topological spaces  \( (X, \tau) \) and \( (Y, \tau') \) are homemorphic if there exists an invertible function <br>$$ f:X\to Y \text{ and }  f^{-1}:Y \to X $$  <br>where both \( f \) and \( f^{-1} \) are continuous.<br><br>This homeomorphism is like saying  \( (X, \tau) \) and \( (Y, \tau') \) are the same space.<br><br>
+</div><h1>Relationship to group theory</h1><div>
+<br>If you've read <a href="group-theory-rubiks-cubes-and-the-standard-model.html">Group Theory, Rubik's Cubes, and the Standard Model</a>, or know anything about group theory, you might be interested in this part. Given a topological space \( (X, \tau) \), and a point \(x_0 \in X\), you can define a group \( \pi_1(X, x_0)\) called the <a href="https://en.wikipedia.org/wiki/Fundamental_group">fundamental group</a>. This group is an invariant of the space, so any homeomorphism of the space will not change the group. It's also true that any continuous function on the space gives rise to a <a href="https://mathworld.wolfram.com/GroupHomomorphism.html">group homomorphism</a> of the fundamental groups. I'll explain below.<br><br>Another interesting feature of the fundamental group is that it motivates an important idea in <a href="../tags/category-theory.html">category theory</a>, the idea of a functor. Here's the setup: take two topological spaces  \( (X, \tau) \) and \( (Y, \tau') \) and a function \(f : X \to Y\), then there exists a homomorphism between \( \pi_1(X, x_0)\) and \( \pi_1(Y, y_0)\):<br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4NE1UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--5d51473c92cb96d14ef248887f3669fe430a38c5" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f7b316e0822035e7d555d0a50b6dfaf685c9a118/functor.png" filename="functor.png" filesize="14345" width="400" height="244" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f7b316e0822035e7d555d0a50b6dfaf685c9a118/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/functor.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">functor.png</span>
+      <span class="attachment__size">14 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br>You can think of \( \pi_1 \) as a functor between the category \( \text{Top} \) of topological spaces and continuous functions and the category \( \text{Grp} \) of groups and homomorphisms. Another way to think about functors is that they map both objects and arrows onto objects and arrows, and they preserve the structure.<br><br>
+</div><h1>Conclusion: were not in K̶a̶n̶s̶a̶s̶ ℝⁿ anymore</h1><div>
+<br>Once you strip away the baggage of ℝⁿ and study the pure point-set topologies, you start to get some really weird spaces. If you are into Lovecraftian mathematical monsters, I recommend <a href="https://www.amazon.com/Counterexamples-Topology-Dover-Books-Mathematics/dp/048668735X">Counterexamples in Topology</a><br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4NE1qOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--fc16f8349da6a8d4b2939d77d49c2af056ad7b44" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--49d6b98faa263d8607d8c6c93d310b24b66fa866/counterexamples.png" filename="counterexamples.png" filesize="101361" width="300" height="466" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBWdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--49d6b98faa263d8607d8c6c93d310b24b66fa866/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/counterexamples.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">counterexamples.png</span>
+      <span class="attachment__size">99 KB</span>
+  </figcaption>
+</figure></action-text-attachment>
+</div><div>The counterexamples in the above book give a lot of examples that show why these precise definitions are important, and your intuitions you learned working in ℝⁿ can lead you astray. It highlights the importance of rigorous proofs and careful definitions. They are also fun to think about, and useful for probing the boundaries of this mysterious category, \( \text{Top} \). The whole reason homotopy was invented was as a way to study \( \text{Top} \), but even homotopy groups are hard to work with, so they were Abelianized and linearized in <a href="https://en.wikipedia.org/wiki/Homology_(mathematics)">homology theory</a>.<br><br>This reduction of a hard-to-study structure to an easier-to-study invariant structure \( \text{Top} \to \text{Grp} \) is common in mathematics. All of calculus and differential geometry is basically finding the right linear approximation for a function around a point. These proofs of equivalence and the search for invariant structures serves this practical need, to be able to study and reason about really difficult spaces.<br><br>Related posts:</div><ul>
+<li><a href="sheaves-on-a-topological-space.html">Sheaves on a topological space</a></li>
+<li><a href="group-theory-rubiks-cubes-and-the-standard-model.html">Group Theory, Rubik's Cubes, and the Standard Model</a></li>
+<li><a href="cantors-paradise-from-empty-to-infinity-and-beyond.html">Cantor's Paradise: From Empty to Infinity and Beyond</a></li>
+<li><a href="do-sets-exist.html">Do sets exist?</a></li>
+<li><a href="surreal-numbers.html">Surreal numbers</a></li>
+<li><a href="transfinite-numbers.html">Transfinite numbers</a></li>
+</ul>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/topology.html">#topology</a>
+        <a href="../tags/category-theory.html">#category-theory</a>
+        <a href="../tags/set-theory.html">#set-theory</a>
+        <a href="../tags/homotopy.html">#homotopy</a>
+        <a href="../tags/real-analysis.html">#real-analysis</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Introduction to Puppet: Part 3">
+<meta name="twitter:description" content="Previous Parts
+
+• 2024-01-02: Introduction to Puppet: Part 2
+• 2023-11-30: Introduction to Puppet...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="9Ylz9UINxzo3L_5QcG1zH232oa5fd_C6tQimhqamK2eeV2j8WaJgr794oBitA0q7w1YFDzvR-XCNxVsQp0AnAQ" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Introduction to Puppet: Part 3</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        16 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        693 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2024-01-03</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <h1>Previous Parts</h1><ul>
+<li>2024-01-02: <a href="introduction-to-puppet-part-2.html">Introduction to Puppet: Part 2</a>
+</li>
+<li>2023-11-30: <a href="introduction-to-puppet.html">Introduction to Puppet: Part 1</a>
+</li>
+</ul><div>
+<br>In the <a href="introduction-to-puppet-part-2.html">last post</a> we got an error from 'puppet apply' that looked for a non-existent module. What we will do now is go through the manifest and find a minimal subset that works, and then iteratively build it up from there. The feedback loop is pretty small, so I'll share what I find with you. By the end of this series, you will have a way to spin up an instance of your own blog, and have more experience with managing infrastructure with Puppet.<br><br>
+</div><h1>Minimum Viable Manifest</h1><div>
+<br>This blog_setup.pp manifest does the trick. When run on Ubuntu 22.04, it install ruby 3, rails 7 </div><pre># introduced in https://tlehman.blog/p/introduction-to-puppet
+# refined in https://tlehman.blog/p/introduction-to-puppet-part-3
+node default {
+  # Ensure the required packages are installed
+  package { ['ruby', 'bundler', 'libyaml-dev']:
+    ensure =&gt; installed,
+  }
+
+  exec { 'gem install rails -v 7.1.2':
+    cwd     =&gt; '/',
+    path    =&gt; ['/usr/bin'],
+  }
+
+  exec { 'rails new blog':
+    cwd     =&gt; '/home/ubuntu',
+    creates =&gt; '/home/ubuntu/blog',
+    path    =&gt; ['/usr/bin', '/usr/local/bin'],
+    user    =&gt; 'ubuntu',
+  }
+
+  exec { 'bundle install':
+    cwd     =&gt; '/home/ubuntu/blog',
+    path    =&gt; ['/usr/bin'],
+    user    =&gt; 'ubuntu',
+  }
+}</pre><div>
+<br>Then, to compile and run this manifest:</div><pre>sudo puppet apply blog_setup.pp</pre><div>
+<br>And the blog app will be set up, in Part 4 we will set up nginx, the systemd service, and the Post models that will make it into a functional blog app and not just a "rails new". You can skip ahead if you don't care about the implementation details, which I'll put below.<br><br>
+</div><h1>What is happening under the hood when you run 'puppet apply'</h1><pre>$ sudo puppet apply blog_setup.pp
+Notice: Compiled catalog for ip-172-26-8-230.us-west-2.compute.internal in environment production in 0.62 seconds
+Notice: /Stage[main]/Main/Node[default]/Exec[gem install rails -v 7.1.2]/returns: executed successfully
+Notice: /Stage[main]/Main/Node[default]/Exec[bundle install]/returns: executed successfully
+Notice: Applied catalog in 3.41 seconds</pre><div><br></div><h1>Catalog compilation</h1><div>When you run 'puppet apply', it executes the <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/compiler.rb">puppet compiler</a> in <a href="https://www.ruby-lang.org/en/">Ruby</a>, you can see the entry point in the <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/compiler.rb#L22-L44">Puppet::Parser::Compiler.compile</a> method.<br><br>At the end of the compile method, a <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/compiler.rb#L35">new Puppet::Parser::Compiler is instantiated</a>. Where's the manifest? If you look at the compile method, you will notice a node argument passed in. The Puppet::Node::Environment object keeps track of the manifest, the environment name (e.g. "production") and the module path:<br><br>
+</div><pre>[10] pry(Puppet::Parser::Compiler)&gt; node.environment
+=&gt; &lt;Puppet::Node::Environment:10540 @name="production" @manifest="/home/ubuntu/puppet-intro-blog/blog_setup.pp" @modulepath="/usr/share/puppet/modules" &gt;</pre><div>
+<br>When <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/compiler.rb#L154-L201">compile</a> is called on the new Puppet::Parser::Compiler object, these methods are called in order, but they are wrapped with profiling methods that we will ignore for now, also we will only look at a few of the steps, the rest are all available to the interested github user:<br><br>
+</div><ol>
+<li><span>set_node_parameters</span></li>
+<li>create_settings_scope</li>
+<li>evaluate_capability_mappings</li>
+<li>
+<a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/compiler.rb#L583-L593">evaluate_main</a><ul><li>evaluate_main calls <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/resource.rb#L69-L82">Puppet::Parser::Resource#evaluate</a><ul><li>which calls <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/resource/type.rb#L118-L143">Puppet::Resource::Type#evaluate_code(resource)</a> (<em>note, this evaluation is of the compile time types of resources in the manifest. An example resource is Node[default]{:name=&gt;"default"}, which is the top-level resource in our manifest.</em>
+</li></ul>
+</li></ul>
+</li>
+<li>evaluate_site</li>
+<li>evaluate_ast_node</li>
+<li>evaluate_node_classes</li>
+<li>evaluate_applications</li>
+<li>evaluate_capability_mappings</li>
+<li>evaluate_generators</li>
+<li>validate_catalog(CatalogValidator::PRE_FINISH)</li>
+<li>
+<a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/parser/compiler.rb#L623-L641">finish</a><ul>
+<li>from our example manifest, here are the finished resources:</li>
+<li><pre>[1] pry(#&lt;Puppet::Parser::Compiler&gt;)&gt; resources
+=&gt; [Class[main]{:name=&gt;"main"},
+ Node[default]{:name=&gt;"default"},
+ Package[ruby]{:name=&gt;"ruby", :ensure=&gt;"installed"},
+ Package[bundler]{:name=&gt;"bundler", :ensure=&gt;"installed"},
+ Package[libyaml-dev]{:name=&gt;"libyaml-dev", :ensure=&gt;"installed"},
+ Exec[gem install rails -v 7.1.2]{:command=&gt;"gem install rails -v 7.1.2", :cwd=&gt;"/", :path=&gt;["/usr/bin"]},
+ Exec[rails new blog]{:command=&gt;"rails new blog", :cwd=&gt;"/home/ubuntu", :creates=&gt;"/home/ubuntu/blog", :path=&gt;["/usr/bin", "/usr/local/bin"], :user=&gt;"ubuntu"},
+ Exec[bundle install]{:command=&gt;"bundle install", :cwd=&gt;"/home/ubuntu/blog", :path=&gt;["/usr/bin"], :user=&gt;"ubuntu"}]</pre></li>
+</ul>
+</li>
+<li><span>prune_catalog</span></li>
+</ol><div><br></div><h1>The stages where exec's are executed</h1><div>After compilation, run stages are used to order the execution of resources. There's the main stage and then the setup stage, and you can also create custom stages (like "pre"), see <a href="https://www.puppet.com/docs/puppet/6/lang_run_stages.html">run stages documentation for more detail</a>.<br><br>The <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/type/exec.rb">Exec type</a> is worth reading in detail, as that is the one we've used the most in this minimum viable manifest. It represents the execution of an external command (e.g. bundle install), but it also must be <a href="https://en.wikipedia.org/wiki/Idempotence">idempotent</a>.<br><br>
+</div><h1>Catalog application</h1><div>Finally, the catalog is applied by running <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/configurer.rb#L185-L197">Puppet::Configurer#apply_catalog</a>, which calls <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/resource/catalog.rb#L231-L252">Puppet::Resource::Catalog.apply</a>. This apply method creates a Puppet::Transaction and then calls <a href="https://github.com/puppetlabs/puppet/blob/5.5.x/lib/puppet/transaction.rb#L93-L117">evaluate</a> on that.<br><br>This is a view of what the Puppet compiler is doing and how manifests are compiled and applied. In part 4 I'll get into how to build out more blog functionality, and also get into puppet's module system.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/puppet.html">#puppet</a>
+        <a href="../tags/programming.html">#programming</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>
