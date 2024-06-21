@@ -1,0 +1,9 @@
+name: perms-example
+version: 0.0.1
+executables:
+  perms-example:
+    main: perms.hs
+    source-dirs: .
+dependencies:
+- base >= 4.7 && < 5
+- group-theory == 0.2.2

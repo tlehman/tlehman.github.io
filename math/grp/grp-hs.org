@@ -34,7 +34,7 @@ A **group** is a pair, $(G, * )$ where $G$ is a non-empty set, and $*:G\times G 
 
 1. Associativity: $(a * b) * c = a * (b * c)$ for all $a,b,c \in G$
 2. Identity: There exists an $e \in G$ such that $e * a = a * e = a$ for all $a \in G$
-3. Invertibility: there's a $b$ for every $a$ such that $a * b = b * e = e$
+3. Invertibility: there's a $b$ for every $a$ such that $a * b = b * a = e$
 
 ** Haskell definition of a group
 In Haskell, a type ~g~ is an instance of a ~Group~ if it's a ~Monoid~ with an ~invert~ function:
@@ -108,28 +108,88 @@ Now let's implement $S_3$ in Haskell and make it easy to interactively work with
 Since ~Monoid~ is so central to Haskell code, it's easy to work with Groups, since they are just Monoids with an inverse function (see [[Haskell definition of a group]]). In Haskell, the analog of a set is a type. So taking our set $X = \{0,1,2\}$, the statement $1 \in X$ is expressed as ~1 :: X~ in Haskell. The elements of a set are analogous to the /inhabitants/ of a type. In the example below, we define a type ~X~ with three inhabitants.
 
 *** show function for pmatrix notation
-#+name: show
+#+name: showpmatrix
 #+begin_src haskell
   import Data.Group.Permutation
+  import Data.List
 
-  data X = Zero | One | Two deriving (Eq, Show)
+  data X = Zero | One | Two deriving (Enum, Eq, Show)
+
+  -- pmatrix notation
+  pmn :: Permutation X -> String
+  pmn p = "\\begin{pmatrix}" ++
+    (concat $ intersperse " & " $ map show xs) ++ "\\\\" ++
+    (concat $ intersperse " & " $ map (show . to) xs) ++ "\\end{pmatrix}"
+    where (to, _) = pairwise p
+          xs = [Zero, One, Two]
 
   -- show permutations in the notation above
-  instance Show Permutation X where
-    show (Permutation f _) = "\\begin{pmatrix}Zero & One & Two \\\\" ++
-      show(f(Zero)) ++ " & " ++
-      show(f(One)) ++ " & " ++
-      show(f(Two)) ++ " " ++
-      "\\end{pmatrix}"
+  instance Show (Permutation X) where
+    show p = pmn p
+      where (to, _) = pairwise p
 
   -- Defining the elements of S₃
-  s0 = Permutation id id -- identity permutation
-  s1 = Permutation (\x -> if x==Zero then One else x)
-		   (\x -> if x==One then Zero else x)
-
+  s0 = permute id id          -- identity permutation
+  s1 = permute zo zo where  -- transpose Zero/One
+    zo = (\x -> case x of
+                  Zero -> One
+                  One -> Zero
+                  Two -> Two)
 #+end_src
 
+The string output of ~show s1~ looks like this:
+~\begin{pmatrix}Zero & One & Two\\One & Zero & Two\end{pmatrix}~ which renders as:
 
+$$\begin{pmatrix}Zero & One & Two\\One & Zero & Two\end{pmatrix}$$
+
+*** show function for cycle notation
+
+This is an alternative ~show~ function that uses [[Cycle notation][cycle notation]].
+The problem in Haskell is collecting all the cycles. Consider our $S_3$ example so far, notice how
+$(Zero \space One)$ is a transposition, which is also a 2-cycle. It /turns out/ that we can prove that all
+permutations can be decomposed into transpositions. (Proof: [[Proof that all permutations are decomposable into transpositions]])
+
+An example of decomposing a permutation into transpositions is the 3-cycle:
+$(Zero \space One \space Two) = (One \space Two)(Zero \space One)$
+
+Think about it using function composition, the rightmost function maps $Zero$ to $One$, then the next one sends $One$
+to $Two$. So we need a generic algorithm for generating the cycle notation for a general ~Permutation X~.
+
+One way to do it is to define a *cycle set*, and observe that the cycle sets will be disjoint, and that they will partition the set $X$.
+
+1. Take an element $x_1 \in X$
+2. Define the *cycle set* of $x_1$ as $\{x_1, f(x_1), f(f(x_1)), ..., f^n(x_1)\}$
+3. Take the collection of cycle sets for all elements $x_i$. This partitions $X$
+4. Display the sets as cycles in the output: ~(x1 f(x1) f(f(x1)) ... f(f(...f(x1))))~
+
+#+name: showcycle
+#+begin_src haskell
+  import Data.Group.Permutation
+  import Data.List
+  import Data.Set
+
+  data X = Zero | One | Two deriving (Enum, Eq, Show)
+
+  -- cycle notation
+  pmc :: Permutation X -> String
+  pmc p = "TODO"
+
+  -- show permutations in cycle notation
+  instance Show (Permutation X) where
+    show p = pmc p
+      where (to, _) = pairwise p
+
+  cycleset :: Permutation X -> Set X
+  cycleset p x = fromList $ (take 3 $ iterate f x)
+
+  -- Defining the elements of S₃
+  s0 = permute id id        -- identity permutation
+  s1 = permute zo zo where  -- transpose Zero/One
+    zo = (\x -> case x of
+		  Zero -> One
+		  One -> Zero
+		  Two -> Two)
+#+end_src
 
 ** Exercises (in Haskell)
 1. Define the group $S_3$
@@ -137,6 +197,11 @@ Since ~Monoid~ is so central to Haskell code, it's easy to work with Groups, sin
    prove that $$(g_1g_2...g_n)^{-1} = (g_n^{-1}g_{n-1}^{-1}...g_2^{-1}g_1^{-1})$$
 
 * Appendix
+** proofs
+*** Proof that all permutations are decomposable into transpositions
+Bubble sort exists. Think about it.
+QED.
+
 ** My literate programming workflow for this document
 I wrote this document in org-mode in Emacs. I export the org file to html to generate the website, and then I run ~org-babel-tangle~ to produce the Haskell code. To speed up the workflow I made the function below and then bound it to <F5>
 
@@ -157,20 +222,40 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
 #+name: main
 #+header: :tangle perms.hs :noweb yes
 #+begin_src haskell
-module Main where
+  {-# LANGUAGE FlexibleInstances #-}
+  module Main where
 
-<<show>>
+  <<showpmatrix>>
 
-main :: IO
-main = do
-  print s0
-  print s1
+  main :: IO ()
+  main = do
+    print s1
 #+end_src
 ** the ~package.yaml~ file, where we add dependencies
 
 #+header: :tangle package.yaml
 #+begin_src yaml
-dependencies:
-- base >= 4.7 && < 5
-- group-theory
+  name: perms-example
+  version: 0.0.1
+  executables:
+    perms-example:
+      main: perms.hs
+      source-dirs: .
+  dependencies:
+  - base >= 4.7 && < 5
+  - group-theory == 0.2.2
 #+end_src
+
+** the ~stack.yaml~ file, where we define the overall package
+
+#+header: :tangle stack.yaml
+#+begin_src yaml
+resolver: lts-18.17
+
+extra-deps:
+  - group-theory-0.2.2
+#+end_src
+** TODOs
+*** TODO Definition of a partition of a set (maybe equivalence relation too?)
+*** TODO Define a ~show :: Permutation X -> String~ that displays ~Zero~ as ~0~, etc.
+*** TODO remove magic number 3 and find way of computing $|X|$
