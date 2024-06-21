@@ -126,7 +126,6 @@ Since ~Monoid~ is so central to Haskell code, it's easy to work with Groups, sin
   -- show permutations in the notation above
   instance Show (Permutation X) where
     show p = pmn p
-      where (to, _) = pairwise p
 
   -- Defining the elements of S₃
   s0 = permute id id          -- identity permutation
