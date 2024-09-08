@@ -205,6 +205,18 @@ One way to do it is to define a *cycle set*, and observe that the cycle sets wil
 2. Let $g_1, ..., g_n \in G$ where $G$ is a group,
    prove that $$(g_1g_2...g_n)^{-1} = (g_n^{-1}g_{n-1}^{-1}...g_2^{-1}g_1^{-1})$$
 
+* Group homomorphims
+Given two groups $G$ and $H$, a function $f:G \to H$ is a **homomorphism** if for every $a,b \in G$:
+
+$$f(a*b) = f(a)*f(b)$$
+
+A linear transformation between vector spaces is an example of a homomorphism.
+As is the logarithm (remember $log(ab)=log(a) + log(b)$.
+
+Homomorphisms are like "structure preserving" maps for groups.
+
+If $|G| = |H|$ and the function $f$ is invertible, then it's an **isomorphism**, and this means that the
+two groups $G$ and $H$ are "the same".
 * Appendix
 ** Haskell
 *** Correspondence between ~Hask~ and ~Set~ categories

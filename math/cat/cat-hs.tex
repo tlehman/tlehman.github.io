@@ -1,0 +1,62 @@
+% Created 2024-09-08 Sun 15:34
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Tobi Lehman}
+\date{\today}
+\title{Category Theory in Haskell}
+\hypersetup{
+ pdfauthor={Tobi Lehman},
+ pdftitle={Category Theory in Haskell},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.4 (Org mode 9.6.15)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Introduction}
+\label{sec:org356bc08}
+
+Category Theory is the mathematical study of other mathematical theories.
+I first really appreciated it while studying topology. Topology is hard.
+\href{../grp/grp-hs.html}{Group Theory} is easier. A lot of topology is about simplifying topology problems
+by reducing them to group theory problems.
+
+\subsection{Motivating Example}
+\label{sec:org535e7af}
+
+Suppose you have a continuous function \(f : X \to Y\) where
+\(X\) and \(Y\) are topological spaces. You want to know if \(X\) is
+homeomorphic to \(Y\) (topology-speak for "the same").
+
+However, proving a homeomorphism can be really hard, since the spaces \(X\) and \(Y\)
+could have a uncountable (\href{https://tobilehman.com/archive/tlehman.blog/p/transfinite-numbers.html}{transfinite}) number of points. The shape might be really weird.
+So topologists developed a way to compute a group called the fundamental group of a
+space. The fundamental group \(\pi_1(X)\) has elements which are loops in the space \(X\),
+the group operation is just following one loop and then following the other loop.
+
+There's a very important theorem we proved about the fundamental group. Before we state it,
+let's look at this diagram:
+
+\begin{verbatim}
+\begin{CD}
+  X @>{f}>> Y \\
+  @V{\pi_1(-)}VV @V{\pi_1(-)}VV \\
+  \Pi_1(X) @>>> \Pi_1(Y)
+\end{CD}
+\end{verbatim}
+\end{document}

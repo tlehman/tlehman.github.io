@@ -1,0 +1,52 @@
+#+TITLE: Category Theory in Haskell
+#+AUTHOR: Tobi Lehman
+#+EMAIL: mail@tobilehman.com
+#+LANGUAGE: en-us
+#+EXPORT_html_PREFERENCE: html5
+#+HTML_DOCTYPE: html5
+#+EXPORT_head: :style "h1, h2, h3 {text-align: center;}"
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./style.css" />
+#+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#+OPTIONS: toc:t num:t ns:t
+
+* Introduction
+
+Category Theory is the mathematical study of other mathematical theories.
+I first really appreciated it while studying topology. Topology is hard.
+[[../grp/grp-hs.html][Group Theory]] is easier. A lot of topology is about simplifying topology problems
+by reducing them to group theory problems.
+
+** Motivating Example
+
+Suppose you have a continuous function $f : X \to Y$ where
+$X$ and $Y$ are topological spaces. You want to know if $X$ is
+homeomorphic to $Y$ (topology-speak for "the same").
+
+However, proving a homeomorphism can be really hard, since the spaces $X$ and $Y$
+could have a uncountable ([[https://tobilehman.com/archive/tlehman.blog/p/transfinite-numbers.html][transfinite]]) number of points. The shape might be really weird.
+So topologists developed a way to compute a group called the fundamental group of a
+space. The fundamental group $\pi_1(X)$ has elements which are loops in the space $X$,
+the group operation is just following one loop and then following the other loop.
+
+There's a very important theorem we proved about the fundamental group. Before we state it,
+let's look at this diagram:
+
+file:./fundamental-group-functor.png
+
+$\text{Top}$ is the category of topological spaces.
+$\text{Grp}$ is the category of groups.
+
+$f$ is a continuous function between two spaces, and $\pi_1(f)$ is a [[../grp/grp-hs.html#org215c9a4][homomorphism]] between two groups.
+
+To bring this all home, if the fundamental groups of $X$ and $Y$ are not isomorphic, then we know that the
+spaces are not homeomorphic. This is the way in which some topology problems can be reduced to abstract algebra.
+
+* Definition of a category
+
+This $\pi_1$ thing is an example of a **functor**. In order to understand functors, one must first understand categories.
+
+A **category** $C$ has two parts:
+
+1. $Ob(C)$ is a set of objects
+2. For each pair $A, B \in Ob(C)$
+
