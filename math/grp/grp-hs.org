@@ -17,7 +17,7 @@ There are two major motivations for group theory. The first comes from geometry.
 
 When a geometer makes a proof that triangle $ABC$ is congruent to triangle $DEF$ what they are saying is that there exists some transformation of the plane ${\color{red} f : \mathbb{R}^2 \to \mathbb{R}^2}$, so that $f(ABC) = DEF$. The distance-preserving property could be expressed precisely as $d(p,q) = d(f(p),f(q))$.
 
-[[./congruent.png]]
+file:./img/congruent.png
 
 When you consider the set of all such transformations of the plane, you get a structured object called a group. These objects are worthy of study on their own because they show up in many other seemingly unrelated contexts. Like algebra.
 
@@ -27,7 +27,7 @@ $$x^3 + 6x^2 + 11x - 20 = 0$$
 
 He developed a theory of how to transform the "zeros" of the polynomial equations, and these also form a group, like Klein's geometric transformations. Galois worked out a theory for why some equations (like quadratics and cubics) have general solutions, and why others don't. The Galois group is central to that theory.
 
-So the idea of a group arises in both algebra and geometry. It shows up in physics too, it's one of those fundamental ideas whose time came in the 19th century. The study of groups is considered the first form of "Modern Algebra". Groups are essential to understanding symmetry, and symmetry is essential to understanding the physical world. The Standard Model of Particle Physics is a glorified study of one particular group: $U(1) \times U(2) \times SU(3)$, and the application of that one group is... /all the forces and fields in the universe except gravity/. What's extraordinary is how we can start studying groups here on paper and in a Haskell REPL.
+So the idea of a group arises in both algebra and geometry. It shows up in physics too, it's one of those fundamental ideas whose time came in the 19th century. Groups are essential to understanding symmetry, and symmetry is essential to understanding the physical world. The Standard Model of Particle Physics is a glorified study of one particular group: $U(1) \times SU(2) \times SU(3)$, and the application of that one group is... /all the particles and forces in the universe except gravity/. What's extraordinary is how we can start studying groups here on paper and in a Haskell REPL.
 
 * Definition of a group
 A **group** is a pair, $(G, * )$ where $G$ is a non-empty set, and $*:G\times G \to G$ where the following laws apply:
@@ -57,10 +57,10 @@ Another convention used is to drop the infix $*$ and just use multiplication not
 
 * The Symmetric Group
 
-The first example of a group we should introduce is the Symmetric group $\text{Sym}(X)$ on a set $X$. The definition of this group is
+The first example of a group we should introduce is the Symmetric group $\text{Sym}(X)$ on a set $X$. The informal definition is that it's the set of all permutations of a set \(X\). The formal definition of this group is:
 $$\text{Sym}(X) = \{ f:X \to X | \text{ where \(f^{-1}\) exists} \}$$
 
-Where the group operation is $\circ$, function composition. Let's check the definition of group above. The identity function exists. Inverses are in the set by definition. What about associativity?
+Where the group operation is $\circ$, function composition. Let's check the definition of group above. The identity function exists (it's the trivial permutation that permutes nothing). Inverses are in the set by definition. What about associativity?
 
 *** Proof that function composition is associative:
 Function types have an instance of ~Monoid~ typeclass which proves that function composition is associative.
@@ -106,20 +106,33 @@ Now let's implement $S_3$ in Haskell and make it easy to interactively work with
 ** ~Data.Group.Permutation~ in Haskell
 
 Since ~Monoid~ is so central to Haskell code, it's easy to work with Groups, since they are just Monoids with an inverse function (see [[Haskell definition of a group]]). In Haskell, the analog of a set is a type. So taking our set $X = \{0,1,2\}$, the statement $1 \in X$ is expressed as ~1 :: X~ in Haskell. The elements of a set are analogous to the /inhabitants/ of a type. In the example below, we define a type ~X~ with three inhabitants.
+*** data type definition to build a permutation group upon
+
+#+name: datatypedef
+#+begin_src haskell
+  data X = Zero | One | Two deriving (Bounded, Enum, Eq, Show)
+#+end_src
+*** generating all permutations on the ~X~ type
+We can enumerate all ~X~ values using ~[Zero ..]~
+Then we need to generate all $n!$ permutations of that list,
+then we can ~zip~ them together and generate the ~(x, f x)~ pairs in that way.
+
+
 
 *** show function for pmatrix notation
 #+name: showpmatrix
+#+header: :noweb yes
 #+begin_src haskell
   import Data.Group.Permutation
   import Data.List
 
-  data X = Zero | One | Two deriving (Enum, Eq, Show)
+  <<datatypedef>>
 
   -- pmatrix notation
   pmn :: Permutation X -> String
   pmn p = "\\begin{pmatrix}" ++
-    (concat $ intersperse " & " $ map show xs) ++ "\\\\" ++
-    (concat $ intersperse " & " $ map (show . to) xs) ++ "\\end{pmatrix}"
+    (concat $ intersperse " & " $ map (show . fromEnum) xs) ++ "\\\\" ++
+    (concat $ intersperse " & " $ map (show . fromEnum . to) xs) ++ "\\end{pmatrix}"
     where (to, _) = pairwise p
           xs = [Zero, One, Two]
 
@@ -137,22 +150,22 @@ Since ~Monoid~ is so central to Haskell code, it's easy to work with Groups, sin
 #+end_src
 
 The string output of ~show s1~ looks like this:
-~\begin{pmatrix}Zero & One & Two\\One & Zero & Two\end{pmatrix}~ which renders as:
+~\begin{pmatrix}0 & 1 & 2\\1 & 0 & 2\end{pmatrix}~ which renders as:
 
-$$\begin{pmatrix}Zero & One & Two\\One & Zero & Two\end{pmatrix}$$
+$$\begin{pmatrix}0 & 1 & 2\\1 & 0 & 2\end{pmatrix}$$
 
 *** show function for cycle notation
 
 This is an alternative ~show~ function that uses [[Cycle notation][cycle notation]].
 The problem in Haskell is collecting all the cycles. Consider our $S_3$ example so far, notice how
-$(Zero \space One)$ is a transposition, which is also a 2-cycle. It /turns out/ that we can prove that all
+$(0 \space 1)$ is a transposition, which is also a 2-cycle. It /turns out/ that we can prove that all
 permutations can be decomposed into transpositions. (Proof: [[Proof that all permutations are decomposable into transpositions]])
 
 An example of decomposing a permutation into transpositions is the 3-cycle:
-$(Zero \space One \space Two) = (One \space Two)(Zero \space One)$
+$(0 \space 1 \space 2) = (1 \space 2)(0 \space 1)$
 
-Think about it using function composition, the rightmost function maps $Zero$ to $One$, then the next one sends $One$
-to $Two$. So we need a generic algorithm for generating the cycle notation for a general ~Permutation X~.
+Think about it using function composition, the rightmost function maps $0$ to $1$, then the next one sends $1$
+to $2$. So we need a generic algorithm for generating the cycle notation for a general ~Permutation X~.
 
 One way to do it is to define a *cycle set*, and observe that the cycle sets will be disjoint, and that they will partition the set $X$.
 
@@ -162,32 +175,29 @@ One way to do it is to define a *cycle set*, and observe that the cycle sets wil
 4. Display the sets as cycles in the output: ~(x1 f(x1) f(f(x1)) ... f(f(...f(x1))))~
 
 #+name: showcycle
+#+header: :noweb yes
 #+begin_src haskell
   import Data.Group.Permutation
-  import Data.List
-  import Data.Set
+  import Data.List (take)
+  import Data.Set (fromList)
 
-  data X = Zero | One | Two deriving (Enum, Eq, Show)
+  <<datatypedef>>
+
+  -- cyclesets take a perm to from and an x and then compute [x, to(x), to(to(x),...)..]
+  cycleset p x = fromList $ (take 3 $ iterate f x)
+    where (f, _) = pairwise p
 
   -- cycle notation
   pmc :: Permutation X -> String
-  pmc p = "TODO"
-
-  -- show permutations in cycle notation
-  instance Show (Permutation X) where
-    show p = pmc p
-      where (to, _) = pairwise p
-
-  cycleset :: Permutation X -> Set X
-  cycleset p x = fromList $ (take 3 $ iterate f x)
+  pmc p = show p
 
   -- Defining the elements of S₃
   s0 = permute id id        -- identity permutation
   s1 = permute zo zo where  -- transpose Zero/One
     zo = (\x -> case x of
-		  Zero -> One
-		  One -> Zero
-		  Two -> Two)
+             Zero -> One
+             One -> Zero
+             Two -> Two)
 #+end_src
 
 ** Exercises (in Haskell)
@@ -196,6 +206,22 @@ One way to do it is to define a *cycle set*, and observe that the cycle sets wil
    prove that $$(g_1g_2...g_n)^{-1} = (g_n^{-1}g_{n-1}^{-1}...g_2^{-1}g_1^{-1})$$
 
 * Appendix
+** Haskell
+*** Correspondence between ~Hask~ and ~Set~ categories
+~Hask~ is the [[https://ncatlab.org/nlab/show/category][Category]] of all Haskell types. The objects of Hask are Haskell types, and the morphisms
+between the types are Haskell functions.
+The green $\color{green}{F}$ is a [[https://ncatlab.org/nlab/show/functor][functor]] that maps Haskell types to the set of their values.
+
+file:./img/haskset.png
+
+You can also define $(\mathbb{N}, \leq)$ as a poset category, where the objects are natural numbers,
+the morphisms are the less than or equal to relation, and then the cardinality of finite sets can be
+represented as a functor from ~Set~ to this poset category. Here we define the ~Countable~ typeclass
+to implement the "cardinality" of a type. The implementation will compute $|\color{green}{F}(X)|$
+
+
+Then finish by introducing ~Countable~ typeclass to get the cardinality
+
 ** proofs
 *** Proof that all permutations are decomposable into transpositions
 Bubble sort exists. Think about it.
@@ -214,7 +240,8 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
 
 #+end_src
 
-** The ~main~ function
+** files
+*** The ~main~ function
 
 [[./perms.hs]] is a literate program that this [[https://orgmode.org/][org-mode]] document produces. Supporting code to make the file compile and run is defined down here in the appendix.
 
@@ -230,12 +257,12 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
   main = do
     print s1
 #+end_src
-** the ~package.yaml~ file, where we add dependencies
+*** the ~package.yaml~ file, where we add dependencies
 
 #+header: :tangle package.yaml
 #+begin_src yaml
   name: perms-example
-  version: 0.0.1
+  version: 0.0.2
   executables:
     perms-example:
       main: perms.hs
@@ -243,18 +270,22 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
   dependencies:
   - base >= 4.7 && < 5
   - group-theory == 0.2.2
+  - containers == 0.6.5.1
 #+end_src
 
-** the ~stack.yaml~ file, where we define the overall package
+*** the ~stack.yaml~ file, where we define the overall package
 
 #+header: :tangle stack.yaml
 #+begin_src yaml
-resolver: lts-18.17
+  resolver: lts-18.17
 
-extra-deps:
-  - group-theory-0.2.2
+  extra-deps:
+    - group-theory-0.2.2
+    - containers-0.6.5.1
 #+end_src
 ** TODOs
 *** TODO Definition of a partition of a set (maybe equivalence relation too?)
 *** TODO Define a ~show :: Permutation X -> String~ that displays ~Zero~ as ~0~, etc.
+**** TODO display /One/ as 1 using ~fromEnum~
 *** TODO remove magic number 3 and find way of computing $|X|$
+

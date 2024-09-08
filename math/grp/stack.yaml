@@ -2,3 +2,4 @@ resolver: lts-18.17
 
 extra-deps:
   - group-theory-0.2.2
+  - containers-0.6.5.1

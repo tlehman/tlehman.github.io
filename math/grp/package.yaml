@@ -1,5 +1,5 @@
 name: perms-example
-version: 0.0.1
+version: 0.0.2
 executables:
   perms-example:
     main: perms.hs
@@ -7,3 +7,4 @@ executables:
 dependencies:
 - base >= 4.7 && < 5
 - group-theory == 0.2.2
+- containers == 0.6.5.1
