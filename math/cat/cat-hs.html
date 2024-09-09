@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<!-- 2024-09-09 Mon 09:06 -->
+<!-- 2024-09-09 Mon 09:12 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Category Theory in Haskell</title>
@@ -233,21 +233,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5d8eb70">1. Introduction</a>
+<li><a href="#org4fee327">1. Introduction</a>
 <ul>
-<li><a href="#orgb29e3a5">1.1. Motivating Example</a></li>
-<li><a href="#orgd100d47">1.2. Definition of a category</a></li>
-<li><a href="#orgb0eec09">1.3. Example of a category: \(\text{Hask}\)</a></li>
-<li><a href="#org53f808f">1.4. Example of a functor on a category: <code>Functor f</code></a></li>
-<li><a href="#orgce512f4">1.5. Example of a functor on a category: <code>Identity</code></a></li>
+<li><a href="#org5130c70">1.1. Motivating Example</a></li>
+<li><a href="#org039eea8">1.2. Definition of a category</a></li>
+<li><a href="#org92823df">1.3. Example of a category: \(\text{Hask}\)</a></li>
+<li><a href="#org325c455">1.4. Example of a functor on a category: <code>Functor f</code></a></li>
+<li><a href="#orgb7c2791">1.5. Example of a functor on a category: <code>Identity</code></a></li>
+</ul>
+</li>
+<li><a href="#orgf6a2b3a">2. Appendix</a>
+<ul>
+<li><a href="#org0ab3d5f">2.1. Errors</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5d8eb70" class="outline-2">
-<h2 id="org5d8eb70"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org4fee327" class="outline-2">
+<h2 id="org4fee327"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Category Theory is the mathematical study of other mathematical theories.
@@ -257,8 +262,8 @@ by reducing them to group theory problems.
 </p>
 </div>
 
-<div id="outline-container-orgb29e3a5" class="outline-3">
-<h3 id="orgb29e3a5"><span class="section-number-3">1.1.</span> Motivating Example</h3>
+<div id="outline-container-org5130c70" class="outline-3">
+<h3 id="org5130c70"><span class="section-number-3">1.1.</span> Motivating Example</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose you have a continuous function \(f : X \to Y\) where
@@ -280,7 +285,7 @@ let's look at this diagram:
 </p>
 
 
-<div id="org344ba40" class="figure">
+<div id="orgdd65b7f" class="figure">
 <p><img src="./fundamental-group-functor.png" alt="fundamental-group-functor.png">
 </p>
 </div>
@@ -301,8 +306,8 @@ spaces are not homeomorphic. This is the way in which some topology problems can
 </div>
 </div>
 
-<div id="outline-container-orgd100d47" class="outline-3">
-<h3 id="orgd100d47"><span class="section-number-3">1.2.</span> Definition of a category</h3>
+<div id="outline-container-org039eea8" class="outline-3">
+<h3 id="org039eea8"><span class="section-number-3">1.2.</span> Definition of a category</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 This \(\pi_1\) thing is an example of a <b><b>functor</b></b>. In order to understand functors, one must first understand categories.
@@ -325,8 +330,8 @@ a set \(\text{Hom}(X,Y)\) of <b><b>morphisms</b></b></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgb0eec09" class="outline-3">
-<h3 id="orgb0eec09"><span class="section-number-3">1.3.</span> Example of a category: \(\text{Hask}\)</h3>
+<div id="outline-container-org92823df" class="outline-3">
+<h3 id="org92823df"><span class="section-number-3">1.3.</span> Example of a category: \(\text{Hask}\)</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The set \(\text{Ob(Hask)}\) of Haskell types is countable and well-defined.
@@ -351,8 +356,8 @@ It's associative. Prove me wrong.
 </div>
 </div>
 
-<div id="outline-container-org53f808f" class="outline-3">
-<h3 id="org53f808f"><span class="section-number-3">1.4.</span> Example of a functor on a category: <code>Functor f</code></h3>
+<div id="outline-container-org325c455" class="outline-3">
+<h3 id="org325c455"><span class="section-number-3">1.4.</span> Example of a functor on a category: <code>Functor f</code></h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 The Haskell <code>Functor</code> typeclass has this signature:
@@ -368,7 +373,7 @@ Does it implement a functor on \(\text{Hask}\)?
 </p>
 
 
-<div id="orgf2a5dfb" class="figure">
+<div id="orgf900203" class="figure">
 <p><img src="./fmap.png" alt="fmap.png">
 </p>
 </div>
@@ -385,8 +390,8 @@ You can see from the diagram that <code>f</code> looks like an endofunctor, that
 
 
 
-<div id="outline-container-orgce512f4" class="outline-3">
-<h3 id="orgce512f4"><span class="section-number-3">1.5.</span> Example of a functor on a category: <code>Identity</code></h3>
+<div id="outline-container-orgb7c2791" class="outline-3">
+<h3 id="orgb7c2791"><span class="section-number-3">1.5.</span> Example of a functor on a category: <code>Identity</code></h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-haskell"><span style="color: #2e4d98; font-weight: bold;">newtype</span> <span style="color: #9a2d71; font-weight: bold;">Identity</span> a <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Identity</span> a <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Ord</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
@@ -395,10 +400,23 @@ You can see from the diagram that <code>f</code> looks like an endofunctor, that
 </div>
 </div>
 </div>
+<div id="outline-container-orgf6a2b3a" class="outline-2">
+<h2 id="orgf6a2b3a"><span class="section-number-2">2.</span> Appendix</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org0ab3d5f" class="outline-3">
+<h3 id="org0ab3d5f"><span class="section-number-3">2.1.</span> Errors</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+If spot any errors, you can either submit a <a href="https://github.com/tlehman/tlehman.github.io">Pull Request</a> or you can just email me: mail@tobilehman.com
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Tobi Lehman</p>
-<p class="date">Created: 2024-09-09 Mon 09:06</p>
+<p class="date">Created: 2024-09-09 Mon 09:12</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

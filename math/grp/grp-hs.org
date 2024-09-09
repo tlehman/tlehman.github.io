@@ -218,6 +218,9 @@ Homomorphisms are like "structure preserving" maps for groups.
 If $|G| = |H|$ and the function $f$ is invertible, then it's an **isomorphism**, and this means that the
 two groups $G$ and $H$ are "the same".
 * Appendix
+** Errors
+If spot any errors, you can either submit a [[https://github.com/tlehman/tlehman.github.io][Pull Request]] or you can just email me: mail@tobilehman.com
+
 ** Haskell
 *** Correspondence between ~Hask~ and ~Set~ categories
 ~Hask~ is the [[https://ncatlab.org/nlab/show/category][Category]] of all Haskell types. The objects of Hask are Haskell types, and the morphisms

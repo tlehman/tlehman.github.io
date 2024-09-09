@@ -92,3 +92,6 @@ $$\texttt{f} : \text{Hask} \to \text{Hask}$$
 #+begin_src haskell
   newtype Identity a = Identity a deriving (Eq, Ord, Show)
 #+end_src
+* Appendix
+** Errors
+If spot any errors, you can either submit a [[https://github.com/tlehman/tlehman.github.io][Pull Request]] or you can just email me: mail@tobilehman.com
