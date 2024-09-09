@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<!-- 2024-09-08 Sun 15:59 -->
+<!-- 2024-09-08 Sun 17:13 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Group Theory in Haskell</title>
@@ -233,66 +233,66 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd5ebdf1">1. Introduction</a>
+<li><a href="#org3751895">1. Introduction</a>
 <ul>
-<li><a href="#org2e57f0b">1.1. Motivation</a></li>
+<li><a href="#org0347fff">1.1. Motivation</a></li>
 </ul>
 </li>
-<li><a href="#orgae95069">2. Definition of a group</a>
+<li><a href="#orgfdebf79">2. Definition of a group</a>
 <ul>
-<li><a href="#org1f55971">2.1. Haskell definition of a group</a></li>
+<li><a href="#orga99dcf4">2.1. Haskell definition of a group</a></li>
 </ul>
 </li>
-<li><a href="#org2ae0a8a">3. The Symmetric Group</a>
+<li><a href="#org68decd3">3. The Symmetric Group</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org63b39db">3.0.1. Proof that function composition is associative:</a></li>
+<li><a href="#org0fe1991">3.0.1. Proof that function composition is associative:</a></li>
 </ul>
 </li>
-<li><a href="#org1d8a27a">3.1. Examples of Symmetric Groups on Finite sets</a>
+<li><a href="#orgb5156da">3.1. Examples of Symmetric Groups on Finite sets</a>
 <ul>
-<li><a href="#orge6e1646">3.1.1. pmatrix notation</a></li>
-<li><a href="#orgf50e28a">3.1.2. Cycle notation</a></li>
+<li><a href="#org9eeab53">3.1.1. pmatrix notation</a></li>
+<li><a href="#org0c8b445">3.1.2. Cycle notation</a></li>
 </ul>
 </li>
-<li><a href="#org9e4911b">3.2. <code>Data.Group.Permutation</code> in Haskell</a>
+<li><a href="#org9ffabaf">3.2. <code>Data.Group.Permutation</code> in Haskell</a>
 <ul>
-<li><a href="#orgf566147">3.2.1. data type definition to build a permutation group upon</a></li>
-<li><a href="#org1cefd6f">3.2.2. generating all permutations on the <code>X</code> type</a></li>
-<li><a href="#org69292d1">3.2.3. show function for pmatrix notation</a></li>
-<li><a href="#org3b389fb">3.2.4. show function for cycle notation</a></li>
+<li><a href="#orgda56365">3.2.1. data type definition to build a permutation group upon</a></li>
+<li><a href="#orgb8bf276">3.2.2. generating all permutations on the <code>X</code> type</a></li>
+<li><a href="#org92286c0">3.2.3. show function for pmatrix notation</a></li>
+<li><a href="#orgea00b7a">3.2.4. show function for cycle notation</a></li>
 </ul>
 </li>
-<li><a href="#orgecc1215">3.3. Exercises (in Haskell)</a></li>
+<li><a href="#org14a4061">3.3. Exercises (in Haskell)</a></li>
 </ul>
 </li>
-<li><a href="#org215c9a4">4. Group homomorphims</a></li>
-<li><a href="#org83c2a8b">5. Appendix</a>
+<li><a href="#org26b3f21">4. Group homomorphims</a></li>
+<li><a href="#orge3323ba">5. Appendix</a>
 <ul>
-<li><a href="#org184cc33">5.1. Haskell</a>
+<li><a href="#org53b9743">5.1. Haskell</a>
 <ul>
-<li><a href="#orgee52015">5.1.1. Correspondence between <code>Hask</code> and <code>Set</code> categories</a></li>
+<li><a href="#org44adf45">5.1.1. Correspondence between <code>Hask</code> and <code>Set</code> categories</a></li>
 </ul>
 </li>
-<li><a href="#orgd522476">5.2. proofs</a>
+<li><a href="#orge711683">5.2. proofs</a>
 <ul>
-<li><a href="#org218215e">5.2.1. Proof that all permutations are decomposable into transpositions</a></li>
+<li><a href="#org94c59af">5.2.1. Proof that all permutations are decomposable into transpositions</a></li>
 </ul>
 </li>
-<li><a href="#orgdd62286">5.3. My literate programming workflow for this document</a></li>
-<li><a href="#orga0eea1a">5.4. files</a>
+<li><a href="#orgee9ca6d">5.3. My literate programming workflow for this document</a></li>
+<li><a href="#org2faae5c">5.4. files</a>
 <ul>
-<li><a href="#org3018a2a">5.4.1. The <code>main</code> function</a></li>
-<li><a href="#org5ad17ff">5.4.2. the <code>package.yaml</code> file, where we add dependencies</a></li>
-<li><a href="#org1f04226">5.4.3. the <code>stack.yaml</code> file, where we define the overall package</a></li>
+<li><a href="#org1a9517d">5.4.1. The <code>main</code> function</a></li>
+<li><a href="#org285c64d">5.4.2. the <code>package.yaml</code> file, where we add dependencies</a></li>
+<li><a href="#orgf4eefa1">5.4.3. the <code>stack.yaml</code> file, where we define the overall package</a></li>
 </ul>
 </li>
-<li><a href="#orgdfc812d">5.5. TODOs</a>
+<li><a href="#org657a6ea">5.5. TODOs</a>
 <ul>
-<li><a href="#orga9a721a">5.5.1. <span class="todo TODO">TODO</span> Definition of a partition of a set (maybe equivalence relation too?)</a></li>
-<li><a href="#org30fbbb3">5.5.2. <span class="todo TODO">TODO</span> Define a <code>show :: Permutation X -&gt; String</code> that displays <code>Zero</code> as <code>0</code>, etc.</a></li>
-<li><a href="#org665b9c5">5.5.3. <span class="todo TODO">TODO</span> remove magic number 3 and find way of computing \(|X|\)</a></li>
+<li><a href="#orge13cd3e">5.5.1. <span class="todo TODO">TODO</span> Definition of a partition of a set (maybe equivalence relation too?)</a></li>
+<li><a href="#orge026dc0">5.5.2. <span class="todo TODO">TODO</span> Define a <code>show :: Permutation X -&gt; String</code> that displays <code>Zero</code> as <code>0</code>, etc.</a></li>
+<li><a href="#org9ac74d0">5.5.3. <span class="todo TODO">TODO</span> remove magic number 3 and find way of computing \(|X|\)</a></li>
 </ul>
 </li>
 </ul>
@@ -301,16 +301,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgd5ebdf1" class="outline-2">
-<h2 id="orgd5ebdf1"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org3751895" class="outline-2">
+<h2 id="org3751895"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 There are a lot of introductions to group theory, but I wanted to do one in the <a href="https://haskell.org/">Haskell programming language</a>. For more about Haskell see the <a href="https://haskellbook.com">haskellbook</a>, this article will assume some Haskell programming knowledge.
 </p>
 </div>
 
-<div id="outline-container-org2e57f0b" class="outline-3">
-<h3 id="org2e57f0b"><span class="section-number-3">1.1.</span> Motivation</h3>
+<div id="outline-container-org0347fff" class="outline-3">
+<h3 id="org0347fff"><span class="section-number-3">1.1.</span> Motivation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 There are two major motivations for group theory. The first comes from geometry. The geometer Felix Klein tried to find the essence of Euclidean geometry. His answer was that geometry is essentially about transformations of the plane that preserve distance. Another way to express this:
@@ -321,7 +321,7 @@ When a geometer makes a proof that triangle \(ABC\) is congruent to triangle \(D
 </p>
 
 
-<div id="org3d9c6fa" class="figure">
+<div id="orgd11efba" class="figure">
 <p><img src="./img/congruent.png" alt="congruent.png">
 </p>
 </div>
@@ -349,8 +349,8 @@ So the idea of a group arises in both algebra and geometry. It shows up in physi
 </div>
 </div>
 
-<div id="outline-container-orgae95069" class="outline-2">
-<h2 id="orgae95069"><span class="section-number-2">2.</span> Definition of a group</h2>
+<div id="outline-container-orgfdebf79" class="outline-2">
+<h2 id="orgfdebf79"><span class="section-number-2">2.</span> Definition of a group</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A <b><b>group</b></b> is a pair, \((G, * )\) where \(G\) is a non-empty set, and \(*:G\times G \to G\) where the following laws apply:
@@ -363,8 +363,8 @@ A <b><b>group</b></b> is a pair, \((G, * )\) where \(G\) is a non-empty set, and
 </ol>
 </div>
 
-<div id="outline-container-org1f55971" class="outline-3">
-<h3 id="org1f55971"><span class="section-number-3">2.1.</span> Haskell definition of a group</h3>
+<div id="outline-container-orga99dcf4" class="outline-3">
+<h3 id="orga99dcf4"><span class="section-number-3">2.1.</span> Haskell definition of a group</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 In Haskell, a type <code>g</code> is an instance of a <code>Group</code> if it's a <code>Monoid</code> with an <code>invert</code> function:
@@ -385,7 +385,7 @@ a <span style="color: #412f7e;">&lt;&gt;</span> (invert a) <span style="color: #
 </div>
 
 <p>
-<code>mempty</code> is the <code>Monoid</code> unit, it's the \(e\) in the mathmetical definition <a href="#orgae95069">above</a>.
+<code>mempty</code> is the <code>Monoid</code> unit, it's the \(e\) in the mathmetical definition <a href="#orgfdebf79">above</a>.
 </p>
 
 <p>
@@ -399,8 +399,8 @@ Another convention used is to drop the infix \(*\) and just use multiplication n
 </div>
 </div>
 
-<div id="outline-container-org2ae0a8a" class="outline-2">
-<h2 id="org2ae0a8a"><span class="section-number-2">3.</span> The Symmetric Group</h2>
+<div id="outline-container-org68decd3" class="outline-2">
+<h2 id="org68decd3"><span class="section-number-2">3.</span> The Symmetric Group</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The first example of a group we should introduce is the Symmetric group \(\text{Sym}(X)\) on a set \(X\). The informal definition is that it's the set of all permutations of a set \(X\). The formal definition of this group is:
@@ -412,8 +412,8 @@ Where the group operation is \(\circ\), function composition. Let's check the de
 </p>
 </div>
 
-<div id="outline-container-org63b39db" class="outline-4">
-<h4 id="org63b39db"><span class="section-number-4">3.0.1.</span> Proof that function composition is associative:</h4>
+<div id="outline-container-org0fe1991" class="outline-4">
+<h4 id="org0fe1991"><span class="section-number-4">3.0.1.</span> Proof that function composition is associative:</h4>
 <div class="outline-text-4" id="text-3-0-1">
 <p>
 Function types have an instance of <code>Monoid</code> typeclass which proves that function composition is associative.
@@ -432,16 +432,16 @@ Exercise: Check that this Haskell code compiles.
 </div>
 </div>
 
-<div id="outline-container-org1d8a27a" class="outline-3">
-<h3 id="org1d8a27a"><span class="section-number-3">3.1.</span> Examples of Symmetric Groups on Finite sets</h3>
+<div id="outline-container-orgb5156da" class="outline-3">
+<h3 id="orgb5156da"><span class="section-number-3">3.1.</span> Examples of Symmetric Groups on Finite sets</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 There are two special notations for permutations. We defined \(\text{Sym}(X)\) using functions with inverses, but since we are thinking about these functions as objects in themselves, let's introduce a special syntax.
 </p>
 </div>
 
-<div id="outline-container-orge6e1646" class="outline-4">
-<h4 id="orge6e1646"><span class="section-number-4">3.1.1.</span> pmatrix notation</h4>
+<div id="outline-container-org9eeab53" class="outline-4">
+<h4 id="org9eeab53"><span class="section-number-4">3.1.1.</span> pmatrix notation</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Let's start with \(X = \{0, 1, 2\}\), the three-element set. To represent an invertible function, we can just make a two-row table like this:
@@ -473,11 +473,11 @@ The \(\begin{pmatrix} 0 & 1 & 2 \\ 0 & 1 & 2 \\ \end{pmatrix}\) element is the i
 </div>
 </div>
 
-<div id="outline-container-orgf50e28a" class="outline-4">
-<h4 id="orgf50e28a"><span class="section-number-4">3.1.2.</span> Cycle notation</h4>
+<div id="outline-container-org0c8b445" class="outline-4">
+<h4 id="org0c8b445"><span class="section-number-4">3.1.2.</span> Cycle notation</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
-Notice in <a href="#orge6e1646">3.1.1</a> what the \(\begin{pmatrix} 0 & 1 & 2 \\ 1 & 0 & 2 \\ \end{pmatrix}\) element is doing. It is swapping 0 and 1. This is a transposition, whic means it swaps two elements. In cycle notation it would be \((0 \space 1)\).
+Notice in <a href="#org9eeab53">3.1.1</a> what the \(\begin{pmatrix} 0 & 1 & 2 \\ 1 & 0 & 2 \\ \end{pmatrix}\) element is doing. It is swapping 0 and 1. This is a transposition, whic means it swaps two elements. In cycle notation it would be \((0 \space 1)\).
 </p>
 
 <p>
@@ -489,7 +489,7 @@ If you chain together transpositions \((0\space 1)\) and \((1\space 2)\) you get
 </p>
 
 <p>
-The cycle notation is more compact, but harder to implement in code. We will do both in <a href="#org9e4911b">the next section</a> to demonstrate how to implement different notations on Haskell's algebraic type system.
+The cycle notation is more compact, but harder to implement in code. We will do both in <a href="#org9ffabaf">the next section</a> to demonstrate how to implement different notations on Haskell's algebraic type system.
 </p>
 
 <p>
@@ -499,24 +499,24 @@ Now let's implement \(S_3\) in Haskell and make it easy to interactively work wi
 </div>
 </div>
 
-<div id="outline-container-org9e4911b" class="outline-3">
-<h3 id="org9e4911b"><span class="section-number-3">3.2.</span> <code>Data.Group.Permutation</code> in Haskell</h3>
+<div id="outline-container-org9ffabaf" class="outline-3">
+<h3 id="org9ffabaf"><span class="section-number-3">3.2.</span> <code>Data.Group.Permutation</code> in Haskell</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Since <code>Monoid</code> is so central to Haskell code, it's easy to work with Groups, since they are just Monoids with an inverse function (see <a href="#org1f55971">2.1</a>). In Haskell, the analog of a set is a type. So taking our set \(X = \{0,1,2\}\), the statement \(1 \in X\) is expressed as <code>1 :: X</code> in Haskell. The elements of a set are analogous to the <i>inhabitants</i> of a type. In the example below, we define a type <code>X</code> with three inhabitants.
+Since <code>Monoid</code> is so central to Haskell code, it's easy to work with Groups, since they are just Monoids with an inverse function (see <a href="#orga99dcf4">2.1</a>). In Haskell, the analog of a set is a type. So taking our set \(X = \{0,1,2\}\), the statement \(1 \in X\) is expressed as <code>1 :: X</code> in Haskell. The elements of a set are analogous to the <i>inhabitants</i> of a type. In the example below, we define a type <code>X</code> with three inhabitants.
 </p>
 </div>
-<div id="outline-container-orgf566147" class="outline-4">
-<h4 id="orgf566147"><span class="section-number-4">3.2.1.</span> data type definition to build a permutation group upon</h4>
+<div id="outline-container-orgda56365" class="outline-4">
+<h4 id="orgda56365"><span class="section-number-4">3.2.1.</span> data type definition to build a permutation group upon</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
-<pre class="src src-haskell" id="org2cb11ba"><span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
+<pre class="src src-haskell" id="org9dc190e"><span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org1cefd6f" class="outline-4">
-<h4 id="org1cefd6f"><span class="section-number-4">3.2.2.</span> generating all permutations on the <code>X</code> type</h4>
+<div id="outline-container-orgb8bf276" class="outline-4">
+<h4 id="orgb8bf276"><span class="section-number-4">3.2.2.</span> generating all permutations on the <code>X</code> type</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 We can enumerate all <code>X</code> values using <code>[Zero ..]</code>
@@ -528,11 +528,11 @@ then we can <code>zip</code> them together and generate the <code>(x, f x)</code
 
 
 
-<div id="outline-container-org69292d1" class="outline-4">
-<h4 id="org69292d1"><span class="section-number-4">3.2.3.</span> show function for pmatrix notation</h4>
+<div id="outline-container-org92286c0" class="outline-4">
+<h4 id="org92286c0"><span class="section-number-4">3.2.3.</span> show function for pmatrix notation</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <div class="org-src-container">
-<pre class="src src-haskell" id="orgfa3f7f8"><span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
+<pre class="src src-haskell" id="org7de7b8e"><span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
 <span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.List</span>
 
 <span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
@@ -570,14 +570,14 @@ The string output of <code>show s1</code> looks like this:
 </div>
 </div>
 
-<div id="outline-container-org3b389fb" class="outline-4">
-<h4 id="org3b389fb"><span class="section-number-4">3.2.4.</span> show function for cycle notation</h4>
+<div id="outline-container-orgea00b7a" class="outline-4">
+<h4 id="orgea00b7a"><span class="section-number-4">3.2.4.</span> show function for cycle notation</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
-This is an alternative <code>show</code> function that uses <a href="#orgf50e28a">cycle notation</a>.
+This is an alternative <code>show</code> function that uses <a href="#org0c8b445">cycle notation</a>.
 The problem in Haskell is collecting all the cycles. Consider our \(S_3\) example so far, notice how
 \((0 \space 1)\) is a transposition, which is also a 2-cycle. It <i>turns out</i> that we can prove that all
-permutations can be decomposed into transpositions. (Proof: <a href="#org218215e">5.2.1</a>)
+permutations can be decomposed into transpositions. (Proof: <a href="#org94c59af">5.2.1</a>)
 </p>
 
 <p>
@@ -602,7 +602,7 @@ One way to do it is to define a <b>cycle set</b>, and observe that the cycle set
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-haskell" id="orge16745f"><span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
+<pre class="src src-haskell" id="org1196e01"><span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
 <span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.List</span> (take)
 <span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Set</span> (fromList)
 
@@ -629,8 +629,8 @@ One way to do it is to define a <b>cycle set</b>, and observe that the cycle set
 </div>
 </div>
 
-<div id="outline-container-orgecc1215" class="outline-3">
-<h3 id="orgecc1215"><span class="section-number-3">3.3.</span> Exercises (in Haskell)</h3>
+<div id="outline-container-org14a4061" class="outline-3">
+<h3 id="org14a4061"><span class="section-number-3">3.3.</span> Exercises (in Haskell)</h3>
 <div class="outline-text-3" id="text-3-3">
 <ol class="org-ol">
 <li>Define the group \(S_3\)</li>
@@ -641,8 +641,8 @@ prove that \[(g_1g_2...g_n)^{-1} = (g_n^{-1}g_{n-1}^{-1}...g_2^{-1}g_1^{-1})\]</
 </div>
 </div>
 
-<div id="outline-container-org215c9a4" class="outline-2">
-<h2 id="org215c9a4"><span class="section-number-2">4.</span> Group homomorphims</h2>
+<div id="outline-container-org26b3f21" class="outline-2">
+<h2 id="org26b3f21"><span class="section-number-2">4.</span> Group homomorphims</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Given two groups \(G\) and \(H\), a function \(f:G \to H\) is a <b><b>homomorphism</b></b> if for every \(a,b \in G\):
@@ -654,7 +654,7 @@ Given two groups \(G\) and \(H\), a function \(f:G \to H\) is a <b><b>homomorphi
 
 <p>
 A linear transformation between vector spaces is an example of a homomorphism.
-As is the logarithm (remember \(log(ab)=log(a) + log(b)\).
+As is the logarithm (remember \(\log(ab)=\log(a) + \log(b)\).
 </p>
 
 <p>
@@ -667,16 +667,16 @@ two groups \(G\) and \(H\) are "the same".
 </p>
 </div>
 </div>
-<div id="outline-container-org83c2a8b" class="outline-2">
-<h2 id="org83c2a8b"><span class="section-number-2">5.</span> Appendix</h2>
+<div id="outline-container-orge3323ba" class="outline-2">
+<h2 id="orge3323ba"><span class="section-number-2">5.</span> Appendix</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org184cc33" class="outline-3">
-<h3 id="org184cc33"><span class="section-number-3">5.1.</span> Haskell</h3>
+<div id="outline-container-org53b9743" class="outline-3">
+<h3 id="org53b9743"><span class="section-number-3">5.1.</span> Haskell</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-orgee52015" class="outline-4">
-<h4 id="orgee52015"><span class="section-number-4">5.1.1.</span> Correspondence between <code>Hask</code> and <code>Set</code> categories</h4>
+<div id="outline-container-org44adf45" class="outline-4">
+<h4 id="org44adf45"><span class="section-number-4">5.1.1.</span> Correspondence between <code>Hask</code> and <code>Set</code> categories</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 <code>Hask</code> is the <a href="https://ncatlab.org/nlab/show/category">Category</a> of all Haskell types. The objects of Hask are Haskell types, and the morphisms
@@ -685,7 +685,7 @@ The green \(\color{green}{F}\) is a <a href="https://ncatlab.org/nlab/show/funct
 </p>
 
 
-<div id="org3c68752" class="figure">
+<div id="org82ef964" class="figure">
 <p><img src="./img/haskset.png" alt="haskset.png">
 </p>
 </div>
@@ -705,12 +705,12 @@ Then finish by introducing <code>Countable</code> typeclass to get the cardinali
 </div>
 </div>
 
-<div id="outline-container-orgd522476" class="outline-3">
-<h3 id="orgd522476"><span class="section-number-3">5.2.</span> proofs</h3>
+<div id="outline-container-orge711683" class="outline-3">
+<h3 id="orge711683"><span class="section-number-3">5.2.</span> proofs</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org218215e" class="outline-4">
-<h4 id="org218215e"><span class="section-number-4">5.2.1.</span> Proof that all permutations are decomposable into transpositions</h4>
+<div id="outline-container-org94c59af" class="outline-4">
+<h4 id="org94c59af"><span class="section-number-4">5.2.1.</span> Proof that all permutations are decomposable into transpositions</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 Bubble sort exists. Think about it.
@@ -720,8 +720,8 @@ QED.
 </div>
 </div>
 
-<div id="outline-container-orgdd62286" class="outline-3">
-<h3 id="orgdd62286"><span class="section-number-3">5.3.</span> My literate programming workflow for this document</h3>
+<div id="outline-container-orgee9ca6d" class="outline-3">
+<h3 id="orgee9ca6d"><span class="section-number-3">5.3.</span> My literate programming workflow for this document</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 I wrote this document in org-mode in Emacs. I export the org file to html to generate the website, and then I run <code>org-babel-tangle</code> to produce the Haskell code. To speed up the workflow I made the function below and then bound it to &lt;F5&gt;
@@ -740,19 +740,19 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
 </div>
 </div>
 
-<div id="outline-container-orga0eea1a" class="outline-3">
-<h3 id="orga0eea1a"><span class="section-number-3">5.4.</span> files</h3>
+<div id="outline-container-org2faae5c" class="outline-3">
+<h3 id="org2faae5c"><span class="section-number-3">5.4.</span> files</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-org3018a2a" class="outline-4">
-<h4 id="org3018a2a"><span class="section-number-4">5.4.1.</span> The <code>main</code> function</h4>
+<div id="outline-container-org1a9517d" class="outline-4">
+<h4 id="org1a9517d"><span class="section-number-4">5.4.1.</span> The <code>main</code> function</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <p>
 <a href="./perms.hs">./perms.hs</a> is a literate program that this <a href="https://orgmode.org/">org-mode</a> document produces. Supporting code to make the file compile and run is defined down here in the appendix.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell" id="org6b35d02"><span style="color: #243867; font-weight: bold;">{-# LANGUAGE FlexibleInstances #-}</span>
+<pre class="src src-haskell" id="org5b9c3b8"><span style="color: #243867; font-weight: bold;">{-# LANGUAGE FlexibleInstances #-}</span>
 <span style="color: #2e4d98; font-weight: bold;">module</span> <span style="color: #9a2d71; font-weight: bold;">Main</span> <span style="color: #2e4d98; font-weight: bold;">where</span>
 
 <span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
@@ -787,8 +787,8 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
 </div>
 </div>
 </div>
-<div id="outline-container-org5ad17ff" class="outline-4">
-<h4 id="org5ad17ff"><span class="section-number-4">5.4.2.</span> the <code>package.yaml</code> file, where we add dependencies</h4>
+<div id="outline-container-org285c64d" class="outline-4">
+<h4 id="org285c64d"><span class="section-number-4">5.4.2.</span> the <code>package.yaml</code> file, where we add dependencies</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #5f4f93;">name</span>: perms-example
@@ -806,8 +806,8 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
 </div>
 </div>
 
-<div id="outline-container-org1f04226" class="outline-4">
-<h4 id="org1f04226"><span class="section-number-4">5.4.3.</span> the <code>stack.yaml</code> file, where we define the overall package</h4>
+<div id="outline-container-orgf4eefa1" class="outline-4">
+<h4 id="orgf4eefa1"><span class="section-number-4">5.4.3.</span> the <code>stack.yaml</code> file, where we define the overall package</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <div class="org-src-container">
 <pre class="src src-yaml"><span style="color: #5f4f93;">resolver</span>: lts-18.17
@@ -820,30 +820,30 @@ I wrote this document in org-mode in Emacs. I export the org file to html to gen
 </div>
 </div>
 </div>
-<div id="outline-container-orgdfc812d" class="outline-3">
-<h3 id="orgdfc812d"><span class="section-number-3">5.5.</span> TODOs</h3>
+<div id="outline-container-org657a6ea" class="outline-3">
+<h3 id="org657a6ea"><span class="section-number-3">5.5.</span> TODOs</h3>
 <div class="outline-text-3" id="text-5-5">
 </div>
-<div id="outline-container-orga9a721a" class="outline-4">
-<h4 id="orga9a721a"><span class="section-number-4">5.5.1.</span> <span class="todo TODO">TODO</span> Definition of a partition of a set (maybe equivalence relation too?)</h4>
+<div id="outline-container-orge13cd3e" class="outline-4">
+<h4 id="orge13cd3e"><span class="section-number-4">5.5.1.</span> <span class="todo TODO">TODO</span> Definition of a partition of a set (maybe equivalence relation too?)</h4>
 </div>
-<div id="outline-container-org30fbbb3" class="outline-4">
-<h4 id="org30fbbb3"><span class="section-number-4">5.5.2.</span> <span class="todo TODO">TODO</span> Define a <code>show :: Permutation X -&gt; String</code> that displays <code>Zero</code> as <code>0</code>, etc.</h4>
+<div id="outline-container-orge026dc0" class="outline-4">
+<h4 id="orge026dc0"><span class="section-number-4">5.5.2.</span> <span class="todo TODO">TODO</span> Define a <code>show :: Permutation X -&gt; String</code> that displays <code>Zero</code> as <code>0</code>, etc.</h4>
 <div class="outline-text-4" id="text-5-5-2">
 </div>
 <ol class="org-ol">
-<li><a id="org5456c54"></a><span class="todo TODO">TODO</span> display <i>One</i> as 1 using <code>fromEnum</code><br></li>
+<li><a id="org11a1279"></a><span class="todo TODO">TODO</span> display <i>One</i> as 1 using <code>fromEnum</code><br></li>
 </ol>
 </div>
-<div id="outline-container-org665b9c5" class="outline-4">
-<h4 id="org665b9c5"><span class="section-number-4">5.5.3.</span> <span class="todo TODO">TODO</span> remove magic number 3 and find way of computing \(|X|\)</h4>
+<div id="outline-container-org9ac74d0" class="outline-4">
+<h4 id="org9ac74d0"><span class="section-number-4">5.5.3.</span> <span class="todo TODO">TODO</span> remove magic number 3 and find way of computing \(|X|\)</h4>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Tobi Lehman</p>
-<p class="date">Created: 2024-09-08 Sun 15:59</p>
+<p class="date">Created: 2024-09-08 Sun 17:13</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

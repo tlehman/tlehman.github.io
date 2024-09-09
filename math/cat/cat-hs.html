@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<!-- 2024-09-08 Sun 16:04 -->
+<!-- 2024-09-08 Sun 18:12 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Category Theory in Haskell</title>
@@ -233,18 +233,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6108b91">1. Introduction</a>
+<li><a href="#orgf7ecd25">1. Introduction</a>
 <ul>
-<li><a href="#org0f83068">1.1. Motivating Example</a></li>
+<li><a href="#orgf1f3d1e">1.1. Motivating Example</a></li>
 </ul>
 </li>
-<li><a href="#org264e5b3">2. Definition of a category</a></li>
+<li><a href="#orgb3dea6f">2. Definition of a category</a>
+<ul>
+<li><a href="#orgf75a048">2.1. Example of a category: \(\text{Hask}\)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6108b91" class="outline-2">
-<h2 id="org6108b91"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgf7ecd25" class="outline-2">
+<h2 id="orgf7ecd25"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Category Theory is the mathematical study of other mathematical theories.
@@ -254,8 +258,8 @@ by reducing them to group theory problems.
 </p>
 </div>
 
-<div id="outline-container-org0f83068" class="outline-3">
-<h3 id="org0f83068"><span class="section-number-3">1.1.</span> Motivating Example</h3>
+<div id="outline-container-orgf1f3d1e" class="outline-3">
+<h3 id="orgf1f3d1e"><span class="section-number-3">1.1.</span> Motivating Example</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose you have a continuous function \(f : X \to Y\) where
@@ -277,7 +281,7 @@ let's look at this diagram:
 </p>
 
 
-<div id="orga1484b2" class="figure">
+<div id="org5d510d0" class="figure">
 <p><img src="./fundamental-group-functor.png" alt="fundamental-group-functor.png">
 </p>
 </div>
@@ -299,18 +303,59 @@ spaces are not homeomorphic. This is the way in which some topology problems can
 </div>
 </div>
 
-<div id="outline-container-org264e5b3" class="outline-2">
-<h2 id="org264e5b3"><span class="section-number-2">2.</span> Definition of a category</h2>
+<div id="outline-container-orgb3dea6f" class="outline-2">
+<h2 id="orgb3dea6f"><span class="section-number-2">2.</span> Definition of a category</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 This \(\pi_1\) thing is an example of a <b><b>functor</b></b>. In order to understand functors, one must first understand categories.
 </p>
+
+<p>
+A <b><b>category</b></b> \(\mathcal{C}\) is defined by:
+</p>
+
+<ol class="org-ol">
+<li>The collection \(\text{Ob}(\mathcal{C})\) of objects</li>
+<li>For each pair \(X,Y \in \text{Ob}(\mathcal{C})\),
+a set \(\text{Hom}(X,Y)\) of <b><b>morphisms</b></b></li>
+<li>For each object \(X \in \text{Ob}(\mathcal{C})\), there's an identity functor \(\text{id}_X : X \to X\).
+(Note that \(\text{id}_X \in \text{Hom}(X,X)\))</li>
+<li>Morphisms compose: given \(f : X \to Y\) and \(g : Y \to Z\), there's a \(gf : X \to Z\)</li>
+<li>Morphism composition is associative: given \(f : X \to Y\), \(g : Y \to Z\), and \(h : Z \to W\),
+\[h(gf) = (hg)f\]
+\[hgf : X \to W\] is well-defined</li>
+</ol>
+</div>
+<div id="outline-container-orgf75a048" class="outline-3">
+<h3 id="orgf75a048"><span class="section-number-3">2.1.</span> Example of a category: \(\text{Hask}\)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The set \(\text{Ob(Hask)}\) of Haskell types is countable and well-defined.
+</p>
+
+<p>
+For each pair of Haskell types <code>a</code> and <code>b</code>, the set \(\text{Hom}(a,b)\) is the
+set of all Haskell functions <code>a -&gt; b</code>
+</p>
+
+<p>
+The <code>id :: a -&gt; a</code> function is polymorphic, so it specializes to each Haskell type, so it satisfies 3. in the definition.
+</p>
+
+<p>
+Haskell functions compose with the <code>. :: (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c</code> operator.
+</p>
+
+<p>
+It's associative. Prove me wrong.
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Tobi Lehman</p>
-<p class="date">Created: 2024-09-08 Sun 16:04</p>
+<p class="date">Created: 2024-09-08 Sun 18:12</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

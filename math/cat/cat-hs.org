@@ -45,8 +45,26 @@ spaces are not homeomorphic. This is the way in which some topology problems can
 
 This $\pi_1$ thing is an example of a **functor**. In order to understand functors, one must first understand categories.
 
-A **category** $C$ has two parts:
+A **category** $\mathcal{C}$ is defined by:
 
-1. $Ob(C)$ is a set of objects
-2. For each pair $A, B \in Ob(C)$
+1. The collection $\text{Ob}(\mathcal{C})$ of objects
+2. For each pair $X,Y \in \text{Ob}(\mathcal{C})$,
+    a set $\text{Hom}(X,Y)$ of **morphisms**
+3. For each object $X \in \text{Ob}(\mathcal{C})$, there's an identity functor $\text{id}_X : X \to X$.
+   (Note that $\text{id}_X \in \text{Hom}(X,X)$)
+4. Morphisms compose: given $f : X \to Y$ and $g : Y \to Z$, there's a $gf : X \to Z$
+5. Morphism composition is associative: given $f : X \to Y$, $g : Y \to Z$, and $h : Z \to W$,
+      $$h(gf) = (hg)f$$
+      $$hgf : X \to W$$ is well-defined
+** Example of a category: $\text{Hask}$
 
+The set $\text{Ob(Hask)}$ of Haskell types is countable and well-defined.
+
+For each pair of Haskell types ~a~ and ~b~, the set $\text{Hom}(a,b)$ is the
+set of all Haskell functions ~a -> b~
+
+The ~id :: a -> a~ function is polymorphic, so it specializes to each Haskell type, so it satisfies 3. in the definition.
+
+Haskell functions compose with the ~. :: (b -> c) -> (a -> b) -> a -> c~ operator.
+
+It's associative. Prove me wrong.

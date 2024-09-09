@@ -211,7 +211,7 @@ Given two groups $G$ and $H$, a function $f:G \to H$ is a **homomorphism** if fo
 $$f(a*b) = f(a)*f(b)$$
 
 A linear transformation between vector spaces is an example of a homomorphism.
-As is the logarithm (remember $log(ab)=log(a) + log(b)$.
+As is the logarithm (remember $\log(ab)=\log(a) + \log(b)$.
 
 Homomorphisms are like "structure preserving" maps for groups.
 
