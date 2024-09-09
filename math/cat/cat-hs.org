@@ -41,7 +41,7 @@ $f$ is a continuous function between two spaces, and $\pi_1(f)$ is a [[../grp/gr
 To bring this all home, if the fundamental groups of $X$ and $Y$ are not isomorphic, then we know that the
 spaces are not homeomorphic. This is the way in which some topology problems can be reduced to abstract algebra.
 
-* Definition of a category
+** Definition of a category
 
 This $\pi_1$ thing is an example of a **functor**. In order to understand functors, one must first understand categories.
 
@@ -68,3 +68,27 @@ The ~id :: a -> a~ function is polymorphic, so it specializes to each Haskell ty
 Haskell functions compose with the ~. :: (b -> c) -> (a -> b) -> a -> c~ operator.
 
 It's associative. Prove me wrong.
+
+** Example of a functor on a category: ~Functor f~
+
+The Haskell ~Functor~ typeclass has this signature:
+#+begin_src haskell
+  class Functor f where
+    fmap :: (a -> b) -> f a -> f b
+#+end_src
+
+Does it implement a functor on $\text{Hask}$?
+
+file:./fmap.png
+
+You can see from the diagram that ~f~ looks like an endofunctor, that is:
+
+$$\texttt{f} : \text{Hask} \to \text{Hask}$$
+
+
+
+** Example of a functor on a category: ~Identity~
+
+#+begin_src haskell
+  newtype Identity a = Identity a deriving (Eq, Ord, Show)
+#+end_src

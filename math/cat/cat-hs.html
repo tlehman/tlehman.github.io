@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<!-- 2024-09-08 Sun 18:12 -->
+<!-- 2024-09-09 Mon 09:06 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Category Theory in Haskell</title>
@@ -233,22 +233,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf7ecd25">1. Introduction</a>
+<li><a href="#org5d8eb70">1. Introduction</a>
 <ul>
-<li><a href="#orgf1f3d1e">1.1. Motivating Example</a></li>
-</ul>
-</li>
-<li><a href="#orgb3dea6f">2. Definition of a category</a>
-<ul>
-<li><a href="#orgf75a048">2.1. Example of a category: \(\text{Hask}\)</a></li>
+<li><a href="#orgb29e3a5">1.1. Motivating Example</a></li>
+<li><a href="#orgd100d47">1.2. Definition of a category</a></li>
+<li><a href="#orgb0eec09">1.3. Example of a category: \(\text{Hask}\)</a></li>
+<li><a href="#org53f808f">1.4. Example of a functor on a category: <code>Functor f</code></a></li>
+<li><a href="#orgce512f4">1.5. Example of a functor on a category: <code>Identity</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf7ecd25" class="outline-2">
-<h2 id="orgf7ecd25"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-org5d8eb70" class="outline-2">
+<h2 id="org5d8eb70"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Category Theory is the mathematical study of other mathematical theories.
@@ -258,8 +257,8 @@ by reducing them to group theory problems.
 </p>
 </div>
 
-<div id="outline-container-orgf1f3d1e" class="outline-3">
-<h3 id="orgf1f3d1e"><span class="section-number-3">1.1.</span> Motivating Example</h3>
+<div id="outline-container-orgb29e3a5" class="outline-3">
+<h3 id="orgb29e3a5"><span class="section-number-3">1.1.</span> Motivating Example</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Suppose you have a continuous function \(f : X \to Y\) where
@@ -281,7 +280,7 @@ let's look at this diagram:
 </p>
 
 
-<div id="org5d510d0" class="figure">
+<div id="org344ba40" class="figure">
 <p><img src="./fundamental-group-functor.png" alt="fundamental-group-functor.png">
 </p>
 </div>
@@ -301,11 +300,10 @@ spaces are not homeomorphic. This is the way in which some topology problems can
 </p>
 </div>
 </div>
-</div>
 
-<div id="outline-container-orgb3dea6f" class="outline-2">
-<h2 id="orgb3dea6f"><span class="section-number-2">2.</span> Definition of a category</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgd100d47" class="outline-3">
+<h3 id="orgd100d47"><span class="section-number-3">1.2.</span> Definition of a category</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 This \(\pi_1\) thing is an example of a <b><b>functor</b></b>. In order to understand functors, one must first understand categories.
 </p>
@@ -326,9 +324,10 @@ a set \(\text{Hom}(X,Y)\) of <b><b>morphisms</b></b></li>
 \[hgf : X \to W\] is well-defined</li>
 </ol>
 </div>
-<div id="outline-container-orgf75a048" class="outline-3">
-<h3 id="orgf75a048"><span class="section-number-3">2.1.</span> Example of a category: \(\text{Hask}\)</h3>
-<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-orgb0eec09" class="outline-3">
+<h3 id="orgb0eec09"><span class="section-number-3">1.3.</span> Example of a category: \(\text{Hask}\)</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 The set \(\text{Ob(Hask)}\) of Haskell types is countable and well-defined.
 </p>
@@ -351,11 +350,55 @@ It's associative. Prove me wrong.
 </p>
 </div>
 </div>
+
+<div id="outline-container-org53f808f" class="outline-3">
+<h3 id="org53f808f"><span class="section-number-3">1.4.</span> Example of a functor on a category: <code>Functor f</code></h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The Haskell <code>Functor</code> typeclass has this signature:
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #2e4d98; font-weight: bold;">class</span> <span style="color: #9a2d71; font-weight: bold;">Functor</span> f <span style="color: #2e4d98; font-weight: bold;">where</span>
+  fmap <span style="color: #5f4f93;">::</span> (a <span style="color: #5f4f93;">-&gt;</span> b) <span style="color: #5f4f93;">-&gt;</span> f a <span style="color: #5f4f93;">-&gt;</span> f b
+</pre>
+</div>
+
+<p>
+Does it implement a functor on \(\text{Hask}\)?
+</p>
+
+
+<div id="orgf2a5dfb" class="figure">
+<p><img src="./fmap.png" alt="fmap.png">
+</p>
+</div>
+
+<p>
+You can see from the diagram that <code>f</code> looks like an endofunctor, that is:
+</p>
+
+<p>
+\[\texttt{f} : \text{Hask} \to \text{Hask}\]
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgce512f4" class="outline-3">
+<h3 id="orgce512f4"><span class="section-number-3">1.5.</span> Example of a functor on a category: <code>Identity</code></h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #2e4d98; font-weight: bold;">newtype</span> <span style="color: #9a2d71; font-weight: bold;">Identity</span> a <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Identity</span> a <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Ord</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Tobi Lehman</p>
-<p class="date">Created: 2024-09-08 Sun 18:12</p>
+<p class="date">Created: 2024-09-09 Mon 09:06</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
