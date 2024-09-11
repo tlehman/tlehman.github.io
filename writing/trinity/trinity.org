@@ -1,0 +1,76 @@
+#+TITLE: The God Groupoid
+#+AUTHOR: Tobi Lehman
+#+EMAIL: mail@tobilehman.com
+#+LANGUAGE: en-us
+#+EXPORT_html_PREFERENCE: html5
+#+HTML_DOCTYPE: html5
+#+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./style.css" />
+#+HTML_HEAD: <link rel="shortcut icon" href="/img/favicon.ico">
+#+OPTIONS: toc:t num:t ns:t
+* Introduction
+This is my attempt to formulate the Catholic theology of the Trinity in mathematical language. If you find any errors in the math or the theology, please email me at mailto:mail@tobilehman.com, I care deeply about getting this right. To my mathematician's eyes, the Catechism of the Catholic Church ([[https://www.vatican.va/archive/ENG0015/_INDEX.HTM][CCC]]) has parts that remind me of a mathematical text. The axiomatic truths asserted early on, the precise and consistent use of language, the fidelity to reason. I don't know if the entire Catechism could be written to look like a math text, or if it even should, but I think the doctrine of trinity can. This is my best attempt to do so. God bless.
+
+For background on category theory or Catholic theology, see my [[* Sources][sources]] section.
+
+* Definitions
+$$\begin{align}\mathcal{G} &= \text{God} \\ F &= \text{The Father}\\ S &= \text{The Son} \\ H &= \text{The Holy Spirit} \\ (X \stackrel{\dagger}{=} Y) &= (X \text{ is consubstantial with } Y) \end{align}$$
+
+** The category $\mathcal{G}$
+
+We will represent the triune God $\mathcal{G}$ as a category where the set of objects is:
+
+$$\text{ob}(\mathcal{G}) = \{F,S,H\}$$
+
+file:./trinity.png
+
+And all the sets of morphisms are isomorphisms, they are the $\stackrel{\dagger}{=}$ relation, which is read "is consubstantial with".
+
+$$\text{Hom}(F,S) = \{ \stackrel{\dagger}{=}_{FS} : F \to S \} $$
+$$\text{Hom}(S,H) = \{ \stackrel{\dagger}{=}_{SH} : S \to H \} $$
+$$\text{Hom}(H,F) = \{ \stackrel{\dagger}{=}_{HF} : H \to F \} $$
+$$\text{Hom}(S,F) = \{ \stackrel{\dagger}{=}_{SF} : S \to F \} $$
+$$\text{Hom}(F,H) = \{ \stackrel{\dagger}{=}_{FH} : F \to H \} $$
+$$\text{Hom}(H,S) = \{ \stackrel{\dagger}{=}_{HS} : H \to S \} $$
+
+**Notational Note**: I am overloading the $\stackrel{\dagger}{=}$ symbol to make the diagram cleaner. Each of the morphisms in the diagram have a different identity, but they express the same relation between
+
+** Lemma 1.1: $\mathcal{G}$ is a groupoid
+
+A [[https://math.jhu.edu/~eriehl/context.pdf#page=25][groupoid]] is a category in which every morphism is an isomorphism. That's another way of saying every morphism has an inverse.
+
+*** Proof:
+
+
+* Axioms
+1. There is one God ([[https://www.vatican.va/archive/ENG0015/__P16.HTM][CCC:200]])
+2. There are three Divine Persons, The Father, The Son and The Holy Spirit. All are fully God. ([[https://www.vatican.va/archive/ENG0015/__P17.HTM][CCC:253]]).
+4. The Father is consubstantial with The Son, who is consubstantial with the Holy Spirit. ([[https://www.vatican.va/archive/ENG0015/__P20.HTM][CCC:689]])
+   $$F \stackrel{\dagger}{=} S \stackrel{\dagger}{=} H$$   
+5. All things come from The Father ([[https://www.vatican.va/archive/ENG0015/__P17.HTM][CCC:258]])
+   $$\forall x : \text{from}_F(x)$$
+
+6. All things are through The Son ([[https://www.vatican.va/archive/ENG0015/__P17.HTM][CCC:258]])
+   $$\forall x : \text{through}_S(x)$$
+   
+7. All things are in The Holy Spirit ([[https://www.vatican.va/archive/ENG0015/__P17.HTM][CCC:258]])
+   $$\forall x : \text{in}_H(x)$$
+
+   
+* The Most Holy Trinity
+God is the Father, the Son, and the Holy Spirit. The use of the word "is" doesn't follow the same transitive rules as $=$ in mathematics. There's another branch of math that deals with this, category theory. Category theory goes beyond the idea of "strict equality" and focuses on relationships and mappings between objects. This distinction will be useful in trying to understand the Trinity.
+
+Let $G = \text{God}$, $F = \text{The Father}$, $S = \text{The Son}$ and $H = \text{The Holy Spirit}$.
+
+If "is" was the normal $=$ sign, then we could prove something false.
+h
+* Sources
+** BCT
+/Basic Category Theory/ by Tom Leinster
+https://arxiv.org/pdf/1612.09375#page=18
+** CTIC
+/Category Theory in Context/ by Emily Riehl
+https://math.jhu.edu/~eriehl/context.pdf#page=21
+** CCC
+/Catechism of the Catholic Church/
+https://www.vatican.va/archive/ENG0015/_INDEX.HTM

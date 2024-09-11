@@ -1,0 +1,11 @@
+body {
+    background-color: #ffddaa;
+}
+img {
+    min-width: 300px;
+    max-width: 50%;
+}
+#content {
+    padding: 5px;
+    font-size: 20px;
+}
