@@ -33,8 +33,6 @@ $$\text{Hom}(S,F) = \{ \stackrel{\dagger}{=}_{SF} : S \to F \} $$
 $$\text{Hom}(F,H) = \{ \stackrel{\dagger}{=}_{FH} : F \to H \} $$
 $$\text{Hom}(H,S) = \{ \stackrel{\dagger}{=}_{HS} : H \to S \} $$
 
-**Notational Note**: I am overloading the $\stackrel{\dagger}{=}$ symbol to make the diagram cleaner. Each of the morphisms in the diagram have a different identity, but they express the same relation between
-
 ** Lemma 1.1: $\mathcal{G}$ is a groupoid
 
 A [[https://math.jhu.edu/~eriehl/context.pdf#page=25][groupoid]] is a category in which every morphism is an isomorphism. That's another way of saying every morphism has an inverse.
@@ -66,11 +64,9 @@ If "is" was the normal $=$ sign, then we could prove something false.
 h
 * Sources
 ** BCT
-/Basic Category Theory/ by Tom Leinster
-https://arxiv.org/pdf/1612.09375#page=18
+[[https://arxiv.org/pdf/1612.09375#page=18][/Basic Category Theory/ by Tom Leinster]]
+
 ** CTIC
-/Category Theory in Context/ by Emily Riehl
-https://math.jhu.edu/~eriehl/context.pdf#page=21
+[[https://math.jhu.edu/~eriehl/context.pdf#page=21][/Category Theory in Context/ by Emily Riehl]]
 ** CCC
-/Catechism of the Catholic Church/
-https://www.vatican.va/archive/ENG0015/_INDEX.HTM
+[[https://www.vatican.va/archive/ENG0015/_INDEX.HTM][/Catechism of the Catholic Church/]]
