@@ -34,7 +34,22 @@ $$\text{Hom}(F,H) = \{ \stackrel{\dagger}{=}_{FH} : F \to H \} $$
 $$\text{Hom}(H,S) = \{ \stackrel{\dagger}{=}_{HS} : H \to S \} $$
 
 ** Interpreting "God is the Father"
-Bill Clinton once reminded us that it depends on what your definition of "is" is. We have formalized the sentences "The Father is consubstantial with the Son", but then defined God as the category that contains the Father, Son and Holy Spirit. What does it mean to say that $\mathcal{G}$ "is" $F$?
+Bill Clinton once reminded us that it depends on what your definition of "is" is. We have formalized the sentences like "The Father is consubstantial with the Son", but then defined God as the category that contains the Father, Son and Holy Spirit. What does it mean to say that $\mathcal{G}$ "is" $F$?
+
+*** The $\text{Is}$ Functors
+
+We interpret the sentence "God is the Father" using the
+$\text{Is}_F : \mathcal{G} \to \mathcal{G}\downarrow F$ [[* Functors][Functor]].
+
+
+$\mathcal{G}\downarrow F$ is the [[* Slice Category][slice category]] construction,
+which makes a category out of an object that isomorphic to $\mathbb{1}$.
+
+**** Functors
+TODO
+
+**** Slice Category
+TODO 
 
 ** Lemma 1.1: $\mathcal{G}$ is a groupoid
 
