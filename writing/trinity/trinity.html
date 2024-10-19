@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-<!-- 2024-09-18 Wed 06:24 -->
+<!-- 2024-10-19 Sat 06:24 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The God Groupoid</title>
@@ -234,57 +234,57 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org791f7cd">1. Introduction</a></li>
-<li><a href="#org3ecaf91">2. Definitions</a>
+<li><a href="#orgc66ef4d">1. Introduction</a></li>
+<li><a href="#org51e1e7f">2. Definitions</a>
 <ul>
-<li><a href="#org099de2a">2.1. The category \(\mathcal{G}\)</a></li>
-<li><a href="#org1b5aeac">2.2. Interpreting "God is the Father"</a>
+<li><a href="#orge8bdf0f">2.1. The category \(\mathcal{G}\)</a></li>
+<li><a href="#org1389ac6">2.2. Interpreting "God is the Father"</a>
 <ul>
-<li><a href="#orgb8f0590">2.2.1. The \(\text{Is}\) Functors</a></li>
+<li><a href="#org5fa0871">2.2.1. The \(\text{Is}\) Functors</a></li>
 </ul>
 </li>
-<li><a href="#org08d2b0b">2.3. Lemma 1.1: \(\mathcal{G}\) is a groupoid</a>
+<li><a href="#orga2813c2">2.3. Lemma 1.1: \(\mathcal{G}\) is a groupoid</a>
 <ul>
-<li><a href="#org4145e66">2.3.1. Proof:</a></li>
+<li><a href="#orge0ee187">2.3.1. Proof:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7d8a55a">3. Axioms</a></li>
-<li><a href="#org135b81f">4. The Most Holy Trinity</a></li>
-<li><a href="#org45b21c9">5. Sources</a>
+<li><a href="#org2b92ff9">3. Axioms</a></li>
+<li><a href="#org6421e27">4. The Most Holy Trinity</a></li>
+<li><a href="#org0717bc8">5. Sources</a>
 <ul>
-<li><a href="#org2fe1f85">5.1. BCT</a></li>
-<li><a href="#org60582b8">5.2. CTIC</a></li>
-<li><a href="#orge678412">5.3. CCC</a></li>
+<li><a href="#org68e127d">5.1. BCT</a></li>
+<li><a href="#org830024d">5.2. CTIC</a></li>
+<li><a href="#org3b68d51">5.3. CCC</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org791f7cd" class="outline-2">
-<h2 id="org791f7cd"><span class="section-number-2">1.</span> Introduction</h2>
+<div id="outline-container-orgc66ef4d" class="outline-2">
+<h2 id="orgc66ef4d"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This is my attempt to formulate the Catholic theology of the Trinity in mathematical language. If you find any errors in the math or the theology, please email me at <a href="mailto:mail@tobilehman.com">mailto:mail@tobilehman.com</a>, I care deeply about getting this right. To my mathematician's eyes, the Catechism of the Catholic Church (<a href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM">CCC</a>) has parts that remind me of a mathematical text. The axiomatic truths asserted early on, the precise and consistent use of language, the fidelity to reason. I don't know if the entire Catechism could be written to look like a math text, or if it even should, but I think the doctrine of trinity can. This is my best attempt to do so. God bless.
 </p>
 
 <p>
-For background on category theory or Catholic theology, see my <a href="#org45b21c9">sources</a> section.
+For background on category theory or Catholic theology, see my <a href="#org0717bc8">sources</a> section.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3ecaf91" class="outline-2">
-<h2 id="org3ecaf91"><span class="section-number-2">2.</span> Definitions</h2>
+<div id="outline-container-org51e1e7f" class="outline-2">
+<h2 id="org51e1e7f"><span class="section-number-2">2.</span> Definitions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 \[\begin{align}\mathcal{G} &= \text{God} \\ F &= \text{The Father}\\ S &= \text{The Son} \\ H &= \text{The Holy Spirit} \\ (X \stackrel{\dagger}{=} Y) &= (X \text{ is consubstantial with } Y) \end{align}\]
 </p>
 </div>
 
-<div id="outline-container-org099de2a" class="outline-3">
-<h3 id="org099de2a"><span class="section-number-3">2.1.</span> The category \(\mathcal{G}\)</h3>
+<div id="outline-container-orge8bdf0f" class="outline-3">
+<h3 id="orge8bdf0f"><span class="section-number-3">2.1.</span> The category \(\mathcal{G}\)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We will represent the triune God \(\mathcal{G}\) as a category where the set of objects is:
@@ -295,7 +295,7 @@ We will represent the triune God \(\mathcal{G}\) as a category where the set of 
 </p>
 
 
-<div id="org2ece931" class="figure">
+<div id="orgf78343a" class="figure">
 <p><img src="./trinity.png" alt="trinity.png">
 </p>
 </div>
@@ -315,39 +315,39 @@ And all the sets of morphisms are isomorphisms, they are the \(\stackrel{\dagger
 </div>
 </div>
 
-<div id="outline-container-org1b5aeac" class="outline-3">
-<h3 id="org1b5aeac"><span class="section-number-3">2.2.</span> Interpreting "God is the Father"</h3>
+<div id="outline-container-org1389ac6" class="outline-3">
+<h3 id="org1389ac6"><span class="section-number-3">2.2.</span> Interpreting "God is the Father"</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-Bill Clinton once reminded us that it depends on what your definition of "is" is. We have formalized the sentences like "The Father is consubstantial with the Son", but then defined God as the category that contains the Father, Son and Holy Spirit. What does it mean to say that \(\mathcal{G}\) "is" \(F\)?
+Bill Clinton once reminded us that it depends on what your definition of "is" is. We have formalized the sentences like "The Father is consubstantial with the Son", but then defined God as the category that contains the Father, Son and Holy Spirit. What does it mean to say that "God is the Father" (In our notation: \(\mathcal{G}\) "is" \(F\))?
 </p>
 </div>
 
-<div id="outline-container-orgb8f0590" class="outline-4">
-<h4 id="orgb8f0590"><span class="section-number-4">2.2.1.</span> The \(\text{Is}\) Functors</h4>
+<div id="outline-container-org5fa0871" class="outline-4">
+<h4 id="org5fa0871"><span class="section-number-4">2.2.1.</span> The \(\text{Is}\) Functors</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 We interpret the sentence "God is the Father" using the
-\(\text{Is}_F : \mathcal{G} \to \mathcal{G}\downarrow F\) <a href="#orgc884f9a">Functor</a>.
+\(\text{Is}_F : \mathcal{G} \to \mathcal{G}\downarrow F\) <a href="#orgc27c363">Functor</a>.
 </p>
 
 
 <p>
-\(\mathcal{G}\downarrow F\) is the <a href="#orge9fe5a4">slice category</a> construction,
+\(\mathcal{G}\downarrow F\) is the <a href="#org442072d">slice category</a> construction,
 which makes a category out of an object that isomorphic to \(\mathbb{1}\).
 </p>
 </div>
 
 <ol class="org-ol">
-<li><a id="orgc884f9a"></a>Functors<br>
+<li><a id="orgc27c363"></a>Functors<br>
 <div class="outline-text-5" id="text-2-2-1-1">
 <p>
-TODO
+Given a category \(\mathcal{C}\) and a category \(\mathcal{D}\), a <b><b>functor</b></b> is a mapping from the objects of \(\mathcal{C}\) to the objects of \(\mathcal{D}\), such that morphism composition is preserved. So if \(f : A \to B\) is a morphism in \(\mathcal{C}\), then \(F(f) : F(A) \to F(B)\) is a morphism in \(\mathcal{D}\)
 </p>
 </div>
 </li>
 
-<li><a id="orge9fe5a4"></a>Slice Category<br>
+<li><a id="org442072d"></a>Slice Category<br>
 <div class="outline-text-5" id="text-2-2-1-2">
 <p>
 TODO 
@@ -358,16 +358,16 @@ TODO
 </div>
 </div>
 
-<div id="outline-container-org08d2b0b" class="outline-3">
-<h3 id="org08d2b0b"><span class="section-number-3">2.3.</span> Lemma 1.1: \(\mathcal{G}\) is a groupoid</h3>
+<div id="outline-container-orga2813c2" class="outline-3">
+<h3 id="orga2813c2"><span class="section-number-3">2.3.</span> Lemma 1.1: \(\mathcal{G}\) is a groupoid</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A <a href="https://math.jhu.edu/~eriehl/context.pdf#page=25">groupoid</a> is a category in which every morphism is an isomorphism. That's another way of saying every morphism has an inverse.
 </p>
 </div>
 
-<div id="outline-container-org4145e66" class="outline-4">
-<h4 id="org4145e66"><span class="section-number-4">2.3.1.</span> Proof:</h4>
+<div id="outline-container-orge0ee187" class="outline-4">
+<h4 id="orge0ee187"><span class="section-number-4">2.3.1.</span> Proof:</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 If you look at the hom-sets above, you will see that for every \(\text{Hom}(X,Y)\) there's a \(\text{Hom}(Y,X)\).
@@ -378,8 +378,8 @@ Without loss of generality, consider \(\text{Hom}(F,S)\), which asserts that "Th
 </div>
 </div>
 
-<div id="outline-container-org7d8a55a" class="outline-2">
-<h2 id="org7d8a55a"><span class="section-number-2">3.</span> Axioms</h2>
+<div id="outline-container-org2b92ff9" class="outline-2">
+<h2 id="org2b92ff9"><span class="section-number-2">3.</span> Axioms</h2>
 <div class="outline-text-2" id="text-3">
 <ol class="org-ol">
 <li>There is one God (<a href="https://www.vatican.va/archive/ENG0015/__P16.HTM">CCC:200</a>)</li>
@@ -399,8 +399,8 @@ Without loss of generality, consider \(\text{Hom}(F,S)\), which asserts that "Th
 </div>
 
 
-<div id="outline-container-org135b81f" class="outline-2">
-<h2 id="org135b81f"><span class="section-number-2">4.</span> The Most Holy Trinity</h2>
+<div id="outline-container-org6421e27" class="outline-2">
+<h2 id="org6421e27"><span class="section-number-2">4.</span> The Most Holy Trinity</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 God is the Father, the Son, and the Holy Spirit. The use of the word "is" doesn't follow the same transitive rules as \(=\) in mathematics. There's another branch of math that deals with this, category theory. Category theory goes beyond the idea of "strict equality" and focuses on relationships and mappings between objects. This distinction will be useful in trying to understand the Trinity.
@@ -416,12 +416,12 @@ h
 </p>
 </div>
 </div>
-<div id="outline-container-org45b21c9" class="outline-2">
-<h2 id="org45b21c9"><span class="section-number-2">5.</span> Sources</h2>
+<div id="outline-container-org0717bc8" class="outline-2">
+<h2 id="org0717bc8"><span class="section-number-2">5.</span> Sources</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org2fe1f85" class="outline-3">
-<h3 id="org2fe1f85"><span class="section-number-3">5.1.</span> BCT</h3>
+<div id="outline-container-org68e127d" class="outline-3">
+<h3 id="org68e127d"><span class="section-number-3">5.1.</span> BCT</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 <a href="https://arxiv.org/pdf/1612.09375#page=18"><i>Basic Category Theory</i> by Tom Leinster</a>
@@ -429,16 +429,16 @@ h
 </div>
 </div>
 
-<div id="outline-container-org60582b8" class="outline-3">
-<h3 id="org60582b8"><span class="section-number-3">5.2.</span> CTIC</h3>
+<div id="outline-container-org830024d" class="outline-3">
+<h3 id="org830024d"><span class="section-number-3">5.2.</span> CTIC</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 <a href="https://math.jhu.edu/~eriehl/context.pdf#page=21"><i>Category Theory in Context</i> by Emily Riehl</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orge678412" class="outline-3">
-<h3 id="orge678412"><span class="section-number-3">5.3.</span> CCC</h3>
+<div id="outline-container-org3b68d51" class="outline-3">
+<h3 id="org3b68d51"><span class="section-number-3">5.3.</span> CCC</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 <a href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM"><i>Catechism of the Catholic Church</i></a>
@@ -449,7 +449,7 @@ h
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Tobi Lehman</p>
-<p class="date">Created: 2024-09-18 Wed 06:24</p>
+<p class="date">Created: 2024-10-19 Sat 06:24</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
