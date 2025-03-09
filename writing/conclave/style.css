@@ -9,6 +9,9 @@ body {
     padding: 20px;
 
 }
+a {
+	word-break: break-all;
+}
 img {
     min-width: 300px;
     max-width: 100%;
