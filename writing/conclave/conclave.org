@@ -70,7 +70,7 @@ Given the importance of the Catholic Church being the [[https://en.wikipedia.org
 Choosing a cardinal /in pectore/ who wasn't male would only delay the possible schism. Something the movie didn't address. Given that any good pope would try to avoid an accidental schism, what's the more likely way that such an outcome would be achieved?
 Stated differently, if we /assume/ the pope wanted to reject a clergymember's resignation because they discovered they weren't male, how would a pope solve this problem?
 
-* /How/ would a Pope select a non-male cardinal, assuming he wanted to do that?
+* /How/ would a Pope select a non-male cardinal, assuming he wanted to do that? And what would follow?
 
 Such a big change to the eligibility rules for the rank of cardinals would require more than just a secret exception being made for one person. Likely it would involve a public change in Canon Law through a *Motu Proprio* (Latin for "on his own initiative"), which is a papal document issued directly by the pope, without requiring approval from other Church bodies. This is kind of like an Executive Order issued by the President.
 
@@ -130,19 +130,36 @@ Let’s set the scene: A private chamber in the Vatican, shortly after the issua
   (Tedesco storms out, leaving a heavy silence.)
   
 
-* The Omnian Schism
-** Catholic Church Faces Historic Schism Following Papal Election Deadlock
-In the wake of the pope’s death and the controversial release of *Omnes Homines*, the College of Cardinals has failed to elect a new pontiff after a brief conclave, plunging the Catholic Church into unprecedented turmoil. Secular media outlets have seized on the deadlock, with headlines proclaiming a deepening crisis within the Church.
+(Reminder: this is an exercise in fiction, responding to fictional movie. Any mistakes or blasphemies you find will be swiftly corrected, send them to mail@tobilehman.com)
 
-The situation escalated dramatically as the College of Cardinals fractured into two rival factions, each naming its own pope. One group has declared Cardinal Benitéz as the rightful successor, while the other has proclaimed Cardinal Tedesco as the new leader of the faithful. The split has reverberated across the globe, with archbishops in various regions pledging allegiance to their preferred claimant.
+** The Omnian Schism
+*** Catholic Church Faces Historic Schism Following Papal Election Deadlock
+A news update after the delays in selecting the new pope start to heat up:
+#+BEGIN_QUOTE
+/In the wake of the pope’s death and the controversial release of *Omnes Homines*, the College of Cardinals has failed to elect a new pontiff after a brief conclave, plunging the Catholic Church into unprecedented turmoil. Secular media outlets have seized on the deadlock, with headlines proclaiming a deepening crisis within the Church./
 
-Support has coalesced along stark geographic and ideological lines. African nations have overwhelmingly backed Cardinal Tedesco, while most of North America has aligned with Cardinal Benitéz—though pockets of Tridentine traditionalists in the United States remain defiant. In regions where Cardinal Benitéz is celebrated as a local hero, including Afghanistan, Mexico, and Brazil, dioceses have rallied behind him.
+/The situation escalated dramatically as the College of Cardinals fractured into two rival factions, each naming its own pope. One group has declared Cardinal Benitéz as the rightful successor, while the other has proclaimed Cardinal Tedesco as the new leader of the faithful. The split has reverberated across the globe, with archbishops in various regions pledging allegiance to their preferred claimant./
+
+/Support has coalesced along stark geographic and ideological lines. African nations have overwhelmingly backed Cardinal Tedesco, while most of North America has aligned with Cardinal Benitéz—though pockets of Tridentine traditionalists in the United States remain defiant. In regions where Cardinal Benitéz is celebrated as a local hero, including Afghanistan, Mexico, and Brazil, dioceses have rallied behind him./
 
 [[./schism.png]]
 
-The Catholic Church now stands divided, facing its most significant schism in centuries. Further updates will follow as this historic crisis unfolds.
+/The Catholic Church now stands divided, facing its most significant schism in centuries. Further updates will follow as this historic crisis unfolds./
+#+END_QUOTE
+
+
 
 * Conclusion
-There were some other clues in the movie that there wasn’t much thought put into it, like how they mentioned in passing that Adeyemi might be "the first African pope," when there was [[https://en.wikipedia.org/wiki/Pope_Victor_I][Pope Victor I]], who was Bishop of Rome from 189 AD to 199 AD (he was from Roman North Africa).
+The movie appears to be a minimal solution to the hypothetical "What if there was a non-male pope?" and then works backwards from there, finding a minimally workable solution. It doesn't engage with scripture or church history and frequently portrays all the Cardinals as self-serving men who project their own personal ideologies on the church. The only one portrayed as pure in heart is Benitéz. Even the protagonist, Lawrence, is only praised for his "steady hand", and the moment of redemption for him is at the very end, when his face appears to show that he has accepted this new non-male pope. The movie never tries to explore what would likely happen if a non-male pope was elected and then people found out. Those kind of longer-term consequences, the knock-on effects, are something a lifetime monarch like a pope has the responsibility of thinking about and factoring into decisions.
 
-After watching *Conclave* and considering how realistic such an application of /in pectore/ cardinal selection would be to acheive such a drastic ecclesial change, I am disappointed at the lack of historical depth and realism the authors and director put into the movie. The movie got the conclave process of papal election right, but the whole thing felt like a motivated "letter of the law but not spirit of the law" manuever to try and insert contemporary gender politics into the catholic church. On the one hand I wish I never watched the movie, but on the other hand, I feel a responsibility to comment on what it got wrong, and why.
+There were some other clues in the movie that there wasn’t much research done for it, like how they mentioned in passing that Adeyemi might be "the first African pope," when there was [[https://en.wikipedia.org/wiki/Pope_Victor_I][Pope Victor I]], who was Bishop of Rome from 189 AD to 199 AD (he was from Roman North Africa).
+
+Overall, I think the movie is transparently an attempt to make the Catholic Church look bad, and then to use a contrived, barely-believable workaround to try and wrap the story up in 2 hours. The writing worked, if you ignored the history and the context.
+
+The Anglican and Episcopalian churches both changed the rules to allow for female priests aroun the 1970s, during [[https://en.wikipedia.org/wiki/Second-wave_feminism][Second-wave feminism]]. Both these churches are defined by how they broke with papal authority. The Anglican Church was formed in 1534 when King Henry VIII wanted to change the rules around divorce and annullment. The American Episcopal Church was formed in 1789 after the revolution. Both churches are liturgically similar to the Catholic Church but they are severed from papal authority and the full history of the church. As a result, they have become subservient to domestic politics in their respective countries. They have been severed from their roots and will they drift aimlessly along with the trends of the times. In times of rapid change and disorienting social drift, the church should be an Ark of truth and stability, not a reflection of contemporary politics.
+
+Remember that the Catholic Church was not fully subservient to Roman Imperial politics. It transformed Rome from the inside. It started out being a small sect that was frequently attacked by the Romans. Then three centuries later, Emperor Constantine converts to Christianity and later emperors made the whole Empire Christian. The Pope himself was above the Emperor on issues of morality. Like on Christmas Day in 390 AD, the Bishop of Milan refused communion to Emperor Theodosius as punishment for his Massacre at Thessalonica, where he killed 7000 people. Bishop Ambrose made the emperor do an 8-month penance before being readmitted to communion.
+
+After the collapse of the Roman Empire, the Catholic Church became the unifying center of what we now call "Europe". It was known as Christendom to the people of Europe between 500 AD and 1500 AD. The Protestant revolutions of the last 500 years have produced a bunch of fragmented churches who have forgotten their origins, and drift along with the politics of time and place they practice in. This movie doesn't do justice to the original church and what makes it special.
+
+
