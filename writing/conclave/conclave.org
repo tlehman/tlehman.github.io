@@ -165,3 +165,20 @@ The Catholic Church was never fully subservient to Roman Imperial politics. It t
 After the collapse of the Roman Empire, the Catholic Church became the unifying center of what we now call "Europe". It was known as Christendom to the european people between 500 AD and 1500 AD. The Protestant revolts of the last 500 years have produced a fragmented landscape of churches that have been separated from their origins. This movie doesn't do justice to the original church and what makes her special.
 
 
+* Appendix
+** The Catholic Herald, [[https://thecatholicherald.com/conclave-revisited-what-might-actually-make-a-man-unfit-to-be-pope/][Conclave revisited: what might actually make a man unfit to be pope?]]
+
+This article takes a different angle, instead of talking about whether the pope could/would/should choose a non-male cardinal, it focuses on another conversation in the history of the church at the [[https://en.wikipedia.org/wiki/Council_of_Trent][Council of Trent]] that deals with "bodily perfection" and it's possible interaction with the ability to administer the sacraments.
+** Christina M. Sorrentino, writes on her substack, [[https://www.missiodeicatholic.org/p/why-as-catholics-we-should-not-support][Why As Catholics We Should Not Support the Movie 'Conclave']]
+
+#+begin_quote
+One major issue is the movie’s misrepresentation of the papal election process. It presents a narrative that undermines the sanctity and solemnity of the papal conclave. By dramatizing internal conflicts and depicting the Church as politically motivated, the film misleads audiences about the true spirit that guides the election of a new Pope by the College of Cardinals, which is the Holy Ghost. A movie that distorts the truth in this way can create scandal for both Catholics and non-Catholics alike. The Church is not simply an institution but a vessel of truth that holds the entirety of Divine Revelation.
+#+end_quote
+
+There's an epistemological problem with trying to portay the insular Papal Conclave process. Only the Cardinals and the [[https://en.wikipedia.org/wiki/Swiss_Guard][Swiss Guard]] are allowed into the space where this election happens, so the ignorance of everyone outside makes it easy to fill in the details with your own narrative. Therefore, moviemakers can give the false impression that you have come to understand more about what a papal election is like.
+
+#+begin_quote
+"It does seem odd that the church sticks so forcefully to its tradition of male celebrants," said "Conclave" star Ralph Fiennes. "I think the Church of England has proven that (having) women as priests is very effective."
+#+end_quote
+
+My take on the Mr. Fiennes' quote here is that it is predictably English, as discussed in our exploration of Anglicanism and philosophical liberalism above. I also grew up in a related culture and can empathize with this sentiment, but the Catholic Church should be understood on her own terms.
