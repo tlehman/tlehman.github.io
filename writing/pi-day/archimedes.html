@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="./math/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>π-Day 2025: Archimedes' Approximation</title>
+        <style>
+            @font-face {
+                font-family: "Computer Modern";
+                src: url("../../../css/computer-modern/cmunrm.ttf");
+            }
+
+            img {
+                max-width: 300px;
+            }
+            body {
+                font-family: "Computer Modern", serif;
+                font-size: 20px;
+                max-width: 800px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 1em;
+                background-color: #f0f0f0;
+            }
+            h1 {
+                color: #333;
+            }
+            canvas {
+                border: 1px solid #ccc;
+            }
+            .controls {
+                margin: 20px 0;
+            }
+            #info {
+                text-align: center;
+                color: #555;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>π-Day 2025: Archimedes' Approximation of π</h1>
+        <canvas id="canvas" width="400" height="400"></canvas>
+        <div class="controls">
+            <label for="sides">Number of sides (n): </label>
+            <input type="range" id="sides" min="3" max="100" value="6" />
+            <span id="n-value">6</span>
+        </div>
+        <div id="info"></div>
+
+        <script>
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+            const slider = document.getElementById("sides");
+            const nValue = document.getElementById("n-value");
+            const info = document.getElementById("info");
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const scale = 150; // Radius of the unit circle in pixels
+
+            function draw() {
+                const n = parseInt(slider.value);
+                nValue.textContent = n;
+
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw the unit circle (black)
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, scale, 0, 2 * Math.PI);
+                ctx.strokeStyle = "black";
+                ctx.stroke();
+
+                // Draw inscribed polygon (blue)
+                ctx.beginPath();
+                for (let k = 0; k < n; k++) {
+                    const angle = (2 * Math.PI * k) / n;
+                    const x = centerX + scale * Math.cos(angle);
+                    const y = centerY - scale * Math.sin(angle); // -y because canvas y increases downward
+                    if (k === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = "blue";
+                ctx.stroke();
+
+                // Draw circumscribed polygon (red)
+                ctx.beginPath();
+                for (let k = 0; k < n; k++) {
+                    const angle = (2 * Math.PI * k) / n;
+                    const offsetAngle = (2 * Math.PI * (k + 0.5)) / n;
+                    const r = 1 / Math.cos(Math.PI / n);
+                    const x = centerX + scale * r * Math.cos(offsetAngle);
+                    const y = centerY - scale * r * Math.sin(offsetAngle);
+                    if (k === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = "red";
+                ctx.stroke();
+
+                // Calculate approximations
+                const lower = n * Math.sin(Math.PI / n);
+                const upper = n * Math.tan(Math.PI / n);
+                const approx = (lower + upper) / 2;
+                const actualPi = Math.PI;
+
+                // Update info
+                info.innerHTML = `
+                <p>For n = ${n}:</p>
+                <p>Lower bound: ${lower.toFixed(6)}</p>
+                <p>Upper bound: ${upper.toFixed(6)}</p>
+                <p>Approximation (average): ${approx.toFixed(6)}</p>
+                <p>Actual π: ${actualPi.toFixed(6)}</p>
+                <p>Error: ${(actualPi - approx).toFixed(6)}</p>
+            `;
+            }
+
+            // Initial draw
+            draw();
+
+            // Update on slider change
+            slider.addEventListener("input", draw);
+        </script>
+    </body>
+</html>
