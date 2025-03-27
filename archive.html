@@ -1,94 +1,168 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tobi's Archive</title>
-    <style>
-      body {
-          font-family: Arial, sans-serif;
-          display: flex;
-          flex-direction: column;
-          height: 100vh;
-          margin: 0;
-	  padding: 1em;
-          position: relative;
-          color: #000;
-      }
-      body::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-image: url('./img/archive.png');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.25; /* Adjust opacity to your preference */
-          z-index: -1;
-      }
-      .container {
-	  background-color: #eee;
-	  opacity: 0.9;
-	  border-radius: 15px;
-	  display: flex;
-	  padding: 1em;
-	  flex-direction: column;
-	  margin-bottom: 20px;
-      }
-      .row {
-	  display: flex;
-	  align-items: flex-start;
-      }
-      .label {
-	  width: 100px;
-	  font-weight: bold;
-	  text-align: right;
-	  padding: 0.2em;
-      }
-      .content {
-	  flex: 1;
-      }
-    </style>
-    <!-- Link favicons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="./img/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="./img/android-chrome-512x512.png">
-  </head>
-  <body>
-    <h1>Tobi's Archive</h1>
-    
-    <div class="container">
-      <div class="row">
-	<div class="label">Name:</div>
-	<div class="content">old tobilehman.com</div>
-      </div>
-      <div class="row">
-	<div class="label">Link:</div>
-	<div class="content"><a href="./archive/tobilehman.com/index.html">tobilehman.com</a></div>
-      </div>
-      <div class="row">
-	<div class="label">Description:</div>
-	<div class="content">My old <a href="https://gohugo.io/">Hugo</a> Site</div>
-      </div>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tobi's Archive</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                margin: 0;
+                padding: 1em;
+                position: relative;
+                color: #000;
+            }
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url("./img/archive.png");
+                background-size: cover;
+                background-position: center;
+                opacity: 0.25; /* Adjust opacity to your preference */
+                z-index: -1;
+            }
+            .container {
+                background-color: #eee;
+                opacity: 0.9;
+                border-radius: 15px;
+                display: flex;
+                padding: 1em;
+                flex-direction: column;
+                margin-bottom: 20px;
+            }
+            .row {
+                display: flex;
+                align-items: flex-start;
+            }
+            .label {
+                width: 100px;
+                font-weight: bold;
+                text-align: right;
+                padding: 0.2em;
+            }
+            .content {
+                flex: 1;
+            }
+        </style>
+        <!-- Link favicons -->
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="./img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="./img/android-chrome-512x512.png"
+        />
+    </head>
+    <body>
+        <h1>Tobi's Archive</h1>
 
-    <div class="container">
-      <div class="row">
-	<div class="label">Name:</div>
-	<div class="content">tlehman.blog</div>
-      </div>
-      <div class="row">
-	<div class="label">Link:</div>
-	<div class="content"><a href="./archive/tlehman.blog/posts.html">tlehman.blog</a></div>
-      </div>
-      <div class="row">
-	<div class="label">Description:</div>
-	<div class="content">a <a href="https://rubyonrails.org/">rails</a> blog I made, but retired because I wanted to make a simple, long-lasting HTML-based static site</div>
-      </div>
-    </div>
-    
-  </body>
+        <div class="container">
+            <div class="row">
+                <div class="label">Name:</div>
+                <div class="content">old tobilehman.com</div>
+            </div>
+            <div class="row">
+                <div class="label">Link:</div>
+                <div class="content">
+                    <a href="./archive/tobilehman.com/index.html"
+                        >tobilehman.com</a
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">Description:</div>
+                <div class="content">
+                    My old <a href="https://gohugo.io/">Hugo</a> Site
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="label">Name:</div>
+                <div class="content">tlehman.blog</div>
+            </div>
+            <div class="row">
+                <div class="label">Link:</div>
+                <div class="content">
+                    <a href="./archive/tlehman.blog/posts.html">tlehman.blog</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">Description:</div>
+                <div class="content">
+                    a <a href="https://rubyonrails.org/">rails</a> blog I made,
+                    but retired because I wanted to make a simple, long-lasting
+                    HTML-based static site
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="label">Name:</div>
+                <div class="content">GORILLA.BAS</div>
+            </div>
+            <div class="row">
+                <div class="label">Link:</div>
+                <div class="content">
+                    <a href="./archive/GORILLA.BAS">GORILLA.BAS</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">Date:</div>
+                <div class="content">1992-01-01</div>
+            </div>
+            <div class="row">
+                <div class="label">Description:</div>
+                <div class="content">
+                    This was the first computer game I played. My dad would play
+                    me on his old DOS laptop.
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="label">Name:</div>
+                <div class="content">Hitchhiker’s Guide to the Galaxy</div>
+            </div>
+            <div class="row">
+                <div class="label">Link:</div>
+                <div class="content">
+                    <a
+                        href="https://s3.us-east-1.amazonaws.com/tobilehman.com-archive/hgttg.mp3"
+                        >hgttg.mp3</a
+                    >
+                </div>
+            </div>
+            <div class="row">
+                <div class="label">Date:</div>
+                <div class="content">1981-02-01</div>
+            </div>
+            <div class="row">
+                <div class="label">Description:</div>
+                <div class="content">
+                    This was recorded by my dad in 1981, then digitized as a WAV
+                    file around 2002. My dad introduced me to this gem, and I
+                    enjoyed listening to it on my MuVo MP3 player while on a
+                    train. I am archiving it here for the world to benefit from.
+                    The only advice I give to the next listener of this file is:
+                    <strong>Don’t Panic</strong>.
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
-
-
