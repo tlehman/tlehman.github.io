@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypergraph Theory Exploration Tool</title>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hypergraph Theory Exploration Tool</h1>
+            <p>Click to create nodes • Select nodes and press 'H' to create hyperedges • Press 'C' to clear selection</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Canvas Section -->
+            <div class="canvas-section">
+                <canvas id="hypergraph-canvas" width="800" height="600"></canvas>
+                <div class="controls">
+                    <button id="clear-all">Clear All</button>
+                    <button id="create-hyperedge" disabled>Create Hyperedge</button>
+                    <button id="delete-selected">Delete Selected</button>
+                    <button id="export-png">Export PNG</button>
+                    <button id="export-svg">Export SVG</button>
+                    <span class="selection-count">Selected: 0 nodes</span>
+                </div>
+            </div>
+            
+            <!-- Data Structure Panel -->
+            <div class="data-panel">
+                <h3>Hypergraph Data Structure</h3>
+                <div class="data-tabs">
+                    <button class="tab-button active" data-tab="json">JSON</button>
+                    <button class="tab-button" data-tab="summary">Summary</button>
+                </div>
+                
+                <div class="tab-content active" id="json-tab">
+                    <div class="json-header">
+                        <button id="copy-json" class="copy-button">Click to Copy JSON</button>
+                    </div>
+                    <pre id="data-structure"></pre>
+                </div>
+                
+                <div class="tab-content" id="summary-tab">
+                    <div class="summary-stats">
+                        <div class="stat">
+                            <span class="stat-label">Nodes:</span>
+                            <span class="stat-value" id="node-count">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Hyperedges:</span>
+                            <span class="stat-value" id="hyperedge-count">0</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">Average Degree:</span>
+                            <span class="stat-value" id="avg-degree">0</span>
+                        </div>
+                    </div>
+                    <div class="hyperedge-list">
+                        <h4>Hyperedges:</h4>
+                        <ul id="hyperedge-summary"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
