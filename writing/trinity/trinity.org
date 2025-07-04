@@ -39,6 +39,7 @@ Bill Clinton once reminded us that it depends on what your definition of "is" is
 *** The $\text{Is}$ Functors
 
 We interpret the sentence "God is the Father" using the
+# 
 $\text{Is}_F : \mathcal{G} \to \mathcal{G}\downarrow F$ [[* Functors][Functor]].
 
 
@@ -82,12 +83,62 @@ God is the Father, the Son, and the Holy Spirit. The use of the word "is" doesn'
 Let $G = \text{God}$, $F = \text{The Father}$, $S = \text{The Son}$ and $H = \text{The Holy Spirit}$.
 
 If "is" was the normal $=$ sign, then we could prove something false.
-h
+
+#+BEGIN_EXPORT html
+<div style="background-color: rgba(128, 128, 128, 0.5); border: 1px solid #ccc; padding: 15px; margin: 20px 0;">
+<h4 style="margin-top: 0; color: #333;">False reasoning we will avoid when we make the definition of "is" precise:</h4>
+
+If Father = God and Son = God, then Father = Son.
+
+(We will call this the transitivity error).
+
+</div>
+#+END_EXPORT
+
+To avoid false arguments like the above, we have to define "Is" in a precise way.
+
+** Definitions of "Is":
+
+*** Definition of "$\text{Divine Person}$ is God"
+
+We define the following functors:
+
+- $\text{Is}_F : \mathcal{G}\downarrow F \to \mathcal{G}$
+- $\text{Is}_S : \mathcal{G}\downarrow S \to \mathcal{G}$
+- $\text{Is}_H : \mathcal{G}\downarrow H \to \mathcal{G}$
+
+The way we defined $\mathcal{G}$ means that *the whole category* is God. The objects, like $F$ are not
+equal to the whole, but they are equivalent the above precise sense.
+
+*** Proof that $\text{Is}_x$ avoids the transitivity error
+
+The $\text{Is}_F$ functor asserts that the Father is equivalent to God.
+
+The $\text{Is}_S$ functor asserts that the Son is equivalent to God.
+
+[[file:./trinity-is.png]]
+
+The diagram above says that "The Father is God" and that "The Son is God", but it does not say that
+"The Father is the Son".
+
+The Father $F$ is /consubstantial with/ ($\stackrel{\dagger}{=}$) The Son $S$:
+
+$$\stackrel{\dagger}{=}_{FS} : F \to S$$
+
+But the $\stackrel{\dagger}{=}_{FS} : F \to S$ and $\text{Is}_S : \mathcal{G}\downarrow S \to \mathcal{G}$ arrows
+don't compose. Graphically:
+
+file:./f-is-not-s.png
+
+From the above diagram, you can see that you cannot find a path from $F$ to $S$ that goes through $\mathcal{G}$,
+this is how the above definition avoids the transitivity error.
+
+
 * Sources
 ** BCT
 [[https://arxiv.org/pdf/1612.09375#page=18][/Basic Category Theory/ by Tom Leinster]]
 
 ** CTIC
-[[https://math.jhu.edu/~eriehl/context.pdf#page=21][/Category Theory in Context/ by Emily Riehl]]
+[[https://emilyriehl.github.io/files/context.pdf][/Category Theory in Context/ by Emily Riehl]]
 ** CCC
 [[https://www.vatican.va/archive/ENG0015/_INDEX.HTM][/Catechism of the Catholic Church/]]
