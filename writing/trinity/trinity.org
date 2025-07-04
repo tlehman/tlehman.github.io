@@ -49,7 +49,9 @@ which makes a category out of an object that isomorphic to $\mathbb{1}$.
 Given a category $\mathcal{C}$ and a category $\mathcal{D}$, a **functor** is a mapping from the objects of $\mathcal{C}$ to the objects of $\mathcal{D}$, such that morphism composition is preserved. So if $f : A \to B$ is a morphism in $\mathcal{C}$, then $F(f) : F(A) \to F(B)$ is a morphism in $\mathcal{D}$.
 
 **** Slice Category
-TODO 
+Given a category $\mathcal{C}$ and an object $c \in \text{ob}(\mathcal{C})$, the **slice category** $\mathcal{C}\downarrow c$ is a category where:
+- Objects are morphisms $f : x \to c$ in $\mathcal{C}$
+- Morphisms from $f : x \to c$ to $g : y \to c$ are morphisms $h : x \to y$ in $\mathcal{C}$ such that $g \circ h = f$ 
 
 ** Lemma 1.1: $\mathcal{G}$ is a groupoid
 
