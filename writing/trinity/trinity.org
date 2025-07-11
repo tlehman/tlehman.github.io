@@ -116,7 +116,7 @@ The $\text{Is}_F$ functor asserts that the Father is equivalent to God.
 
 The $\text{Is}_S$ functor asserts that the Son is equivalent to God.
 
-[[file:./trinity-is.png]]
+[[file:./no-transitive.png]]
 
 The diagram above says that "The Father is God" and that "The Son is God", but it does not say that
 "The Father is the Son".

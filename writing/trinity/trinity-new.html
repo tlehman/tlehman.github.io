@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Tobi Lehman" />
+  <meta name="dcterms.date" content="2025-07-10" />
+  <title>The God Groupoid</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The God Groupoid</h1>
+<p class="author">Tobi Lehman</p>
+<p class="date">2025-07-10</p>
+</header>
+<h1 id="sec:introduction">Introduction</h1>
+<p>This is my attempt to formulate the Catholic theology of the Trinity
+in mathematical language. If you find any errors in the math or the
+theology, please email me at <a
+href="mailto:mail@tobilehman.com">mail@tobilehman.com</a>, I care deeply
+about getting this right. To my mathematician’s eyes, the Catechism of
+the Catholic Church (<a
+href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM">CCC</a>) has
+parts that remind me of a mathematical text. The axiomatic truths
+asserted early on, the precise and consistent use of language, the
+fidelity to reason. I don’t know if the entire Catechism could be
+written to look like a math text, or if it even should, but I think the
+doctrine of trinity can. This is my best attempt to do so. God
+bless.</p>
+<p>For background on category theory or Catholic theology, see my <a
+href="#sec:sources">sources</a> section.</p>
+<h1 id="sec:definitions">Definitions</h1>
+<p><span class="math display">\[\begin{aligned}
+\mathcal{G} &amp;= \text{God} \\
+F &amp;= \text{The Father}\\
+S &amp;= \text{The Son} \\
+H &amp;= \text{The Holy Spirit} \\
+(X \stackrel{\dagger}{=} Y) &amp;= (X \text{ is consubstantial with } Y)
+\end{aligned}\]</span></p>
+<h2 id="sec:category-g">The category <span
+class="math inline">\(\mathcal{G}\)</span></h2>
+<p>We will represent the triune God <span
+class="math inline">\(\mathcal{G}\)</span> as a category where the set
+of objects is:</p>
+<p><span class="math display">\[\text{ob}(\mathcal{G}) =
+\{F,S,H\}\]</span></p>
+<div class="center">
+
+</div>
+<p>And all the sets of morphisms are isomorphisms, they are the <span
+class="math inline">\(\stackrel{\dagger}{=}\)</span> relation, which is
+read "is consubstantial with".</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Hom}(F,S) &amp;= \{ \stackrel{\dagger}{=}_{FS} : F \to S \} \\
+\text{Hom}(S,H) &amp;= \{ \stackrel{\dagger}{=}_{SH} : S \to H \} \\
+\text{Hom}(H,F) &amp;= \{ \stackrel{\dagger}{=}_{HF} : H \to F \} \\
+\text{Hom}(S,F) &amp;= \{ \stackrel{\dagger}{=}_{SF} : S \to F \} \\
+\text{Hom}(F,H) &amp;= \{ \stackrel{\dagger}{=}_{FH} : F \to H \} \\
+\text{Hom}(H,S) &amp;= \{ \stackrel{\dagger}{=}_{HS} : H \to S \}
+\end{aligned}\]</span></p>
+<h2 id="sec:god-is-father">Interpreting "God is the Father"</h2>
+<p>Bill Clinton once reminded us that it depends on what your definition
+of "is" is. We have formalized the sentences like "The Father is
+consubstantial with the Son", but then defined God as the category that
+contains the Father, Son and Holy Spirit. What does it mean to say that
+"God is the Father" (In our notation: <span
+class="math inline">\(\mathcal{G}\)</span> "is" <span
+class="math inline">\(F\)</span>)?</p>
+<h3 id="sec:is-functors">The <span
+class="math inline">\(\text{Is}\)</span> Functors</h3>
+<p>We interpret the sentence "God is the Father" using the <span
+class="math inline">\(\text{Is}_F : \mathcal{G} \to
+\mathcal{G}\downarrow F\)</span> <a
+href="#sec:functors">Functor</a>.</p>
+<p><span class="math inline">\(\mathcal{G}\downarrow F\)</span> is the
+<a href="#sec:slice-category">slice category</a> construction, which
+makes a category out of an object that isomorphic to <span
+class="math inline">\(\mathbb{1}\)</span>.</p>
+<h4 id="sec:functors">Functors</h4>
+<p>Given a category <span class="math inline">\(\mathcal{C}\)</span> and
+a category <span class="math inline">\(\mathcal{D}\)</span>, a
+<strong>functor</strong> is a mapping from the objects of <span
+class="math inline">\(\mathcal{C}\)</span> to the objects of <span
+class="math inline">\(\mathcal{D}\)</span>, such that morphism
+composition is preserved. So if <span class="math inline">\(f : A \to
+B\)</span> is a morphism in <span
+class="math inline">\(\mathcal{C}\)</span>, then <span
+class="math inline">\(F(f) : F(A) \to F(B)\)</span> is a morphism in
+<span class="math inline">\(\mathcal{D}\)</span>.</p>
+<h4 id="sec:slice-category">Slice Category</h4>
+<p>Given a category <span class="math inline">\(\mathcal{C}\)</span> and
+an object <span class="math inline">\(c \in
+\text{ob}(\mathcal{C})\)</span>, the <strong>slice category</strong>
+<span class="math inline">\(\mathcal{C}\downarrow c\)</span> is a
+category where:</p>
+<ul>
+<li><p>Objects are morphisms <span class="math inline">\(f : x \to
+c\)</span> in <span class="math inline">\(\mathcal{C}\)</span></p></li>
+<li><p>Morphisms from <span class="math inline">\(f : x \to c\)</span>
+to <span class="math inline">\(g : y \to c\)</span> are morphisms <span
+class="math inline">\(h : x \to y\)</span> in <span
+class="math inline">\(\mathcal{C}\)</span> such that <span
+class="math inline">\(g \circ h = f\)</span></p></li>
+</ul>
+<h2 id="sec:lemma-groupoid">Lemma 1.1: <span
+class="math inline">\(\mathcal{G}\)</span> is a groupoid</h2>
+<p>A <a
+href="https://math.jhu.edu/~eriehl/context.pdf#page=25">groupoid</a> is
+a category in which every morphism is an isomorphism. That’s another way
+of saying every morphism has an inverse.</p>
+<h3 id="sec:proof-groupoid">Proof:</h3>
+<p>If you look at the hom-sets above, you will see that for every <span
+class="math inline">\(\text{Hom}(X,Y)\)</span> there’s a <span
+class="math inline">\(\text{Hom}(Y,X)\)</span>. Without loss of
+generality, consider <span
+class="math inline">\(\text{Hom}(F,S)\)</span>, which asserts that "The
+Father is consubstantial with The Son".</p>
+<h1 id="sec:axioms">Axioms</h1>
+<ol>
+<li><p>There is one God (<a
+href="https://www.vatican.va/archive/ENG0015/__P16.HTM">CCC:200</a>)</p></li>
+<li><p>There are three Divine Persons, The Father, The Son and The Holy
+Spirit. All are fully God. (<a
+href="https://www.vatican.va/archive/ENG0015/__P17.HTM">CCC:253</a>).</p></li>
+<li><p>The Father is consubstantial with The Son, who is consubstantial
+with the Holy Spirit. (<a
+href="https://www.vatican.va/archive/ENG0015/__P20.HTM">CCC:689</a>)
+<span class="math display">\[F \stackrel{\dagger}{=} S
+\stackrel{\dagger}{=} H\]</span></p></li>
+<li><p>All things come from The Father (<a
+href="https://www.vatican.va/archive/ENG0015/__P17.HTM">CCC:258</a>)
+<span class="math display">\[\forall x :
+\text{from}_F(x)\]</span></p></li>
+<li><p>All things are through The Son (<a
+href="https://www.vatican.va/archive/ENG0015/__P17.HTM">CCC:258</a>)
+<span class="math display">\[\forall x :
+\text{through}_S(x)\]</span></p></li>
+<li><p>All things are in The Holy Spirit (<a
+href="https://www.vatican.va/archive/ENG0015/__P17.HTM">CCC:258</a>)
+<span class="math display">\[\forall x :
+\text{in}_H(x)\]</span></p></li>
+</ol>
+<h1 id="sec:trinity">The Most Holy Trinity</h1>
+<p>God is the Father, the Son, and the Holy Spirit. The use of the word
+"is" doesn’t follow the same transitive rules as <span
+class="math inline">\(=\)</span> in mathematics. There’s another branch
+of math that deals with this, category theory. Category theory goes
+beyond the idea of "strict equality" and focuses on relationships and
+mappings between objects. This distinction will be useful in trying to
+understand the Trinity.</p>
+<p>Let <span class="math inline">\(G = \text{God}\)</span>, <span
+class="math inline">\(F = \text{The Father}\)</span>, <span
+class="math inline">\(S = \text{The Son}\)</span> and <span
+class="math inline">\(H = \text{The Holy Spirit}\)</span>.</p>
+<p>If "is" was the normal <span class="math inline">\(=\)</span> sign,
+then we could prove something false.</p>
+<div class="tcolorbox">
+<p>If Father = God and Son = God, then Father = Son.</p>
+<p>(We will call this the transitivity error).</p>
+</div>
+<p>To avoid false arguments like the above, we have to define "Is" in a
+precise way.</p>
+<h2 id="sec:def-is">Definitions of "Is":</h2>
+<h3 id="sec:def-divine-person">Definition of "<span
+class="math inline">\(\text{Divine Person}\)</span> is God"</h3>
+<p>We define the following functors:</p>
+<ul>
+<li><p><span class="math inline">\(\text{Is}_F : \mathcal{G}\downarrow F
+\to \mathcal{G}\)</span></p></li>
+<li><p><span class="math inline">\(\text{Is}_S : \mathcal{G}\downarrow S
+\to \mathcal{G}\)</span></p></li>
+<li><p><span class="math inline">\(\text{Is}_H : \mathcal{G}\downarrow H
+\to \mathcal{G}\)</span></p></li>
+</ul>
+<p>The way we defined <span class="math inline">\(\mathcal{G}\)</span>
+means that <strong>the whole category</strong> is God. The objects, like
+<span class="math inline">\(F\)</span> are not equal to the whole, but
+they are equivalent in the above precise sense.</p>
+<h3 id="sec:proof-no-transitivity">Proof that <span
+class="math inline">\(\text{Is}_x\)</span> avoids the transitivity
+error</h3>
+<p>The <span class="math inline">\(\text{Is}_F\)</span> functor asserts
+that the Father is equivalent to God.</p>
+<p>The <span class="math inline">\(\text{Is}_S\)</span> functor asserts
+that the Son is equivalent to God.</p>
+<div class="center">
+
+</div>
+<p>The diagram above says that "The Father is God" and that "The Son is
+God", but it does not say that "The Father is the Son".</p>
+<p>The Father <span class="math inline">\(F\)</span> is
+<em>consubstantial with</em> (<span
+class="math inline">\(\stackrel{\dagger}{=}\)</span>) The Son <span
+class="math inline">\(S\)</span>:</p>
+<p><span class="math display">\[\stackrel{\dagger}{=}_{FS} : F \to
+S\]</span></p>
+<p>But the <span class="math inline">\(\stackrel{\dagger}{=}_{FS} : F
+\to S\)</span> and <span class="math inline">\(\text{Is}_S :
+\mathcal{G}\downarrow S \to \mathcal{G}\)</span> arrows don’t compose.
+Graphically, you cannot find a path from <span
+class="math inline">\(F\)</span> to <span
+class="math inline">\(S\)</span> that goes through <span
+class="math inline">\(\mathcal{G}\)</span>, this is how the above
+definition avoids the transitivity error.</p>
+<h1 id="sec:sources">Sources</h1>
+<h2 id="sec:bct">BCT</h2>
+<p><a href="https://arxiv.org/pdf/1612.09375#page=18"><em>Basic Category
+Theory</em> by Tom Leinster</a></p>
+<h2 id="sec:ctic">CTIC</h2>
+<p><a href="https://emilyriehl.github.io/files/context.pdf"><em>Category
+Theory in Context</em> by Emily Riehl</a></p>
+<h2 id="sec:ccc">CCC</h2>
+<p><a
+href="https://www.vatican.va/archive/ENG0015/_INDEX.HTM"><em>Catechism
+of the Catholic Church</em></a></p>
+</body>
+</html>
