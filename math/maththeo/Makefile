@@ -1,8 +1,8 @@
-# Makefile for trinity document
+# Makefile for math_theo document
 # Builds both PDF and HTML versions with proper tikz-cd diagram backgrounds
 
-TEXFILE = trinity-new.tex
-BASENAME = trinity-new
+TEXFILE = math_theo.tex
+BASENAME = math_theo
 PDF_OUTPUT = $(BASENAME).pdf
 HTML_OUTPUT = $(BASENAME).html
 

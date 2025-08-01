@@ -30,11 +30,11 @@
 
 \author{Tobi Lehman}
 \date{\today}
-\title{The God Groupoid}
+\title{Introduction to Mathematical Theology}
 
 \hypersetup{
  pdfauthor={Tobi Lehman},
- pdftitle={The God Groupoid},
+ pdftitle={Introduction to Mathematical Theology},
  pdfkeywords={},
  pdfsubject={},
  pdfcreator={LaTeX},
@@ -196,6 +196,66 @@ The Father $F$ is \emph{consubstantial with} ($\stackrel{\dagger}{=}$) The Son $
 $$\stackrel{\dagger}{=}_{FS} : F \to S$$
 
 But the $\stackrel{\dagger}{=}_{FS} : F \to S$ and $\text{Is}_S : \mathcal{G}\downarrow S \to \mathcal{G}$ arrows don't compose. Graphically, you cannot find a path from $F$ to $S$ that goes through $\mathcal{G}$, this is how the above definition avoids the transitivity error.
+
+\section{The Filioque and the Great Schism of 1054}
+\label{sec:filioque}
+
+The \textbf{Filioque} (Latin for "and the Son") is a theological doctrine concerning the procession of the Holy Spirit. This doctrine became a major point of contention between the Eastern and Western churches, ultimately contributing to the Great Schism of 1054 that divided Christianity into Roman Catholicism and Eastern Orthodoxy.
+
+\subsection{The Western Position: Filioque}
+\label{sec:western-filioque}
+
+The Western Church (Roman Catholic) teaches that the Holy Spirit proceeds from both the Father and the Son. In our categorical framework, this can be represented as:
+
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&, column sep=large, row sep=large]
+  \& F \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+\end{tikzcd}
+\end{center}
+
+\vspace{1em}
+
+To emphasize the Filioque doctrine, we highlight the joint source of the Holy Spirit's procession:
+
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&, column sep=large, row sep=large]
+  \& \textcolor{red}{F} \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& \textcolor{red}{S} \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+\end{tikzcd}
+\end{center}
+
+Both the Father ($\textcolor{red}{F}$) and the Son ($\textcolor{red}{S}$) are highlighted in red, indicating that according to Western theology, the Holy Spirit proceeds from both persons of the Trinity.
+
+\subsection{The Eastern Position: No Filioque}
+\label{sec:eastern-no-filioque}
+
+The Eastern Orthodox Church maintains that the Holy Spirit proceeds from the Father alone, though \emph{through} the Son. This distinction preserves what they see as the Father's role as the sole source (Greek: \emph{monarchia}) within the Trinity.
+
+In categorical terms, the Eastern position would emphasize only the morphism from $F$ to $H$:
+
+\begin{center}
+\begin{tikzcd}[ampersand replacement=\&, column sep=large, row sep=large]
+  \& \textcolor{blue}{F} \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+\end{tikzcd}
+\end{center}
+
+Only the Father ($\textcolor{blue}{F}$) is highlighted in blue, emphasizing the Eastern teaching that procession originates solely from the Father.
+
+\subsection{The Great Schism of 1054}
+\label{sec:great-schism}
+
+The theological disagreement over the Filioque was one of several factors that led to the mutual excommunications between Pope Leo IX and Patriarch Michael I Cerularius in 1054. This event formally split the Christian Church into:
+
+\begin{itemize}
+\item The \textbf{Roman Catholic Church} (West): Affirming the Filioque
+\item The \textbf{Eastern Orthodox Church} (East): Rejecting the Filioque
+\end{itemize}
+
+From a categorical perspective, both churches agree on the fundamental structure of $\mathcal{G}$ as a groupoid with objects $\{F, S, H\}$ and consubstantial relations. The disagreement lies in the \emph{interpretation} of the arrows and their directional significance regarding procession.
+
+The Western emphasis on the joint procession from Father and Son can be seen as highlighting the symmetric nature of the groupoid structure, while the Eastern emphasis on procession from the Father alone maintains a hierarchical reading of the morphisms that preserves the Father's unique role as \emph{principium sine principio} (principle without principle).
 
 \section{Sources}
 \label{sec:sources}

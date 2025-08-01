@@ -1,18 +1,22 @@
-\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {section}{\numberline {2}Definitions}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}The category $\mathcal {G}$}{2}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}Interpreting "God is the Father"}{3}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}The $\text {Is}$ Functors}{3}{subsubsection.2.2.1}%
 \contentsline {paragraph}{Functors}{3}{section*.2}%
 \contentsline {paragraph}{Slice Category}{3}{section*.3}%
-\contentsline {subsection}{\numberline {2.3}Lemma 1.1: $\mathcal {G}$ is a groupoid}{3}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Proof:}{3}{subsubsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3}Lemma 1.1: $\mathcal {G}$ is a groupoid}{4}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Proof:}{4}{subsubsection.2.3.1}%
 \contentsline {section}{\numberline {3}Axioms}{4}{section.3}%
 \contentsline {section}{\numberline {4}The Most Holy Trinity}{4}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Definitions of "Is":}{5}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Definition of "$\text {Divine Person}$ is God"}{5}{subsubsection.4.1.1}%
 \contentsline {subsubsection}{\numberline {4.1.2}Proof that $\text {Is}_x$ avoids the transitivity error}{5}{subsubsection.4.1.2}%
-\contentsline {section}{\numberline {5}Sources}{5}{section.5}%
-\contentsline {subsection}{\numberline {5.1}BCT}{5}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}CTIC}{6}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}CCC}{6}{subsection.5.3}%
+\contentsline {section}{\numberline {5}The Filioque and the Great Schism of 1054}{6}{section.5}%
+\contentsline {subsection}{\numberline {5.1}The Western Position: Filioque}{6}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}The Eastern Position: No Filioque}{7}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}The Great Schism of 1054}{7}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Sources}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}BCT}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}CTIC}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}CCC}{8}{subsection.6.3}%

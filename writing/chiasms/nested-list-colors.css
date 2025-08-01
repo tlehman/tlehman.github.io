@@ -1,0 +1,19 @@
+li {
+  color: #2563eb;
+}
+
+li li {
+  color: #dc2626;
+}
+
+li li li {
+  color: #16a34a;
+}
+
+li li li li {
+  color: #9333ea;
+}
+
+li li li li li {
+  color: #ea580c;
+}

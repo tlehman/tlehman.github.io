@@ -1,0 +1,122 @@
+/* Gwern.net inspired typography */
+body {
+    font-family: "Source Serif Pro", "Crimson Text", "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #000;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+    font-family: "Source Serif Pro", "Times New Roman", serif;
+    font-size: 2.2em;
+    font-weight: 600;
+    margin: 1.5em 0 0.8em 0;
+    color: #000;
+    line-height: 1.3;
+}
+
+h2 {
+    font-family: "Source Serif Pro", "Times New Roman", serif;
+    font-size: 1.6em;
+    font-weight: 600;
+    margin: 1.8em 0 0.6em 0;
+    color: #000;
+    line-height: 1.4;
+}
+
+h3 {
+    font-family: "Source Serif Pro", "Times New Roman", serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 1.5em 0 0.5em 0;
+    color: #000;
+    line-height: 1.4;
+}
+
+p {
+    margin-bottom: 1.4em;
+    text-align: justify;
+    hyphens: auto;
+}
+
+blockquote {
+    margin: 2em 0;
+    padding: 0 2em;
+    border-left: 2px solid #ccc;
+    color: #333;
+    font-style: italic;
+    font-size: 0.95em;
+    line-height: 1.7;
+}
+
+a {
+    color: #0645ad;
+    text-decoration: underline;
+    text-decoration-color: rgba(6, 69, 173, 0.3);
+    text-underline-offset: 2px;
+}
+
+a:hover {
+    text-decoration-color: rgba(6, 69, 173, 0.8);
+}
+
+a:visited {
+    color: #663399;
+}
+
+small {
+    font-size: 0.85em;
+    color: #666;
+    line-height: 1.6;
+}
+
+date {
+    font-weight: 600;
+    color: #333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body {
+        font-size: 17px;
+        padding: 20px 15px;
+        line-height: 1.75;
+    }
+
+    h1 {
+        font-size: 1.9em;
+        margin: 1.2em 0 0.6em 0;
+    }
+
+    h2 {
+        font-size: 1.4em;
+        margin: 1.5em 0 0.5em 0;
+    }
+
+    h3 {
+        font-size: 1.2em;
+        margin: 1.3em 0 0.4em 0;
+    }
+
+    blockquote {
+        margin: 1.5em 0;
+        padding: 0 1.5em;
+        font-size: 0.93em;
+    }
+
+    p {
+        text-align: left;
+    }
+}

@@ -1,0 +1,34 @@
+<p>Stacks are everywhere in computer science. When you call function
+<code>A</code> and it calls <code>B</code>, and then <code>B</code>
+calls <code>C</code>, each function execution creates a stack frame and
+pushes it onto the <a
+href="https://en.wikipedia.org/wiki/Call_stack">call stack</a>.</p>
+<p>When <code>C</code> is done, the stack frame for <code>C</code> is
+popped off the stack, then <code>B</code> is popped, then finally,
+<code>A</code>. You can visualize the execution like this:</p>
+<ul>
+<li>push <code>A</code>
+<ul>
+<li>push <code>B</code>
+<ul>
+<li>push <code>C</code>
+<ul>
+<li>push <code>D</code></li>
+<li>pop <code>D</code></li>
+</ul></li>
+<li>pop <code>C</code></li>
+</ul></li>
+<li>pop <code>B</code></li>
+</ul></li>
+<li>pop <code>A</code></li>
+</ul>
+<p>This is sometimes called “unwinding the stack”.</p>
+<p>There is a parallel to this structure in the Bible, it’s called a
+<strong>Chiasm</strong> <em>(ky-AZ-m)</em>. It’s a way of building up
+grammatical structures and then reversing those structures like
+unwinding a stack.</p>
+<p>What’s extraordinary is how common this is in the Bible. The entire
+Book of Revelation is a Chiasm:</p>
+<p><img src="./revelation.jpg" alt="chiasm structure of revelation" />
+<em>(credit to <a href="https://x.com/_DeanAnthony">Dean Defuria</a>
+)</em></p>
