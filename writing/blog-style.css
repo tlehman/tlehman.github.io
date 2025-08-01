@@ -87,6 +87,7 @@ img {
     height: auto;
 }
 
+
 /* Responsive design */
 @media (max-width: 600px) {
     body {
@@ -119,4 +120,5 @@ img {
     p {
         text-align: left;
     }
+
 }
