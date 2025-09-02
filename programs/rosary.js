@@ -69,7 +69,7 @@
     }
   }
 
-  // Build 59 beads: 1 OF + 3 HM + 5*(1 OF + 10 HM)
+  // Build 54 beads: 1 OF + 3 HM + 5*(1 OF + 10 HM)
   function buildBeads() {
     const beads = [];
     beads.push({ kind: 'of' });
@@ -78,7 +78,7 @@
       beads.push({ kind: 'of' });
       for (let i = 0; i < 10; i++) beads.push({ kind: 'hm' });
     }
-    return beads; // length 59
+    return beads; // length 54
   }
 
   function buildSteps(set, lang) {
@@ -117,25 +117,110 @@
     const svg = $('#rosary');
     while (svg.firstChild) svg.removeChild(svg.firstChild);
 
-    const width = 900, height = 280;
-    const cx = width / 2, cy = height / 2;
-    const a = 360, b = 110; // ellipse radii
+    const width = 900, height = 620;
+    const cx = width / 2, cy = 230; // loop center higher to leave room for tail
+    const rx = 160, ry = 220, rot = 8; // squeeze horizontally, taller loop
 
-    beads.forEach((bData, i) => {
-      const theta = (2 * Math.PI * i / beads.length) - Math.PI / 2; // start at top
-      const x = cx + a * Math.cos(theta);
-      const y = cy + b * Math.sin(theta);
+    const ns = 'http://www.w3.org/2000/svg';
+
+    // Group for styling
+    const g = document.createElementNS(ns, 'g');
+    svg.appendChild(g);
+
+    // Draw loop path (start at bottom of loop)
+    const loopPath = document.createElementNS(ns, 'path');
+    loopPath.setAttribute('d', `M ${cx} ${cy + ry} a ${rx} ${ry} ${rot} 1 1 0 ${-2 * ry} a ${rx} ${ry} ${rot} 1 1 0 ${2 * ry}`);
+    loopPath.setAttribute('fill', 'none');
+    loopPath.setAttribute('stroke', 'rgba(0,0,0,0.15)');
+    loopPath.setAttribute('stroke-dasharray', '2 8');
+    g.appendChild(loopPath);
+
+    // Tail path from near bottom of loop to cross
+    const attach = { x: cx, y: cy + ry };
+    const crossPos = { x: cx, y: 560 };
+    const c1 = { x: cx + 28, y: attach.y + 60 };
+    const c2 = { x: cx - 36, y: crossPos.y - 100 };
+    const tailPath = document.createElementNS(ns, 'path');
+    tailPath.setAttribute('d', `M ${attach.x} ${attach.y} C ${c1.x} ${c1.y}, ${c2.x} ${c2.y}, ${crossPos.x} ${crossPos.y}`);
+    tailPath.setAttribute('fill', 'none');
+    tailPath.setAttribute('stroke', 'rgba(0,0,0,0.15)');
+    tailPath.setAttribute('stroke-dasharray', '2 8');
+    g.appendChild(tailPath);
+
+    // Draw cross
+    const cross = document.createElementNS(ns, 'g');
+    const crossColor = '#aaa';
+    const strokeColor = '#7a6a56';
+    // vertical bar
+    const v = document.createElementNS(ns, 'rect');
+    v.setAttribute('x', String(crossPos.x - 5));
+    v.setAttribute('y', String(crossPos.y - 24));
+    v.setAttribute('width', '10');
+    v.setAttribute('height', '56');
+    v.setAttribute('rx', '2');
+    v.setAttribute('fill', crossColor);
+    //v.setAttribute('stroke', strokeColor);
+    v.setAttribute('stroke-width', '1');
+    cross.appendChild(v);
+    // horizontal bar
+    const h = document.createElementNS(ns, 'rect');
+    h.setAttribute('x', String(crossPos.x - 18));
+    h.setAttribute('y', String(crossPos.y - 8));
+    h.setAttribute('width', '36');
+    h.setAttribute('height', '12');
+    h.setAttribute('rx', '2');
+    h.setAttribute('fill', crossColor);
+    //h.setAttribute('stroke', strokeColor);
+    h.setAttribute('stroke-width', '1');
+    cross.appendChild(h);
+    g.appendChild(cross);
+
+    const beadFill = getComputedStyle(document.documentElement).getPropertyValue('--bead') || '#d6d6d6';
+    const beadFillOF = getComputedStyle(document.documentElement).getPropertyValue('--bead-of') || '#a3a3a3';
+
+    // Place tail beads: indices 0..3 along tail path from cross upwards
+    const tailLen = tailPath.getTotalLength();
+    // Fractions along attach->cross; nudge beads slightly upward toward the loop
+    const tailFractions = [0.70, 0.52, 0.37, 0.20];
+    for (let i = 0; i < 4; i++) {
+      const frac = tailFractions[i];
+      const pt = tailPath.getPointAtLength(frac * tailLen);
+      const bData = beads[i];
       const r = bData.kind === 'of' ? 7 : 5;
-      const bead = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      bead.setAttribute('cx', String(x));
-      bead.setAttribute('cy', String(y));
+      const bead = document.createElementNS(ns, 'circle');
+      bead.setAttribute('cx', String(pt.x));
+      bead.setAttribute('cy', String(pt.y));
       bead.setAttribute('r', String(r));
       bead.setAttribute('data-index', String(i));
-      bead.setAttribute('fill', bData.kind === 'of' ? getComputedStyle(document.documentElement).getPropertyValue('--bead-of') : getComputedStyle(document.documentElement).getPropertyValue('--bead'));
+      bead.setAttribute('fill', bData.kind === 'of' ? beadFillOF.trim() : beadFill.trim());
       bead.setAttribute('stroke', '#888');
       bead.setAttribute('stroke-width', '0.6');
-      svg.appendChild(bead);
-    });
+      g.appendChild(bead);
+    }
+
+    // Place loop beads: indices 4..end around loop starting at bottom (attach)
+    const loopLen = loopPath.getTotalLength();
+    const loopCount = beads.length - 4; // 55
+    const step = loopLen / loopCount;
+    for (let j = 0; j < loopCount; j++) {
+      const idx = 4 + j;
+      let pt = loopPath.getPointAtLength(j * step + 2); // slight offset to avoid overlap
+      // Add subtle natural variation
+      const wobble = (k) => Math.sin((k + 1) * 0.7) * 2.5;
+      const wobbleY = (k) => Math.cos((k + 1) * 0.6) * 3.2;
+      pt = { x: pt.x + wobble(j), y: pt.y + wobbleY(j) };
+      const bData = beads[idx];
+      const r = bData.kind === 'of' ? 7 : 5;
+      const bead = document.createElementNS(ns, 'circle');
+      bead.setAttribute('cx', String(pt.x));
+      bead.setAttribute('cy', String(pt.y));
+      bead.setAttribute('r', String(r));
+      bead.setAttribute('data-index', String(idx));
+      bead.setAttribute('fill', bData.kind === 'of' ? beadFillOF.trim() : beadFill.trim());
+      bead.setAttribute('stroke', '#888');
+      bead.setAttribute('stroke-width', '0.6');
+      g.appendChild(bead);
+    }
   }
 
   function updateBeadsHighlight(steps, currentStepIndex) {
@@ -238,4 +323,3 @@
 
   window.addEventListener('DOMContentLoaded', init);
 })();
-
