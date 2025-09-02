@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rosary</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📿%3C/text%3E%3C/svg%3E"
+    >
     <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&display=swap" rel="stylesheet">
     <style>
       :root {
@@ -71,6 +76,7 @@
         border-radius: 14px;
         padding: 16px;
         box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+        position: relative;
       }
       .card h2 { margin: 0 0 8px 0; font-size: 1.3rem; }
       .card pre {
@@ -78,6 +84,24 @@
         margin: 0;
         font-family: inherit;
         line-height: 1.55;
+      }
+      .hint-arrow {
+        position: absolute;
+        right: 12px;
+        top: 10px;
+        color: #9aa0a6;
+        font-size: 22px;
+        opacity: 0.85;
+        user-select: none;
+        cursor: pointer;
+      }
+      @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(110%); opacity: 0; }
+      }
+      .card.slide-out-right { animation: slideOutRight 220ms ease-in forwards; }
+      @media (prefers-reduced-motion: reduce) {
+        .card { animation: none !important; }
       }
       .nav {
         display: flex;
@@ -120,10 +144,10 @@
             <select id="mysterySet"></select>
           </label>
           <div class="nav">
-            <button id="prev">Previous</button>
-            <button id="next">Next</button>
             <button id="reset" class="reset" title="Clear progress and start over">Reset</button>
             <span class="step" id="stepInfo"></span>
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
           </div>
         </div>
       </header>
@@ -138,10 +162,13 @@
       </section>
 
       <article class="card">
+        <div id="hintArrow" class="hint-arrow" role="button" aria-label="Next">&rarr;</div>
         <h2 id="cardTitle"></h2>
         <pre id="cardText"></pre>
       </article>
     </div>
+    <footer>
+    </footer>
     <script src="./rosary.js"></script>
   </body>
   </html>

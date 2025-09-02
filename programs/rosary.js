@@ -260,6 +260,7 @@
     const cardText = $('#cardText');
     const stepInfo = $('#stepInfo');
     const cardEl = document.querySelector('article.card');
+    const hintArrow = document.getElementById('hintArrow');
 
     const beads = buildBeads();
     renderRosarySVG(beads);
@@ -328,17 +329,65 @@
       rebuildSteps(false);
     });
 
+    let isAnimating = false;
+
     function goPrev() {
       state.idx = Math.max(0, state.idx - 1);
       render();
     }
+    function scrollToBottom() {
+      const y = Math.max(
+        document.documentElement.scrollHeight,
+        document.body ? document.body.scrollHeight : 0
+      );
+      try {
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } catch (_) {
+        window.scrollTo(0, y);
+      }
+    }
+
     function goNext() {
-      state.idx = Math.min(state.steps.length - 1, state.idx + 1);
-      render();
+      if (isAnimating) return;
+      if (state.idx >= state.steps.length - 1) return;
+      const reduceMotion = typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!cardEl || reduceMotion) { // fallback or reduced motion: no animation
+        state.idx = Math.min(state.steps.length - 1, state.idx + 1);
+        render();
+        scrollToBottom();
+        return;
+      }
+      isAnimating = true;
+      cardEl.classList.add('slide-out-right');
+      const onEnd = (e) => {
+        if (e.target !== cardEl) return; // ensure only fires for card
+        cardEl.removeEventListener('animationend', onEnd);
+        clearTimeout(fallbackTimer);
+        cardEl.classList.remove('slide-out-right');
+        state.idx = Math.min(state.steps.length - 1, state.idx + 1);
+        render();
+        scrollToBottom();
+        isAnimating = false;
+      };
+      cardEl.addEventListener('animationend', onEnd);
+      // Fallback in case animationend doesn't fire
+      const fallbackTimer = setTimeout(() => {
+        onEnd({ target: cardEl });
+      }, 350);
     }
 
     prevBtn.addEventListener('click', goPrev);
     nextBtn.addEventListener('click', goNext);
+    if (hintArrow) {
+      hintArrow.addEventListener('click', goNext);
+      hintArrow.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          goNext();
+        }
+      });
+      hintArrow.setAttribute('tabindex', '0');
+    }
 
     // Swipe right on the prayer card advances to Next
     if (cardEl) {
