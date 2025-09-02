@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rosary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #6B4F2A; /* earthy brown */
+        --card: #ffffff;
+        --ink: #222222;
+        --ink-muted: #555555;
+        --accent: #B71C1C; /* red for active beads */
+        --bead: #d6d6d6;
+        --bead-of: #a3a3a3;
+      }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: 'Domine', serif;
+        background: var(--bg);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .container {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+      header { color: #fff; }
+      header h1 { margin: 0 0 4px 0; font-size: 1.8rem; }
+      header p { margin: 0; color: #f1e7da; font-size: 0.95rem; }
+      .controls {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .controls select, .controls button {
+        font-family: inherit;
+        font-size: 1rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: none;
+      }
+      .controls button { cursor: pointer; }
+      .stage {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 12px;
+        margin: 16px 0;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      }
+      .rosary-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .legend {
+        display: flex;
+        gap: 12px;
+        color: var(--ink-muted);
+        font-size: 0.9rem;
+        margin-top: 6px;
+      }
+      .card {
+        background: var(--card);
+        border-radius: 14px;
+        padding: 16px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      }
+      .card h2 { margin: 0 0 8px 0; font-size: 1.3rem; }
+      .card pre {
+        white-space: pre-wrap;
+        margin: 0;
+        font-family: inherit;
+        line-height: 1.55;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .nav button {
+        background: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 8px 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        cursor: pointer;
+      }
+      .nav .step { color: #fff; }
+
+      @media (max-width: 560px) {
+        header h1 { font-size: 1.4rem; }
+        .card h2 { font-size: 1.15rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Rosary</h1>
+        <p>Pray in Latin or English. Beads highlight as you proceed.</p>
+        <div class="controls">
+          <label>
+            <span style="color:#f8f3ec;">Language</span>
+            <select id="language">
+              <option value="en">English</option>
+              <option value="la">Latin</option>
+            </select>
+          </label>
+          <label>
+            <span style="color:#f8f3ec;">Mysteries</span>
+            <select id="mysterySet"></select>
+          </label>
+          <div class="nav">
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+            <span class="step" id="stepInfo"></span>
+          </div>
+        </div>
+      </header>
+
+      <section class="stage">
+        <svg id="rosary" class="rosary-svg" viewBox="0 0 900 280" aria-label="Rosary beads visualization"></svg>
+        <div class="legend">
+          <span>Grey: not yet prayed</span>
+          <span>Red: completed bead</span>
+          <span>Large beads: Our Father</span>
+        </div>
+      </section>
+
+      <article class="card">
+        <h2 id="cardTitle"></h2>
+        <pre id="cardText"></pre>
+      </article>
+    </div>
+    <script src="./rosary.js"></script>
+  </body>
+  </html>
+
