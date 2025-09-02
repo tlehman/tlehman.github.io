@@ -255,9 +255,11 @@
     const setSel = $('#mysterySet');
     const prevBtn = $('#prev');
     const nextBtn = $('#next');
+    const resetBtn = $('#reset');
     const cardTitle = $('#cardTitle');
     const cardText = $('#cardText');
     const stepInfo = $('#stepInfo');
+    const cardEl = document.querySelector('article.card');
 
     const beads = buildBeads();
     renderRosarySVG(beads);
@@ -276,6 +278,12 @@
     });
     setSel.value = `auto:${todays}`;
 
+    // Restore language and step from localStorage if present
+    const savedLang = localStorage.getItem('rosary.lang');
+    if (savedLang && (savedLang === 'en' || savedLang === 'la')) {
+      langSel.value = savedLang;
+    }
+
     let state = {
       lang: langSel.value,
       set: todays,
@@ -283,12 +291,23 @@
       idx: 0,
     };
 
+    const savedIdxStr = localStorage.getItem('rosary.idx');
+    if (savedIdxStr !== null) {
+      const n = Number(savedIdxStr);
+      if (Number.isFinite(n)) state.idx = Math.max(0, Math.min(n, state.steps.length - 1));
+    }
+
     function render() {
       const step = state.steps[state.idx];
       cardTitle.textContent = step.title || '';
       cardText.textContent = step.text || '';
       stepInfo.textContent = `Step ${state.idx + 1} / ${state.steps.length}`;
       updateBeadsHighlight(state.steps, state.idx);
+      // Persist minimal state
+      try {
+        localStorage.setItem('rosary.lang', state.lang);
+        localStorage.setItem('rosary.idx', String(state.idx));
+      } catch (_) {}
     }
 
     function rebuildSteps(preserveIndex = false) {
@@ -309,12 +328,53 @@
       rebuildSteps(false);
     });
 
-    prevBtn.addEventListener('click', () => {
+    function goPrev() {
       state.idx = Math.max(0, state.idx - 1);
       render();
-    });
-    nextBtn.addEventListener('click', () => {
+    }
+    function goNext() {
       state.idx = Math.min(state.steps.length - 1, state.idx + 1);
+      render();
+    }
+
+    prevBtn.addEventListener('click', goPrev);
+    nextBtn.addEventListener('click', goNext);
+
+    // Swipe right on the prayer card advances to Next
+    if (cardEl) {
+      let startX = 0, startY = 0, startTime = 0;
+      const threshold = 50; // min px for horizontal swipe
+      const restraint = 80; // max px vertical drift allowed
+      const allowedTime = 600; // ms
+
+      cardEl.addEventListener('touchstart', (e) => {
+        const t = e.changedTouches[0];
+        startX = t.pageX; startY = t.pageY; startTime = Date.now();
+      }, { passive: true });
+
+      cardEl.addEventListener('touchend', (e) => {
+        const t = e.changedTouches[0];
+        const dx = t.pageX - startX;
+        const dy = Math.abs(t.pageY - startY);
+        const elapsed = Date.now() - startTime;
+        if (elapsed <= allowedTime && dx > threshold && dy < restraint) {
+          goNext();
+        }
+      });
+    }
+
+    resetBtn.addEventListener('click', () => {
+      // Clear localStorage keys and reset state
+      try {
+        localStorage.removeItem('rosary.lang');
+        localStorage.removeItem('rosary.idx');
+      } catch (_) {}
+      langSel.value = 'en';
+      setSel.value = `auto:${todays}`;
+      state.lang = 'en';
+      state.set = todays;
+      state.steps = buildSteps(state.set, state.lang);
+      state.idx = 0;
       render();
     });
 
