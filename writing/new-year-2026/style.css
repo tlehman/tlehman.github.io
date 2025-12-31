@@ -1,0 +1,63 @@
+body {
+	font-size: 20px;
+	font-family: "Exo 2", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: black;
+    color: lightgreen;
+}
+
+a {
+	word-break: break-word;
+	overflow-wrap: break-word;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#content {
+    padding: 5px;
+    font-size: 20px;
+}
+
+blockquote {
+    border-left: 4px solid gray;
+    padding-left: 15px;
+    margin: 0;
+}
+
+/* Tablet screens */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    #content {
+        font-size: 18px;
+    }
+}
+
+/* Mobile screens */
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 16px;
+        padding: 10px;
+        line-height: 1.5;
+    }
+
+    #content {
+        padding: 0;
+        font-size: 16px;
+    }
+
+    blockquote {
+        padding-left: 10px;
+        margin-left: 5px;
+    }
+}

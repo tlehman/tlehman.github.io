@@ -1,0 +1,30 @@
+#+TITLE: Leaving Q1 of the 21st Century
+#+AUTHOR: Tobi Lehman
+#+EMAIL: mail@tobilehman.com
+#+LANGUAGE: en-us
+#+OPTIONS: html-postamble:nil
+#+EXPORT_html_PREFERENCE: html5
+#+HTML_DOCTYPE: html5
+#+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1.0">
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="./style.css" />
+#+HTML_HEAD: <link rel="shortcut icon" href="/img/favicon.ico">
+#+HTML_HEAD: <link rel="preconnect" href="https://fonts.googleapis.com">
+#+HTML_HEAD: <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+#+HTML_HEAD: <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet">
+
+/December 31st, 2025/
+
+I still remember New Year's Eve 1999, I was 11 years old, and I wasn't sure if Y2K was going to turn
+my Furby into a Terminator or if it nothing was going to happen. The next day, Furby was still a harmless
+toy, and everything seemed to be working just fine.
+
+file:./21c.png
+
+The political history of the next quarter-century saw 9/11, the Global War on Terror, the 2008 Financial Crash,
+Obama, the rise of China and Trump. The technological history of that same quarter century saw the rise
+of the Web 2.0 Companies: Google, Facebook, Amazon.com, the renewal of Apple and the iPhone. But as we stand at
+the last day of this quarter century, the thing that is obvious to anyone plugged into the matrix is that by Q2,
+the most significant thing that came out of Q1 was AI.
+
+(MORE COMING)
+
