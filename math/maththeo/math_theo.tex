@@ -73,20 +73,20 @@ $$\text{ob}(\mathcal{G}) = \{F,S,H\}$$
 
 \begin{center}
 \begin{tikzcd}[ampersand replacement=\&]
-  \& F \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
-H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+  \& F \arrow[dl, "\stackrel{\dagger}{=}"'] \arrow[dr, "\stackrel{\dagger}{=}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}"'] \arrow[ur, "\stackrel{\dagger}{=}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}"'] \arrow[ll, "\stackrel{\dagger}{=}"]
 \end{tikzcd}
 \end{center}
 
 And all the sets of morphisms are isomorphisms, they are the $\stackrel{\dagger}{=}$ relation, which is read "is consubstantial with".
 
 \begin{align}
-\text{Hom}(F,S) &= \{ \stackrel{\dagger}{=}_{FS} : F \to S \} \\
-\text{Hom}(S,H) &= \{ \stackrel{\dagger}{=}_{SH} : S \to H \} \\
-\text{Hom}(H,F) &= \{ \stackrel{\dagger}{=}_{HF} : H \to F \} \\
-\text{Hom}(S,F) &= \{ \stackrel{\dagger}{=}_{SF} : S \to F \} \\
-\text{Hom}(F,H) &= \{ \stackrel{\dagger}{=}_{FH} : F \to H \} \\
-\text{Hom}(H,S) &= \{ \stackrel{\dagger}{=}_{HS} : H \to S \}
+\text{Hom}(F,S) &= \{ \stackrel{\dagger}{=} : F \to S \} \\
+\text{Hom}(S,H) &= \{ \stackrel{\dagger}{=} : S \to H \} \\
+\text{Hom}(H,F) &= \{ \stackrel{\dagger}{=} : H \to F \} \\
+\text{Hom}(S,F) &= \{ \stackrel{\dagger}{=} : S \to F \} \\
+\text{Hom}(F,H) &= \{ \stackrel{\dagger}{=} : F \to H \} \\
+\text{Hom}(H,S) &= \{ \stackrel{\dagger}{=} : H \to S \}
 \end{align}
 
 \subsection{Interpreting "God is the Father"}
@@ -193,9 +193,9 @@ The diagram above says that "The Father is God" and that "The Son is God", but i
 
 The Father $F$ is \emph{consubstantial with} ($\stackrel{\dagger}{=}$) The Son $S$:
 
-$$\stackrel{\dagger}{=}_{FS} : F \to S$$
+$$\stackrel{\dagger}{=} : F \to S$$
 
-But the $\stackrel{\dagger}{=}_{FS} : F \to S$ and $\text{Is}_S : \mathcal{G}\downarrow S \to \mathcal{G}$ arrows don't compose. Graphically, you cannot find a path from $F$ to $S$ that goes through $\mathcal{G}$, this is how the above definition avoids the transitivity error.
+But the $\stackrel{\dagger}{=} : F \to S$ and $\text{Is}_S : \mathcal{G}\downarrow S \to \mathcal{G}$ arrows don't compose. Graphically, you cannot find a path from $F$ to $S$ that goes through $\mathcal{G}$, this is how the above definition avoids the transitivity error.
 
 \section{The Filioque and the Great Schism of 1054}
 \label{sec:filioque}
@@ -209,8 +209,8 @@ The Western Church (Roman Catholic) teaches that the Holy Spirit proceeds from b
 
 \begin{center}
 \begin{tikzcd}[ampersand replacement=\&, column sep=large, row sep=large]
-  \& F \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
-H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+  \& F \arrow[dl, "\stackrel{\dagger}{=}"'] \arrow[dr, "\stackrel{\dagger}{=}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}"'] \arrow[ur, "\stackrel{\dagger}{=}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}"'] \arrow[ll, "\stackrel{\dagger}{=}"]
 \end{tikzcd}
 \end{center}
 
@@ -220,8 +220,8 @@ To emphasize the Filioque doctrine, we highlight the joint source of the Holy Sp
 
 \begin{center}
 \begin{tikzcd}[ampersand replacement=\&, column sep=large, row sep=large]
-  \& \textcolor{red}{F} \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
-H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& \textcolor{red}{S} \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+  \& \textcolor{red}{F} \arrow[dl, "\stackrel{\dagger}{=}"'] \arrow[dr, "\stackrel{\dagger}{=}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}"'] \arrow[ur, "\stackrel{\dagger}{=}"] \& \& \textcolor{red}{S} \arrow[ul, "\stackrel{\dagger}{=}"'] \arrow[ll, "\stackrel{\dagger}{=}"]
 \end{tikzcd}
 \end{center}
 
@@ -236,8 +236,8 @@ In categorical terms, the Eastern position would emphasize only the morphism fro
 
 \begin{center}
 \begin{tikzcd}[ampersand replacement=\&, column sep=large, row sep=large]
-  \& \textcolor{blue}{F} \arrow[dl, "\stackrel{\dagger}{=}_{FH}"'] \arrow[dr, "\stackrel{\dagger}{=}_{FS}"] \& \\
-H \arrow[rr, "\stackrel{\dagger}{=}_{HS}"'] \arrow[ur, "\stackrel{\dagger}{=}_{HF}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}_{SF}"'] \arrow[ll, "\stackrel{\dagger}{=}_{SH}"]
+  \& \textcolor{blue}{F} \arrow[dl, "\stackrel{\dagger}{=}"'] \arrow[dr, "\stackrel{\dagger}{=}"] \& \\
+H \arrow[rr, "\stackrel{\dagger}{=}"'] \arrow[ur, "\stackrel{\dagger}{=}"] \& \& S \arrow[ul, "\stackrel{\dagger}{=}"'] \arrow[ll, "\stackrel{\dagger}{=}"]
 \end{tikzcd}
 \end{center}
 
