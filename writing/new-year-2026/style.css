@@ -13,6 +13,12 @@ body {
 a {
 	word-break: break-word;
 	overflow-wrap: break-word;
+    color: #00ffff;
+}
+a:visited {
+	word-break: break-word;
+	overflow-wrap: break-word;
+    color: #00ffff;
 }
 
 img {

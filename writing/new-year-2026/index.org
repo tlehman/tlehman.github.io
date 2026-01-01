@@ -15,16 +15,45 @@
 /December 31st, 2025/
 
 I still remember New Year's Eve 1999, I was 11 years old, and I wasn't sure if Y2K was going to turn
-my Furby into a Terminator or if it nothing was going to happen. The next day, Furby was still a harmless
+my Furby into a Terminator or if nothing was going to happen. The next day, Furby was still a harmless
 toy, and everything seemed to be working just fine.
 
 file:./21c.png
 
-The political history of the next quarter-century saw 9/11, the Global War on Terror, the 2008 Financial Crash,
-Obama, the rise of China and Trump. The technological history of that same quarter century saw the rise
-of the Web 2.0 Companies: Google, Facebook, Amazon.com, the renewal of Apple and the iPhone. But as we stand at
-the last day of this quarter century, the thing that is obvious to anyone plugged into the matrix is that by Q2,
-the most significant thing that came out of Q1 was AI.
+The political history of the next quarter-century saw 9/11, the Global War on Terror, the 2008 Financial Crisis,
+Obama, the rise of China, Trump, the War in Ukraine, COVID, and the first American Pope. The technological history
+of that same quarter century saw the rise of the Web 2.0 Companies: Google, Facebook, Amazon.com, the rejuvenation of
+Apple and the iPhone, and Artificial Intelligence that actually works.
 
-(MORE COMING)
+As we pause here on the last day of this quarter-century, reflecting on the past 25 years, we might wonder, **what
+will be the most important thing that happened in these last 25 years**?
 
+Another way to put the question is: On New Year's Eve, 2050, how will this quarter-century be remembered?
+
+The reality is we can't know. But my prediction is that the single most important story of this first quarter-century
+is the creation of generalized artificial intelligence. Right now it's mostly chatbots and image generators that are neat,
+but not earth-shattering. It's natural to ask "What good is it?".
+
+About two centuries ago, after Michael Faraday gave a demonstration of the phenomenon of induced currents using moving magnets,
+the Prime Minister asked Faraday "What good is it?". Faraday replied: "What good is a new-born baby?".
+
+Artificial intelligence is even more like a newborn baby than electromagnetism because it learns and grows. Right now it's in infancy, since
+it needs human beings to build and operate the datacenters, but as DeepMind Founder Demis Hassabis says "first solve intelligence,
+then use it to solve everything else". Once you have AI powering robots that build and operate the datacenters, then you remove the dependence on
+humans. At that point, the only limits on the rate of growth of data center capacity is physics. The main hardware company powering the current AI boom, NVIDIA, has just announced they are [[https://blogs.nvidia.com/blog/starcloud/][building data centers in space]].
+
+The obvious economic questions about job loss are well-trodden, so I won't get into those.
+The larger spiritual question of "what is mankind for?" will become more pressing in the next quarter-century.
+This is analogous to the industrial revolution, when the disruption due to industrial capitalism was met with false doctrines like
+Marxism, which preached a materialist vision of the world that analyzed everything in terms of class struggle and oppression. Pope Leo XIII
+wrote [[https://www.vatican.va/content/leo-xiii/en/encyclicals/documents/hf_l-xiii_enc_15051891_rerum-novarum.html][Rerum Novarum]] in 1891, which answered the most pressing questions of the time about the meaning of man and the rights
+of both capital and labor. So it's fitting that our current pope, Leo XIV, chose that name because of his worry that the meaning of man and
+the rights of capital and labor will change again with the rise of AI.
+
+#+BEGIN_QUOTE
+He also said that he chose his name in homage to Pope Leo XIII, recognizing the need to renew Catholic social teaching to face today's new industrial revolution and the developments of artificial intelligence "that pose new challenges for the defense of human dignity, justice and labor."
+[[https://www.detroitcatholic.com/news/pope-leo-xiv-explains-his-choice-of-name-in-first-meeting-with-cardinals][(1)]]
+#+END_QUOTE
+
+The next 25 years will be a time of profound change, disruption and difficult questions. But we can rest easy knowing that those
+difficult questions are being engaged at the highest levels, from an ancient foundation of love for our creator and for mankind.
