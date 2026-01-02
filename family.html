@@ -67,9 +67,37 @@
 
             const data = [
                 {
+                    id: 20,
+                    name: "Peter Jung Lehman",
+                    parent_id: null,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1666,
+                    death_year: 1741,
+                    link: "https://ancestors.familysearch.org/en/GMRH-6V5/peter-leman-1666-1741",
+                },
+                {
+                    id: 19,
+                    name: "John Lehman",
+                    parent_id: 20,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1726,
+                    death_year: 1768,
+                    link: "https://ancestors.familysearch.org/en/LZFX-J5G/john-leman-1726-1768",
+                    parent_edge_link: "https://sg30p0.familysearch.org/service/records/storage/dascloud/patron/v2/TH-7701-147141-3595-69/dist.jpg?ctx=ArtCtxPublic",
+                },
+                {
+                    id: 18,
+                    name: "Joseph Brenneman Lehman",
+                    parent_id: 19,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1757,
+                    death_year: 1833,
+                    link: "https://ancestors.familysearch.org/en/KN7H-KRR/joseph-brenneman-leman-1757-1833",
+                },
+                {
                     id: 17,
                     name: "John Lefevre Lehman",
-                    parent_id: null,
+                    parent_id: 18,
                     birth_flag: "🇺🇸",
                     birth_year: 1782,
                     death_year: 1870,
@@ -163,9 +191,20 @@
                     .attr("y1", (d) => d.source.y)
                     .attr("x2", (d) => d.target.x)
                     .attr("y2", (d) => d.target.y)
-                    .attr("stroke", "gray")
-                    .attr("stroke-width", 2)
+                    .attr("stroke", (d) => d.target.data.parent_edge_link ? "#1a73e8" : "gray")
+                    .attr("stroke-width", (d) => d.target.data.parent_edge_link ? 4 : 2)
+                    .attr("stroke-dasharray", (d) => d.target.data.parent_edge_link ? "8,4" : "none")
                     .style("cursor", (d) => d.target.data.parent_edge_link ? "pointer" : "default")
+                    .on("mouseover", function(event, d) {
+                        if (d.target.data.parent_edge_link) {
+                            d3.select(this).attr("stroke", "#0d47a1").attr("stroke-width", 6);
+                        }
+                    })
+                    .on("mouseout", function(event, d) {
+                        if (d.target.data.parent_edge_link) {
+                            d3.select(this).attr("stroke", "#1a73e8").attr("stroke-width", 4);
+                        }
+                    })
                     .on("click", (event, d) => {
                         if (d.target.data.parent_edge_link) {
                             window.open(d.target.data.parent_edge_link, "_blank", "noopener,noreferrer");
