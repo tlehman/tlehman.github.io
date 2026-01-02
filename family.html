@@ -12,7 +12,6 @@
             #tree svg {
                 width: 100%;
                 height: 100%;
-                border: 1px solid #ccc;
             }
             circle {
                 fill: white;
@@ -37,7 +36,6 @@
                 border: 1px solid #ccc;
                 padding: 4px 8px;
                 border-radius: 4px;
-                pointer-events: none;
                 position: absolute;
                 display: none;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -69,68 +67,21 @@
 
             const data = [
                 {
-                    id: 1,
-                    name: "Peter Jung Leaman",
+                    id: 17,
+                    name: "John Lefevre Lehman",
                     parent_id: null,
-                    birth_flag: "🇨🇭",
-                    birth_year: 1666,
-                    death_year: 1741,
-                },
-                {
-                    id: 11,
-                    name: "Daniel Leaman",
-                    birth_year: 1727,
-                    birth_flag: "🇬🇧",
-                    death_year: 1727,
-                    parent_id: 1,
-                },
-                {
-                    id: 12,
-                    name: "Jacob Lehman",
-                    parent_id: 11,
-                    birth_flag: "🇬🇧",
-                    birth_year: 1756,
-                    death_year: 1835,
-                },
-                {
-                    id: 13,
-                    name: "Henry Eicholtz Leman",
-                    parent_id: 12,
                     birth_flag: "🇺🇸",
-                    birth_year: 1812,
-                    death_year: 1887,
-                },
-                {
-                    id: 2,
-                    name: "John Leaman",
-                    parent_id: 1,
-                    birth_flag: "🇬🇧",
-                    birth_year: 1726,
-                    death_year: 1759,
-                },
-                {
-                    id: 3,
-                    name: "Abraham Brenneman Leaman",
-                    parent_id: 2,
-                    birth_flag: "🇬🇧",
-                    birth_year: 1746,
-                    death_year: 1817,
-                },
-                {
-                    id: 4,
-                    name: "Benjamin Bowman Leaman",
-                    parent_id: 3,
-                    birth_flag: "🇺🇸",
-                    birth_year: 1787,
-                    death_year: 1857,
+                    birth_year: 1782,
+                    death_year: 1870,
                 },
                 {
                     id: 5,
-                    name: "Benjamin Kreider Leaman",
-                    parent_id: 4,
+                    name: "Benjamin Kreider Lehman",
+                    parent_id: 17,
                     birth_flag: "🇺🇸",
-                    birth_year: 1813,
-                    death_year: 1891,
+                    birth_year: 1817,
+                    death_year: 1904,
+                    link: "https://ancestors.familysearch.org/en/L4HH-3SF/benjamin-kreider-lehman-1817-1904",
                 },
                 {
                     id: 6,
@@ -139,6 +90,7 @@
                     birth_flag: "🇺🇸",
                     birth_year: 1852,
                     death_year: 1925,
+                    link: "https://ancestors.familysearch.org/en/KLYB-FJH/daniel-newcomer-lehman-1852-1925",
                 },
                 {
                     id: 7,
@@ -147,6 +99,7 @@
                     birth_flag: "🇺🇸",
                     birth_year: 1886,
                     death_year: 1972,
+                    link: "https://ancestors.familysearch.org/en/KCFM-267/walter-scott-lehman-1886-1972",
                 },
                 {
                     id: 8,
@@ -211,7 +164,13 @@
                     .attr("x2", (d) => d.target.x)
                     .attr("y2", (d) => d.target.y)
                     .attr("stroke", "gray")
-                    .attr("stroke-width", 2);
+                    .attr("stroke-width", 2)
+                    .style("cursor", (d) => d.target.data.parent_edge_link ? "pointer" : "default")
+                    .on("click", (event, d) => {
+                        if (d.target.data.parent_edge_link) {
+                            window.open(d.target.data.parent_edge_link, "_blank", "noopener,noreferrer");
+                        }
+                    });
 
                 const node = g
                     .selectAll("g.node")
@@ -227,7 +186,11 @@
                     .on("click", (event, d) => {
                         tooltip.style.left = `${event.pageX + 10}px`;
                         tooltip.style.top = `${event.pageY - 40}px`;
-                        tooltip.innerHTML = `<strong>${d.data.name}</strong><br>ID: ${d.data.id}`;
+                        let html = `<strong>${d.data.name}</strong>`;
+                        if (d.data.link) {
+                            html += `<br><a href="${d.data.link}" target="_blank" rel="noopener noreferrer">Ancestry</a>`;
+                        }
+                        tooltip.innerHTML = html;
                         tooltip.style.display = "block";
                     });
 
