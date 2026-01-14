@@ -19,14 +19,20 @@
     li {
  	  margin-top: 0.01em;
     }
+    .sheet-text ul {
+ 	  margin: 0;
+ 	  padding: 0 0 0 1.5em;
+ 	  list-style-position: outside;
+    }
+    .sheet-text li {
+ 	  line-height: 27px;
+    }
 
     /* Styling specific to a sheet of lined paper */
     .sheet{
  	  font-family: 'Schoolbell';
  	  background-color: white;
- 	  background: repeating-linear-gradient(white, white 25px, #9198e5 26px, #9198e5 27px);
- 	  background-position-y: 49px;
- 	  min-height: 750px;
+ 	  min-height: 950px;
  	  min-width: 400px;
  	  max-width: 100%;
  	  padding: 0;
@@ -48,11 +54,17 @@
     }
     .sheet-text {
  	  position: relative;
- 	  top: 33px;
  	  font-size: 22px;
  	  width: 480px;
  	  margin: 0 55px;
  	  line-height: 27px;
+ 	  background: repeating-linear-gradient(
+ 		 transparent 0,
+ 		 transparent 26px,
+ 		 #9198e5 26px,
+ 		 #9198e5 27px
+ 	  );
+ 	  padding-bottom: 300px;
     }
     .margin {
  	  width: 49px;
@@ -89,6 +101,25 @@
  	  bottom: 30px;
     }
     .x-link::after {content: "𝕏";}
+
+    /* Mobile responsive */
+    @media (max-width: 500px) {
+ 	  .sheet {
+ 		 min-width: auto;
+ 		 width: 100%;
+ 		 margin-left: 0;
+ 	  }
+ 	  .sheet-text {
+ 		 width: auto;
+ 		 margin: 0 55px 0 20px;
+ 	  }
+ 	  .margin {
+ 		 width: 35px;
+ 	  }
+ 	  .hole {
+ 		 left: 8px;
+ 	  }
+    }
     </style>
     <!-- Link favicons -->
     <link rel="icon" type="image/png" sizes="192x192" href="./img/android-chrome-192x192.png">
@@ -108,7 +139,7 @@
  	  Tobi's writing
    	</span>
     </header>
-    <p class="sheet-text">
+    <div class="sheet-text">
   		<ul>
           <li>(2025-12-31) <a href="./writing/new-year-2026/">Leaving Q1 of the 21st Century</a></li>
       <li>(2025-07-30) <a href="./writing/chiasms/">Stack structures in the Bible</a></li>
@@ -128,7 +159,7 @@
 		  <li>(2016-02-25) <a href="./archive/tobilehman.com/posts/monty-hall/index.html">Visualizing the Monty Hall Problem</a></li>
 		  <li>(2010-01-05) <a href="./archive/tobilehman.com/posts/conservation-confusion-clarified.html">Conservation Confusion Clarified</a></li>
   		</ul>
-    </p>
+    </div>
     </div>
 </body>
 </html>

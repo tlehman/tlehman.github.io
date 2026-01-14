@@ -5,13 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Lehman Family Tree</title>
         <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
             #tree {
                 width: 100%;
-                height: 100vh;
-            }
-            #tree svg {
-                width: 100%;
-                height: 100%;
             }
             circle {
                 fill: white;
@@ -199,21 +199,14 @@
                 { id: 16, name: "...", parent_id: 10, birth_flag: "🇺🇸" },
             ];
 
-            window.addEventListener("resize", () => drawGraph(data));
-            drawGraph(data);
+            window.addEventListener("resize", () => drawGraph(data, false));
+            drawGraph(data, true);
 
-            function drawGraph(data) {
+            function drawGraph(data, scrollToTobi = false) {
                 treeContainer.innerHTML = "";
                 tooltip.style.display = "none";
 
-                const width = treeContainer.clientWidth;
-                const height = treeContainer.clientHeight;
-
-                const svg = d3
-                    .select("#tree")
-                    .append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
+                const width = window.innerWidth;
 
                 const stratify = d3
                     .stratify()
@@ -221,10 +214,25 @@
                     .parentId((d) => d.parent_id);
 
                 const root = stratify(data);
-                const treeLayout = d3.tree().size([width, height - 100]);
+
+                // Calculate height based on tree depth (100px per level)
+                const nodeSpacing = 100;
+                const treeHeight = (root.height + 1) * nodeSpacing;
+                const height = treeHeight + 100;
+
+                const svg = d3
+                    .select("#tree")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                const treeLayout = d3.tree().size([width - 100, treeHeight]);
                 treeLayout(root);
 
-                const g = svg.append("g").attr("transform", "translate(0,50)");
+                const g = svg.append("g").attr("transform", "translate(50,50)");
+
+                // Find Tobi's node for centering
+                let tobiNode = null;
 
                 g.selectAll("line")
                     .data(root.links())
@@ -260,7 +268,12 @@
                     .enter()
                     .append("g")
                     .attr("class", "node")
-                    .attr("transform", (d) => `translate(${d.x},${d.y})`);
+                    .attr("transform", (d) => `translate(${d.x},${d.y})`)
+                    .each(function(d) {
+                        if (d.data.name === "Tobi Ross Lehman") {
+                            tobiNode = d;
+                        }
+                    });
 
                 node.append("circle")
                     .attr("r", 20)
@@ -300,6 +313,17 @@
                         tooltip.style.display = "none";
                     }
                 });
+
+                // Scroll to center Tobi's node
+                if (scrollToTobi && tobiNode) {
+                    const tobiY = tobiNode.y + 50; // Account for g transform
+                    const viewportHeight = window.innerHeight;
+                    const scrollTarget = tobiY - (viewportHeight / 2);
+                    window.scrollTo({
+                        top: Math.max(0, scrollTarget),
+                        behavior: "instant"
+                    });
+                }
             }
         </script>
     </body>
