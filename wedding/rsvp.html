@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RSVP - Tobi & Stephanie's Wedding</title>
+
+        <meta property="og:title" content="RSVP - Tobi & Stephanie's Wedding" />
+        <meta
+            property="og:description"
+            content="August 8th, 2026 - Queen of Peace Catholic Church, Salem, OR"
+        />
+        <meta
+            property="og:image"
+            content="https://tobilehman.com/img/tobi-and-stephanie-2.png"
+        />
+        <meta property="og:url" content="https://tobilehman.com/rsvp.html" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/img/android-chrome-512x512.png"
+        />
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Cormorant Garamond", serif;
+                min-height: 100vh;
+                margin: 0;
+                color: #fff;
+                text-align: center;
+                background: linear-gradient(
+                    135deg,
+                    #1e3a5f 0%,
+                    #2d4a6f 50%,
+                    #1a2f4a 100%
+                );
+                background-attachment: fixed;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            h1 {
+                font-family: "Great Vibes", cursive;
+                font-size: 3em;
+                margin-bottom: 0.2em;
+                color: #8fb3b1;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .subtitle {
+                font-size: 1.3em;
+                margin-bottom: 2em;
+                opacity: 0.9;
+            }
+            form {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 30px;
+                text-align: left;
+            }
+            .form-group {
+                margin-bottom: 20px;
+            }
+            label {
+                display: block;
+                font-size: 1.1em;
+                margin-bottom: 8px;
+                color: #8fb3b1;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            textarea,
+            select {
+                width: 100%;
+                padding: 12px 16px;
+                font-size: 1.1em;
+                font-family: "Cormorant Garamond", serif;
+                border: 2px solid rgba(90, 125, 124, 0.5);
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.9);
+                color: #333;
+                transition: border-color 0.3s;
+            }
+            input:focus,
+            textarea:focus,
+            select:focus {
+                outline: none;
+                border-color: #5a7d7c;
+            }
+            textarea {
+                resize: vertical;
+                min-height: 100px;
+            }
+            .radio-group {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .radio-option {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+            }
+            .radio-option input[type="radio"] {
+                width: 20px;
+                height: 20px;
+                accent-color: #5a7d7c;
+            }
+            .radio-option span {
+                font-size: 1.1em;
+            }
+            button[type="submit"] {
+                width: 100%;
+                padding: 16px 40px;
+                font-size: 1.4em;
+                font-family: "Cormorant Garamond", serif;
+                font-weight: 600;
+                background: #5a7d7c;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition:
+                    background-color 0.3s,
+                    transform 0.2s;
+                margin-top: 10px;
+            }
+            button[type="submit"]:hover {
+                background: #8fb3b1;
+                transform: scale(1.02);
+            }
+            .back-link {
+                margin-top: 30px;
+            }
+            .back-link a {
+                color: #8fb3b1;
+                text-decoration: none;
+                font-size: 1.1em;
+            }
+            .back-link a:hover {
+                text-decoration: underline;
+            }
+            .required {
+                color: #ff6b6b;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>RSVP</h1>
+            <p class="subtitle">
+                Tobi & Stephanie's Wedding<br />August 8th, 2026
+            </p>
+
+            <form action="https://formspree.io/f/maqbjdgv" method="POST">
+                <!-- Redirect back to a thank you message -->
+                <input
+                    type="hidden"
+                    name="_next"
+                    value="https://tobilehman.com/wedding/rsvp-thanks.html"
+                />
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="Wedding RSVP Received! 💍"
+                />
+
+                <div class="form-group">
+                    <label for="name"
+                        >Your Name <span class="required">*</span></label
+                    >
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="Full name"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="email"
+                        >Email <span class="required">*</span></label
+                    >
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="your@email.com"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label
+                        >Will you be attending?
+                        <span class="required">*</span></label
+                    >
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="attending"
+                                value="Yes"
+                                required
+                            />
+                            <span>Yes, I'll be there!</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="attending" value="No" />
+                            <span>Sorry, can't make it</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests"
+                        >Number of Guests (including yourself)</label
+                    >
+                    <input
+                        type="number"
+                        id="guests"
+                        name="guests"
+                        min="1"
+                        max="10"
+                        value="1"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="dietary">Dietary Restrictions</label>
+                    <input
+                        type="text"
+                        id="dietary"
+                        name="dietary"
+                        placeholder="Vegetarian, gluten-free, allergies, etc."
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message for the Couple</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Share your well-wishes or any questions..."
+                    ></textarea>
+                </div>
+
+                <button type="submit">Submit RSVP</button>
+            </form>
+
+            <div class="back-link">
+                <a href="/wedding/sav">← Back to Save the Date</a>
+            </div>
+        </div>
+    </body>
+</html>
