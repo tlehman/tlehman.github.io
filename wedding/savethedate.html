@@ -84,16 +84,16 @@
                 line-height: 1.6;
             }
             .location a {
-                color: #ffd700;
+                color: #84A98C;
                 text-decoration: underline;
             }
             .rsvp-button {
                 margin-top: 1.5em;
             }
-            .rsvp-button a {
+            .card .rsvp-button a {
                 display: inline-block;
-                background-color: #ffd700;
-                color: #333;
+                background-color: #84A98C;
+                color: #000;
                 text-shadow: none;
                 padding: 12px 40px;
                 font-size: 1.3em;
@@ -105,14 +105,14 @@
                     transform 0.2s;
             }
             .rsvp-button a:hover {
-                background-color: #ffec80;
+                background-color: #a3c4a9;
                 transform: scale(1.05);
             }
             .back-link {
                 margin-top: 2em;
             }
             .back-link a {
-                color: #ffd700;
+                color: #84A98C;
                 text-decoration: underline;
             }
             .cards-row {
@@ -126,7 +126,7 @@
                 margin: 1em auto 2em;
             }
             .card {
-                background: rgba(30, 30, 30, 0.65);
+                background: rgba(27, 58, 75, 0.65);
                 backdrop-filter: blur(4px);
                 -webkit-backdrop-filter: blur(4px);
                 border-radius: 10px;
@@ -142,7 +142,7 @@
                 position: absolute;
                 inset: 0;
                 border-radius: 10px;
-                background: gray;
+                background: #1B3A4B;
                 opacity: 0.75;
                 z-index: 0;
             }
@@ -151,7 +151,7 @@
                 z-index: 1;
             }
             .card a {
-                color: #ffd700;
+                color: #84A98C;
                 text-decoration: underline;
             }
             .card-church {
@@ -182,15 +182,21 @@
         />
     </head>
     <body>
-        <h1>Save the Date!</h1>
-        <h2>Tobi and Stephanie are getting married! 💍</h2>
+        <div class="cards-row">
+            <div class="card">
+                <h1>Save the Date!</h1>
+                <h2>Tobi and Stephanie are getting married! 💍</h2>
 
-        <div class="rsvp-button">
-            <a href="rsvp.html">RSVP</a>
+                <div class="rsvp-button">
+                    <a href="rsvp.html">RSVP</a>
+                </div>
+                <p class="date">
+                    <strong
+                        >August 8th, 2026 at 10am (Reception to follow)</strong
+                    >
+                </p>
+            </div>
         </div>
-        <p class="date">
-            <strong>August 8th, 2026 at 10am (Reception to follow)</strong>
-        </p>
         <div class="cards-row">
             <div class="card card-church">
                 <p>
