@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tobi Lehman - Services</title>
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="./img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="./img/android-chrome-512x512.png"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: #0a0a0a;
+                color: #e0e0e0;
+                font-family:
+                    "SF Mono", "Fira Code", "Cascadia Code", "Consolas",
+                    monospace;
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            .page {
+                position: relative;
+                z-index: 1;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 3em 1.5em;
+            }
+
+            h1 {
+                color: #00ff41;
+                font-size: 2em;
+                margin-bottom: 0.3em;
+            }
+
+            .subtitle {
+                color: #666;
+                margin-bottom: 2.5em;
+                font-size: 0.9em;
+            }
+
+            .services {
+                display: grid;
+                gap: 1.2em;
+            }
+
+            .card {
+                background: rgba(15, 15, 15, 0.85);
+                border: 1px solid rgba(0, 255, 65, 0.2);
+                border-radius: 8px;
+                padding: 1.5em;
+                transition:
+                    border-color 0.3s,
+                    box-shadow 0.3s;
+            }
+
+            .card:hover {
+                border-color: rgba(0, 255, 65, 0.5);
+                box-shadow: 0 0 15px rgba(0, 255, 65, 0.08);
+            }
+
+            .card summary {
+                cursor: pointer;
+                list-style: none;
+                display: flex;
+                align-items: baseline;
+                gap: 0.6em;
+            }
+
+            .card summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .card summary::before {
+                content: "\25B6";
+                color: #00ff41;
+                font-size: 0.7em;
+                transition: transform 0.2s;
+                flex-shrink: 0;
+            }
+
+            .card[open] summary::before {
+                transform: rotate(90deg);
+            }
+
+            .card summary h2 {
+                color: #00ff41;
+                font-size: 1.1em;
+                display: inline;
+                margin: 0;
+            }
+
+            .card summary .preview {
+                color: #555;
+                font-size: 0.85em;
+                white-space: nowrap;
+            }
+
+            .card[open] summary .preview {
+                display: none;
+            }
+
+            .card p {
+                color: #aaa;
+                font-size: 0.9em;
+                line-height: 1.5;
+                margin-top: 0.8em;
+            }
+
+            .cta-wrap {
+                text-align: center;
+                margin-top: 2.5em;
+            }
+
+            .cta {
+                display: inline-block;
+                padding: 0.9em 2.2em;
+                background: transparent;
+                color: #00ff41;
+                border: 2px solid #00ff41;
+                border-radius: 6px;
+                font-family: inherit;
+                font-size: 1.1em;
+                font-weight: bold;
+                text-decoration: none;
+                cursor: pointer;
+                animation: glow 2s ease-in-out infinite alternate;
+                transition: background 0.2s;
+            }
+
+            .cta:hover {
+                background: rgba(0, 255, 65, 0.12);
+            }
+
+            @keyframes glow {
+                from {
+                    box-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+                }
+                to {
+                    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+                }
+            }
+
+            .back {
+                display: inline-block;
+                margin-top: 2em;
+                color: #00cccc;
+                text-decoration: none;
+                font-size: 0.85em;
+            }
+
+            .back:hover {
+                text-decoration: underline;
+            }
+
+            @media (max-width: 500px) {
+                .page {
+                    padding: 2em 1em;
+                }
+                h1 {
+                    font-size: 1.5em;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="rain"></canvas>
+
+        <div class="page">
+            <h1>&gt; tobi.services</h1>
+            <p class="subtitle">security // AI // infrastructure // insurance</p>
+
+            <div class="cta-wrap">
+                <a class="cta" href="https://cal.com/tobi-lehman-ucm5jy"
+                    >Book a Call</a
+                >
+            </div>
+            <br />
+            <br />
+            <div class="services">
+                <details class="card">
+                    <summary>
+                        <h2>🔒 Forgotten Password Recovery</h2>
+                        <span class="preview">Locke...</span>
+                    </summary>
+                    <p>
+                        Locked out of an old Word document, ZIP archive, or
+                        other password-protected file? I use
+                        hardware-accelerated local cracking to recover passwords
+                        on your own data. All processing happens offline on
+                        dedicated GPUs, so your files never leave your control.
+                    </p>
+                </details>
+
+                <details class="card">
+                    <summary>
+                        <h2>🛒 Agentic Commerce Consultation</h2>
+                        <span class="preview">Navig...</span>
+                    </summary>
+                    <p>
+                        Navigate the emerging landscape of AI-driven commerce. I
+                        advise on architecting autonomous agent workflows,
+                        integrating LLMs into business processes, integrating
+                        your store with <a href="https://ucp.dev">UCP</a> and
+                        building systems where software agents transact on your
+                        behalf.
+                    </p>
+                </details>
+
+                <details class="card">
+                    <summary>
+                        <h2>🦞 Set Up an OpenClaw AI Agent</h2>
+                        <span class="preview">I'll ...</span>
+                    </summary>
+                    <p>
+                        I'll deploy and configure an
+                        <a href="https://openclaw.ai">OpenClaw</a> AI agent
+                        tailored to your use case: whether it's customer
+                        support, internal tooling, or workflow automation. You
+                        get a fully operational agent, tuned to your data and
+                        integrated with your existing systems.
+                    </p>
+                </details>
+
+                <details class="card">
+                    <summary>
+                        <h2>🧮 Advanced Math Tutoring</h2>
+                        <span class="preview">One-o...</span>
+                    </summary>
+                    <p>
+                        One-on-one tutoring in linear algebra, calculus,
+                        probability, discrete math, and beyond. I make abstract
+                        concepts concrete with visualizations and real-world
+                        applications.
+                    </p>
+                </details>
+
+                <details class="card">
+                    <summary>
+                        <h2>🌌 Kubernetes Operator Development</h2>
+                        <span class="preview">Custo...</span>
+                    </summary>
+                    <p>
+                        Custom Kubernetes operators built to automate your
+                        domain-specific infrastructure. From CRD design to
+                        reconciliation loops, I build production-grade
+                        controllers in Go. I've worked with low-level device
+                        driver integration and high-level distributed cluster
+                        abstractions. Example of my work:
+                        <a
+                            href="https://github.com/tlehman/pcidevices?tab=readme-ov-file#pci-devices-controller"
+                        >
+                            PCIDevices
+                        </a>
+                    </p>
+                </details>
+
+                <details class="card">
+                    <summary>
+                        <h2>🛡️ Security Audits (pentesting, etc.)</h2>
+                        <span class="preview">Harde...</span>
+                    </summary>
+                    <p>
+                        Harden your web applications before attackers find the
+                        gaps. I bring years of experience building cloud
+                        applications at Amazon, where I learned
+                        industry-standard best practices for engineering secure
+                        systems at scale. I apply that same rigor to find and
+                        report vulnerabilities in your infrastructure: OWASP Top
+                        10, auth flaws, misconfigurations, and more.
+                    </p>
+                </details>
+
+                <details class="card">
+                    <summary>
+                        <h2>🏥 Life Insurance</h2>
+                        <span class="preview">Licen...</span>
+                    </summary>
+                    <p>
+                        Licensed life insurance producer in the state of Oregon
+                        (NPN: 21616092). I help individuals and families find
+                        the right coverage to protect what matters most.
+                    </p>
+                </details>
+            </div>
+
+            <a class="back" href="./index.html">&larr; back</a>
+        </div>
+
+        <script>
+            (function () {
+                var c = document.getElementById("rain");
+                var ctx = c.getContext("2d");
+                var chars =
+                    "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF";
+                var size = 14;
+                var cols;
+                var drops;
+
+                function resize() {
+                    c.width = window.innerWidth;
+                    c.height = window.innerHeight;
+                    cols = Math.floor(c.width / size);
+                    drops = [];
+                    for (var i = 0; i < cols; i++)
+                        drops[i] = Math.random() * -100;
+                }
+
+                resize();
+                window.addEventListener("resize", resize);
+
+                function draw() {
+                    ctx.fillStyle = "rgba(10, 10, 10, 0.05)";
+                    ctx.fillRect(0, 0, c.width, c.height);
+                    ctx.fillStyle = "rgba(0, 255, 65, 0.35)";
+                    ctx.font = size + "px monospace";
+                    for (var i = 0; i < cols; i++) {
+                        var ch =
+                            chars[Math.floor(Math.random() * chars.length)];
+                        ctx.fillText(ch, i * size, drops[i] * size);
+                        if (
+                            drops[i] * size > c.height &&
+                            Math.random() > 0.975
+                        ) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+
+                setInterval(draw, 50);
+            })();
+        </script>
+    </body>
+</html>
