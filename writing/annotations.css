@@ -1,0 +1,194 @@
+/* Annotation toolbar and share modal */
+
+.annotation-toolbar {
+    position: absolute;
+    z-index: 1000;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+}
+
+.annotation-toolbar button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.annotation-toolbar .annotation-share-btn {
+    background: #2563eb;
+    color: #fff;
+}
+
+.annotation-toolbar .annotation-share-btn:hover {
+    background: #1d4ed8;
+}
+
+.annotation-toolbar .annotation-challenge-btn {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.annotation-toolbar .annotation-challenge-btn:hover {
+    background: #d1d5db;
+}
+
+/* Share modal */
+.annotation-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.annotation-modal {
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.annotation-modal blockquote {
+    border-left: 3px solid #2563eb;
+    margin: 0 0 16px 0;
+    padding: 8px 16px;
+    color: #4b5563;
+    font-style: italic;
+}
+
+.annotation-modal h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+}
+
+.annotation-modal .annotation-copy-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.annotation-modal .annotation-copy-text {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 13px;
+    resize: none;
+    min-height: 60px;
+    font-family: inherit;
+    color: #1f2937;
+    background: #f9fafb;
+}
+
+.annotation-modal .annotation-copy-btn {
+    padding: 8px 14px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    align-self: flex-start;
+}
+
+.annotation-modal .annotation-copy-btn:hover {
+    background: #1d4ed8;
+}
+
+.annotation-modal .annotation-share-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.annotation-modal .annotation-share-links a {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.annotation-modal .annotation-share-links a.share-twitter { background: #000; }
+.annotation-modal .annotation-share-links a.share-bluesky { background: #0085ff; }
+.annotation-modal .annotation-share-links a.share-hn { background: #ff6600; }
+.annotation-modal .annotation-share-links a.share-linkedin { background: #0a66c2; }
+.annotation-modal .annotation-share-links a.share-facebook { background: #1877f2; }
+
+.annotation-modal .annotation-share-links a:hover {
+    opacity: 0.85;
+}
+
+.annotation-modal .annotation-close-btn {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: #e5e7eb;
+    color: #1f2937;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.annotation-modal .annotation-close-btn:hover {
+    background: #d1d5db;
+}
+
+/* Dark mode */
+html.dark .annotation-toolbar {
+    background: #1f2937;
+    border-color: #374151;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+html.dark .annotation-toolbar .annotation-challenge-btn {
+    background: #374151;
+    color: #e5e7eb;
+}
+
+html.dark .annotation-toolbar .annotation-challenge-btn:hover {
+    background: #4b5563;
+}
+
+html.dark .annotation-modal {
+    background: #1f2937;
+    color: #e5e7eb;
+}
+
+html.dark .annotation-modal blockquote {
+    color: #9ca3af;
+}
+
+html.dark .annotation-modal .annotation-copy-text {
+    background: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+html.dark .annotation-modal .annotation-close-btn {
+    background: #374151;
+    color: #e5e7eb;
+}
+
+html.dark .annotation-modal .annotation-close-btn:hover {
+    background: #4b5563;
+}
