@@ -24,6 +24,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                font-family: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+                font-size: 18px;
                 /*background-color: #f0f0f0;*/
             }
 
@@ -84,6 +86,25 @@
                 top: 50%;
                 left: -15%;
             }
+
+            .darkmode-toggle {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                background: none;
+                border: 1px solid currentColor;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.85em;
+                padding: 2px 8px;
+                color: inherit;
+                font-family: inherit;
+                line-height: 1.5;
+            }
+            .darkmode-toggle:hover { opacity: 0.7; }
+
+            html.dark body { background-color: #1a1a1a; color: #e0e0e0; }
+            html.dark .circle a { color: #88f; }
         </style>
         <!-- Link favicons -->
         <link
@@ -98,20 +119,22 @@
             sizes="512x512"
             href="./img/android-chrome-512x512.png"
         />
+        <script src="writing/darkmode.js"></script>
     </head>
     <body>
+        <button class="darkmode-toggle">Dark</button>
         <div class="container">
             <img
                 src="./img/lehman-coat-of-arms.png"
                 alt="Lehman Family Coat of Arms"
             />
             <div class="circle">
-                <a href="./about.html">About Tobi 🔍</a>
-                <a href="./writing.html">Writing 📝</a>
-                <a href="./archive.html">Archive 📁</a>
-                <a href="./services.html">Services 💼</a>
-                <a href="./math.html">Math </a>
-                <a href="./programs.html">Programs 👨‍💻</a>
+                <a href="./about.html">About Tobi</a>
+                <a href="./writing">Writing</a>
+                <a href="./archive.html">Archive</a>
+                <a href="./services.html">Services</a>
+                <a href="./math.html">Math</a>
+                <a href="./programs.html">Programs</a>
                 <a href="/wedding/savethedate.html">💍</a>
             </div>
         </div>

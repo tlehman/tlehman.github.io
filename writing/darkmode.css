@@ -1,0 +1,96 @@
+/* Dark mode overrides for blog-style */
+html.dark body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3 {
+    color: #e0e0e0;
+}
+
+html.dark a {
+    color: #e0e0e0;
+    text-decoration-color: rgba(224, 224, 224, 0.3);
+}
+
+html.dark a:hover {
+    text-decoration-color: rgba(224, 224, 224, 0.8);
+}
+
+html.dark a:visited {
+    color: #aaa;
+}
+
+html.dark small {
+    color: #999;
+}
+
+html.dark date {
+    color: #ccc;
+}
+
+html.dark blockquote {
+    border-left-color: #555;
+    color: #bbb;
+}
+
+html.dark .sidenote {
+    color: #aaa;
+}
+
+html.dark hr {
+    border-color: #444;
+}
+
+html.dark nav a {
+    color: #e0e0e0 !important;
+}
+
+html.dark textarea,
+html.dark input,
+html.dark select {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+html.dark .preview-pane {
+    background-color: #2a2a2a;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+html.dark .actions button {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+html.dark .actions button.publish {
+    background-color: #0645ad;
+    color: #fff;
+    border-color: #0645ad;
+}
+
+html.dark .meta-fields label {
+    color: #999;
+}
+
+/* Dark mode toggle button */
+.darkmode-toggle {
+    background: none;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    padding: 2px 8px;
+    color: inherit;
+    font-family: inherit;
+    line-height: 1.5;
+}
+
+.darkmode-toggle:hover {
+    opacity: 0.7;
+}

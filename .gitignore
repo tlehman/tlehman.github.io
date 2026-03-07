@@ -10,3 +10,4 @@ math/grp/perms
 *~
 *#
 .DS_Store
+.env

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft Editor</title>
+    <link rel="stylesheet" href="blog-style-6d76934a57c444aa502311f9bcf68c8a.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
+    <link rel="stylesheet" href="darkmode.css">
+    <script src="darkmode.js"></script>
+    <style>
+        /* Override blog-style body for editor layout */
+        body { max-width: 1400px; }
+
+        .meta-fields {
+            display: flex;
+            gap: 1em;
+            flex-wrap: wrap;
+            margin-bottom: 1em;
+        }
+        .meta-fields label {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85em;
+            color: #666;
+        }
+        .meta-fields input {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 0.3em 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .meta-fields input[name="title"] { width: 300px; }
+        .meta-fields input[name="slug"] { width: 200px; }
+        .meta-fields input[name="date"] { width: 160px; }
+
+        .editor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+            margin-bottom: 1em;
+        }
+        .editor-grid textarea {
+            font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            resize: vertical;
+            min-height: 500px;
+        }
+        .preview-pane {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 1em;
+            overflow-y: auto;
+            min-height: 500px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+        }
+        .actions button {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 0.5em 1.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+            background: #fff;
+        }
+        .actions button.publish {
+            background: #0645ad;
+            color: #fff;
+            border-color: #0645ad;
+        }
+        .actions button.publish:hover { background: #0534a0; }
+        .actions button.clear:hover { background: #f5f5f5; }
+
+        #status {
+            font-size: 0.9em;
+            color: #666;
+        }
+        #status.error { color: #c00; }
+        #status.success { color: #080; }
+
+        @media (max-width: 800px) {
+            .editor-grid {
+                grid-template-columns: 1fr;
+            }
+            .meta-fields input[name="title"] { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav style="display: flex; align-items: center; gap: 10px; margin-bottom: 1em;">
+        <a href="/writing/"><img src="/img/android-chrome-192x192.png" alt="logo" style="height: 32px; width: 32px;"></a>
+        <a href="/writing/" style="font-size: 1.4em; font-weight: 600; text-decoration: none; color: #000;">Tobi's writing</a>
+        <a href="/" style="margin-left: auto; text-decoration: none; color: #000;">Home</a>
+        <button class="darkmode-toggle">Dark</button>
+    </nav>
+
+    <h1>Draft Editor</h1>
+
+    <div style="margin-bottom: 1em;">
+        <label style="font-size: 0.85em; color: #666;">Edit Published
+            <select id="articleSelect" style="font-family: inherit; font-size: 1rem; padding: 0.3em 0.5em; border: 1px solid #ccc; border-radius: 3px; margin-left: 0.5em;">
+                <option value="">— New article —</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="meta-fields">
+        <label>Title
+            <input type="text" name="title" id="title" placeholder="Article title">
+        </label>
+        <label>Slug
+            <input type="text" name="slug" id="slug" placeholder="auto-generated">
+        </label>
+        <label>Date
+            <input type="date" name="date" id="date">
+        </label>
+    </div>
+
+    <div class="editor-grid">
+        <textarea id="editor" placeholder="Write your markdown here..."></textarea>
+        <div class="preview-pane" id="preview"></div>
+    </div>
+
+    <div class="actions">
+        <button class="publish" onclick="publish()">Publish</button>
+        <button class="clear" onclick="clearDraft()">Clear Draft</button>
+        <button class="clear" id="citationsBtn" onclick="generateCitations()">Generate Citations</button>
+        <button class="clear" id="undoCitationsBtn" onclick="undoCitations()" style="display:none;">Undo Citations</button>
+        <span id="wordcount" style="font-size: 0.85em; color: #666;">0 words</span>
+        <span id="status"></span>
+    </div>
+
+    <script src="marked.min.js"></script>
+    <script>
+        const titleEl = document.getElementById('title');
+        const slugEl = document.getElementById('slug');
+        const dateEl = document.getElementById('date');
+        const editorEl = document.getElementById('editor');
+        const previewEl = document.getElementById('preview');
+        const statusEl = document.getElementById('status');
+
+        const articleSelect = document.getElementById('articleSelect');
+
+        // Populate "Edit Published" dropdown
+        fetch('/api/articles')
+            .then(r => r.json())
+            .then(articles => {
+                articles.forEach(a => {
+                    const opt = document.createElement('option');
+                    opt.value = a.slug;
+                    opt.textContent = `${a.date} — ${a.title}`;
+                    articleSelect.appendChild(opt);
+                });
+            })
+            .catch(() => {});
+
+        articleSelect.addEventListener('change', async () => {
+            const slug = articleSelect.value;
+            if (!slug) return;
+            try {
+                const res = await fetch(`/api/articles/${slug}`);
+                const data = await res.json();
+                if (res.ok) {
+                    titleEl.value = data.title;
+                    slugEl.value = data.slug;
+                    dateEl.value = data.date;
+                    editorEl.value = data.content;
+                    slugManuallyEdited = true;
+                    localStorage.removeItem(STORAGE_KEY);
+                    updatePreview();
+                    statusEl.textContent = `Loaded "${data.title}"`;
+                    statusEl.className = '';
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error loading article: ' + e.message;
+                statusEl.className = 'error';
+            }
+        });
+
+        // Default date to today
+        dateEl.value = new Date().toISOString().slice(0, 10);
+
+        // Auto-generate slug from title
+        let slugManuallyEdited = false;
+        slugEl.addEventListener('input', () => { slugManuallyEdited = true; });
+        titleEl.addEventListener('input', () => {
+            if (!slugManuallyEdited) {
+                slugEl.value = titleEl.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-|-$/g, '');
+            }
+        });
+
+        const wordcountEl = document.getElementById('wordcount');
+
+        function updateWordCount() {
+            const text = editorEl.value.trim();
+            const count = text ? text.split(/\s+/).length : 0;
+            wordcountEl.textContent = count + ' word' + (count !== 1 ? 's' : '');
+        }
+
+        // Live preview
+        function updatePreview() {
+            previewEl.innerHTML = marked.parse(editorEl.value);
+            updateWordCount();
+        }
+        editorEl.addEventListener('input', updatePreview);
+
+        // localStorage auto-save (debounced)
+        const STORAGE_KEY = 'draft-editor';
+        let saveTimer;
+        function saveDraft() {
+            clearTimeout(saveTimer);
+            saveTimer = setTimeout(() => {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    title: titleEl.value,
+                    slug: slugEl.value,
+                    date: dateEl.value,
+                    content: editorEl.value,
+                    slugManuallyEdited
+                }));
+                statusEl.textContent = 'Draft saved';
+                statusEl.className = '';
+            }, 500);
+        }
+        titleEl.addEventListener('input', saveDraft);
+        slugEl.addEventListener('input', saveDraft);
+        dateEl.addEventListener('input', saveDraft);
+        editorEl.addEventListener('input', saveDraft);
+
+        // Restore draft on load
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            try {
+                const d = JSON.parse(saved);
+                titleEl.value = d.title || '';
+                slugEl.value = d.slug || '';
+                dateEl.value = d.date || dateEl.value;
+                editorEl.value = d.content || '';
+                slugManuallyEdited = d.slugManuallyEdited || false;
+                updatePreview();
+                statusEl.textContent = 'Draft restored from localStorage';
+            } catch (e) {}
+        }
+
+        function clearDraft() {
+            localStorage.removeItem(STORAGE_KEY);
+            titleEl.value = '';
+            slugEl.value = '';
+            dateEl.value = new Date().toISOString().slice(0, 10);
+            editorEl.value = '';
+            slugManuallyEdited = false;
+            previewEl.innerHTML = '';
+            statusEl.textContent = 'Draft cleared';
+            statusEl.className = '';
+        }
+
+        let preCitationContent = null;
+        const citationsBtn = document.getElementById('citationsBtn');
+        const undoCitationsBtn = document.getElementById('undoCitationsBtn');
+
+        async function generateCitations() {
+            const content = editorEl.value.trim();
+            if (!content) {
+                statusEl.textContent = 'Nothing to generate citations for.';
+                statusEl.className = 'error';
+                return;
+            }
+
+            preCitationContent = editorEl.value;
+            citationsBtn.disabled = true;
+            citationsBtn.textContent = 'Generating...';
+            statusEl.textContent = 'Generating citations...';
+            statusEl.className = '';
+
+            try {
+                const res = await fetch(window.location.origin + '/api/citations', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    editorEl.value = data.content;
+                    updatePreview();
+                    saveDraft();
+                    undoCitationsBtn.style.display = '';
+                    statusEl.textContent = 'Citations generated';
+                    statusEl.className = 'success';
+                } else {
+                    statusEl.textContent = 'Error: ' + (data.error || 'Unknown error');
+                    statusEl.className = 'error';
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error: ' + e.message;
+                statusEl.className = 'error';
+            } finally {
+                citationsBtn.disabled = false;
+                citationsBtn.textContent = 'Generate Citations';
+            }
+        }
+
+        function undoCitations() {
+            if (preCitationContent !== null) {
+                editorEl.value = preCitationContent;
+                preCitationContent = null;
+                updatePreview();
+                saveDraft();
+                undoCitationsBtn.style.display = 'none';
+                statusEl.textContent = 'Citations undone';
+                statusEl.className = '';
+            }
+        }
+
+        async function publish() {
+            const title = titleEl.value.trim();
+            const slug = slugEl.value.trim();
+            const date = dateEl.value;
+            const content = editorEl.value;
+
+            if (!title || !slug || !date || !content) {
+                statusEl.textContent = 'All fields are required.';
+                statusEl.className = 'error';
+                return;
+            }
+
+            statusEl.textContent = 'Publishing...';
+            statusEl.className = '';
+
+            try {
+                const res = await fetch('/api/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, slug, date, content })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    statusEl.innerHTML = 'Published! <a href="' + data.url + '">' + data.url + '</a>';
+                    statusEl.className = 'success';
+                } else {
+                    statusEl.textContent = 'Error: ' + (data.error || 'Unknown error');
+                    statusEl.className = 'error';
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error: ' + e.message;
+                statusEl.className = 'error';
+            }
+        }
+    </script>
+</body>
+</html>
