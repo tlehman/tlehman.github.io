@@ -1,0 +1,31 @@
+# tobilehman.com
+
+The personal website of Tobi Lehman.
+
+## About
+About me is /about.html
+
+## Math
+Mathematical work is at /math.html
+
+## Writing
+Writing is at /writing/, and every post is in a slug-named dir, with index.md (source)
+and index.html (generated, for human readers). I see that github pages does not
+serve the index.md, but they are available in the github repo. For example:
+
+https://tobilehman.com/writing/darios-magnum-opus/index.md -> 
+https://github.com/tlehman/tlehman.github.io/blob/master/writing/darios-magnum-opus/index.md
+
+## Archive
+My personal archive is at /archive.html, it exists because this site has gone through
+several generations/rewrites, and it's all there as a subdirectory for historical
+fidelity. The original link structure is not, but it's derivable with a small path update.
+
+## Programs
+A collection of programs I've written (pre-LLMs) are at /programs.html
+The only program there that involved an LLM in it's production was /programs/rosary.html
+That is a religious app idea I had and worked on in a few different languages before settling
+on the HTML/SVG vibe-coded one.
+
+## Wedding
+My upcoming wedding site is also on the page, once the wedding is over, it will be retired.
