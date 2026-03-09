@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOATS.js</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: monospace;
+      color: #fff;
+    }
+    #game-container {
+      position: relative;
+      width: 640px;
+      height: 480px;
+    }
+    canvas {
+      display: block;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      border: 2px solid #333;
+    }
+    #input-panel {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid #555;
+      padding: 8px 14px;
+      border-radius: 4px;
+      z-index: 10;
+    }
+    #input-panel label {
+      color: #ccc;
+      font-size: 13px;
+      margin-right: 4px;
+    }
+    #input-panel input {
+      width: 55px;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #555;
+      padding: 3px 5px;
+      font-family: monospace;
+      font-size: 14px;
+      text-align: center;
+      margin-right: 8px;
+    }
+    #input-panel button {
+      background: #333;
+      color: #0f0;
+      border: 1px solid #555;
+      padding: 4px 12px;
+      font-family: monospace;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #input-panel button:hover { background: #555; }
+    #player-label {
+      color: #ff0;
+      font-weight: bold;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+  </style>
+  <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png">
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="gameCanvas" width="640" height="480"></canvas>
+    <div id="input-panel">
+      <span id="player-label">Player 1</span>
+      <label>Angle:</label>
+      <input type="number" id="angle-input" min="0" max="90" value="45">
+      <label>Velocity:</label>
+      <input type="number" id="velocity-input" min="1" value="60">
+      <button id="fire-btn">FIRE!</button>
+    </div>
+  </div>
+  <p style="margin-top: 12px; font-size: 14px;">
+    <a href="https://crosscatholic.org/projects/chickens-goats-pigs-and-cows-oh-my/"
+       target="_blank" rel="noopener" style="color: #0f0;">
+      Donate a goat to a family in rural Jamaica through Cross Catholic Outreach
+    </a>
+  </p>
+  <script src="goats.js"></script>
+  <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
