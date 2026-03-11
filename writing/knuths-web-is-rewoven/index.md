@@ -17,9 +17,10 @@ I wrote [LCP](https://github.com/tlehman/literate-classical-physics) which is a 
 
 Just today, I built a [Claude Code skill](https://code.claude.com/docs/en/skills) that you can run with the command `/literate-programming` and it generates a `$project.lit.md` file that is the new source of truth. The skill looks around for all the entry points and then traces the flow of data through the program, explaining it in a way that is easy for a human to understand, compared with just opening up the files in an editor. This is one linear file, which presents nicely when printed out and read away from the computer.
 
-**Here is the skill to install**: https://github.com/tlehman/litprog-skill
+**Here is the skill to install**: [litprog-skill](https://github.com/tlehman/litprog-skill)
 
 Why did I build this? Because [Amazon is doing mandatory meetings][3] on incidents caused by shipping vibe-coded slop to production. Because despite using OpenCode and Claude Code and all the newest models to be more productive, I can feel my code understanding slipping. Because tweets like this are going viral:
+
 > there is still no substitute for perfectly understanding every single line of code in your codebase
 ([@gabriel1](https://x.com/gabriel1/status/2029805730048659762))
 
