@@ -78,6 +78,27 @@ html.dark .meta-fields label {
     color: #999;
 }
 
+html.dark .subscribe-form {
+    border-top-color: #555;
+}
+
+html.dark .subscribe-form input[type="email"] {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+html.dark .subscribe-form input[type="submit"] {
+    background: #e0e0e0;
+    color: #1a1a1a;
+    border-color: #e0e0e0;
+}
+
+html.dark .subscribe-form input[type="submit"]:hover {
+    background: #bbb;
+    border-color: #bbb;
+}
+
 /* Dark mode toggle button */
 .darkmode-toggle {
     background: none;

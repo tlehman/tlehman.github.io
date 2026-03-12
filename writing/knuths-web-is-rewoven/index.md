@@ -34,7 +34,7 @@ As an example, I ran this one [Andrej Karpathy][4]'s LLM.c program, and the resu
 
 The purpose of this skill is to bootstrap a document that can help you understand every single line of code, then to have a document you could edit yourself, and those changes would propagate down into the code and documentation. You can still vibe code, but you must never let your understanding of your codebase slip. Stay sharp.
 
-The web that Knuth made is being rewoven.
+The natural tendency of most dev teams is to prioritize shipping, at the expense of documentation. Now with dev teams twiddling their thumbs while AI agents cook, there's no excuse not to keep the documentation up to date. Using this skill will also prevent the natural drift that happens because LLMs are nondeterministic. This skill uses deterministic tangle and weave commands. The web that Knuth wove is being rewoven.
 
 ---
 

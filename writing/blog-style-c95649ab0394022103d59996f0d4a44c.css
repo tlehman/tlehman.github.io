@@ -108,6 +108,48 @@ img {
     color: #555;
 }
 
+/* Subscribe form */
+.subscribe-form {
+    margin-top: 3em;
+    padding-top: 1.5em;
+    border-top: 1px solid #ccc;
+}
+
+.subscribe-form label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 0.95em;
+}
+
+.subscribe-form input[type="email"] {
+    font-family: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    font-size: 0.9em;
+    padding: 6px 10px;
+    border: 1px solid #999;
+    margin-right: 8px;
+}
+
+.subscribe-form input[type="submit"] {
+    font-family: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+    font-size: 0.9em;
+    padding: 6px 14px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.subscribe-form input[type="submit"]:hover {
+    background: #333;
+    border-color: #333;
+}
+
+.subscribe-form p {
+    font-size: 0.8em;
+    color: #999;
+    text-align: left;
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
     body {
