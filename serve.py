@@ -13,6 +13,117 @@ import threading
 import time
 
 
+def render_markdown(text):
+    """Render markdown to HTML with paragraph handling.
+
+    Each newline-separated group of lines becomes a <p>.
+    Multiple consecutive newlines collapse to a single paragraph break.
+    Markdown block elements (headings, lists, blockquotes, code blocks,
+    horizontal rules) are rendered outside of <p> tags.
+    Inline markdown (bold, italic, links, images, code) is rendered within paragraphs.
+    """
+    lines = text.split("\n")
+
+    # Group lines into blocks separated by blank lines
+    blocks = []
+    current = []
+    for line in lines:
+        if line.strip() == "":
+            if current:
+                blocks.append(current)
+                current = []
+        else:
+            current.append(line)
+    if current:
+        blocks.append(current)
+
+    result = []
+    for block in blocks:
+        first = block[0].strip()
+
+        # Heading
+        if re.match(r'^#{1,6}\s', first):
+            for line in block:
+                m = re.match(r'^(#{1,6})\s+(.*)', line)
+                if m:
+                    level = len(m.group(1))
+                    result.append(f"<h{level}>{_inline(m.group(2))}</h{level}>")
+                else:
+                    result.append(f"<p>{_inline(line)}</p>")
+
+        # Fenced code block
+        elif first.startswith("```"):
+            lang = first[3:].strip()
+            code_lines = []
+            # Collect until closing ```
+            i = 1
+            while i < len(block):
+                if block[i].strip() == "```":
+                    break
+                code_lines.append(block[i])
+                i += 1
+            code = _escape_html("\n".join(code_lines))
+            if lang:
+                result.append(f'<pre><code class="language-{_escape_html(lang)}">{code}</code></pre>')
+            else:
+                result.append(f"<pre><code>{code}</code></pre>")
+
+        # Blockquote
+        elif first.startswith(">"):
+            quote_lines = []
+            for line in block:
+                quote_lines.append(re.sub(r"^>\s?", "", line))
+            result.append(f"<blockquote><p>{_inline(' '.join(quote_lines))}</p></blockquote>")
+
+        # Unordered list
+        elif re.match(r'^[-*+]\s', first):
+            result.append("<ul>")
+            for line in block:
+                item = re.sub(r'^[-*+]\s+', '', line)
+                result.append(f"<li>{_inline(item)}</li>")
+            result.append("</ul>")
+
+        # Ordered list
+        elif re.match(r'^\d+\.\s', first):
+            result.append("<ol>")
+            for line in block:
+                item = re.sub(r'^\d+\.\s+', '', line)
+                result.append(f"<li>{_inline(item)}</li>")
+            result.append("</ol>")
+
+        # Horizontal rule
+        elif re.match(r'^[-*_]{3,}\s*$', first) and len(block) == 1:
+            result.append("<hr>")
+
+        # Regular paragraph
+        else:
+            # Each line in the block is part of the same paragraph
+            result.append(f"<p>{_inline(' '.join(line.strip() for line in block))}</p>")
+
+    return "\n".join(result)
+
+
+def _escape_html(text):
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
+def _inline(text):
+    """Render inline markdown: bold, italic, code, links, images."""
+    # Inline code (before other processing to avoid conflicts)
+    text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
+    # Images (before links, since ![alt](url) contains [])
+    text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', r'<img src="\2" alt="\1">', text)
+    # Links
+    text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', r'<a href="\2">\1</a>', text)
+    # Bold (**text** or __text__)
+    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'__(.+?)__', r'<strong>\1</strong>', text)
+    # Italic (*text* or _text_)
+    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
+    text = re.sub(r'(?<!\w)_(.+?)_(?!\w)', r'<em>\1</em>', text)
+    return text
+
+
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/articles":
@@ -66,8 +177,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
         if self.path == "/api/publish":
             self.handle_publish()
-        elif self.path == "/api/citations":
-            self.handle_citations()
+        elif self.path == "/api/reddit-comments":
+            self.handle_reddit_comments()
+        elif self.path == "/api/annotate":
+            self.handle_annotate()
         else:
             self.send_error(404)
 
@@ -106,21 +219,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         with open(md_path, "w") as f:
             f.write(f"---\ntitle: \"{title}\"\ndate: {date}\n---\n\n{content}\n")
 
-        # Run pandoc
-        try:
-            subprocess.run(
-                ["pandoc", "index.md", "--template=../template.html", "-o", "index.html"],
-                cwd=slug_dir,
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-        except FileNotFoundError:
-            self.respond_json(500, {"error": "pandoc not found. Run 'nix develop' first."})
-            return
-        except subprocess.CalledProcessError as e:
-            self.respond_json(500, {"error": f"pandoc failed: {e.stderr}"})
-            return
+        # Render markdown to HTML
+        body_html = render_markdown(content)
+
+        # Apply template
+        template_path = os.path.join(writing_dir, "template.html")
+        with open(template_path, "r") as f:
+            template = f.read()
+        page_html = template.replace("$title$", title).replace("$date$", date).replace("$body$", body_html)
+
+        with open(html_path, "w") as f:
+            f.write(page_html)
 
         # Update writing/index.html with new or updated entry
         index_path = os.path.join(writing_dir, "index.html")
@@ -151,7 +260,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         print(f"Published: {url}")
         self.respond_json(200, {"url": url})
 
-    def handle_citations(self):
+    def handle_reddit_comments(self):
         try:
             length = int(self.headers.get("Content-Length", 0))
             body = json.loads(self.rfile.read(length))
@@ -164,25 +273,101 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.respond_json(400, {"error": "Content is required"})
             return
 
-        instruction = (
-            "Read through all this text and then find books, articles, or papers, "
-            "and then wire up the citations like wikipedia. It should stay as markdown "
-            "but the links in the text should be to the citation list at the bottom. "
-            "Return ONLY the updated markdown, no explanation or wrapping."
-        )
-
-        prompt = f"{instruction}\n\n{content}"
+        prompt = f"Generate the top 3 critical reddit comments of this article:\n\n{content}"
 
         try:
             result = subprocess.run(
                 ["claude", "-p", prompt],
                 capture_output=True, text=True, check=True,
             )
-            self.respond_json(200, {"content": result.stdout})
+            self.respond_json(200, {"comments": result.stdout})
         except FileNotFoundError:
             self.respond_json(500, {"error": "claude CLI not found. Install it first."})
         except subprocess.CalledProcessError as e:
             self.respond_json(500, {"error": f"claude CLI failed: {e.stderr}"})
+
+    def handle_annotate(self):
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = json.loads(self.rfile.read(length))
+        except (json.JSONDecodeError, ValueError):
+            self.respond_json(400, {"error": "Invalid JSON"})
+            return
+
+        content = body.get("content", "").strip()
+        ann_type = body.get("type", "").strip()
+
+        if not content:
+            self.respond_json(400, {"error": "Content is required"})
+            return
+
+        valid_types = {"fact-check", "style", "coherence", "consistency"}
+        if ann_type not in valid_types:
+            self.respond_json(400, {"error": f"Invalid type. Must be one of: {', '.join(sorted(valid_types))}"})
+            return
+
+        prompts = {
+            "fact-check": (
+                "Analyze this article for factual accuracy. For each claim that may be "
+                "inaccurate, misleading, or unverifiable, return it as an annotation. "
+                "Focus on specific sentences or phrases."
+            ),
+            "style": (
+                "Analyze this article for writing style issues: awkward phrasing, passive "
+                "voice overuse, wordiness, unclear sentences, or cliches. Focus on specific "
+                "sentences or phrases that could be improved."
+            ),
+            "coherence": (
+                "Analyze this article for logical coherence. Identify sentences or paragraphs "
+                "where the argument is unclear, where transitions are weak, or where the "
+                "reasoning does not follow. Focus on specific text."
+            ),
+            "consistency": (
+                "Analyze this article for internal consistency. Look for contradictions, "
+                "inconsistent terminology, tone shifts, or claims that conflict with each "
+                "other. Focus on specific sentences or phrases."
+            ),
+        }
+
+        system_prompt = (
+            "You are a writing analysis tool. "
+            + prompts[ann_type]
+            + '\n\nReturn ONLY valid JSON in this exact format, with no other text:\n'
+            '{"annotations": [{"text": "exact quote from article", '
+            '"feedback": "explanation of the issue", '
+            '"severity": "high" or "medium" or "low"}]}\n\n'
+            'Important: the "text" field must contain an EXACT substring from the article. '
+            'If there are no issues, return {"annotations": []}.'
+        )
+
+        full_prompt = system_prompt + "\n\nArticle:\n\n" + content
+
+        try:
+            result = subprocess.run(
+                ["claude", "-p", full_prompt],
+                capture_output=True, text=True, check=True,
+                timeout=120,
+            )
+            output = result.stdout.strip()
+            # Strip markdown code fences if present
+            if output.startswith("```"):
+                output = output.split("\n", 1)[1]
+                if output.endswith("```"):
+                    output = output[:-3].strip()
+
+            data = json.loads(output)
+            if "annotations" not in data:
+                data = {"annotations": []}
+
+            self.respond_json(200, data)
+        except json.JSONDecodeError:
+            self.respond_json(500, {"error": "Claude returned invalid JSON. Try again."})
+        except FileNotFoundError:
+            self.respond_json(500, {"error": "claude CLI not found."})
+        except subprocess.CalledProcessError as e:
+            self.respond_json(500, {"error": f"claude CLI failed: {e.stderr}"})
+        except subprocess.TimeoutExpired:
+            self.respond_json(500, {"error": "Analysis timed out."})
 
     def respond_json(self, status, data):
         body = json.dumps(data).encode()

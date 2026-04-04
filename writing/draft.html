@@ -9,9 +9,9 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
     <link rel="stylesheet" href="darkmode.css">
     <script src="darkmode.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/overtype@latest/dist/overtype.min.js"></script>
     <style>
-        /* Override blog-style body for editor layout */
-        body { max-width: 1400px; }
+        body { max-width: 900px; }
 
         .meta-fields {
             display: flex;
@@ -36,34 +36,76 @@
         .meta-fields input[name="slug"] { width: 200px; }
         .meta-fields input[name="date"] { width: 160px; }
 
-        .editor-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1em;
+        #editor-container {
+            margin-bottom: 1em;
+            min-height: 500px;
+        }
+
+        /* Preview pane */
+        #preview-pane {
+            display: none;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 1em;
+            min-height: 500px;
             margin-bottom: 1em;
         }
-        .editor-grid textarea {
-            font-family: "SFMono-Regular", "Consolas", "Liberation Mono", monospace;
-            font-size: 15px;
-            line-height: 1.6;
-            padding: 1em;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            resize: vertical;
-            min-height: 500px;
+        #preview-pane.visible {
+            display: block;
         }
-        .preview-pane {
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            padding: 1em;
+
+        /* Annotation margin notes */
+        .margin-notes-pane {
             overflow-y: auto;
-            min-height: 500px;
+            overflow-x: hidden;
+            max-height: 600px;
         }
+        .margin-note {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.82em;
+            line-height: 1.4;
+            cursor: pointer;
+            position: relative;
+        }
+        .margin-note .dismiss-btn {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #999;
+            line-height: 1;
+        }
+        .margin-note .dismiss-btn:hover { color: #333; }
+        .margin-note .noted-text {
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+        .margin-note .severity-badge {
+            display: inline-block;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+        .margin-note.type-fact-check  { background: #fee2e2; border-color: #dc2626; }
+        .margin-note.type-style       { background: #dbeafe; border-color: #2563eb; }
+        .margin-note.type-coherence   { background: #dcfce7; border-color: #16a34a; }
+        .margin-note.type-consistency { background: #fef9c3; border-color: #ca8a04; }
 
         .actions {
             display: flex;
             gap: 1em;
             align-items: center;
+            flex-wrap: wrap;
         }
         .actions button {
             font-family: inherit;
@@ -81,6 +123,12 @@
         }
         .actions button.publish:hover { background: #0534a0; }
         .actions button.clear:hover { background: #f5f5f5; }
+        .actions button.preview-btn { border-color: #666; }
+        .actions button.preview-btn.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
 
         #status {
             font-size: 0.9em;
@@ -90,11 +138,20 @@
         #status.success { color: #080; }
 
         @media (max-width: 800px) {
-            .editor-grid {
-                grid-template-columns: 1fr;
-            }
             .meta-fields input[name="title"] { width: 100%; }
         }
+
+        /* Dark mode */
+        html.dark .actions button { background: #2a2a2a; color: #e0e0e0; border-color: #555; }
+        html.dark .actions button.publish { background: #0645ad; color: #fff; border-color: #0645ad; }
+        html.dark .actions button.preview-btn.active { background: #e0e0e0; color: #1a1a1a; }
+        html.dark #preview-pane { background: #2a2a2a; color: #e0e0e0; border-color: #555; }
+        html.dark .margin-note.type-fact-check  { background: #5c1a1a; border-color: #f87171; color: #f8d7da; }
+        html.dark .margin-note.type-style       { background: #1e2a4a; border-color: #60a5fa; color: #cfe2ff; }
+        html.dark .margin-note.type-coherence   { background: #1a3a1a; border-color: #4ade80; color: #d1e7dd; }
+        html.dark .margin-note.type-consistency { background: #3a3418; border-color: #facc15; color: #fff3cd; }
+        html.dark .margin-note .dismiss-btn { color: #999; }
+        html.dark .margin-note .dismiss-btn:hover { color: #e0e0e0; }
     </style>
 </head>
 <body>
@@ -127,30 +184,104 @@
         </label>
     </div>
 
-    <div class="editor-grid">
-        <textarea id="editor" placeholder="Write your markdown here..."></textarea>
-        <div class="preview-pane" id="preview"></div>
-    </div>
+    <div id="editor-container"></div>
+    <div id="preview-pane"></div>
+    <div id="margin-notes" class="margin-notes-pane"></div>
 
     <div class="actions">
         <button class="publish" onclick="publish()">Publish</button>
+        <button class="preview-btn" id="previewBtn" onclick="togglePreview()">Preview</button>
         <button class="clear" onclick="clearDraft()">Clear Draft</button>
-        <button class="clear" id="citationsBtn" onclick="generateCitations()">Generate Citations</button>
-        <button class="clear" id="undoCitationsBtn" onclick="undoCitations()" style="display:none;">Undo Citations</button>
+        <button class="clear" id="redditBtn" onclick="generateRedditComments()">Generate Reddit Comments</button>
         <span id="wordcount" style="font-size: 0.85em; color: #666;">0 words</span>
         <span id="status"></span>
     </div>
+
+    <div id="reddit-comments"></div>
 
     <script src="marked.min.js"></script>
     <script>
         const titleEl = document.getElementById('title');
         const slugEl = document.getElementById('slug');
         const dateEl = document.getElementById('date');
-        const editorEl = document.getElementById('editor');
-        const previewEl = document.getElementById('preview');
+        const editorContainerEl = document.getElementById('editor-container');
+        const previewPane = document.getElementById('preview-pane');
+        const previewBtn = document.getElementById('previewBtn');
+        const marginNotesEl = document.getElementById('margin-notes');
         const statusEl = document.getElementById('status');
-
         const articleSelect = document.getElementById('articleSelect');
+
+        // Core state
+        let currentAnnotations = [];
+        let nextAnnotationId = 0;
+        let previewVisible = false;
+
+        // Initialize OverType editor
+        let editor = null;
+        const isDark = document.documentElement.classList.contains('dark');
+        try {
+            const result = new OverType('#editor-container', {
+                value: '',
+                theme: isDark ? 'cave' : 'solar',
+                toolbar: true,
+                autoResize: true,
+                onChange: (value) => {
+                    updateWordCount();
+                    saveDraft();
+                }
+            });
+            // OverType may return instance directly or as [instance]
+            editor = Array.isArray(result) ? result[0] : result;
+            console.log('OverType initialized', editor);
+        } catch (e) {
+            console.error('OverType init failed:', e);
+        }
+
+        function getContent() {
+            if (editor && typeof editor.getValue === 'function') return editor.getValue();
+            // Fallback: read from textarea inside the container
+            const ta = editorContainerEl.querySelector('textarea');
+            return ta ? ta.value : '';
+        }
+
+        function setContent(md) {
+            if (editor && typeof editor.setValue === 'function') {
+                editor.setValue(md);
+            } else {
+                const ta = editorContainerEl.querySelector('textarea');
+                if (ta) ta.value = md;
+            }
+        }
+
+        // Preview toggle
+        function togglePreview() {
+            previewVisible = !previewVisible;
+            if (previewVisible) {
+                previewPane.innerHTML = marked.parse(getContent());
+                previewPane.classList.add('visible');
+                editorContainerEl.style.display = 'none';
+                previewBtn.classList.add('active');
+                previewBtn.textContent = 'Edit';
+            } else {
+                previewPane.classList.remove('visible');
+                editorContainerEl.style.display = '';
+                previewBtn.classList.remove('active');
+                previewBtn.textContent = 'Preview';
+            }
+        }
+
+        // Sync dark mode theme with OverType
+        const darkToggle = document.querySelector('.darkmode-toggle');
+        if (darkToggle) {
+            darkToggle.addEventListener('click', () => {
+                setTimeout(() => {
+                    if (editor && typeof editor.setTheme === 'function') {
+                        const nowDark = document.documentElement.classList.contains('dark');
+                        editor.setTheme(nowDark ? 'cave' : 'solar');
+                    }
+                }, 50);
+            });
+        }
 
         // Populate "Edit Published" dropdown
         fetch('/api/articles')
@@ -175,10 +306,10 @@
                     titleEl.value = data.title;
                     slugEl.value = data.slug;
                     dateEl.value = data.date;
-                    editorEl.value = data.content;
+                    setContent(data.content);
                     slugManuallyEdited = true;
                     localStorage.removeItem(STORAGE_KEY);
-                    updatePreview();
+                    updateWordCount();
                     statusEl.textContent = `Loaded "${data.title}"`;
                     statusEl.className = '';
                 }
@@ -206,17 +337,10 @@
         const wordcountEl = document.getElementById('wordcount');
 
         function updateWordCount() {
-            const text = editorEl.value.trim();
+            const text = getContent().trim();
             const count = text ? text.split(/\s+/).length : 0;
             wordcountEl.textContent = count + ' word' + (count !== 1 ? 's' : '');
         }
-
-        // Live preview
-        function updatePreview() {
-            previewEl.innerHTML = marked.parse(editorEl.value);
-            updateWordCount();
-        }
-        editorEl.addEventListener('input', updatePreview);
 
         // localStorage auto-save (debounced)
         const STORAGE_KEY = 'draft-editor';
@@ -228,7 +352,7 @@
                     title: titleEl.value,
                     slug: slugEl.value,
                     date: dateEl.value,
-                    content: editorEl.value,
+                    content: getContent(),
                     slugManuallyEdited
                 }));
                 statusEl.textContent = 'Draft saved';
@@ -238,7 +362,6 @@
         titleEl.addEventListener('input', saveDraft);
         slugEl.addEventListener('input', saveDraft);
         dateEl.addEventListener('input', saveDraft);
-        editorEl.addEventListener('input', saveDraft);
 
         // Restore draft on load
         const saved = localStorage.getItem(STORAGE_KEY);
@@ -248,56 +371,190 @@
                 titleEl.value = d.title || '';
                 slugEl.value = d.slug || '';
                 dateEl.value = d.date || dateEl.value;
-                editorEl.value = d.content || '';
+                setContent(d.content || '');
                 slugManuallyEdited = d.slugManuallyEdited || false;
-                updatePreview();
+                updateWordCount();
                 statusEl.textContent = 'Draft restored from localStorage';
             } catch (e) {}
         }
 
+        const redditBtn = document.getElementById('redditBtn');
+        const redditCommentsEl = document.getElementById('reddit-comments');
+        const REDDIT_STORAGE_KEY = 'draft-reddit-comments';
+
+        function updateRedditBtn() {
+            const saved = localStorage.getItem(REDDIT_STORAGE_KEY);
+            redditBtn.textContent = saved ? 'Re-generate Reddit Comments' : 'Generate Reddit Comments';
+        }
+
+        const savedReddit = localStorage.getItem(REDDIT_STORAGE_KEY);
+        if (savedReddit) {
+            redditCommentsEl.innerHTML = marked.parse(savedReddit);
+        }
+        updateRedditBtn();
+
         function clearDraft() {
             localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(REDDIT_STORAGE_KEY);
             titleEl.value = '';
             slugEl.value = '';
             dateEl.value = new Date().toISOString().slice(0, 10);
-            editorEl.value = '';
+            setContent('');
             slugManuallyEdited = false;
-            previewEl.innerHTML = '';
+            currentAnnotations = [];
+            marginNotesEl.innerHTML = '';
+            redditCommentsEl.innerHTML = '';
+            updateRedditBtn();
+            updateWordCount();
+            if (previewVisible) togglePreview();
             statusEl.textContent = 'Draft cleared';
             statusEl.className = '';
         }
 
-        let preCitationContent = null;
-        const citationsBtn = document.getElementById('citationsBtn');
-        const undoCitationsBtn = document.getElementById('undoCitationsBtn');
+        // ─── Annotation System ───
 
-        async function generateCitations() {
-            const content = editorEl.value.trim();
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        function truncate(str, max) {
+            return str.length > max ? str.slice(0, max) + '...' : str;
+        }
+
+        function findTextOffset(needle, haystack) {
+            let idx = haystack.indexOf(needle);
+            if (idx !== -1) return idx;
+
+            const normNeedle = needle.replace(/\s+/g, ' ').trim();
+            const normHaystack = haystack.replace(/\s+/g, ' ');
+            idx = normHaystack.indexOf(normNeedle);
+            if (idx !== -1) {
+                let origIdx = 0, normIdx = 0;
+                while (normIdx < idx && origIdx < haystack.length) {
+                    if (/\s/.test(haystack[origIdx])) {
+                        while (origIdx < haystack.length - 1 && /\s/.test(haystack[origIdx + 1])) origIdx++;
+                    }
+                    origIdx++;
+                    normIdx++;
+                }
+                return origIdx;
+            }
+
+            idx = haystack.toLowerCase().indexOf(needle.toLowerCase());
+            if (idx !== -1) return idx;
+
+            return -1;
+        }
+
+        function resolveOverlaps(annotations) {
+            const sorted = [...annotations].sort((a, b) => a.startOffset - b.startOffset || b.length - a.length);
+            const result = [];
+            let lastEnd = 0;
+            for (const ann of sorted) {
+                if (ann.startOffset >= lastEnd) {
+                    result.push(ann);
+                    lastEnd = ann.endOffset;
+                }
+            }
+            return result;
+        }
+
+        function applyAnnotations(newAnnotations, type) {
+            const content = getContent();
+            const located = [];
+            for (const ann of newAnnotations) {
+                const idx = findTextOffset(ann.text, content);
+                if (idx === -1) continue;
+                located.push({
+                    id: nextAnnotationId++,
+                    type: type,
+                    text: ann.text,
+                    feedback: ann.feedback,
+                    severity: ann.severity || 'medium',
+                    startOffset: idx,
+                    endOffset: idx + ann.text.length,
+                    length: ann.text.length
+                });
+            }
+
+            currentAnnotations = currentAnnotations
+                .filter(a => a.type !== type)
+                .concat(located)
+                .sort((a, b) => a.startOffset - b.startOffset);
+
+            renderMarginNotes();
+        }
+
+        function renderMarginNotes() {
+            marginNotesEl.innerHTML = '';
+
+            for (const ann of currentAnnotations) {
+                const note = document.createElement('div');
+                note.className = 'margin-note type-' + ann.type;
+                note.id = 'margin-note-' + ann.id;
+                note.innerHTML =
+                    '<button class="dismiss-btn" data-id="' + ann.id + '">&times;</button>' +
+                    '<div class="severity-badge">' + escapeHtml(ann.severity) + '</div> ' +
+                    escapeHtml(ann.feedback) +
+                    '<div class="noted-text">"' + escapeHtml(truncate(ann.text, 80)) + '"</div>';
+
+                note.querySelector('.dismiss-btn').addEventListener('click', () => {
+                    currentAnnotations = currentAnnotations.filter(a => a.id !== ann.id);
+                    renderMarginNotes();
+                });
+
+                marginNotesEl.appendChild(note);
+            }
+        }
+
+        async function requestAnnotation(type) {
+            const content = getContent().trim();
+            if (!content) return;
+
+            try {
+                const res = await fetch('/api/annotate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content, type })
+                });
+                const data = await res.json();
+                if (res.ok && data.annotations && data.annotations.length > 0) {
+                    applyAnnotations(data.annotations, type);
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error: ' + e.message;
+                statusEl.className = 'error';
+            }
+        }
+
+        // ─── Reddit Comments ───
+
+        async function generateRedditComments() {
+            const content = getContent().trim();
             if (!content) {
-                statusEl.textContent = 'Nothing to generate citations for.';
+                statusEl.textContent = 'Nothing to generate comments for.';
                 statusEl.className = 'error';
                 return;
             }
 
-            preCitationContent = editorEl.value;
-            citationsBtn.disabled = true;
-            citationsBtn.textContent = 'Generating...';
-            statusEl.textContent = 'Generating citations...';
+            redditBtn.disabled = true;
+            redditBtn.textContent = 'Generating...';
+            statusEl.textContent = 'Generating reddit comments...';
             statusEl.className = '';
 
             try {
-                const res = await fetch(window.location.origin + '/api/citations', {
+                const res = await fetch(window.location.origin + '/api/reddit-comments', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ content })
                 });
                 const data = await res.json();
                 if (res.ok) {
-                    editorEl.value = data.content;
-                    updatePreview();
-                    saveDraft();
-                    undoCitationsBtn.style.display = '';
-                    statusEl.textContent = 'Citations generated';
+                    redditCommentsEl.innerHTML = marked.parse(data.comments);
+                    localStorage.setItem(REDDIT_STORAGE_KEY, data.comments);
+                    statusEl.textContent = 'Reddit comments generated';
                     statusEl.className = 'success';
                 } else {
                     statusEl.textContent = 'Error: ' + (data.error || 'Unknown error');
@@ -307,28 +564,18 @@
                 statusEl.textContent = 'Error: ' + e.message;
                 statusEl.className = 'error';
             } finally {
-                citationsBtn.disabled = false;
-                citationsBtn.textContent = 'Generate Citations';
+                redditBtn.disabled = false;
+                updateRedditBtn();
             }
         }
 
-        function undoCitations() {
-            if (preCitationContent !== null) {
-                editorEl.value = preCitationContent;
-                preCitationContent = null;
-                updatePreview();
-                saveDraft();
-                undoCitationsBtn.style.display = 'none';
-                statusEl.textContent = 'Citations undone';
-                statusEl.className = '';
-            }
-        }
+        // ─── Publish ───
 
         async function publish() {
             const title = titleEl.value.trim();
             const slug = slugEl.value.trim();
             const date = dateEl.value;
-            const content = editorEl.value;
+            const content = getContent();
 
             if (!title || !slug || !date || !content) {
                 statusEl.textContent = 'All fields are required.';
