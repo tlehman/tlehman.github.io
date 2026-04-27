@@ -16,7 +16,7 @@
         />
         <meta
             property="og:image"
-            content="https://tobilehman.com/img/tobi-and-stephanie-2.png"
+            content="https://tobilehman.com/wedding/img/tobi-and-stephanie-cartoon.png"
         />
         <meta
             property="og:url"
@@ -36,7 +36,7 @@
         />
         <meta
             name="twitter:image"
-            content="https://tobilehman.com/img/tobi-and-stephanie-2.png"
+            content="https://tobilehman.com/wedding/img/tobi-and-stephanie-cartoon.png"
         />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -93,6 +93,10 @@
             }
             .rsvp-button {
                 margin-top: 1.5em;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75em;
+                align-items: center;
             }
             .card .rsvp-button a {
                 display: inline-block;
@@ -107,6 +111,10 @@
                 transition:
                     background-color 0.3s,
                     transform 0.2s;
+            }
+            .card .rsvp-button a.secondary {
+                padding: 8px 20px;
+                font-size: 1.0em;
             }
             .rsvp-button a:hover {
                 background-color: #a3c4a9;
@@ -181,8 +189,8 @@
                 flex: 0 0 auto;
             }
             .card-honeymoon {
-                height: 200px;
-                max-height: 200px;
+                height: 240px;
+                max-height: 240px;
                 flex: 0 0 auto;
             }
             .card-hotel {
@@ -244,12 +252,17 @@
                     </p>
                 </div>
                 <div class="card card-honeymoon">
-                    <p>Help us celebrate — contribute to our honeymoon fund!</p>
+                    <p>Help us celebrate — contribute to our honeymoon fund or to Catholic Charities!</p>
                     <div class="rsvp-button">
                         <a
                             href="https://buy.stripe.com/3cIbJ32spa7Gc7Lcrvd7q00"
                             target="_blank"
-                            >Contribute</a
+                            >Honeymoon</a
+                        >
+                        <a
+                            href="https://www.catholiccharitiesoregon.org/donate/"
+                            target="_blank"
+                            >Catholic Charities</a
                         >
                     </div>
                 </div>
