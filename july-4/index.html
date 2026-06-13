@@ -3,39 +3,346 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎆 Tobi's 4th of July BBQ</title>
+  <title>In Congress, July 4, 1776 · Semiquincentennial 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=UnifrakturMaguntia&family=Pinyon+Script&family=Cinzel:wght@400;600;800&family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --ink:        #2b2014;
+      --ink-soft:   #4a3a26;
+      --ink-faint:  #6b573c;
+      --parch:      #f1e6cd;
+      --parch-deep: #e2d0a8;
+      --parch-edge: #c9b184;
+      --oxblood:    #7a1f1c;
+      --oxblood-dk: #561211;
+      --gold:       #9a7b33;
+      --gold-lit:   #c8a24e;
+      --desk:       #1c140c;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
     body {
-      font-family: sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      max-width: 500px;
-      margin: 2rem auto;
-      padding: 2rem;
-      border: 1px solid #ddd;
-      border-radius: 10px;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "IM Fell English", Georgia, serif;
+      font-size: 1.18rem;
+      line-height: 1.62;
+      background:
+        radial-gradient(ellipse at 50% -10%, #3a2a18 0%, #1c140c 55%, #0e0a05 100%);
+      padding: clamp(1rem, 4vw, 4rem) clamp(0.6rem, 3vw, 3rem);
+      display: flex;
+      justify-content: center;
     }
-    h1 {
-      color: #d22;
+
+    /* faint wood-grain striping on the desk */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(96deg,
+          rgba(0,0,0,0.22) 0px,
+          rgba(0,0,0,0) 2px,
+          rgba(120,80,40,0.05) 5px,
+          rgba(0,0,0,0.18) 9px);
+      opacity: 0.5;
+      z-index: 0;
     }
-    label, input, textarea, button {
-      display: block;
+
+    .parchment {
+      position: relative;
+      z-index: 1;
       width: 100%;
-      margin-bottom: 1rem;
-      font-size: 1rem;
+      max-width: 740px;
+      padding: clamp(2rem, 6vw, 5.5rem) clamp(1.4rem, 6vw, 5rem);
+      color: var(--ink);
+      background-color: var(--parch);
+      background-image:
+        radial-gradient(ellipse at 22% 18%, rgba(120,90,50,0.10), transparent 45%),
+        radial-gradient(ellipse at 82% 30%, rgba(90,60,30,0.12), transparent 40%),
+        radial-gradient(ellipse at 60% 88%, rgba(110,80,45,0.14), transparent 50%),
+        radial-gradient(circle at 50% 50%, var(--parch) 38%, var(--parch-deep) 78%, var(--parch-edge) 100%);
+      box-shadow:
+        0 0 0 1px rgba(120,90,50,0.4),
+        0 2px 4px rgba(0,0,0,0.4),
+        0 30px 70px -20px rgba(0,0,0,0.85),
+        inset 0 0 90px rgba(120,80,40,0.28),
+        inset 0 0 18px rgba(60,40,20,0.35);
+      border-radius: 3px;
     }
-    button {
-      background-color: #d22;
-      color: white;
+
+    /* grain + foxing texture overlay */
+    .parchment::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 3px;
+      mix-blend-mode: multiply;
+      opacity: 0.5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.42  0 0 0 0 0.30  0 0 0 0 0.16  0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .parchment > * { position: relative; z-index: 1; }
+
+    /* ---- staggered reveal on load ---- */
+    .rise {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: rise 1.1s cubic-bezier(.2,.7,.2,1) forwards;
+    }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+    .d1 { animation-delay: .15s; } .d2 { animation-delay: .35s; }
+    .d3 { animation-delay: .55s; } .d4 { animation-delay: .78s; }
+    .d5 { animation-delay: 1.0s; } .d6 { animation-delay: 1.25s; }
+    @media (prefers-reduced-motion: reduce) {
+      .rise { animation: none; opacity: 1; transform: none; }
+    }
+
+    /* ---- masthead ---- */
+    .congress {
+      font-family: "UnifrakturMaguntia", "IM Fell English SC", serif;
+      font-size: clamp(2.3rem, 8vw, 4.2rem);
+      line-height: 1.02;
+      text-align: center;
+      color: var(--ink);
+      margin: 0 0 0.2rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 0 rgba(255,250,235,0.35);
+    }
+    .subscript {
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(1.5rem, 5.5vw, 2.5rem);
+      text-align: center;
+      color: var(--ink-soft);
+      line-height: 1.25;
+      margin: 0 auto 1.6rem;
+      max-width: 30ch;
+    }
+
+    .rule {
       border: none;
-      padding: 0.75rem;
-      cursor: pointer;
+      height: 2px;
+      margin: 1.4rem auto;
+      width: 72%;
+      background:
+        linear-gradient(to right, transparent, var(--ink-faint) 14%, var(--ink) 50%, var(--ink-faint) 86%, transparent);
+      position: relative;
     }
+    .rule::after {
+      content: "✦";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -54%);
+      background: var(--parch);
+      color: var(--oxblood);
+      padding: 0 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    /* ---- semiquincentennial banner ---- */
+    .anniversary { text-align: center; margin: 0.5rem 0 0.4rem; }
+    .twofifty {
+      font-family: "Cinzel Decorative", serif;
+      font-weight: 900;
+      font-size: clamp(4rem, 18vw, 8.5rem);
+      line-height: 0.86;
+      color: var(--oxblood);
+      letter-spacing: 2px;
+      margin: 0;
+      text-shadow:
+        0 1px 0 rgba(255,250,235,0.45),
+        0 0 30px rgba(122,31,28,0.18);
+    }
+    .twofifty span { color: var(--gold); }
+    .semiword {
+      font-family: "Cinzel", serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: clamp(2px, 1.4vw, 7px);
+      font-size: clamp(0.75rem, 2.7vw, 1.15rem);
+      color: var(--ink-soft);
+      margin: 0.4rem 0 0.2rem;
+    }
+    .span-years {
+      font-family: "Cinzel", serif;
+      font-weight: 800;
+      font-size: clamp(1rem, 4vw, 1.6rem);
+      letter-spacing: 3px;
+      color: var(--ink);
+      margin-top: 0.5rem;
+    }
+    .span-years .dot { color: var(--oxblood); padding: 0 0.55em; }
+
+    /* ---- engrossed body ---- */
+    .preamble {
+      text-align: justify;
+      hyphens: auto;
+      margin: 1.5rem 0;
+    }
+    .preamble:first-letter, .dropcap::first-letter {
+      font-family: "UnifrakturMaguntia", serif;
+      font-size: 4.3rem;
+      line-height: 0.72;
+      float: left;
+      padding: 0.16em 0.12em 0 0;
+      color: var(--oxblood);
+      text-shadow: 0 1px 0 rgba(255,250,235,0.4);
+    }
+    .truths {
+      font-style: italic;
+      font-size: 1.28rem;
+      text-align: center;
+      color: var(--ink);
+      margin: 1.8rem auto;
+      max-width: 40ch;
+      line-height: 1.55;
+    }
+    .truths b { font-style: normal; font-variant: small-caps; letter-spacing: 0.5px; }
+
+    .reflection {
+      font-family: "IM Fell English", serif;
+      text-align: justify;
+      hyphens: auto;
+      color: var(--ink-soft);
+    }
+    .reflection em { color: var(--ink); }
+
+    /* ---- wax seal call to action ---- */
+    .seal-wrap { text-align: center; margin: 2.6rem 0 1.2rem; }
+    .seal {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 168px;
+      height: 168px;
+      border-radius: 50%;
+      text-decoration: none;
+      color: #f3e2cf;
+      font-family: "IM Fell English SC", serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.92rem;
+      text-align: center;
+      line-height: 1.25;
+      padding: 1rem;
+      background:
+        radial-gradient(circle at 38% 32%, var(--oxblood) 0%, var(--oxblood-dk) 62%, #3c0b0a 100%);
+      box-shadow:
+        inset 0 3px 7px rgba(255,180,160,0.30),
+        inset 0 -8px 16px rgba(0,0,0,0.55),
+        0 8px 20px -6px rgba(0,0,0,0.6);
+      position: relative;
+      transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s;
+    }
+    .seal::before {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(243,226,207,0.45);
+    }
+    .seal .star { font-size: 1.5rem; line-height: 1; margin-bottom: 0.3rem; }
+    .seal small {
+      display: block;
+      font-size: 0.66rem;
+      letter-spacing: 2px;
+      opacity: 0.82;
+      margin-top: 0.3rem;
+    }
+    .seal:hover {
+      transform: rotate(-3deg) scale(1.05);
+      box-shadow:
+        inset 0 3px 7px rgba(255,180,160,0.35),
+        inset 0 -8px 16px rgba(0,0,0,0.55),
+        0 14px 32px -8px rgba(0,0,0,0.7);
+    }
+
+    /* ---- signatures ---- */
+    .signatures {
+      margin-top: 2.2rem;
+      text-align: center;
+    }
+    .hancock {
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(2.6rem, 11vw, 4.4rem);
+      color: var(--ink);
+      line-height: 0.9;
+      margin: 0.2rem 0 0.6rem;
+      transform: rotate(-2deg);
+    }
+    .others {
+      font-family: "Pinyon Script", cursive;
+      font-size: clamp(1.15rem, 4vw, 1.7rem);
+      color: var(--ink-soft);
+      line-height: 1.9;
+      column-gap: 1.5rem;
+    }
+    .others span { white-space: nowrap; display: inline-block; margin: 0 0.6rem; }
+
+    footer {
+      margin-top: 2.6rem;
+      text-align: center;
+      font-family: "IM Fell English SC", serif;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+    footer a { color: var(--oxblood); text-decoration: none; border-bottom: 1px dotted; }
+    footer a:hover { color: var(--oxblood-dk); }
   </style>
 </head>
 <body>
-  <h1>Temporary page for July 4, 2026 </h1>
-  <a href="https://stories.catholiccharitiesusa.org/serving-those-who-serve/index.html">Donate to veterans 🇺🇸</a>
+  <article class="parchment">
+    <h1 class="congress rise d1">In Congress, July 4, 1776.</h1>
+    <p class="subscript rise d1">The unanimous Declaration of the thirteen united States of America</p>
+
+    <hr class="rule rise d2" />
+
+    <div class="anniversary rise d2">
+      <p class="twofifty">2<span>5</span>0</p>
+      <p class="semiword">Semiquincentennial</p>
+      <p class="span-years">1776 <span class="dot">✦</span> 2026</p>
+    </div>
+
+    <hr class="rule rise d3" />
+
+    <p class="preamble rise d3">When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.</p>
+
+    <p class="truths rise d4">We hold these truths to be self&#8209;evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are <b>Life, Liberty</b> and the <b>pursuit of Happiness</b>.</p>
+
+    <hr class="rule rise d4" />
+
+    <p class="reflection rise d5">Two hundred and fifty years on, the words first set down in Philadelphia still summon us. The American experiment endures not because it was finished in 1776, but because each generation is asked, again, to keep faith with it. On this <em>Fourth of July, 2026</em>, we mark a quarter&#8209;millennium of that unfinished, hopeful labor.</p>
+
+    <div class="seal-wrap rise d5">
+      <a class="seal" href="https://stories.catholiccharitiesusa.org/serving-those-who-serve/index.html">
+        <span class="star">★</span>
+        Honor Those<br>Who Serve
+        <small>Donate · 🇺🇸</small>
+      </a>
+    </div>
+
+    <div class="signatures rise d6">
+      <hr class="rule" />
+      <p class="hancock">John Hancock</p>
+      <p class="others">
+        <span>Benj. Franklin</span><span>Tho. Jefferson</span><span>John Adams</span><span>Robt. Morris</span><span>Roger Sherman</span><span>Saml. Adams</span><span>Geo. Read</span><span>Caesar Rodney</span><span>Geo. Walton</span>
+      </p>
+    </div>
+
+    <footer class="rise d6">
+      Held this day at Tobi's table <span aria-hidden="true">·</span> July IV, MMXXVI
+    </footer>
+  </article>
 </body>
 </html>
-
