@@ -114,6 +114,44 @@
                 padding: 0.6em 1.2em;
                 margin: 2em 0;
             }
+            .exercise {
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 0.8em 1.2em;
+                margin: 1.5em 0;
+            }
+            .exercise.solved {
+                border-color: #27ae60;
+                background: #f4fbf6;
+            }
+            .exercise .answer-row {
+                margin: 0.5em 0;
+            }
+            .exercise input[type="text"] {
+                font-family: inherit;
+                font-size: 0.95em;
+                width: 180px;
+                padding: 0.15em 0.4em;
+            }
+            .exercise button {
+                font-family: inherit;
+                font-size: 0.9em;
+            }
+            .exercise .feedback {
+                margin-left: 0.6em;
+                font-size: 0.9em;
+            }
+            .exercise details {
+                margin: 0.4em 0;
+                font-size: 0.95em;
+            }
+            .exercise details summary {
+                cursor: pointer;
+                color: #2e6db4;
+            }
+            #ex-progress {
+                font-weight: bold;
+            }
             button {
                 font-family: inherit;
                 font-size: 0.95em;
@@ -900,6 +938,158 @@
                 object \( \theta \) was, and its failures to patch together
                 are measurable in the lab.
             </p>
+
+            <h2>Exercises</h2>
+            <p>
+                Nothing on this page is yours until you've computed with it.
+                Answers can be typed as numbers or expressions like
+                <code>2*pi</code> or <code>-pi/2</code>, and your progress is
+                saved in your browser (<span id="ex-progress"></span>).
+            </p>
+
+            <div class="exercise" data-id="ex1" data-answer="pi/2">
+                <p>
+                    <b>Exercise 1.</b> Use the group structure of \( U(1) \):
+                    the product \( e^{i\pi/3} \cdot e^{i\pi/6} \) equals
+                    \( e^{i\theta} \) for what value of \( \theta \)?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Multiplication on the circle is addition of angles:
+                    \( e^{i\alpha} e^{i\beta} = e^{i(\alpha+\beta)} \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( \theta = \pi/3 + \pi/6 = \pi/2 \). This is the whole
+                    sense in which \( U(1) \) is more than \( S^1 \): the
+                    exponential map turns the Lie algebra's addition into the
+                    group's multiplication.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex2" data-answer="2">
+                <p>
+                    <b>Exercise 2.</b> What is the minimum number of charts in
+                    an atlas for the circle \( S^1 \)?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    A single chart would be a homeomorphism from all of
+                    \( S^1 \) onto an open subset of \( \mathbb{R} \). Think
+                    about compactness, or about what happens to the two ends
+                    of the interval.
+                </details>
+                <details><summary>Solution</summary>
+                    Two. One chart can't do it: \( S^1 \) is compact and an
+                    open subset of \( \mathbb{R} \) is not, so no
+                    homeomorphism exists. And two suffice: two overlapping
+                    angle charts, each missing one point, as in the atlas
+                    section above. The obstruction to one chart is precisely
+                    the global closing-up of the circle.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex3" data-answer="4">
+                <p>
+                    <b>Exercise 3.</b> The tangent bundle \( TS^2 \) of the
+                    two-sphere is a manifold in its own right. What is its
+                    dimension?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Locally a bundle is a product \( U \times F \). How many
+                    coordinates does it take to say where you are?
+                </details>
+                <details><summary>Solution</summary>
+                    \( \dim E = \dim B + \dim F = 2 + 2 = 4 \): two
+                    coordinates for the point on the sphere, two for the
+                    tangent vector at that point. Same reasoning as
+                    \( TS^1 \) being the 2-dimensional cylinder.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex4" data-answer="1">
+                <p>
+                    <b>Exercise 4.</b> How many boundary circles does the
+                    M&ouml;bius strip have?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Follow an edge in the M&ouml;bius slider demo: start at
+                    the red end of a fiber and drag \( \theta \) through one
+                    full loop. Where did you arrive?
+                </details>
+                <details><summary>Solution</summary>
+                    One. After a full loop the \( s = 0 \) edge continues
+                    into the \( s = 1 \) edge, so the boundary is a single
+                    circle winding around the base twice. Since the cylinder
+                    \( S^1 \times [0,1] \) has two boundary circles, this is
+                    the proof from the article that the M&ouml;bius strip is
+                    not \( B \times F \).
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex5" data-answer="2">
+                <p>
+                    <b>Exercise 5.</b> A continuous tangent vector field on
+                    \( S^2 \) has exactly three zeros. Two of them have index
+                    \( +1 \) and \( -1 \). What is the index of the third?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Poincar&eacute;&ndash;Hopf: the indices must sum to the
+                    Euler characteristic \( \chi(S^2) \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( \chi(S^2) = 2 \), so \( 1 + (-1) + x = 2 \) gives
+                    \( x = 2 \). The field pays its debt no matter how the
+                    zeros are arranged, which is why no arrangement can pay
+                    zero: the hairy ball theorem as accounting.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex6" data-answer="-6*pi">
+                <p>
+                    <b>Exercise 6.</b> Compute \( \oint d\theta \) along the
+                    path that goes around the circle three times
+                    <em>clockwise</em>.
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    The integral of \( d\theta \) is the total change of
+                    angle along the path. Clockwise means the angle is
+                    decreasing.
+                </details>
+                <details><summary>Solution</summary>
+                    Each clockwise loop changes the angle by \( -2\pi \), so
+                    three of them give \( -6\pi \). The integral counts loops
+                    with sign and orientation: it is \( 2\pi \) times the
+                    winding number, here \( -3 \).
+                </details>
+            </div>
 
             <h2>Where we are</h2>
             <p>
@@ -1859,6 +2049,77 @@
                         renderer.render(scene, camera);
                     })();
                 }
+            })();
+        </script>
+
+        <script>
+            // ================= exercises with localStorage =================
+            (function () {
+                const KEY = "tlehman-bundles-exercises";
+                let state = {};
+                try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+
+                function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+                function parseAnswer(str) {
+                    const s = str.trim().toLowerCase().replace(/\s+/g, "");
+                    if (!/^[0-9pi+\-*/().]*$/.test(s) || s.length === 0) return NaN;
+                    if (/[a-z]/.test(s.replace(/pi/g, ""))) return NaN;
+                    const expr = s.replace(/pi/g, "(3.141592653589793)");
+                    try { return Function('"use strict"; return (' + expr + ')')(); }
+                    catch (e) { return NaN; }
+                }
+
+                const exercises = document.querySelectorAll(".exercise");
+
+                function updateProgress() {
+                    const n = exercises.length;
+                    let solved = 0;
+                    exercises.forEach((ex) => { if (state[ex.dataset.id] && state[ex.dataset.id].solved) solved++; });
+                    document.getElementById("ex-progress").textContent = solved + " of " + n + " solved";
+                }
+
+                exercises.forEach((ex) => {
+                    const id = ex.dataset.id;
+                    const answer = parseAnswer(ex.dataset.answer);
+                    const input = ex.querySelector("input");
+                    const feedback = ex.querySelector(".feedback");
+                    const btn = ex.querySelector("button.check");
+
+                    if (state[id]) {
+                        input.value = state[id].input || "";
+                        if (state[id].solved) {
+                            ex.classList.add("solved");
+                            feedback.textContent = "✓ correct";
+                            feedback.style.color = "#27ae60";
+                        }
+                    }
+
+                    function check() {
+                        const val = parseAnswer(input.value);
+                        state[id] = state[id] || {};
+                        state[id].input = input.value;
+                        if (isNaN(val)) {
+                            feedback.textContent = "couldn't parse that (try a number, or something like 2*pi)";
+                            feedback.style.color = "#c0392b";
+                        } else if (Math.abs(val - answer) < 0.02 * Math.max(1, Math.abs(answer))) {
+                            state[id].solved = true;
+                            ex.classList.add("solved");
+                            feedback.textContent = "✓ correct";
+                            feedback.style.color = "#27ae60";
+                        } else {
+                            feedback.textContent = "not quite, try again (hint below)";
+                            feedback.style.color = "#c0392b";
+                        }
+                        save();
+                        updateProgress();
+                    }
+
+                    btn.addEventListener("click", check);
+                    input.addEventListener("keydown", (e) => { if (e.key === "Enter") check(); });
+                });
+
+                updateProgress();
             })();
         </script>
 
