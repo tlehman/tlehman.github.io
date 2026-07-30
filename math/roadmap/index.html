@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>From the Circle to Black Holes: a Mathematical Roadmap</title>
+        <style>
+            body {
+                font-family: "Computer Modern Serif", serif;
+                font-size: 20px;
+                line-height: 1.6em;
+                max-width: 780px;
+                margin: 0 auto;
+                padding: 1em;
+                overflow-x: hidden;
+            }
+            h1, h2 {
+                line-height: 1.3em;
+            }
+            /* wide display equations scroll inside their own box
+               instead of sidescrolling the whole page on phones */
+            .katex-display {
+                overflow-x: auto;
+                overflow-y: hidden;
+                max-width: 100%;
+                padding: 2px 0;
+            }
+            nav.crumbs {
+                font-size: 0.9em;
+                margin-bottom: 1.5em;
+            }
+            .stage {
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 0.8em 1.2em;
+                margin: 1.5em 0;
+            }
+            .stage.done {
+                border-color: #27ae60;
+                background: #f4fbf6;
+            }
+            .stage h3 {
+                margin-top: 0.2em;
+            }
+            .stage .artifact {
+                font-size: 0.95em;
+                color: #444;
+            }
+            .next {
+                border: 1px solid #b3cbb3;
+                background: #f0f8f0;
+                border-radius: 6px;
+                padding: 0.6em 1.2em;
+                margin: 2em 0;
+            }
+        </style>
+
+        <!-- KaTeX -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+            integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww"
+            crossorigin="anonymous"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+            integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+            integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"
+            crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/img/android-chrome-512x512.png"
+        />
+    </head>
+    <body>
+        <main>
+            <nav class="crumbs">
+                <a href="/math.html">&larr; Tobi's math</a> &nbsp;&middot;&nbsp;
+                <a href="/math/bundles/">Fiber Bundles</a> &nbsp;&middot;&nbsp;
+                <a href="/math/forms/">Differential Forms</a>
+            </nav>
+
+            <h1>From the Circle to Black Holes: a Mathematical Roadmap</h1>
+
+            <p>
+                I just finished writing two articles,
+                <a href="/math/bundles/">Introduction to Fiber Bundles</a> and
+                <a href="/math/forms/">Introduction to Differential Forms</a>,
+                and I want to step back and look at where they point. The
+                articles spent all their time on the circle, and that was
+                deliberate: the circle is small enough to render in a browser
+                and rich enough to contain the two ideas that run modern
+                physics. First, that spaces can be locally boring and globally
+                twisted. Second, that calculus can be rebuilt so it detects
+                the twist.
+            </p>
+            <p>
+                Here is the thing I find motivating enough to organize years
+                of learning around: those two ideas, pushed hard enough,
+                produce <b>pictures of black holes</b> and <b>the equations of
+                the Standard Model</b>. Not metaphorically. The light-bending
+                around a black hole is a statement about geodesics of a
+                metric, and a force field is a statement about the curvature
+                of a bundle. Both are things a rendering engine can compute,
+                pixel by pixel, if you build the mathematics into it.
+            </p>
+            <p>
+                So this page is a roadmap with two summits: a
+                <b>general-relativistic renderer</b> that draws what a black
+                hole actually looks like, and a working understanding of
+                <b>gauge theory</b>. Every stage produces an interactive page
+                or a piece of software, because the rule I've adopted from the
+                first two articles is: no idea gets to stay abstract. If I
+                can't put a slider on it, I don't understand it yet.
+            </p>
+
+            <h2>What we have so far</h2>
+
+            <div class="stage done">
+                <h3>Stage 0: bundles and forms &#10003;</h3>
+                <p>
+                    Manifolds, charts, the tangent bundle, triviality and the
+                    M&ouml;bius counterexample, structure groups. Then the
+                    exterior calculus: forms, \( d \), \( d^2 = 0 \),
+                    closed versus exact, and the generalized Stokes theorem
+                    \( \int_M d\omega = \int_{\partial M} \omega \), with the
+                    angle form \( d\theta \) as the recurring character that
+                    ties calculus to topology.
+                </p>
+                <p class="artifact">
+                    Artifacts: <a href="/math/bundles/">bundles</a>,
+                    <a href="/math/forms/">forms</a>.
+                </p>
+            </div>
+
+            <h2>The road to black holes</h2>
+            <p>
+                Everything in the two articles was calculus without geometry:
+                nothing could measure a length or an angle. The road to
+                general relativity is the road of adding geometric structure,
+                one instrument at a time.
+            </p>
+
+            <div class="stage">
+                <h3>Stage 1: connections and parallel transport</h3>
+                <p>
+                    The tangent spaces of a manifold are separate rooms, and a
+                    <b>connection</b> is the rule for carrying a vector from
+                    room to room. The punchline is <b>holonomy</b>: carry a
+                    vector around a closed loop on a sphere and it comes back
+                    rotated. That rotation is the M&ouml;bius flip again, now
+                    with a continuous group of possible twists instead of
+                    \( \mathbb{Z}/2 \).
+                </p>
+                <p class="artifact">
+                    Artifact: an interactive sphere where you draw a loop and
+                    watch a tangent vector get parallel transported around it,
+                    with the holonomy angle displayed. Three.js, same style as
+                    the M&ouml;bius demo.
+                </p>
+            </div>
+
+            <div class="stage">
+                <h3>Stage 2: metrics, curvature, geodesics</h3>
+                <p>
+                    A <b>Riemannian metric</b> is a smoothly varying inner
+                    product on the fibers of the tangent bundle, and it buys
+                    everything at once: lengths, angles, a preferred
+                    connection (Levi-Civita), curvature, and <b>geodesics</b>,
+                    the straightest possible paths. This is where Gauss's
+                    Theorema Egregium from the first article gets its modern
+                    form: curvature is the holonomy of the metric's
+                    connection, per unit area.
+                </p>
+                <p class="artifact">
+                    Artifact: a geodesic tracer on surfaces of revolution.
+                    Click a point and a direction, watch the geodesic wrap
+                    the surface. The geodesic equations are a small ODE
+                    system, which is the same computational core the black
+                    hole renderer will need.
+                </p>
+            </div>
+
+            <div class="stage">
+                <h3>Stage 3: special relativity and the Minkowski metric</h3>
+                <p>
+                    Swap the inner product's signature to \( (-,+,+,+) \) and
+                    geometry becomes causality: vectors are timelike,
+                    spacelike, or null, and light rays are null geodesics.
+                    Nothing else in the toolkit changes, which is the great
+                    surprise of the subject.
+                </p>
+                <p class="artifact">
+                    Artifact: an interactive spacetime diagram with boosts as
+                    hyperbolic rotations, sliders for velocity, and the
+                    invariant interval computed live.
+                </p>
+            </div>
+
+            <div class="stage">
+                <h3>Stage 4: general relativity and the black hole renderer</h3>
+                <p>
+                    Einstein's field equations
+                    \[ R_{\mu\nu} - \tfrac{1}{2} R\, g_{\mu\nu} = 8\pi G\,
+                    T_{\mu\nu} \]
+                    say that the metric is not chosen, it is <em>solved
+                    for</em>. The first exact solution, Schwarzschild's,
+                    \[ ds^2 = -\left(1 - \tfrac{2GM}{r}\right) dt^2 + \left(1
+                    - \tfrac{2GM}{r}\right)^{-1} dr^2 + r^2 d\Omega^2 \]
+                    is a black hole. Rendering one is conceptually simple and
+                    that's the beauty of it: <b>a ray tracer where the rays
+                    obey the geodesic equation</b>. For each pixel, integrate
+                    a null geodesic backwards from the camera through curved
+                    spacetime, and see whether it hits the accretion disk,
+                    escapes to the star field, or falls through the horizon.
+                    Gravitational lensing, the photon sphere at \( r = 3GM \),
+                    and the Einstein ring all appear automatically, because
+                    they were never special effects, they were geodesics all
+                    along.
+                </p>
+                <p class="artifact">
+                    Artifacts, in order: a 2D lensing demo in canvas
+                    (geodesics in the equatorial plane), then a full WebGL
+                    fragment-shader renderer where each pixel integrates the
+                    geodesic ODE on the GPU, then the Kerr (spinning) case
+                    with frame dragging.
+                </p>
+            </div>
+
+            <h2>The road to gauge theory</h2>
+            <p>
+                The second summit reuses the same instruments, aimed at
+                bundles other than the tangent bundle. This is the road the
+                articles were secretly walking the whole time: U(1) appeared
+                as our first Lie group, and \( d\theta \) as our first
+                connection-like object.
+            </p>
+
+            <div class="stage">
+                <h3>Stage 5: principal bundles and connections as fields</h3>
+                <p>
+                    A <b>principal \( G \)-bundle</b> is a bundle whose fiber
+                    is the group \( G \) itself, our U(1) being the first
+                    interesting case. A connection on it is a Lie-algebra
+                    valued 1-form \( A \), and its curvature is
+                    \[ F = dA + A \wedge A \]
+                    For U(1) the wedge term dies and \( F = dA \) is exactly
+                    the electromagnetic field from the forms article. For
+                    \( SU(2) \) and \( SU(3) \) the wedge term survives, the
+                    field interacts with itself, and that self-interaction is
+                    why the strong force is hard and quarks are confined. The
+                    Aharonov&ndash;Bohm effect from the forms article is the
+                    experimental proof that the connection, not just the
+                    field, is physically real: holonomy you can measure with
+                    an interferometer.
+                </p>
+                <p class="artifact">
+                    Artifact: an Aharonov&ndash;Bohm interference simulator:
+                    a solenoid, two electron paths, a slider for the enclosed
+                    flux, and the interference pattern shifting as the
+                    holonomy \( \oint A \) changes.
+                </p>
+            </div>
+
+            <div class="stage">
+                <h3>Stage 6: Yang&ndash;Mills and the lattice</h3>
+                <p>
+                    The Yang&ndash;Mills action \( S = \int \mathrm{tr}(F
+                    \wedge {\star}F) \) makes curvature itself the thing
+                    nature economizes. The computational approach that
+                    actually works is the <b>lattice</b>: put the gauge group on the edges of a
+                    grid, holonomy around each little square approximates
+                    \( F \), and you can simulate the theory with nothing but
+                    matrix multiplication. A lattice U(1) or SU(2) toy in the
+                    browser is entirely feasible and would make "curvature of
+                    a bundle" as concrete as the M&ouml;bius slider.
+                </p>
+                <p class="artifact">
+                    Artifact: a 2D lattice gauge simulator with plaquette
+                    holonomies visualized, temperature slider, and Wilson
+                    loops measured live.
+                </p>
+            </div>
+
+            <h2>Why one roadmap and not two</h2>
+            <p>
+                Look at what the two summits have in common. The black hole
+                renderer integrates geodesics of a connection on the tangent
+                bundle. The gauge simulator integrates holonomies of a
+                connection on a principal bundle. Both are, at the level of
+                code, the same loop: <b>solve an ODE defined by a connection,
+                accumulate the twist</b>. That's the payoff of learning
+                physics through bundles: general relativity and the Standard
+                Model stop being two subjects and become two instances of one
+                pattern, differing in which bundle and which group. Einstein
+                unified gravity with geometry, Yang and Mills unified the
+                rest of the forces with geometry, and the geometry is in both
+                cases the geometry of a fiber bundle.
+            </p>
+            <p>
+                The circle was never a toy. It was the smallest laboratory
+                where every one of these instruments could be built and
+                tested. Now we get to point them at bigger game.
+            </p>
+
+            <div class="next">
+                <b>Start of the series:</b>
+                <a href="/math/bundles/">Introduction to Fiber Bundles</a>
+                &rarr;
+            </div>
+        </main>
+
+        <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>

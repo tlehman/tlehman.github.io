@@ -12,9 +12,18 @@
                 max-width: 780px;
                 margin: 0 auto;
                 padding: 1em;
+                overflow-x: hidden;
             }
             h1, h2 {
                 line-height: 1.3em;
+            }
+            /* wide display equations scroll inside their own box
+               instead of sidescrolling the whole page on phones */
+            .katex-display {
+                overflow-x: auto;
+                overflow-y: hidden;
+                max-width: 100%;
+                padding: 2px 0;
             }
             nav.crumbs {
                 font-size: 0.9em;

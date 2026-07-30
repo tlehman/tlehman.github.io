@@ -12,9 +12,24 @@
                 max-width: 780px;
                 margin: 0 auto;
                 padding: 1em;
+                overflow-x: hidden;
             }
             h1, h2 {
                 line-height: 1.3em;
+            }
+            /* wide display equations scroll inside their own box
+               instead of sidescrolling the whole page on phones */
+            .katex-display {
+                overflow-x: auto;
+                overflow-y: hidden;
+                max-width: 100%;
+                padding: 2px 0;
+            }
+            @media (max-width: 600px) {
+                table.dict {
+                    display: block;
+                    overflow-x: auto;
+                }
             }
             nav.crumbs {
                 font-size: 0.9em;
@@ -660,15 +675,8 @@
                 this page can measure a length, an angle, or a curvature. The
                 next instruments to build are connections and metrics, and
                 they lead somewhere worth going: black holes you can render,
-                and gauge fields you can simulate. I've laid out that path in
-                the roadmap below.
+                and gauge fields you can simulate.
             </p>
-
-            <div class="next">
-                <b>Next:</b>
-                <a href="/math/roadmap/">From the Circle to Black Holes: a
-                mathematical roadmap</a> &rarr;
-            </div>
         </main>
 
         <script>
