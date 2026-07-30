@@ -152,6 +152,34 @@
         html.dark .margin-note.type-consistency { background: #3a3418; border-color: #facc15; color: #fff3cd; }
         html.dark .margin-note .dismiss-btn { color: #999; }
         html.dark .margin-note .dismiss-btn:hover { color: #e0e0e0; }
+
+        /* OverType built-in "Preview Mode" (eye icon). The cave theme leaves the
+           --preview-* variables unset, so they fall back to light-theme defaults
+           (navy text on a dark background). Provide dark-appropriate values. */
+        html.dark .overtype-container {
+            --preview-text: #e0e0e0;
+            --preview-h1: #ffffff;
+            --preview-h2: #ffffff;
+            --preview-h3: #ffffff;
+            --preview-link: #8ab4f8;
+            --preview-strong: #ffffff;
+            --preview-em: #e0e0e0;
+            --preview-code: #f4d35e;
+            --preview-code-bg: rgba(255, 255, 255, 0.08);
+            --preview-blockquote: #5a7a9b;
+            --preview-hr: #555;
+        }
+
+        /* The view-mode dropdown is rendered outside the themed container, so it
+           falls back to a white background. Re-theme it for dark mode. */
+        html.dark .overtype-dropdown-menu {
+            background: #2a2a2a !important;
+            border-color: #555 !important;
+            color: #e0e0e0;
+        }
+        html.dark .overtype-dropdown-item { color: #e0e0e0; }
+        html.dark .overtype-dropdown-icon { color: #e0e0e0; }
+        html.dark .overtype-dropdown-item:hover { background: #3a3a3a !important; }
     </style>
 </head>
 <body>
@@ -192,12 +220,9 @@
         <button class="publish" onclick="publish()">Publish</button>
         <button class="preview-btn" id="previewBtn" onclick="togglePreview()">Preview</button>
         <button class="clear" onclick="clearDraft()">Clear Draft</button>
-        <button class="clear" id="redditBtn" onclick="generateRedditComments()">Generate Reddit Comments</button>
         <span id="wordcount" style="font-size: 0.85em; color: #666;">0 words</span>
         <span id="status"></span>
     </div>
-
-    <div id="reddit-comments"></div>
 
     <script src="marked.min.js"></script>
     <script>
@@ -216,12 +241,18 @@
         let nextAnnotationId = 0;
         let previewVisible = false;
 
+        // Read saved draft before OverType init so we can pass content as initial value
+        const STORAGE_KEY = 'draft-editor';
+        let _savedDraft = null;
+        try { _savedDraft = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch (e) {}
+        const _initialContent = _savedDraft?.content || '';
+
         // Initialize OverType editor
         let editor = null;
         const isDark = document.documentElement.classList.contains('dark');
         try {
             const result = new OverType('#editor-container', {
-                value: '',
+                value: _initialContent,
                 theme: isDark ? 'cave' : 'solar',
                 toolbar: true,
                 autoResize: true,
@@ -232,7 +263,6 @@
             });
             // OverType may return instance directly or as [instance]
             editor = Array.isArray(result) ? result[0] : result;
-            console.log('OverType initialized', editor);
         } catch (e) {
             console.error('OverType init failed:', e);
         }
@@ -343,7 +373,6 @@
         }
 
         // localStorage auto-save (debounced)
-        const STORAGE_KEY = 'draft-editor';
         let saveTimer;
         function saveDraft() {
             clearTimeout(saveTimer);
@@ -363,39 +392,18 @@
         slugEl.addEventListener('input', saveDraft);
         dateEl.addEventListener('input', saveDraft);
 
-        // Restore draft on load
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-            try {
-                const d = JSON.parse(saved);
-                titleEl.value = d.title || '';
-                slugEl.value = d.slug || '';
-                dateEl.value = d.date || dateEl.value;
-                setContent(d.content || '');
-                slugManuallyEdited = d.slugManuallyEdited || false;
-                updateWordCount();
-                statusEl.textContent = 'Draft restored from localStorage';
-            } catch (e) {}
+        // Restore draft fields (content already passed to OverType constructor above)
+        if (_savedDraft) {
+            titleEl.value = _savedDraft.title || '';
+            slugEl.value = _savedDraft.slug || '';
+            dateEl.value = _savedDraft.date || dateEl.value;
+            slugManuallyEdited = _savedDraft.slugManuallyEdited || false;
+            updateWordCount();
+            statusEl.textContent = 'Draft restored from localStorage';
         }
-
-        const redditBtn = document.getElementById('redditBtn');
-        const redditCommentsEl = document.getElementById('reddit-comments');
-        const REDDIT_STORAGE_KEY = 'draft-reddit-comments';
-
-        function updateRedditBtn() {
-            const saved = localStorage.getItem(REDDIT_STORAGE_KEY);
-            redditBtn.textContent = saved ? 'Re-generate Reddit Comments' : 'Generate Reddit Comments';
-        }
-
-        const savedReddit = localStorage.getItem(REDDIT_STORAGE_KEY);
-        if (savedReddit) {
-            redditCommentsEl.innerHTML = marked.parse(savedReddit);
-        }
-        updateRedditBtn();
 
         function clearDraft() {
             localStorage.removeItem(STORAGE_KEY);
-            localStorage.removeItem(REDDIT_STORAGE_KEY);
             titleEl.value = '';
             slugEl.value = '';
             dateEl.value = new Date().toISOString().slice(0, 10);
@@ -403,8 +411,6 @@
             slugManuallyEdited = false;
             currentAnnotations = [];
             marginNotesEl.innerHTML = '';
-            redditCommentsEl.innerHTML = '';
-            updateRedditBtn();
             updateWordCount();
             if (previewVisible) togglePreview();
             statusEl.textContent = 'Draft cleared';
@@ -529,45 +535,62 @@
             }
         }
 
-        // ─── Reddit Comments ───
+        // ─── Image paste ───
 
-        async function generateRedditComments() {
-            const content = getContent().trim();
-            if (!content) {
-                statusEl.textContent = 'Nothing to generate comments for.';
-                statusEl.className = 'error';
+        function insertText(text) {
+            if (editor && typeof editor.insertText === 'function') {
+                editor.insertText(text);
                 return;
             }
-
-            redditBtn.disabled = true;
-            redditBtn.textContent = 'Generating...';
-            statusEl.textContent = 'Generating reddit comments...';
-            statusEl.className = '';
-
-            try {
-                const res = await fetch(window.location.origin + '/api/reddit-comments', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ content })
-                });
-                const data = await res.json();
-                if (res.ok) {
-                    redditCommentsEl.innerHTML = marked.parse(data.comments);
-                    localStorage.setItem(REDDIT_STORAGE_KEY, data.comments);
-                    statusEl.textContent = 'Reddit comments generated';
-                    statusEl.className = 'success';
-                } else {
-                    statusEl.textContent = 'Error: ' + (data.error || 'Unknown error');
-                    statusEl.className = 'error';
-                }
-            } catch (e) {
-                statusEl.textContent = 'Error: ' + e.message;
-                statusEl.className = 'error';
-            } finally {
-                redditBtn.disabled = false;
-                updateRedditBtn();
+            const ta = editorContainerEl.querySelector('textarea');
+            if (ta) {
+                const start = ta.selectionStart;
+                const end = ta.selectionEnd;
+                ta.value = ta.value.slice(0, start) + text + ta.value.slice(end);
+                ta.selectionStart = ta.selectionEnd = start + text.length;
+                ta.dispatchEvent(new Event('input'));
+                return;
             }
+            setContent(getContent() + text);
         }
+
+        document.addEventListener('paste', async (e) => {
+            const items = e.clipboardData?.items;
+            if (!items) return;
+            for (const item of items) {
+                if (!item.type.startsWith('image/')) continue;
+                e.preventDefault();
+                const file = item.getAsFile();
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = async (ev) => {
+                    const [header, b64] = ev.target.result.split(',');
+                    const mimeType = header.match(/data:([^;]+);/)[1];
+                    statusEl.textContent = 'Uploading image...';
+                    statusEl.className = '';
+                    try {
+                        const res = await fetch('/api/upload-image', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ data: b64, type: mimeType })
+                        });
+                        const result = await res.json();
+                        if (res.ok) {
+                            insertText(`\n![image](${result.url})\n`);
+                            statusEl.textContent = 'Image uploaded';
+                        } else {
+                            statusEl.textContent = 'Upload error: ' + result.error;
+                            statusEl.className = 'error';
+                        }
+                    } catch (err) {
+                        statusEl.textContent = 'Upload failed: ' + err.message;
+                        statusEl.className = 'error';
+                    }
+                };
+                reader.readAsDataURL(file);
+                return;
+            }
+        });
 
         // ─── Publish ───
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Dev server with POST /api/publish endpoint for the draft editor."""
 
+import base64
 import glob
 import hashlib
 import http.server
@@ -177,6 +178,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_POST(self):
         if self.path == "/api/publish":
             self.handle_publish()
+        elif self.path == "/api/upload-image":
+            self.handle_upload_image()
         elif self.path == "/api/reddit-comments":
             self.handle_reddit_comments()
         elif self.path == "/api/annotate":
@@ -259,6 +262,41 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         url = f"/writing/{slug}/"
         print(f"Published: {url}")
         self.respond_json(200, {"url": url})
+
+    def handle_upload_image(self):
+        try:
+            length = int(self.headers.get("Content-Length", 0))
+            body = json.loads(self.rfile.read(length))
+        except (json.JSONDecodeError, ValueError):
+            self.respond_json(400, {"error": "Invalid JSON"})
+            return
+
+        data = body.get("data", "").strip()
+        mime_type = body.get("type", "image/png").strip()
+
+        if not data:
+            self.respond_json(400, {"error": "Image data is required"})
+            return
+
+        ext_map = {"image/png": "png", "image/jpeg": "jpg", "image/gif": "gif", "image/webp": "webp"}
+        ext = ext_map.get(mime_type, "png")
+
+        try:
+            img_bytes = base64.b64decode(data)
+        except Exception:
+            self.respond_json(400, {"error": "Invalid base64 data"})
+            return
+
+        content_hash = hashlib.md5(img_bytes).hexdigest()[:12]
+        filename = f"{content_hash}.{ext}"
+
+        img_dir = os.path.join(os.getcwd(), "writing", "img")
+        os.makedirs(img_dir, exist_ok=True)
+
+        with open(os.path.join(img_dir, filename), "wb") as f:
+            f.write(img_bytes)
+
+        self.respond_json(200, {"url": f"/writing/img/{filename}"})
 
     def handle_reddit_comments(self):
         try:

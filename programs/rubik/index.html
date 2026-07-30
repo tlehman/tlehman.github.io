@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rubik's Cube Scanner &amp; Solver</title>
+    <style>
+      :root {
+        --U: #fee100; /* yellow */
+        --R: #c41e3a; /* red */
+        --F: #009e60; /* green */
+        --D: #ffffff; /* white */
+        --L: #ff5800; /* orange */
+        --B: #0051ba; /* blue */
+        --plastic: #141414;
+        --frame: #0a0a0a;
+        --ink: #f5f5f5;
+        --muted: #9aa0a6;
+        --accent: #fee100;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; }
+      body {
+        background:
+          radial-gradient(circle at 20% 0%, #1d1d1d, #0a0a0a 60%);
+        color: var(--ink);
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .wrap { max-width: 1000px; margin: 0 auto; padding: 20px 16px 64px; }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(1.5rem, 4vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      header h1 .cube {
+        display: inline-grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        width: 1.5em; height: 1.5em;
+        padding: 3px;
+        background: var(--frame);
+        border-radius: 6px;
+        vertical-align: -0.45em;
+        margin-right: 0.4em;
+      }
+      header h1 .cube i { border-radius: 2px; }
+      header p { color: var(--muted); margin: 6px 0 0; max-width: 60ch; line-height: 1.5; }
+
+      .panel {
+        background: linear-gradient(180deg, #161616, #101010);
+        border: 1px solid #262626;
+        border-radius: 16px;
+        padding: 18px;
+        margin-top: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      }
+      .panel h2 {
+        margin: 0 0 12px; font-size: 1.05rem; font-weight: 700;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .panel h2 .num {
+        background: var(--accent); color: #000; width: 26px; height: 26px;
+        border-radius: 7px; display: grid; place-items: center; font-size: 0.85rem; font-weight: 800;
+      }
+
+      button {
+        font: inherit; font-weight: 600; cursor: pointer;
+        background: #232323; color: var(--ink);
+        border: 1px solid #333; border-radius: 10px; padding: 9px 14px;
+        transition: transform .05s ease, background .15s ease, border-color .15s ease;
+      }
+      button:hover { background: #2e2e2e; border-color: #444; }
+      button:active { transform: translateY(1px); }
+      button:disabled { opacity: .4; cursor: not-allowed; }
+      button.primary { background: var(--accent); color: #000; border-color: #d8c000; }
+      button.primary:hover { background: #ffe838; }
+      .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+      /* Scanner */
+      .scanner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: start; }
+      @media (max-width: 720px) { .scanner { grid-template-columns: 1fr; } }
+      .videobox { position: relative; aspect-ratio: 1/1; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid #262626; }
+      .videobox video { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .videobox .grid {
+        position: absolute; inset: 20%; pointer-events: none;
+        display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(3,1fr);
+      }
+      .videobox .grid div { border: 2px solid rgba(255,255,255,0.55); border-radius: 6px; margin: 3px; }
+      .videobox .hint { position: absolute; left: 0; right: 0; bottom: 0; padding: 8px 12px; background: linear-gradient(0deg, rgba(0,0,0,.8), transparent); font-size: .9rem; }
+      .scan-side { display: flex; flex-direction: column; gap: 12px; }
+      .instr { background: #1b1b1b; border: 1px solid #2a2a2a; border-radius: 10px; padding: 12px 14px; line-height: 1.5; font-size: .95rem; }
+      .instr b { color: var(--accent); }
+      .progress { display: flex; gap: 6px; flex-wrap: wrap; }
+      .progress .chip { font-size: .8rem; padding: 4px 9px; border-radius: 999px; border: 1px solid #333; color: var(--muted); }
+      .progress .chip.done { border-color: #009e60; color: #6fe0a8; }
+      .progress .chip.active { border-color: var(--accent); color: var(--accent); }
+
+      /* Net (unfolded cross) */
+      .netwrap { display: flex; justify-content: center; }
+      .net {
+        display: grid;
+        grid-template-columns: repeat(4, var(--fc));
+        grid-template-rows: repeat(3, var(--fc));
+        gap: 8px;
+        --fc: clamp(64px, 13vw, 104px);
+      }
+      .face { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 3px; padding: 4px; background: var(--frame); border-radius: 8px; }
+      .face[data-pos="U"] { grid-column: 2; grid-row: 1; }
+      .face[data-pos="L"] { grid-column: 1; grid-row: 2; }
+      .face[data-pos="F"] { grid-column: 2; grid-row: 2; }
+      .face[data-pos="R"] { grid-column: 3; grid-row: 2; }
+      .face[data-pos="B"] { grid-column: 4; grid-row: 2; }
+      .face[data-pos="D"] { grid-column: 2; grid-row: 3; }
+      .sticker { border-radius: 4px; aspect-ratio: 1/1; box-shadow: inset 0 -3px 6px rgba(0,0,0,.35), inset 0 2px 3px rgba(255,255,255,.25); cursor: pointer; transition: transform .06s ease; }
+      .sticker:hover { transform: scale(1.06); }
+      .sticker.center { cursor: default; }
+      .sticker.center:hover { transform: none; }
+      .sticker.cu { outline: 3px solid #fff; outline-offset: 1px; }
+      .face-label { grid-column: 1 / -1; text-align: center; font-size: .65rem; color: var(--muted); margin-top: -2px; }
+
+      .palette { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      .swatch { width: 30px; height: 30px; border-radius: 7px; border: 2px solid #333; cursor: pointer; box-shadow: inset 0 -2px 5px rgba(0,0,0,.4); }
+      .swatch.sel { border-color: #fff; transform: scale(1.12); }
+
+      .moves { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+      .mv { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95rem; padding: 5px 8px; background: #1c1c1c; border: 1px solid #2c2c2c; border-radius: 7px; min-width: 2.2em; text-align: center; }
+      .mv.cur { background: var(--accent); color: #000; border-color: #d8c000; font-weight: 700; }
+      .mv.done { color: var(--muted); }
+      .status { font-size: .95rem; }
+      .status.err { color: #ff8a8a; }
+      .status.ok { color: #6fe0a8; }
+      .count { color: var(--muted); font-size: .9rem; }
+      footer { margin-top: 30px; color: var(--muted); font-size: .85rem; text-align: center; }
+      a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>
+          <span class="cube" aria-hidden="true">
+            <i style="background:var(--R)"></i><i style="background:var(--U)"></i><i style="background:var(--F)"></i>
+            <i style="background:var(--D)"></i><i style="background:var(--L)"></i><i style="background:var(--B)"></i>
+            <i style="background:var(--F)"></i><i style="background:var(--R)"></i><i style="background:var(--U)"></i>
+          </span>Rubik's Cube Scanner &amp; Solver
+        </h1>
+        <p>Scan your scrambled cube with the camera, fix any mis-read stickers on the unfolded
+           map, then get a full solution. Everything runs in your browser. Nothing is uploaded.</p>
+      </header>
+
+      <!-- 1. Scan -->
+      <section class="panel">
+        <h2><span class="num">1</span> Scan the six faces</h2>
+        <div class="scanner">
+          <div class="videobox">
+            <video id="video" playsinline muted></video>
+            <div class="grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="hint" id="vhint">Press “Start camera”, then hold a face inside the grid.</div>
+          </div>
+          <div class="scan-side">
+            <div class="instr" id="instr">
+              Hold the cube so one face fills the grid. Keep the <b>top</b> of the cube pointing up.
+              Capture the faces in order; rotate the cube as prompted between shots.
+            </div>
+            <div class="row">
+              <button id="startCam" class="primary">Start camera</button>
+              <button id="capture" disabled>Capture face</button>
+              <button id="rescan" disabled>Restart scan</button>
+            </div>
+            <div class="progress" id="progress"></div>
+            <div class="count" id="scanNote"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Verify / edit -->
+      <section class="panel">
+        <h2><span class="num">2</span> Check the colours</h2>
+        <p class="count">Tap a sticker to paint it with the selected colour. Centres are fixed — they define each face.</p>
+        <div class="palette" id="palette"></div>
+        <div class="netwrap" style="margin-top:14px"><div class="net" id="net"></div></div>
+        <div class="row" style="margin-top:14px">
+          <button id="solveBtn" class="primary">Solve</button>
+          <button id="resetNet">Reset to solved</button>
+          <button id="scrambleBtn">Random scramble</button>
+          <span class="status" id="status"></span>
+        </div>
+      </section>
+
+      <!-- 3. Solution -->
+      <section class="panel" id="solPanel" style="display:none">
+        <h2><span class="num">3</span> Solution</h2>
+        <p class="count" id="solMeta"></p>
+        <div class="moves" id="moves"></div>
+        <div class="row" style="margin-top:14px">
+          <button id="toStart">⏮ Start</button>
+          <button id="prev">◀ Prev</button>
+          <button id="play">▶ Play</button>
+          <button id="next">Next ▶</button>
+          <button id="toEnd">End ⏭</button>
+          <span class="count" id="playInfo"></span>
+        </div>
+        <p class="count" style="margin-top:10px">The map above animates as you step through the moves.
+          Notation: a letter turns that face clockwise; <code>'</code> = counter-clockwise; <code>2</code> = half turn.
+          U=up, D=down, L=left, R=right, F=front, B=back.</p>
+      </section>
+
+      <footer>
+        Layer-by-layer solver, written from scratch &amp; verified against thousands of random scrambles.
+        · <a href="../../programs.html">more programs</a>
+      </footer>
+    </div>
+    <script type="module" src="./app.js"></script>
+    <script data-goatcounter="https://tobilehman.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
