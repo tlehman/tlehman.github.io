@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Introduction to Differential Forms</title>
+        <style>
+            body {
+                font-family: "Computer Modern Serif", serif;
+                font-size: 20px;
+                line-height: 1.6em;
+                max-width: 780px;
+                margin: 0 auto;
+                padding: 1em;
+            }
+            h1, h2 {
+                line-height: 1.3em;
+            }
+            nav.crumbs {
+                font-size: 0.9em;
+                margin-bottom: 1.5em;
+            }
+            figure {
+                margin: 2em auto;
+                text-align: center;
+            }
+            figure canvas {
+                border: 1px solid #ccc;
+                background: #fff;
+                max-width: 100%;
+            }
+            figcaption {
+                font-size: 0.85em;
+                color: #555;
+                margin-top: 0.5em;
+            }
+            .controls {
+                margin: 0.8em 0;
+                font-size: 0.9em;
+            }
+            .controls input[type="range"] {
+                width: 260px;
+                vertical-align: middle;
+            }
+            .readout {
+                font-size: 0.95em;
+                color: #333;
+                min-height: 2.4em;
+            }
+            .readout .big {
+                font-size: 1.3em;
+            }
+            details.info {
+                border: 1px solid #9db8d2;
+                background: #f0f5fb;
+                border-radius: 6px;
+                padding: 0.4em 1em;
+                margin: 1.5em 0;
+            }
+            details.info summary {
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .three-container {
+                width: 100%;
+                height: 420px;
+                border: 1px solid #ccc;
+                background: #fff;
+                cursor: grab;
+            }
+            table.dict {
+                border-collapse: collapse;
+                margin: 1.5em auto;
+                font-size: 0.9em;
+            }
+            table.dict th, table.dict td {
+                border: 1px solid #bbb;
+                padding: 0.4em 0.9em;
+                text-align: left;
+            }
+            table.dict th {
+                background: #f0f5fb;
+            }
+            .exercise {
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 0.8em 1.2em;
+                margin: 1.5em 0;
+            }
+            .exercise.solved {
+                border-color: #27ae60;
+                background: #f4fbf6;
+            }
+            .exercise .answer-row {
+                margin: 0.5em 0;
+            }
+            .exercise input[type="text"] {
+                font-family: inherit;
+                font-size: 0.95em;
+                width: 180px;
+                padding: 0.15em 0.4em;
+            }
+            .exercise button {
+                font-family: inherit;
+                font-size: 0.9em;
+            }
+            .exercise .feedback {
+                margin-left: 0.6em;
+                font-size: 0.9em;
+            }
+            .exercise details {
+                margin: 0.4em 0;
+                font-size: 0.95em;
+            }
+            .exercise details summary {
+                cursor: pointer;
+                color: #2e6db4;
+            }
+            #ex-progress {
+                font-weight: bold;
+            }
+            .next {
+                border: 1px solid #b3cbb3;
+                background: #f0f8f0;
+                border-radius: 6px;
+                padding: 0.6em 1.2em;
+                margin: 2em 0;
+            }
+        </style>
+
+        <!-- KaTeX -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+            integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww"
+            crossorigin="anonymous"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+            integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+            integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"
+            crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/img/android-chrome-512x512.png"
+        />
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <main>
+            <nav class="crumbs">
+                <a href="/math.html">&larr; Tobi's math</a> &nbsp;&middot;&nbsp;
+                <a href="/math/bundles/">&larr; Introduction to Fiber Bundles</a>
+            </nav>
+
+            <h1>Introduction to Differential Forms</h1>
+
+            <p>
+                There is exactly one integral in mathematics that everyone
+                agrees is beautiful:
+                \[ \int_a^b df = f(b) - f(a) \]
+                The fundamental theorem of calculus. You integrate a
+                derivative over an interval, and the answer only depends on
+                the two endpoints. All the information in the middle cancels
+                out. Every other integral you have ever computed was an
+                attempt to fight your integrand into this form: that's what
+                \( u \)-substitution is, that's what "finding the
+                antiderivative" means.
+            </p>
+            <p>
+                Now look at the rest of the integrals in a vector calculus
+                course: line integrals with \( \vec{F} \cdot d\vec{r} \), flux
+                integrals with \( \vec{F} \cdot \hat{n} \, dA \), Green's
+                theorem, the divergence theorem, Stokes' theorem, each with
+                its own notation, its own orientation conventions, and its own
+                proof. It's a zoo. The theory of
+                <a href="https://en.wikipedia.org/wiki/Differential_form"
+                    title="Differential form">differential forms</a>
+                is the discovery, mostly due to
+                <a href="https://en.wikipedia.org/wiki/%C3%89lie_Cartan"
+                    title="Élie Cartan">&Eacute;lie Cartan</a>,
+                that the zoo is one animal. There is one object worth
+                integrating (a form), one derivative (\( d \)), and one
+                theorem:
+                \[ \int_M d\omega = \int_{\partial M} \omega \]
+                Everything in the zoo is a special case. This page builds up
+                to that equation with your hands on the sliders, using the
+                circle and the bundles from
+                <a href="/math/bundles/">the previous article</a> as home
+                base.
+            </p>
+
+            <h2>What a 1-form is</h2>
+            <p>
+                Start with the thing under the integral sign in a line
+                integral. You are walking along a path, and at each moment
+                the integrand looks at your position <em>and your velocity</em>
+                and charges you a toll. Double your speed through a region,
+                and you cover it in half the time but pay double the rate:
+                the toll for the trip is unchanged. That's the defining
+                property: the charge is <b>linear in your velocity</b>.
+            </p>
+            <p>
+                So here is the definition. A <b>1-form</b> \( \omega \) on a
+                manifold \( M \) assigns to each point \( p \) a linear map
+                \( \omega_p : T_p M \to \mathbb{R} \), eating tangent vectors
+                and returning numbers. In the bundle language from last time:
+                the linear maps on \( T_p M \) form a vector space
+                \( T_p^* M \) (the dual space), these assemble into the
+                <a href="https://en.wikipedia.org/wiki/Cotangent_bundle"
+                    title="Cotangent bundle">cotangent bundle</a>
+                \( T^*M \), and a 1-form is a smooth choice of a point in each
+                fiber, called a <b>section</b> of the bundle. The simplest
+                examples on \( \mathbb{R}^2 \): \( dx \) is the 1-form that
+                eats a vector and reports its \( x \)-component, \( dy \)
+                reports the \( y \)-component, and every 1-form is a
+                combination
+                \[ \omega = a(x,y)\, dx + b(x,y)\, dy \]
+                The integral \( \int_\gamma \omega \) means: walk the path
+                \( \gamma \), continuously feed your velocity to \( \omega \),
+                and accumulate the toll.
+            </p>
+
+            <h2>Playing with 1-forms</h2>
+            <p>
+                Below are three 1-forms and three paths from
+                \( P = (1.5, 0) \) to \( Q = (-1.5, 0) \) (the third path is a
+                closed loop that returns to \( P \)). The arrows show each
+                form's dual vector field, so the toll is positive when you
+                move with the arrows. Drag the slider to walk the path and
+                watch the integral accumulate:
+            </p>
+
+            <figure>
+                <canvas id="int-canvas" width="640" height="440"></canvas>
+                <div class="controls">
+                    <label><input type="radio" name="form" value="dx" checked /> \( \omega = dx \)</label>
+                    &nbsp;
+                    <label><input type="radio" name="form" value="ydx" /> \( \omega = y\,dx \)</label>
+                    &nbsp;
+                    <label><input type="radio" name="form" value="dth" /> \( \omega = \frac{-y\,dx + x\,dy}{x^2+y^2} = d\theta \)</label>
+                    <br />
+                    <label><input type="radio" name="path" value="upper" checked /> upper path</label>
+                    &nbsp;
+                    <label><input type="radio" name="path" value="lower" /> lower path</label>
+                    &nbsp;
+                    <label><input type="radio" name="path" value="loop" /> full loop</label>
+                    <br />
+                    <label for="int-t">walk: </label>
+                    <input type="range" id="int-t" min="0" max="1" step="0.002" value="0" />
+                </div>
+                <div class="readout" id="int-readout"></div>
+                <figcaption>
+                    Integrating \( \omega \) along a path. The running total
+                    is the line integral \( \int_0^t
+                    \omega_{\gamma(s)}(\gamma'(s))\, ds \).
+                </figcaption>
+            </figure>
+
+            <p>
+                Three very different personalities, and they are worth
+                internalizing:
+            </p>
+            <ul>
+                <li>
+                    \( dx = d(x) \) is <b>exact</b>: it is \( df \) for the
+                    global function \( f = x \). Both the upper and lower path
+                    give \( x(Q) - x(P) = -3 \), and the loop gives \( 0 \).
+                    Path independence: the fundamental theorem of calculus in
+                    action.
+                </li>
+                <li>
+                    \( y\,dx \) is <b>not closed</b> (we'll define this in a
+                    moment): upper and lower paths disagree, and the loop
+                    integral is the enclosed area with a sign. This form
+                    genuinely depends on the journey, not the destination.
+                </li>
+                <li>
+                    \( d\theta \) is the interesting one: <b>closed but not
+                    exact</b>. Nearby paths give the same answer, but the
+                    upper path gives \( \pi \), the lower gives \( -\pi \),
+                    and the loop around the puncture gives \( 2\pi \). The
+                    form is locally a \( df \) and globally not, and the
+                    failure precisely measures how the path winds around the
+                    hole at the origin. This is the Linelander's instrument
+                    from the last article: a local measurement accumulating
+                    into a detector of global topology.
+                </li>
+            </ul>
+
+            <h2>The rules of the game</h2>
+            <p>
+                Now the calculus. Everything is generated by a few rules, and
+                the rules are forced by one design decision:
+                <b>a \( k \)-form measures oriented \( k \)-dimensional
+                volume</b>. A 0-form is a function. A 1-form measures
+                (weighted, signed) length along a curve. A 2-form eats
+                <em>two</em> vectors and reports the signed area of the
+                parallelogram they span:
+                \[ (dx \wedge dy)(v, w) = v_x w_y - v_y w_x \]
+                That determinant is the whole personality of the wedge
+                product \( \wedge \). Swap the vectors and the sign flips,
+                so:
+                \[ dx \wedge dy = -\, dy \wedge dx, \qquad dx \wedge dx = 0
+                \]
+                Antisymmetry is not a convention, it's what "oriented volume"
+                means: a parallelogram traversed backwards counts negative,
+                and a flattened parallelogram has area zero.
+            </p>
+            <p>
+                Then there is the derivative \( d \), the
+                <a href="https://en.wikipedia.org/wiki/Exterior_derivative"
+                    title="Exterior derivative">exterior derivative</a>,
+                which turns \( k \)-forms into \( (k{+}1) \)-forms. On
+                functions it's the familiar total differential, on higher
+                forms you differentiate the coefficients and wedge:
+                \[ df = \frac{\partial f}{\partial x} dx + \frac{\partial
+                f}{\partial y} dy, \qquad d(a\, dx + b\, dy) = \left(
+                \frac{\partial b}{\partial x} - \frac{\partial a}{\partial y}
+                \right) dx \wedge dy \]
+                A form \( \omega \) is <b>closed</b> if \( d\omega = 0 \), and
+                <b>exact</b> if \( \omega = d\eta \) for some \( \eta \).
+                Check the examples from the playground: \( d(y\,dx) = -\,dx
+                \wedge dy \neq 0 \), not closed, path-dependent. And
+                \( d(d\theta) = 0 \), closed, locally path-independent.
+            </p>
+            <p>
+                The deepest rule is also the shortest:
+                \[ d^2 = 0 \]
+                Applying \( d \) twice always gives zero. Unwind it in
+                coordinates and it's the equality of mixed partial
+                derivatives, \( \partial_x \partial_y f = \partial_y
+                \partial_x f \), dressed up in its Sunday best. Hold onto
+                this rule: at the end of the page it will turn out to be the
+                mirror image of a fact about boundaries.
+            </p>
+
+            <details class="info">
+                <summary>The dictionary: forms versus vector calculus</summary>
+                <p>
+                    On \( \mathbb{R}^3 \), every operation of vector calculus
+                    is \( d \) wearing a costume:
+                </p>
+                <table class="dict">
+                    <tr><th>vector calculus</th><th>differential forms</th></tr>
+                    <tr><td>function \( f \)</td><td>0-form \( f \)</td></tr>
+                    <tr><td>\( \nabla f \) (grad)</td><td>\( df \), a 1-form</td></tr>
+                    <tr><td>\( \nabla \times \vec{F} \) (curl)</td><td>\( d \) of a 1-form, a 2-form</td></tr>
+                    <tr><td>\( \nabla \cdot \vec{F} \) (div)</td><td>\( d \) of a 2-form, a 3-form</td></tr>
+                    <tr><td>\( \nabla \times \nabla f = 0 \)</td><td rowspan="2">\( d^2 = 0 \)</td></tr>
+                    <tr><td>\( \nabla \cdot (\nabla \times \vec{F}) = 0 \)</td></tr>
+                </table>
+                <p>
+                    The two mystery identities of vector calculus are one
+                    rule. Also notice what the dictionary needs to work: on
+                    \( \mathbb{R}^3 \) you can secretly convert 1-forms and
+                    2-forms into vector fields because of the dot product and
+                    the dimension. On an arbitrary manifold you can't, and
+                    then grad, curl, and div stop making sense while \( d \)
+                    keeps working. Forms are what survives the trip to curved
+                    space.
+                </p>
+            </details>
+
+            <h2>Exercises</h2>
+            <p>
+                Time to get your hands dirty: the rules above are enough to
+                solve all of these. Answers can be typed as numbers or
+                expressions like <code>2*pi</code> or <code>-pi</code>. Your
+                progress is saved in your browser
+                (<span id="ex-progress"></span>).
+            </p>
+
+            <div class="exercise" data-id="ex1" data-answer="16">
+                <p>
+                    <b>Exercise 1.</b> Let \( f = x^2 y \). Compute \( df \),
+                    then evaluate it at the point \( p = (1, 2) \) on the
+                    tangent vector \( v = (3, 4) \). That is, compute
+                    \( df_p(v) \).
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( df = \frac{\partial f}{\partial x} dx + \frac{\partial
+                    f}{\partial y} dy \), and \( dx(v) = v_x \),
+                    \( dy(v) = v_y \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( df = 2xy\, dx + x^2\, dy \). At \( p = (1,2) \) this is
+                    \( 4\,dx + 1\,dy \), and feeding it \( v = (3,4) \) gives
+                    \( 4 \cdot 3 + 1 \cdot 4 = 16 \).
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex2" data-answer="5">
+                <p>
+                    <b>Exercise 2.</b> Evaluate the 2-form \( dx \wedge dy \)
+                    on the pair of vectors \( v = (2, 1) \), \( w = (1, 3)
+                    \).
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( (dx \wedge dy)(v, w) = v_x w_y - v_y w_x \), the
+                    signed area of the parallelogram spanned by \( v \) and
+                    \( w \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( 2 \cdot 3 - 1 \cdot 1 = 5 \).
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex3" data-answer="0">
+                <p>
+                    <b>Exercise 3.</b> Let \( f = xy^2 \). Compute \( d(df)
+                    \) and enter the coefficient of \( dx \wedge dy \).
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    First \( df = y^2 dx + 2xy\, dy \). Then use \( d(a\,dx +
+                    b\,dy) = (\partial_x b - \partial_y a)\, dx \wedge dy \).
+                    You already know what the answer must be from one of the
+                    rules.
+                </details>
+                <details><summary>Solution</summary>
+                    \( \partial_x(2xy) - \partial_y(y^2) = 2y - 2y = 0 \).
+                    Of course: \( d^2 = 0 \), always, and the mechanism is
+                    the equality of mixed partials.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex4" data-answer="-pi">
+                <p>
+                    <b>Exercise 4.</b> Compute \( \displaystyle\oint_{S^1}
+                    y\, dx \), around the unit circle, counterclockwise.
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Parametrize: \( x = \cos t \), \( y = \sin t \), \( t \in
+                    [0, 2\pi] \), so \( dx = -\sin t \, dt \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( \int_0^{2\pi} \sin t \,(-\sin t)\, dt = -\int_0^{2\pi}
+                    \sin^2 t \, dt = -\pi \). This matches the playground:
+                    \( \oint y\,dx \) is minus the enclosed area.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex5" data-answer="4*pi">
+                <p>
+                    <b>Exercise 5.</b> Compute \( \displaystyle\oint
+                    d\theta \) along the path that goes around the unit
+                    circle <em>twice</em>, counterclockwise.
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    The integral of \( d\theta \) along a path is the total
+                    change in angle along it. What does going around twice do
+                    to the angle?
+                </details>
+                <details><summary>Solution</summary>
+                    Each loop adds \( 2\pi \), so the answer is \( 4\pi \).
+                    In general \( \frac{1}{2\pi}\oint d\theta \) is the
+                    <a href="https://en.wikipedia.org/wiki/Winding_number"
+                        title="Winding number">winding number</a>, an integer
+                    a 1-form can compute. A closed-but-not-exact form is a
+                    topology detector.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex6" data-answer="2*pi">
+                <p>
+                    <b>Exercise 6.</b> Let \( \omega = -y\,dx + x\,dy \)
+                    (note: no denominator this time). Use \( d\omega \) and
+                    the area of the unit disk to compute
+                    \( \displaystyle\oint_{S^1} \omega \) counterclockwise,
+                    without parametrizing anything.
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( d\omega = (\partial_x(x) - \partial_y(-y))\, dx \wedge
+                    dy \). Then use the theorem this whole page is building
+                    toward: the integral of \( \omega \) around the boundary
+                    equals the integral of \( d\omega \) over the inside.
+                </details>
+                <details><summary>Solution</summary>
+                    \( d\omega = 2\, dx \wedge dy \), so \( \oint_{S^1}
+                    \omega = \int_{D^2} 2\, dx \wedge dy = 2 \cdot \pi = 2\pi
+                    \). You just used the generalized Stokes theorem.
+                </details>
+            </div>
+
+            <h2>The generalized Stokes theorem</h2>
+            <p>
+                Here it is, the theorem the whole subject was built to state.
+                For any \( k \)-form \( \omega \) on an oriented
+                \( (k{+}1) \)-dimensional manifold \( M \) with boundary
+                \( \partial M \):
+                \[ \boxed{\; \int_M d\omega = \int_{\partial M} \omega \;} \]
+                In words: <b>the derivative summed over the inside equals the
+                original thing summed over the edge</b>. The fundamental
+                theorem of calculus is the case where \( M \) is an interval
+                \( [a,b] \), whose boundary is the two points \( \{a, b\} \)
+                (with signs), and \( \omega = f \) is a 0-form:
+                \( \int_a^b df = f(b) - f(a) \). The perfect integral from
+                the top of the page was Stokes all along.
+            </p>
+            <table class="dict">
+                <tr><th>classical name</th><th>\( M \)</th><th>\( \omega \)</th></tr>
+                <tr><td>Fundamental theorem of calculus</td><td>interval</td><td>0-form \( f \)</td></tr>
+                <tr><td>Green's theorem</td><td>region in the plane</td><td>1-form</td></tr>
+                <tr><td>Kelvin&ndash;Stokes (curl) theorem</td><td>surface in \( \mathbb{R}^3 \)</td><td>1-form</td></tr>
+                <tr><td>Divergence theorem</td><td>solid region in \( \mathbb{R}^3 \)</td><td>2-form</td></tr>
+            </table>
+            <p>
+                Four theorems, four separate proofs in a calculus course, one
+                statement here. And the theorem has a striking consequence you
+                can <em>see</em>: the left side only depends on \( \partial M
+                \), so if two different surfaces share the same boundary, a
+                closed \( d\omega \) integrates to the same value over both.
+                Below, the field is \( \vec{F} = (-y, x, 0) \), whose curl
+                corresponds to the 2-form \( d\omega = 2\,dx\wedge dy \). The
+                surface is a membrane spanning the unit circle. Deform the
+                membrane all you like: the flux refuses to change, because
+                the boundary circulation is what it "really" is.
+            </p>
+
+            <figure>
+                <div id="st-container" class="three-container"></div>
+                <div class="controls">
+                    <label for="st-h">deform the membrane: </label>
+                    <input type="range" id="st-h" min="-1" max="1.5" step="0.01" value="0.6" />
+                    &nbsp;
+                    <label><input type="checkbox" id="st-arrows" checked /> show \( \vec{F} \) and curl arrows</label>
+                </div>
+                <div class="readout" id="st-readout"></div>
+                <figcaption>
+                    Both sides of Stokes' theorem computed numerically on the
+                    mesh, live, as you deform the surface. Drag to orbit.
+                </figcaption>
+            </figure>
+
+            <p>
+                One more piece of elegance. Why is Stokes' theorem even true?
+                The proof reduces to a bookkeeping fact:
+                <b>the boundary of a boundary is empty</b>,
+                \( \partial(\partial M) = \varnothing \). A solid ball's
+                boundary is a sphere, and the sphere has no edge. Interior
+                edges of adjacent little pieces cancel in pairs, leaving only
+                the outer edge. Now recall \( d^2 = 0 \) from the rules. The
+                two facts are mirror images through the theorem:
+                \( d \) is the algebraic shadow of \( \partial \). When
+                topologists later built
+                <a href="https://en.wikipedia.org/wiki/De_Rham_cohomology"
+                    title="De Rham cohomology">de Rham cohomology</a>,
+                the classification of closed-but-not-exact forms, this mirror
+                became an exact science: counting the forms like
+                \( d\theta \) on a space tells you how many holes it has.
+            </p>
+
+            <h2>Back to the bundle, and into physics</h2>
+            <p>
+                In the <a href="/math/bundles/">bundles article</a> we ended
+                with \( \oint_{S^1} d\theta = 2\pi \) as evidence that
+                \( d\theta \) has no global antiderivative. Now you can see
+                the full machinery behind that sentence: \( d\theta \) is
+                closed by \( d^2 = 0 \) (locally it <em>is</em> \( d \) of an
+                angle function), so by Stokes its integral cannot change
+                under any deformation of the loop that stays in the
+                punctured plane. The value \( 2\pi \) is pinned by topology.
+                A number produced by calculus, protected by shape.
+            </p>
+            <p>
+                Physics runs on this exact mechanism. The electromagnetic
+                potential of a thin solenoid is, up to constants, our
+                \( d\theta \) form: zero field outside, yet a quantum
+                electron carried around the solenoid picks up a measurable
+                phase proportional to \( \oint A \). That is the
+                <a href="https://en.wikipedia.org/wiki/Aharonov%E2%80%93Bohm_effect"
+                    title="Aharonov–Bohm effect">Aharonov&ndash;Bohm
+                effect</a>, and it is the physical world confirming that the
+                U(1) bundle and its forms, not the field strength alone, are
+                the real degrees of freedom. In the modern formulation,
+                Maxwell's equations are two lines about a 2-form \( F = dA
+                \):
+                \[ dF = 0, \qquad d{\star}F = J \]
+                where the first is \( d^2 = 0 \) for free, and \( A \) is a
+                connection on a U(1) bundle over spacetime. The vocabulary of
+                this page and the last one is, quite literally, the
+                vocabulary of the Standard Model.
+            </p>
+
+            <h2>Where we are</h2>
+            <p>
+                We wanted every integral to look like \( \int df = f(b) -
+                f(a) \), and we got our wish, at a fair price: the integrand
+                had to become a form, the derivative had to become \( d \),
+                and the domain had to become a manifold with boundary. In
+                exchange, the whole integral zoo collapsed into \( \int_M
+                d\omega = \int_{\partial M} \omega \), path-independence
+                became the word "exact," the failure of path-independence
+                became topology, and Maxwell's four equations became two
+                short ones. Forms are the instruments that turn the global
+                twists of the last article into computable numbers.
+            </p>
+            <p>
+                What we have <em>not</em> done yet is geometry: nothing on
+                this page can measure a length, an angle, or a curvature. The
+                next instruments to build are connections and metrics, and
+                they lead somewhere worth going: black holes you can render,
+                and gauge fields you can simulate. I've laid out that path in
+                the roadmap below.
+            </p>
+
+            <div class="next">
+                <b>Next:</b>
+                <a href="/math/roadmap/">From the Circle to Black Holes: a
+                mathematical roadmap</a> &rarr;
+            </div>
+        </main>
+
+        <script>
+            // ================= 1-form path integrator =================
+            (function () {
+                const canvas = document.getElementById("int-canvas");
+                const ctx = canvas.getContext("2d");
+                const cx = canvas.width / 2, cy = canvas.height / 2, S = 120;
+                const RP = 1.5;
+
+                const forms = {
+                    dx:  { w: (x, y) => [1, 0] },
+                    ydx: { w: (x, y) => [y, 0] },
+                    dth: { w: (x, y) => { const r2 = x * x + y * y; return [-y / r2, x / r2]; } },
+                };
+                const paths = {
+                    upper: (t) => [RP * Math.cos(Math.PI * t), RP * Math.sin(Math.PI * t)],
+                    lower: (t) => [RP * Math.cos(Math.PI * t), -RP * Math.sin(Math.PI * t)],
+                    loop:  (t) => [RP * Math.cos(2 * Math.PI * t), RP * Math.sin(2 * Math.PI * t)],
+                };
+                const exact = {
+                    dx:  { upper: "−3", lower: "−3", loop: "0" },
+                    ydx: { upper: "−9π/8 ≈ −3.534", lower: "9π/8 ≈ 3.534", loop: "−9π/4 ≈ −7.069" },
+                    dth: { upper: "π ≈ 3.142", lower: "−π ≈ −3.142", loop: "2π ≈ 6.283" },
+                };
+
+                let formKey = "dx", pathKey = "upper";
+                const NSTEPS = 800;
+                let cum = [];
+
+                function recompute() {
+                    const g = paths[pathKey], w = forms[formKey].w;
+                    cum = [0];
+                    let I = 0;
+                    for (let i = 0; i < NSTEPS; i++) {
+                        const t0 = i / NSTEPS, t1 = (i + 1) / NSTEPS;
+                        const [x0, y0] = g(t0), [x1, y1] = g(t1);
+                        const [xm, ym] = [(x0 + x1) / 2, (y0 + y1) / 2];
+                        const [a, b] = w(xm, ym);
+                        I += a * (x1 - x0) + b * (y1 - y0);
+                        cum.push(I);
+                    }
+                }
+
+                function toPx(x, y) { return [cx + S * x, cy - S * y]; }
+
+                function drawArrow(x, y, vx, vy, color) {
+                    const mag = Math.hypot(vx, vy);
+                    if (mag < 1e-9) return;
+                    const cap = 0.30;
+                    const len = Math.min(mag, cap) * 0.9;
+                    const ux = (vx / mag) * len, uy = (vy / mag) * len;
+                    const [px, py] = toPx(x, y);
+                    const [qx, qy] = toPx(x + ux, y + uy);
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(px, py); ctx.lineTo(qx, qy);
+                    const ang = Math.atan2(qy - py, qx - px);
+                    ctx.moveTo(qx, qy);
+                    ctx.lineTo(qx - 5 * Math.cos(ang - 0.4), qy - 5 * Math.sin(ang - 0.4));
+                    ctx.moveTo(qx, qy);
+                    ctx.lineTo(qx - 5 * Math.cos(ang + 0.4), qy - 5 * Math.sin(ang + 0.4));
+                    ctx.stroke();
+                }
+
+                function render() {
+                    const t = parseFloat(document.getElementById("int-t").value);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // axes
+                    ctx.strokeStyle = "#eee";
+                    ctx.beginPath();
+                    ctx.moveTo(0, cy); ctx.lineTo(canvas.width, cy);
+                    ctx.moveTo(cx, 0); ctx.lineTo(cx, canvas.height);
+                    ctx.stroke();
+                    // vector field
+                    const w = forms[formKey].w;
+                    for (let gx = -2.4; gx <= 2.4; gx += 0.4) {
+                        for (let gy = -1.6; gy <= 1.6; gy += 0.4) {
+                            if (formKey === "dth" && gx * gx + gy * gy < 0.09) continue;
+                            const [a, b] = w(gx, gy);
+                            drawArrow(gx, gy, a, b, "#b8c6d8");
+                        }
+                    }
+                    // puncture marker for dθ
+                    if (formKey === "dth") {
+                        ctx.fillStyle = "#c0392b";
+                        ctx.font = "16px serif";
+                        const [ox, oy] = toPx(0, 0);
+                        ctx.beginPath();
+                        ctx.arc(ox, oy, 4, 0, 2 * Math.PI);
+                        ctx.stroke();
+                        ctx.fillText("hole", ox + 8, oy + 16);
+                    }
+                    // path
+                    const g = paths[pathKey];
+                    ctx.strokeStyle = "#999";
+                    ctx.lineWidth = 1.5;
+                    ctx.setLineDash([5, 4]);
+                    ctx.beginPath();
+                    for (let i = 0; i <= 200; i++) {
+                        const [x, y] = g(i / 200);
+                        const [px, py] = toPx(x, y);
+                        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    // walked portion
+                    ctx.strokeStyle = "#2e6db4";
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    const nWalk = Math.round(t * 200);
+                    for (let i = 0; i <= nWalk; i++) {
+                        const [x, y] = g(i / 200);
+                        const [px, py] = toPx(x, y);
+                        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+                    // endpoints
+                    ctx.fillStyle = "#333";
+                    ctx.font = "16px serif";
+                    const [ppx, ppy] = toPx(RP, 0);
+                    ctx.beginPath(); ctx.arc(ppx, ppy, 4, 0, 2 * Math.PI); ctx.fill();
+                    ctx.fillText("P", ppx + 8, ppy - 8);
+                    if (pathKey !== "loop") {
+                        const [qpx, qpy] = toPx(-RP, 0);
+                        ctx.beginPath(); ctx.arc(qpx, qpy, 4, 0, 2 * Math.PI); ctx.fill();
+                        ctx.fillText("Q", qpx - 20, qpy - 8);
+                    }
+                    // moving point
+                    const [mx, my] = g(t);
+                    const [mpx, mpy] = toPx(mx, my);
+                    ctx.fillStyle = "#c0392b";
+                    ctx.beginPath();
+                    ctx.arc(mpx, mpy, 6, 0, 2 * Math.PI);
+                    ctx.fill();
+                    // readout
+                    const I = cum[Math.round(t * NSTEPS)];
+                    document.getElementById("int-readout").innerHTML =
+                        '<span class="big">&int;<sub>&gamma;</sub> &omega; = ' +
+                        I.toFixed(4) + "</span> &nbsp;&nbsp; (exact value at the end of this path: " +
+                        exact[formKey][pathKey] + ")";
+                }
+
+                document.querySelectorAll('input[name="form"]').forEach((r) =>
+                    r.addEventListener("change", (e) => { formKey = e.target.value; recompute(); render(); }));
+                document.querySelectorAll('input[name="path"]').forEach((r) =>
+                    r.addEventListener("change", (e) => { pathKey = e.target.value; recompute(); render(); }));
+                document.getElementById("int-t").addEventListener("input", render);
+
+                recompute();
+                render();
+            })();
+
+            // ================= exercises with localStorage =================
+            (function () {
+                const KEY = "tlehman-forms-exercises";
+                let state = {};
+                try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+
+                function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+                function parseAnswer(str) {
+                    const s = str.trim().toLowerCase().replace(/\s+/g, "");
+                    if (!/^[0-9pi+\-*/().]*$/.test(s) || s.length === 0) return NaN;
+                    // only allow the letters p,i as the word "pi"
+                    if (/[a-z]/.test(s.replace(/pi/g, ""))) return NaN;
+                    const expr = s.replace(/pi/g, "(3.141592653589793)");
+                    try { return Function('"use strict"; return (' + expr + ')')(); }
+                    catch (e) { return NaN; }
+                }
+
+                const exercises = document.querySelectorAll(".exercise");
+
+                function updateProgress() {
+                    const n = exercises.length;
+                    let solved = 0;
+                    exercises.forEach((ex) => { if (state[ex.dataset.id] && state[ex.dataset.id].solved) solved++; });
+                    document.getElementById("ex-progress").textContent = solved + " of " + n + " solved";
+                }
+
+                exercises.forEach((ex) => {
+                    const id = ex.dataset.id;
+                    const answer = parseAnswer(ex.dataset.answer);
+                    const input = ex.querySelector("input");
+                    const feedback = ex.querySelector(".feedback");
+                    const btn = ex.querySelector("button.check");
+
+                    if (state[id]) {
+                        input.value = state[id].input || "";
+                        if (state[id].solved) {
+                            ex.classList.add("solved");
+                            feedback.textContent = "✓ correct";
+                            feedback.style.color = "#27ae60";
+                        }
+                    }
+
+                    function check() {
+                        const val = parseAnswer(input.value);
+                        state[id] = state[id] || {};
+                        state[id].input = input.value;
+                        if (isNaN(val)) {
+                            feedback.textContent = "couldn't parse that (try a number, or something like 2*pi)";
+                            feedback.style.color = "#c0392b";
+                        } else if (Math.abs(val - answer) < 0.02 * Math.max(1, Math.abs(answer))) {
+                            state[id].solved = true;
+                            ex.classList.add("solved");
+                            feedback.textContent = "✓ correct";
+                            feedback.style.color = "#27ae60";
+                        } else {
+                            feedback.textContent = "not quite, try again (hint below)";
+                            feedback.style.color = "#c0392b";
+                        }
+                        save();
+                        updateProgress();
+                    }
+
+                    btn.addEventListener("click", check);
+                    input.addEventListener("keydown", (e) => { if (e.key === "Enter") check(); });
+                });
+
+                updateProgress();
+            })();
+        </script>
+
+        <script type="module">
+            import * as THREE from "three";
+            import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+            // ================= Stokes membrane demo =================
+            (function () {
+                const container = document.getElementById("st-container");
+                const scene = new THREE.Scene();
+                scene.background = new THREE.Color(0xffffff);
+                const w = container.clientWidth, h = container.clientHeight;
+                const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+                camera.position.set(2.4, 1.8, 2.4);
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(w, h);
+                container.appendChild(renderer.domElement);
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                window.addEventListener("resize", () => {
+                    const w2 = container.clientWidth, h2 = container.clientHeight;
+                    camera.aspect = w2 / h2;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w2, h2);
+                });
+
+                scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+                const dl = new THREE.DirectionalLight(0xffffff, 1.2);
+                dl.position.set(2, 3, 1);
+                scene.add(dl);
+
+                // boundary circle (math coords (X,Y) plane -> world (X, 0, Y))
+                const bpts = [];
+                for (let i = 0; i <= 128; i++) {
+                    const t = (i / 128) * 2 * Math.PI;
+                    bpts.push(new THREE.Vector3(Math.cos(t), 0, Math.sin(t)));
+                }
+                scene.add(new THREE.Line(
+                    new THREE.BufferGeometry().setFromPoints(bpts),
+                    new THREE.LineBasicMaterial({ color: 0x222222 })));
+
+                // membrane: math coords P(r,φ) = (r cosφ, r sinφ, Z), Z = hb·cos(π r/2)
+                const NR = 24, NP = 64;
+                let hb = 0.6;
+                function zOf(r) { return hb * Math.cos((Math.PI * r) / 2); }
+
+                let mesh = null, wire = null;
+                const arrowGroup = new THREE.Group();
+                scene.add(arrowGroup);
+
+                function mathToWorld(X, Y, Z) { return new THREE.Vector3(X, Z, Y); }
+
+                function rebuild() {
+                    if (mesh) { scene.remove(mesh); mesh.geometry.dispose(); }
+                    if (wire) { scene.remove(wire); wire.geometry.dispose(); }
+                    const positions = [], indices = [];
+                    const mathPos = []; // for flux computation
+                    for (let i = 0; i <= NR; i++) {
+                        const r = i / NR;
+                        for (let j = 0; j <= NP; j++) {
+                            const phi = (j / NP) * 2 * Math.PI;
+                            const X = r * Math.cos(phi), Y = r * Math.sin(phi), Z = zOf(r);
+                            mathPos.push([X, Y, Z]);
+                            const p = mathToWorld(X, Y, Z);
+                            positions.push(p.x, p.y, p.z);
+                        }
+                    }
+                    for (let i = 0; i < NR; i++)
+                        for (let j = 0; j < NP; j++) {
+                            const a = i * (NP + 1) + j, b = a + NP + 1;
+                            indices.push(a, b, a + 1, b, b + 1, a + 1);
+                        }
+                    const g = new THREE.BufferGeometry();
+                    g.setIndex(indices);
+                    g.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+                    g.computeVertexNormals();
+                    mesh = new THREE.Mesh(g, new THREE.MeshStandardMaterial({
+                        color: 0x7a8fd4, side: THREE.DoubleSide,
+                        transparent: true, opacity: 0.5, roughness: 0.6 }));
+                    scene.add(mesh);
+                    wire = new THREE.LineSegments(
+                        new THREE.WireframeGeometry(g),
+                        new THREE.LineBasicMaterial({ color: 0x5a6fb4, transparent: true, opacity: 0.15 }));
+                    scene.add(wire);
+
+                    // numeric flux of curl F = (0,0,2) through the membrane, in math coords
+                    let flux = 0;
+                    function idx(i, j) { return i * (NP + 1) + j; }
+                    function tri(aI, bI, cI) {
+                        const A = mathPos[aI], B = mathPos[bI], C = mathPos[cI];
+                        const e1 = [B[0] - A[0], B[1] - A[1], B[2] - A[2]];
+                        const e2 = [C[0] - A[0], C[1] - A[1], C[2] - A[2]];
+                        // z-component of cross(e1,e2)/2, dotted with (0,0,2)
+                        const crossZ = e1[0] * e2[1] - e1[1] * e2[0];
+                        flux += crossZ; // = 2 * (crossZ / 2)
+                    }
+                    for (let i = 0; i < NR; i++)
+                        for (let j = 0; j < NP; j++) {
+                            tri(idx(i, j), idx(i + 1, j), idx(i, j + 1));
+                            tri(idx(i + 1, j), idx(i + 1, j + 1), idx(i, j + 1));
+                        }
+
+                    // numeric circulation of F = (-Y, X, 0) around the boundary
+                    let circ = 0;
+                    const NB = 256;
+                    for (let i = 0; i < NB; i++) {
+                        const t0 = (i / NB) * 2 * Math.PI, t1 = ((i + 1) / NB) * 2 * Math.PI;
+                        const x0 = Math.cos(t0), y0 = Math.sin(t0);
+                        const x1 = Math.cos(t1), y1 = Math.sin(t1);
+                        const xm = (x0 + x1) / 2, ym = (y0 + y1) / 2;
+                        circ += -ym * (x1 - x0) + xm * (y1 - y0);
+                    }
+
+                    document.getElementById("st-readout").innerHTML =
+                        "&int;<sub>M</sub> d&omega; (flux of curl) = <b>" + flux.toFixed(4) +
+                        "</b> &nbsp;&nbsp; &int;<sub>&part;M</sub> &omega; (circulation) = <b>" +
+                        circ.toFixed(4) + "</b> &nbsp;&nbsp; 2&pi; &approx; 6.2832";
+                }
+
+                function rebuildArrows() {
+                    arrowGroup.clear();
+                    if (!document.getElementById("st-arrows").checked) return;
+                    // F arrows on the boundary (tangent, since F = (-y,x,0))
+                    for (let i = 0; i < 16; i++) {
+                        const t = (i / 16) * 2 * Math.PI;
+                        const X = Math.cos(t), Y = Math.sin(t);
+                        const origin = mathToWorld(X, Y, 0);
+                        const dir = mathToWorld(-Y, X, 0).normalize();
+                        arrowGroup.add(new THREE.ArrowHelper(dir, origin, 0.3, 0xc0392b, 0.09, 0.05));
+                    }
+                    // curl arrows (vertical) sprinkled on the membrane
+                    for (let i = 0; i < 5; i++) {
+                        const r = (i + 0.5) / 5 * 0.9;
+                        for (let j = 0; j < 6; j++) {
+                            const phi = (j / 6) * 2 * Math.PI + i;
+                            const X = r * Math.cos(phi), Y = r * Math.sin(phi);
+                            const origin = mathToWorld(X, Y, zOf(r));
+                            arrowGroup.add(new THREE.ArrowHelper(
+                                new THREE.Vector3(0, 1, 0), origin, 0.22, 0x27ae60, 0.07, 0.04));
+                        }
+                    }
+                }
+
+                const hSlider = document.getElementById("st-h");
+                hSlider.addEventListener("input", () => {
+                    hb = parseFloat(hSlider.value);
+                    rebuild();
+                    rebuildArrows();
+                });
+                document.getElementById("st-arrows").addEventListener("change", rebuildArrows);
+
+                rebuild();
+                rebuildArrows();
+                (function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update();
+                    renderer.render(scene, camera);
+                })();
+            })();
+        </script>
+
+        <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>
