@@ -1,0 +1,1859 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Introduction to Fiber Bundles</title>
+        <style>
+            body {
+                font-family: "Computer Modern Serif", serif;
+                font-size: 20px;
+                line-height: 1.6em;
+                max-width: 780px;
+                margin: 0 auto;
+                padding: 1em;
+            }
+            h1, h2 {
+                line-height: 1.3em;
+            }
+            nav.crumbs {
+                font-size: 0.9em;
+                margin-bottom: 1.5em;
+            }
+            figure {
+                margin: 2em auto;
+                text-align: center;
+            }
+            figure canvas {
+                border: 1px solid #ccc;
+                background: #fff;
+                max-width: 100%;
+            }
+            figcaption {
+                font-size: 0.85em;
+                color: #555;
+                margin-top: 0.5em;
+            }
+            .controls {
+                margin: 0.8em 0;
+                font-size: 0.9em;
+            }
+            .controls input[type="range"] {
+                width: 260px;
+                vertical-align: middle;
+            }
+            .readout {
+                font-size: 0.9em;
+                color: #333;
+                min-height: 2.4em;
+            }
+            details.info {
+                border: 1px solid #9db8d2;
+                background: #f0f5fb;
+                border-radius: 6px;
+                padding: 0.4em 1em;
+                margin: 1.5em 0;
+            }
+            details.info summary {
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .aside {
+                border-left: 4px solid #c9a227;
+                background: #fdf8ec;
+                padding: 0.6em 1.2em;
+                margin: 1.5em 0;
+                font-size: 0.95em;
+            }
+            .three-container {
+                width: 100%;
+                height: 420px;
+                border: 1px solid #ccc;
+                background: #fff;
+                cursor: grab;
+            }
+            .side-by-side {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4em;
+                flex-wrap: wrap;
+            }
+            .side-by-side .three-container {
+                flex: 1 1 340px;
+                width: auto;
+                height: 380px;
+            }
+            .side-by-side .phi-arrow {
+                font-size: 1.1em;
+                padding: 0 0.2em;
+            }
+            ul.legend li {
+                margin-bottom: 0.3em;
+            }
+            .swatch {
+                display: inline-block;
+                width: 0.7em;
+                height: 0.7em;
+                border-radius: 50%;
+                margin-right: 0.15em;
+            }
+            .next {
+                border: 1px solid #b3cbb3;
+                background: #f0f8f0;
+                border-radius: 6px;
+                padding: 0.6em 1.2em;
+                margin: 2em 0;
+            }
+            button {
+                font-family: inherit;
+                font-size: 0.95em;
+            }
+        </style>
+
+        <!-- KaTeX -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+            integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww"
+            crossorigin="anonymous"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+            integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+            integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"
+            crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/img/android-chrome-512x512.png"
+        />
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <main>
+            <nav class="crumbs"><a href="/math.html">&larr; Tobi's math</a></nav>
+
+            <h1>Introduction to Fiber Bundles</h1>
+
+            <p>
+                If you hang around theoretical physics long enough, you keep
+                hearing the same phrase: <b>fiber bundle</b>. Electromagnetism
+                is "a
+                <a href="https://en.wikipedia.org/wiki/Gauge_theory"
+                    title="Gauge theory">U(1) gauge theory</a>", which is
+                secretly a statement about a fiber bundle. The strong force
+                lives on an SU(3) bundle. General relativity is the geometry of
+                the
+                <a href="https://en.wikipedia.org/wiki/Tangent_bundle"
+                    title="Tangent bundle">tangent bundle</a>
+                of spacetime. In the 20th century, geometry ate physics, and
+                bundles are the plates it ate off of. And yet most of us were
+                never taught what a bundle actually is.
+            </p>
+            <p>
+                I want to fix that here. Textbooks usually open with the
+                definition: a total space \( E \), a base \( B \), a projection
+                \( \pi : E \to B \), local trivializations, structure groups.
+                All of that is true and none of it explains anything. The
+                definition is the fossil left behind after the idea died and
+                got compressed. The idea itself is alive, and it fits in one
+                sentence: <b>a fiber bundle is a space built by attaching a
+                copy of one space to every point of another, possibly with a
+                twist</b>. The twist is the whole story. This page builds one
+                real bundle from scratch, with your hands on the sliders, and
+                by the end the twist will be something you have <em>seen</em>.
+            </p>
+
+            <h2>Why you should care</h2>
+            <p>
+                Two reasons, one from physics and one from geometry.
+            </p>
+            <p>
+                The physics reason: in
+                <a href="https://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory"
+                    title="Yang–Mills theory">Yang&ndash;Mills theory</a>, the
+                forces of nature are not things that happen <em>in</em> space,
+                they are properties <em>of</em> a space, specifically the
+                curvature of a bundle sitting over spacetime. A photon is a
+                ripple in the geometry of a U(1) bundle the same way a
+                gravitational wave is a ripple in the geometry of spacetime.
+                When physicists say the Standard Model gauge group is
+                \( SU(3) \times SU(2) \times U(1) \), they are naming the fiber
+                of a bundle. If you don't know what a bundle is, that sentence
+                is incantation. If you do, it's a picture.
+            </p>
+            <p>
+                The geometry reason: the moment you try to do calculus on a
+                curved space, bundles are forced on you. A derivative is a
+                tangent vector, tangent vectors at different points live in
+                different tangent spaces, and if you want to compare them,
+                differentiate them, or integrate them, you need one space that
+                organizes all of the tangent spaces together. That space is a
+                bundle. It's not an optional abstraction, it's the price of
+                keeping the books straight.
+            </p>
+            <p>
+                The whole subject is easier if you learn it on the smallest
+                example that isn't trivial. So we're going to spend this entire
+                page on one space: the circle.
+            </p>
+
+            <h2>The circle, our home base</h2>
+            <p>
+                Take the complex numbers of absolute value one:
+            </p>
+            <p>
+                \[ U(1) = \{ z \in \mathbb{C} : |z| = 1 \} = \{ e^{i\theta} :
+                \theta \in \mathbb{R} \} \]
+            </p>
+            <p>
+                As a set, it's the unit circle. Its topology is the
+                <a href="https://en.wikipedia.org/wiki/Subspace_topology"
+                    title="Subspace topology">subspace topology</a>
+                inherited from \( \mathbb{C} \): a set \( V \subseteq U(1) \)
+                is open exactly when \( V = U(1) \cap W \) for some open
+                \( W \subseteq \mathbb{C} \). Concretely, the open sets are
+                unions of open arcs. That's it. Drag the slider and move the
+                point \( e^{i\theta} \) around:
+            </p>
+
+            <figure>
+                <canvas id="u1-canvas" width="340" height="340"></canvas>
+                <div class="controls">
+                    <label for="u1-theta">\( \theta \): </label>
+                    <input type="range" id="u1-theta" min="0" max="6.2832" step="0.005" value="0.7" />
+                </div>
+                <div class="readout" id="u1-readout"></div>
+                <figcaption>
+                    The point \( z = e^{i\theta} = \cos\theta + i\sin\theta \)
+                    moving around \( U(1) \).
+                </figcaption>
+            </figure>
+
+            <details class="info">
+                <summary>U(1) versus \( S^1 \): the group and its shadow</summary>
+                <p>
+                    I've been sloppy on purpose. \( S^1 \) is the
+                    <em>topological space</em>: the bare circle, points and
+                    open arcs, nothing else. \( U(1) \) is that space
+                    <em>plus a multiplication</em>:
+                    \( e^{i\alpha} \cdot e^{i\beta} = e^{i(\alpha+\beta)} \),
+                    with identity \( 1 \) and inverse
+                    \( (e^{i\theta})^{-1} = e^{-i\theta} \). Multiplying by a
+                    fixed \( e^{i\alpha} \) rotates the whole circle by
+                    \( \alpha \).
+                </p>
+                <p>
+                    A space with a smooth group structure like this is called a
+                    <a href="https://en.wikipedia.org/wiki/Lie_group"
+                        title="Lie group">Lie group</a>. So the precise
+                    statement is: \( U(1) \) is a Lie group whose underlying
+                    space is \( S^1 \). Same set of points, different amount of
+                    structure. The distinction matters later, because the group
+                    structure is exactly what will make the circle's tangent
+                    bundle so well-behaved.
+                </p>
+            </details>
+
+            <h2>Gauss and the view from inside</h2>
+            <p>
+                In the 1820s
+                <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss"
+                    title="Carl Friedrich Gauss">Gauss</a>
+                was surveying the Kingdom of Hanover, triangulating the land
+                with theodolites, and it got him thinking about what a surveyor
+                confined to a surface could ever figure out about the shape of
+                that surface. His answer is the
+                <a href="https://en.wikipedia.org/wiki/Theorema_Egregium"
+                    title="Theorema Egregium">Theorema Egregium</a>, the
+                "remarkable theorem": the curvature of a surface can be
+                measured entirely from within the surface, using only
+                distances measured along it. You do not need to stand outside.
+                A flat map of the Earth must distort distances, and you can
+                prove it without ever leaving the ground: draw a big triangle,
+                sum the angles, and the excess over \( 180^\circ \) is
+                curvature, measured from inside.
+            </p>
+            <p>
+                This is the founding idea of differential geometry:
+                <b>intrinsic</b> properties, the ones knowable from inside,
+                versus <b>extrinsic</b> ones, which depend on how the space
+                sits in some bigger space.
+                <a href="https://en.wikipedia.org/wiki/Bernhard_Riemann"
+                    title="Bernhard Riemann">Riemann</a>
+                took it and ran: his 1854 habilitation lecture built geometry
+                for spaces of any dimension with no outside at all, and sixty
+                years later Einstein used it to describe gravity, since we are
+                surveyors confined to spacetime with no outside vantage point.
+            </p>
+
+            <div class="aside">
+                <p>
+                    <b>An aside on Flatland.</b> In 1884 Edwin A. Abbott
+                    published
+                    <a href="https://en.wikipedia.org/wiki/Flatland"
+                        title="Flatland: A Romance of Many Dimensions">Flatland:
+                    A Romance of Many Dimensions</a>, narrated by A Square, a
+                    resident of a two-dimensional world. In one chapter the
+                    Square dreams of visiting <b>Lineland</b>, a
+                    one-dimensional world whose inhabitants slide along a
+                    single line and perceive their neighbors only as points.
+                    The Square tries to explain "left" and "right" to the King
+                    of Lineland, motions grandly through the second dimension,
+                    and the King sees points appearing and vanishing and
+                    concludes his visitor is a lunatic.
+                </p>
+                <p>
+                    Now put a Linelander on our circle instead of a line. Here
+                    is the uncomfortable fact: <b>locally, they cannot tell the
+                    difference</b>. Every small neighborhood of the circle
+                    looks exactly like a small piece of the line. A
+                    one-dimensional surveyor doing Gauss-style intrinsic
+                    measurements finds nothing, because a curve has no
+                    intrinsic curvature to find. The difference between the
+                    line and the circle is invisible in every laboratory of
+                    every Linelander. The difference is <em>global</em>: walk
+                    far enough on the circle and you come home. Fiber bundles
+                    are the mathematics of exactly this kind of global fact,
+                    the kind you can never detect with local measurements.
+                </p>
+            </div>
+
+            <h2>The tangent line</h2>
+            <p>
+                Our Linelander does have velocities. At the point
+                \( e^{i\theta} \), a velocity is a vector pointing along the
+                circle's tangent direction, which is
+                \( ie^{i\theta} = (-\sin\theta, \cos\theta) \). The set of all
+                possible velocities at that one point is a line, the
+                <b>tangent line</b> \( T_{e^{i\theta}} S^1 \). Drag the point
+                and watch its tangent line go with it:
+            </p>
+
+            <figure>
+                <canvas id="tan-canvas" width="340" height="340"></canvas>
+                <div class="controls">
+                    <label for="tan-theta">\( \theta \): </label>
+                    <input type="range" id="tan-theta" min="0" max="6.2832" step="0.005" value="0.7" />
+                </div>
+                <div class="readout" id="tan-readout"></div>
+                <figcaption>
+                    The tangent line \( T_z S^1 \) at \( z = e^{i\theta} \),
+                    with the unit tangent vector \( iz \) drawn as an arrow.
+                </figcaption>
+            </figure>
+
+            <details class="info">
+                <summary>The Lie algebra: how the line is secretly inside the circle</summary>
+                <p>
+                    Look at the tangent line at the identity element
+                    \( 1 \in U(1) \). It's the vertical line
+                    \( i\mathbb{R} = \{ i\theta : \theta \in \mathbb{R} \} \).
+                    This line, together with a bracket operation that is
+                    trivial here, is called the
+                    <a href="https://en.wikipedia.org/wiki/Lie_algebra"
+                        title="Lie algebra">Lie algebra</a>
+                    of the group, written \( \mathfrak{u}(1) \). The slogan:
+                    <b>the Lie algebra is the derivative of the group at the
+                    identity</b>.
+                </p>
+                <p>
+                    The exponential map sends the line to the circle:
+                    \[ \exp : \mathfrak{u}(1) \to U(1), \qquad i\theta \mapsto
+                    e^{i\theta} \]
+                    and it converts addition on the line into multiplication on
+                    the circle, \( e^{i\alpha}e^{i\beta} = e^{i(\alpha+\beta)}
+                    \). The line wraps around the circle infinitely many
+                    times: \( \theta \) and \( \theta + 2\pi \) land on the
+                    same point. So the flat, infinite Lie algebra knows
+                    everything about the group <em>locally</em>, and is blind
+                    to exactly one thing: the fact that the circle closes up.
+                    Local information versus global twist, the same theme
+                    again.
+                </p>
+                <p>
+                    One more observation we'll need: since multiplying by
+                    \( e^{i\alpha} \) rotates the circle, it also carries the
+                    tangent line at \( 1 \) to the tangent line at
+                    \( e^{i\alpha} \). The group moves its own tangent spaces
+                    around. Remember this when the tangent bundle turns out to
+                    be a product.
+                </p>
+            </details>
+
+            <h2>What is a manifold?</h2>
+            <p>
+                Time to say what kind of space the circle is an example of. A
+                <a href="https://en.wikipedia.org/wiki/Manifold"
+                    title="Manifold">manifold</a>
+                of dimension \( n \) is a space \( M \) in which every point
+                has a neighborhood \( U \) that looks like \( \mathbb{R}^n \):
+                there is a homeomorphism \( \varphi : U \to \mathbb{R}^n \),
+                called a <b>chart</b>. A collection of charts covering \( M \)
+                is an <b>atlas</b>, exactly like the book of maps: no single
+                page shows the whole Earth, but every place is on some page.
+                If the transition maps
+                \( \varphi_2 \circ \varphi_1^{-1} \) between overlapping
+                charts are smooth, we call \( M \) a smooth manifold and we can
+                do calculus on it.
+            </p>
+            <p>
+                The circle needs at least two charts. For example, the angle
+                function \( \theta \) works on the circle minus the point
+                \( 1 \), and a second angle function shifted by \( \pi \)
+                works on the circle minus \( -1 \). On the overlaps, the two
+                angles differ by a constant, which is as smooth as functions
+                get. Notice what the two-chart requirement is telling us: the
+                circle is locally a line but not globally a line. The atlas is
+                where the global twist hides.
+            </p>
+
+            <h2>All the tangent lines at once</h2>
+            <p>
+                Here is the problem that forces bundles on us. A vector field
+                on the circle assigns to each point a tangent vector at that
+                point. To differentiate such a thing, or even to say it is
+                <em>continuous</em>, you need all the tangent vectors at all
+                the points to live together in one topological space. But the
+                tangent line at \( e^{i\theta} \) and the tangent line at
+                \( e^{i\theta'} \) are different lines. A vector in one cannot
+                be added to a vector in the other. They don't even intersect
+                the same way twice.
+            </p>
+            <p>
+                The fix is to keep better books. Define the
+                <b>tangent bundle</b>
+                \[ TS^1 = \{ (p, v) : p \in S^1,\; v \in T_p S^1 \} \]
+                the set of all pairs (point, velocity at that point), with the
+                projection \( \pi : TS^1 \to S^1 \) sending \( (p,v) \mapsto p
+                \). The <b>fiber</b> over \( p \) is
+                \( \pi^{-1}(p) = T_p S^1 \), one tangent line per point.
+            </p>
+            <p>
+                But what does this space look like? If you draw all the
+                tangent lines in the plane, you get a mess: they overlap and
+                cross and the picture lies to you, because distinct points of
+                distinct fibers get drawn on top of each other. The trick is
+                to use a third dimension to give the fibers room. Press
+                <b>sweep</b> to lay down the tangent lines, then drag
+                <b>organize</b> to rotate each line out of the plane. Drag the
+                scene to orbit it.
+            </p>
+
+            <figure>
+                <div id="tb-container" class="three-container"></div>
+                <div class="controls">
+                    <button id="tb-sweep">&#9654; sweep</button>
+                    &nbsp;&nbsp;
+                    <label for="tb-organize">organize: </label>
+                    <input type="range" id="tb-organize" min="0" max="1" step="0.01" value="0" />
+                </div>
+                <div class="readout" id="tb-readout"></div>
+                <figcaption>
+                    Left position of the slider: tangent lines drawn in the
+                    plane, overlapping. Right position: each fiber rotated
+                    into its own vertical direction. The tangent bundle
+                    \( TS^1 \) is a cylinder.
+                </figcaption>
+            </figure>
+
+            <p>
+                Fully organized, the tangent bundle of the circle is a
+                cylinder:
+                \[ TS^1 \cong S^1 \times \mathbb{R} \]
+                This is the best case scenario, called a <b>trivial
+                bundle</b>: the total space \( E \) factors as the base times
+                the fiber, \( E = B \times F \). Every fiber is a copy of
+                \( F = \mathbb{R} \), and the copies are glued together with no
+                twist at all. The reason the circle gets away with this is the
+                group structure from the collapsible box above: multiplication
+                by \( e^{i\alpha} \) slides tangent lines onto each other
+                consistently, all the way around.
+            </p>
+            <p>
+                Do not let the small example fool you into thinking this
+                always works. It does not. The tangent bundle of the
+                two-sphere \( S^2 \) is <em>not</em> a product
+                \( S^2 \times \mathbb{R}^2 \). If it were, you could choose a
+                nonzero tangent vector continuously at every point, and the
+                <a href="https://en.wikipedia.org/wiki/Hairy_ball_theorem"
+                    title="Hairy ball theorem">hairy ball theorem</a>
+                says you can't: every wind pattern on Earth has a calm point.
+                Watch it happen. Here are three continuous tangent vector
+                fields on the sphere, each hair drawn light at its root and
+                dark at its tip, with the zeros marked by pulsing red dots:
+            </p>
+
+            <figure>
+                <div id="hb-container" class="three-container"></div>
+                <div class="controls">
+                    <label><input type="radio" name="hb-field" value="combed" checked /> combed pole to pole</label>
+                    &nbsp;
+                    <label><input type="radio" name="hb-field" value="swirl" /> swirl</label>
+                    &nbsp;
+                    <label><input type="radio" name="hb-field" value="dipole" /> dipole</label>
+                </div>
+                <div class="readout" id="hb-readout"></div>
+                <figcaption>
+                    Continuous tangent vector fields on \( S^2 \). However you
+                    comb, at least one red dot survives. Drag to orbit.
+                </figcaption>
+            </figure>
+
+            <p>
+                It is tempting to talk about "the" zero point of a field like
+                this, but that is slightly more than the theorem gives you.
+                What the hairy ball theorem <em>proves</em> is that every
+                continuous tangent vector field on \( S^2 \) vanishes
+                <b>somewhere</b>: at least one zero, with no promise about how
+                many. The combed field and the swirl each have two, one at
+                each pole. The dipole, built by wrapping a constant vector
+                field of the plane onto the sphere by stereographic
+                projection, manages with a single zero. What is impossible is
+                a field with <em>no</em> zeros. You can herd the bald spots
+                around the sphere, you can merge them, but you can never comb
+                them away.
+            </p>
+            <p>
+                There is a conservation law underneath. Each isolated zero
+                carries an integer <b>index</b>: the number of times the field
+                rotates as you walk a small loop around the zero. The
+                <a href="https://en.wikipedia.org/wiki/Poincar%C3%A9%E2%80%93Hopf_theorem"
+                    title="Poincaré–Hopf theorem">Poincar&eacute;&ndash;Hopf
+                theorem</a>
+                says the indices of any field must sum to the
+                <a href="https://en.wikipedia.org/wiki/Euler_characteristic"
+                    title="Euler characteristic">Euler characteristic</a>
+                of the surface, and \( \chi(S^2) = 2 \). The combed field pays
+                its debt as \( 1 + 1 \), the dipole as a single \( 2 \), and
+                no field can pay \( 0 \). This is exactly the obstruction to
+                \( TS^2 \) being trivial: a product structure \( S^2 \times
+                \mathbb{R}^2 \) would hand you a nowhere-zero field for free,
+                just take the constant vector \( (1, 0) \) in every fiber.
+                The circle escaped because \( \chi(S^1) = 0 \). So does the
+                torus: a donut can be combed flat, which is one reason tori
+                show up everywhere in dynamics.
+            </p>
+            <p>
+                Triviality is a special property, not a law. Which raises the
+                question: what does a non-trivial bundle actually look like?
+                We can build the simplest one right now.
+            </p>
+
+            <h2>The M&ouml;bius strip: a bundle that refuses to factor</h2>
+            <p>
+                Take the same base \( B = S^1 \), and this time attach the
+                fiber \( F = [0,1] \), a closed interval, to each point. If you
+                attach the intervals with no twist, you get the cylinder
+                \( S^1 \times [0,1] \), a trivial bundle again. But there is
+                another way to glue. Go around the circle and, when you close
+                the loop, glue the last interval to the first one
+                <em>flipped</em>:
+                \[ E = \big( [0, 2\pi] \times [0,1] \big) \,/\, (0, s) \sim
+                (2\pi,\, 1 - s) \]
+                That quotient is the
+                <a href="https://en.wikipedia.org/wiki/M%C3%B6bius_strip"
+                    title="Möbius strip">M&ouml;bius strip</a>.
+                Walk through it fiber by fiber. The current fiber has a
+                <span style="color:#c0392b"><b>red</b></span> end at
+                \( s = 0 \) and a
+                <span style="color:#27ae60"><b>green</b></span> end at
+                \( s = 1 \). Drag \( \theta \) around a full loop and watch
+                what the gluing does to them:
+            </p>
+
+            <figure>
+                <div id="mb-container" class="three-container"></div>
+                <div class="controls">
+                    <label for="mb-theta">\( \theta \): </label>
+                    <input type="range" id="mb-theta" min="0" max="6.2832" step="0.005" value="0" />
+                    <br />
+                    <label><input type="radio" name="mb-twist" value="1" checked /> half twist (M&ouml;bius)</label>
+                    &nbsp;
+                    <label><input type="radio" name="mb-twist" value="0" /> no twist (cylinder)</label>
+                    &nbsp;&nbsp;
+                    <label><input type="checkbox" id="mb-trail" checked /> keep visited fibers</label>
+                    &nbsp;
+                    <label><input type="checkbox" id="mb-strip" /> show the whole strip</label>
+                </div>
+                <div class="readout" id="mb-readout"></div>
+                <figcaption>
+                    The M&ouml;bius strip assembled fiber by fiber over
+                    \( S^1 \). Each fiber is a copy of \( [0,1] \).
+                </figcaption>
+            </figure>
+
+            <p>
+                At \( \theta = 2\pi \) you are standing over the same point of
+                the base circle you started at, but red and green have traded
+                places. The fiber came back flipped. No local observation
+                detects this: over any arc of the circle, however large, the
+                strip is just (arc) \( \times \, [0,1] \), indistinguishable
+                from the cylinder. Our Linelander, living on the base circle
+                and sampling the fiber above their head, sees a perfectly
+                ordinary interval everywhere they go. The flip is a global
+                fact, like the closing-up of the circle itself.
+            </p>
+            <p>
+                And it is a <em>fact</em>, not an artifact of how we drew it.
+                Here is a proof that the M&ouml;bius strip \( E \) is not
+                homeomorphic to the cylinder \( S^1 \times [0,1] \): look at
+                their boundaries. The cylinder's boundary is two disjoint
+                circles, top and bottom. The M&ouml;bius strip's boundary is
+                <em>one</em> circle: the flip connects the \( s = 0 \) edge to
+                the \( s = 1 \) edge, so the boundary is a single loop that
+                goes around the base twice. Homeomorphic spaces have
+                homeomorphic boundaries, so \( E \neq S^1 \times [0,1] \). The
+                product structure \( E = B \times F \) is genuinely
+                impossible, even though every local piece has it.
+            </p>
+            <p>
+                This is why the general definition exists. Since we cannot
+                demand \( E = B \times F \) globally, we demand the next best
+                thing, and that demand <em>is</em> the definition:
+            </p>
+
+            <details class="info" open>
+                <summary>Definition: fiber bundle</summary>
+                <p>
+                    A <b>fiber bundle</b> is a tuple \( (E, B, \pi, F) \): a
+                    total space \( E \), a base \( B \), a fiber \( F \), and a
+                    continuous surjection \( \pi : E \to B \), such that every
+                    point of \( B \) has a neighborhood \( U \) with a
+                    homeomorphism
+                    \[ \phi_U : \pi^{-1}(U) \xrightarrow{\;\cong\;} U \times F
+                    \]
+                    that respects the projection. The maps \( \phi_U \) are
+                    called <b>local trivializations</b>: locally, every bundle
+                    is a product. The notation
+                    \( F \hookrightarrow E \xrightarrow{\pi} B \) summarizes
+                    the whole package.
+                </p>
+                <p>
+                    All the global information lives in how the local pieces
+                    are glued: on an overlap \( U \cap V \), the composite
+                    \( \phi_U \circ \phi_V^{-1} \) rearranges fibers by a
+                    <b>transition function</b> valued in some group \( G \) of
+                    symmetries of \( F \), called the <b>structure group</b>.
+                    For the M&ouml;bius strip, \( G = \mathbb{Z}/2 \): the only
+                    gluing data is "flipped or not," and the strip uses the
+                    flip. For the tangent bundle of an \( n \)-manifold, \( G
+                    \) is the group of invertible linear maps of
+                    \( \mathbb{R}^n \). And when physicists say
+                    electromagnetism is a U(1) gauge theory, they mean: a
+                    bundle over spacetime with structure group \( U(1) \), our
+                    circle, now playing the role of the twist instead of the
+                    base. <b>Gauge theory is the physics of how the fibers are
+                    glued.</b>
+                </p>
+            </details>
+
+            <p>
+                A definition with that many moving parts deserves a picture
+                with the same moving parts. Below, the M&ouml;bius strip is
+                the total space \( E \), and the slider moves a point \( p \)
+                around the base circle \( B \). Everything in the definition
+                is color-coded, and the flattened rectangle on the right is
+                what the local trivialization \( \phi_U \) sees:
+            </p>
+
+            <figure>
+                <div class="side-by-side">
+                    <div id="lt-container" class="three-container"></div>
+                    <div class="phi-arrow">\( \xrightarrow{\;\phi_U\;} \)</div>
+                    <canvas id="lt-canvas" width="300" height="380"></canvas>
+                </div>
+                <div class="controls">
+                    <label for="lt-theta">move \( p \) around the base: </label>
+                    <input type="range" id="lt-theta" min="0" max="6.2832" step="0.005" value="0.8" />
+                </div>
+                <div class="readout" id="lt-readout"></div>
+                <figcaption>
+                    Left: the M&ouml;bius strip with the patch
+                    \( \pi^{-1}(U) \) over a sliding window \( U \). Right:
+                    the same patch after \( \phi_U \) flattens it into
+                    \( U \times [0,1] \). Drag the 3D view to orbit.
+                </figcaption>
+            </figure>
+
+            <p>
+                Here is the dictionary between the definition and the
+                graphic:
+            </p>
+            <ul class="legend">
+                <li>
+                    The <span class="swatch" style="background:#c0392b"></span>red
+                    dot is the point \( p \in B \), living on the base circle.
+                </li>
+                <li>
+                    The <span class="swatch" style="background:#c9a227"></span>gold
+                    arc is its neighborhood \( U \subset B \). Unrolled, an
+                    open arc is homeomorphic to the open interval \( (0,1) \):
+                    open because the window has no endpoints of its own, it
+                    just fades into the rest of the circle.
+                </li>
+                <li>
+                    The <span class="swatch" style="background:#4a90d9"></span>blue
+                    patch is \( \pi^{-1}(U) \subset E \): every point of the
+                    strip that the projection \( \pi \) sends into \( U \).
+                    That's what \( \pi^{-1} \) means: "everything upstairs from
+                    here." The black segment inside it is the single fiber
+                    \( \pi^{-1}(p) \cong [0,1] \), with its
+                    <span style="color:#c0392b"><b>red</b></span> end at
+                    \( s = 0 \) and
+                    <span style="color:#27ae60"><b>green</b></span> end at
+                    \( s = 1 \).
+                </li>
+                <li>
+                    The rectangle on the right is \( U \times [0,1] \cong
+                    (0,1) \times [0,1] \): open in the base direction (drawn
+                    with dashed edges, since those edges are not part of the
+                    set) and closed in the fiber direction (solid edges,
+                    since each fiber contains both of its endpoints).
+                </li>
+                <li>
+                    The map \( \phi_U \) is the flattening itself. "Respects
+                    the projection" means it is fiber-by-fiber bookkeeping:
+                    the fiber over each point of \( U \) becomes the vertical
+                    column over that same point, so \( \pi \) on the left
+                    turns into "forget the vertical coordinate" on the right,
+                    the downward arrow in the picture.
+                </li>
+            </ul>
+            <p>
+                Now drag the slider all the way around, and watch the right
+                panel while the left one does something dramatic. The window
+                slides over the glue seam, the patch twists through space,
+                the red and green ends of the fiber trade places between
+                \( \theta = 0 \) and \( \theta = 2\pi \), and the rectangle
+                <em>never changes</em>. That is the content of local
+                triviality: over any single window, the M&ouml;bius strip is
+                indistinguishable from the cylinder, and \( \phi_U \) is the
+                witness. The twist is real, but it does not live in any one
+                rectangle. It lives in the <em>overlaps</em>: cover the
+                circle with two windows and compare their \( \phi \)'s where
+                they both apply, and on one of the two overlap regions the
+                comparison is the flip \( s \mapsto 1 - s \). That comparison
+                is the transition function from the definition, and it is the
+                only place the global structure of the bundle is written
+                down.
+            </p>
+
+            <h2>Where differential forms come in</h2>
+            <p>
+                One loose end, and it opens the door to the next article. Go
+                back to the circle and its angle \( \theta \). As a function,
+                \( \theta \) does not exist globally: it jumps by \( 2\pi \)
+                somewhere no matter what you do. But its <em>differential</em>
+                \( d\theta \) is perfectly well-defined at every point of the
+                circle, because the ambiguity in \( \theta \) is an additive
+                constant and constants die under \( d \) (since derivatives
+                are rates of change, and constants don't change). This
+                object, a
+                machine that eats a tangent vector at each point and returns a
+                number, linearly, is called a
+                <a href="https://en.wikipedia.org/wiki/Differential_form"
+                    title="Differential form">differential 1-form</a>. Note
+                the bundle language hiding in that sentence: a 1-form is a
+                function on the tangent bundle, linear on each fiber.
+            </p>
+
+            <details class="info" id="dfm-box">
+                <summary>Worked example: a 1-form on the circle, seen on the cylinder</summary>
+                <p>
+                    Let's make "linear on each fiber" completely concrete,
+                    using a space we already built: the cylinder \( TS^1 =
+                    S^1 \times \mathbb{R} \) from the organize slider. A
+                    point of the cylinder is a pair \( (\theta, v) \): a base
+                    point \( e^{i\theta} \) on the circle, and a height \( v
+                    \), which stands for the tangent vector \( w = v\,
+                    \partial_\theta \in T_{e^{i\theta}} S^1 \). Each vertical
+                    line of the cylinder is one fiber, and here the fiber
+                    genuinely <em>is</em> a tangent space.
+                </p>
+                <p>
+                    A 1-form \( \omega \) on the circle assigns to each point
+                    \( p \) a linear map
+                    \[ \omega_p : T_p S^1 \to \mathbb{R} \]
+                    Watch the domain and codomain: the domain is the fiber,
+                    the codomain is \( \mathbb{R} \). A form eats a tangent
+                    vector and returns a <em>number</em>. Assembled over all
+                    points, \( \omega : TS^1 \to \mathbb{R} \): a function on
+                    the cylinder. The simplest one is \( d\theta \), defined
+                    by
+                    \[ d\theta(v\, \partial_\theta) = v \]
+                    and as a function on the cylinder that is just \( g(\theta,
+                    v) = v \): <b>the height function</b>. "Linear on each
+                    fiber" is now something you can see: restrict \( g \) to
+                    one vertical line and its graph is a straight line
+                    through the origin. The most general 1-form on the circle
+                    is \( \omega = a(\theta)\, d\theta \), which is the
+                    function \( g(\theta, v) = a(\theta)\, v \): still a
+                    straight line on every fiber, but the slope \( a(\theta)
+                    \) varies smoothly as you move around the base. By
+                    contrast, \( g(\theta, v) = v^2 \) is a perfectly smooth
+                    function on the cylinder that is <em>not</em> a 1-form:
+                    its graph on each fiber is a parabola, not a line.
+                </p>
+                <p>
+                    Here is that picture, live. The cylinder is shaded by the
+                    value of \( g \) (blue negative, red positive), the blue
+                    vertical line is the fiber \( T_p S^1 \) over your chosen
+                    base point, and the panel on the right graphs \( g \)
+                    restricted to that one fiber:
+                </p>
+                <figure>
+                    <div class="side-by-side">
+                        <div id="dfm-container" class="three-container"></div>
+                        <canvas id="dfm-canvas" width="300" height="380"></canvas>
+                    </div>
+                    <div class="controls">
+                        <label><input type="radio" name="dfm-form" value="dtheta" checked /> \( \omega = d\theta \)</label>
+                        &nbsp;
+                        <label><input type="radio" name="dfm-form" value="sindtheta" /> \( \omega = \sin(\theta)\, d\theta \)</label>
+                        &nbsp;
+                        <label><input type="radio" name="dfm-form" value="vsq" /> \( g = v^2 \) (not a form)</label>
+                        <br />
+                        <label for="dfm-theta">\( \theta \): </label>
+                        <input type="range" id="dfm-theta" min="0" max="6.2832" step="0.005" value="0.8" />
+                        <br />
+                        <label for="dfm-v">\( v \): </label>
+                        <input type="range" id="dfm-v" min="-1.5" max="1.5" step="0.005" value="0.7" />
+                    </div>
+                    <div class="readout" id="dfm-readout"></div>
+                    <figcaption>
+                        A 1-form is a function on the total space of the
+                        tangent bundle, and "linear on each fiber" means:
+                        over every point of the base, its graph is a straight
+                        line through zero. Drag the 3D view to orbit.
+                    </figcaption>
+                </figure>
+                <p>
+                    Things worth trying: double \( v \) and watch \(
+                    \omega(w) \) double with it; the readout runs this
+                    linearity check for you, and it fails only for \( v^2 \).
+                    Switch to \( \sin(\theta)\, d\theta \) and slide \(
+                    \theta \) around: the line in the right panel stays a
+                    line while its slope changes, and even flips sign, as the
+                    base point moves. And notice what integrating \( \omega
+                    \) over the circle means in this picture: walk once
+                    around the base feeding your velocity vector to \( \omega
+                    \) as you go. For \( d\theta \), a unit-speed walk pays
+                    \( 1 \) per radian, which is exactly the \( 2\pi \)
+                    computed below.
+                </p>
+            </details>
+
+            <p>
+                Now integrate it around the circle:
+                \[ \oint_{S^1} d\theta = 2\pi \neq 0 \]
+                If \( d\theta \) really were the differential of a global
+                function, this integral would have to vanish, since you end
+                where you started. It doesn't vanish. The form \( d\theta \)
+                is a local derivative with no global antiderivative, and the
+                obstruction is, once again, the hole in the circle. This is
+                the same phenomenon as the M&ouml;bius flip, measured with an
+                integral instead of a picture: differential forms are the
+                <b>instruments</b> that let a Linelander detect global twist
+                from inside. In physics the same pattern runs deep: the
+                electromagnetic field is a 2-form \( F = dA \), where \( A \)
+                is exactly the kind of locally-defined, globally-obstructed
+                object \( \theta \) was, and its failures to patch together
+                are measurable in the lab.
+            </p>
+
+            <h2>Where we are</h2>
+            <p>
+                Here is what we built, all on a one-dimensional base. The
+                circle as a space and as the group \( U(1) \). Gauss's
+                discovery that geometry can be done from inside, and the
+                Linelander's discovery that some facts can't be: local
+                measurements are blind to global structure. The tangent bundle
+                as the one space that holds all the tangent lines, which for the
+                circle factors as \( S^1 \times \mathbb{R} \). The M&ouml;bius
+                strip as the proof that the factoring is a privilege, not a
+                right, which forced the real definition: locally a product,
+                globally glued by a structure group. That definition is the
+                load-bearing wall of gauge theory and of differential
+                geometry.
+            </p>
+            <p>
+                The next step is to build the instruments: the calculus of
+                differential forms, which turns global twist into numbers you
+                can compute, and culminates in the single most elegant equation
+                in mathematics, the generalized Stokes theorem.
+            </p>
+
+            <div class="next">
+                <b>Next:</b>
+                <a href="/math/forms/">Introduction to Differential Forms</a>
+                &rarr;
+            </div>
+        </main>
+
+        <script>
+            // ---------- 2D canvas helpers ----------
+            function circleCanvas(canvas) {
+                const ctx = canvas.getContext("2d");
+                const cx = canvas.width / 2,
+                    cy = canvas.height / 2,
+                    R = 110;
+                return { ctx, cx, cy, R };
+            }
+            function drawBase(c) {
+                const { ctx, cx, cy, R } = c;
+                ctx.clearRect(0, 0, 340, 340);
+                // axes
+                ctx.strokeStyle = "#ddd";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(0, cy); ctx.lineTo(340, cy);
+                ctx.moveTo(cx, 0); ctx.lineTo(cx, 340);
+                ctx.stroke();
+                // circle
+                ctx.strokeStyle = "#222";
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(cx, cy, R, 0, 2 * Math.PI);
+                ctx.stroke();
+                // identity marker
+                ctx.fillStyle = "#888";
+                ctx.beginPath();
+                ctx.arc(cx + R, cy, 3, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.font = "13px serif";
+                ctx.fillText("1", cx + R + 8, cy + 4);
+            }
+            function drawPoint(c, th) {
+                const { ctx, cx, cy, R } = c;
+                const x = cx + R * Math.cos(th),
+                    y = cy - R * Math.sin(th);
+                // angle arc
+                ctx.strokeStyle = "#c9a227";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 26, 0, -th, true);
+                ctx.stroke();
+                // radius
+                ctx.strokeStyle = "#999";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy); ctx.lineTo(x, y);
+                ctx.stroke();
+                // point
+                ctx.fillStyle = "#c0392b";
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                return { x, y };
+            }
+            function fmt(v) { return (v >= 0 ? "+" : "") + v.toFixed(3); }
+
+            // ---------- U(1) slider ----------
+            (function () {
+                const c = circleCanvas(document.getElementById("u1-canvas"));
+                const slider = document.getElementById("u1-theta");
+                const readout = document.getElementById("u1-readout");
+                function render() {
+                    const th = parseFloat(slider.value);
+                    drawBase(c);
+                    drawPoint(c, th);
+                    readout.innerHTML =
+                        "&theta; = " + th.toFixed(3) +
+                        " rad &nbsp;&nbsp; z = " + fmt(Math.cos(th)) +
+                        " " + (Math.sin(th) >= 0 ? "+" : "&minus;") + " " +
+                        Math.abs(Math.sin(th)).toFixed(3) + "i";
+                }
+                slider.addEventListener("input", render);
+                render();
+            })();
+
+            // ---------- tangent line slider ----------
+            (function () {
+                const c = circleCanvas(document.getElementById("tan-canvas"));
+                const slider = document.getElementById("tan-theta");
+                const readout = document.getElementById("tan-readout");
+                function render() {
+                    const th = parseFloat(slider.value);
+                    drawBase(c);
+                    const { x, y } = drawPoint(c, th);
+                    // tangent direction (-sin, cos) in math coords => canvas (-sin, -cos)
+                    const dx = -Math.sin(th), dy = -Math.cos(th);
+                    const L = 130;
+                    c.ctx.strokeStyle = "#2e6db4";
+                    c.ctx.lineWidth = 1.5;
+                    c.ctx.beginPath();
+                    c.ctx.moveTo(x - L * dx, y - L * dy);
+                    c.ctx.lineTo(x + L * dx, y + L * dy);
+                    c.ctx.stroke();
+                    // unit tangent arrow (length ~ R/2)
+                    const a = 55;
+                    const ax = x + a * dx, ay = y + a * dy;
+                    c.ctx.strokeStyle = "#c0392b";
+                    c.ctx.lineWidth = 2.5;
+                    c.ctx.beginPath();
+                    c.ctx.moveTo(x, y); c.ctx.lineTo(ax, ay);
+                    c.ctx.stroke();
+                    const ang = Math.atan2(ay - y, ax - x);
+                    c.ctx.beginPath();
+                    c.ctx.moveTo(ax, ay);
+                    c.ctx.lineTo(ax - 9 * Math.cos(ang - 0.4), ay - 9 * Math.sin(ang - 0.4));
+                    c.ctx.moveTo(ax, ay);
+                    c.ctx.lineTo(ax - 9 * Math.cos(ang + 0.4), ay - 9 * Math.sin(ang + 0.4));
+                    c.ctx.stroke();
+                    readout.innerHTML =
+                        "&theta; = " + th.toFixed(3) +
+                        " &nbsp;&nbsp; tangent vector iz = (" +
+                        fmt(-Math.sin(th)) + ", " + fmt(Math.cos(th)) + ")";
+                }
+                slider.addEventListener("input", render);
+                render();
+            })();
+        </script>
+
+        <script type="module">
+            import * as THREE from "three";
+            import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+            function makeScene(container, camPos) {
+                const scene = new THREE.Scene();
+                scene.background = new THREE.Color(0xffffff);
+                const w = container.clientWidth, h = container.clientHeight;
+                const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+                camera.position.set(...camPos);
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(w, h);
+                container.appendChild(renderer.domElement);
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                window.addEventListener("resize", () => {
+                    const w2 = container.clientWidth, h2 = container.clientHeight;
+                    camera.aspect = w2 / h2;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w2, h2);
+                });
+                return { scene, camera, renderer, controls };
+            }
+
+            function baseCircle(radius, color) {
+                const pts = [];
+                for (let i = 0; i <= 128; i++) {
+                    const t = (i / 128) * 2 * Math.PI;
+                    pts.push(new THREE.Vector3(radius * Math.cos(t), 0, radius * Math.sin(t)));
+                }
+                return new THREE.Line(
+                    new THREE.BufferGeometry().setFromPoints(pts),
+                    new THREE.LineBasicMaterial({ color })
+                );
+            }
+
+            // ================= tangent bundle organizer =================
+            (function () {
+                const container = document.getElementById("tb-container");
+                const { scene, camera, renderer, controls } = makeScene(container, [2.6, 1.7, 2.6]);
+                scene.add(baseCircle(1, 0x222222));
+
+                const N = 48, L = 0.55;
+                const fibers = [];
+                for (let i = 0; i < N; i++) {
+                    const th = (i / N) * 2 * Math.PI;
+                    const geom = new THREE.BufferGeometry();
+                    geom.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+                    const col = new THREE.Color().setHSL((0.85 * i) / N, 0.75, 0.45);
+                    const line = new THREE.Line(geom, new THREE.LineBasicMaterial({ color: col }));
+                    line.visible = false;
+                    scene.add(line);
+                    fibers.push({ th, line });
+                }
+
+                const marker = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.045, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0xc0392b })
+                );
+                scene.add(marker);
+
+                const organize = document.getElementById("tb-organize");
+                const sweepBtn = document.getElementById("tb-sweep");
+                const readout = document.getElementById("tb-readout");
+
+                let sweeping = false, thSweep = 0;
+
+                function updateFibers() {
+                    const t = parseFloat(organize.value);
+                    for (const f of fibers) {
+                        const p = new THREE.Vector3(Math.cos(f.th), 0, Math.sin(f.th));
+                        const tan = new THREE.Vector3(-Math.sin(f.th), 0, Math.cos(f.th));
+                        const up = new THREE.Vector3(0, 1, 0);
+                        const d = tan.multiplyScalar(1 - t).add(up.multiplyScalar(t)).normalize();
+                        const pos = f.line.geometry.attributes.position;
+                        pos.setXYZ(0, p.x - L * d.x, p.y - L * d.y, p.z - L * d.z);
+                        pos.setXYZ(1, p.x + L * d.x, p.y + L * d.y, p.z + L * d.z);
+                        pos.needsUpdate = true;
+                    }
+                    updateReadout();
+                }
+
+                function updateReadout() {
+                    const t = parseFloat(organize.value);
+                    const done = fibers.every((f) => f.line.visible);
+                    let msg = "";
+                    if (!done && !sweeping) msg = "Press sweep to lay down the tangent lines.";
+                    else if (t < 0.05) msg = "All tangent lines drawn in the plane: they overlap and the picture lies.";
+                    else if (t > 0.95) msg = "Organized: every fiber has its own room. TS&sup1; is the cylinder S&sup1; &times; &#8477;.";
+                    else msg = "Rotating each tangent line into its own vertical direction&hellip;";
+                    readout.innerHTML = msg;
+                }
+
+                sweepBtn.addEventListener("click", () => {
+                    thSweep = 0;
+                    sweeping = true;
+                    fibers.forEach((f) => (f.line.visible = false));
+                    sweepBtn.textContent = "↻ sweep again";
+                });
+                organize.addEventListener("input", updateFibers);
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    if (sweeping) {
+                        thSweep += 0.022;
+                        for (const f of fibers) if (f.th <= thSweep) f.line.visible = true;
+                        if (thSweep >= 2 * Math.PI) {
+                            sweeping = false;
+                            fibers.forEach((f) => (f.line.visible = true));
+                        }
+                        updateReadout();
+                    }
+                    const mth = sweeping ? thSweep : 0;
+                    marker.position.set(Math.cos(mth), 0, Math.sin(mth));
+                    controls.update();
+                    renderer.render(scene, camera);
+                }
+                updateFibers();
+                animate();
+            })();
+
+            // ================= hairy ball =================
+            (function () {
+                const container = document.getElementById("hb-container");
+                const { scene, camera, renderer, controls } = makeScene(container, [2.3, 1.5, 2.3]);
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 0.8;
+                scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+                const dl = new THREE.DirectionalLight(0xffffff, 1.0);
+                dl.position.set(2, 3, 1);
+                scene.add(dl);
+
+                scene.add(new THREE.Mesh(
+                    new THREE.SphereGeometry(0.985, 48, 32),
+                    new THREE.MeshStandardMaterial({ color: 0xf2f2f4, roughness: 0.9 })));
+
+                // fibonacci-sphere sample points
+                const N = 380;
+                const pts = [];
+                const golden = Math.PI * (3 - Math.sqrt(5));
+                for (let i = 0; i < N; i++) {
+                    const y = 1 - (2 * (i + 0.5)) / N;
+                    const r = Math.sqrt(1 - y * y);
+                    const phi = i * golden;
+                    pts.push(new THREE.Vector3(r * Math.cos(phi), y, r * Math.sin(phi)));
+                }
+
+                // tangent fields (world y is "up", poles at y = ±1)
+                const up = new THREE.Vector3(0, 1, 0);
+                const fields = {
+                    combed: {
+                        v: (p) => up.clone().addScaledVector(p, -p.y), // a - (a·p)p
+                        maxMag: 1,
+                        zeros: [[0, 1, 0], [0, -1, 0]],
+                        text: "Combed from pole to pole: v(p) = a &minus; (a&middot;p)p, a constant vector flattened onto the sphere. <b>Two zeros</b>, one at each pole, index +1 each.",
+                    },
+                    swirl: {
+                        v: (p) => new THREE.Vector3(p.z, 0, -p.x), // n × p
+                        maxMag: 1,
+                        zeros: [[0, 1, 0], [0, -1, 0]],
+                        text: "The swirl: v(p) = n &times; p, the velocity field of a rigid rotation. <b>Two zeros</b> again: the eye of a cyclone at each pole, index +1 each.",
+                    },
+                    dipole: {
+                        // constant field on the plane, pulled onto the sphere by
+                        // stereographic projection from the north pole
+                        v: (p) => {
+                            if (1 - p.y < 1e-6) return new THREE.Vector3(0, 0, 0);
+                            const u = p.x / (1 - p.y), w = p.z / (1 - p.y);
+                            const s = 1 + u * u + w * w;
+                            return new THREE.Vector3(
+                                (2 * (s - 2 * u * u)) / (s * s),
+                                (4 * u) / (s * s),
+                                (-4 * u * w) / (s * s));
+                        },
+                        maxMag: 2,
+                        zeros: [[0, 1, 0]],
+                        text: "The dipole: a constant field on the plane, wrapped onto the sphere by stereographic projection. <b>One zero</b>, at the north pole, and it has index +2.",
+                    },
+                };
+
+                // hairs: one LineSegments, root light / tip dark
+                const hairGeom = new THREE.BufferGeometry();
+                const hairPos = new Float32Array(N * 6);
+                const hairCol = new Float32Array(N * 6);
+                hairGeom.setAttribute("position", new THREE.BufferAttribute(hairPos, 3));
+                hairGeom.setAttribute("color", new THREE.BufferAttribute(hairCol, 3));
+                scene.add(new THREE.LineSegments(hairGeom,
+                    new THREE.LineBasicMaterial({ vertexColors: true })));
+
+                const zeroMarkers = [];
+                for (let i = 0; i < 2; i++) {
+                    const m = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.06, 16, 16),
+                        new THREE.MeshBasicMaterial({ color: 0xc0392b }));
+                    m.visible = false;
+                    scene.add(m);
+                    zeroMarkers.push(m);
+                }
+
+                const readout = document.getElementById("hb-readout");
+
+                function setField(key) {
+                    const f = fields[key];
+                    for (let i = 0; i < N; i++) {
+                        const p = pts[i];
+                        const v = f.v(p);
+                        const mag = v.length();
+                        const len = mag < 1e-9 ? 0 : (0.3 * mag) / f.maxMag;
+                        if (mag > 1e-9) v.multiplyScalar(len / mag);
+                        hairPos[6 * i + 0] = p.x;
+                        hairPos[6 * i + 1] = p.y;
+                        hairPos[6 * i + 2] = p.z;
+                        hairPos[6 * i + 3] = p.x + v.x;
+                        hairPos[6 * i + 4] = p.y + v.y;
+                        hairPos[6 * i + 5] = p.z + v.z;
+                        hairCol[6 * i + 0] = 0.8; hairCol[6 * i + 1] = 0.8; hairCol[6 * i + 2] = 0.82;
+                        hairCol[6 * i + 3] = 0.1; hairCol[6 * i + 4] = 0.31; hairCol[6 * i + 5] = 0.56;
+                    }
+                    hairGeom.attributes.position.needsUpdate = true;
+                    hairGeom.attributes.color.needsUpdate = true;
+                    zeroMarkers.forEach((m, i) => {
+                        if (i < f.zeros.length) {
+                            m.visible = true;
+                            m.position.set(...f.zeros[i]);
+                        } else m.visible = false;
+                    });
+                    readout.innerHTML = f.text;
+                }
+
+                document.querySelectorAll('input[name="hb-field"]').forEach((r) =>
+                    r.addEventListener("change", (e) => setField(e.target.value)));
+
+                setField("combed");
+                let t = 0;
+                (function animate() {
+                    requestAnimationFrame(animate);
+                    t += 0.04;
+                    const s = 1 + 0.3 * Math.sin(t * 2.2);
+                    zeroMarkers.forEach((m) => m.scale.setScalar(s));
+                    controls.update();
+                    renderer.render(scene, camera);
+                })();
+            })();
+
+            // ================= Möbius strip =================
+            (function () {
+                const container = document.getElementById("mb-container");
+                const { scene, camera, renderer, controls } = makeScene(container, [2.8, 2.0, 2.8]);
+                scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+                const dl = new THREE.DirectionalLight(0xffffff, 1.2);
+                dl.position.set(2, 3, 1);
+                scene.add(dl);
+                scene.add(baseCircle(1.2, 0x222222));
+
+                const R = 1.2, W = 0.7;
+                let k = 1; // 1 = Möbius, 0 = cylinder
+
+                // fiber direction u(θ) and point c(θ) + w s u(θ), s ∈ [-1/2, 1/2]
+                function fiberPoint(th, s) {
+                    const c = Math.cos(th), sn = Math.sin(th);
+                    const uk = Math.cos((k * th) / 2), vk = Math.sin((k * th) / 2);
+                    return new THREE.Vector3(
+                        R * c + W * s * uk * c,
+                        W * s * vk,
+                        R * sn + W * s * uk * sn
+                    );
+                }
+
+                // trail fibers
+                const M = 96;
+                const trail = [];
+                for (let i = 0; i <= M; i++) {
+                    const th = (i / M) * 2 * Math.PI;
+                    const geom = new THREE.BufferGeometry();
+                    geom.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+                    geom.setAttribute("color", new THREE.BufferAttribute(
+                        new Float32Array([0.75, 0.22, 0.17, 0.15, 0.68, 0.38]), 3));
+                    const line = new THREE.Line(geom,
+                        new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.55 }));
+                    line.visible = false;
+                    scene.add(line);
+                    trail.push({ th, line });
+                }
+
+                // current fiber: thick line + end spheres
+                const curGeom = new THREE.BufferGeometry();
+                curGeom.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+                const curLine = new THREE.Line(curGeom, new THREE.LineBasicMaterial({ color: 0x222222 }));
+                scene.add(curLine);
+                const redEnd = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.05, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0xc0392b }));
+                const greenEnd = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.05, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0x27ae60 }));
+                scene.add(redEnd, greenEnd);
+
+                // full strip mesh
+                let stripMesh = null;
+                function buildStrip() {
+                    if (stripMesh) { scene.remove(stripMesh); stripMesh.geometry.dispose(); }
+                    const nu = 160, nv = 8;
+                    const positions = [], indices = [];
+                    for (let i = 0; i <= nu; i++) {
+                        const th = (i / nu) * 2 * Math.PI;
+                        for (let j = 0; j <= nv; j++) {
+                            const s = j / nv - 0.5;
+                            const p = fiberPoint(th, s);
+                            positions.push(p.x, p.y, p.z);
+                        }
+                    }
+                    for (let i = 0; i < nu; i++)
+                        for (let j = 0; j < nv; j++) {
+                            const a = i * (nv + 1) + j, b = a + nv + 1;
+                            indices.push(a, b, a + 1, b, b + 1, a + 1);
+                        }
+                    const g = new THREE.BufferGeometry();
+                    g.setIndex(indices);
+                    g.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+                    g.computeVertexNormals();
+                    stripMesh = new THREE.Mesh(g, new THREE.MeshStandardMaterial({
+                        color: 0x7a8fd4, side: THREE.DoubleSide,
+                        transparent: true, opacity: 0.45, roughness: 0.6,
+                    }));
+                    stripMesh.visible = stripToggle.checked;
+                    scene.add(stripMesh);
+                }
+
+                const slider = document.getElementById("mb-theta");
+                const trailToggle = document.getElementById("mb-trail");
+                const stripToggle = document.getElementById("mb-strip");
+                const readout = document.getElementById("mb-readout");
+
+                function setLine(geom, a, b) {
+                    const pos = geom.attributes.position;
+                    pos.setXYZ(0, a.x, a.y, a.z);
+                    pos.setXYZ(1, b.x, b.y, b.z);
+                    pos.needsUpdate = true;
+                }
+
+                function update() {
+                    const th = parseFloat(slider.value);
+                    const p0 = fiberPoint(th, -0.5); // s = 0 end (red)
+                    const p1 = fiberPoint(th, 0.5);  // s = 1 end (green)
+                    setLine(curGeom, p0, p1);
+                    redEnd.position.copy(p0);
+                    greenEnd.position.copy(p1);
+                    for (const t of trail) {
+                        t.line.visible = trailToggle.checked && t.th <= th + 1e-6;
+                        setLine(t.line.geometry, fiberPoint(t.th, -0.5), fiberPoint(t.th, 0.5));
+                    }
+                    let msg = "&theta; = " + th.toFixed(2);
+                    if (k === 1) {
+                        if (th < 0.05) msg += " &nbsp; Note the red end starts on the inside of the circle.";
+                        else if (th > 6.2) msg += " &nbsp; <b>Same base point as &theta; = 0, but red and green have traded places. That flip is the M&ouml;bius twist.</b>";
+                        else msg += " &nbsp; The fiber tilts by &theta;/2 as you go around.";
+                    } else {
+                        if (th > 6.2) msg += " &nbsp; No twist: the fiber returns exactly as it left. This bundle is the product S&sup1; &times; [0,1].";
+                        else msg += " &nbsp; Cylinder mode: the fiber never tilts.";
+                    }
+                    readout.innerHTML = msg;
+                }
+
+                slider.addEventListener("input", update);
+                trailToggle.addEventListener("change", update);
+                stripToggle.addEventListener("change", () => {
+                    if (stripMesh) stripMesh.visible = stripToggle.checked;
+                });
+                document.querySelectorAll('input[name="mb-twist"]').forEach((r) =>
+                    r.addEventListener("change", (e) => {
+                        k = parseInt(e.target.value);
+                        buildStrip();
+                        update();
+                    })
+                );
+
+                buildStrip();
+                update();
+                (function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update();
+                    renderer.render(scene, camera);
+                })();
+            })();
+        </script>
+
+        <script type="module">
+            import * as THREE from "three";
+            import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+            // ================= local trivialization =================
+            (function () {
+                const container = document.getElementById("lt-container");
+                const scene = new THREE.Scene();
+                scene.background = new THREE.Color(0xffffff);
+                const w = container.clientWidth, h = container.clientHeight;
+                const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+                camera.position.set(2.7, 1.9, 2.7);
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(w, h);
+                container.appendChild(renderer.domElement);
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                window.addEventListener("resize", () => {
+                    const w2 = container.clientWidth, h2 = container.clientHeight;
+                    camera.aspect = w2 / h2;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w2, h2);
+                });
+                scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+                const dl = new THREE.DirectionalLight(0xffffff, 1.2);
+                dl.position.set(2, 3, 1);
+                scene.add(dl);
+
+                const R = 1.2, W = 0.7, DELTA = 0.9;
+
+                // Möbius point, continuous branch in θ (k = 1)
+                function fiberPoint(th, s) {
+                    const c = Math.cos(th), sn = Math.sin(th);
+                    const uk = Math.cos(th / 2), vk = Math.sin(th / 2);
+                    return new THREE.Vector3(
+                        R * c + W * s * uk * c,
+                        W * s * vk,
+                        R * sn + W * s * uk * sn);
+                }
+
+                // base circle
+                const bpts = [];
+                for (let i = 0; i <= 128; i++) {
+                    const t = (i / 128) * 2 * Math.PI;
+                    bpts.push(new THREE.Vector3(R * Math.cos(t), 0, R * Math.sin(t)));
+                }
+                scene.add(new THREE.Line(
+                    new THREE.BufferGeometry().setFromPoints(bpts),
+                    new THREE.LineBasicMaterial({ color: 0x222222 })));
+
+                // full strip, faint gray
+                function stripGeometry(th0, th1, nu) {
+                    const nv = 8;
+                    const positions = [], indices = [];
+                    for (let i = 0; i <= nu; i++) {
+                        const th = th0 + ((th1 - th0) * i) / nu;
+                        for (let j = 0; j <= nv; j++) {
+                            const s = j / nv - 0.5;
+                            const p = fiberPoint(th, s);
+                            positions.push(p.x, p.y, p.z);
+                        }
+                    }
+                    for (let i = 0; i < nu; i++)
+                        for (let j = 0; j < nv; j++) {
+                            const a = i * (nv + 1) + j, b = a + nv + 1;
+                            indices.push(a, b, a + 1, b, b + 1, a + 1);
+                        }
+                    const g = new THREE.BufferGeometry();
+                    g.setIndex(indices);
+                    g.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+                    g.computeVertexNormals();
+                    return g;
+                }
+                scene.add(new THREE.Mesh(stripGeometry(0, 2 * Math.PI, 160),
+                    new THREE.MeshStandardMaterial({
+                        color: 0xbbbbbb, side: THREE.DoubleSide,
+                        transparent: true, opacity: 0.22, roughness: 0.8 })));
+
+                // patch π⁻¹(U), blue, rebuilt as the window slides
+                const patch = new THREE.Mesh(stripGeometry(0, 1, 40),
+                    new THREE.MeshStandardMaterial({
+                        color: 0x4a90d9, side: THREE.DoubleSide,
+                        transparent: true, opacity: 0.6, roughness: 0.6 }));
+                scene.add(patch);
+
+                // gold arc U on the base circle, rebuilt as the window slides
+                let arcMesh = null;
+                function rebuildArc(th0, th1) {
+                    if (arcMesh) { scene.remove(arcMesh); arcMesh.geometry.dispose(); }
+                    const pts = [];
+                    for (let i = 0; i <= 40; i++) {
+                        const th = th0 + ((th1 - th0) * i) / 40;
+                        pts.push(new THREE.Vector3(R * Math.cos(th), 0, R * Math.sin(th)));
+                    }
+                    arcMesh = new THREE.Mesh(
+                        new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 40, 0.025, 8, false),
+                        new THREE.MeshBasicMaterial({ color: 0xc9a227 }));
+                    scene.add(arcMesh);
+                }
+
+                // p, and the fiber over p
+                const pMarker = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.05, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0xc0392b }));
+                scene.add(pMarker);
+                const fibGeom = new THREE.BufferGeometry();
+                fibGeom.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+                scene.add(new THREE.Line(fibGeom, new THREE.LineBasicMaterial({ color: 0x111111 })));
+                const redEnd = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.045, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0xc0392b }));
+                const greenEnd = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.045, 16, 16),
+                    new THREE.MeshBasicMaterial({ color: 0x27ae60 }));
+                scene.add(redEnd, greenEnd);
+
+                // ---------- flat rectangle panel (2D canvas) ----------
+                const canvas2 = document.getElementById("lt-canvas");
+                const ctx = canvas2.getContext("2d");
+                function drawRectangle(thp) {
+                    ctx.clearRect(0, 0, canvas2.width, canvas2.height);
+                    const x0 = 45, x1 = 255, y0 = 60, y1 = 270, cx = (x0 + x1) / 2;
+                    // interior of U × [0,1]
+                    ctx.fillStyle = "rgba(74, 144, 217, 0.35)";
+                    ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+                    // closed fiber-direction edges: solid
+                    ctx.strokeStyle = "#4a90d9";
+                    ctx.lineWidth = 2;
+                    ctx.setLineDash([]);
+                    ctx.beginPath();
+                    ctx.moveTo(x0, y0); ctx.lineTo(x1, y0);
+                    ctx.moveTo(x0, y1); ctx.lineTo(x1, y1);
+                    ctx.stroke();
+                    // open base-direction edges: dashed
+                    ctx.setLineDash([6, 5]);
+                    ctx.beginPath();
+                    ctx.moveTo(x0, y0); ctx.lineTo(x0, y1);
+                    ctx.moveTo(x1, y0); ctx.lineTo(x1, y1);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                    // fiber column over p
+                    ctx.strokeStyle = "#111";
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(cx, y0); ctx.lineTo(cx, y1);
+                    ctx.stroke();
+                    ctx.fillStyle = "#c0392b"; // s = 0 end (bottom)
+                    ctx.beginPath(); ctx.arc(cx, y1, 6, 0, 2 * Math.PI); ctx.fill();
+                    ctx.fillStyle = "#27ae60"; // s = 1 end (top)
+                    ctx.beginPath(); ctx.arc(cx, y0, 6, 0, 2 * Math.PI); ctx.fill();
+                    // π arrow down to the base interval
+                    ctx.strokeStyle = "#555";
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(cx + 40, y1 + 8); ctx.lineTo(cx + 40, y1 + 40);
+                    ctx.lineTo(cx + 36, y1 + 33); ctx.moveTo(cx + 40, y1 + 40);
+                    ctx.lineTo(cx + 44, y1 + 33);
+                    ctx.stroke();
+                    ctx.fillStyle = "#555";
+                    ctx.font = "17px 'Computer Modern Serif', serif";
+                    ctx.fillText("π", cx + 48, y1 + 32);
+                    // base interval U (gold), with p
+                    const yb = y1 + 50;
+                    ctx.strokeStyle = "#c9a227";
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(x0 + 4, yb); ctx.lineTo(x1 - 4, yb);
+                    ctx.stroke();
+                    ctx.fillStyle = "#c9a227";
+                    ctx.font = "18px 'Computer Modern Serif', serif";
+                    ctx.fillText("(", x0 - 10, yb + 6);
+                    ctx.fillText(")", x1 + 3, yb + 6);
+                    ctx.fillStyle = "#c0392b";
+                    ctx.beginPath(); ctx.arc(cx, yb, 6, 0, 2 * Math.PI); ctx.fill();
+                    // labels
+                    ctx.fillStyle = "#333";
+                    ctx.font = "17px 'Computer Modern Serif', serif";
+                    ctx.fillText("U × [0,1]", x0, y0 - 22);
+                    ctx.fillText("p", cx - 4, yb + 24);
+                    ctx.fillText("U", x1 + 14, yb + 6);
+                    ctx.fillText("s = 1", x1 + 8, y0 + 5);
+                    ctx.fillText("s = 0", x1 + 8, y1 + 5);
+                    // sliding window coordinates under the interval
+                    ctx.fillStyle = "#888";
+                    ctx.font = "13px 'Computer Modern Serif', serif";
+                    ctx.fillText("θ = " + (thp - DELTA).toFixed(2), x0 - 12, yb + 44);
+                    ctx.fillText("θ = " + (thp + DELTA).toFixed(2), x1 - 45, yb + 44);
+                }
+
+                const slider = document.getElementById("lt-theta");
+                const readout = document.getElementById("lt-readout");
+                function update() {
+                    const thp = parseFloat(slider.value);
+                    const th0 = thp - DELTA, th1 = thp + DELTA;
+                    patch.geometry.dispose();
+                    patch.geometry = stripGeometry(th0, th1, 40);
+                    rebuildArc(th0, th1);
+                    pMarker.position.set(R * Math.cos(thp), 0, R * Math.sin(thp));
+                    const p0 = fiberPoint(thp, -0.5), p1 = fiberPoint(thp, 0.5);
+                    const pos = fibGeom.attributes.position;
+                    pos.setXYZ(0, p0.x, p0.y, p0.z);
+                    pos.setXYZ(1, p1.x, p1.y, p1.z);
+                    pos.needsUpdate = true;
+                    redEnd.position.copy(p0);
+                    greenEnd.position.copy(p1);
+                    drawRectangle(thp);
+                    let msg = "The window U slides; the rectangle stays the same.";
+                    if (thp > 6.2) msg = "<b>Back over the starting point: the patch in space is flipped, and the rectangle has not changed at all.</b>";
+                    readout.innerHTML = msg;
+                }
+
+                slider.addEventListener("input", update);
+                update();
+                (function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update();
+                    renderer.render(scene, camera);
+                })();
+            })();
+        </script>
+
+        <script type="module">
+            import * as THREE from "three";
+            import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+            // ================= a 1-form on the circle, seen on the cylinder =================
+            (function () {
+                const box = document.getElementById("dfm-box");
+                let inited = false;
+                box.addEventListener("toggle", () => {
+                    if (box.open && !inited) { inited = true; init(); }
+                });
+
+                function init() {
+                    const container = document.getElementById("dfm-container");
+                    const scene = new THREE.Scene();
+                    scene.background = new THREE.Color(0xffffff);
+                    const w = container.clientWidth, h = container.clientHeight;
+                    const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
+                    camera.position.set(2.4, 1.5, 2.4);
+                    const renderer = new THREE.WebGLRenderer({ antialias: true });
+                    renderer.setPixelRatio(window.devicePixelRatio);
+                    renderer.setSize(w, h);
+                    container.appendChild(renderer.domElement);
+                    const controls = new OrbitControls(camera, renderer.domElement);
+                    controls.enableDamping = true;
+                    window.addEventListener("resize", () => {
+                        const w2 = container.clientWidth, h2 = container.clientHeight;
+                        if (w2 === 0) return;
+                        camera.aspect = w2 / h2;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(w2, h2);
+                    });
+                    scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+                    const dl = new THREE.DirectionalLight(0xffffff, 1.0);
+                    dl.position.set(2, 3, 1);
+                    scene.add(dl);
+
+                    const VMAX = 1.5, YS = 0.55;
+                    const forms = {
+                        dtheta: {
+                            g: (th, v) => v, a: (th) => 1, gmax: VMAX, linear: true,
+                            sym: "&omega;(w)",
+                        },
+                        sindtheta: {
+                            g: (th, v) => Math.sin(th) * v, a: (th) => Math.sin(th),
+                            gmax: VMAX, linear: true, sym: "&omega;(w)",
+                        },
+                        vsq: {
+                            g: (th, v) => v * v, a: null, gmax: VMAX * VMAX,
+                            linear: false, sym: "g(w)",
+                        },
+                    };
+                    let formKey = "dtheta";
+
+                    // cylinder mesh, vertex-colored by the value of g
+                    const nu = 120, nv = 24;
+                    const positions = [], indices = [];
+                    const grid = [];
+                    for (let i = 0; i <= nu; i++) {
+                        const th = (i / nu) * 2 * Math.PI;
+                        for (let j = 0; j <= nv; j++) {
+                            const v = -VMAX + (2 * VMAX * j) / nv;
+                            grid.push([th, v]);
+                            positions.push(Math.cos(th), YS * v, Math.sin(th));
+                        }
+                    }
+                    for (let i = 0; i < nu; i++)
+                        for (let j = 0; j < nv; j++) {
+                            const a = i * (nv + 1) + j, b = a + nv + 1;
+                            indices.push(a, b, a + 1, b, b + 1, a + 1);
+                        }
+                    const geom = new THREE.BufferGeometry();
+                    geom.setIndex(indices);
+                    geom.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+                    geom.setAttribute("color", new THREE.Float32BufferAttribute(new Float32Array(grid.length * 3), 3));
+                    geom.computeVertexNormals();
+                    scene.add(new THREE.Mesh(geom, new THREE.MeshStandardMaterial({
+                        vertexColors: true, side: THREE.DoubleSide, roughness: 0.85,
+                        transparent: true, opacity: 0.92 })));
+
+                    const cNeg = new THREE.Color(0x2e6db4), cMid = new THREE.Color(0xf2f2f2),
+                        cPos = new THREE.Color(0xc0392b);
+                    function recolor() {
+                        const f = forms[formKey];
+                        const attr = geom.attributes.color;
+                        for (let k = 0; k < grid.length; k++) {
+                            const t = Math.max(-1, Math.min(1, f.g(grid[k][0], grid[k][1]) / f.gmax));
+                            const col = t < 0 ? cMid.clone().lerp(cNeg, -t) : cMid.clone().lerp(cPos, t);
+                            attr.setXYZ(k, col.r, col.g, col.b);
+                        }
+                        attr.needsUpdate = true;
+                    }
+
+                    // base circle at v = 0 (the zero section)
+                    const bpts = [];
+                    for (let i = 0; i <= 128; i++) {
+                        const t = (i / 128) * 2 * Math.PI;
+                        bpts.push(new THREE.Vector3(1.004 * Math.cos(t), 0, 1.004 * Math.sin(t)));
+                    }
+                    scene.add(new THREE.Line(
+                        new THREE.BufferGeometry().setFromPoints(bpts),
+                        new THREE.LineBasicMaterial({ color: 0x222222 })));
+
+                    // the fiber over p, and the point (θ, v) on it
+                    const fibGeom = new THREE.BufferGeometry();
+                    fibGeom.setAttribute("position", new THREE.BufferAttribute(new Float32Array(6), 3));
+                    scene.add(new THREE.Line(fibGeom, new THREE.LineBasicMaterial({ color: 0x1a5fb4 })));
+                    const pMarker = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.035, 16, 16),
+                        new THREE.MeshBasicMaterial({ color: 0x555555 }));
+                    scene.add(pMarker);
+                    const wMarker = new THREE.Mesh(
+                        new THREE.SphereGeometry(0.05, 16, 16),
+                        new THREE.MeshBasicMaterial({ color: 0xc0392b }));
+                    scene.add(wMarker);
+
+                    // ---------- graph of g restricted to the fiber ----------
+                    const canvas2 = document.getElementById("dfm-canvas");
+                    const ctx = canvas2.getContext("2d");
+                    function drawGraph(th, v) {
+                        const f = forms[formKey];
+                        ctx.clearRect(0, 0, canvas2.width, canvas2.height);
+                        const X = (vv) => 150 + vv * 80;
+                        const Y = (gg) => 190 - gg * 62;
+                        // axes
+                        ctx.strokeStyle = "#ccc";
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(X(-VMAX) - 8, Y(0)); ctx.lineTo(X(VMAX) + 8, Y(0));
+                        ctx.moveTo(X(0), Y(-2.4)); ctx.lineTo(X(0), Y(2.4));
+                        ctx.stroke();
+                        ctx.fillStyle = "#777";
+                        ctx.font = "15px 'Computer Modern Serif', serif";
+                        ctx.fillText("v", X(VMAX) + 12, Y(0) + 5);
+                        ctx.fillText("g", X(0) - 16, Y(2.4) + 10);
+                        // the graph of g on this one fiber
+                        ctx.strokeStyle = "#1a5fb4";
+                        ctx.lineWidth = 2.5;
+                        ctx.beginPath();
+                        for (let i = 0; i <= 100; i++) {
+                            const vv = -VMAX + (2 * VMAX * i) / 100;
+                            const px = X(vv), py = Y(f.g(th, vv));
+                            if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                        }
+                        ctx.stroke();
+                        // current point
+                        ctx.fillStyle = "#c0392b";
+                        ctx.beginPath();
+                        ctx.arc(X(v), Y(f.g(th, v)), 6, 0, 2 * Math.PI);
+                        ctx.fill();
+                        // slope caption
+                        ctx.fillStyle = "#333";
+                        ctx.font = "16px 'Computer Modern Serif', serif";
+                        if (f.linear)
+                            ctx.fillText("a line through 0, slope a(θ) = " + f.a(th).toFixed(2), 24, 352);
+                        else
+                            ctx.fillText("a parabola: not linear, not a form", 24, 352);
+                        ctx.fillStyle = "#777";
+                        ctx.font = "14px 'Computer Modern Serif', serif";
+                        ctx.fillText("g restricted to the fiber over θ = " + th.toFixed(2), 24, 372);
+                    }
+
+                    const thSlider = document.getElementById("dfm-theta");
+                    const vSlider = document.getElementById("dfm-v");
+                    const readout = document.getElementById("dfm-readout");
+
+                    function update() {
+                        const th = parseFloat(thSlider.value);
+                        const v = parseFloat(vSlider.value);
+                        const f = forms[formKey];
+                        const cx = Math.cos(th), sz = Math.sin(th);
+                        const pos = fibGeom.attributes.position;
+                        pos.setXYZ(0, 1.006 * cx, -YS * VMAX, 1.006 * sz);
+                        pos.setXYZ(1, 1.006 * cx, YS * VMAX, 1.006 * sz);
+                        pos.needsUpdate = true;
+                        pMarker.position.set(1.006 * cx, 0, 1.006 * sz);
+                        wMarker.position.set(1.006 * cx, YS * v, 1.006 * sz);
+                        drawGraph(th, v);
+                        const g1 = f.g(th, v), g2 = f.g(th, 2 * v);
+                        const ok = Math.abs(g2 - 2 * g1) < 1e-9;
+                        readout.innerHTML =
+                            "w = " + v.toFixed(2) + " &part;<sub>&theta;</sub> at &theta; = " + th.toFixed(2) +
+                            " &nbsp;&nbsp; <b>" + f.sym + " = " + g1.toFixed(3) + "</b>" +
+                            " &nbsp;&nbsp; linearity check: " + f.sym.replace("w", "2w") + " = " + g2.toFixed(3) +
+                            (ok ? " = 2&middot;" + g1.toFixed(3) + " &nbsp;&#10003; linear on the fiber"
+                                : " &ne; 2&middot;" + g1.toFixed(3) + " = " + (2 * g1).toFixed(3) + " &nbsp;&#10007; not linear");
+                    }
+
+                    document.querySelectorAll('input[name="dfm-form"]').forEach((r) =>
+                        r.addEventListener("change", (e) => { formKey = e.target.value; recolor(); update(); }));
+                    thSlider.addEventListener("input", update);
+                    vSlider.addEventListener("input", update);
+                    recolor();
+                    update();
+                    (function animate() {
+                        requestAnimationFrame(animate);
+                        controls.update();
+                        renderer.render(scene, camera);
+                    })();
+                }
+            })();
+        </script>
+
+        <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>
