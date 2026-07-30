@@ -1,0 +1,124 @@
+/* Dark mode overrides for the math pages (math.html, /math/bundles/,
+   /math/forms/, /math/roadmap/, archimedes). The interactive figures keep
+   their white backgrounds, like images, since their diagrams are drawn
+   for white. */
+
+.darkmode-toggle {
+    position: fixed;
+    top: 0.8em;
+    right: 0.8em;
+    z-index: 10;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 2px 12px;
+    cursor: pointer;
+    background: #fff;
+    color: #222;
+    border: 1px solid #999;
+    border-radius: 4px;
+}
+
+html.dark {
+    color-scheme: dark;
+}
+
+html.dark .darkmode-toggle {
+    background: #2a2a2a;
+    color: #ddd;
+    border-color: #555;
+}
+
+html.dark body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3 {
+    color: #e0e0e0;
+}
+
+html.dark a {
+    color: #8ab4e8;
+}
+
+html.dark a:visited {
+    color: #b39ddb;
+}
+
+html.dark figcaption {
+    color: #aaa;
+}
+
+html.dark .readout {
+    color: #ccc;
+}
+
+html.dark #info {
+    color: #bbb;
+}
+
+/* figures stay white plates in the dark */
+html.dark figure canvas {
+    background: #fff;
+    border-color: #555;
+}
+
+html.dark canvas {
+    border-color: #555;
+}
+
+html.dark .three-container {
+    border-color: #555;
+}
+
+html.dark details.info {
+    background: #1c2733;
+    border-color: #3a5875;
+}
+
+html.dark .aside {
+    background: #2a2418;
+    border-left-color: #8a6f1b;
+}
+
+html.dark .next {
+    background: #182619;
+    border-color: #2e5c3a;
+}
+
+html.dark .exercise {
+    border-color: #555;
+}
+
+html.dark .exercise.solved {
+    background: #16281c;
+    border-color: #27ae60;
+}
+
+html.dark .exercise details summary {
+    color: #8ab4e8;
+}
+
+html.dark table.dict th {
+    background: #1c2733;
+}
+
+html.dark table.dict th,
+html.dark table.dict td {
+    border-color: #555;
+}
+
+html.dark .stage {
+    border-color: #555;
+}
+
+html.dark .stage.done {
+    background: #16281c;
+    border-color: #27ae60;
+}
+
+html.dark .stage .artifact {
+    color: #aaa;
+}
