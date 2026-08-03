@@ -27,6 +27,8 @@ const resp = (statusCode, body) => ({
 export const handler = async (event) => {
     const method = event.requestContext.http.method;
     try {
+        // CORS preflight: API Gateway appends the configured CORS headers
+        if (method === "OPTIONS") return { statusCode: 204 };
         if (method === "GET") return await listPhotos();
         if (method === "POST") {
             const body = JSON.parse(event.body || "{}");
