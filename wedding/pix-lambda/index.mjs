@@ -69,9 +69,11 @@ async function listPhotos() {
             }),
         );
         for (const obj of page.Contents || []) {
+            const enc = (k) => encodeURIComponent(k).replace(/%2F/g, "/");
             photos.push({
                 key: obj.Key,
-                url: `https://${BUCKET}.s3.${REGION}.amazonaws.com/${encodeURIComponent(obj.Key).replace(/%2F/g, "/")}`,
+                url: `https://${BUCKET}.s3.${REGION}.amazonaws.com/${enc(obj.Key)}`,
+                thumbUrl: `https://${BUCKET}.s3.${REGION}.amazonaws.com/${enc(obj.Key.replace(/^photos\//, "thumbs/"))}`,
                 lastModified: obj.LastModified,
                 size: obj.Size,
             });
@@ -108,7 +110,20 @@ async function uploadUrls(body) {
             }),
             { expiresIn: 900 },
         );
-        urls.push({ name: file.name, key, uploadUrl });
+        const entry = { name: file.name, key, uploadUrl };
+        // Browser-generated JPEG thumbnails accompany image uploads
+        if (type.startsWith("image/")) {
+            entry.thumbUploadUrl = await getSignedUrl(
+                s3,
+                new PutObjectCommand({
+                    Bucket: BUCKET,
+                    Key: key.replace(/^photos\//, "thumbs/"),
+                    ContentType: "image/jpeg",
+                }),
+                { expiresIn: 900 },
+            );
+        }
+        urls.push(entry);
     }
     return resp(200, { urls });
 }

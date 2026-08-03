@@ -437,6 +437,31 @@
                 return /(\.mp4|\.mov|\.webm|^video\/)/i.test(keyOrType);
             }
 
+            const THUMB_MAX = 400;
+            async function makeThumb(file) {
+                try {
+                    const bitmap = await createImageBitmap(file, {
+                        imageOrientation: "from-image",
+                    });
+                    const scale = Math.min(
+                        1,
+                        THUMB_MAX / Math.max(bitmap.width, bitmap.height),
+                    );
+                    const w = Math.max(1, Math.round(bitmap.width * scale));
+                    const h = Math.max(1, Math.round(bitmap.height * scale));
+                    const canvas = document.createElement("canvas");
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext("2d").drawImage(bitmap, 0, 0, w, h);
+                    bitmap.close();
+                    return await new Promise((resolve) =>
+                        canvas.toBlob(resolve, "image/jpeg", 0.75),
+                    );
+                } catch {
+                    return null; // no thumb; gallery falls back to full image
+                }
+            }
+
             async function uploadFiles(files) {
                 if (!files.length) return;
                 statusEl.textContent = "Getting ready to upload...";
@@ -469,7 +494,21 @@
                                 headers: { "content-type": files[i].type },
                                 body: files[i],
                             });
-                            if (put.ok) uploaded++;
+                            if (put.ok) {
+                                uploaded++;
+                                if (entry.thumbUploadUrl) {
+                                    const thumb = await makeThumb(files[i]);
+                                    if (thumb) {
+                                        await fetch(entry.thumbUploadUrl, {
+                                            method: "PUT",
+                                            headers: {
+                                                "content-type": "image/jpeg",
+                                            },
+                                            body: thumb,
+                                        }).catch(() => {});
+                                    }
+                                }
+                            }
                         }
                         done++;
                         progressFill.style.width =
@@ -552,7 +591,12 @@
                             tile.appendChild(v);
                         } else {
                             const img = document.createElement("img");
-                            img.src = photo.url;
+                            img.src = photo.thumbUrl || photo.url;
+                            img.onerror = () => {
+                                // No thumbnail exists; fall back to full image
+                                img.onerror = null;
+                                img.src = photo.url;
+                            };
                             img.loading = "lazy";
                             img.alt = "Wedding photo";
                             tile.appendChild(img);
