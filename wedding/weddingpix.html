@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wedding Pix - Tobi & Stephanie's Wedding</title>
+
+        <!-- Open Graph meta tags for link previews -->
+        <meta
+            property="og:title"
+            content="Wedding Pix - Tobi & Stephanie's Wedding"
+        />
+        <meta
+            property="og:description"
+            content="Share your photos from our big day! August 8th, 2026 - Queen of Peace Catholic Church, Salem, OR"
+        />
+        <meta
+            property="og:image"
+            content="https://tobilehman.com/wedding/img/tobi-and-stephanie-cartoon.png"
+        />
+        <meta
+            property="og:url"
+            content="https://tobilehman.com/wedding/weddingpix.html"
+        />
+        <meta property="og:type" content="website" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/img/android-chrome-512x512.png"
+        />
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: "Cormorant Garamond", serif;
+                min-height: 100vh;
+                margin: 0;
+                color: #fff;
+                text-align: center;
+                background: linear-gradient(
+                    135deg,
+                    #1e3a5f 0%,
+                    #2d4a6f 50%,
+                    #1a2f4a 100%
+                );
+                background-attachment: fixed;
+            }
+            .container {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            h1 {
+                font-family: "Great Vibes", cursive;
+                font-size: 3em;
+                margin-bottom: 0.2em;
+                color: #8fb3b1;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .subtitle {
+                font-size: 1.3em;
+                margin-bottom: 1.5em;
+                opacity: 0.9;
+            }
+            .upload-card {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-radius: 16px;
+                padding: 30px;
+                margin-bottom: 2em;
+            }
+            .form-group {
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            label {
+                display: block;
+                font-size: 1.1em;
+                margin-bottom: 8px;
+                color: #8fb3b1;
+            }
+            input[type="text"] {
+                width: 100%;
+                padding: 12px 16px;
+                font-size: 1.1em;
+                font-family: "Cormorant Garamond", serif;
+                border: 2px solid rgba(90, 125, 124, 0.5);
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.9);
+                color: #333;
+            }
+            input[type="text"]:focus {
+                outline: none;
+                border-color: #5a7d7c;
+            }
+            .drop-zone {
+                border: 2px dashed rgba(143, 179, 177, 0.6);
+                border-radius: 12px;
+                padding: 40px 20px;
+                cursor: pointer;
+                transition:
+                    border-color 0.3s,
+                    background-color 0.3s;
+                margin-bottom: 20px;
+            }
+            .drop-zone:hover,
+            .drop-zone.dragover {
+                border-color: #8fb3b1;
+                background: rgba(143, 179, 177, 0.1);
+            }
+            .drop-zone .big-icon {
+                font-size: 3em;
+                display: block;
+                margin-bottom: 0.2em;
+            }
+            .drop-zone p {
+                font-size: 1.2em;
+                margin: 0;
+            }
+            .drop-zone .hint {
+                font-size: 0.95em;
+                opacity: 0.7;
+                margin-top: 0.4em;
+            }
+            #file-input {
+                display: none;
+            }
+            .upload-status {
+                font-size: 1.1em;
+                min-height: 1.5em;
+                color: #8fb3b1;
+            }
+            .progress-bar {
+                width: 100%;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+                overflow: hidden;
+                margin-top: 12px;
+                display: none;
+            }
+            .progress-bar .fill {
+                height: 100%;
+                width: 0%;
+                background: #8fb3b1;
+                transition: width 0.3s;
+            }
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 12px;
+                margin-top: 1em;
+            }
+            .gallery .tile {
+                border-radius: 10px;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.08);
+                aspect-ratio: 1;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+            .gallery .tile:hover {
+                transform: scale(1.03);
+            }
+            .gallery img,
+            .gallery video {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .empty-gallery {
+                font-size: 1.2em;
+                opacity: 0.8;
+                padding: 2em 0;
+            }
+            .lightbox {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 100;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                cursor: zoom-out;
+            }
+            .lightbox.open {
+                display: flex;
+            }
+            .lightbox img,
+            .lightbox video {
+                max-width: 95vw;
+                max-height: 90vh;
+                border-radius: 8px;
+            }
+            .back-link {
+                margin-top: 30px;
+            }
+            .back-link a {
+                color: #8fb3b1;
+                text-decoration: none;
+                font-size: 1.1em;
+            }
+            .back-link a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Wedding Pix</h1>
+            <p class="subtitle">
+                Tobi & Stephanie's Wedding<br />August 8th, 2026<br />
+                Were you there? Share your photos with everyone below! 📸
+            </p>
+
+            <div class="upload-card">
+                <div class="form-group">
+                    <label for="uploader">Your Name (so we know who to thank!)</label>
+                    <input
+                        type="text"
+                        id="uploader"
+                        placeholder="Your name"
+                        maxlength="100"
+                    />
+                </div>
+
+                <div class="drop-zone" id="drop-zone">
+                    <span class="big-icon">📷</span>
+                    <p>Tap to add photos or videos</p>
+                    <p class="hint">or drag and drop them here</p>
+                </div>
+                <input
+                    type="file"
+                    id="file-input"
+                    accept="image/*,video/mp4,video/quicktime,video/webm"
+                    multiple
+                />
+
+                <div class="upload-status" id="upload-status"></div>
+                <div class="progress-bar" id="progress-bar">
+                    <div class="fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <div class="gallery" id="gallery"></div>
+            <div class="empty-gallery" id="empty-gallery" style="display: none">
+                No photos yet. Be the first to share one! 🥂
+            </div>
+
+            <div class="back-link">
+                <a href="savethedate.html">&larr; Back to Save the Date</a>
+            </div>
+        </div>
+
+        <div class="lightbox" id="lightbox"></div>
+
+        <script>
+            const API =
+                "https://ypqhe9vop8.execute-api.us-west-2.amazonaws.com/";
+
+            const dropZone = document.getElementById("drop-zone");
+            const fileInput = document.getElementById("file-input");
+            const statusEl = document.getElementById("upload-status");
+            const progressBar = document.getElementById("progress-bar");
+            const progressFill = document.getElementById("progress-fill");
+            const gallery = document.getElementById("gallery");
+            const emptyGallery = document.getElementById("empty-gallery");
+            const lightbox = document.getElementById("lightbox");
+            const uploaderInput = document.getElementById("uploader");
+
+            uploaderInput.value = localStorage.getItem("weddingpix-name") || "";
+            uploaderInput.addEventListener("change", () =>
+                localStorage.setItem("weddingpix-name", uploaderInput.value),
+            );
+
+            dropZone.addEventListener("click", () => fileInput.click());
+            dropZone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZone.classList.add("dragover");
+            });
+            dropZone.addEventListener("dragleave", () =>
+                dropZone.classList.remove("dragover"),
+            );
+            dropZone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                dropZone.classList.remove("dragover");
+                uploadFiles([...e.dataTransfer.files]);
+            });
+            fileInput.addEventListener("change", () => {
+                uploadFiles([...fileInput.files]);
+                fileInput.value = "";
+            });
+
+            function isVideo(keyOrType) {
+                return /(\.mp4|\.mov|\.webm|^video\/)/i.test(keyOrType);
+            }
+
+            async function uploadFiles(files) {
+                if (!files.length) return;
+                statusEl.textContent = "Getting ready to upload...";
+                progressBar.style.display = "block";
+                progressFill.style.width = "0%";
+
+                try {
+                    const res = await fetch(API, {
+                        method: "POST",
+                        headers: { "content-type": "application/json" },
+                        body: JSON.stringify({
+                            action: "upload-urls",
+                            files: files.map((f) => ({
+                                name: f.name,
+                                type: f.type,
+                            })),
+                        }),
+                    });
+                    const { urls } = await res.json();
+
+                    let done = 0;
+                    let uploaded = 0;
+                    for (let i = 0; i < urls.length; i++) {
+                        const entry = urls[i];
+                        if (entry.uploadUrl) {
+                            statusEl.textContent = `Uploading ${done + 1} of ${urls.length}...`;
+                            const put = await fetch(entry.uploadUrl, {
+                                method: "PUT",
+                                headers: { "content-type": files[i].type },
+                                body: files[i],
+                            });
+                            if (put.ok) uploaded++;
+                        }
+                        done++;
+                        progressFill.style.width =
+                            Math.round((done / urls.length) * 100) + "%";
+                    }
+
+                    if (uploaded > 0) {
+                        statusEl.textContent = `🎉 ${uploaded} ${uploaded === 1 ? "photo" : "photos"} uploaded. Thank you!`;
+                        fetch(API, {
+                            method: "POST",
+                            headers: { "content-type": "application/json" },
+                            body: JSON.stringify({
+                                action: "notify",
+                                uploader: uploaderInput.value.trim(),
+                                count: uploaded,
+                            }),
+                        }).catch(() => {});
+                        loadGallery();
+                    } else {
+                        statusEl.textContent =
+                            "Hmm, those files could not be uploaded. Try photos or videos only.";
+                    }
+                } catch (err) {
+                    console.error(err);
+                    statusEl.textContent =
+                        "Something went wrong. Please try again.";
+                } finally {
+                    setTimeout(() => {
+                        progressBar.style.display = "none";
+                    }, 1500);
+                }
+            }
+
+            function openLightbox(photo) {
+                lightbox.innerHTML = "";
+                if (isVideo(photo.key)) {
+                    const v = document.createElement("video");
+                    v.src = photo.url;
+                    v.controls = true;
+                    v.autoplay = true;
+                    lightbox.appendChild(v);
+                } else {
+                    const img = document.createElement("img");
+                    img.src = photo.url;
+                    lightbox.appendChild(img);
+                }
+                lightbox.classList.add("open");
+            }
+            lightbox.addEventListener("click", (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove("open");
+                    lightbox.innerHTML = "";
+                }
+            });
+
+            async function loadGallery() {
+                try {
+                    const res = await fetch(API);
+                    const { photos } = await res.json();
+                    gallery.innerHTML = "";
+                    emptyGallery.style.display = photos.length
+                        ? "none"
+                        : "block";
+                    for (const photo of photos) {
+                        const tile = document.createElement("div");
+                        tile.className = "tile";
+                        if (isVideo(photo.key)) {
+                            const v = document.createElement("video");
+                            v.src = photo.url;
+                            v.muted = true;
+                            v.playsInline = true;
+                            v.preload = "metadata";
+                            tile.appendChild(v);
+                        } else {
+                            const img = document.createElement("img");
+                            img.src = photo.url;
+                            img.loading = "lazy";
+                            img.alt = "Wedding photo";
+                            tile.appendChild(img);
+                        }
+                        tile.addEventListener("click", () =>
+                            openLightbox(photo),
+                        );
+                        gallery.appendChild(tile);
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+            loadGallery();
+        </script>
+    </body>
+</html>
