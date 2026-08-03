@@ -223,6 +223,78 @@
             .back-link a:hover {
                 text-decoration: underline;
             }
+            .key-modal {
+                display: none;
+                position: fixed;
+                inset: 0;
+                background: rgba(15, 28, 46, 0.97);
+                z-index: 200;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            .key-modal.open {
+                display: flex;
+            }
+            .key-modal .key-card {
+                background: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(143, 179, 177, 0.3);
+                border-radius: 16px;
+                padding: 40px 30px;
+                max-width: 420px;
+                width: 100%;
+            }
+            .key-modal h2 {
+                font-family: "Great Vibes", cursive;
+                font-size: 2.2em;
+                color: #8fb3b1;
+                margin: 0 0 0.3em;
+            }
+            .key-modal p {
+                font-size: 1.15em;
+                margin: 0 0 1.2em;
+                opacity: 0.9;
+            }
+            .key-modal input {
+                width: 100%;
+                padding: 12px 16px;
+                font-size: 1.1em;
+                font-family: "Cormorant Garamond", serif;
+                border: 2px solid rgba(90, 125, 124, 0.5);
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.9);
+                color: #333;
+                text-align: center;
+                margin-bottom: 12px;
+            }
+            .key-modal input:focus {
+                outline: none;
+                border-color: #5a7d7c;
+            }
+            .key-modal button {
+                width: 100%;
+                padding: 12px 30px;
+                font-size: 1.2em;
+                font-family: "Cormorant Garamond", serif;
+                font-weight: 600;
+                background: #5a7d7c;
+                color: #fff;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .key-modal button:hover {
+                background: #8fb3b1;
+            }
+            .key-modal .key-error {
+                color: #ff6b6b;
+                font-size: 1em;
+                min-height: 1.4em;
+                margin-top: 10px;
+            }
         </style>
     </head>
     <body>
@@ -274,6 +346,26 @@
 
         <div class="lightbox" id="lightbox"></div>
 
+        <div class="key-modal" id="key-modal">
+            <div class="key-card">
+                <h2>This gallery is private</h2>
+                <p>
+                    Scan the QR code from the wedding to get in, or enter the
+                    access code below.
+                </p>
+                <input
+                    type="text"
+                    id="key-input"
+                    placeholder="Access code"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                />
+                <button id="key-submit">Unlock</button>
+                <div class="key-error" id="key-error"></div>
+            </div>
+        </div>
+
         <script>
             const API =
                 "https://ypqhe9vop8.execute-api.us-west-2.amazonaws.com/";
@@ -287,6 +379,36 @@
             const emptyGallery = document.getElementById("empty-gallery");
             const lightbox = document.getElementById("lightbox");
             const uploaderInput = document.getElementById("uploader");
+            const keyModal = document.getElementById("key-modal");
+            const keyInput = document.getElementById("key-input");
+            const keySubmit = document.getElementById("key-submit");
+            const keyError = document.getElementById("key-error");
+
+            // The access key arrives via the QR code URL (?key=...). Persist it
+            // and scrub it from the address bar so it stays out of history.
+            let accessKey = localStorage.getItem("weddingpix-key") || "";
+            const urlKey = new URLSearchParams(location.search).get("key");
+            if (urlKey) {
+                accessKey = urlKey;
+                localStorage.setItem("weddingpix-key", accessKey);
+                history.replaceState(null, "", location.pathname);
+            }
+
+            keySubmit.addEventListener("click", async () => {
+                accessKey = keyInput.value.trim();
+                keyError.textContent = "";
+                const ok = await loadGallery();
+                if (ok) {
+                    localStorage.setItem("weddingpix-key", accessKey);
+                    keyModal.classList.remove("open");
+                } else {
+                    keyError.textContent =
+                        "That code did not work. Double-check and try again.";
+                }
+            });
+            keyInput.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") keySubmit.click();
+            });
 
             uploaderInput.value = localStorage.getItem("weddingpix-name") || "";
             uploaderInput.addEventListener("change", () =>
@@ -327,6 +449,7 @@
                         headers: { "content-type": "application/json" },
                         body: JSON.stringify({
                             action: "upload-urls",
+                            key: accessKey,
                             files: files.map((f) => ({
                                 name: f.name,
                                 type: f.type,
@@ -360,6 +483,7 @@
                             headers: { "content-type": "application/json" },
                             body: JSON.stringify({
                                 action: "notify",
+                                key: accessKey,
                                 uploader: uploaderInput.value.trim(),
                                 count: uploaded,
                             }),
@@ -404,7 +528,13 @@
 
             async function loadGallery() {
                 try {
-                    const res = await fetch(API);
+                    const res = await fetch(
+                        API + "?key=" + encodeURIComponent(accessKey),
+                    );
+                    if (res.status === 401) {
+                        keyModal.classList.add("open");
+                        return false;
+                    }
                     const { photos } = await res.json();
                     gallery.innerHTML = "";
                     emptyGallery.style.display = photos.length
@@ -432,8 +562,10 @@
                         );
                         gallery.appendChild(tile);
                     }
+                    return true;
                 } catch (err) {
                     console.error(err);
+                    return false;
                 }
             }
 

@@ -5,8 +5,10 @@ import {
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+import { timingSafeEqual } from "node:crypto";
 
 const BUCKET = process.env.BUCKET;
+const UPLOAD_KEY = process.env.UPLOAD_KEY;
 const REGION = process.env.AWS_REGION;
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL;
 const GALLERY_URL = "https://tobilehman.com/wedding/weddingpix.html";
@@ -24,14 +26,26 @@ const resp = (statusCode, body) => ({
     body: JSON.stringify(body),
 });
 
+function keyValid(provided) {
+    if (!UPLOAD_KEY) return false;
+    const a = Buffer.from(String(provided || ""));
+    const b = Buffer.from(UPLOAD_KEY);
+    return a.length === b.length && timingSafeEqual(a, b);
+}
+
 export const handler = async (event) => {
     const method = event.requestContext.http.method;
     try {
         // CORS preflight: API Gateway appends the configured CORS headers
         if (method === "OPTIONS") return { statusCode: 204 };
-        if (method === "GET") return await listPhotos();
+        if (method === "GET") {
+            if (!keyValid(event.queryStringParameters?.key))
+                return resp(401, { error: "invalid key" });
+            return await listPhotos();
+        }
         if (method === "POST") {
             const body = JSON.parse(event.body || "{}");
+            if (!keyValid(body.key)) return resp(401, { error: "invalid key" });
             if (body.action === "upload-urls") return await uploadUrls(body);
             if (body.action === "notify") return await notify(body);
             return resp(400, { error: "unknown action" });
