@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Prayers</title>
+        <meta name="description" content="Prayers, with a spaced-repetition trainer that keeps you practicing until you can recite them from memory." />
+        <link rel="icon" type="image/png" sizes="192x192" href="./img/android-chrome-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="./img/android-chrome-512x512.png" />
+        <link rel="stylesheet" href="/math/darkmode.css" />
+        <script src="/math/darkmode.js"></script>
+        <style>
+            @font-face {
+                font-family: "Computer Modern";
+                src: url("./css/computer-modern/cmunrm.ttf");
+            }
+            @font-face {
+                font-family: "Computer Modern";
+                font-style: italic;
+                src: url("./css/computer-modern/cmunti.ttf");
+            }
+            @font-face {
+                font-family: "Computer Modern";
+                font-weight: bold;
+                src: url("./css/computer-modern/cmunbx.ttf");
+            }
+
+            :root {
+                --ink: #222;
+                --muted: #777;
+                --rule: #ddd;
+                --paper: #fff;
+                --card: #faf8f3;
+                --accent: #8b1a1a;
+                --accent-soft: #f4e3e3;
+                --good: #2e7d32;
+                --good-soft: #e3f2e5;
+                --bad: #b71c1c;
+                --bad-soft: #fbe4e4;
+                --hint: #b8860b;
+            }
+            html.dark {
+                --ink: #e0e0e0;
+                --muted: #999;
+                --rule: #3a3a3a;
+                --paper: #1a1a1a;
+                --card: #222;
+                --accent: #e08a8a;
+                --accent-soft: #3a2323;
+                --good: #81c784;
+                --good-soft: #1f3322;
+                --bad: #ef9a9a;
+                --bad-soft: #3b1f1f;
+                --hint: #e0b84a;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Computer Modern", "Source Serif 4", Georgia, serif;
+                font-size: 20px;
+                line-height: 1.55;
+                color: var(--ink);
+                background: var(--paper);
+            }
+            main {
+                max-width: 42em;
+                margin: 0 auto;
+                padding: 2.5em 1.2em 5em;
+            }
+            header h1 {
+                font-weight: normal;
+                font-size: 2.4em;
+                margin: 0 0 0.2em;
+                letter-spacing: 0.02em;
+            }
+            header p.lede {
+                color: var(--muted);
+                margin: 0 0 2em;
+                font-style: italic;
+            }
+            a { color: #33f; }
+            html.dark a { color: #8ab4e8; }
+            .home { font-size: 0.85em; }
+
+            .cross {
+                text-align: center;
+                color: var(--accent);
+                font-size: 1.6em;
+                margin: 0.4em 0 0.6em;
+                letter-spacing: 0.4em;
+            }
+
+            /* Prayer card */
+            .prayer {
+                background: var(--card);
+                border: 1px solid var(--rule);
+                border-radius: 8px;
+                padding: 1.4em 1.6em 1.6em;
+                margin-bottom: 2em;
+            }
+            .prayer h2 {
+                font-weight: normal;
+                font-size: 1.5em;
+                margin: 0 0 0.1em;
+            }
+            .prayer .meta {
+                font-size: 0.8em;
+                color: var(--muted);
+                margin-bottom: 1em;
+            }
+            .prayer .meta a { color: inherit; }
+            .prayer .subtitle {
+                font-style: italic;
+                color: var(--muted);
+                margin: 0 0 0.6em;
+            }
+            .text {
+                white-space: pre-line;
+                font-size: 1.05em;
+                line-height: 1.6;
+                margin: 0 0 1em;
+                padding-left: 1em;
+                border-left: 3px solid var(--accent);
+            }
+
+            /* Progress strip */
+            .progress {
+                display: flex;
+                align-items: center;
+                gap: 0.6em;
+                font-size: 0.8em;
+                color: var(--muted);
+                margin: 0.8em 0 1em;
+                flex-wrap: wrap;
+            }
+            .stages { display: inline-flex; gap: 0.35em; }
+            .stage {
+                width: 1.5em; height: 1.5em;
+                border-radius: 50%;
+                border: 1.5px solid var(--rule);
+                display: inline-flex; align-items: center; justify-content: center;
+                font-size: 0.75em;
+                color: var(--muted);
+            }
+            .stage.done { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+            .stage.now  { border-color: var(--accent); color: var(--accent); font-weight: bold; }
+            .badge {
+                display: inline-block;
+                padding: 0.05em 0.6em;
+                border-radius: 1em;
+                background: var(--accent-soft);
+                color: var(--accent);
+                font-size: 0.9em;
+            }
+            .badge.good { background: var(--good-soft); color: var(--good); }
+
+            /* Buttons */
+            button {
+                font-family: inherit;
+                font-size: 0.85em;
+                padding: 0.35em 1em;
+                border-radius: 4px;
+                border: 1px solid var(--rule);
+                background: var(--paper);
+                color: var(--ink);
+                cursor: pointer;
+            }
+            button:hover { border-color: var(--muted); }
+            button.primary {
+                background: var(--accent);
+                border-color: var(--accent);
+                color: #fff;
+            }
+            html.dark button.primary { color: #1a1a1a; }
+            button.primary:hover { opacity: 0.9; }
+            button.quiet { border-color: transparent; color: var(--muted); }
+            .row { display: flex; gap: 0.6em; flex-wrap: wrap; align-items: center; margin-top: 0.8em; }
+            .row .spacer { flex: 1; }
+
+            /* Trainer */
+            .trainer { display: none; margin-top: 0.6em; }
+            .trainer.open { display: block; }
+            .prompt {
+                font-size: 0.85em;
+                color: var(--muted);
+                margin: 0 0 0.5em;
+            }
+            .hint {
+                white-space: pre-line;
+                font-family: "Computer Modern", serif;
+                font-size: 1.05em;
+                line-height: 1.6;
+                color: var(--hint);
+                padding-left: 1em;
+                border-left: 3px solid var(--hint);
+                margin: 0 0 0.8em;
+                min-height: 1.6em;
+            }
+            .hint.blank { color: var(--muted); font-style: italic; }
+            .cue {
+                white-space: pre-line;
+                font-size: 1.05em;
+                line-height: 1.6;
+                padding-left: 1em;
+                border-left: 3px solid var(--rule);
+                margin: 0 0 0.6em;
+                color: var(--ink);
+            }
+            .cue-label { font-size: 0.75em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-right: 0.3em; }
+            input.line {
+                width: 100%;
+                box-sizing: border-box;
+                font-family: inherit;
+                font-size: 1em;
+                line-height: 1.55;
+                padding: 0.7em 0.9em;
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                background: var(--paper);
+                color: var(--ink);
+            }
+            input.line:focus { outline: none; border-color: var(--accent); }
+            .cue .said { color: var(--muted); }
+            .cue .said.last { color: var(--ink); }
+            .cue .title { font-style: italic; }
+
+            .result {
+                margin-top: 1em;
+                padding: 0.9em 1.1em;
+                border-radius: 6px;
+                border: 1px solid var(--rule);
+                display: none;
+            }
+            .result.show { display: block; }
+            .result.pass { border-color: var(--good); background: var(--good-soft); }
+            .result.fail { border-color: var(--bad); background: var(--bad-soft); }
+            .result .verdict { font-weight: bold; margin: 0 0 0.3em; }
+            .result .diff {
+                white-space: pre-line;
+                line-height: 1.7;
+                font-size: 0.95em;
+            }
+            .w.ok { }
+            .w.miss { color: var(--bad); text-decoration: underline dotted; }
+            .w.extra { color: var(--bad); text-decoration: line-through; opacity: 0.7; }
+            .result .next { font-size: 0.85em; color: var(--muted); margin: 0.5em 0 0; }
+
+            footer.about {
+                margin-top: 3em;
+                font-size: 0.85em;
+                color: var(--muted);
+                border-top: 1px solid var(--rule);
+                padding-top: 1em;
+            }
+            footer.about a { color: inherit; }
+            kbd {
+                font-family: inherit;
+                border: 1px solid var(--rule);
+                border-radius: 3px;
+                padding: 0 0.3em;
+                font-size: 0.9em;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <header>
+                <p class="home"><a href="/">← tobilehman.com</a></p>
+                <h1>Prayers</h1>
+                <p class="lede">
+                    A small book of prayers, with a trainer that keeps testing you until you can say each one from memory, then comes back later to make sure it stuck.
+                </p>
+            </header>
+
+            <div id="prayers"></div>
+        </main>
+
+        <script>
+        (function () {
+            // ------------------------------------------------------------
+            // Prayers. Add more entries here; the trainer picks them up.
+            // ------------------------------------------------------------
+            var PRAYERS = [
+                {
+                    id: "married-couples-one",
+                    title: "Prayer for Married Couples",
+                    subtitle: "For one couple",
+                    source: "USCCB",
+                    url: "https://www.usccb.org/prayers/prayer-married-couples",
+                    text: [
+                        "O God, who in creating the human race",
+                        "willed that man and wife should be one,",
+                        "keep, we pray, in a bond of inseparable love",
+                        "those who are united in the covenant of Marriage,",
+                        "so that, as you make their love fruitful,",
+                        "they may become, by your grace, witnesses to charity itself.",
+                        "Through Christ our Lord.",
+                        "Amen."
+                    ].join("\n")
+                }
+            ];
+
+            // ------------------------------------------------------------
+            // Spaced repetition state, kept in localStorage.
+            // ------------------------------------------------------------
+            var KEY = "prayers.v1";
+            var STAGES = ["Read along", "First letters", "Line starts", "From memory"];
+            var INTERVALS = [1, 3, 7, 16, 35, 75, 160]; // days between reviews
+            var PASS = 0.95; // fraction of words that must match
+            var DAY = 86400000;
+
+            function loadAll() {
+                try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
+                catch (e) { return {}; }
+            }
+            function saveAll(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
+            function stateFor(id) {
+                var all = loadAll();
+                return all[id] || { stage: 0, box: 0, due: 0, mastered: false, attempts: 0, passes: 0, last: 0 };
+            }
+            function setState(id, st) {
+                var all = loadAll();
+                all[id] = st;
+                saveAll(all);
+            }
+
+            // ------------------------------------------------------------
+            // Text helpers
+            // ------------------------------------------------------------
+            function words(text) {
+                return text.toLowerCase()
+                    .replace(/[’']/g, "")
+                    .replace(/[^a-z0-9\s]/g, " ")
+                    .split(/\s+/)
+                    .filter(Boolean);
+            }
+            // Help shown for the line being typed, by stage.
+            function hintFor(line, stage) {
+                if (stage === 0) return line;
+                if (stage === 1) {
+                    return line.split(/(\s+)/).map(function (tok) {
+                        if (!tok.trim()) return tok;
+                        var m = tok.match(/^([^A-Za-z]*)([A-Za-z])/);
+                        return m ? m[1] + m[2] + "․".repeat(Math.max(1, tok.replace(/[^A-Za-z]/g, "").length - 1)) : tok;
+                    }).join("");
+                }
+                if (stage === 2) {
+                    var m = line.match(/[A-Za-z]/);
+                    return m ? m[0] + " …" : line;
+                }
+                return "";
+            }
+
+            // Word-level diff via LCS. Returns an array of {w, kind} where kind is ok|miss|extra.
+            function diff(target, typed) {
+                var a = target, b = typed;
+                var n = a.length, m = b.length;
+                var L = [];
+                for (var i = 0; i <= n; i++) { L.push(new Array(m + 1).fill(0)); }
+                for (i = n - 1; i >= 0; i--) {
+                    for (var j = m - 1; j >= 0; j--) {
+                        L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+                    }
+                }
+                var out = [], matched = 0;
+                i = 0; j = 0;
+                while (i < n && j < m) {
+                    if (a[i] === b[j]) { out.push({ w: a[i], kind: "ok" }); i++; j++; matched++; }
+                    else if (L[i + 1][j] >= L[i][j + 1]) { out.push({ w: a[i], kind: "miss" }); i++; }
+                    else { out.push({ w: b[j], kind: "extra" }); j++; }
+                }
+                while (i < n) { out.push({ w: a[i++], kind: "miss" }); }
+                while (j < m) { out.push({ w: b[j++], kind: "extra" }); }
+                return { out: out, score: n ? matched / n : 0, extra: m - matched };
+            }
+
+            function renderDiff(d) {
+                return d.out.map(function (item) {
+                    return '<span class="w ' + item.kind + '">' + esc(item.w) + "</span>";
+                }).join(" ");
+            }
+            function esc(s) {
+                return String(s).replace(/[&<>"]/g, function (c) {
+                    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+                });
+            }
+            function fmtDue(due) {
+                var diffMs = due - Date.now();
+                if (diffMs <= 0) return "due now";
+                var d = Math.round(diffMs / DAY);
+                if (d < 1) return "due in a few hours";
+                return "due in " + d + " day" + (d === 1 ? "" : "s");
+            }
+
+            // ------------------------------------------------------------
+            // Rendering
+            // ------------------------------------------------------------
+            var container = document.getElementById("prayers");
+
+            PRAYERS.forEach(function (p) {
+                var st = stateFor(p.id);
+                var el = document.createElement("section");
+                el.className = "prayer";
+                el.id = p.id;
+                el.innerHTML =
+                    '<h2>' + esc(p.title) + '</h2>' +
+                    (p.subtitle ? '<p class="subtitle">' + esc(p.subtitle) + '</p>' : '') +
+                    '<p class="meta">Source: <a href="' + esc(p.url) + '" title="' + esc(p.title) + ' at ' + esc(p.source) + '" target="_blank" rel="noopener">' + esc(p.source) + '</a></p>' +
+                    '<div class="text" data-role="text"></div>' +
+                    '<div class="progress" data-role="progress"></div>' +
+                    '<div class="row">' +
+                        '<button class="primary" data-act="train">Practice</button>' +
+                        '<button data-act="toggle-text">Hide text</button>' +
+                        '<span class="spacer"></span>' +
+                        '<button class="quiet" data-act="reset" title="Forget your progress on this prayer">Reset</button>' +
+                    '</div>' +
+                    '<div class="trainer" data-role="trainer">' +
+                        '<p class="prompt" data-role="prompt"></p>' +
+                        '<div class="cue" data-role="cue"></div>' +
+                        '<div class="hint" data-role="hint"></div>' +
+                        '<input class="line" type="text" data-role="input" spellcheck="false" autocomplete="off" placeholder="Type the next line, then Enter" />' +
+                        '<div class="row">' +
+                            '<button class="primary" data-act="check">Check line</button>' +
+                            '<button data-act="peek">Peek</button>' +
+                            '<span class="spacer"></span>' +
+                            '<button class="quiet" data-act="close">Done for now</button>' +
+                        '</div>' +
+                        '<div class="result" data-role="result">' +
+                            '<p class="verdict" data-role="verdict"></p>' +
+                            '<div class="diff" data-role="diff"></div>' +
+                            '<p class="next" data-role="next"></p>' +
+                        '</div>' +
+                    '</div>';
+                container.appendChild(el);
+
+                var $ = function (role) { return el.querySelector('[data-role="' + role + '"]'); };
+                var textEl = $("text"), progEl = $("progress"), trainer = $("trainer"),
+                    promptEl = $("prompt"), cueEl = $("cue"), hintEl = $("hint"), input = $("input"),
+                    result = $("result"), verdict = $("verdict"), diffEl = $("diff"), nextEl = $("next");
+                textEl.textContent = p.text;
+
+                function renderProgress() {
+                    st = stateFor(p.id);
+                    var html = '<span class="stages">';
+                    for (var i = 0; i < STAGES.length; i++) {
+                        var cls = i < st.stage ? "done" : (i === st.stage && !st.mastered ? "now" : "");
+                        if (st.mastered) cls = "done";
+                        html += '<span class="stage ' + cls + '" title="' + STAGES[i] + '">' + (i + 1) + '</span>';
+                    }
+                    html += '</span>';
+                    if (st.mastered) {
+                        html += '<span class="badge good">memorized</span> <span>' + fmtDue(st.due) + '</span>';
+                    } else if (st.attempts === 0) {
+                        html += '<span>not started</span>';
+                    } else {
+                        html += '<span class="badge">' + STAGES[st.stage] + '</span>';
+                    }
+                    if (st.attempts) html += '<span>· ' + st.passes + '/' + st.attempts + ' passed</span>';
+                    progEl.innerHTML = html;
+                }
+
+                var lines = p.text.split("\n");
+                var run = null; // {stage, i, failed, done}
+
+                function showLine() {
+                    var i = run.i;
+                    result.classList.remove("show", "pass", "fail");
+                    input.value = "";
+                    promptEl.textContent = "Stage " + (run.stage + 1) + " of 4: " + STAGES[run.stage] +
+                        (st.mastered ? " (review)" : "") + ". Line " + (i + 1) + " of " + lines.length + ".";
+                    // The cue is the recitation so far: the title, then every line
+                    // already given. Once you know the first line, each line prompts the next.
+                    var cue = '<span class="title">' + esc(p.title) + '</span>';
+                    for (var k = 0; k < i; k++) {
+                        cue += '\n<span class="said' + (k === i - 1 ? ' last' : '') + '">' + esc(lines[k]) + '</span>';
+                    }
+                    cueEl.innerHTML = cue;
+                    var h = hintFor(lines[i], run.stage);
+                    hintEl.classList.toggle("blank", !h);
+                    hintEl.textContent = h || "(type the next line from memory)";
+                    input.focus();
+                }
+
+                function openTrainer() {
+                    st = stateFor(p.id);
+                    // A mastered prayer that comes due is retested from memory.
+                    run = { stage: st.mastered ? 3 : st.stage, i: 0, failed: 0, done: false };
+                    trainer.classList.add("open");
+                    if (run.stage > 0) { textEl.style.display = "none"; el.querySelector('[data-act="toggle-text"]').textContent = "Show text"; }
+                    showLine();
+                }
+
+                function checkLine() {
+                    if (!run || run.done) return;
+                    var target = words(lines[run.i]);
+                    var d = diff(target, words(input.value));
+                    var pass = d.score >= PASS && d.extra <= 1;
+                    if (!pass) run.failed++;
+                    verdict.textContent = pass ? "✓ Line " + (run.i + 1) : "✗ Line " + (run.i + 1) + ". It goes:";
+                    diffEl.innerHTML = pass ? "" : renderDiff(d);
+                    result.classList.add("show");
+                    result.classList.toggle("pass", pass);
+                    result.classList.toggle("fail", !pass);
+                    if (run.i + 1 < lines.length) {
+                        run.i++;
+                        if (pass) {
+                            // Keep the recitation flowing: a right line prompts the next.
+                            showLine();
+                        } else {
+                            nextEl.textContent = "Press Continue for the next line.";
+                            el.querySelector('[data-act="check"]').textContent = "Continue";
+                            run.awaiting = true;
+                        }
+                    } else {
+                        finishRun();
+                    }
+                }
+
+                function finishRun() {
+                    run.done = true;
+                    st = stateFor(p.id);
+                    var stage = run.stage;
+                    var pass = run.failed === 0;
+                    st.attempts++;
+                    st.last = Date.now();
+                    var msg;
+                    if (pass) {
+                        st.passes++;
+                        if (st.mastered) {
+                            st.box = Math.min(st.box + 1, INTERVALS.length - 1);
+                            st.due = Date.now() + INTERVALS[st.box] * DAY;
+                            msg = "Every line, from memory. Next review " + fmtDue(st.due).replace("due ", "") + ".";
+                        } else if (stage < 3) {
+                            st.stage = stage + 1;
+                            msg = "Every line right. Moving up to stage " + (st.stage + 1) + ": " + STAGES[st.stage] + ".";
+                        } else {
+                            st.mastered = true;
+                            st.box = 0;
+                            st.due = Date.now() + INTERVALS[0] * DAY;
+                            msg = "Every line, from memory, without help. Memorized. Review " + fmtDue(st.due).replace("due ", "") + ".";
+                        }
+                    } else {
+                        var n = run.failed + " line" + (run.failed === 1 ? "" : "s") + " missed. ";
+                        if (st.mastered) {
+                            st.mastered = false; st.stage = 2; st.box = 0; st.due = 0;
+                            msg = n + "Back to stage 3 (line starts) until it is solid again.";
+                        } else if (stage > 0) {
+                            st.stage = stage - 1;
+                            msg = n + "Dropping back to stage " + (st.stage + 1) + ": " + STAGES[st.stage] + ".";
+                        } else {
+                            msg = n + "Read it through and go again.";
+                        }
+                    }
+                    setState(p.id, st);
+                    verdict.textContent = (pass ? "✓ " : "✗ ") + msg;
+                    diffEl.innerHTML = "";
+                    result.classList.add("show");
+                    result.classList.toggle("pass", pass);
+                    result.classList.toggle("fail", !pass);
+                    nextEl.textContent = st.mastered ? "Come back when it is due; the trainer will quiz you line by line from memory." : "Press Practice to go again.";
+                    el.querySelector('[data-act="check"]').textContent = "Check line";
+                    cueEl.innerHTML = "";
+                    hintEl.textContent = "";
+                    hintEl.classList.remove("blank");
+                    promptEl.textContent = "Finished.";
+                    renderProgress();
+                    el.querySelector('[data-act="train"]').textContent = st.mastered ? "Review" : "Practice";
+                }
+
+                function check() {
+                    if (!run || run.done) return;
+                    if (run.awaiting) {
+                        run.awaiting = false;
+                        el.querySelector('[data-act="check"]').textContent = "Check line";
+                        showLine();
+                    } else {
+                        checkLine();
+                    }
+                }
+
+                el.addEventListener("click", function (ev) {
+                    var act = ev.target.getAttribute && ev.target.getAttribute("data-act");
+                    if (!act) return;
+                    if (act === "train") { openTrainer(); }
+                    else if (act === "check") { check(); }
+                    else if (act === "peek") {
+                        // Peeking is allowed, but it counts as a miss for this line.
+                        if (!run || run.done || run.awaiting) return;
+                        run.failed++;
+                        hintEl.classList.remove("blank");
+                        hintEl.textContent = lines[run.i];
+                        promptEl.textContent = "You peeked (counts as a miss). Type it out, then Continue.";
+                    }
+                    else if (act === "close") { trainer.classList.remove("open"); }
+                    else if (act === "toggle-text") {
+                        var hidden = textEl.style.display === "none";
+                        textEl.style.display = hidden ? "" : "none";
+                        ev.target.textContent = hidden ? "Hide text" : "Show text";
+                    }
+                    else if (act === "reset") {
+                        if (confirm("Forget your progress on “" + p.title + "”?")) {
+                            var all = loadAll(); delete all[p.id]; saveAll(all);
+                            trainer.classList.remove("open");
+                            el.querySelector('[data-act="train"]').textContent = "Practice";
+                            renderProgress();
+                        }
+                    }
+                });
+                input.addEventListener("keydown", function (ev) {
+                    if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); check(); }
+                });
+
+                renderProgress();
+                if (st.mastered) el.querySelector('[data-act="train"]').textContent = "Review";
+                if (st.mastered && st.due <= Date.now()) openTrainer();
+            });
+        })();
+        </script>
+        <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>
