@@ -55,6 +55,28 @@
       .links a:hover {
           text-decoration: underline;
       }
+
+      .links .row {
+          white-space: nowrap;
+          overflow-x: auto;
+      }
+
+      .links .row a, .links .row span.name {
+          display: inline;
+      }
+
+      .links .row span.name {
+          color: #888;
+      }
+
+      .desc {
+          color: #666;
+      }
+
+      .desc::before {
+          content: "  # ";
+          white-space: pre;
+      }
     </style>
     <link rel="icon" type="image/png" sizes="192x192" href="./img/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="./img/android-chrome-512x512.png">
@@ -64,8 +86,16 @@
       <span class="input">ls</span>
     </div>
     <div class="links">
+      <div class="row"><a href="https://github.com/tlehman/dotbar">⣿⣿⣿⣿⢿⡀ dotbar</a><span class="desc">Braille-dot progress bar for statuslines and terminals</span></div>
+      <div class="row"><a href="https://github.com/tlehman/texsh">\TeX sh texsh</a><span class="desc">Render LaTeX to the terminal and also convert to unicode</span></div>
+      <div class="row"><a href="https://github.com/tlehman/latex2unicode">λx:Σₙ 1/xⁿ latex2unicode</a><span class="desc">Convert LaTeX to unicode in Clojure (babashka)</span></div>
+      <div class="row"><a href="https://github.com/tlehman/litprog-skill">📖 litprog-skill</a><span class="desc">Literate programming skill for Claude Code</span></div>
+      <div class="row"><span class="name">📷 imgclass</span><span class="desc">Swift CLI to detect classes of objects in images (local only)</span></div>
+      <div class="row"><a href="https://github.com/tlehman/vecviz">↗ vecviz</a><span class="desc">visualize the vector embeddings of various AI models</span></div>
+      <div class="row"><a href="https://github.com/tlehman/git-llama">🦙 git-llama</a><span class="desc">local RAG search for git repos</span></div>
+      <div class="row"><a href="https://github.com/tlehman/uud">⌨️ uud</a><span class="desc">unicode dump command</span></div>
+      <div class="row"><span class="name">🎟️ jirastatus</span><span class="desc">Command line tool to check on the status of a Jira ticket</span></div>
       <a href="https://tobilehman.com/hammock">hammock (editor)</a>
-      <a href="https://github.com/tlehman/litprog-skill">litprog-skill</a>
       <a href="./programs/rosary.html">rosary.html</a>
       <a href="./programs/goats.html">goats.js</a>
       <a href="https://github.com/tlehman/pls">pls.clj</a>

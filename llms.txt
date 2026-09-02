@@ -26,6 +26,3 @@ A collection of programs I've written (pre-LLMs) are at /programs.html
 The only program there that involved an LLM in it's production was /programs/rosary.html
 That is a religious app idea I had and worked on in a few different languages before settling
 on the HTML/SVG vibe-coded one.
-
-## Wedding
-My upcoming wedding site is also on the page, once the wedding is over, it will be retired.
