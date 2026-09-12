@@ -444,7 +444,7 @@
                 and the \( g^{ij} \) does not go away.
             </p>
 
-            <h2>Connections and the covariant derivative</h2>
+            <h2>Connections and moving frames</h2>
             <p>
                 A vector field \( W \) assigns a vector \( W_p \in T_pM \) to
                 every point, and we'd like to differentiate it in the
@@ -455,88 +455,167 @@
                 in the tangent space at \( p \). These are different fibers
                 of the tangent bundle, and a bundle comes with no rule for
                 subtracting a vector in one fiber from a vector in another.
-                On \( \mathbb{R}^n \) you never noticed, because all the
-                tangent spaces are secretly copies of the same
-                \( \mathbb{R}^n \). On a sphere they are not.
-            </p>
-            <p>
-                A
+                Every fiber is a copy of the same space, that's what a
+                bundle is, but a copy is not an identification. The fibers
+                over \( p \) and \( q \) are both isomorphic to
+                \( \mathbb{R}^n \), and there are many isomorphisms
+                between them, and the bundle doesn't prefer one. On
+                \( \mathbb{R}^n \) you never noticed, because there
+                <em>is</em> a preferred one: translation. Slide a vector
+                from \( p \) to \( q \) and everyone agrees on the result.
+                On a sphere there is no translation. A
                 <a href="https://en.wikipedia.org/wiki/Affine_connection"
                     title="Affine connection">connection</a> is the missing
-                rule: a way of connecting neighboring fibers so that vectors
-                in them can be compared. It gives a derivative
-                \( \nabla_v W \), the <b>covariant derivative</b> of \( W \)
-                along \( v \), which is linear in \( v \), and obeys the
-                product rule \( \nabla_v (fW) = v(f)\, W + f\, \nabla_v W \).
-                On functions it's the ordinary directional derivative,
-                \( v(f) = df(v) = v^i \partial_i f \), the 1-form from last
-                time doing its job. A connection extends that from functions
-                to vector fields. In coordinates the whole rule is encoded in
-                how the basis vectors change:
-                \[ \nabla_{\partial_i} \partial_j = \Gamma^k_{ij}\, \partial_k \]
-                The numbers \( \Gamma^k_{ij} \) are the
-                <a href="https://en.wikipedia.org/wiki/Christoffel_symbols"
-                    title="Christoffel symbols">Christoffel symbols</a>.
-                With them and the product rule, the derivative of any field
-                \( W = W^k \partial_k \) along any \( v \) is
-                \[ \nabla_v W = v^i \left( \partial_i W^k + \Gamma^k_{ij} W^j
-                \right) \partial_k \]
-                The first term is the naive derivative of the components. The
-                second corrects for the basis vectors turning underneath you.
+                rule, a preferred way of identifying neighboring fibers so
+                that vectors in them can be compared.
             </p>
             <p>
-                Which connection? There are infinitely many. The metric picks
-                one. The
+                Cartan's way in is the
+                <a href="https://en.wikipedia.org/wiki/Method_of_moving_frames"
+                    title="Method of moving frames">method of moving
+                frames</a>. Instead of the coordinate vectors
+                \( \partial_i \), which have no fixed length, carry a ruler.
+                An <b>orthonormal frame</b> on a surface is a pair of vector
+                fields \( e_1, e_2 \) with \( g(e_a, e_b) = \delta_{ab} \):
+                at every point, two perpendicular unit vectors. The dual
+                1-forms \( \theta^1, \theta^2 \), with \( \theta^a(e_b) =
+                \delta^a_b \), are the <b>coframe</b>, and in terms of them
+                the metric is just
+                \[ g = (\theta^1)^2 + (\theta^2)^2 \]
+                so you can read the coframe straight off the line element.
+                Polar plane: \( \theta^1 = dr \), \( \theta^2 = r\, d\theta \).
+                Sphere: \( \theta^1 = R\, d\theta \), \( \theta^2 = R\sin\theta\,
+                d\phi \). Hyperbolic half-plane: \( \theta^1 = dx/y \),
+                \( \theta^2 = dy/y \). The frame is "moving" because it turns
+                from point to point, and a connection is a record of how.
+            </p>
+            <p>
+                Here is the record. As you move in a direction \( v \), each
+                frame vector changes by some combination of frame vectors,
+                and the amount is linear in \( v \), as a derivative should
+                be:
+                \[ \nabla_v e_b = \omega^a{}_b(v)\, e_a \]
+                The \( \omega^a{}_b \) are 1-forms, the <b>connection
+                1-forms</b>, and that matrix of 1-forms is the whole
+                connection. Given it, the <b>covariant derivative</b> of any
+                vector field \( W = W^a e_a \) follows from the product rule:
+                \[ \nabla_v W = \big( dW^a(v) + \omega^a{}_b(v)\, W^b \big)\, e_a \]
+                The first term is the directional derivative of the
+                components, the \( df(v) \) from the forms article doing its
+                job. The second corrects for the frame turning underneath
+                you.
+            </p>
+            <p>
+                There are infinitely many connections. Two conditions pick
+                one. First, <b>metric compatibility</b>: moving vectors along
+                with the connection should preserve their lengths and
+                angles. Differentiating \( g(e_a, e_b) = \delta_{ab} \) gives
+                \( \omega^a{}_b = -\omega^b{}_a \), so the matrix is
+                antisymmetric, and on a surface that leaves a single 1-form:
+                \[ \nabla e_1 = \omega \otimes e_2, \qquad \nabla e_2 =
+                -\omega \otimes e_1 \]
+                Moving in direction \( v \) rotates the frame by the angle
+                \( \omega(v) \). Second, <b>no torsion</b>: the connection
+                should agree with \( d \), so that the frame's turning is
+                exactly what the coframe already knows about. That is
+                <a href="https://en.wikipedia.org/wiki/Cartan%27s_structure_equations"
+                    title="Cartan's structure equations">Cartan's first
+                structure equation</a>, \( d\theta^a = -\omega^a{}_b \wedge
+                \theta^b \), which on a surface reads
+                \[ d\theta^1 = \omega \wedge \theta^2, \qquad d\theta^2 =
+                -\omega \wedge \theta^1 \]
+                Two equations, one unknown 1-form, and they always have
+                exactly one solution. That solution is the
                 <a href="https://en.wikipedia.org/wiki/Levi-Civita_connection"
                     title="Levi-Civita connection">Levi-Civita
-                connection</a> is the unique connection that is
-                <b>compatible with the metric</b> (moving vectors along with
-                it preserves their lengths and angles) and
-                <b>torsion-free</b> (\( \Gamma^k_{ij} = \Gamma^k_{ji} \)).
-                Its Christoffel symbols are computed from the metric:
-                \[ \Gamma^k_{ij} = \tfrac{1}{2} g^{kl} \left( \partial_i
-                g_{jl} + \partial_j g_{il} - \partial_l g_{ij} \right) \]
-                Try it on the plane in polar coordinates, where \( g_{rr} = 1
-                \), \( g_{\theta\theta} = r^2 \), and the only nonzero
-                derivative is \( \partial_r g_{\theta\theta} = 2r \):
-                \[ \Gamma^r_{\theta\theta} = \tfrac{1}{2} g^{rr}
-                (-\partial_r g_{\theta\theta}) = -r, \qquad
-                \Gamma^\theta_{r\theta} = \Gamma^\theta_{\theta r} =
-                \tfrac{1}{2} g^{\theta\theta}\, \partial_r g_{\theta\theta}
-                = \frac{1}{r} \]
-                and every other symbol is zero. This is the flat plane, and
-                the Christoffel symbols are not zero. They aren't measuring
-                curvature. They're measuring the fact that \( \partial_r \)
-                and \( \partial_\theta \) point in different directions at
-                different points. In Cartesian coordinates the same plane has
-                all \( \Gamma = 0 \), and that's the promised example: an
-                array with three indices that is not a tensor, because a
-                tensor that is zero in one coordinate system is zero in all
-                of them.
+                connection</a>, the connection the metric picks.
             </p>
+            <p>
+                Do the polar plane. \( \theta^1 = dr \), \( \theta^2 = r\,
+                d\theta \). Then \( d\theta^1 = 0 = \omega \wedge r\,
+                d\theta \), which forces \( \omega = f\, d\theta \) for some
+                function \( f \). And
+                \[ d\theta^2 = dr \wedge d\theta = -f\, d\theta \wedge dr = f\,
+                dr \wedge d\theta \quad\Longrightarrow\quad f = 1, \qquad
+                \omega = d\theta \]
+                Read it as a sentence: move by an angle \( d\theta \) around
+                the origin, and the frame \( (\partial_r, \partial_\theta / r) \)
+                turns by \( d\theta \). This is the flat plane and the
+                connection form is not zero. It's recording the frame
+                turning, not the space curving. Now the sphere, coframe
+                \( \theta^1 = R\, d\theta \), \( \theta^2 = R\sin\theta\, d\phi \).
+                Again \( d\theta^1 = 0 \) forces \( \omega \) to be a
+                multiple of \( d\phi \), and
+                \[ d\theta^2 = R\cos\theta\, d\theta \wedge d\phi = -\omega
+                \wedge R\, d\theta \quad\Longrightarrow\quad \omega =
+                \cos\theta\, d\phi \]
+                Going east by \( d\phi \) at polar angle \( \theta \) turns
+                the frame by \( \cos\theta\, d\phi \): a full turn per lap at
+                the north pole, none at the equator.
+            </p>
+
+            <details class="info">
+                <summary>The same thing in coordinates: Christoffel symbols</summary>
+                <p>
+                    Most textbooks use the coordinate frame \( \partial_i \)
+                    instead of an orthonormal one. Then the connection
+                    1-forms are written out in components,
+                    \( \omega^k{}_j = \Gamma^k_{ij}\, dx^i \), and the
+                    coefficients \( \Gamma^k_{ij} \) are the
+                    <a href="https://en.wikipedia.org/wiki/Christoffel_symbols"
+                        title="Christoffel symbols">Christoffel symbols</a>.
+                    Metric compatibility and no torsion turn into a formula:
+                    \[ \Gamma^k_{ij} = \tfrac{1}{2} g^{kl} \left( \partial_i
+                    g_{jl} + \partial_j g_{il} - \partial_l g_{ij} \right) \]
+                    and the covariant derivative is \( \nabla_v W = v^i
+                    (\partial_i W^k + \Gamma^k_{ij} W^j)\, \partial_k \), the
+                    same product rule as above. For the polar plane it gives
+                    \( \Gamma^r_{\theta\theta} = -r \) and
+                    \( \Gamma^\theta_{r\theta} = \Gamma^\theta_{\theta r} =
+                    1/r \), which is \( \omega = d\theta \) in a different
+                    costume. It works in any dimension, but in \( n \)
+                    dimensions there are \( n^2(n+1)/2 \) symbols to compute
+                    versus \( n(n-1)/2 \) connection forms: for the
+                    Schwarzschild metric at the end of the page, 40 versus 6.
+                    One warning: \( \Gamma \) is an array with three indices
+                    that is not a tensor. In Cartesian coordinates the flat
+                    plane has every \( \Gamma = 0 \), in polar coordinates it
+                    doesn't, and a tensor that is zero in one coordinate
+                    system is zero in all of them.
+                </p>
+            </details>
+
+            <h2>Parallel transport and geodesics</h2>
             <p>
                 Two things you can now define. A vector \( V \) carried along
                 a curve \( \gamma \) is <b>parallel</b> if its covariant
-                derivative along the curve vanishes:
-                \[ \nabla_{\gamma'} V = 0 \quad\Longleftrightarrow\quad
-                \frac{dV^k}{dt} + \Gamma^k_{ij}\, \frac{dx^i}{dt}\, V^j = 0 \]
-                This is a linear ODE, so given \( V \) at the start you can
-                solve for it along the whole curve. That's <b>parallel
-                transport</b>, and it is the concrete meaning of "connecting
-                the fibers": it carries a vector from one tangent space to
-                another. And a curve that parallel transports its own
-                velocity, \( \nabla_{\gamma'} \gamma' = 0 \), is a
+                derivative along the curve vanishes, \( \nabla_{\gamma'} V =
+                0 \). On a surface, write the vector by its angle from the
+                frame, \( V = \cos\alpha\, e_1 + \sin\alpha\, e_2 \), and
+                differentiate:
+                \[ \nabla_{\gamma'} V = \big( \alpha' + \omega(\gamma') \big)
+                \left( -\sin\alpha\, e_1 + \cos\alpha\, e_2 \right) \]
+                So parallel means
+                \[ \alpha' = -\omega(\gamma') \]
+                The vector's angle relative to the frame changes at exactly
+                the rate the frame turns, in the opposite direction, so that
+                the vector itself stays put. This is a first-order ODE, so
+                given \( V \) at the start you can solve for it along the
+                whole curve. That's <b>parallel transport</b>, and it is the
+                concrete meaning of "connecting the fibers": it carries a
+                vector from one tangent space to another. And a curve that
+                parallel transports its own velocity, \( \nabla_{\gamma'}
+                \gamma' = 0 \), is a
                 <a href="https://en.wikipedia.org/wiki/Geodesic"
-                    title="Geodesic">geodesic</a>, the metric's notion of
-                a straight line:
-                \[ \frac{d^2 x^k}{dt^2} + \Gamma^k_{ij}\, \frac{dx^i}{dt}
-                \frac{dx^j}{dt} = 0 \]
-                In polar coordinates this reads \( \ddot r - r\dot\theta^2 =
-                0 \) and \( \ddot\theta + \frac{2}{r}\dot r \dot\theta = 0
-                \). Those are the equations of a straight line in the plane,
-                written in polar coordinates, with the centripetal term you
-                remember from mechanics. The geodesics of the hyperbolic
-                half-plane are the semicircles from the playground.
+                    title="Geodesic">geodesic</a>, the metric's notion of a
+                straight line. It's the same equation with \( \alpha \) the
+                direction of travel: a geodesic never changes heading except
+                to cancel the frame's turning. In the polar plane, \( \omega
+                = d\theta \) says a straight line's heading relative to
+                \( \partial_r \) drops by \( d\theta \) every time the polar
+                angle ticks up by \( d\theta \), which is what a straight
+                line does. In the hyperbolic half-plane the solutions are the
+                semicircles from the playground.
             </p>
 
             <h2>Transport around a loop</h2>
@@ -545,14 +624,14 @@
                 vector around any closed loop and it comes back pointing the
                 same way. On a sphere it doesn't. The figure transports a
                 vector around a circle of latitude on the unit sphere by
-                integrating the transport ODE with the sphere's Christoffel
-                symbols, which from the formula above are
-                \[ \Gamma^\theta_{\phi\phi} = -\sin\theta\cos\theta, \qquad
-                \Gamma^\phi_{\theta\phi} = \Gamma^\phi_{\phi\theta} =
-                \cot\theta \]
-                Slide the latitude up and down, walk the loop, and compare the
-                angle the vector comes back rotated by with the area of the
-                cap the loop encloses.
+                integrating \( \alpha' = -\omega(\gamma') \) with the
+                connection form we just found. Along the latitude \( \theta =
+                \theta_0 \), \( \phi = t \), the velocity is \( \partial_\phi
+                \) and \( \omega(\partial_\phi) = \cos\theta_0 \), so the
+                vector's angle relative to the frame drifts at the constant
+                rate \( -\cos\theta_0 \). Slide the latitude up and down,
+                walk the loop, and compare the angle the vector comes back
+                rotated by with the area of the cap the loop encloses.
             </p>
 
             <figure>
@@ -569,8 +648,9 @@
                 <figcaption>
                     Parallel transport on the unit sphere. The ghost arrow is
                     the starting vector, the solid one is the transported
-                    vector, and the shaded cap is the region enclosed by the
-                    loop. Drag to orbit.
+                    vector, the green one is the frame vector \( e_1 \), and
+                    the shaded cap is the region enclosed by the loop. Drag to
+                    orbit.
                 </figcaption>
             </figure>
 
@@ -584,71 +664,44 @@
                 <a href="https://en.wikipedia.org/wiki/Holonomy"
                     title="Holonomy">holonomy</a> of the loop, and the fact
                 that it equals an area is the statement that the sphere has
-                curvature \( K = 1 \) everywhere: rotation equals
-                \( \int\!\!\int K\, dA \). A surveyor who never leaves the
-                sphere can measure this. Gauss was right.
+                curvature \( K = 1 \) everywhere. The next section makes that
+                precise.
             </p>
 
-            <h2>The connection is a 1-form, and curvature is its \( d \)</h2>
+            <h2>Curvature is \( d \) of the connection</h2>
             <p>
-                Now the forms come back, and they make the calculation
-                shorter than the Christoffel symbols did. Work on a surface
-                and pick an <b>orthonormal frame</b>: two vector fields
-                \( e_1, e_2 \) with \( g(e_a, e_b) = \delta_{ab} \), and the
-                dual 1-forms \( \theta^1, \theta^2 \) with \( \theta^a(e_b) =
-                \delta^a_b \), so that \( g = (\theta^1)^2 + (\theta^2)^2 \).
-                Because the connection preserves lengths, \( \nabla e_1 \)
-                can only rotate \( e_1 \) toward \( e_2 \), and by how much
-                depends linearly on the direction you move. So
-                \[ \nabla e_1 = \omega \otimes e_2, \qquad \nabla e_2 =
-                -\omega \otimes e_1 \]
-                for a single 1-form \( \omega \), the <b>connection
-                1-form</b>. The whole Levi-Civita connection of a surface is
-                one 1-form, and Cartan showed you can find it without ever
-                writing a Christoffel symbol, from the
-                <a href="https://en.wikipedia.org/wiki/Cartan%27s_structure_equations"
-                    title="Cartan's structure equations">structure
-                equations</a>:
-                \[ d\theta^1 = \omega \wedge \theta^2, \qquad d\theta^2 =
-                -\omega \wedge \theta^1 \]
-                and then the curvature is the exterior derivative of the
-                connection:
+                The connection is a 1-form, and the forms article gave us one
+                thing to do with a 1-form: take \( d \). Cartan's second
+                structure equation says that on a surface
                 \[ d\omega = -K\, \theta^1 \wedge \theta^2 \]
-                where \( K \) is the
+                and the function \( K \) is the
                 <a href="https://en.wikipedia.org/wiki/Gaussian_curvature"
-                    title="Gaussian curvature">Gaussian curvature</a>.
-            </p>
-            <p>
-                Do the sphere. The coframe is \( \theta^1 = R\, d\theta \),
-                \( \theta^2 = R\sin\theta\, d\phi \). Then \( d\theta^1 = 0
-                \), which forces \( \omega \) to be a multiple of
-                \( d\phi \), and
-                \[ d\theta^2 = R\cos\theta\, d\theta \wedge d\phi = -\omega
-                \wedge R\, d\theta \quad\Longrightarrow\quad \omega =
-                \cos\theta\, d\phi \]
-                One more \( d \):
+                    title="Gaussian curvature">Gaussian curvature</a>. Take
+                \( d \) of the two connection forms we computed. Polar plane:
+                \( d\omega = d(d\theta) = 0 \), so \( K = 0 \). Flat, as it
+                should be, even though \( \omega \) wasn't zero. The
+                connection form is \( d\theta \), the closed-but-not-exact
+                form from the forms article, and its \( d \) vanishes. Sphere:
                 \[ d\omega = -\sin\theta\, d\theta \wedge d\phi = -\frac{1}{R^2}\,
                 \theta^1 \wedge \theta^2 \quad\Longrightarrow\quad K =
                 \frac{1}{R^2} \]
-                Three lines. Try the same on the polar-coordinate plane,
-                \( \theta^1 = dr \), \( \theta^2 = r\, d\theta \): you get
-                \( \omega = d\theta \), the closed-but-not-exact form from the
-                last article, and \( d\omega = 0 \), so \( K = 0 \). Flat. The
-                connection form is not zero, but its \( d \) is. Exactly the
-                Christoffel story again, now in one line.
+                Three lines from the line element to the curvature, using
+                nothing but \( d \) and \( \wedge \). The coframe came from
+                \( g \), \( \omega \) came from the coframe, and \( K \) came
+                from \( \omega \), so \( K \) is computable from distances
+                measured inside the surface. That is Gauss's Theorema
+                Egregium, and this is its shortest proof.
             </p>
             <p>
-                And the holonomy figure was Stokes' theorem. Write the
-                transported vector as \( V = \cos\alpha\, e_1 + \sin\alpha\,
-                e_2 \). Parallel means \( \nabla_{\gamma'} V = 0 \), and
-                plugging in \( \nabla e_1 = \omega\, e_2 \) gives
-                \( \alpha' = -\omega(\gamma') \). So the angle relative to
-                the frame changes by \( -\oint_\gamma \omega \). If the frame
-                is smooth everywhere inside the loop, Stokes turns that into
-                \( -\int\!\!\int d\omega = \int\!\!\int K\, dA \): the
-                vector comes back rotated by the enclosed curvature. Our
-                frame \( e_1 = \partial_\theta / R \) is not smooth at the
-                north pole (which way is "south" at the north pole?), so the
+                And the holonomy figure was Stokes' theorem. Parallel
+                transport is \( \alpha' = -\omega(\gamma') \), so around a
+                loop the angle relative to the frame changes by
+                \( -\oint_\gamma \omega \). If the frame is smooth everywhere
+                inside the loop, Stokes turns that into
+                \( -\int\!\!\int d\omega = \int\!\!\int K\, dA \): the vector
+                comes back rotated by the enclosed curvature. Our frame
+                \( e_1 = \partial_\theta / R \) is not smooth at the north
+                pole (which way is "south" at the north pole?), so the
                 accounting has one extra term. Around the latitude circle,
                 \( \oint \cos\theta_0\, d\phi = 2\pi\cos\theta_0 \), so
                 relative to the frame the vector turns by
@@ -656,8 +709,8 @@
                 once around the pole, a full \( 2\pi \), the same way the
                 polar frame \( \partial_r, \partial_\theta \) turns once
                 around the origin of the flat plane. Net rotation:
-                \( 2\pi - 2\pi\cos\theta_0 \), the area of the cap. That
-                is what the readout in the figure measures.
+                \( 2\pi - 2\pi\cos\theta_0 \), the area of the cap. That is
+                what the readout in the figure measures.
             </p>
 
             <div class="aside">
@@ -679,30 +732,36 @@
 
             <h2>Curvature in general</h2>
             <p>
-                On a surface, curvature is one number per point. In higher
-                dimensions you need to say <em>which</em> 2-dimensional
-                direction you are going around. The
+                On a surface, curvature is one number per point. In \( n \)
+                dimensions the connection is an \( n \times n \) antisymmetric
+                matrix of 1-forms \( \omega^a{}_b \), the first structure
+                equation \( d\theta^a = -\omega^a{}_b \wedge \theta^b \) still
+                determines it, and the second structure equation gives a
+                matrix of 2-forms:
+                \[ \Omega^a{}_b = d\omega^a{}_b + \omega^a{}_c \wedge \omega^c{}_b \]
+                On a surface the \( \omega \wedge \omega \) term is
+                \( \omega^1{}_1 \wedge \omega^1{}_2 + \omega^1{}_2 \wedge
+                \omega^2{}_2 = 0 \), which is why we could write curvature
+                as just \( d\omega \). In general it does not vanish. Expand
+                each 2-form in the coframe, \( \Omega^a{}_b = \tfrac{1}{2}
+                R^a{}_{bcd}\, \theta^c \wedge \theta^d \), and the
+                coefficients are the
                 <a href="https://en.wikipedia.org/wiki/Riemann_curvature_tensor"
                     title="Riemann curvature tensor">Riemann curvature
-                tensor</a> measures how much transporting \( w \) around the
-                little parallelogram spanned by \( u \) and \( v \) changes
-                it:
+                tensor</a>. It's a \( (1,3) \) tensor, and it measures how
+                much transporting \( w \) around the little parallelogram
+                spanned by \( u \) and \( v \) changes it:
                 \[ R(u,v)\, w = \nabla_u \nabla_v w - \nabla_v \nabla_u w -
                 \nabla_{[u,v]} w \]
-                It's a \( (1,3) \) tensor. In coordinates it's built from
-                derivatives and products of the Christoffel symbols:
-                \[ R^k{}_{lij} = \partial_i \Gamma^k_{jl} - \partial_j
-                \Gamma^k_{il} + \Gamma^k_{im}\Gamma^m_{jl} -
-                \Gamma^k_{jm}\Gamma^m_{il} \]
-                Antisymmetric in \( i,j \) (it's a 2-form in those slots, the
-                same \( \Omega \) as in the aside), and it has
+                You have to say <em>which</em> 2-dimensional direction you
+                go around, and that's the \( c, d \) slots. Riemann has
                 \( n^2(n^2-1)/12 \) independent components: 1 in two
                 dimensions (that's \( K \)), 6 in three, 20 in four. Two
                 contractions of it matter for physics. The
                 <a href="https://en.wikipedia.org/wiki/Ricci_curvature"
                     title="Ricci curvature">Ricci tensor</a>
-                \( R_{ij} = R^k{}_{ikj} \) and the scalar curvature
-                \( R = g^{ij} R_{ij} \), which on a surface is \( 2K \).
+                \( R_{bd} = R^a{}_{bad} \) and the scalar curvature
+                \( R = g^{bd} R_{bd} \), which on a surface is \( 2K \).
             </p>
             <p>
                 Einstein's field equations say the Ricci curvature of
@@ -713,11 +772,13 @@
                 Outside a mass, in empty space, the right side is zero, and
                 the equations reduce to \( R_{\mu\nu} = 0 \). The Schwarzschild
                 metric below is the spherically symmetric solution of that.
-                Checking it means computing its nine nonzero Christoffel
-                symbols, then the Ricci tensor, and finding all zeros. It's an
-                afternoon with the formulas on this page and no new ideas, so
-                we'll take it as given and spend the afternoon on light
-                instead.
+                Checking it is the moving frames method one more time: read
+                the four coframe forms off the line element, solve the first
+                structure equation for the six connection forms, take
+                \( d \) and wedge for the six curvature forms, contract, and
+                find all zeros. It's an afternoon with the formulas on this
+                page and no new ideas, so we'll take it as given and spend
+                the afternoon on light instead.
             </p>
 
             <h2>Exercises</h2>
@@ -779,11 +840,13 @@
                 </details>
             </div>
 
-            <div class="exercise" data-id="ex3" data-answer="-2">
+            <div class="exercise" data-id="ex3" data-answer="0.5">
                 <p>
-                    <b>Exercise 3.</b> Using the Levi-Civita formula, compute
-                    \( \Gamma^r_{\theta\theta} \) for the polar metric at
-                    \( r = 2 \).
+                    <b>Exercise 3.</b> Solve the first structure equation for
+                    the connection form \( \omega \) of the hyperbolic
+                    half-plane, coframe \( \theta^1 = dx/y \), \( \theta^2 =
+                    dy/y \). Then evaluate it on the coordinate vector
+                    \( \partial_x \) at the point \( (x, y) = (0, 2) \).
                 </p>
                 <div class="answer-row">
                     <input type="text" placeholder="your answer" />
@@ -791,17 +854,18 @@
                     <span class="feedback"></span>
                 </div>
                 <details><summary>Hint</summary>
-                    \( \Gamma^r_{\theta\theta} = \frac{1}{2} g^{rr}(\partial_\theta
-                    g_{\theta r} + \partial_\theta g_{\theta r} - \partial_r
-                    g_{\theta\theta}) \). Only the last term is nonzero.
+                    \( d\theta^2 = d(dy/y) = 0 \), so \( \omega \wedge \theta^1
+                    = 0 \) and \( \omega \) is a multiple of \( dx \). Then
+                    use \( d\theta^1 = d(1/y) \wedge dx \) to find the
+                    multiple.
                 </details>
                 <details><summary>Solution</summary>
-                    \( \Gamma^r_{\theta\theta} = \frac{1}{2}(1)(0 + 0 - 2r) = -r
-                    = -2 \). In the geodesic equation this becomes
-                    \( \ddot r = r\dot\theta^2 \): a straight line passing an
-                    origin it's not aimed at has \( r \) first decreasing
-                    and then increasing, which is what the "centripetal"
-                    term does.
+                    \( d\theta^1 = -\frac{1}{y^2}\, dy \wedge dx = \frac{1}{y^2}\,
+                    dx \wedge dy \), and it must equal \( \omega \wedge \theta^2
+                    = f\, dx \wedge dy / y \), so \( f = 1/y \) and \( \omega
+                    = dx / y = \theta^1 \). At \( y = 2 \), \( \omega(\partial_x)
+                    = 1/2 \): moving one unit to the right turns the frame by
+                    half a radian.
                 </details>
             </div>
 
@@ -830,9 +894,34 @@
                 </details>
             </div>
 
-            <div class="exercise" data-id="ex5" data-answer="pi">
+            <div class="exercise" data-id="ex5" data-answer="-1">
                 <p>
-                    <b>Exercise 5.</b> On the unit sphere, a vector is
+                    <b>Exercise 5.</b> Take \( d \) of the connection form
+                    from Exercise 3 to find the Gaussian curvature of the
+                    hyperbolic half-plane.
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( d\omega = -K\, \theta^1 \wedge \theta^2 \), and
+                    \( \theta^1 \wedge \theta^2 = dx \wedge dy / y^2 \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( d\omega = d(dx/y) = -\frac{1}{y^2}\, dy \wedge dx =
+                    \frac{1}{y^2}\, dx \wedge dy = \theta^1 \wedge \theta^2
+                    \), so \( K = -1 \). Constant negative curvature
+                    everywhere: the half-plane is the sphere's opposite, and
+                    its geodesic triangles have angle sums <em>less</em> than
+                    \( 180^\circ \).
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex6" data-answer="pi">
+                <p>
+                    <b>Exercise 6.</b> On the unit sphere, a vector is
                     parallel transported once around the circle of latitude
                     at polar angle \( \theta_0 = 60^\circ \). By what angle
                     (in radians) does it come back rotated?
@@ -853,9 +942,9 @@
                 </details>
             </div>
 
-            <div class="exercise" data-id="ex6" data-answer="0.7071">
+            <div class="exercise" data-id="ex7" data-answer="0.7071">
                 <p>
-                    <b>Exercise 6.</b> In the Schwarzschild metric (next
+                    <b>Exercise 7.</b> In the Schwarzschild metric (next
                     section), a clock hovering at fixed \( r \) ticks at the
                     rate \( \sqrt{1 - r_s/r} \) compared to a clock far away.
                     What is that rate at \( r = 2 r_s \)?
@@ -877,9 +966,9 @@
                 </details>
             </div>
 
-            <div class="exercise" data-id="ex7" data-answer="1.75">
+            <div class="exercise" data-id="ex8" data-answer="1.75">
                 <p>
-                    <b>Exercise 7.</b> A light ray grazing the Sun is
+                    <b>Exercise 8.</b> A light ray grazing the Sun is
                     deflected by \( \Delta\phi \approx 2 r_s / b \) (derived
                     in the next section). With \( r_s = 2.95 \) km for the Sun
                     and \( b = 696{,}000 \) km its radius, find the deflection
@@ -929,8 +1018,8 @@
                 light, and \( \sqrt{-ds^2}/c \) is the proper time a clock
                 moving that way records. A vector with \( ds^2 = 0 \) is
                 <b>lightlike</b>, and light moves along geodesics made of
-                those. Everything else (connections, Christoffel symbols,
-                geodesics, curvature) goes through unchanged.
+                those. Everything else (frames, connections, geodesics,
+                curvature) goes through unchanged.
             </p>
             <p>
                 You can read physics straight off the coefficients. A clock
@@ -950,8 +1039,8 @@
             <h2>How light bends</h2>
             <p>
                 Now the calculation the rendering is built on. Light follows
-                null geodesics. We could write out the geodesic equation with
-                the Christoffel symbols and grind, but there's a shortcut:
+                null geodesics. We could write out the geodesic equation
+                and grind, but there's a shortcut:
                 the metric does not depend on \( t \) or on \( \phi \), and
                 for each coordinate a metric ignores, geodesics have a
                 conserved quantity (this is
@@ -1003,7 +1092,7 @@
                     right side as a small perturbation of the straight line.
                     First-order perturbation theory gives a total bend of
                     \[ \Delta\phi \approx \frac{2 r_s}{b} = \frac{4GM}{c^2 b} \]
-                    which is Exercise 7.
+                    which is Exercise 8.
                 </li>
             </ul>
             <p>
@@ -1045,7 +1134,7 @@
                 hovering, not falling, and the direction they see is measured
                 in their own orthonormal frame, so the radial component of
                 the coordinate velocity gets a factor of \( \sqrt{1 - r_s/r}
-                \), the same factor from Exercise 6.
+                \), the same factor from Exercise 7.
             </p>
             <p>
                 The integration is done on the GPU in a fragment shader, one
@@ -1609,30 +1698,21 @@ color = captured ? black : sky(normalize(v));</pre>
                 let alphas = []; // unwrapped angle of V relative to e_theta, degrees
 
                 function recompute() {
-                    // transport ODE along phi at fixed theta0, starting with V = e_theta (unit)
-                    const sc = Math.sin(th0) * Math.cos(th0), ct = Math.cos(th0) / Math.sin(th0);
-                    const f = (V) => [sc * V[1], -ct * V[0]];
-                    let V = [1, 0];
-                    Vs = [V.slice()];
+                    // parallel transport: alpha' = -omega(gamma'), with the
+                    // sphere's connection form omega = cos(theta) dphi.
+                    // Along the latitude gamma(phi) = (theta0, phi), gamma' = d/dphi,
+                    // so omega(gamma') = cos(theta0). Integrate with the midpoint rule.
+                    const omega = (th, ph) => Math.cos(th);
                     const hh = 2 * Math.PI / NS;
-                    for (let i = 0; i < NS; i++) {
-                        const k1 = f(V);
-                        const k2 = f([V[0] + hh / 2 * k1[0], V[1] + hh / 2 * k1[1]]);
-                        const k3 = f([V[0] + hh / 2 * k2[0], V[1] + hh / 2 * k2[1]]);
-                        const k4 = f([V[0] + hh * k3[0], V[1] + hh * k3[1]]);
-                        V = [V[0] + hh / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
-                             V[1] + hh / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1])];
-                        Vs.push(V.slice());
-                    }
-                    // unwrapped angle relative to the frame (e_theta, e_phi)
+                    let alpha = 0;
                     alphas = [0];
-                    for (let i = 1; i <= NS; i++) {
-                        const a0 = Math.atan2(Vs[i - 1][1] * Math.sin(th0), Vs[i - 1][0]);
-                        const a1 = Math.atan2(Vs[i][1] * Math.sin(th0), Vs[i][0]);
-                        let d = a1 - a0;
-                        while (d > Math.PI) d -= 2 * Math.PI;
-                        while (d < -Math.PI) d += 2 * Math.PI;
-                        alphas.push(alphas[i - 1] + d * 180 / Math.PI);
+                    Vs = [[1, 0]];
+                    for (let i = 0; i < NS; i++) {
+                        const phm = (i + 0.5) * hh;
+                        alpha += -omega(th0, phm) * hh;
+                        alphas.push(alpha * 180 / Math.PI);
+                        // V = cos(alpha) e_1 + sin(alpha) e_2 in coordinate components
+                        Vs.push([Math.cos(alpha), Math.sin(alpha) / Math.sin(th0)]);
                     }
                     // loop line
                     if (loopLine) { scene.remove(loopLine); loopLine.geometry.dispose(); }
