@@ -203,14 +203,14 @@
             <h1>Introduction to Differential Forms</h1>
 
             <p>
-                There is exactly one integral in mathematics that everyone
-                agrees is beautiful:
+                There is one integral in calculus that all the others are
+                trying to become:
                 \[ \int_a^b df = f(b) - f(a) \]
                 The fundamental theorem of calculus. You integrate a
                 derivative over an interval, and the answer only depends on
-                the two endpoints. All the information in the middle cancels
-                out. Every other integral you have ever computed was an
-                attempt to fight your integrand into this form: that's what
+                the two endpoints. Everything in the middle cancels out.
+                Every other integral you computed in calculus was an attempt
+                to get the integrand into this form: that's what
                 \( u \)-substitution is, that's what "finding the
                 antiderivative" means.
             </p>
@@ -220,19 +220,18 @@
                 integrals with \( \vec{F} \cdot \hat{n} \, dA \), Green's
                 theorem, the divergence theorem, Stokes' theorem, each with
                 its own notation, its own orientation conventions, and its own
-                proof. It's a zoo. The theory of
+                proof. It's a mess. The theory of
                 <a href="https://en.wikipedia.org/wiki/Differential_form"
-                    title="Differential form">differential forms</a>
-                is the discovery, mostly due to
+                    title="Differential form">differential forms</a>,
+                mostly due to
                 <a href="https://en.wikipedia.org/wiki/%C3%89lie_Cartan"
                     title="Élie Cartan">&Eacute;lie Cartan</a>,
-                that the zoo is one animal. There is one object worth
-                integrating (a form), one derivative (\( d \)), and one
-                theorem:
+                cleans it up. There is one object worth integrating (a
+                form), one derivative (\( d \)), and one theorem:
                 \[ \int_M d\omega = \int_{\partial M} \omega \]
-                Everything in the zoo is a special case. This page builds up
-                to that equation with your hands on the sliders, using the
-                circle and the bundles from
+                Every theorem in the list above is a special case. This page
+                builds up to that equation, with interactive figures along
+                the way, using the circle and the bundles from
                 <a href="/math/bundles/">the previous article</a> as home
                 base.
             </p>
@@ -305,8 +304,8 @@
             </figure>
 
             <p>
-                Three very different personalities, and they are worth
-                internalizing:
+                These three behave very differently, and the differences
+                are the whole point:
             </p>
             <ul>
                 <li>
@@ -320,7 +319,7 @@
                     \( y\,dx \) is <b>not closed</b> (we'll define this in a
                     moment): upper and lower paths disagree, and the loop
                     integral is the enclosed area with a sign. This form
-                    genuinely depends on the journey, not the destination.
+                    depends on the path, not just the endpoints.
                 </li>
                 <li>
                     \( d\theta \) is the interesting one: <b>closed but not
@@ -345,9 +344,8 @@
                 <em>two</em> vectors and reports the signed area of the
                 parallelogram they span:
                 \[ (dx \wedge dy)(v, w) = v_x w_y - v_y w_x \]
-                That determinant is the whole personality of the wedge
-                product \( \wedge \). Swap the vectors and the sign flips,
-                so:
+                That determinant is what the wedge product \( \wedge \)
+                is. Swap the vectors and the sign flips, so:
                 \[ dx \wedge dy = -\, dy \wedge dx, \qquad dx \wedge dx = 0
                 \]
                 Antisymmetry is not a convention, it's what "oriented volume"
@@ -375,18 +373,18 @@
                 The deepest rule is also the shortest:
                 \[ d^2 = 0 \]
                 Applying \( d \) twice always gives zero. Unwind it in
-                coordinates and it's the equality of mixed partial
+                coordinates and it's just the equality of mixed partial
                 derivatives, \( \partial_x \partial_y f = \partial_y
-                \partial_x f \), dressed up in its Sunday best. Hold onto
-                this rule: at the end of the page it will turn out to be the
-                mirror image of a fact about boundaries.
+                \partial_x f \). Remember this rule, it comes back at the
+                end of the page as the mirror image of a fact about
+                boundaries.
             </p>
 
             <details class="info">
                 <summary>The dictionary: forms versus vector calculus</summary>
                 <p>
                     On \( \mathbb{R}^3 \), every operation of vector calculus
-                    is \( d \) wearing a costume:
+                    is a special case of \( d \):
                 </p>
                 <table class="dict">
                     <tr><th>vector calculus</th><th>differential forms</th></tr>
@@ -404,15 +402,14 @@
                     2-forms into vector fields because of the dot product and
                     the dimension. On an arbitrary manifold you can't, and
                     then grad, curl, and div stop making sense while \( d \)
-                    keeps working. Forms are what survives the trip to curved
-                    space.
+                    keeps working. Forms still work in curved space.
                 </p>
             </details>
 
             <h2>Exercises</h2>
             <p>
-                Time to get your hands dirty: the rules above are enough to
-                solve all of these. Answers can be typed as numbers or
+                The rules above are enough to solve all of these. Answers
+                can be typed as numbers or
                 expressions like <code>2*pi</code> or <code>-pi</code>. Your
                 progress is saved in your browser
                 (<span id="ex-progress"></span>).
@@ -561,8 +558,7 @@
 
             <h2>The generalized Stokes theorem</h2>
             <p>
-                Here it is, the theorem the whole subject was built to state.
-                For any \( k \)-form \( \omega \) on an oriented
+                This is the theorem the whole subject exists for. For any \( k \)-form \( \omega \) on an oriented
                 \( (k{+}1) \)-dimensional manifold \( M \) with boundary
                 \( \partial M \):
                 \[ \boxed{\; \int_M d\omega = \int_{\partial M} \omega \;} \]
@@ -571,8 +567,8 @@
                 theorem of calculus is the case where \( M \) is an interval
                 \( [a,b] \), whose boundary is the two points \( \{a, b\} \)
                 (with signs), and \( \omega = f \) is a 0-form:
-                \( \int_a^b df = f(b) - f(a) \). The perfect integral from
-                the top of the page was Stokes all along.
+                \( \int_a^b df = f(b) - f(a) \). The integral from the top
+                of the page was Stokes' theorem all along.
             </p>
             <table class="dict">
                 <tr><th>classical name</th><th>\( M \)</th><th>\( \omega \)</th></tr>
@@ -583,15 +579,16 @@
             </table>
             <p>
                 Four theorems, four separate proofs in a calculus course, one
-                statement here. And the theorem has a striking consequence you
-                can <em>see</em>: the left side only depends on \( \partial M
-                \), so if two different surfaces share the same boundary, a
-                closed \( d\omega \) integrates to the same value over both.
+                statement here. The theorem has a consequence you can
+                <em>see</em>: the left side only depends on \( \partial M
+                \), so if two different surfaces share the same boundary,
+                \( d\omega \) integrates to the same value over both.
                 Below, the field is \( \vec{F} = (-y, x, 0) \), whose curl
                 corresponds to the 2-form \( d\omega = 2\,dx\wedge dy \). The
                 surface is a membrane spanning the unit circle. Deform the
-                membrane all you like: the flux refuses to change, because
-                the boundary circulation is what it "really" is.
+                membrane all you like: the flux does not change, because it
+                equals the circulation around the boundary, and the boundary
+                stays put.
             </p>
 
             <figure>
@@ -610,8 +607,8 @@
             </figure>
 
             <p>
-                One more piece of elegance. Why is Stokes' theorem even true?
-                The proof reduces to a bookkeeping fact:
+                Why is Stokes' theorem true? The proof reduces to a
+                bookkeeping fact:
                 <b>the boundary of a boundary is empty</b>,
                 \( \partial(\partial M) = \varnothing \). A solid ball's
                 boundary is a sphere, and the sphere has no edge. Interior
@@ -623,7 +620,7 @@
                 <a href="https://en.wikipedia.org/wiki/De_Rham_cohomology"
                     title="De Rham cohomology">de Rham cohomology</a>,
                 the classification of closed-but-not-exact forms, this mirror
-                became an exact science: counting the forms like
+                image became precise: counting the forms like
                 \( d\theta \) on a space tells you how many holes it has.
             </p>
 
@@ -637,10 +634,9 @@
                 angle function), so by Stokes its integral cannot change
                 under any deformation of the loop that stays in the
                 punctured plane. The value \( 2\pi \) is pinned by topology.
-                A number produced by calculus, protected by shape.
             </p>
             <p>
-                Physics runs on this exact mechanism. The electromagnetic
+                Physics uses the same mechanism. The electromagnetic
                 potential of a thin solenoid is, up to constants, our
                 \( d\theta \) form: zero field outside, yet a quantum
                 electron carried around the solenoid picks up a measurable
@@ -655,14 +651,14 @@
                 \[ dF = 0, \qquad d{\star}F = J \]
                 where the first is \( d^2 = 0 \) for free, and \( A \) is a
                 connection on a U(1) bundle over spacetime. The vocabulary of
-                this page and the last one is, quite literally, the
-                vocabulary of the Standard Model.
+                this page and the last one is the vocabulary of the Standard
+                Model.
             </p>
 
             <h2>Where we are</h2>
             <p>
                 We wanted every integral to look like \( \int df = f(b) -
-                f(a) \), and we got our wish, at a fair price: the integrand
+                f(a) \), and we got it, at a price: the integrand
                 had to become a form, the derivative had to become \( d \),
                 and the domain had to become a manifold with boundary. In
                 exchange, the whole integral zoo collapsed into \( \int_M
@@ -672,13 +668,12 @@
                 short ones. Forms are the instruments that turn the global
                 twists of the last article into computable numbers.
             </p>
-            <p>
-                What we have <em>not</em> done yet is geometry: nothing on
-                this page can measure a length, an angle, or a curvature. The
-                next instruments to build are connections and metrics, and
-                they lead somewhere worth going: black holes you can render,
-                and gauge fields you can simulate.
-            </p>
+
+            <div class="next">
+                <b>Next:</b>
+                <a href="/math/geometry/">Introduction to Differential Geometry</a>
+                &rarr;
+            </div>
         </main>
 
         <script>
