@@ -300,8 +300,18 @@
                     \( d \) from the forms article:
                     \( dx = \cos\theta\, dr - r\sin\theta\, d\theta \),
                     \( dy = \sin\theta\, dr + r\cos\theta\, d\theta \).
-                    Square, add, and the cross terms cancel:
-                    \[ ds^2 = dr^2 + r^2\, d\theta^2 \]
+                    Square each one (symmetric product, so the cross term
+                    counts twice):
+                    \[ \begin{aligned}
+                    dx^2 &= \cos^2\theta\, dr^2 - 2r\sin\theta\cos\theta\, dr\, d\theta + r^2\sin^2\theta\, d\theta^2 \\
+                    dy^2 &= \sin^2\theta\, dr^2 + 2r\sin\theta\cos\theta\, dr\, d\theta + r^2\cos^2\theta\, d\theta^2
+                    \end{aligned} \]
+                    Add them. The \( dr\, d\theta \) terms have opposite
+                    signs and cancel, and \( \cos^2\theta + \sin^2\theta =
+                    1 \) collects the rest:
+                    \[ ds^2 = dx^2 + dy^2 = (\cos^2\theta + \sin^2\theta)\, dr^2
+                    + r^2(\sin^2\theta + \cos^2\theta)\, d\theta^2 = dr^2 +
+                    r^2\, d\theta^2 \]
                     Same geometry, different coefficients. The \( r^2 \) says
                     a step in \( \theta \) covers more ground when you are
                     far from the origin.
