@@ -1,0 +1,13 @@
+public/
+*.log
+*.aux
+*.pyg
+.stack-work
+*.hi
+*.hs
+*.o
+math/grp/perms
+*~
+*#
+.DS_Store
+.env

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Compound Growth 📈 " />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/compound-growth/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Compound Growth 📈 " />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Compound Growth 📈  : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../js/base.js"></script>
+    <link rel="stylesheet" href="../css/base.css"></link>
+    <link rel="stylesheet" href="../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../posts.html">Posts</a></li>
+        <li><a href="../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../archive.html">Archive</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../links.html">Links</a></li>
+            <li><a href="../notes.html">Notes</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Compound Growth 📈 </h1>
+
+    
+        <div class="post-meta">Tue, Feb 25, 2020 - 2900 Words </div>
+    
+
+    <p>There are some ideas that are obvious to a few mathematicians, scientists and economists, but which are not widely understood or appreciated. One of the big important ones is compound growth.</p>
+<blockquote>
+<p>“Once you start thinking about growth, it’s  hard to think about anything else.”</p>
+</blockquote>
+<p>&ndash; Robert Lucas, Nobel prize-winning economist</p>
+<p>Before launching into an explanation, I want to start with a question: “Would you rather be 1000 times richer today, or become 2% richer each day for a whole year?”</p>
+<p>One way to solve this is to find out what 2% growth adds up to after a year has passed. Each day you multiply your starting wealth by 1.02 to make it 2% larger, so after 365 days, you can multiply all of them together and write it in exponent form:</p>
+<p>$$(1.02)^{365} = 1377.40$$</p>
+<p>Even though it takes a year, and 2% seems small, the end result is being 1,377 times richer, instead of only 1,000, the downside is that it takes patience.</p>
+<p>The act of multiplying that 1.02 each time compounds the growth, and each compounding raises the exponent, so another term for this is <strong>exponential growth</strong>. Here is the exponential curve 1.02<sup>x</sup> for x between 1 and 300:</p>
+
+
+<figure>
+	<img src="compound-growth/img/Untitled.gif" alt="" />
+</figure>
+
+<p>Let’s plot this 1.02<sup>x</sup> curve on a <a href="https://en.wikipedia.org/wiki/Logarithm">logarithmic</a> chart to see what exponential growth looks like in logspace:</p>
+
+
+<figure>
+	<img src="compound-growth/img/Untitled%201.gif" alt="" />
+</figure>
+
+<p>Straight line with a slope of 2, this generalizes too, so 1.05<sup>x</sup> has a slope of 5 in logspace, etc.</p>
+<p>Thinking exponentially turns out be pretty easy, once you transform your curve into logspace, you can work linearly, and then transform back to get the right answer. For example, how long does it take 1.02<sup>x</sup>to double? That is, if you are getting 2% richer each day, how many days does it take to double your wealth?</p>
+<h2 id="doubling-period">Doubling period</h2>
+<p>TL;DR: Take N% and divide 70 / N. That&rsquo;s how to find the doubling period.</p>
+<p>If you are curious why this works, read on, or feel free to skip past this section if you don&rsquo;t care. There&rsquo;s a point to all this math.</p>
+<p>To find the doubling period for our growth rate g (in the example above, g = 0.02 for 2%), we want to know the number of steps it takes to turn 1 into 2, so we can set up this equation:</p>
+<p>$$2 = (1 + g)^t$$</p>
+<p>Then take the <a href="https://en.wikipedia.org/wiki/Natural_logarithm">natural logarithm</a> of both sides:</p>
+<p>$$\ln(2) = \ln((1 + g)^t)$$</p>
+<p>Then apply the log rules to simplify:</p>
+<p>$$\ln((1 + g)^t) = t\ln(1 + g)$$</p>
+<p>Solving for t:</p>
+<p>$$t = \frac{\ln{2}}{\ln{(1+g)}} = \frac{.693}{\ln(1 + g)}$$</p>
+<p>Then notice that ln(1+g) ≈ g, and we usually say &ldquo;2%&rdquo; instead of 0.02, so multiply both parts of the fraction by 100:</p>
+<p>$$t \approx \frac{69.3}{g} \approx \frac{70}{g}$$</p>
+<p>So, armed with this simple trick, if you read &ldquo;The GDP of China grew by only 5% last year!&rdquo;, then you know that, if that was sustained for 70/5 = 14 years, China&rsquo;s economy would be twice as large by then. Or, if the population is growing at 1.4% per year, and that was sustained for 70/1.4 = 50 years, then the world population would double to around 15 billion.</p>
+<p>That trick will be useful to you when thinking about a mortgage, the economy, the population, or anything that has a consistent N% growth or decay, sustained over some number of years.</p>
+<h2 id="the-word-sustained-is-doing-a-lot-of-work">The word &ldquo;sustained&rdquo; is doing a lot of work</h2>
+<p>Now to the real world, can anything grow at a constant N% forever? The Club of Rome, a group of heads of state, think no. They released a report in 1972 called <a href="https://en.wikipedia.org/wiki/The_Limits_to_Growth">Limits to Growth</a>, but their models assumed a fixed, finite set of resources, and then went on to show that those resources would eventually be depleted. That follows logically from their assumptions, but those assumptions are wrong.</p>
+<p>Take garbage, landfills are useless right? Well, at our current level of technological development, yes. But it doesn&rsquo;t take a lot of imagination to think about robots that can mine landfills and re-use those materials, it might take 100 years, but there&rsquo;s no reason to assume those materials are going to be useless forever.</p>
+
+
+<figure>
+	<img src="compound-growth/img/trash.png" alt="" />
+</figure>
+
+<p>What about fuel? Fossil fuels do get used up, and on their own, take millions of years to feed plants, decompose, and form hydrocarbon deposits for use again. But it&rsquo;s already possible to suck CO2 out of the air and turn it back into fuel, <a href="https://www.prometheusfuels.com/">Prometheus Fuels</a> is doing it now, they <em>claim</em> to be able to do it in a cost-competitive way, we&rsquo;ll see. But it&rsquo;s possible, and probably the long-term solution to making air travel sustainable.</p>
+<p>Also, oil wells and shale formations will get harder and harder to extract, raising the cost of producing oil, which will make electric cars cheaper by comparison.</p>
+<p>When resource a gets scarce, the price rises, which humans respond to by consuming less of it. If the price of a resource rises enough, people start looking for alternatives. This takes pressure off the scarce resource, which then prevents the price from rising further. This responsiveness of price to scarcity, and of humans to price, is what economists study, and it&rsquo;s a necessary part of trying to understand economic growth and resource consumption.</p>
+<p>This is also why a carbon tax would be so effective at reducing CO2 emissions. It would make gasoline and natural gas more expensive, which would make electric cars and electric heat pumps more attractive by comparison, and then people would switch on their own, for reasons of thrift.</p>
+<p>So resources are only finite in the short term. Also, the resources humans care about change over time, so a fixed, finite pool of resources is not the right way to think about the long term.</p>
+<p>Also, I haven&rsquo;t even touched on asteroid mining, but that&rsquo;s an elephant in the room in all these discussions. When a resource becomes abundant, it&rsquo;s price drops. <a href="https://en.wikipedia.org/wiki/History_of_aluminium">Aluminum is a good example, about 200 years ago</a>, aluminum was used for fancy forks and coins, it was expensive because it was scarce. But a new discovery, of using an electrolytic process to separate it from bauxite ore, turned it into an abundant resource that we use to wrap leftover food and throw into the trash.</p>
+<h3 id="gold-burrito-foil-">Gold burrito foil 🌯</h3>
+<p>Gold is another potential future example, for the last 4000 years, it&rsquo;s been a good store of value, because it&rsquo;s very hard to mine, and it doesn&rsquo;t rust or tarnish. However, big gold deposits exist in asteroids. Recently some trashy newspapers published the headline &ldquo;<a href="https://www.express.co.uk/news/science/1145862/NASA-news-asteroid-Psyche-16-gold-platinum-Earth-economy-space-latest">GOLD ASTEROID WILL WIPE OUT THE GLOBAL ECONOMY</a>&rdquo;, which is bogus. It would have a big effect, it would wipe out the value of existing gold deposits, but we have been off the gold standard since 1971. The world economy produces around $70 trillion each year, the value of all gold currently mined is about $7.5 trillion. That means a 10% dip in the world economy for just one year, but then you also have to look at the boost it would give to the electronics industry, and the burgeoning <strong>gold foil</strong> industry, which would be awesome, admit it.</p>
+<p>Back to sustained growth, let&rsquo;s look at Old Faithful, the U.S. economy.</p>
+<h2 id="the-unrelenting-consistency-of-the-economy-of-the-united-states">The unrelenting consistency of the economy of the United States</h2>
+<p>We define “the economy” as GDP per capita. This is an approximation of how much the average person produces, in dollar values. Looking at the last 240 years in the U.S., in logspace, we see what looks like a straight line, with a little fluctuation around 1930-1940. That&rsquo;s what the Great Depression and the subsequent recovery look like from a zoomed-out perspective.</p>
+
+
+<figure>
+	<img src="compound-growth/img/gdp_per_capita.png" alt="" />
+</figure>
+
+<p>So the U.S. GDP per capita in 1800 was about $2,000 per person (in 2009 dollars), and in 2013 it was about $50,000 per person, also in 2009 dollars. That is a 25x multiple. Now, this averages over a lot of people. The workers in the industrializing north and Midwest are earning actual money, while slaves in the south are not being paid at all, the slave owners are making a boatload of money without doing anything, and the financiers in New York are making a lot more than the workers, partly from wise investment, and partly from gambling and corruption. Overall, the per-capita view hides a lot of this variation. That said, in practice, GDP per capita is such a good predictor of so many things we associate with progress, that it&rsquo;s worth studying.</p>
+<p>Notice that the civil war and the abolition of slavery (1860-1865) don&rsquo;t even register on that GDP per capita line.</p>
+<p>Why would such a seismic event in U.S. history seem so unimportant to the economy? It’s because slavery only benefited a tiny cabal in the south, and overall contributed next to nothing to the prosperity of most Americans. It could and should have been abolished at independence, and it’s a shame that it lingered on for another century.</p>
+<h2 id="population-considerations">Population considerations</h2>
+<p>The GDP-per-capita measure divides GDP by the population, so it can theoretically rise with a falling population. It can also rise with a static population, and it can rise with a growing population.</p>
+<p>Let&rsquo;s take a small detour on the topic of population, since it is another kind of growth that is both misunderstood and turned into an object of fear.</p>
+<p>Here&rsquo;s the last 300 years of population, and the growth curve superimposed on it:</p>
+
+
+<figure>
+	<img src="compound-growth/img/population.png" alt="" />
+</figure>
+
+<p>From 1700 to the early 1900s, the growth rate is growing, so it&rsquo;s faster than exponential. Then, Fritz Haber discovers a process for extracting nitrogen from the air, and suddenly nitrogen fertilizer became abundant, which drove down the price of bat guano, which destroyed the incentive to mine guano in Peru. Food production accelerated, which meant far more people could be born and fed. That vertical spike in the middle coincides with the Baby Boom, and that was made possible by cheap food and fertilizer.</p>
+<p>Contrary the worries of <a href="https://en.wikipedia.org/wiki/Thomas_Robert_Malthus">Thomas Malthus</a>, population growth did not lead to famine and poverty, it actually lead to one of the fastest periods of economic growth in the rich world from 1945-1975. That is what French economists call <a href="https://en.wikipedia.org/wiki/Trente_Glorieuses">Les Trente Glorieuses</a> (the 30 glorious years from 1945-1975). Around the time that period ended, the Club of Rome was back echoing Malthus. It didn&rsquo;t stop there though, since 1990, as globalization has advanced, and the rest of the world got access to global markets, extreme poverty has dramatically fell:</p>
+
+
+<figure>
+	<img src="compound-growth/img/poverty.png" alt="" />
+</figure>
+
+<p>Economic growth is not hindered by population growth, it&rsquo;s actually helped by population growth. In a very real sense, <em>the more the merrier.</em></p>
+<h3 id="but-can-the-population-grow-forever">But can the population grow forever?</h3>
+<p>This question is a bit easier to think about, since human bodies haven&rsquo;t changed in size very much, and when we think about <a href="long-now/index.html">the next 10,000 years</a>, we shouldn&rsquo;t expect large morphological changes in human evolution. Because both human bodies and the Earth can be assumed to have a fixed size (sorry <a href="https://en.wikipedia.org/wiki/Expanding_Earth?wprov=sfti1">Expanding Earthers</a>), there&rsquo;s a limit to the population on Earth. Even then, we haven&rsquo;t begun to fill out the space we&rsquo;ve carved out for the U.S. in 2020. There are 330 million Americans, with 93 per square mile. The European Union has about 500 million people, with 287 per square mile. China currently has 1.4 billion people, with 389 per square mile. India has 1.34 billion people, with 1,167 people per square mile.</p>
+<p>This means that population of the area the U.S. controls could grow more than 10x to 4.34 billion people by going to India-level density. And by that point, new materials that enable taller skyscrapers and subterranean infrastructure could make that level of density far more luxurious than life in India today. Economic growth means richer people, with longer lifespans, better entertainment, more effective tools, more leisure time, and a larger frontier of things they know to be possible. This is why thinking only on the Earth is a failure of imagination. Humans can, and should, grow outwards into space.</p>
+<h2 id="the-next-200-years-a-scenario">The next 200 years: a scenario</h2>
+<p>Suppose the global population grows at 1.1% per year for the next 200 years. Since 70/1.1 = 63.6, it doubles every 63 and a half years. After 200 years, the world population doubles three times to hit 60 billion humans. Also assume that Old Faithful, or the average 2% U.S. GDP per capita growth continues for the next 200 years.</p>
+<p>(These assumptions are for entertainment purposes only and should not be interpreted as predictions or investment advice)</p>
+<p>By 2220, there are 60 billion humans on Earth. The earth finally feels too crowded for new humans to be comfortable there. But after centuries of sustained economic growth, American&rsquo;s GDP per capita is around $3,120,000 (in 2020 dollars, adjusted for inflation). This means that the average American is a millionaire, there are trillionaires, two quadrillionaires, and some guy who bought bitcoin in 2040 and held onto it, and somehow hasn&rsquo;t died yet.</p>
+<p>The SpaceX Mars colonies grew rapidly toward the end of the 21st century, and finally hit a self-sustaining population in the early 22nd century. Elon Musk was buried at the summit of Olympus Mons on Mars, August 17, 2081, at age 110.</p>
+<p>The Martian colonies kept developing throughout the 22nd century, and by 2200, were an indispensable part of the asteroid mining industry.</p>
+<p>At the dawn of the 2220s, with a crowded Earth, and a sustainable outpost of civilization on Mars, the new frontier opens, and the new exodus begins. The weird irony of real estate costing less on Mars than it does on Earth is not lost on anyone. The U.S. government declares Chryse Planitia the 89th state:</p>
+
+
+<figure>
+	<img src="compound-growth/img/mars.png" alt="" />
+</figure>
+
+<p>The Chryse Planitian state economy specializes in water extraction from the Martian regolith. They export water to the other colonies for much less than the SpaceX corporatocracies have been charging.</p>
+<p>Most of the Martian economy is oriented around supplying the asteroid miners. The asteroid miners use Martian fuel, materials, and skilled labor, while exporting raw materials and manufactured goods down to Earth, the richest of all human settlements.</p>
+<p>This is only the beginning. At 60 billion humans in the solar system, and the new multi-planetary reality settling in, humans start to plan out scenarios for 2300 based on the old vision of <a href="https://www.cnbc.com/2018/10/15/blue-origins-jeff-bezos-predicts-1-trillion-humans-in-the-solar-system-wired-summit.html">1 Trillion Humans</a> that Jeff Bezos talked about in 2020.</p>
+<p><em>A trillion?!</em> How will we fit that many people on Earth, or even Mars, which is smaller?!</p>
+<p>O&rsquo;Neill cylinders. When Bezos was a student at Princeton on Earth in 1980s, he learned about Gerard O&rsquo;Neill&rsquo;s idea of a new frontier of cylindrical colonies that spun, and used centrifugal force to enable artificial gravity.</p>
+
+
+<figure>
+	<img src="compound-growth/img/oneill.jpg" alt="" />
+</figure>
+
+<p>So the inner solar system is filling up, humans live more than 100 years, there are more than a trillion people, and everyone lives like millionaires. Growth is done right? The solar system is big, but still finite!</p>
+<p>There is always room to grow, with closed-loop O&rsquo;Neill cylinders launched into interstellar space, the limit is only the speed of light.</p>
+<p><em>But the galaxy is finite!</em></p>
+<p>Intergalactic travel.</p>
+<p><em>The local group of galaxies is finite!</em></p>
+<p>Inter-galactic-group travel</p>
+<p><em>The universe is finite!</em></p>
+<p>Well, maybe, that’s an <a href="https://phys.org/news/2015-03-universe-finite-infinite.html">open question in cosmology</a>, but let’s assume it is.</p>
+<p>If we live in a <a href="https://link.springer.com/chapter/10.1007/978-1-4939-1360-2_25">finite universe without boundaries</a>, which is also expanding, we can probably create new <a href="https://en.wikipedia.org/wiki/Black_Holes_and_Baby_Universes_and_Other_Essays?wprov=sfti1">baby universes with black holes</a>. Even if we can’t, then remember that the universe is expanding, so we can keep growing our population and universal economy as long as the universe keeps expanding and we can harvest enough energy. After the stars burn out, our descendants will have to get creative and harvest rotational energy from spinning black holes. For a <em>really</em> long term view of the universe, watch this <a href="https://www.youtube.com/watch?v=uD4izuDMUQA">Timelapse of the Future by MelodySheep</a>.</p>
+<p>All this is to say that economic and population growth are only limited by cosmological growth and available energy. The cosmos is <a href="https://www.space.com/33306-how-does-the-universe-expand-faster-than-light.html">expanding faster than the speed of light</a>, so that’s not a realistic barrier to growth.</p>
+<h2 id="growth-rates">Growth rates</h2>
+<p>We have learned how to think about exponential curves in terms of their doubling rates, and how to quickly calculate how much larger something would be if that rate held steady. We have dispelled the harmful Malthusian scares about overpopulation, and argued against the &ldquo;Limits to Growth&rdquo; view. It&rsquo;s worth revisiting that math to see what kind of difference another 1% can make.</p>
+<p>Suppose the economy averaged 1% growth per year, for the next 70 years, how much does it grow? It doubles. Now assume it grows 2% per year for the next 70 years, how much does it grow? It quadruples. Finally, assume it grows 3% per year for the next 70 years, then it would octuple, or grow by a factor of eight. Each additional 1% seems small in a single year, but adds up to another order of magnitude after 70 years. This is why each little bit of growth matters. You can literally make your great-grandkids twice as rich by boosting annual growth by 1% per year.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Compound growth, whether it&rsquo;s interest on a savings account, or a population, or an economy, has a simple mathematical form, which can clarify our thinking about the future.</p>
+<p>In addition to being easy to think about, it&rsquo;s also an indispensable part of the story of human freedom. Humans become more free when they are richer and have access to more sophisticated tools. This is another way of saying growth can make everyone better off.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../tags/math.html">#math</a></li>
+    
+        <li><a href="../tags/economics.html">#economics</a></li>
+    
+        <li><a href="../tags/future.html">#future</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

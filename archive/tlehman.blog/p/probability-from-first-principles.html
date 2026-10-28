@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Probability from first principles">
+<meta name="twitter:description" content="You walk into a room full of confused college students, each wearing shirts bearing formulae they...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="v0MbvS2MxzCemKZENnmaHF0-Tsohe7PnRirp4bShrD7UnQC0NiNgpRbP-AzrF6O4857qa0Xdui1-5xR3tUegWA" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Probability from first principles</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        60 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        554 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-11-25</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>You walk into a room full of confused college students, each wearing shirts bearing formulae they can neither remember nor explain. They are attempting some sort of coordinated dance, but are so disorganized that they accidentally bump into each other and fall over. The lights are flickering and one of the students steps on a rake, launching a textbook up into the fluorescent lights above and cracking open the bulb, releasing poisonous mercury into the room. In a panic, the professor throws a stone paperweight through the window to get some fresh air.<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eU9UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--c8ca8b6860c2583d47f33219cce7017555ca0038" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--50551108047277f4a5a53505200302e41d61bcea/stat-class.jpg" filename="stat-class.jpg" filesize="91655" width="400" height="364" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--50551108047277f4a5a53505200302e41d61bcea/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/stat-class.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">stat-class.jpg</span>
+      <span class="attachment__size">89.5 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br>Every one of these students gets a C and goes to the bar to promptly forget everything that just happened.<br><br>This is not a commentary on the students. This is what a typical statistics class feels like to a mathematician. There's no foundation. No axioms followed by proofs, only a confused cacophony of formulas and statistical tests that the careful student can perform.<br><br>The mathematical discipline that underlies probability and statistics is called <strong>Measure Theory</strong>.<br><br>To begin, we start with <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html">set theory</a>. What we are trying to find is a way to measure the size of the set, but this size needs to be well behaved on <a href="transfinite-numbers.html">infinite sets</a>. This "measure" of sets will be interpreted as the probability that an event happens.<br><br>In order to make a concrete definition of a measure we can use to compute probabilities, let's start with the set ℝ of real numbers. P(ℝ) is called the power set of ℝ, it's the set of all subsets of ℝ.<br><br>The basic shape of the measure will look like this: <br>$$m : \Omega \to \mathbb{R}$$<br>Where Ω ⊂ P(ℝ) (omega is a collection of subsets of ℝ).<br><br>Also, we will want the following properties out of a measure:</div><ol>
+<li>The empty set as 0 measure: \(m(\empty)=0\) </li>
+<li>Countable additivity: \( m(\cup_i E_i) = \sum_i m(E_i) \) whenever \( \{ E_i \}_i \) is a collection of disjoint sets.</li>
+<li>Non-negativity: \( m(E_i) \geq 0 \) for all \( E_i in \Omega \)</li>
+</ol><div>
+<br>This will motivate a structure called a sigma-algebra. We don't want just <em>any</em> set Ω ⊂ P(ℝ). In order to satisfy the properties of a measure, we want a set Ω that contains the empty set and the whole set, ℝ, and because of countable additivity, we want closure under set complement too. This is what lets us do things like take the probability that an event doesn't happen. Put symbolically, if E is in Ω, m(E) is defined, and so is m(ℝ-E)<br><br>And if m is a probability measure, then:<br>$$m(E) + m(ℝ-E) = 0$$<br><br>The French mathematician Henri Lebesgue was trying to improve on Riemann integration, and in doing so introduced a measure of the size of sets that we can use for probability:</div><h1>Lebesgue Outer Measure</h1><div>$$m^*(A) = \inf \{ Z_A \} $$<br><br>where <br><br>$$Z_A = \left\{ \sum_{n=1}^\infty \ell(I_n) : A \subseteq \cup_{n=1}^\infty I_n \right\}$$<br><br>And the \( I_n \) are intervals, indexed by n.<br><br>Which can be restated in words as "the Lebesgue measure of a set is the infimum (greatest lower bound) of the sum of the lengths of the covering intervals.<br><br>The collection \( \{ I_n \}_n \) of intervals whose union contains A is called <strong>a</strong> cover of A<br><br><br>
+</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/probability.html">#probability</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

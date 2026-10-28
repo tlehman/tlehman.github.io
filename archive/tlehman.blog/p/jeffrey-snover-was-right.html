@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Jeffrey Snover was right">
+<meta name="twitter:description" content="Jeffrey Snover is the inventor of PowerShell, a command line interface for Windows. What made Pow...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="c7qV_KFVwrad5EMdL7HECjj90CH7W3dDUH__5A9aWyQYZI71uvplIxWzHVXy3_2ull10gJ_9folosgJyDrxXQg" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Jeffrey Snover was right</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        39 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        434 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-12-08</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>
+<a href="https://en.wikipedia.org/wiki/Jeffrey_Snover">Jeffrey Snover</a> is the inventor of <a href="https://learn.microsoft.com/en-us/powershell/">PowerShell</a>, a command line interface for Windows. What made PowerShell different from all the other shells that are used on Unix? PowerShell builds pipelines between processes that pass structured objects between them. As an example:<br><br>
+</div><pre>Get-Process | Where-Object { $_.CPU -gt 10 } | Select-Object ProcessName, CPU, ID</pre><div>
+<br>The Get-Process cmdlet (commandlet) passes structured objects, with a .CPU attribute to the next process, which reaches into these structured objects to do filtering (-gt 10 means 'greater than 10'). Then Select-Object takes the subset of process objects that were filtered by Where-Object and reaches into those objects, pulling out ProcessName, CPU and ID to display.<br><br>This is different from the Unix Philosophy, which Douglas McIlroy described like this:</div><blockquote>This is the Unix philosophy: write programs that do one thing and do it well. Write programs to work together. Write programs that handle text streams, because that is a universal interface.</blockquote><div>
+<br>So Unix is oriented around flat text files. Text encoded as ASCII or UTF-8 (which retains a backward compatibility with ASCII, so that old text files don't need to be re-encoded).<br><br>This long-term stability of text files as a store of data was foretold by Neal Stephenson in 1999, when he wrote in his essay, <em>In the Beginning Was the Command Line:</em>
+</div><blockquote>ASCII text files, in other words, are telegrams, and as such they have no typographical frills. But for the same reason they are eternal, because the code never changes, and universal, because every text editing and word processing software ever written knows about this code.</blockquote><div>
+<br>That universality and immortality is what makes text files such a stable foundation for data interchange. So what changed? The <a href="https://www.youtube.com/watch?v=-C-JoyNuQJs">discovery</a> of <a href="https://www.json.org/json-en.html">JSON</a>. JSON puts structured objects into these eternal text files. It's true that JSON is only one of many object serialization formats, but JSON's strength is in the <a href="https://en.wikipedia.org/wiki/ECMAScript">standardization of JavaScript</a>. It has the benefit of text files' universality and immortality, but it also gives the benefits of structured object passing, something which PowerShell is built on.<br><br>There is a tool called <a href="https://jqlang.github.io/jq/">jq</a> which is built in the full spirit of the Unix-philosophy, and it allows for fast JSON parsing in a Unix command line environment like bash or zsh. Paired with a new tool called <a href="https://github.com/kellyjonbrazil/jc">jc</a>, Unix command lines can now convert common commands' text outputs into a structured JSON object, and then use jq to reach into those objects. From the combinatorial chaos of the unstructured unix unicode soup emerges the Apollonian Object Orientedness of Snover's PowerShell. He was right all along.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/programming.html">#programming</a>
+        <a href="../tags/shells.html">#shells</a>
+        <a href="../tags/unix.html">#unix</a>
+        <a href="../tags/os.html">#os</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

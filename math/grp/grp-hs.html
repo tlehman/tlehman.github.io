@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<!-- 2024-09-09 Mon 09:13 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Group Theory in Haskell</title>
+<meta name="author" content="Tobi Lehman" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="./style.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Group Theory in Haskell</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcf09054">1. Introduction</a>
+<ul>
+<li><a href="#org859cf21">1.1. Motivation</a></li>
+</ul>
+</li>
+<li><a href="#orgb6ba52c">2. Definition of a group</a>
+<ul>
+<li><a href="#org185d3cb">2.1. Haskell definition of a group</a></li>
+</ul>
+</li>
+<li><a href="#org5a97bb8">3. The Symmetric Group</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org781f957">3.0.1. Proof that function composition is associative:</a></li>
+</ul>
+</li>
+<li><a href="#orgeb2f5b9">3.1. Examples of Symmetric Groups on Finite sets</a>
+<ul>
+<li><a href="#org871009c">3.1.1. pmatrix notation</a></li>
+<li><a href="#org3ad0e14">3.1.2. Cycle notation</a></li>
+</ul>
+</li>
+<li><a href="#orgace6fcb">3.2. <code>Data.Group.Permutation</code> in Haskell</a>
+<ul>
+<li><a href="#orgd63cadc">3.2.1. data type definition to build a permutation group upon</a></li>
+<li><a href="#orga2a1fc4">3.2.2. generating all permutations on the <code>X</code> type</a></li>
+<li><a href="#orgeac00d3">3.2.3. show function for pmatrix notation</a></li>
+<li><a href="#org5625a8a">3.2.4. show function for cycle notation</a></li>
+</ul>
+</li>
+<li><a href="#org3b034c3">3.3. Exercises (in Haskell)</a></li>
+</ul>
+</li>
+<li><a href="#org73e37f8">4. Group homomorphims</a></li>
+<li><a href="#org2e09394">5. Appendix</a>
+<ul>
+<li><a href="#org4ef7298">5.1. Errors</a></li>
+<li><a href="#org664318c">5.2. Haskell</a>
+<ul>
+<li><a href="#orgbd349d2">5.2.1. Correspondence between <code>Hask</code> and <code>Set</code> categories</a></li>
+</ul>
+</li>
+<li><a href="#org3d7617c">5.3. proofs</a>
+<ul>
+<li><a href="#orgbdada85">5.3.1. Proof that all permutations are decomposable into transpositions</a></li>
+</ul>
+</li>
+<li><a href="#org4ab2cdd">5.4. My literate programming workflow for this document</a></li>
+<li><a href="#org6be3ed7">5.5. files</a>
+<ul>
+<li><a href="#org7aec6f6">5.5.1. The <code>main</code> function</a></li>
+<li><a href="#orgd9e660d">5.5.2. the <code>package.yaml</code> file, where we add dependencies</a></li>
+<li><a href="#org24c8138">5.5.3. the <code>stack.yaml</code> file, where we define the overall package</a></li>
+</ul>
+</li>
+<li><a href="#org72f0264">5.6. TODOs</a>
+<ul>
+<li><a href="#orgfbda02d">5.6.1. <span class="todo TODO">TODO</span> Definition of a partition of a set (maybe equivalence relation too?)</a></li>
+<li><a href="#org08ae10e">5.6.2. <span class="todo TODO">TODO</span> Define a <code>show :: Permutation X -&gt; String</code> that displays <code>Zero</code> as <code>0</code>, etc.</a></li>
+<li><a href="#org4c904c0">5.6.3. <span class="todo TODO">TODO</span> remove magic number 3 and find way of computing \(|X|\)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcf09054" class="outline-2">
+<h2 id="orgcf09054"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+There are a lot of introductions to group theory, but I wanted to do one in the <a href="https://haskell.org/">Haskell programming language</a>. For more about Haskell see the <a href="https://haskellbook.com">haskellbook</a>, this article will assume some Haskell programming knowledge.
+</p>
+</div>
+
+<div id="outline-container-org859cf21" class="outline-3">
+<h3 id="org859cf21"><span class="section-number-3">1.1.</span> Motivation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+There are two major motivations for group theory. The first comes from geometry. The geometer Felix Klein tried to find the essence of Euclidean geometry. His answer was that geometry is essentially about transformations of the plane that preserve distance. Another way to express this:
+</p>
+
+<p>
+When a geometer makes a proof that triangle \(ABC\) is congruent to triangle \(DEF\) what they are saying is that there exists some transformation of the plane \({\color{red} f : \mathbb{R}^2 \to \mathbb{R}^2}\), so that \(f(ABC) = DEF\). The distance-preserving property could be expressed precisely as \(d(p,q) = d(f(p),f(q))\).
+</p>
+
+
+<div id="org56ac7fb" class="figure">
+<p><img src="./img/congruent.png" alt="congruent.png">
+</p>
+</div>
+
+<p>
+When you consider the set of all such transformations of the plane, you get a structured object called a group. These objects are worthy of study on their own because they show up in many other seemingly unrelated contexts. Like algebra.
+</p>
+
+<p>
+Another major motivation for studying groups came from algebra. A young frenchman named Évariste Galois was studying algebra, particularly the existence of solutions to polynomial equations, like:
+</p>
+
+<p>
+\[x^3 + 6x^2 + 11x - 20 = 0\]
+</p>
+
+<p>
+He developed a theory of how to transform the "zeros" of the polynomial equations, and these also form a group, like Klein's geometric transformations. Galois worked out a theory for why some equations (like quadratics and cubics) have general solutions, and why others don't. The Galois group is central to that theory.
+</p>
+
+<p>
+So the idea of a group arises in both algebra and geometry. It shows up in physics too, it's one of those fundamental ideas whose time came in the 19th century. Groups are essential to understanding symmetry, and symmetry is essential to understanding the physical world. The Standard Model of Particle Physics is a glorified study of one particular group: \(U(1) \times SU(2) \times SU(3)\), and the application of that one group is&#x2026; <i>all the particles and forces in the universe except gravity</i>. What's extraordinary is how we can start studying groups here on paper and in a Haskell REPL.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb6ba52c" class="outline-2">
+<h2 id="orgb6ba52c"><span class="section-number-2">2.</span> Definition of a group</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A <b><b>group</b></b> is a pair, \((G, * )\) where \(G\) is a non-empty set, and \(*:G\times G \to G\) where the following laws apply:
+</p>
+
+<ol class="org-ol">
+<li>Associativity: \((a * b) * c = a * (b * c)\) for all \(a,b,c \in G\)</li>
+<li>Identity: There exists an \(e \in G\) such that \(e * a = a * e = a\) for all \(a \in G\)</li>
+<li>Invertibility: there's a \(b\) for every \(a\) such that \(a * b = b * a = e\)</li>
+</ol>
+</div>
+
+<div id="outline-container-org185d3cb" class="outline-3">
+<h3 id="org185d3cb"><span class="section-number-3">2.1.</span> Haskell definition of a group</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+In Haskell, a type <code>g</code> is an instance of a <code>Group</code> if it's a <code>Monoid</code> with an <code>invert</code> function:
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #2e4d98; font-weight: bold;">class</span> <span style="color: #9a2d71; font-weight: bold;">Monoid</span> g <span style="color: #5f4f93;">=&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Group</span> g <span style="color: #2e4d98; font-weight: bold;">where</span>
+  invert <span style="color: #5f4f93;">::</span> m <span style="color: #5f4f93;">-&gt;</span> m
+</pre>
+</div>
+
+<p>
+Such that
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">
+a <span style="color: #412f7e;">&lt;&gt;</span> (invert a) <span style="color: #5f4f93;">==</span> (invert a) <span style="color: #5f4f93;">&lt;&gt;</span> a <span style="color: #5f4f93;">==</span> mempty 
+</pre>
+</div>
+
+<p>
+<code>mempty</code> is the <code>Monoid</code> unit, it's the \(e\) in the mathmetical definition <a href="#orgb6ba52c">above</a>.
+</p>
+
+<p>
+The notation used for the inverse of a group element is the superscript -1, so \(a * a^{-1} = e\) means that \(a^{-1}\) is the inverse of \(a\).
+</p>
+
+<p>
+Another convention used is to drop the infix \(*\) and just use multiplication notation, so \(aa^{-1}=a^{-1}a=e\)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a97bb8" class="outline-2">
+<h2 id="org5a97bb8"><span class="section-number-2">3.</span> The Symmetric Group</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The first example of a group we should introduce is the Symmetric group \(\text{Sym}(X)\) on a set \(X\). The informal definition is that it's the set of all permutations of a set \(X\). The formal definition of this group is:
+\[\text{Sym}(X) = \{ f:X \to X | \text{ where \(f^{-1}\) exists} \}\]
+</p>
+
+<p>
+Where the group operation is \(\circ\), function composition. Let's check the definition of group above. The identity function exists (it's the trivial permutation that permutes nothing). Inverses are in the set by definition. What about associativity?
+</p>
+</div>
+
+<div id="outline-container-org781f957" class="outline-4">
+<h4 id="org781f957"><span class="section-number-4">3.0.1.</span> Proof that function composition is associative:</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<p>
+Function types have an instance of <code>Monoid</code> typeclass which proves that function composition is associative.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #2e4d98; font-weight: bold;">instance</span> <span style="color: #9a2d71; font-weight: bold;">Monoid</span> m <span style="color: #5f4f93;">=&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Monoid</span> (r <span style="color: #5f4f93;">-&gt;</span> m) <span style="color: #2e4d98; font-weight: bold;">where</span>
+  mempty <span style="color: #2e4d98; font-weight: bold;">_</span> <span style="color: #5f4f93;">=</span> mempty
+  f <span style="color: #5f4f93;">`mappend`</span> g <span style="color: #5f4f93;">=</span> <span style="color: #5f4f93;">\</span>x <span style="color: #5f4f93;">-&gt;</span> f x <span style="color: #5f4f93;">`mappend`</span> g x
+</pre>
+</div>
+
+<p>
+Exercise: Check that this Haskell code compiles.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeb2f5b9" class="outline-3">
+<h3 id="orgeb2f5b9"><span class="section-number-3">3.1.</span> Examples of Symmetric Groups on Finite sets</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+There are two special notations for permutations. We defined \(\text{Sym}(X)\) using functions with inverses, but since we are thinking about these functions as objects in themselves, let's introduce a special syntax.
+</p>
+</div>
+
+<div id="outline-container-org871009c" class="outline-4">
+<h4 id="org871009c"><span class="section-number-4">3.1.1.</span> pmatrix notation</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Let's start with \(X = \{0, 1, 2\}\), the three-element set. To represent an invertible function, we can just make a two-row table like this:
+</p>
+
+<p>
+\[\begin{pmatrix} 0 & 1 & 2 \\ 1 & 0 & 2 \\ \end{pmatrix}\]
+</p>
+
+<p>
+The permutation notation takes the set \(X\) as the first row, and then the set \(f(X)\) as the second row:
+</p>
+
+<p>
+\[\begin{pmatrix} x_0 & ... & x_n \\ f(x_0) & ... & f(x_n) \\ \end{pmatrix}\]
+</p>
+
+<p>
+Another name used for the Symmetric group on an n-element set is \(S_n\). The group operation for \(S_3\) is function composition, so as an example,
+</p>
+
+<p>
+\[\begin{pmatrix} 0 & 1 & 2 \\ 1 & 0 & 2 \\ \end{pmatrix}\circ\begin{pmatrix} 0 & 1 & 2 \\ 1 & 0 & 2 \\ \end{pmatrix} = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 1 & 2 \\ \end{pmatrix}\]
+</p>
+
+<p>
+The \(\begin{pmatrix} 0 & 1 & 2 \\ 0 & 1 & 2 \\ \end{pmatrix}\) element is the identity, since it takes each element of \(X\) to itself.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ad0e14" class="outline-4">
+<h4 id="org3ad0e14"><span class="section-number-4">3.1.2.</span> Cycle notation</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+Notice in <a href="#org871009c">3.1.1</a> what the \(\begin{pmatrix} 0 & 1 & 2 \\ 1 & 0 & 2 \\ \end{pmatrix}\) element is doing. It is swapping 0 and 1. This is a transposition, whic means it swaps two elements. In cycle notation it would be \((0 \space 1)\).
+</p>
+
+<p>
+If you chain together transpositions \((0\space 1)\) and \((1\space 2)\) you get longer cycles (by convention I am dropping the \(\circ\) and just juxtaposing the elements):
+</p>
+
+<p>
+\[(0 \space 1)(1\space 2) = (0\space 1 \space 2)\]
+</p>
+
+<p>
+The cycle notation is more compact, but harder to implement in code. We will do both in <a href="#orgace6fcb">the next section</a> to demonstrate how to implement different notations on Haskell's algebraic type system.
+</p>
+
+<p>
+Now let's implement \(S_3\) in Haskell and make it easy to interactively work with at the REPL.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgace6fcb" class="outline-3">
+<h3 id="orgace6fcb"><span class="section-number-3">3.2.</span> <code>Data.Group.Permutation</code> in Haskell</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Since <code>Monoid</code> is so central to Haskell code, it's easy to work with Groups, since they are just Monoids with an inverse function (see <a href="#org185d3cb">2.1</a>). In Haskell, the analog of a set is a type. So taking our set \(X = \{0,1,2\}\), the statement \(1 \in X\) is expressed as <code>1 :: X</code> in Haskell. The elements of a set are analogous to the <i>inhabitants</i> of a type. In the example below, we define a type <code>X</code> with three inhabitants.
+</p>
+</div>
+<div id="outline-container-orgd63cadc" class="outline-4">
+<h4 id="orgd63cadc"><span class="section-number-4">3.2.1.</span> data type definition to build a permutation group upon</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<div class="org-src-container">
+<pre class="src src-haskell" id="org91e6607"><span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga2a1fc4" class="outline-4">
+<h4 id="orga2a1fc4"><span class="section-number-4">3.2.2.</span> generating all permutations on the <code>X</code> type</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+We can enumerate all <code>X</code> values using <code>[Zero ..]</code>
+Then we need to generate all \(n!\) permutations of that list,
+then we can <code>zip</code> them together and generate the <code>(x, f x)</code> pairs in that way.
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgeac00d3" class="outline-4">
+<h4 id="orgeac00d3"><span class="section-number-4">3.2.3.</span> show function for pmatrix notation</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<div class="org-src-container">
+<pre class="src src-haskell" id="orgfd793ea"><span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
+<span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.List</span>
+
+<span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">pmatrix notation</span>
+<span style="color: #412f7e;">pmn</span> <span style="color: #5f4f93;">::</span> <span style="color: #9a2d71; font-weight: bold;">Permutation</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">String</span>
+<span style="color: #412f7e;">pmn</span> p <span style="color: #5f4f93;">=</span> <span style="color: #327038;">"\\begin{pmatrix}"</span> <span style="color: #5f4f93;">++</span>
+  (concat <span style="color: #5f4f93;">$</span> intersperse <span style="color: #327038;">" &amp; "</span> <span style="color: #5f4f93;">$</span> map (show <span style="color: #5f4f93;">.</span> fromEnum) xs) <span style="color: #5f4f93;">++</span> <span style="color: #327038;">"\\\\"</span> <span style="color: #5f4f93;">++</span>
+  (concat <span style="color: #5f4f93;">$</span> intersperse <span style="color: #327038;">" &amp; "</span> <span style="color: #5f4f93;">$</span> map (show <span style="color: #5f4f93;">.</span> fromEnum <span style="color: #5f4f93;">.</span> to) xs) <span style="color: #5f4f93;">++</span> <span style="color: #327038;">"\\end{pmatrix}"</span>
+  <span style="color: #2e4d98; font-weight: bold;">where</span> (to, <span style="color: #2e4d98; font-weight: bold;">_</span>) <span style="color: #5f4f93;">=</span> pairwise p
+        xs <span style="color: #5f4f93;">=</span> [<span style="color: #9a2d71; font-weight: bold;">Zero</span>, <span style="color: #9a2d71; font-weight: bold;">One</span>, <span style="color: #9a2d71; font-weight: bold;">Two</span>]
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">show permutations in the notation above</span>
+<span style="color: #2e4d98; font-weight: bold;">instance</span> <span style="color: #9a2d71; font-weight: bold;">Show</span> (<span style="color: #9a2d71; font-weight: bold;">Permutation</span> <span style="color: #9a2d71; font-weight: bold;">X</span>) <span style="color: #2e4d98; font-weight: bold;">where</span>
+  show p <span style="color: #5f4f93;">=</span> pmn p
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">Defining the elements of S&#8323;</span>
+<span style="color: #412f7e;">s0</span> <span style="color: #5f4f93;">=</span> permute id id          <span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">identity permutation</span>
+<span style="color: #412f7e;">s1</span> <span style="color: #5f4f93;">=</span> permute zo zo <span style="color: #2e4d98; font-weight: bold;">where</span>  <span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">transpose Zero/One</span>
+  zo <span style="color: #5f4f93;">=</span> (<span style="color: #5f4f93;">\</span>x <span style="color: #5f4f93;">-&gt;</span> <span style="color: #2e4d98; font-weight: bold;">case</span> x <span style="color: #2e4d98; font-weight: bold;">of</span>
+                <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">One</span>
+                <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span>
+                <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Two</span>)
+</pre>
+</div>
+
+<p>
+The string output of <code>show s1</code> looks like this:
+<code>\begin{pmatrix}0 &amp; 1 &amp; 2\\1 &amp; 0 &amp; 2\end{pmatrix}</code> which renders as:
+</p>
+
+<p>
+\[\begin{pmatrix}0 & 1 & 2\\1 & 0 & 2\end{pmatrix}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5625a8a" class="outline-4">
+<h4 id="org5625a8a"><span class="section-number-4">3.2.4.</span> show function for cycle notation</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+This is an alternative <code>show</code> function that uses <a href="#org3ad0e14">cycle notation</a>.
+The problem in Haskell is collecting all the cycles. Consider our \(S_3\) example so far, notice how
+\((0 \space 1)\) is a transposition, which is also a 2-cycle. It <i>turns out</i> that we can prove that all
+permutations can be decomposed into transpositions. (Proof: <a href="#orgbdada85">5.3.1</a>)
+</p>
+
+<p>
+An example of decomposing a permutation into transpositions is the 3-cycle:
+\((0 \space 1 \space 2) = (1 \space 2)(0 \space 1)\)
+</p>
+
+<p>
+Think about it using function composition, the rightmost function maps \(0\) to \(1\), then the next one sends \(1\)
+to \(2\). So we need a generic algorithm for generating the cycle notation for a general <code>Permutation X</code>.
+</p>
+
+<p>
+One way to do it is to define a <b>cycle set</b>, and observe that the cycle sets will be disjoint, and that they will partition the set \(X\).
+</p>
+
+<ol class="org-ol">
+<li>Take an element \(x_1 \in X\)</li>
+<li>Define the <b>cycle set</b> of \(x_1\) as \(\{x_1, f(x_1), f(f(x_1)), ..., f^n(x_1)\}\)</li>
+<li>Take the collection of cycle sets for all elements \(x_i\). This partitions \(X\)</li>
+<li>Display the sets as cycles in the output: <code>(x1 f(x1) f(f(x1)) ... f(f(...f(x1))))</code></li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-haskell" id="org755b3d6"><span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
+<span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.List</span> (take)
+<span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Set</span> (fromList)
+
+<span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">cyclesets take a perm to from and an x and then compute [x, to(x), to(to(x),...)..]</span>
+<span style="color: #412f7e;">cycleset</span> p x <span style="color: #5f4f93;">=</span> fromList <span style="color: #5f4f93;">$</span> (take 3 <span style="color: #5f4f93;">$</span> iterate f x)
+  <span style="color: #2e4d98; font-weight: bold;">where</span> (f, <span style="color: #2e4d98; font-weight: bold;">_</span>) <span style="color: #5f4f93;">=</span> pairwise p
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">cycle notation</span>
+<span style="color: #412f7e;">pmc</span> <span style="color: #5f4f93;">::</span> <span style="color: #9a2d71; font-weight: bold;">Permutation</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">String</span>
+<span style="color: #412f7e;">pmc</span> p <span style="color: #5f4f93;">=</span> show p
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">Defining the elements of S&#8323;</span>
+<span style="color: #412f7e;">s0</span> <span style="color: #5f4f93;">=</span> permute id id        <span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">identity permutation</span>
+<span style="color: #412f7e;">s1</span> <span style="color: #5f4f93;">=</span> permute zo zo <span style="color: #2e4d98; font-weight: bold;">where</span>  <span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">transpose Zero/One</span>
+  zo <span style="color: #5f4f93;">=</span> (<span style="color: #5f4f93;">\</span>x <span style="color: #5f4f93;">-&gt;</span> <span style="color: #2e4d98; font-weight: bold;">case</span> x <span style="color: #2e4d98; font-weight: bold;">of</span>
+           <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">One</span>
+           <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span>
+           <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Two</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b034c3" class="outline-3">
+<h3 id="org3b034c3"><span class="section-number-3">3.3.</span> Exercises (in Haskell)</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>Define the group \(S_3\)</li>
+<li>Let \(g_1, ..., g_n \in G\) where \(G\) is a group,
+prove that \[(g_1g_2...g_n)^{-1} = (g_n^{-1}g_{n-1}^{-1}...g_2^{-1}g_1^{-1})\]</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org73e37f8" class="outline-2">
+<h2 id="org73e37f8"><span class="section-number-2">4.</span> Group homomorphims</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Given two groups \(G\) and \(H\), a function \(f:G \to H\) is a <b><b>homomorphism</b></b> if for every \(a,b \in G\):
+</p>
+
+<p>
+\[f(a*b) = f(a)*f(b)\]
+</p>
+
+<p>
+A linear transformation between vector spaces is an example of a homomorphism.
+As is the logarithm (remember \(\log(ab)=\log(a) + \log(b)\).
+</p>
+
+<p>
+Homomorphisms are like "structure preserving" maps for groups.
+</p>
+
+<p>
+If \(|G| = |H|\) and the function \(f\) is invertible, then it's an <b><b>isomorphism</b></b>, and this means that the
+two groups \(G\) and \(H\) are "the same".
+</p>
+</div>
+</div>
+<div id="outline-container-org2e09394" class="outline-2">
+<h2 id="org2e09394"><span class="section-number-2">5.</span> Appendix</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org4ef7298" class="outline-3">
+<h3 id="org4ef7298"><span class="section-number-3">5.1.</span> Errors</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+If spot any errors, you can either submit a <a href="https://github.com/tlehman/tlehman.github.io">Pull Request</a> or you can just email me: mail@tobilehman.com
+</p>
+</div>
+</div>
+
+<div id="outline-container-org664318c" class="outline-3">
+<h3 id="org664318c"><span class="section-number-3">5.2.</span> Haskell</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+<div id="outline-container-orgbd349d2" class="outline-4">
+<h4 id="orgbd349d2"><span class="section-number-4">5.2.1.</span> Correspondence between <code>Hask</code> and <code>Set</code> categories</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+<code>Hask</code> is the <a href="https://ncatlab.org/nlab/show/category">Category</a> of all Haskell types. The objects of Hask are Haskell types, and the morphisms
+between the types are Haskell functions.
+The green \(\color{green}{F}\) is a <a href="https://ncatlab.org/nlab/show/functor">functor</a> that maps Haskell types to the set of their values.
+</p>
+
+
+<div id="org6ad2dd1" class="figure">
+<p><img src="./img/haskset.png" alt="haskset.png">
+</p>
+</div>
+
+<p>
+You can also define \((\mathbb{N}, \leq)\) as a poset category, where the objects are natural numbers,
+the morphisms are the less than or equal to relation, and then the cardinality of finite sets can be
+represented as a functor from <code>Set</code> to this poset category. Here we define the <code>Countable</code> typeclass
+to implement the "cardinality" of a type. The implementation will compute \(|\color{green}{F}(X)|\)
+</p>
+
+
+<p>
+Then finish by introducing <code>Countable</code> typeclass to get the cardinality
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d7617c" class="outline-3">
+<h3 id="org3d7617c"><span class="section-number-3">5.3.</span> proofs</h3>
+<div class="outline-text-3" id="text-5-3">
+</div>
+<div id="outline-container-orgbdada85" class="outline-4">
+<h4 id="orgbdada85"><span class="section-number-4">5.3.1.</span> Proof that all permutations are decomposable into transpositions</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+Bubble sort exists. Think about it.
+QED.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4ab2cdd" class="outline-3">
+<h3 id="org4ab2cdd"><span class="section-number-3">5.4.</span> My literate programming workflow for this document</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+I wrote this document in org-mode in Emacs. I export the org file to html to generate the website, and then I run <code>org-babel-tangle</code> to produce the Haskell code. To speed up the workflow I made the function below and then bound it to &lt;F5&gt;
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="color: #2e4d98; font-weight: bold;">defun</span> <span style="color: #412f7e;">org-babel-tangle-and-compile-perms</span> ()
+  <span style="color: #327038; font-style: italic;">"Tangle and compile perms.hs"</span>
+  (<span style="color: #2e4d98; font-weight: bold;">interactive</span>)
+  (<span style="color: #2e4d98; font-weight: bold;">progn</span>
+    (org-babel-tangle)
+    (compile <span style="color: #327038;">"/opt/homebrew/bin/stack exec -- ghc perms.hs"</span>)))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6be3ed7" class="outline-3">
+<h3 id="org6be3ed7"><span class="section-number-3">5.5.</span> files</h3>
+<div class="outline-text-3" id="text-5-5">
+</div>
+<div id="outline-container-org7aec6f6" class="outline-4">
+<h4 id="org7aec6f6"><span class="section-number-4">5.5.1.</span> The <code>main</code> function</h4>
+<div class="outline-text-4" id="text-5-5-1">
+<p>
+<a href="./perms.hs">./perms.hs</a> is a literate program that this <a href="https://orgmode.org/">org-mode</a> document produces. Supporting code to make the file compile and run is defined down here in the appendix.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell" id="org8a5945e"><span style="color: #243867; font-weight: bold;">{-# LANGUAGE FlexibleInstances #-}</span>
+<span style="color: #2e4d98; font-weight: bold;">module</span> <span style="color: #9a2d71; font-weight: bold;">Main</span> <span style="color: #2e4d98; font-weight: bold;">where</span>
+
+<span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.Group.Permutation</span>
+<span style="color: #2e4d98; font-weight: bold;">import</span> <span style="color: #9a2d71; font-weight: bold;">Data.List</span>
+
+<span style="color: #2e4d98; font-weight: bold;">data</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">=</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">|</span> <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #2e4d98; font-weight: bold;">deriving</span> (<span style="color: #9a2d71; font-weight: bold;">Bounded</span>, <span style="color: #9a2d71; font-weight: bold;">Enum</span>, <span style="color: #9a2d71; font-weight: bold;">Eq</span>, <span style="color: #9a2d71; font-weight: bold;">Show</span>)
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">pmatrix notation</span>
+<span style="color: #412f7e;">pmn</span> <span style="color: #5f4f93;">::</span> <span style="color: #9a2d71; font-weight: bold;">Permutation</span> <span style="color: #9a2d71; font-weight: bold;">X</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">String</span>
+<span style="color: #412f7e;">pmn</span> p <span style="color: #5f4f93;">=</span> <span style="color: #327038;">"\\begin{pmatrix}"</span> <span style="color: #5f4f93;">++</span>
+  (concat <span style="color: #5f4f93;">$</span> intersperse <span style="color: #327038;">" &amp; "</span> <span style="color: #5f4f93;">$</span> map (show <span style="color: #5f4f93;">.</span> fromEnum) xs) <span style="color: #5f4f93;">++</span> <span style="color: #327038;">"\\\\"</span> <span style="color: #5f4f93;">++</span>
+  (concat <span style="color: #5f4f93;">$</span> intersperse <span style="color: #327038;">" &amp; "</span> <span style="color: #5f4f93;">$</span> map (show <span style="color: #5f4f93;">.</span> fromEnum <span style="color: #5f4f93;">.</span> to) xs) <span style="color: #5f4f93;">++</span> <span style="color: #327038;">"\\end{pmatrix}"</span>
+  <span style="color: #2e4d98; font-weight: bold;">where</span> (to, <span style="color: #2e4d98; font-weight: bold;">_</span>) <span style="color: #5f4f93;">=</span> pairwise p
+        xs <span style="color: #5f4f93;">=</span> [<span style="color: #9a2d71; font-weight: bold;">Zero</span>, <span style="color: #9a2d71; font-weight: bold;">One</span>, <span style="color: #9a2d71; font-weight: bold;">Two</span>]
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">show permutations in the notation above</span>
+<span style="color: #2e4d98; font-weight: bold;">instance</span> <span style="color: #9a2d71; font-weight: bold;">Show</span> (<span style="color: #9a2d71; font-weight: bold;">Permutation</span> <span style="color: #9a2d71; font-weight: bold;">X</span>) <span style="color: #2e4d98; font-weight: bold;">where</span>
+  show p <span style="color: #5f4f93;">=</span> pmn p
+
+<span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">Defining the elements of S&#8323;</span>
+<span style="color: #412f7e;">s0</span> <span style="color: #5f4f93;">=</span> permute id id          <span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">identity permutation</span>
+<span style="color: #412f7e;">s1</span> <span style="color: #5f4f93;">=</span> permute zo zo <span style="color: #2e4d98; font-weight: bold;">where</span>  <span style="color: #615855; font-style: italic;">-- </span><span style="color: #615855; font-style: italic;">transpose Zero/One</span>
+  zo <span style="color: #5f4f93;">=</span> (<span style="color: #5f4f93;">\</span>x <span style="color: #5f4f93;">-&gt;</span> <span style="color: #2e4d98; font-weight: bold;">case</span> x <span style="color: #2e4d98; font-weight: bold;">of</span>
+                <span style="color: #9a2d71; font-weight: bold;">Zero</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">One</span>
+                <span style="color: #9a2d71; font-weight: bold;">One</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Zero</span>
+                <span style="color: #9a2d71; font-weight: bold;">Two</span> <span style="color: #5f4f93;">-&gt;</span> <span style="color: #9a2d71; font-weight: bold;">Two</span>)
+
+<span style="color: #412f7e;">main</span> <span style="color: #5f4f93;">::</span> <span style="color: #9a2d71; font-weight: bold;">IO</span> <span style="color: #9a2d71; font-weight: bold;">()</span>
+<span style="color: #412f7e;">main</span> <span style="color: #5f4f93;">=</span> <span style="color: #2e4d98; font-weight: bold;">do</span>
+  print s1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd9e660d" class="outline-4">
+<h4 id="orgd9e660d"><span class="section-number-4">5.5.2.</span> the <code>package.yaml</code> file, where we add dependencies</h4>
+<div class="outline-text-4" id="text-5-5-2">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #5f4f93;">name</span>: perms-example
+<span style="color: #5f4f93;">version</span>: 0.0.2
+<span style="color: #5f4f93;">executables</span>:
+  <span style="color: #5f4f93;">perms-example</span>:
+    <span style="color: #5f4f93;">main</span>: perms.hs
+    <span style="color: #5f4f93;">source-dirs</span>: .
+<span style="color: #5f4f93;">dependencies</span>:
+- base &gt;= 4.7 &amp;&amp; &lt; 5
+- group-theory == 0.2.2
+- containers == 0.6.5.1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org24c8138" class="outline-4">
+<h4 id="org24c8138"><span class="section-number-4">5.5.3.</span> the <code>stack.yaml</code> file, where we define the overall package</h4>
+<div class="outline-text-4" id="text-5-5-3">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #5f4f93;">resolver</span>: lts-18.17
+
+<span style="color: #5f4f93;">extra-deps</span>:
+  - group-theory-0.2.2
+  - containers-0.6.5.1
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org72f0264" class="outline-3">
+<h3 id="org72f0264"><span class="section-number-3">5.6.</span> TODOs</h3>
+<div class="outline-text-3" id="text-5-6">
+</div>
+<div id="outline-container-orgfbda02d" class="outline-4">
+<h4 id="orgfbda02d"><span class="section-number-4">5.6.1.</span> <span class="todo TODO">TODO</span> Definition of a partition of a set (maybe equivalence relation too?)</h4>
+</div>
+<div id="outline-container-org08ae10e" class="outline-4">
+<h4 id="org08ae10e"><span class="section-number-4">5.6.2.</span> <span class="todo TODO">TODO</span> Define a <code>show :: Permutation X -&gt; String</code> that displays <code>Zero</code> as <code>0</code>, etc.</h4>
+<div class="outline-text-4" id="text-5-6-2">
+</div>
+<ol class="org-ol">
+<li><a id="org1800bdb"></a><span class="todo TODO">TODO</span> display <i>One</i> as 1 using <code>fromEnum</code><br></li>
+</ol>
+</div>
+<div id="outline-container-org4c904c0" class="outline-4">
+<h4 id="org4c904c0"><span class="section-number-4">5.6.3.</span> <span class="todo TODO">TODO</span> remove magic number 3 and find way of computing \(|X|\)</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Tobi Lehman</p>
+<p class="date">Created: 2024-09-09 Mon 09:13</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

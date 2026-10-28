@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Group Theory, Rubik&#39;s Cubes, and the Standard Model">
+<meta name="twitter:description" content="What do algebra, Rubik&#39;s cubes and quantum theory have in common? Start with the Rubik&#39;s cube. It...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="7-oZsMZmkMExS16YLV6ExGvSi6K0fGzMjDbCB3MQayKENAK53ck3VLkcANDwML1gxXIvA9DaZQa0-z-RcvZnRA" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Group Theory, Rubik&#39;s Cubes, and the Standard Model</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        105 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        1345 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-12-14</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>What do algebra, Rubik's cubes and quantum theory have in common? Start with the Rubik's cube. It's easy to scramble the cube and lose track of how you got it into that state, but it's been proven that the 3x3x3 cube is always at most <a href="https://cube20.org/">20 moves</a> away from solved. How would you even start to prove something like this? <br><br>What got me interested in abstract algebra was learning that the Rubik's cube was actually an example of a <a href="https://en.wikipedia.org/wiki/Group_theory">group</a>. I had a serendipitous meeting with a future friend in Powell's Bookstore when I sold my laptop on Craigslist. He told me about the importance of group theory. Later the next year in college I took a group theory class and was struck by how <em>abstract</em> the definition of a group was. Apparently groups had something to do with symmetry, but here's what the book lead with:<br><br>
+</div><h1>Definition of a Group</h1><div>a group is a set \( G \) together with a function \( * : G \times G \to G \) such that:<br><br>
+</div><ol>
+<li>Identity: \( \exists e \in G : \forall a \in G: e * a = a * e = a \)</li>
+<li>Associativity: \( \forall a,b,c \in G: a * (b * c) = (a * b) * c \)</li>
+<li>Inverses: \( \forall a \in G: \exists b \in G: a * b = b * a = e \)</li>
+</ol><div>(\(\forall\) means "for all", and \(\exists\) means "there exists", and \(\in\) means "is in")</div><div>
+<br>Okay, let's unpack this. Group theory is all about <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html">sets</a>, with associative binary operations and unit elements (1. identity axiom). What's the intuition here? The main idea here is 3., inverses. Any operation that can be done in he group can be un-done in the group. This is the essence of symmetry, when operations can be undone in a clean way.<br><br>Rubik's cubes embody a <a href="https://en.wikipedia.org/wiki/Rubik%27s_Cube_group">group</a>. Inverses are related the physical operation of undoing a symmetry.<br><br>
+</div><h1>Example: Rubik's Group</h1><div>The Rubik's cube is a 3x3x3 puzzle with six colors, one for each face of the cube, the goal is to return the cube back to the state where each side has only a single color:<br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4Mk1EOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--f9901b7070e08f4bcb5ad32eed44264e82121eb0" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f46e996d77c01f6ed31c7fb7bee3d33daded95ae/rubik.jpg" filename="rubik.jpg" filesize="56643" width="400" height="417" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f46e996d77c01f6ed31c7fb7bee3d33daded95ae/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/rubik.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">rubik.jpg</span>
+      <span class="attachment__size">55.3 KB</span>
+  </figcaption>
+</figure></action-text-attachment>If you choose an orientation for the cube in 3D space, what is the minimum set of operations you would need to solve a cube? You will need one 90° twist for each of the 6 faces, so consider the set: $$\{F, B, U, D, L, R\}$$ for the Front, Back, Up, Down, Left and Right sides. Assume each twist is clockwise when looking at the face.<br><br>
+</div><div class="attachment-gallery attachment-gallery--3">
+  <action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4Mk1UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--57eaf260cf57be1c16f3ba89d8b45b5f76428165" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1062cbd34579c9dc25be0424e43edc6e31612a7e/F.png" filename="F.png" filesize="114266" width="622" height="590" previewable="true" presentation="gallery" caption="F (front clockwise twist)"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--1062cbd34579c9dc25be0424e43edc6e31612a7e/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJZ0Eya0NXQUk9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--9954c26ba1c7a7e7d8f2d7eb8570192439c6ed76/F.png">
+
+  <figcaption class="attachment__caption">
+      F (front clockwise twist)
+  </figcaption>
+</figure></action-text-attachment><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4Mk1qOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--6576d5024a7d2ec755274df05e9e28b96c1843d1" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e56b6ad01631409167e8cad725176637adfb2aa/R.png" filename="R.png" filesize="101436" width="582" height="558" previewable="true" presentation="gallery" caption="R (right clockwise twist)"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBRdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8e56b6ad01631409167e8cad725176637adfb2aa/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJZ0Eya0NXQUk9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--9954c26ba1c7a7e7d8f2d7eb8570192439c6ed76/R.png">
+
+  <figcaption class="attachment__caption">
+      R (right clockwise twist)
+  </figcaption>
+</figure></action-text-attachment><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4Mk16OWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--06e89bbc7300f2a8b55b1a9b44951110a037dbe7" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBSQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a04e0825d2d494210c289efb1f645bbb8463d0c9/U.png" filename="U.png" filesize="88315" width="556" height="562" previewable="true" presentation="gallery" caption="U (up clockwise twist)"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBSQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a04e0825d2d494210c289efb1f645bbb8463d0c9/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJZ0Eya0NXQUk9IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--9954c26ba1c7a7e7d8f2d7eb8570192439c6ed76/U.png">
+
+  <figcaption class="attachment__caption">
+      U (up clockwise twist)
+  </figcaption>
+</figure></action-text-attachment>
+</div><div>These six operations generate the whole Rubik's group: $$\{F, B, U, D, L, R\}$$<br><br>Does it even satisfy the definition of a group? We can define \( I \) the identity by taking any of our six generators and applying it 4 times, the equivalent of a 360° rotation:<br><br>$$I = R^4$$<br><br>And this gives us a way to calculate the inverse. What's the inverse of R? Well, \(R * R^3 = I \) so \(R^3\) is an inverse. But wait! I just assumed associativity. We should prove that first.<br><br>Recall the associative law:<br><br>
+</div><ol><li>Associativity: \( \forall a,b,c \in G: a * (b * c) = (a * b) * c \)</li></ol><div>If you want a rigorous proof that this holds for Rubik's moves, then check out this <a href="https://people.math.harvard.edu/~jjchen/docs/Group%20Theory%20and%20the%20Rubik's%20Cube.pdf">Harvard paper</a>, because the moves are modeled as functions acting on a set, the associativity is inherited from the function composition operation.<br><br>So we have an identity, inverses and associativity, Rubik's moves form a group. You can use this group to study solutions to the Rubik's cube, but I am more interested in reality than a fun puzzle cube. Luckily, group theory is <em>essential </em>to understand the Standard Model of particle physics. How?<br><br>
+</div><h1>The Standard Model of Particle Physics</h1><div>This section will take what we've learned about groups and then apply it to physics. If you read anything about particle physics you might have seen an expression like:<br><br>$$U(1) \times SU(2) \times SU(3)$$</div><div>
+<br>The <a href="https://en.wikipedia.org/wiki/Standard_Model">Standard Model</a> follows from the symmetries represented in this group structure. So what does this mean?<br><br>Let's start with \(U(1)\), what is it? This is the symmetry group of electromagnetism. Specifically, for <a href="https://en.wikipedia.org/wiki/Quantum_electrodynamics">QED</a>, the quantum field theory of electromagnetism and light. Without getting too deep into the weeds, a quantum field is a function that assigns an operator to every point in spacetime. So, \( \hat\phi(x) \) is an operator, and \(x = (t, \vec{x})\).<br><br>Quantum fields are functions that assign an operator to a point \(x = (t, \vec{x})\) in spacetime:<br><br>$$\hat\phi(x) \larr \text{ an operator}$$<br><br>The operator \(\hat\phi(x)\) operates on a Hilbert space. A Hilbert space is a <a href="https://en.wikipedia.org/wiki/Vector_space">vector space</a> used to represent particle states in quantum mechanics. So the value of \(\hat\phi(x) \) acts on the Hilbert space. But we don't need to get into Hilbert spaces and what they mean, this is just for the curious reader. The point is to talk about symmetry groups.<br><br>The field \(\hat\phi(x)\) can be locally transformed by any element of \(U(1)\) and the physics won't change. No other transformations have this property. It turns out that this symmetry <em>characterizes</em> the field \(\hat\phi(x)\).<br><br>What does \(U(1)\) look like? Can we build intuition about it? \(U(1)\) looks like a circle, and the points on the circle can be multiplied together to get other points on the circle. There are a few ways to do this, but my favorite uses <a href="https://tobilehman.com/posts/imaginary-numbers-are-real/">complex numbers</a>.<br> <br>We can define \(U(1)\) using complex numbers:<br> <br>$$ U(1) = \{ x + i y : x^2 + y^2 = 1 \} $$ <br><br>The equation \(x^2 + y^2 = 1\) defines a circle, and an example of the group operation would be the picture below, where \(\textcolor{red}{z_1} * \textcolor{green}{z_2} = \textcolor{blue}{z_3} \)<action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4Mk9UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--4e2beeba59014ddabca22985aa679ee49de6cb13" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBTZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cdf9faf1e2381e03d35c00e570bc12733fe6978e/U1.png" filename="U1.png" filesize="46666" width="400" height="399" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBTZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cdf9faf1e2381e03d35c00e570bc12733fe6978e/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/U1.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">U1.png</span>
+      <span class="attachment__size">45.6 KB</span>
+  </figcaption>
+</figure></action-text-attachment>So the above circle is a set of uncountably many (see post on <a href="transfinite-numbers.html">transfinite numbers</a>) complex numbers, all at distance 1 from the center. You can make an equivalent definition using the polar representation of complex numbers:<br><br>$$ U(1) = \{ e^{i \theta} \} $$<br><br>Then \(e^{\theta_1}*e^{\theta_2} = e^{\theta_1 + \theta_2} \) is just the addition of the angles. Group structure? Let's see, set \(\theta = 0\) then \(e^0 = 1\), so it has an identity. Since U(1) are complex numbers, multiplication is associative. Now inverses, the inverse of \(e^\theta\) is \(e^{-\theta}\), so we are done, \(U(1)\) is a group.<br><br>The group uniquely determines the properties of the quantum field theory for electromagnetism. The sheer variety and utility of groups is something that spans everything from silly games to the foundations of physics. For now I will avoid getting into \(SU(2)\) and \(SU(3)\), because they are harder to visualize and I don't think it would help with this article. This article was meant to introduce an important structure that can be employed in any problem that involves symmetry.<br><br>Groups come in many sizes and forms. The Rubik's group is finite (but very large to us earthlings, which will be apparent to anyone who has tried solving a Rubik's cube. The group \(U(1)\) is infinite, in fact, it's <em>uncountably infinite</em>, but also easy to visualize, and it represents <em>local symmetries</em>, where the transformation is <a href="surreal-numbers.html">infinitesimal</a>.<br><br>There is so much more to group theory and to physics, but I am going to leave it here for now so I can get to topological spaces and homotopy.</div><div><br></div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/group-theory.html">#group-theory</a>
+        <a href="../tags/linear-algebra.html">#linear-algebra</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

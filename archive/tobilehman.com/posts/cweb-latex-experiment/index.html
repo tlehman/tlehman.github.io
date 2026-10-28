@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="CWEB LaTeX Experiment" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/cweb-latex-experiment/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/cweb-latex-experiment/img/lcp.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="CWEB LaTeX Experiment" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/cweb-latex-experiment/img/lcp.png' />
+    
+
+    <title>
+        
+            CWEB LaTeX Experiment : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>CWEB LaTeX Experiment</h1>
+
+    
+        <div class="post-meta">Thu, Feb 3, 2022 - 600 Words </div>
+    
+
+    <p>I have written about <a href="../../tags/literate-programming.html">literate programming</a> a few times before. The big idea is to elevate documentation above the actual running source code. Source code is meant for humans to read, that&rsquo;s why it has higher-level abstractions and comments. Literate programming flips the roles of comments and source code. The comments come first, and the source code is stripped out and tangled into a compilable form.</p>
+<p>I am still not totally sure what to think about it. The <code>lmt</code> (literate markdown tangle) tool is nice if you are going to write some markdown with embedded code. <code>lmt</code> lets you quickly output a running program from a README.md. It&rsquo;s easy to get started, but sometimes fails silently and adds an extra level of debugging on top of the code it tangles.</p>
+<p>In the interest of getting to know literate style programming, I wanted to go back to the original <code>CWEB</code> tool that Donald Knuth himself worked on. <code>CWEB</code> is a pair of programs <code>cweave</code> and <code>ctangle</code>, which operate on a source file with a <code>.w</code> extension. The <code>.w</code> file contains \( \TeX \) explaining the code, and the C/C++ source code as well.</p>
+
+
+<figure>
+	<img src="img/cweave.jpg" alt="" />
+</figure>
+
+<p>(This image taken from <a href="http://www.literateprogramming.com/">http://www.literateprogramming.com/</a>)</p>
+<p>I worked on this last night. I started writing a program that implements a classical physics simulation. All the bodies are spherical, rigid, and the only force is gravity.</p>
+<p>Here&rsquo;s the woven result: <a href="../../pdf/lcp-0.1.pdf">lcp.pdf</a></p>
+<p>Here&rsquo;s the github repo with the <code>CWEB</code> source: <a href="https://github.com/tlehman/literate-classical-physics">lcp</a></p>
+<h2 id="the-good">The good</h2>
+<p>Just look at how beautiful it is! TikZ pictures, beautiful math expressions. I just want to look at it.</p>
+
+
+<figure>
+	<img src="img/lcp.png" alt="" />
+</figure>
+
+<h2 id="the-bad">The bad</h2>
+<p>The <a href="http://tug.ctan.org/info/knuth/cwebman.pdf">CWEB manual</a> hasn&rsquo;t been updated in 20 years. Also the only reason I was able to put together the <code>lcp.w</code> file was that I learned how to work with \( \TeX \) and \( \LaTeX \) in college.</p>
+<p>Further, <code>CWEB</code> just outputs \( \TeX \), so it takes a little bit of work to get all the cool \( \LaTeX \). Fortunately, all this is exquisitely documented, albeit in a document that is 27 years old: <a href="https://mirrors.concertpass.com/tex-archive/macros/latex/contrib/cweb/cweb-user.pdf">cweb-user.pdf</a></p>
+<p>Currently, I also haven&rsquo;t been able to add more than one major section with all the \( \LaTeX \) stuff I&rsquo;m using, like AMS Fonts and TikZ. The flexibility of <code>CWEB</code> should be possible with \( \LaTeX \), but I&rsquo;m just not sure how to structure it. If you are a <code>CWEB</code> genius and want to comment or fork the github repo, I would love to hear from you.</p>
+<h2 id="the-beautiful">The beautiful</h2>
+<p>I know I ranted about how the documentation hasn&rsquo;t been updated in 20+ years. However, all of the programs worked. They just ran and did what they said they would do.</p>
+<p>Software is nearly free to copy, but the context that went into it&rsquo;s development gets lost. If you want to write software that lasts hundreds of years, it should be able to be printed out and stored on paper. The whole point of literate programming was to produce a beautiful description of a program that could be printed out and read on paper.</p>
+<p>So when the inevitable coronal mass ejection corrupts all the bits, hopefully the <a href="https://archiveprogram.github.com/arctic-vault/">Arctic Code Vault</a> can get us back to a reasonable starting point. For everything else, I think it&rsquo;s worth thinking about the <a href="../../tags/long-now.html">Long Now</a> and producing a permanent artifact that embodies the knowledge that went into a useful program.</p>
+<p>For this reason, I am going to continue working on LCP as a test case to see if <code>CWEB</code> is the right tool for producing this kind of artifact.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/physics.html">#physics</a></li>
+    
+        <li><a href="../../tags/tools.html">#tools</a></li>
+    
+        <li><a href="../../tags/literate-programming.html">#literate-programming</a></li>
+    
+        <li><a href="../../tags/long-now.html">#long-now</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

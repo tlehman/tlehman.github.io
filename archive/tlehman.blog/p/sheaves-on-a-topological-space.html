@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Sheaves on a topological space">
+<meta name="twitter:description" content="I am going down the Grothendieck rabbit hole. Reading Olivia Caramello&#39;s Introduction to Grothend...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="2a4pdTBBr1efusNv505FZ260feOnRbT9k8mkelAPTjeycDJ8K-4IwhftnSc6IHzDwBTZQsPjvTerBFnsUelCUQ" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Sheaves on a topological space</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        90 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        352 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-12-16</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>I am going down the Grothendieck rabbit hole. Reading <a href="https://www.oliviacaramello.com/Talks/CourseGrothendieckToposesEdinburgh.pdf">Olivia Caramello's Introduction to Grothendieck toposes</a>. <br><br>What's a topos? It's a kind of <a href="https://en.wikipedia.org/wiki/Sheaf_(mathematics)">sheaf</a>. What's a sheaf? It's a special kind of pre-sheaf. What's a <a href="https://en.wikipedia.org/wiki/Presheaf_(category_theory)">pre-sheaf</a>? It's a special kind of functor. What's a <a href="https://en.wikipedia.org/wiki/Functor">functor</a>? It's an arrow-preserving mapping between categories. What's a <a href="https://en.wikipedia.org/wiki/Category_theory">category</a>? A category \(C\) can be defined as a set \(\textbf{Ob}(C)\) of objects, such that for each pair of objects \(A,B \in \textbf{Ob}(C)\), there is a set \(\textbf{Hom}(A,B)\) called the "homset" that contains arrows \(A \to B\). To be a category, there have to be identity arrows for each object and the arrows have to compose associatively. More on category theory <a href="https://arxiv.org/abs/1612.09375">here</a> if you are not familiar with them yet.<br><br>I read the definitions of pre-sheaves and sheaves to try and understand what they meant. Here's my whiteboard result:<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4M01UOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--0f4ed26d5b3a89b0206ef3f6a475858002ee4220" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBUQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--edd10d8c10f369e7b7f4d36e984ede5900e4ded6/sheaves.jpg" filename="sheaves.jpg" filesize="136787" width="1024" height="562" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBUQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--edd10d8c10f369e7b7f4d36e984ede5900e4ded6/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/sheaves.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">sheaves.jpg</span>
+      <span class="attachment__size">134 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br>Sheaves and pre-sheaves are functors (those big thick double green arrows \(\textcolor{green}{\mathscr{F}}\) )<br>To be a pre-sheaf, the restriction maps (arrows on the right side of the big thick green arrow) have to respect the topology of \(X\).<br><br>To be a sheaf, there has to be a uniqueness constraint on the restriction maps, and a constraint that the restriction maps \(\rho\) on the right side have to have an \(s\) that consistently reduces to it's restriction in \(V_i\) (I mistakenly wrote that it was an epimorphism constraint, but I got it backwards. Ignore that)<br><br>
+</div><h1>Examples of sheaves</h1><div><br></div><ul>
+<li>the sheaf of continuous real-valued functions on a topological space</li>
+<li>the sheaf of differentiable functions on a differentiable manifold</li>
+<li>the sheaf of holomorphic functions on a complex manifold</li>
+<li>the sheaf of sections of a fiber bundle (okay this one deserves it's own post, fiber bundlers are rad!)</li>
+</ul><div>
+<br>This post just shares what I've read so far. I have a better idea of what a sheaf is, and why it was defined. But I haven't found Grothendieck yet. I'm still late for a very important date.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/topology.html">#topology</a>
+        <a href="../tags/topos-theory.html">#topos-theory</a>
+        <a href="../tags/category-theory.html">#category-theory</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+% Created 2024-05-28 Tue 16:49
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Tobi Lehman}
+\date{\today}
+\title{Kolmogorov-Arnold Representation Theorem with Haskell code examples}
+\hypersetup{
+ pdfauthor={Tobi Lehman},
+ pdftitle={Kolmogorov-Arnold Representation Theorem with Haskell code examples},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 29.3 (Org mode 9.6.15)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Introduction}
+\label{sec:org6c4be2c}
+The Kolmogorov-Arnold representation theorem states that any continuous function \(f:[0,1]^n \to \mathbb{R}\) of several variables can be represented as a finite sum of continuous functions \(\phi_{ij}\) of one variable.
+
+\section{Theorem Statement}
+\label{sec:org82dd4e8}
+
+$$ f(x_1, x_2, \ldots, x_n) = \sum_{i=1}^{2n+1} g_i \left( \sum_{j=1}^{n} \varphi_{ij}(x_j) \right)$$
+
+\section{Proof}
+\label{sec:org1d43ae2}
+
+
+\section{Haskell Implementation}
+\label{sec:org5fe754d}
+
+\begin{verbatim}
+module KolmogorovArnold where
+
+-- Example function
+f :: Double -> Double -> Double
+f x y = x^2 + y^2
+
+-- Functions g_i and phi_ij for the representation
+g1, g2 :: Double -> Double
+g1 z = z
+g2 z = z
+
+phi1, phi2 :: Double -> Double
+phi1 x = x
+phi2 y = y
+
+-- Kolmogorov-Arnold representation
+karRepresentation :: Double -> Double -> Double
+karRepresentation x y = g1 (phi1 x + phi2 y) + g2 (phi1 x + phi2 y)
+\end{verbatim}
+\end{document}

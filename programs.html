@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+    <title>tobi@host:~/programs</title>
+    <script>document.documentElement.classList.add('js');</script>
+    <style>
+      :root {
+          --bg: black;
+          --fg: white;
+          --dim: #888;
+          --link: lightblue;
+      }
+
+      body {
+          background-color: var(--bg);
+          color: var(--fg);
+          font-family: monospace;
+          font-size: 20px;
+          line-height: 1.3em;
+          margin: 0;
+          padding: 20px;
+      }
+
+      @media (max-width: 600px) {
+          body {
+              font-size: 14px;
+              padding: 12px;
+          }
+      }
+
+      /* the terminal */
+
+      #term {
+          display: none;
+          position: relative;
+          /* no double-tap zoom, so every tap on the terminal is a click */
+          touch-action: manipulation;
+          min-height: calc(100vh - 40px);
+          cursor: text;
+      }
+
+      .js #term {
+          display: block;
+      }
+
+      #term .out, #term .line {
+          white-space: pre-wrap;
+          overflow-wrap: anywhere;
+      }
+
+      #term a {
+          color: inherit;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      #term a:hover {
+          text-decoration: underline;
+      }
+
+      #term .line {
+          position: relative;
+      }
+
+      #term .cursor {
+          outline: 1px solid var(--fg);
+          outline-offset: -1px;
+      }
+
+      #term.focused .cursor {
+          outline: none;
+          background-color: var(--fg);
+          color: var(--bg);
+          animation: blink 1s step-end infinite;
+      }
+
+      @keyframes blink {
+          50% {
+              background-color: transparent;
+              color: var(--fg);
+          }
+      }
+
+      /* the real input: invisible, sitting on the prompt line so phones
+         scroll the right place into view when the keyboard opens */
+      #term textarea {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 1px;
+          height: 1em;
+          padding: 0;
+          border: 0;
+          opacity: 0;
+          resize: none;
+          overflow: hidden;
+          font-size: 16px;
+          caret-color: transparent;
+      }
+
+      #term .keys {
+          display: none;
+          gap: 6px;
+          margin-top: 12px;
+          flex-wrap: wrap;
+      }
+
+      @media (pointer: coarse) {
+          #term .keys {
+              display: flex;
+          }
+      }
+
+      #term .keys button {
+          font: inherit;
+          color: var(--fg);
+          background: #1a1a1a;
+          border: 1px solid #444;
+          border-radius: 4px;
+          min-width: 2.6em;
+          padding: 6px 8px;
+          touch-action: manipulation;
+          user-select: none;
+          -webkit-user-select: none;
+      }
+
+      #term .keys button:active {
+          background: #333;
+      }
+
+      #term .c0 { color: #666; }
+      #term .c1 { color: #ff6b6b; }
+      #term .c2 { color: #8ae234; }
+      #term .c3 { color: #fce94f; }
+      #term .c4 { color: #729fcf; }
+      #term .c5 { color: #d58bd4; }
+      #term .c6 { color: #7fdbdb; }
+      #term .c7 { color: #d3d7cf; }
+      #term .c8 { color: #888; }
+      #term .c9 { color: #ff8f8f; }
+      #term .c10 { color: #b1f26b; }
+      #term .c11 { color: #fff38a; }
+      #term .c12 { color: #9ec4f0; }
+      #term .c13 { color: #f0a8ef; }
+      #term .c14 { color: lightblue; }
+      #term .c15 { color: white; }
+      #term .b { font-weight: bold; }
+      #term .u { text-decoration: underline; }
+      #term .b.c4 { color: #8fb6ff; }
+      #term .b.c6 { color: var(--link); font-weight: normal; }
+
+      /* without JavaScript: a plain listing */
+
+      .js #programs {
+          display: none;
+      }
+
+      #programs {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+      }
+
+      #programs::before {
+          content: "tobi@host:~/programs$ ls";
+          display: block;
+          margin-bottom: 10px;
+      }
+
+      #programs li {
+          white-space: nowrap;
+          overflow-x: auto;
+      }
+
+      #programs a {
+          color: var(--link);
+          text-decoration: none;
+      }
+
+      #programs a:hover {
+          text-decoration: underline;
+      }
+
+      #programs .name {
+          color: var(--dim);
+      }
+
+      #programs .desc {
+          color: #666;
+      }
+
+      #programs .desc::before {
+          content: "  # ";
+          white-space: pre;
+      }
+    </style>
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./img/android-chrome-512x512.png">
+  </head>
+  <body>
+    <div id="term">
+      <div class="out" aria-live="polite"></div>
+      <div class="line"><span class="ps1"></span><span class="before"></span><span class="cursor"> </span><span class="after"></span><textarea aria-label="shell input" rows="1" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="send"></textarea></div>
+      <div class="keys" aria-label="terminal keys">
+        <button type="button" data-key="Tab">tab</button>
+        <button type="button" data-key="ArrowUp">↑</button>
+        <button type="button" data-key="ArrowDown">↓</button>
+        <button type="button" data-key="ArrowLeft">←</button>
+        <button type="button" data-key="ArrowRight">→</button>
+        <button type="button" data-key="C-c">^C</button>
+        <button type="button" data-key="/">/</button>
+        <button type="button" data-key="-">-</button>
+        <button type="button" data-key="|">|</button>
+        <button type="button" data-key="~">~</button>
+      </div>
+    </div>
+
+    <!-- The shell builds ~/programs from this list: a link becomes a symlink
+         to its href, an entry without one becomes a plain file. -->
+    <ul id="programs">
+      <li data-icon="📷"><span class="name">imgclass</span><span class="desc">Swift CLI to detect classes of objects in images (local only)</span></li>
+      <li data-icon="🎟️"><span class="name">jirastatus</span><span class="desc">Command line tool to check on the status of a Jira ticket</span></li>
+      <li><a href="https://tobilehman.com/hammock">hammock</a><span class="desc">editor</span></li>
+      <li><a href="./programs/rosary.html">rosary.html</a></li>
+      <li><a href="./programs/goats.html">goats.js</a></li>
+      <li><a href="./archive/tobilehman.com/posts/piano/index.html">piano♪.html</a></li>
+    </ul>
+
+    <script defer src="./programs/shell/coreutils.wasm.js"></script>
+    <script defer src="./programs/shell/wasi.js"></script>
+    <script defer src="./programs/shell/shell.js"></script>
+  <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+  </body>
+</html>

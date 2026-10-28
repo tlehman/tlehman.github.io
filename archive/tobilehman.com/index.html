@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html><head>
+	<meta name="generator" content="Hugo 0.121.1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Tobi Lehman.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com" />
+        <meta property="og:image" content="https://tobilehman.com/images/tobilehman-com.png" />
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman">
+        <meta name="twitter:title" content="TobiLehman.com">
+        <meta name="twitter:description" content="Tobi's web blog">
+        <meta name="twitter:image" content="https://tobilehman.com/images/tobilehman-com-2021-12-09.png">
+    
+
+    <title>
+        
+            tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var pwd = "/home/tobi";
+    </script>
+    
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" href="css/base.css"></link>
+    <link rel="stylesheet" href="css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div id="content">
+      
+        
+<div class="row">
+    <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="links.html">Links</a></li>
+            <li><a href="notes.html">Notes</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+    <div class="col-8">
+    <article>
+        <p>
+          Welcome to <a href="index.html">tobilehman.com</a>.
+          This site has my <a href="posts.html">blog posts</a>,
+          the <a href="projects.html">projects</a> I've worked on, and
+          a section <a href="about.html">about me</a>.
+        </p>
+
+        <p>Here's my <a href="https://github.com/tlehman">Github profile</a> for a sample of my work.
+		And here is my <a href="key.txt">GPG Public Key 🔑</a>.
+		</p>
+
+		<h3>New Blog: <a href="https://tlehman.blog">tlehman.blog</a></h3><p>
+    <h3>Recent Posts</h3>
+    <ul>
+        
+            
+        
+            
+            <li><a href="posts/curse-ideological-dimensionality/index.html">The Curse of Ideological Dimensionality</a> (2023-August-3)</li>
+            
+        
+            
+            <li><a href="posts/fouriers-finches/index.html">Fourier&#39;s Finches: A Primer on Digital Audio</a> (2023-May-26)</li>
+            
+        
+            
+            <li><a href="posts/bluesky-at-protocol/index.html">Bluesky and the AT Protocol</a> (2023-April-12)</li>
+            
+        
+            
+            <li><a href="posts/chatgpt-hci-eli5/index.html">Asking ChatGPT to explain hyperconverged infrastructure</a> (2023-February-10)</li>
+            
+        
+            
+            <li><a href="posts/year-of-the-rabbit/index.html">Year of the Rabbit</a> (2023-January-1)</li>
+            
+        
+    </ul>
+</p>
+<h3>Technical Deep Dives</h3>
+        <p>
+          <ul>
+            <li><a href="posts/suse-harvester-pci.html">PCI passthrough with NVIDIA GPU example (2022)</a></li>
+            <li><a href="pdf/lcp-0.5.pdf">Literate Classical Physics (2022) <i>(draft 0.5)</i></a></li>
+            <li class="hover-show-hidden"><a href="posts/sir-model-epidemiology.html">The SIR Model on novel coronavirus (2020)</a>
+              <ul class="hidden">
+                <li>Note: this is not supposed to be original research. It's more of an explainer on the math behind the SIR model, loosely applied to COVID-19. </li>
+              </ul>
+            </li>
+            <li><a href="posts/imaginary-numbers-are-real.html">Imaginary Numbers are Real (2019)</a></li>
+            <li><a href="posts/lossy-image-compression.html">Lossy Image Compression (2018)</a></li>
+            <li><a href="pdf/ooo.pdf">Object-Oriented Orbits, a physics simulator (2016)</a></li>
+          </ul>
+        </p>
+
+        <h3>Book Reviews</h3>
+<p>
+    <ul>
+        
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+              <li><a href="posts/book-review-time-loops/index.html">Book Review: Time Loops</a> (2022-October-13)</li>
+              
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+              <li><a href="posts/book-review-wheres-my-flying-car/index.html">Book Review: Where&#39;s My Flying Car?</a> (2021-December-26)</li>
+              
+            
+        
+            
+			  
+              <li><a href="posts/book-review-perez-trfc/index.html">Book Review: Technological Revolutions and Financial Capital</a> (2021-November-21)</li>
+              
+            
+        
+            
+			  
+            
+        
+            
+			  
+              <li><a href="posts/book-review-atomic-habits/index.html">Book Review: Atomic Habits</a> (2021-October-30)</li>
+              
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+              <li><a href="posts/book-review-working-in-public/index.html">Book Review: Working in Public</a> (2020-October-20)</li>
+              
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+            
+			  
+            
+        
+    </ul>
+</p>
+</article>
+
+    </div>
+    <div class="col-2">
+      <h3><a id="blogroll">Blogroll</a></h3>
+      <ul>
+        <li><a href="https://guzey.com/">Alexey Guzey</a></li>
+        <li><a href="https://brianlovin.com/writing">Brian Lovin</a></li>
+        <li><a href="https://blog.codinghorror.com/">Coding Horror</a></li>
+        <li><a href="https://jvns.ca/">Julia Evans</a></li>
+        <li><a href="https://julian.digital/">Julian Lehr</a></li>
+        <li><a href="http://www.thenightshirt.com/">The Nightshirt</a></li>
+        <li><a href="https://omar.website/">Omar Rizwan</a></li>
+        <li><a href="https://rootsofprogress.org">Roots of Progress</a></li>
+      </ul>
+      <h3><a id="non-profits">Non-Profits</a></h3>
+      <ul>
+        <li><a href="https://archive.org">Archive.org</a></li>
+        <li><a href="https://wearebgc.org/">Black Girls Code</a></li>
+        <li><a href="https://thebreakthrough.org/">Breakthrough Institute</a></li>
+        <li><a href="https://longnow.org/ideas">Long Now</a></li>
+        <li><a href="https://rootsofprogress.org">Roots of Progress</a></li>
+      </ul>
+    </div>
+</div>
+
+      
+    </div>
+    
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

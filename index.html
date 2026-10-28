@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Tobi Lehman's site" />
+        <meta
+            name="twitter:description"
+            content="Tobi Lehman's writing, programs, math and archive"
+        />
+        <meta
+            name="twitter:image"
+            content="https://tobilehman.com/img/lehman-coat-of-arms.png"
+        />
+        <meta name="twitter:image:alt" content="Lehman Coat of Arms" />
+
+        <title>Tobi Lehman</title>
+        <style>
+            body,
+            html {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+                font-size: 16px;
+                /*background-color: #f0f0f0;*/
+            }
+
+            .container {
+                position: relative;
+                width: 300px;
+                height: 300px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container img {
+                max-width: 100%;
+                border-radius: 50%;
+            }
+
+            .circle {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+            }
+
+            .circle a {
+                position: absolute;
+                transform: translate(-50%, -50%);
+                text-decoration: underline;
+                color: #33f;
+                font-weight: bold;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .circle a:active {
+                opacity: 1;
+            }
+
+            .circle a:nth-child(1) {
+                top: -15%;
+                left: 50%;
+            }
+            .circle a:nth-child(2) {
+                top: 5%;
+                left: 95%;
+            }
+            .circle a:nth-child(3) {
+                top: 95%;
+                left: 95%;
+            }
+            .circle a:nth-child(4) {
+                top: 115%;
+                left: 50%;
+            }
+            .circle a:nth-child(5) {
+                top: 95%;
+                left: 5%;
+            }
+            .circle a:nth-child(6) {
+                top: 5%;
+                left: 5%;
+            }
+
+            .darkmode-toggle {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                background: none;
+                border: 1px solid currentColor;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 0.85em;
+                padding: 2px 8px;
+                color: inherit;
+                font-family: inherit;
+                line-height: 1.5;
+            }
+            .darkmode-toggle:hover { opacity: 0.7; }
+
+            html.dark body { background-color: #1a1a1a; color: #e0e0e0; }
+            html.dark .circle a { color: #88f; }
+        </style>
+        <!-- Link favicons -->
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="./img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="./img/android-chrome-512x512.png"
+        />
+        <script src="writing/darkmode.js"></script>
+    </head>
+    <body>
+        <button class="darkmode-toggle">Dark</button>
+        <div class="container">
+            <img
+                src="./img/lehman-coat-of-arms.png"
+                alt="Lehman Family Coat of Arms"
+            />
+            <div class="circle">
+                <a href="./about.html">About Tobi</a>
+                <a href="./writing/">Writing</a>
+                <a href="./archive.html">Archive</a>
+                <a href="./math.html">Math</a>
+                <a href="./programs.html">Programs</a>
+                <a href="./prayers.html">Prayers</a>
+            </div>
+        </div>
+    <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>

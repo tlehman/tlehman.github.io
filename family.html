@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lehman Family Tree</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+            #tree {
+                width: 100%;
+            }
+            circle {
+                fill: white;
+                stroke: #eeeeee;
+                stroke-width: 2px;
+                cursor: pointer;
+            }
+            text {
+                font-family: sans-serif;
+                font-size: 14px;
+                fill: black;
+                pointer-events: none;
+            }
+            line {
+                stroke: gray;
+                stroke-width: 2px;
+            }
+            .tooltip {
+                font-family: sans-serif;
+                font-size: 13px;
+                background: white;
+                border: 1px solid #ccc;
+                padding: 4px 8px;
+                border-radius: 4px;
+                position: absolute;
+                display: none;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="./img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="./img/android-chrome-512x512.png"
+        />
+    </head>
+    <body>
+        <h1>Family Tree</h1>
+        <div id="tree"></div>
+        <div id="tooltip" class="tooltip"></div>
+
+        <script type="module">
+            import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+            const treeContainer = document.getElementById("tree");
+            const tooltip = document.getElementById("tooltip");
+
+            const data = [
+                {
+                    id: 25,
+                    name: "Friedrich Lehmann",
+                    parent_id: null,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1475,
+                    death_year: 1530,
+                },
+                {
+                    id: 24,
+                    name: "Bernhard Lehmann",
+                    parent_id: 25,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1509,
+                    death_year: 1611,
+                    link: "https://ancestors.familysearch.org/en/KNWZ-4MT/bernhard-lehmann-1509-1611",
+                },
+                {
+                    id: 23,
+                    name: "Bernhard Lehmann",
+                    parent_id: 24,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1545,
+                    death_year: 1611,
+                    link: "https://ancestors.familysearch.org/en/LHZK-F1Y/bernhard-lehmann-1545-1611",
+                },
+                {
+                    id: 22,
+                    name: "Niclaus Lehmann",
+                    parent_id: 23,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1573,
+                    link: "https://ancestors.familysearch.org/en/LCC4-ZML/niclaus-lehmann-1573",
+                },
+                {
+                    id: 21,
+                    name: "Martin Lehmann",
+                    parent_id: 22,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1611,
+                    link: "https://ancestors.familysearch.org/en/L73D-LCB/martin-lehmann-1611",
+                },
+                {
+                    id: 20,
+                    name: "Peter Jung Lehman",
+                    parent_id: 21,
+                    birth_flag: "🇨🇭",
+                    birth_year: 1666,
+                    death_year: 1741,
+                    link: "https://ancestors.familysearch.org/en/GMRH-6V5/peter-leman-1666-1741",
+                },
+                {
+                    id: 19,
+                    name: "John Lehman",
+                    parent_id: 20,
+                    birth_flag: "🇬🇧",
+                    birth_year: 1726,
+                    death_year: 1768,
+                    link: "https://ancestors.familysearch.org/en/LZFX-J5G/john-leman-1726-1768",
+                    parent_edge_link: "https://sg30p0.familysearch.org/service/records/storage/dascloud/patron/v2/TH-7701-147141-3595-69/dist.jpg?ctx=ArtCtxPublic",
+                },
+                {
+                    id: 18,
+                    name: "Joseph Brenneman Lehman",
+                    parent_id: 19,
+                    birth_flag: "🇬🇧",
+                    birth_year: 1757,
+                    death_year: 1833,
+                    link: "https://ancestors.familysearch.org/en/KN7H-KRR/joseph-brenneman-leman-1757-1833",
+                },
+                {
+                    id: 17,
+                    name: "John Lefevre Lehman",
+                    parent_id: 18,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1782,
+                    death_year: 1870,
+                    link: "https://www.wikitree.com/wiki/Lehman-1568",
+                },
+                {
+                    id: 5,
+                    name: "Benjamin Kreider Lehman",
+                    parent_id: 17,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1817,
+                    death_year: 1904,
+                    link: "https://ancestors.familysearch.org/en/L4HH-3SF/benjamin-kreider-lehman-1817-1904",
+                },
+                {
+                    id: 6,
+                    name: "Daniel Newcomer Lehman",
+                    parent_id: 5,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1852,
+                    death_year: 1925,
+                    link: "https://ancestors.familysearch.org/en/KLYB-FJH/daniel-newcomer-lehman-1852-1925",
+                },
+                {
+                    id: 7,
+                    name: "Walter Scott Lehman",
+                    parent_id: 6,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1886,
+                    death_year: 1972,
+                    link: "https://ancestors.familysearch.org/en/KCFM-267/walter-scott-lehman-1886-1972",
+                },
+                {
+                    id: 8,
+                    name: "Robert Nelson Lehman",
+                    parent_id: 7,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1923,
+                    death_year: 1987,
+                },
+                {
+                    id: 9,
+                    name: "Ronald Lee Lehman",
+                    parent_id: 8,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1952,
+                },
+                {
+                    id: 10,
+                    name: "Tobi Ross Lehman",
+                    parent_id: 9,
+                    birth_flag: "🇺🇸",
+                    birth_year: 1988,
+                },
+                { id: 14, name: "...", parent_id: 10, birth_flag: "🇺🇸" },
+                { id: 15, name: "...", parent_id: 10, birth_flag: "🇺🇸" },
+                { id: 16, name: "...", parent_id: 10, birth_flag: "🇺🇸" },
+            ];
+
+            window.addEventListener("resize", () => drawGraph(data, false));
+            drawGraph(data, true);
+
+            function drawGraph(data, scrollToTobi = false) {
+                treeContainer.innerHTML = "";
+                tooltip.style.display = "none";
+
+                const width = window.innerWidth;
+
+                const stratify = d3
+                    .stratify()
+                    .id((d) => d.id)
+                    .parentId((d) => d.parent_id);
+
+                const root = stratify(data);
+
+                // Calculate height based on tree depth (100px per level)
+                const nodeSpacing = 100;
+                const treeHeight = (root.height + 1) * nodeSpacing;
+                const height = treeHeight + 100;
+
+                const svg = d3
+                    .select("#tree")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                const treeLayout = d3.tree().size([width - 100, treeHeight]);
+                treeLayout(root);
+
+                const g = svg.append("g").attr("transform", "translate(50,50)");
+
+                // Find Tobi's node for centering
+                let tobiNode = null;
+
+                g.selectAll("line")
+                    .data(root.links())
+                    .enter()
+                    .append("line")
+                    .attr("x1", (d) => d.source.x)
+                    .attr("y1", (d) => d.source.y)
+                    .attr("x2", (d) => d.target.x)
+                    .attr("y2", (d) => d.target.y)
+                    .attr("stroke", (d) => d.target.data.parent_edge_link ? "#1a73e8" : "gray")
+                    .attr("stroke-width", (d) => d.target.data.parent_edge_link ? 4 : 2)
+                    .attr("stroke-dasharray", (d) => d.target.data.parent_edge_link ? "8,4" : "none")
+                    .style("cursor", (d) => d.target.data.parent_edge_link ? "pointer" : "default")
+                    .on("mouseover", function(event, d) {
+                        if (d.target.data.parent_edge_link) {
+                            d3.select(this).attr("stroke", "#0d47a1").attr("stroke-width", 6);
+                        }
+                    })
+                    .on("mouseout", function(event, d) {
+                        if (d.target.data.parent_edge_link) {
+                            d3.select(this).attr("stroke", "#1a73e8").attr("stroke-width", 4);
+                        }
+                    })
+                    .on("click", (event, d) => {
+                        if (d.target.data.parent_edge_link) {
+                            window.open(d.target.data.parent_edge_link, "_blank", "noopener,noreferrer");
+                        }
+                    });
+
+                const node = g
+                    .selectAll("g.node")
+                    .data(root.descendants())
+                    .enter()
+                    .append("g")
+                    .attr("class", "node")
+                    .attr("transform", (d) => `translate(${d.x},${d.y})`)
+                    .each(function(d) {
+                        if (d.data.name === "Tobi Ross Lehman") {
+                            tobiNode = d;
+                        }
+                    });
+
+                node.append("circle")
+                    .attr("r", 20)
+                    .attr("fill", "white")
+                    .on("click", (event, d) => {
+                        tooltip.style.left = `${event.pageX + 10}px`;
+                        tooltip.style.top = `${event.pageY - 40}px`;
+                        let html = `<strong>${d.data.name}</strong>`;
+                        if (d.data.link) {
+                            html += `<br><a href="${d.data.link}" target="_blank" rel="noopener noreferrer">Ancestry</a>`;
+                        }
+                        tooltip.innerHTML = html;
+                        tooltip.style.display = "block";
+                    });
+
+                // Add name (first line)
+                node.append("text")
+                    .attr("dy", "-0.4em")
+                    .attr("x", 0)
+                    .attr("text-anchor", "middle")
+                    .text((d) => d.data.name);
+
+                // Add birth flag and year (second line)
+                node.append("text")
+                    .attr("dy", "1.2em")
+                    .attr("x", 0)
+                    .attr("text-anchor", "middle")
+                    .text(
+                        (d) =>
+                            d.data.birth_flag +
+                            " " +
+                            (d.data.birth_year ? d.data.birth_year : ""),
+                    );
+
+                svg.on("click", (event) => {
+                    if (!event.target.closest("circle")) {
+                        tooltip.style.display = "none";
+                    }
+                });
+
+                // Scroll to center Tobi's node
+                if (scrollToTobi && tobiNode) {
+                    const tobiY = tobiNode.y + 50; // Account for g transform
+                    const viewportHeight = window.innerHeight;
+                    const scrollTarget = tobiY - (viewportHeight / 2);
+                    window.scrollTo({
+                        top: Math.max(0, scrollTarget),
+                        behavior: "instant"
+                    });
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Timelapse" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/timelapse/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Timelapse" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Timelapse : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Timelapse</h1>
+
+    
+        <div class="post-meta">Sat, Sep 5, 2020 - 400 Words </div>
+    
+
+    <p>I have a fascination with time. Two years ago, our family planted a tree in our back yard. A few months
+prior, my dad and I built an overhang that provides shade.</p>
+
+
+<figure>
+	<img src="img/overhang.jpg" alt="" />
+</figure>
+
+<p>I used a pillar supporting the overhang to
+point this <a href="https://www.amazon.com/gp/product/B01FJZQONW/">timelapse camera</a> at the tree. I bought that
+camera because of it&rsquo;s low battery usage, and how it uses standard JPEGs on a standard SD card. That gives
+me raw material to compress a large amount of time into a nice video.</p>
+<p>Trees are reminders of different time scales. They are our ambassadors to the <a href="../long-now/index.html">Long Now</a>.
+The raw emotion of seeing two years fly by in a few seconds is a decent approximation of the experience of
+seeing your child grow up. It&rsquo;s a good reminder of the finitness of your life. It&rsquo;s call to action to do those
+things you have been putting off. Time is finite. It&rsquo;s the only thing that can&rsquo;t be manufactured.</p>
+<p>Now to the technical stuff, I wrote <a href="https://github.com/tlehman/timelapse-cam">this code</a> to extract jpegs
+from the timelapse camera&rsquo;s SD card. It uses the jpeg&rsquo;s <a href="https://en.wikipedia.org/wiki/Exif">EXIF metadata</a> to
+get the <code>created_at</code> date from the file. After copying the files to a temporary directory, it uses <code>ffmpeg</code> to
+turn the jpegs into frames of a video.</p>
+<p>Here is a sample from October 2018 to September 2020:
+<video controls width="100%"><source src="timelapse-tree.mp4" type="video/mp4" /></video></p>
+<p>The music is by Hans Zimmer, it was edited in iMovie for iOS, and I am happy with the result. It conveys
+the feeling of growth, change, and rebirth. But I also can&rsquo;t help but feel it&rsquo;s incompleteness. This is only
+day 1 of this tree&rsquo;s life. This tree is just getting started. It will cast a shadow for people I don&rsquo;t know,
+and for people who don&rsquo;t exist yet. It is my connection to the future.</p>
+<p>I always appreciate feedback on my code, or videos, or posts. Mail your comments to <a href="mailto:mail@tobilehman.com"><a href="mailto:mail@tobilehman.com">mail@tobilehman.com</a></a></p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/programming.html">#programming</a></li>
+    
+        <li><a href="../../tags/time.html">#time</a></li>
+    
+        <li><a href="../../tags/video.html">#video</a></li>
+    
+        <li><a href="../../tags/long-now.html">#long-now</a></li>
+    
+        <li><a href="../../tags/diy.html">#diy</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

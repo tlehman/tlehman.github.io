@@ -1,0 +1,49 @@
+#+TITLE: Kolmogorov-Arnold Representation Theorem with Haskell code examples
+#+AUTHOR: Tobi Lehman
+
+* Introduction
+The Kolmogorov-Arnold representation theorem states that any continuous function \(f:[0,1]^n \to \mathbb{R}\) of several variables can be represented as a finite sum of continuous functions \(\phi_{ij}\) of one variable. This also feels similar to 'currying' in the Haskell programming language.
+
+Suppose you had a function \( f : [0,1]\times[0,1] \to \mathbb{R} \), in Haskell the function signature could be:
+
+#+begin_src haskell
+  f :: Num a => (a,a) -> a
+  f (x,y) = x + y
+
+  :type curry f
+  curry f :: Num c => c -> c -> c
+#+end_src
+
+The ~curry~ function converts a multi-variable function that takes in tuples like \( (x,y) \) and replaces them with multiple functions of a single variable. Notice how ~curry f~ only takes a single number, then it returns a function ~c -> c~ that takes another number and then returns a number.
+
+* Theorem Statement
+
+$$ f(x_1, x_2, \ldots, x_n) = \sum_{i=1}^{2n+1} g_i \left( \sum_{j=1}^{n} \varphi_{ij}(x_j) \right)$$
+
+* Proof
+
+
+* Haskell Implementation
+
+#+begin_src haskell
+module KolmogorovArnold where
+
+-- Example function
+f :: Double -> Double -> Double
+f x y = x^2 + y^2
+
+-- Functions g_i and phi_ij for the representation
+g1, g2 :: Double -> Double
+g1 z = z
+g2 z = z
+
+phi1, phi2 :: Double -> Double
+phi1 x = x
+phi2 y = y
+
+-- Kolmogorov-Arnold representation
+karRepresentation :: Double -> Double -> Double
+karRepresentation x y = g1 (phi1 x + phi2 y) + g2 (phi1 x + phi2 y)
+#+end_src
+
+

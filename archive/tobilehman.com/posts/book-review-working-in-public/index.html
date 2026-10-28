@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Book Review: Working in Public" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/book-review-working-in-public/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Book Review: Working in Public" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Book Review: Working in Public : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../../js/base.js"></script>
+    <link rel="stylesheet" href="../../css/base.css"></link>
+    <link rel="stylesheet" href="../../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../about.html">About</a></li>
+        <li><a href="../../posts.html">Posts</a></li>
+        <li><a href="../../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../../archive.html">Archive</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../../links.html">Links</a></li>
+            <li><a href="../../notes.html">Notes</a></li>
+            <li><a href="../../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Book Review: Working in Public</h1>
+
+    
+        <div class="post-meta">Tue, Oct 20, 2020 - 1900 Words </div>
+    
+
+    <p>The story of open source software most of us believe is wrong. The production of open source software isn&rsquo;t like some egalitarian commune, it&rsquo;s driven mostly by a few individuals. Through analyzing git commit frequency distributions and interviewing prominent open source contributors and maintainers, <a href="https://www.amazon.com/Nadia-Eghbal/e/B08BDZQ7XJ/ref=dp_byline_cont_pop_book_1">Nadia Eghbal</a> captures the living history of open source software.</p>
+<p>In addition, she also analyses the main problems of maintenance that threaten the long term sustainability of open source software. As an example of the importance of individuals, look at the command line tool <code>curl</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>curl % git log --pretty<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;%an&#34;</span> | sort | uniq -c | sort -n | tail -5
+</span></span><span style="display:flex;"><span> <span style="color:#ae81ff">483</span> Gisle Vanem
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1094</span> Dan Fandrich
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1915</span> Steve Holme
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2587</span> Yang Tse
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">15073</span> Daniel Stenberg
+</span></span></code></pre></div><p>This is one of several representative examples the author gives. The driving force behind open source projects is a small number of individuals. Initially, people tend to be intrinsically motivated, and then many will carry on with maintenance out of a sense of duty, but that is rarely sustainable. Later in the book, <a href="https://www.amazon.com/gp/product/B08BDGXVK9/ref=dbs_a_def_rwt_hsch_vapi_tkin_p1_i0">Working in Public</a> dives deep into issues around maintenance.</p>
+<h2 id="the-four-quadrant-model-of-open-source-projects">The four quadrant model of open source projects</h2>
+<p>To add more precision to the analysis, the book introduces a four-part categorization of open source project types. The two dimensions are contributor growth and user growth.</p>
+<p>Projects with low contributor growth and low user growth are <strong>Toys</strong>, an example is my <a href="https://github.com/tlehman/newtonian">2D physics simulator</a>, it&rsquo;s not a serious simulation project and it only has 10 stars on github.
+Projects with low contributor growth and high user growth are <strong>Stadiums</strong>. An example of a stadium is the command line tool <code>curl</code>, which is used very widely, bundled in most operating systems by default, but only a small number of people work on the code.</p>
+<p>Projects with high contributor growth but low user growth are called <strong>Clubs</strong>.  These are things like academic codebases where lots of graduate students write code as a running example of some theoretical work they are doing, but almost no one uses it because it&rsquo;s purpose is for research.</p>
+<p>Finally, there are <strong>Federations</strong>, which are big, complex projects with high user growth and high contributor growth. These are things like Linux, the Rails framework, the Rust language, etc. There aren&rsquo;t many federations, but they usually serve as the go-to examples for &ldquo;open source&rdquo;.
+These four categories help add resolution to the discussion, and it&rsquo;s a unique frame this book offers.</p>
+<h3 id="governance-of-open-source">Governance of open source</h3>
+<p>For Stadiums, the small number of contributors drastically simplifies governance. Many stadiums, like the programming language Clojure or Ruby, have BDFLs, or Benevolent Dictators for Life, who do almost all of the work of production, and make almost all the rules for what gets merged and what doesn&rsquo;t. Governance in that case is just simple dictatorship.
+But for Federations, things can get much more complicated. The book talks about <a href="https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/adding-a-code-of-conduct-to-your-project">Codes of Conduct</a>, which list out the rules for how contributors should treat other contributors. My thinking on these documents has evolved. Originally, my exposure to Codes of Conduct was in 2013, when I thought they were a distraction. My view at that time was that code was code. And if the code worked, it didn&rsquo;t matter if the author was a jerk, it&rsquo;s free labor, accept the code and ignore the asshole behind it.
+However, there is no a priori reason to assume that the jerks are the best or most prolific contributors. And for Federations specifically, if 80% of the commits come from 20% of your contributors, and some small number of jerks are alienating that 20%, then the project will suffer. This is a problem that needs a robust solution. The solution involves contributors policing other contributors&rsquo; behavior, but that can easily go awry. <strong>The role of the Code of Conduct is a way to build legitimacy in policing of bad behavior in the contributor community.</strong>
+This is something that Working in Public spelled out very eloquently, and it explains why I&rsquo;ve come to appreciate these documents.</p>
+<h2 id="economics-of-open-source">Economics of open source</h2>
+<p>The most interesting chapter is &ldquo;Roles, Incentives and relationships&rdquo; which applies ideas from economics to try and analyze the production of open source software.
+The book mentions Ronald Coase, who wrote The Nature of the Firm in 1937. The Nature of the Firm asks <strong>why do firms even exist</strong>? Economic theory says that markets are <a href="https://en.wikipedia.org/wiki/Economic_efficiency">efficient</a>, but if that&rsquo;s true, then why isn&rsquo;t every single person an atomized buyer and seller of goods and services?
+Coase&rsquo;s answer to this question is that transaction costs make it too expensive for individuals to operate in markets, since they would have to read and write contracts, and spend time negotiating terms of those contracts. Coase reasons that, as market transaction costs go up, the optimal size of firms goes up. Another way to think of this theory is that groups of people try to save on transaction costs, so they internalize some parts of production they might have otherwise outsourced. As they internalize more and more, there are diminishing marginal returns to internalization, so at some point it becomes cheaper to outsource the rest of their production process.</p>
+<p>The book points out that this doesn&rsquo;t apply to open source production, because groups of open source developers aren&rsquo;t drafting up contracts, they are usually just stoked about a project and want to work on it.
+The work of Yochai Benkler might explain this, the book alludes to a <a href="https://web.archive.org/web/20101010152105/http://www.yale.edu/yalelj/112/BenklerWEB.pdf">2002 paper</a> he wrote that suggests that the removal of property and contracts lowers coordination costs. Those lower coordination costs might explain why open source projects seem to work as well as they do, without a business model.</p>
+<h2 id="maintenance-of-open-source">Maintenance of open source</h2>
+<p>Many projects have been created by a small number of passionate individuals, and then that passion fades and the project is abandoned. Even modern commercial software depends on a large number of open source projects, so the maintenance of open source is arguably the more important thing to understand.</p>
+<p>In Working in Public, Nadia Eghbal notes that most software developers spend most of their career doing maintenance. This is sustainable because software developers get paid to do that maintenance. Open source doesn&rsquo;t have that reliable income stream, so how to fund open source software is a question the book begins to grapple with.
+Personally, I lucked out early in my career, in 2005, while still in high school, I taught myself C# and SQL while working a job doing &ldquo;IT specialist&rdquo; work for a company that did telemarketing for insurance agents. The telemarketers were gathering leads on possible insurance converts. Those leads were sold to insurance agents. That whole operation was manual when I started out. I helped them automate much of the process. They bought an autodialer, but the consultants that built the application kept charging for extra features, so it was cheaper for my employers to ask me how to &ldquo;scrape the autodialer database&rdquo;. That was so much fun :)</p>
+<p>I wrote several applications, one janky VBA application embedded in an Excel document. Then a C#/.NET GUI application that did SQL queries, handled data entry input, and compiled and sent the leads over SMTP to  our clients. I also wrote an application that helped manage the search for leads over all the zip codes in the country.
+While building these applications, I got to design and write them myself, with no oversight, no code reviews, no &ldquo;best practices&rdquo;, and no Stack Overflow. The code sucked, but it worked. It was incredibly empowering. Programming today is way easier, and even more fun. But my point with this story is that I was fortunate in having a &ldquo;green field&rdquo; start to my programming career, I got to experience the joy of creating something from scratch instead of inheriting someone else&rsquo;s creation. That&rsquo;s a rare privilege and I want to acknowledge it.</p>
+<p>Later in my career, I spent years maintaining code I didn&rsquo;t write, and wasn&rsquo;t in a position to replace, or change dramatically, and the frustrated high schooler in me wanted to <strong>just, rewrite the damn thing</strong>. Growing up is hard.</p>
+<p>Back to the book, maintenance is the Hard Problem, because no one wants to do it. Once written, distributing code has zero <a href="https://www.investopedia.com/terms/m/marginalcostofproduction.asp">marginal cost</a>, because copying code is free. However, the attention of maintainers is a scarce resource. So the normal analytical tools of economics are useful here. Maintenance has positive <a href="https://www.investopedia.com/terms/m/marginalcostofproduction.asp">marginal cost</a>.</p>
+<p><style>
+a[href*='brookings.edu']::after {
+    background-image: url("https://www.brookings.edu/wp-content/themes/brookings/favicon.ico")
+}
+</style>
+
+<style>
+a[href*='golang.org']::after {
+    background-image: url("https://golang.org/favicon.ico")
+}
+</style>
+
+<style>
+a[href*='git-scm.com']::after {
+    background-image: url("https://git-scm.com/favicon.ico")
+}
+</style>
+
+<style>
+a[href*='gnu.org']::after {
+    background-image: url("https://www.gnu.org/graphics/gnu-head-mini.png")
+}
+</style>
+</p>
+<p>While reading the chapter on maintenance, I ran into this <a href="http://wiringpi.com/news/">rant by the author of wiringPi</a>, a library I use on the Raspberry Pi to do hobby robotics projects. In there he unloads on all the requests he has gotten to do things the code wasn&rsquo;t intended to do, the thankless, free work he does for people, and also the absurd threats he has gotten from people who want to violate the <a href="https://www.gnu.org/licenses/licenses.en.html">GPL license</a> he is using.
+I got the sense that he made this library for personal use, and because it was fun, and then after publishing it, others started depending on it, and then emailing him with requests for free work and other nonsense. I haven&rsquo;t been in that position personally, but I can sympathize.
+While it is theoretically true that anyone can fork wiringPi and maintain it, in reality, almost no one has both the ability and the willingness to do so, so people reinvent the wheel in other languages, because it&rsquo;s fun to build things from scratch.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>When first hearing about open source, it&rsquo;s common to confuse it with communism. But a closer examination of the reality of open source shows that it is not like communism at all. Communist production works on the principal of &ldquo;from each according to their ability, to each according to their need&rdquo;. But if I need software to do X, the open source community doesn&rsquo;t create feature X. And even if I&rsquo;m able to make software Y, I can choose not to create Y. Open source software is voluntary, which is what makes it fundamentally non-communist. Communism is coercive.</p>
+<p>The maintenance of open source is going to either be socialistic or capitalistic, <a href="https://www.brookings.edu/techstream/why-congress-should-invest-in-open-source-software/">funded through the state</a> or funded through voluntary transactions like donations or Github Sponsorships.</p>
+<p>Given that I am writing this on a computer running an operating system based on an <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">open source BSD kernel</a>, on a browser built from the <a href="https://en.wikipedia.org/wiki/KHTML">open source KHTML</a> rendering engine, compiled from open source <a href="https://en.wikipedia.org/wiki/Markdown">Markdown formatting language</a> using a static blog compiler written in the open source <a href="https://golang.org/">Go</a> language, and published the web using open source <a href="https://git-scm.com/">Git</a> version control, it should be obvious how much modern computing depends on open source software. This dependency warrants a deep and comprehensive study of how this free code is built and maintained. Working in Public is the first serious attempt I&rsquo;ve seen to do this, and it should spawn a new field of study that comes to understand how best to sustain the maintenance and stewardship of our open source heritage.</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../../tags/programming.html">#programming</a></li>
+    
+        <li><a href="../../tags/open-source.html">#open-source</a></li>
+    
+        <li><a href="../../tags/history.html">#history</a></li>
+    
+        <li><a href="../../tags/economics.html">#economics</a></li>
+    
+        <li><a href="../../tags/stewardship.html">#stewardship</a></li>
+    
+        <li><a href="../../tags/book-review.html">#book-review</a></li>
+    
+        <li><a href="../../tags/book-review.html">#book-review</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

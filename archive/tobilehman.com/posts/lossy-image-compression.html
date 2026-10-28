@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Lossy Image Compression" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/lossy-image-compression/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Lossy Image Compression" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Lossy Image Compression : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../js/base.js"></script>
+    <link rel="stylesheet" href="../css/base.css"></link>
+    <link rel="stylesheet" href="../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../posts.html">Posts</a></li>
+        <li><a href="../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../archive.html">Archive</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../links.html">Links</a></li>
+            <li><a href="../notes.html">Notes</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Lossy Image Compression</h1>
+
+    
+        <div class="post-meta">Fri, Nov 30, 2018 - 900 Words </div>
+    
+
+    <p>Every time you take a picture on your phone, most of the data is thrown away.
+Lossy image compression is the <strong>art of throwing away what your eyes won&rsquo;t notice</strong>.</p>
+<p>Note: <em>at no point will this blog cover <a href="https://www.youtube.com/watch?v=uf7_m6z12p4">middle-out compression</a></em></p>
+<p>the pixels on most screens emit three different colors of light:
+<span style="color: #ff0000">red</span>
+, <span style="color: #00ff00">green</span>
+ and <span style="color: #0000ff">blue</span>
+. The reason
+those colors where chosen is that human color perception is enabled
+by <a href="https://en.wikipedia.org/wiki/Cone_cell">cone cells</a>, with cells
+that respond to red, green and blue light.</p>
+<p>Human cone cells are sensitive to color, but
+<a href="https://en.wikipedia.org/wiki/Rod_cell">rod cells</a> are sensitive to
+brightness. And it turns out that rod cells are <em>more</em> sensitive, so
+humans can see changes in brightness with much higher resolution than
+changes in color. This is the first fact we will use to start compressing
+an image.</p>
+<p>This will be our starting image:</p>
+
+
+<figure>
+	<img src="lossy-image-compression/img/scene0.jpg" alt="" />
+</figure>
+
+<p>This can be decomposed into R,G and B components:</p>
+
+
+<figure>
+	<img src="lossy-image-compression/img/decompose_rgb.png" alt="" />
+</figure>
+
+<p>What we want is a way to decompose the image into brightness and color
+components, that way we can use the fact that the eyes are more sensitive
+to brightness differences to compress this information. Specifically,
+we can shrink the color components since the eyes will have a hard time
+noticing.</p>
+<p>There is a way to do this already, it&rsquo;s called YUV color space. The Y is
+the brightness component, called the <strong>luma</strong> and the U,V components are the
+color components, collectively called the <strong>chroma</strong>.</p>
+<p>The way to calculate the YUV values from the RGB values is given by these
+equations:</p>
+<p>$$Y = k_r R + k_g G + k_b B $$
+$$U = R - Y$$
+$$V = B - Y$$</p>
+<p>Since human eyes are less sensitive to the chroma (U and V), we can simply
+shrink each one by 1/2 along the width and height dimensions, that compresses
+it by a factor of four.</p>
+<p>We can visualize it like this:</p>
+
+
+<figure>
+	<img src="lossy-image-compression/img/decompose_yuv.png" alt="" />
+</figure>
+
+<p>Then imagine we take U and V, and then scale them back up, they will have lost
+3/4 of the original pixel values. With three components, and two scaled down to
+1/4th, the total data left will be (1 + 1/4 + 1/4)/3 = 2 times smaller.</p>
+<div class="yellow-note">
+<b>Pedantic note</b>
+<br>
+<p>The actual color space used in JPEG and other common image compression
+algorithms is a variant of YUV called YCbCr, the equations are given
+in terms of RGB components:</p>
+<p>$$Y = k_r R + k_g G + k_b B $$
+$$C_b = \frac{(B - Y)}{2(1-k_b)} + 0.5$$
+$$C_r = \frac{(R - Y)}{2(1-k_r)} + 0.5$$</p>
+<p>The YCbCr color space is a standard defined by the <a href="https://itu.int">ITU</a>,
+or the International Telecommunications Union, which is currently an agency of
+the United Nations.</p>
+</div>
+<h2 id="throwing-away-the-higher-frequencies">Throwing away the higher frequencies</h2>
+<p>This technique is not as obvious as the biologically inspired one above, but it&rsquo;s
+brilliant, and once you see it, you cannot unsee it, this will change you forever.</p>
+
+
+<figure>
+	<img src="lossy-image-compression/img/dtft.png" alt="Borrowed from @trekhleb&#39;s Github repo" />
+</figure>
+
+<p>Imagine the red curve is a sound signal, vibrating over time. The Fourier transform
+calculates the blue chart showing the frequencies in the original signal.
+Those three perfect sine waves floating between those two charts represent the
+three highest peaks in the blue chart. They are the dominant frequencies in the
+red chart.</p>
+<p>The above graphic came from <a href="https://medium.com/@trekhleb/playing-with-discrete-fourier-transform-algorithm-in-javascript-57087c74a520">Oleksii Trekhleb</a> who has an excellent article
+explaining it in more detail. In this deep-dive, I want to focus on image compression, for
+that, we will need a transform that is related to Fourier, it&rsquo;s called the <a href="https://en.wikipedia.org/wiki/Discrete_cosine_transform">Discrete Cosine
+Transform</a>.</p>
+<p>Instead of transforming a 1D signal in time, we want to transform a 2D signal in space,
+otherwise known as an image. Below I wrote an interactive transformer so you can see it in
+practice, then we can dive into the mathematics and start to understand how it works.</p>
+<p>Click the pixels on the first square to see the discrete cosine transform on the second square.
+Click black dot to flip back to white. Try transforms
+of single black pixels, then try two pixels, turn pixels on and off to develop intuition to
+how the transformed image is constructed.</p>
+<canvas id="dct1" width="256" height="256" style="border:1px solid #000000;">
+</canvas>
+<span style="font-size: 3em;">&rarr;</span>
+<canvas id="dct2" width="256" height="256" style="border:1px solid #000000;">
+</canvas>
+
+<script src="lossy-image-compression/dct.js">
+</script>
+
+<p>After playing around with the transform for a while, you might notice that a single black dot
+usually transforms to a simple periodic image. The further to the bottom right you go, the
+higher frequency it transforms to.</p>
+<p>Humans are much more sensitive to lower frequencies, so we can use this
+discrete cosine transform to throw away higher frequencies by deleting values in the lower
+right of the transformed image.</p>
+<div class="yellow-note">
+<b>Nerdy details of the DCT (Discrete Cosine Transform)</b>
+<br>
+<p>JPEG and other common image compression algorithms that use a DCT stage break the image
+into blocks of pixels called <b>macroblocks</b>, commonly sized at 8x8 or 16x16 pixels.</p>
+<p>Call the macroblock $$M$$ and then define the following orthogonal matrix:</p>
+<p>$$C_{mn} = k \cos\left( \frac{(2m+1)n\pi}{2N} \right)$$</p>
+<p>Where $$k = \sqrt(1/N)$$ if n = 0,
+$$k = \sqrt(2/N)$$</p>
+<p>otherwise. Finally, the DCT is the mapping $$M \to CMC^{-1}$$</p>
+</div>
+<p>Once we throw the higher frequencies away, there is not much else we can throw away that doesn&rsquo;t
+start degrading the image quality, so we will turn to lossless compression, that is coming in the
+next post!</p>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../tags/compression.html">#compression</a></li>
+    
+        <li><a href="../tags/deep-dive.html">#deep-dive</a></li>
+    
+        <li><a href="../tags/interactive.html">#interactive</a></li>
+    
+        <li><a href="../tags/fourier.html">#fourier</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

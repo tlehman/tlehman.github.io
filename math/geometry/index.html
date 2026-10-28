@@ -1,0 +1,2033 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Introduction to Differential Geometry</title>
+        <style>
+            body {
+                font-family: "Computer Modern Serif", serif;
+                font-size: 20px;
+                line-height: 1.6em;
+                max-width: 780px;
+                margin: 0 auto;
+                padding: 1em;
+                overflow-x: hidden;
+            }
+            h1, h2 {
+                line-height: 1.3em;
+            }
+            /* wide display equations scroll inside their own box
+               instead of sidescrolling the whole page on phones */
+            .katex-display {
+                overflow-x: auto;
+                overflow-y: hidden;
+                max-width: 100%;
+                padding: 2px 0;
+            }
+            @media (max-width: 600px) {
+                table.dict {
+                    display: block;
+                    overflow-x: auto;
+                }
+            }
+            nav.crumbs {
+                font-size: 0.9em;
+                margin-bottom: 1.5em;
+            }
+            figure {
+                margin: 2em auto;
+                text-align: center;
+            }
+            figure canvas {
+                border: 1px solid #ccc;
+                background: #fff;
+                max-width: 100%;
+            }
+            figcaption {
+                font-size: 0.85em;
+                color: #555;
+                margin-top: 0.5em;
+            }
+            .controls {
+                margin: 0.8em 0;
+                font-size: 0.9em;
+            }
+            .controls input[type="range"] {
+                width: 220px;
+                vertical-align: middle;
+            }
+            .readout {
+                font-size: 0.95em;
+                color: #333;
+                min-height: 2.4em;
+            }
+            .readout .big {
+                font-size: 1.2em;
+            }
+            details.info {
+                border: 1px solid #9db8d2;
+                background: #f0f5fb;
+                border-radius: 6px;
+                padding: 0.4em 1em;
+                margin: 1.5em 0;
+            }
+            details.info summary {
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .aside {
+                border-left: 4px solid #c9a227;
+                background: #fdf8ec;
+                padding: 0.6em 1.2em;
+                margin: 1.5em 0;
+                font-size: 0.95em;
+            }
+            .three-container {
+                width: 100%;
+                height: 420px;
+                border: 1px solid #ccc;
+                background: #fff;
+                cursor: grab;
+            }
+            #bh-container {
+                background: #000;
+                touch-action: none;
+            }
+            table.dict {
+                border-collapse: collapse;
+                margin: 1.5em auto;
+                font-size: 0.9em;
+            }
+            table.dict th, table.dict td {
+                border: 1px solid #bbb;
+                padding: 0.4em 0.9em;
+                text-align: left;
+            }
+            table.dict th {
+                background: #f0f5fb;
+            }
+            .exercise {
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                padding: 0.8em 1.2em;
+                margin: 1.5em 0;
+            }
+            .exercise.solved {
+                border-color: #27ae60;
+                background: #f4fbf6;
+            }
+            .exercise .answer-row {
+                margin: 0.5em 0;
+            }
+            .exercise input[type="text"] {
+                font-family: inherit;
+                font-size: 0.95em;
+                width: 180px;
+                padding: 0.15em 0.4em;
+            }
+            .exercise button {
+                font-family: inherit;
+                font-size: 0.9em;
+            }
+            .exercise .feedback {
+                margin-left: 0.6em;
+                font-size: 0.9em;
+            }
+            .exercise details {
+                margin: 0.4em 0;
+                font-size: 0.95em;
+            }
+            .exercise details summary {
+                cursor: pointer;
+                color: #2e6db4;
+            }
+            #ex-progress {
+                font-weight: bold;
+            }
+            pre.code {
+                font-size: 0.75em;
+                line-height: 1.4em;
+                background: #f6f6f6;
+                border: 1px solid #ddd;
+                padding: 0.8em 1em;
+                overflow-x: auto;
+            }
+            html.dark pre.code {
+                background: #222;
+                border-color: #555;
+            }
+        </style>
+
+        <!-- KaTeX -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+            integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww"
+            crossorigin="anonymous"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+            integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+            integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"
+            crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"
+        ></script>
+
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/img/android-chrome-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="512x512"
+            href="/img/android-chrome-512x512.png"
+        />
+
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="/math/darkmode.css" />
+        <script src="/math/darkmode.js"></script>
+    </head>
+    <body>
+        <main>
+            <nav class="crumbs">
+                <a href="/math.html">&larr; Tobi's math</a> &nbsp;&middot;&nbsp;
+                <a href="/math/forms/">&larr; Introduction to Differential Forms</a>
+            </nav>
+
+            <h1>Introduction to Differential Geometry</h1>
+
+            <p>
+                The last two articles were about topology and calculus.
+                <a href="/math/bundles/">Bundles</a> twist,
+                <a href="/math/forms/">forms</a> integrate, and Stokes'
+                theorem ties them together. But none of it could measure
+                anything. The integral \( \oint d\theta = 2\pi \) counts how
+                many times you went around the hole, and it has no idea how
+                far you walked. You can't get a length or an angle out of
+                those two pages, and you can't ask whether a surface is flat
+                or curved.
+            </p>
+            <p>
+                This page adds the piece of equipment that does all of that,
+                the <b>metric</b>, and then builds the tools that come with
+                it: tensors, connections, covariant derivatives and
+                curvature. At the end we point those tools at the
+                <a href="https://en.wikipedia.org/wiki/Schwarzschild_metric"
+                    title="Schwarzschild metric">Schwarzschild metric</a>
+                (the simplest black hole in General Relativity), work out how
+                it bends light, and render what the stars look like from
+                nearby. Every figure runs the calculation from the text next
+                to it. The black hole at the bottom is drawn by integrating
+                an equation you'll derive a few sections earlier, which I
+                think is pretty rad.
+            </p>
+            <p>
+                Back in the bundles article, Gauss figured out that geometry
+                can be done from the inside: a surveyor stuck on a surface
+                can find its curvature with a tape measure and never leave.
+                The metric is the tape measure.
+            </p>
+
+            <h2>The metric</h2>
+            <p>
+                A <b>metric</b> \( g \) on a manifold \( M \) gives each point
+                \( p \) an inner product on the tangent space: a map
+                \( g_p : T_pM \times T_pM \to \mathbb{R} \) that is bilinear,
+                symmetric, and positive definite (\( g_p(v,v) > 0 \) for
+                \( v \neq 0 \)). Compare this to the 2-form from last time.
+                A 2-form also eats two vectors and is also bilinear, but it's
+                <em>antisymmetric</em>: \( \omega(v,w) = -\omega(w,v) \), and
+                it measures signed area. A metric is <em>symmetric</em>,
+                \( g(v,w) = g(w,v) \), and it measures length and angle.
+                One sign flip separates "how big is this parallelogram?" from
+                "how long is this arrow?"
+            </p>
+            <p>
+                Length and angle come straight from the inner product, the
+                same way they do in linear algebra:
+                \[ |v| = \sqrt{g(v,v)}, \qquad \cos\alpha =
+                \frac{g(v,w)}{|v|\,|w|} \]
+                And the length of a curve \( \gamma : [a,b] \to M \) is the
+                integral of the speed:
+                \[ L(\gamma) = \int_a^b \sqrt{g\big(\gamma'(t), \gamma'(t)\big)}\, dt \]
+            </p>
+            <p>
+                In coordinates \( x^1, \dots, x^n \), a metric is written
+                \[ g = g_{ij}\, dx^i\, dx^j \]
+                with the <b>summation convention</b>: any index that appears
+                once up and once down is summed over, so this is short for
+                \( \sum_{i,j} g_{ij}\, dx^i dx^j \). The \( g_{ij} \) form a
+                symmetric matrix of functions, and \( dx^i dx^j \) is the
+                symmetric product of the 1-forms \( dx^i \) and \( dx^j \).
+                This is different from the wedge: \( dx \wedge dx = 0 \), but
+                \( dx\, dx = dx^2 \) squares the \( x \)-component of a
+                vector. Physicists write the metric as a "line element"
+                \( ds^2 \), same thing, different accent. A few examples:
+            </p>
+            <ul>
+                <li>
+                    The flat plane: \( ds^2 = dx^2 + dy^2 \), the matrix is
+                    the identity, and \( g(v,w) = v_x w_x + v_y w_y \) is the
+                    dot product. Pythagoras.
+                </li>
+                <li>
+                    The flat plane again, in polar coordinates. Take
+                    \( x = r\cos\theta \), \( y = r\sin\theta \) and apply
+                    \( d \) from the forms article:
+                    \( dx = \cos\theta\, dr - r\sin\theta\, d\theta \),
+                    \( dy = \sin\theta\, dr + r\cos\theta\, d\theta \).
+                    Square each one (symmetric product, so the cross term
+                    counts twice):
+                    \[ \begin{aligned}
+                    dx^2 &= \cos^2\theta\, dr^2 - 2r\sin\theta\cos\theta\, dr\, d\theta + r^2\sin^2\theta\, d\theta^2 \\
+                    dy^2 &= \sin^2\theta\, dr^2 + 2r\sin\theta\cos\theta\, dr\, d\theta + r^2\cos^2\theta\, d\theta^2
+                    \end{aligned} \]
+                    Add them. The \( dr\, d\theta \) terms have opposite
+                    signs and cancel, and \( \cos^2\theta + \sin^2\theta =
+                    1 \) collects the rest:
+                    \[ ds^2 = dx^2 + dy^2 = (\cos^2\theta + \sin^2\theta)\, dr^2
+                    + r^2(\sin^2\theta + \cos^2\theta)\, d\theta^2 = dr^2 +
+                    r^2\, d\theta^2 \]
+                    Same geometry, different coefficients. The \( r^2 \) says
+                    a step in \( \theta \) covers more ground when you're far
+                    from the origin.
+                </li>
+                <li>
+                    The sphere of radius \( R \), in polar angle \( \theta \)
+                    and azimuth \( \phi \):
+                    \[ ds^2 = R^2\, d\theta^2 + R^2 \sin^2\theta\, d\phi^2 \]
+                    A step in longitude is cheap near the poles and expensive
+                    at the equator.
+                </li>
+                <li>
+                    The
+                    <a href="https://en.wikipedia.org/wiki/Poincar%C3%A9_half-plane_model"
+                        title="Poincaré half-plane model">hyperbolic
+                    half-plane</a>, the upper half of the plane with
+                    \[ ds^2 = \frac{dx^2 + dy^2}{y^2} \]
+                    Steps near the \( x \)-axis are enormously long, so long
+                    that the axis itself is infinitely far away.
+                </li>
+            </ul>
+
+            <h2>Playing with metrics</h2>
+            <p>
+                The figure below draws a coordinate chart. A chart is a
+                picture of the <em>coordinates</em>, and like any map it
+                lies a little. The metric tells you how much. At each grid
+                point, the small ellipse is the set of tangent vectors that
+                all have the same length according to \( g \). In the flat
+                metric they're circles. In polar coordinates they get
+                squashed horizontally as \( r \) grows, because a step in
+                \( \theta \) is worth more out there. In the hyperbolic
+                half-plane they grow with \( y \), because everything near
+                the axis is far apart.
+            </p>
+            <p>
+                Two paths join \( A \) to \( B \): the straight segment in the
+                chart, and a circular arc. Drag the slider to walk them and
+                watch the length add up. The readout also uses \( g \) to
+                compute the angle between the path's velocity and the
+                coordinate vector \( \partial_x \), and prints it next to the
+                angle you see on screen. In the flat case they agree. In the
+                other two they don't, and you should believe the metric, not
+                your eyes.
+            </p>
+
+            <figure>
+                <canvas id="met-canvas" width="640" height="440"></canvas>
+                <div class="controls">
+                    <label><input type="radio" name="metric" value="flat" checked /> \( dx^2 + dy^2 \)</label>
+                    &nbsp;
+                    <label><input type="radio" name="metric" value="polar" /> \( dr^2 + r^2 d\theta^2 \)</label>
+                    &nbsp;
+                    <label><input type="radio" name="metric" value="hyp" /> \( (dx^2 + dy^2)/y^2 \)</label>
+                    <br />
+                    <label><input type="radio" name="mpath" value="straight" checked /> straight in the chart</label>
+                    &nbsp;
+                    <label><input type="radio" name="mpath" value="arc" /> arc</label>
+                    <br />
+                    <label for="met-t">walk: </label>
+                    <input type="range" id="met-t" min="0" max="1" step="0.002" value="0" />
+                </div>
+                <div class="readout" id="met-readout"></div>
+                <figcaption>
+                    Length \( \int \sqrt{g(\gamma',\gamma')}\,dt \) along a
+                    path, in three metrics. The ellipses show what "one unit
+                    of length" looks like in the chart at each point. In the
+                    hyperbolic case, the arc is centered on the \( x \)-axis,
+                    and it comes out shorter than the straight line.
+                </figcaption>
+            </figure>
+
+            <p>
+                Wait, the arc is shorter than the straight line? Yes! In the
+                half-plane, the shortest paths are semicircles centered on
+                the \( x \)-axis, so "straight in the chart" isn't straight
+                in the geometry. Okay, so what does "straight" even mean once
+                the metric isn't the identity? That's the real question of
+                this page, and the answer is the connection, two sections
+                from now.
+            </p>
+
+            <h2>Tensors</h2>
+            <p>
+                So far we've met three kinds of machine that eat tangent
+                vectors and spit out numbers. A 1-form takes one vector. A
+                2-form takes two and is antisymmetric. A metric takes two and
+                is symmetric. A
+                <a href="https://en.wikipedia.org/wiki/Tensor"
+                    title="Tensor">tensor</a> is the general version. A tensor
+                of type \( (p, q) \) at a point is a multilinear map that
+                takes \( q \) tangent vectors and \( p \) covectors (elements
+                of the dual space \( T_p^*M \), the same space the 1-forms
+                live in) and returns a number. A vector is a \( (1,0) \)
+                tensor, a 1-form is \( (0,1) \), the metric is \( (0,2) \), a
+                \( k \)-form is an antisymmetric \( (0,k) \) tensor. In
+                coordinates a tensor is an array of numbers with \( p \)
+                upper indices and \( q \) lower ones, \( T^{i_1 \cdots
+                i_p}{}_{j_1 \cdots j_q} \), and you get the array by feeding
+                the machine the coordinate basis vectors \( \partial_i \) and
+                covectors \( dx^j \):
+                \[ g_{ij} = g(\partial_i, \partial_j) \]
+                That's the sense in which \( g_{ij} \) "is" the metric.
+            </p>
+            <p>
+                Why all the indices? Because of the transformation rule.
+                Change coordinates from \( x \) to \( \tilde{x} \), and every
+                upper index picks up a factor of the Jacobian
+                \( \partial \tilde{x}^i / \partial x^k \), while every lower
+                index picks up the inverse Jacobian. For the metric:
+                \[ \tilde{g}_{ij} = \frac{\partial x^k}{\partial \tilde{x}^i}
+                \frac{\partial x^l}{\partial \tilde{x}^j}\, g_{kl} \]
+                The polar coordinate calculation above was this rule with
+                \( g_{kl} = \delta_{kl} \). An array of numbers with indices
+                that transforms this way is a tensor. An array that doesn't
+                transform this way isn't a tensor, no matter how many indices
+                you stick on it (the next section has the famous example).
+            </p>
+            <p>
+                The metric has one more job. Since \( g_p \) is
+                nondegenerate, it identifies \( T_pM \) with its dual: a
+                vector \( v \) becomes the 1-form \( g(v, \cdot) \). In
+                indices this is <b>lowering</b>, \( v_i = g_{ij} v^j \), and
+                the inverse matrix \( g^{ij} \) does <b>raising</b>,
+                \( \omega^i = g^{ij} \omega_j \). This is the missing entry in
+                the dictionary from the forms article. Back there, on
+                \( \mathbb{R}^3 \), I quietly turned the 1-form \( df \) into
+                the vector \( \nabla f \) without saying how. The metric did
+                it, and when the metric is the identity matrix you can't see
+                it working. On a curved space the gradient is
+                \[ (\nabla f)^i = g^{ij}\, \partial_j f \]
+                and the \( g^{ij} \) doesn't go away.
+            </p>
+
+            <h2>Connections and moving frames</h2>
+            <p>
+                A vector field \( W \) assigns a vector \( W_p \in T_pM \) to
+                every point, and we'd like to differentiate it in the
+                direction \( v \). The obvious formula
+                \[ \frac{W_{p + \varepsilon v} - W_p}{\varepsilon} \]
+                doesn't make sense. \( W_{p+\varepsilon v} \) lives in the
+                tangent space at \( p + \varepsilon v \), and \( W_p \) lives
+                in the tangent space at \( p \). Those are different fibers
+                of the tangent bundle, and a bundle doesn't come with any
+                rule for subtracting a vector in one fiber from a vector in
+                another. Every fiber is a copy of the same space (that's what
+                a bundle is), but having two copies doesn't tell you which
+                point of one matches which point of the other. The fibers
+                over \( p \) and \( q \) are both isomorphic to
+                \( \mathbb{R}^n \), there are lots of isomorphisms between
+                them, and the bundle doesn't pick a favorite. On
+                \( \mathbb{R}^n \) you never noticed this, because there
+                <em>is</em> a favorite: translation. Slide a vector from
+                \( p \) to \( q \) and everyone agrees on the result. On a
+                sphere there's no such thing as translation. A
+                <a href="https://en.wikipedia.org/wiki/Affine_connection"
+                    title="Affine connection">connection</a> is the missing
+                rule, a chosen way of matching up neighboring fibers so that
+                vectors in them can be compared.
+            </p>
+            <p>
+                I'm going to come at this the way Cartan did, with the
+                <a href="https://en.wikipedia.org/wiki/Method_of_moving_frames"
+                    title="Method of moving frames">method of moving
+                frames</a>. The coordinate vectors \( \partial_i \) have no
+                fixed length, so instead of using them, carry a ruler.
+                An <b>orthonormal frame</b> on a surface is a pair of vector
+                fields \( e_1, e_2 \) with \( g(e_a, e_b) = \delta_{ab} \):
+                at every point, two perpendicular unit vectors. The dual
+                1-forms \( \theta^1, \theta^2 \), with \( \theta^a(e_b) =
+                \delta^a_b \), are the <b>coframe</b>, and in terms of them
+                the metric is just
+                \[ g = (\theta^1)^2 + (\theta^2)^2 \]
+                so you can read the coframe straight off the line element.
+                Polar plane: \( \theta^1 = dr \), \( \theta^2 = r\, d\theta \).
+                Sphere: \( \theta^1 = R\, d\theta \), \( \theta^2 = R\sin\theta\,
+                d\phi \). Hyperbolic half-plane: \( \theta^1 = dx/y \),
+                \( \theta^2 = dy/y \). The frame is "moving" because it turns
+                as you go from point to point, and a connection keeps track
+                of how it turns.
+            </p>
+            <p>
+                Here's how it keeps track. As you move in a direction \( v \), each
+                frame vector changes by some combination of frame vectors,
+                and the amount is linear in \( v \), as a derivative should
+                be:
+                \[ \nabla_v e_b = \omega^a{}_b(v)\, e_a \]
+                The \( \omega^a{}_b \) are 1-forms, the <b>connection
+                1-forms</b>, and that matrix of 1-forms is all there is to
+                the connection. Given it, the <b>covariant derivative</b> of any
+                vector field \( W = W^a e_a \) follows from the product rule:
+                \[ \nabla_v W = \big( dW^a(v) + \omega^a{}_b(v)\, W^b \big)\, e_a \]
+                The first term is the directional derivative of the
+                components, the \( df(v) \) from the forms article doing its
+                job. The second corrects for the frame turning underneath
+                you, like a rug being slowly rotated while you stand on it.
+            </p>
+            <p>
+                There are infinitely many connections, so which one do we
+                want? Two conditions narrow it down to one. First,
+                <b>metric compatibility</b>: moving vectors along with the
+                connection shouldn't change their lengths or angles. Differentiating \( g(e_a, e_b) = \delta_{ab} \) gives
+                \( \omega^a{}_b = -\omega^b{}_a \), so the matrix is
+                antisymmetric, and on a surface that leaves a single 1-form:
+                \[ \nabla e_1 = \omega \otimes e_2, \qquad \nabla e_2 =
+                -\omega \otimes e_1 \]
+                Moving in direction \( v \) rotates the frame by the angle
+                \( \omega(v) \). Second, <b>no torsion</b>: the connection
+                should agree with \( d \), so the frame's turning matches
+                what the coframe already knows. That's
+                <a href="https://en.wikipedia.org/wiki/Cartan%27s_structure_equations"
+                    title="Cartan's structure equations">Cartan's first
+                structure equation</a>, \( d\theta^a = -\omega^a{}_b \wedge
+                \theta^b \), which on a surface reads
+                \[ d\theta^1 = \omega \wedge \theta^2, \qquad d\theta^2 =
+                -\omega \wedge \theta^1 \]
+                Two equations, one unknown 1-form, and there's always
+                exactly one solution. It's called the
+                <a href="https://en.wikipedia.org/wiki/Levi-Civita_connection"
+                    title="Levi-Civita connection">Levi-Civita
+                connection</a> (LEV-ee CHIV-ih-tah), and it's the connection
+                the metric picks for you.
+            </p>
+            <p>
+                Okay, let's actually compute one. Polar plane first:
+                \( \theta^1 = dr \), \( \theta^2 = r\,
+                d\theta \). Then \( d\theta^1 = 0 = \omega \wedge r\,
+                d\theta \), which forces \( \omega = f\, d\theta \) for some
+                function \( f \). And
+                \[ d\theta^2 = dr \wedge d\theta = -f\, d\theta \wedge dr = f\,
+                dr \wedge d\theta \quad\Longrightarrow\quad f = 1, \qquad
+                \omega = d\theta \]
+                Read it as a sentence: move by an angle \( d\theta \) around
+                the origin, and the frame \( (\partial_r, \partial_\theta / r) \)
+                turns by \( d\theta \). This is the flat plane, and the
+                connection form still isn't zero! It's recording the frame
+                turning, and the space itself isn't curved at all. Now the
+                sphere, with coframe
+                \( \theta^1 = R\, d\theta \), \( \theta^2 = R\sin\theta\, d\phi \).
+                Again \( d\theta^1 = 0 \) forces \( \omega \) to be a
+                multiple of \( d\phi \), and
+                \[ d\theta^2 = R\cos\theta\, d\theta \wedge d\phi = -\omega
+                \wedge R\, d\theta \quad\Longrightarrow\quad \omega =
+                \cos\theta\, d\phi \]
+                Going east by \( d\phi \) at polar angle \( \theta \) turns
+                the frame by \( \cos\theta\, d\phi \): a full turn per lap at
+                the north pole, none at the equator.
+            </p>
+
+            <details class="info">
+                <summary>The same thing in coordinates: Christoffel symbols</summary>
+                <p>
+                    Most textbooks use the coordinate frame \( \partial_i \)
+                    instead of an orthonormal one. Then the connection
+                    1-forms are written out in components,
+                    \( \omega^k{}_j = \Gamma^k_{ij}\, dx^i \), and the
+                    coefficients \( \Gamma^k_{ij} \) are the
+                    <a href="https://en.wikipedia.org/wiki/Christoffel_symbols"
+                        title="Christoffel symbols">Christoffel symbols</a>.
+                    Metric compatibility and no torsion turn into a formula:
+                    \[ \Gamma^k_{ij} = \tfrac{1}{2} g^{kl} \left( \partial_i
+                    g_{jl} + \partial_j g_{il} - \partial_l g_{ij} \right) \]
+                    and the covariant derivative is \( \nabla_v W = v^i
+                    (\partial_i W^k + \Gamma^k_{ij} W^j)\, \partial_k \), the
+                    same product rule as above. For the polar plane it gives
+                    \( \Gamma^r_{\theta\theta} = -r \) and
+                    \( \Gamma^\theta_{r\theta} = \Gamma^\theta_{\theta r} =
+                    1/r \), which is \( \omega = d\theta \) wearing a fake
+                    mustache. It works in any dimension, but in \( n \)
+                    dimensions there are \( n^2(n+1)/2 \) symbols to compute
+                    versus \( n(n-1)/2 \) connection forms: for the
+                    Schwarzschild metric at the end of the page, 40 versus 6.
+                    I'll take the 6. One warning: \( \Gamma \) is an array
+                    with three indices that isn't a tensor. In Cartesian coordinates the flat
+                    plane has every \( \Gamma = 0 \), in polar coordinates it
+                    doesn't, and a tensor that is zero in one coordinate
+                    system is zero in all of them.
+                </p>
+            </details>
+
+            <h2>Parallel transport and geodesics</h2>
+            <p>
+                With a connection in hand, we can define two new things. A
+                vector \( V \) carried along
+                a curve \( \gamma \) is <b>parallel</b> if its covariant
+                derivative along the curve vanishes, \( \nabla_{\gamma'} V =
+                0 \). On a surface, write the vector by its angle from the
+                frame, \( V = \cos\alpha\, e_1 + \sin\alpha\, e_2 \), and
+                differentiate:
+                \[ \nabla_{\gamma'} V = \big( \alpha' + \omega(\gamma') \big)
+                \left( -\sin\alpha\, e_1 + \cos\alpha\, e_2 \right) \]
+                So parallel means
+                \[ \alpha' = -\omega(\gamma') \]
+                The frame turns one way, the vector's angle relative to the
+                frame turns the other way at the same rate, and the vector
+                itself stays put. This is a first-order ODE (ordinary
+                differential equation), so given \( V \) at the start you can
+                solve for it all along the curve. That's <b>parallel
+                transport</b>, and it's what "connecting the fibers" means in
+                practice: it carries a vector from one tangent space to
+                another. And a curve that
+                parallel transports its own velocity, \( \nabla_{\gamma'}
+                \gamma' = 0 \), is a
+                <a href="https://en.wikipedia.org/wiki/Geodesic"
+                    title="Geodesic">geodesic</a>, the metric's notion of a
+                straight line. It's the same equation with \( \alpha \) as
+                the direction of travel: a geodesic only changes heading to
+                cancel out the frame's turning. In the polar plane,
+                \( \omega = d\theta \) says a straight line's heading relative
+                to \( \partial_r \) drops by \( d\theta \) every time the
+                polar angle ticks up by \( d\theta \). Draw a line past the
+                origin and check, that's what it does. In the hyperbolic
+                half-plane the solutions are the semicircles from the
+                playground.
+            </p>
+
+            <h2>Transport around a loop</h2>
+            <p>
+                This is where curvature shows up. On the flat plane, carry a
+                vector around any closed loop and it comes back pointing the
+                same way. On a sphere it doesn't! The figure transports a
+                vector around a circle of latitude on the unit sphere by
+                integrating \( \alpha' = -\omega(\gamma') \) with the
+                connection form we just found. Along the latitude \( \theta =
+                \theta_0 \), \( \phi = t \), the velocity is \( \partial_\phi
+                \) and \( \omega(\partial_\phi) = \cos\theta_0 \), so the
+                vector's angle relative to the frame drifts at the constant
+                rate \( -\cos\theta_0 \). Slide the latitude up and down,
+                walk the loop, and compare how far the vector rotated with
+                the area of the cap inside the loop.
+            </p>
+
+            <figure>
+                <div id="pt-container" class="three-container"></div>
+                <div class="controls">
+                    <label for="pt-lat">polar angle \( \theta_0 \): </label>
+                    <input type="range" id="pt-lat" min="10" max="150" step="1" value="50" />
+                    <span id="pt-lat-val"></span>
+                    <br />
+                    <label for="pt-t">walk: </label>
+                    <input type="range" id="pt-t" min="0" max="1" step="0.002" value="0" />
+                </div>
+                <div class="readout" id="pt-readout"></div>
+                <figcaption>
+                    Parallel transport on the unit sphere. The ghost arrow is
+                    the starting vector, the solid one is the transported
+                    vector, the green one is the frame vector \( e_1 \), and
+                    the shaded cap is the region enclosed by the loop. Drag to
+                    orbit.
+                </figcaption>
+            </figure>
+
+            <p>
+                The transported vector comes back rotated by the area of the
+                cap, \( 2\pi(1 - \cos\theta_0) \). Near the north pole the
+                loop is tiny and so is the rotation. At the equator the loop
+                is a geodesic, the cap is a hemisphere of area \( 2\pi \),
+                and the vector turns all the way around and comes back
+                pointing where it started. This rotation is called the
+                <a href="https://en.wikipedia.org/wiki/Holonomy"
+                    title="Holonomy">holonomy</a> of the loop, and the fact
+                that it equals an area is another way of saying the sphere
+                has curvature \( K = 1 \) everywhere. The next section shows
+                why.
+            </p>
+
+            <h2>Curvature is \( d \) of the connection</h2>
+            <p>
+                The connection is a 1-form, and if the forms article taught
+                us anything, it's that when you have a 1-form, you take
+                \( d \) of it. Cartan's second
+                structure equation says that on a surface
+                \[ d\omega = -K\, \theta^1 \wedge \theta^2 \]
+                and the function \( K \) is the
+                <a href="https://en.wikipedia.org/wiki/Gaussian_curvature"
+                    title="Gaussian curvature">Gaussian curvature</a>. Take
+                \( d \) of the two connection forms we computed. Polar plane:
+                \( d\omega = d(d\theta) = 0 \), so \( K = 0 \). Flat, as it
+                should be, even though \( \omega \) wasn't zero. (Our old
+                friend \( d\theta \), the closed-but-not-exact form from the
+                forms article, shows up again as the connection form, and
+                since it's closed its \( d \) vanishes.) Sphere:
+                \[ d\omega = -\sin\theta\, d\theta \wedge d\phi = -\frac{1}{R^2}\,
+                \theta^1 \wedge \theta^2 \quad\Longrightarrow\quad K =
+                \frac{1}{R^2} \]
+                Three lines from the line element to the curvature, using
+                nothing but \( d \) and \( \wedge \). The coframe came from
+                \( g \), \( \omega \) came from the coframe, and \( K \) came
+                from \( \omega \), so you can compute \( K \) from distances
+                measured inside the surface. That's Gauss's Theorema
+                Egregium, and this is the shortest proof of it I know.
+            </p>
+            <p>
+                And the holonomy figure? That was Stokes' theorem. Parallel
+                transport is \( \alpha' = -\omega(\gamma') \), so around a
+                loop the angle relative to the frame changes by
+                \( -\oint_\gamma \omega \). If the frame is smooth everywhere
+                inside the loop, Stokes turns that into
+                \( -\int\!\!\int d\omega = \int\!\!\int K\, dA \): the vector
+                comes back rotated by the enclosed curvature. Our frame
+                \( e_1 = \partial_\theta / R \) is not smooth at the north
+                pole (which way is "south" when you're standing on the north
+                pole? All of them), so the accounting has one extra term. Around the latitude circle,
+                \( \oint \cos\theta_0\, d\phi = 2\pi\cos\theta_0 \), so
+                relative to the frame the vector turns by
+                \( -2\pi\cos\theta_0 \). Meanwhile the frame itself turns
+                once around the pole, a full \( 2\pi \), the same way the
+                polar frame \( \partial_r, \partial_\theta \) turns once
+                around the origin of the flat plane. Net rotation:
+                \( 2\pi - 2\pi\cos\theta_0 \), the area of the cap. That's
+                the number the readout in the figure shows.
+            </p>
+
+            <div class="aside">
+                <b>Who cares about surfaces?</b> Physicists, it turns out.
+                In the forms article the electromagnetic potential \( A \)
+                was a connection on a U(1) bundle and the field \( F = dA \)
+                was its curvature. You just did the same thing on the tangent
+                bundle: \( \omega \) is the connection, \( d\omega \) is the
+                curvature. The general
+                formula is \( \Omega = d\omega + \omega \wedge \omega \). For
+                U(1) the group is commutative, the second term vanishes, and
+                you get Maxwell. For the tangent bundle of a surface the
+                rotation group is also commutative, so again \( \Omega =
+                d\omega \). In higher dimensions and for the non-abelian
+                groups of the Standard Model, the \( \omega \wedge \omega \)
+                term survives, and that term is a big part of what separates the
+                strong force from electromagnetism. Gravity and gauge theory are
+                the same construction, run on different bundles.
+            </div>
+
+            <h2>Curvature in general</h2>
+            <p>
+                On a surface, curvature is one number per point. In \( n \)
+                dimensions the connection is an \( n \times n \) antisymmetric
+                matrix of 1-forms \( \omega^a{}_b \), the first structure
+                equation \( d\theta^a = -\omega^a{}_b \wedge \theta^b \) still
+                determines it, and the second structure equation gives a
+                matrix of 2-forms:
+                \[ \Omega^a{}_b = d\omega^a{}_b + \omega^a{}_c \wedge \omega^c{}_b \]
+                On a surface the \( \omega \wedge \omega \) term is
+                \( \omega^1{}_1 \wedge \omega^1{}_2 + \omega^1{}_2 \wedge
+                \omega^2{}_2 = 0 \), which is why we could write curvature
+                as just \( d\omega \). In general it doesn't vanish. Expand
+                each 2-form in the coframe, \( \Omega^a{}_b = \tfrac{1}{2}
+                R^a{}_{bcd}\, \theta^c \wedge \theta^d \), and the
+                coefficients are the
+                <a href="https://en.wikipedia.org/wiki/Riemann_curvature_tensor"
+                    title="Riemann curvature tensor">Riemann curvature
+                tensor</a>. It's a \( (1,3) \) tensor, and it measures how
+                much transporting \( w \) around the little parallelogram
+                spanned by \( u \) and \( v \) changes it:
+                \[ R(u,v)\, w = \nabla_u \nabla_v w - \nabla_v \nabla_u w -
+                \nabla_{[u,v]} w \]
+                You have to say <em>which</em> 2-dimensional direction you
+                go around, and that's what the \( c, d \) slots are for.
+                Riemann has \( n^2(n^2-1)/12 \) independent components: 1 in
+                two dimensions (that's \( K \)), 6 in three, 20 in four. For
+                physics, two contractions (sums over a pair of indices)
+                matter. The
+                <a href="https://en.wikipedia.org/wiki/Ricci_curvature"
+                    title="Ricci curvature">Ricci tensor</a>
+                \( R_{bd} = R^a{}_{bad} \) and the scalar curvature
+                \( R = g^{bd} R_{bd} \), which on a surface is \( 2K \).
+            </p>
+            <p>
+                Einstein's field equations say the matter in spacetime
+                determines its Ricci curvature:
+                \[ R_{\mu\nu} - \tfrac{1}{2} R\, g_{\mu\nu} = \frac{8\pi G}{c^4}
+                T_{\mu\nu} \]
+                where \( T_{\mu\nu} \) is the energy and momentum density.
+                Outside a mass, in empty space, the right side is zero, and
+                the equations reduce to \( R_{\mu\nu} = 0 \). The Schwarzschild
+                metric below is the spherically symmetric solution. Checking
+                it is the moving frames method one more time: read the four
+                coframe forms off the line element, solve the first structure
+                equation for the six connection forms, take \( d \) and wedge
+                for the six curvature forms, contract, and get all zeros.
+                That's an afternoon with the formulas on this page and no new
+                ideas, so I'll take it as given and spend the afternoon on
+                light instead.
+            </p>
+
+            <h2>Exercises</h2>
+            <p>
+                You can do all of these with the formulas above, no tricks.
+                Type answers as numbers or expressions like <code>pi/3</code>
+                or <code>1/9</code>. Your progress is saved in your browser
+                (<span id="ex-progress"></span>).
+            </p>
+
+            <div class="exercise" data-id="ex1" data-answer="1">
+                <p>
+                    <b>Exercise 1.</b> In the hyperbolic half-plane
+                    \( ds^2 = (dx^2 + dy^2)/y^2 \), compute the length of the
+                    vertical segment \( x = 0 \), from \( y = 1 \) to
+                    \( y = e \).
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Parametrize by \( y \). Along the segment \( dx = 0 \),
+                    so the speed is \( \sqrt{g(\gamma',\gamma')} = 1/y \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( \int_1^e \frac{dy}{y} = \ln e - \ln 1 = 1 \). The
+                    hyperbolic distance from \( y = 1 \) to \( y = e^n \) is
+                    \( n \), so going up is exponentially cheap, and getting
+                    all the way down to the axis would cost you an infinite
+                    amount.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex2" data-answer="pi/3">
+                <p>
+                    <b>Exercise 2.</b> In polar coordinates,
+                    \( ds^2 = dr^2 + r^2 d\theta^2 \), at the point
+                    \( r = \sqrt{3} \), find the angle in radians between
+                    \( v = \partial_r \) and \( w = \partial_r + \partial_\theta \).
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( \cos\alpha = g(v,w)/(|v||w|) \), and
+                    \( g(v,w) = g_{rr} v^r w^r + g_{\theta\theta} v^\theta
+                    w^\theta \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( g(v,w) = 1 \), \( |v| = 1 \), \( |w| = \sqrt{1 + r^2}
+                    = \sqrt{1 + 3} = 2 \). So \( \cos\alpha = 1/2 \) and
+                    \( \alpha = \pi/3 \). In the chart, \( w \) is drawn at
+                    \( 45^\circ \) to \( v \), but the real angle is
+                    \( 60^\circ \), because \( \partial_\theta \) is
+                    \( \sqrt{3} \) times longer than it looks. The chart lied.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex3" data-answer="0.5">
+                <p>
+                    <b>Exercise 3.</b> Solve the first structure equation for
+                    the connection form \( \omega \) of the hyperbolic
+                    half-plane, coframe \( \theta^1 = dx/y \), \( \theta^2 =
+                    dy/y \). Then evaluate it on the coordinate vector
+                    \( \partial_x \) at the point \( (x, y) = (0, 2) \).
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( d\theta^2 = d(dy/y) = 0 \), so \( \omega \wedge \theta^1
+                    = 0 \) and \( \omega \) is a multiple of \( dx \). Then
+                    use \( d\theta^1 = d(1/y) \wedge dx \) to find the
+                    multiple.
+                </details>
+                <details><summary>Solution</summary>
+                    \( d\theta^1 = -\frac{1}{y^2}\, dy \wedge dx = \frac{1}{y^2}\,
+                    dx \wedge dy \), and it must equal \( \omega \wedge \theta^2
+                    = f\, dx \wedge dy / y \), so \( f = 1/y \) and \( \omega
+                    = dx / y = \theta^1 \). At \( y = 2 \), \( \omega(\partial_x)
+                    = 1/2 \): moving one unit to the right turns the frame by
+                    half a radian.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex4" data-answer="1/9">
+                <p>
+                    <b>Exercise 4.</b> Use the structure equations on the
+                    coframe \( \theta^1 = R\,d\theta \), \( \theta^2 = R
+                    \sin\theta\, d\phi \) with \( R = 3 \). What is the
+                    Gaussian curvature \( K \)?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    I did this calculation in the text with a general
+                    \( R \). Check where \( R \) survives.
+                </details>
+                <details><summary>Solution</summary>
+                    \( \omega = \cos\theta\, d\phi \) regardless of \( R \),
+                    and \( d\omega = -\sin\theta\, d\theta\wedge d\phi \),
+                    while \( \theta^1 \wedge \theta^2 = R^2 \sin\theta\,
+                    d\theta \wedge d\phi \). So \( K = 1/R^2 = 1/9 \). Bigger
+                    spheres are flatter, which is why the Earth looks flat
+                    from the ground. It's not flat, it's just really big.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex5" data-answer="-1">
+                <p>
+                    <b>Exercise 5.</b> Take \( d \) of the connection form
+                    from Exercise 3 to find the Gaussian curvature of the
+                    hyperbolic half-plane.
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( d\omega = -K\, \theta^1 \wedge \theta^2 \), and
+                    \( \theta^1 \wedge \theta^2 = dx \wedge dy / y^2 \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( d\omega = d(dx/y) = -\frac{1}{y^2}\, dy \wedge dx =
+                    \frac{1}{y^2}\, dx \wedge dy = \theta^1 \wedge \theta^2
+                    \), so \( K = -1 \). Constant negative curvature
+                    everywhere. The half-plane is the sphere's evil twin, and
+                    its geodesic triangles have angle sums <em>less</em> than
+                    \( 180^\circ \).
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex6" data-answer="pi">
+                <p>
+                    <b>Exercise 6.</b> On the unit sphere, a vector is
+                    parallel transported once around the circle of latitude
+                    at polar angle \( \theta_0 = 60^\circ \). By what angle
+                    (in radians) does it come back rotated?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    The rotation is the area of the enclosed cap,
+                    \( \int\!\!\int K\, dA \) with \( K = 1 \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( 2\pi(1 - \cos 60^\circ) = 2\pi \cdot \frac{1}{2} = \pi
+                    \). Set the slider in the transport figure to \( 60^\circ
+                    \) and watch the vector come back pointing the opposite
+                    way.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex7" data-answer="0.7071">
+                <p>
+                    <b>Exercise 7.</b> In the Schwarzschild metric (next
+                    section), a clock hovering at fixed \( r \) ticks at the
+                    rate \( \sqrt{1 - r_s/r} \) compared to a clock far away.
+                    What is that rate at \( r = 2 r_s \)?
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    Read the coefficient of \( dt^2 \) off the metric. For a
+                    hovering clock \( dr = d\theta = d\phi = 0 \), and the
+                    proper time is \( d\tau^2 = -ds^2/c^2 \).
+                </details>
+                <details><summary>Solution</summary>
+                    \( \sqrt{1 - 1/2} = 1/\sqrt{2} \approx 0.7071 \). A
+                    minute on the hovering clock is about 85 seconds far
+                    away. At \( r = r_s \) the rate hits zero. Interstellar
+                    was onto something.
+                </details>
+            </div>
+
+            <div class="exercise" data-id="ex8" data-answer="1.75">
+                <p>
+                    <b>Exercise 8.</b> A light ray grazing the Sun is
+                    deflected by \( \Delta\phi \approx 2 r_s / b \) (derived
+                    in the next section). With \( r_s = 2.95 \) km for the Sun
+                    and \( b = 696{,}000 \) km its radius, find the deflection
+                    in arcseconds. (One radian is \( 206{,}265 \) arcseconds.)
+                </p>
+                <div class="answer-row">
+                    <input type="text" placeholder="your answer" />
+                    <button class="check">Check</button>
+                    <span class="feedback"></span>
+                </div>
+                <details><summary>Hint</summary>
+                    \( 2 \cdot 2.95 / 696{,}000 \) radians, then convert.
+                </details>
+                <details><summary>Solution</summary>
+                    \( 8.48 \times 10^{-6} \) radians \( \approx 1.75'' \).
+                    This is the number
+                    <a href="https://en.wikipedia.org/wiki/Eddington_experiment"
+                        title="Eddington experiment">Eddington</a> measured
+                    during the 1919 eclipse, and it made Einstein famous
+                    overnight. Newtonian gravity, treating light as
+                    particles, only predicts half of it.
+                </details>
+            </div>
+
+            <h2>A black hole</h2>
+            <p>
+                In November 1915 Einstein published his field equations. A
+                few weeks later, a letter reached him from the Russian front.
+                <a href="https://en.wikipedia.org/wiki/Karl_Schwarzschild"
+                    title="Karl Schwarzschild">Karl Schwarzschild</a>
+                (SHVARTS-shilt), an astronomer serving as an artillery
+                lieutenant in the German army, had found the first exact
+                solution. He died
+                a few months later, in 1916, of an illness he caught at the
+                front. His solution describes the empty space around a
+                spherical mass \( M \):
+                \[ ds^2 = -\left(1 - \frac{r_s}{r}\right) c^2\, dt^2 +
+                \frac{dr^2}{1 - r_s/r} + r^2 \left( d\theta^2 + \sin^2\theta\,
+                d\phi^2 \right), \qquad r_s = \frac{2GM}{c^2} \]
+                This is a metric in the same sense as everything else on this
+                page, on a four-dimensional manifold with coordinates
+                \( (t, r, \theta, \phi) \), with one change: the coefficient
+                of \( dt^2 \) is negative, so the metric isn't positive
+                definite. It's a
+                <a href="https://en.wikipedia.org/wiki/Pseudo-Riemannian_manifold"
+                    title="Pseudo-Riemannian manifold">Lorentzian</a>
+                metric, and that minus sign is what makes time different
+                from space. A tangent vector with \( ds^2 < 0 \) is
+                <b>timelike</b>, the velocity of something slower than
+                light, and \( \sqrt{-ds^2}/c \) is the proper time a clock
+                moving that way records. A vector with \( ds^2 = 0 \) is
+                <b>lightlike</b>, and light moves along geodesics made of
+                those. Everything else (frames, connections, geodesics,
+                curvature) carries over unchanged.
+            </p>
+            <p>
+                You can read physics right off the coefficients. A clock
+                hovering at radius \( r \) has \( dr = d\theta = d\phi = 0
+                \), so \( d\tau = \sqrt{1 - r_s/r}\; dt \): it runs slow
+                compared to a clock at infinity, and at \( r = r_s \) it
+                stops. That's the <b>event horizon</b>, the
+                <a href="https://en.wikipedia.org/wiki/Schwarzschild_radius"
+                    title="Schwarzschild radius">Schwarzschild radius</a>.
+                For the Sun \( r_s \approx 3 \) km, for the Earth about 9
+                mm (squeeze the whole planet into a marble and you get a
+                black hole). Nothing special happens to a falling observer at
+                \( r_s \). The singularity there is the coordinates' fault,
+                like the pole in polar coordinates. But once you're inside,
+                every timelike path ends at \( r = 0 \). No exceptions.
+            </p>
+
+            <h2>How light bends</h2>
+            <p>
+                Now for the calculation the rendering is built on. Light
+                follows null geodesics (geodesics with \( ds^2 = 0 \)). We
+                could write out the geodesic equation and grind, but there's
+                a shortcut: the metric doesn't depend on \( t \) or on
+                \( \phi \), and
+                for each coordinate a metric ignores, geodesics have a
+                conserved quantity (this is
+                <a href="https://en.wikipedia.org/wiki/Noether%27s_theorem"
+                    title="Noether's theorem">Noether's theorem</a>, and the
+                vector fields \( \partial_t \), \( \partial_\phi \) are called
+                Killing fields). With a dot for \( d/d\lambda \), \( c = 1
+                \), and the ray confined to the equatorial plane \( \theta =
+                \pi/2 \) by symmetry:
+                \[ E = \left(1 - \frac{r_s}{r}\right)\dot t, \qquad L = r^2 \dot\phi \]
+                are constant along the ray. Put those into \( ds^2 = 0 \):
+                \[ -\frac{E^2}{1 - r_s/r} + \frac{\dot r^2}{1 - r_s/r} +
+                \frac{L^2}{r^2} = 0 \quad\Longrightarrow\quad \dot r^2 = E^2 -
+                \frac{L^2}{r^2}\left(1 - \frac{r_s}{r}\right) \]
+                The shape of the orbit is easier in \( u = 1/r \) as a
+                function of \( \phi \). Using \( \dot r = (dr/d\phi)\dot\phi
+                = -L\, du/d\phi \):
+                \[ \left(\frac{du}{d\phi}\right)^2 = \frac{1}{b^2} - u^2 +
+                r_s u^3, \qquad b = \frac{L}{E} \]
+                where \( b \) is the <b>impact parameter</b>, the distance by
+                which the ray would miss the center if it went straight.
+                Differentiate once more with respect to \( \phi \) and divide
+                by \( 2\, du/d\phi \):
+                \[ \boxed{\; \frac{d^2 u}{d\phi^2} + u = \frac{3}{2} r_s u^2 \;} \]
+                Without the right side, the solution is \( u = \sin\phi / b
+                \), which is \( r\sin\phi = b \): a straight line at distance
+                \( b \) from the origin. The right side is gravity. That one
+                little term on the right gives us three things:
+            </p>
+            <ul>
+                <li>
+                    <b>The photon sphere.</b> A circular orbit is \( u \)
+                    constant, so \( u = \frac{3}{2} r_s u^2 \), so \( r =
+                    \frac{3}{2} r_s \). Light can orbit a black hole, at one
+                    and a half Schwarzschild radii! The orbit is unstable, so
+                    a ray near it winds around a few times and then either
+                    falls in or flies off.
+                </li>
+                <li>
+                    <b>The shadow.</b> The circular orbit has impact
+                    parameter \( b_c = \frac{3\sqrt{3}}{2} r_s \approx 2.6\,
+                    r_s \). Rays aimed closer than that are captured, rays
+                    aimed further out escape. So the black disk you see
+                    isn't the horizon. It's the set of directions with
+                    \( b < b_c \), about \( 2.6 \) times bigger in radius
+                    than \( r_s \).
+                </li>
+                <li>
+                    <b>Weak deflection.</b> Far from the hole, treat the
+                    right side as a small perturbation of the straight line.
+                    First-order perturbation theory gives a total bend of
+                    \[ \Delta\phi \approx \frac{2 r_s}{b} = \frac{4GM}{c^2 b} \]
+                    which is Exercise 8.
+                </li>
+            </ul>
+            <p>
+                The figure integrates the boxed equation numerically, using
+                fourth-order Runge&ndash;Kutta (the workhorse ODE solver),
+                for a fan of rays coming in from the left plus one ray whose
+                impact parameter you pick. Units are \( r_s = 1 \). The black
+                disk is the horizon, the dashed circle is the photon sphere.
+            </p>
+
+            <figure>
+                <canvas id="ray-canvas" width="640" height="440"></canvas>
+                <div class="controls">
+                    <label for="ray-b">impact parameter \( b \): </label>
+                    <input type="range" id="ray-b" min="0" max="6" step="0.01" value="3.2" />
+                    <span id="ray-b-val"></span>
+                </div>
+                <div class="readout" id="ray-readout"></div>
+                <figcaption>
+                    Light rays in the equatorial plane of a Schwarzschild
+                    black hole, from \( u'' + u = \tfrac{3}{2} r_s u^2 \).
+                    Gray rays are captured, blue rays escape. Try \( b \)
+                    just above \( 2.598 \).
+                </figcaption>
+            </figure>
+
+            <h2>Rendering the sky</h2>
+            <p>
+                To draw what an observer near the hole sees, run the same
+                calculation backwards for every pixel on the screen. Each
+                pixel is a direction. Follow a light ray <em>out</em> of the camera
+                in that direction, bending it with the boxed equation, until
+                it either crosses the horizon (that pixel is black) or gets
+                far away (that pixel shows whatever star is in the direction
+                the ray ended up going). By spherical symmetry the ray stays
+                in the plane spanned by the camera position and the pixel's
+                direction, so each pixel is its own copy of the 2D problem
+                above. The one subtle part is the initial condition: the observer is
+                hovering, not falling, and the direction they see is measured
+                in their own orthonormal frame, so the radial component of
+                the coordinate velocity gets a factor of \( \sqrt{1 - r_s/r}
+                \), the same factor from Exercise 7.
+            </p>
+            <p>
+                The integration runs on your GPU in a fragment shader (a
+                little program that runs once per pixel), one ray per pixel.
+                To avoid the coordinate singularity of
+                \( \phi \) for rays aimed straight at or away from the hole,
+                the shader integrates the same equation written as a force
+                law in the ray's plane: for a central acceleration and a
+                conserved \( h = |\vec{x} \times \vec{v}| \), the equation
+                \( u'' + u = \frac{3}{2} r_s u^2 \) is equivalent to
+                \[ \ddot{\vec{x}} = -\frac{3}{2} r_s h^2\, \frac{\vec{x}}{r^5} \]
+                which is the formula in the loop below. The star field is
+                generated procedurally, so you get the same sky every time
+                you load the page.
+            </p>
+            <pre class="code">for (int i = 0; i &lt; 400; i++) {
+    float r = length(x);
+    if (r &lt; rs) { captured = true; break; }                 // fell in
+    if (r &lt; 1.5*rs &amp;&amp; dot(x, v) &lt; 0.0) { captured = true; break; }
+    if (r &gt; rEscape) break;                                   // gone
+    float h = clamp(0.06*r, 0.02, 1.5);                       // step size
+    rk4Step(x, v, h);      // acceleration = -1.5*rs*h2*x/r^5
+}
+color = captured ? black : sky(normalize(v));</pre>
+            <p>
+                Drag to look around. The hole starts in the center of the
+                view. Turn the mass down to zero to see the undistorted sky,
+                then crank it back up. The grid draws lines of constant
+                latitude and longitude on the celestial sphere, and it's the
+                easiest way to see what the lensing is doing.
+            </p>
+
+            <figure>
+                <div id="bh-container" class="three-container"></div>
+                <div class="controls">
+                    <label for="bh-rs">\( r_s \): </label>
+                    <input type="range" id="bh-rs" min="0" max="3" step="0.01" value="1" />
+                    <span id="bh-rs-val"></span>
+                    &nbsp;&nbsp;
+                    <label for="bh-d">distance: </label>
+                    <input type="range" id="bh-d" min="4" max="30" step="0.1" value="10" />
+                    <span id="bh-d-val"></span>
+                    <br />
+                    <label><input type="checkbox" id="bh-grid" checked /> celestial grid</label>
+                    &nbsp;&nbsp;
+                    <label><input type="checkbox" id="bh-band" checked /> galactic band</label>
+                    &nbsp;&nbsp;
+                    <button id="bh-reset">recenter</button>
+                </div>
+                <div class="readout" id="bh-readout"></div>
+                <figcaption>
+                    A Schwarzschild black hole in front of a star field, ray
+                    traced per pixel on the GPU. Drag to look around.
+                </figcaption>
+            </figure>
+
+            <p>
+                A few things to look for. The shadow is the disk of directions with
+                \( b < b_c \), and its angular radius as seen by a hovering
+                observer at distance \( D \) is \( \sin\alpha = \frac{b_c}{D}
+                \sqrt{1 - r_s/D} \), which the readout prints. Around the
+                edge of the shadow the sky gets squeezed into a thin ring.
+                That's the
+                <a href="https://en.wikipedia.org/wiki/Einstein_ring"
+                    title="Einstein ring">Einstein ring</a>, made of light
+                from directly behind the hole that bent around it on every
+                side. Just inside that ring the entire sky shows up again,
+                mirrored and compressed, from rays that went around once.
+                Then again, thinner, from rays that went around twice, and so
+                on forever, each copy from rays that spent longer near the
+                photon sphere. Set the
+                distance to \( 4 \) and \( r_s \) to \( 3 \) and you're
+                inside the photon sphere, where more than half the sky is
+                black. Now drag around to look directly away from the hole:
+                the entire rest of the universe is crammed into a cone.
+            </p>
+
+            <h2>Where we are</h2>
+            <p>
+                We started with a tape measure. A metric is a symmetric
+                \( (0,2) \) tensor, and that's enough to measure length and
+                angle, to turn 1-forms into vectors and back, and to pick out
+                one connection. The connection is the rule for comparing
+                neighboring fibers of the tangent bundle (the thing the
+                bundles article said was missing), and from it we got
+                covariant derivatives, parallel transport and geodesics. On
+                a surface the connection is a single 1-form \( \omega \), the
+                curvature is \( d\omega \), and Stokes' theorem from the forms
+                article turns curvature into holonomy: carry a vector around
+                a loop and it comes back rotated by the curvature inside. In
+                more dimensions the curvature is a tensor, Einstein set its
+                contraction equal to matter, and Schwarzschild found the
+                vacuum solution while serving on the Russian front. Two
+                conserved quantities and one substitution turn its null
+                geodesics into \( u'' + u = \frac{3}{2} r_s u^2 \), and if
+                you ask your GPU to integrate that equation once per pixel,
+                you get a picture of a black hole.
+            </p>
+            <p>
+                So here's how the three articles fit together. A bundle is a
+                space that's locally a product and glued together globally. A
+                connection is a rule for moving between its fibers, and it's
+                a 1-form. Curvature is the exterior derivative of the
+                connection, and it measures what happens when you go around
+                a loop. Electromagnetism is this story on a U(1) bundle.
+                Gravity is this story on the tangent bundle. The rest of the
+                Standard Model is this story on bundles with bigger groups.
+                It's bundles all the way down.
+            </p>
+        </main>
+
+        <script>
+            // ================= metric playground =================
+            (function () {
+                const canvas = document.getElementById("met-canvas");
+                const ctx = canvas.getContext("2d");
+                const W = canvas.width, H = canvas.height;
+
+                // Each metric: chart domain, diagonal metric coefficients, and
+                // the two endpoints and arc (center, radius, angle range).
+                const metrics = {
+                    flat: {
+                        dom: [-2.2, 2.2, -2.0, 2.0],
+                        g: (x, y) => [1, 1],
+                        A: [-1.5, -0.6], B: [1.5, -0.6],
+                        arc: { M: [0, -0.6], R: 1.5, a0: Math.PI, a1: 0 },
+                        xname: "∂x", labels: ["x", "y"],
+                        unit: 0.17,
+                    },
+                    polar: {
+                        dom: [0.1, 3.4, -1.7, 1.7],
+                        g: (r, th) => [1, r * r],
+                        A: [1, -1.2], B: [1, 1.2],
+                        arc: { M: [1, 0], R: 1.2, a0: -Math.PI / 2, a1: Math.PI / 2 },
+                        xname: "∂r", labels: ["r", "θ"],
+                        unit: 0.17,
+                    },
+                    hyp: {
+                        dom: [-2.2, 2.2, 0.0, 3.3],
+                        g: (x, y) => [1 / (y * y), 1 / (y * y)],
+                        A: [-1.5, 1], B: [1.5, 1],
+                        arc: { M: [0, 0], R: Math.sqrt(3.25), a0: Math.atan2(1, -1.5), a1: Math.atan2(1, 1.5) },
+                        xname: "∂x", labels: ["x", "y"],
+                        unit: 0.13,
+                    },
+                };
+
+                let mKey = "flat", pKey = "straight";
+                const NSTEPS = 1000;
+                let cum = [], pts = [], vels = [];
+
+                function pathFn(m) {
+                    if (pKey === "straight") {
+                        return (t) => [m.A[0] + t * (m.B[0] - m.A[0]), m.A[1] + t * (m.B[1] - m.A[1])];
+                    }
+                    const { M, R, a0, a1 } = m.arc;
+                    return (t) => {
+                        const a = a0 + t * (a1 - a0);
+                        return [M[0] + R * Math.cos(a), M[1] + R * Math.sin(a)];
+                    };
+                }
+
+                function recompute() {
+                    const m = metrics[mKey], g = pathFn(m);
+                    cum = [0]; pts = []; vels = [];
+                    let L = 0;
+                    for (let i = 0; i <= NSTEPS; i++) {
+                        const t = i / NSTEPS, dt = 1e-4;
+                        const p = g(t);
+                        const p0 = g(Math.max(0, t - dt)), p1 = g(Math.min(1, t + dt));
+                        const v = [(p1[0] - p0[0]) / (2 * dt), (p1[1] - p0[1]) / (2 * dt)];
+                        pts.push(p); vels.push(v);
+                        if (i > 0) {
+                            const q = pts[i - 1];
+                            const xm = (p[0] + q[0]) / 2, ym = (p[1] + q[1]) / 2;
+                            const [a, c] = m.g(xm, ym);
+                            const dx = p[0] - q[0], dy = p[1] - q[1];
+                            L += Math.sqrt(a * dx * dx + c * dy * dy);
+                            cum.push(L);
+                        }
+                    }
+                }
+
+                function mapper(m) {
+                    const [x0, x1, y0, y1] = m.dom;
+                    const pad = 30;
+                    const sx = (W - 2 * pad) / (x1 - x0), sy = (H - 2 * pad) / (y1 - y0);
+                    const s = Math.min(sx, sy);
+                    const cx = W / 2 - s * (x0 + x1) / 2, cy = H / 2 + s * (y0 + y1) / 2;
+                    return { s, toPx: (x, y) => [cx + s * x, cy - s * y] };
+                }
+
+                function arrow(ctx, toPx, x, y, vx, vy, color, label) {
+                    const [px, py] = toPx(x, y);
+                    const [qx, qy] = toPx(x + vx, y + vy);
+                    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2;
+                    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(qx, qy); ctx.stroke();
+                    const ang = Math.atan2(qy - py, qx - px);
+                    ctx.beginPath();
+                    ctx.moveTo(qx, qy);
+                    ctx.lineTo(qx - 8 * Math.cos(ang - 0.4), qy - 8 * Math.sin(ang - 0.4));
+                    ctx.lineTo(qx - 8 * Math.cos(ang + 0.4), qy - 8 * Math.sin(ang + 0.4));
+                    ctx.closePath(); ctx.fill();
+                    if (label) { ctx.font = "15px serif"; ctx.fillText(label, qx + 6, qy - 4); }
+                }
+
+                function render() {
+                    const t = parseFloat(document.getElementById("met-t").value);
+                    const m = metrics[mKey];
+                    const { s, toPx } = mapper(m);
+                    const [x0, x1, y0, y1] = m.dom;
+                    ctx.clearRect(0, 0, W, H);
+
+                    // grid + unit ellipses
+                    ctx.strokeStyle = "#eee"; ctx.lineWidth = 1;
+                    const nx = 9, ny = 7;
+                    for (let i = 0; i <= nx; i++) {
+                        const x = x0 + (i / nx) * (x1 - x0);
+                        const [px] = toPx(x, 0);
+                        ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, H); ctx.stroke();
+                    }
+                    for (let j = 0; j <= ny; j++) {
+                        const y = y0 + (j / ny) * (y1 - y0);
+                        const [, py] = toPx(0, y);
+                        ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(W, py); ctx.stroke();
+                    }
+                    ctx.strokeStyle = "#b8c6d8"; ctx.lineWidth = 1;
+                    for (let i = 0; i <= nx; i++) {
+                        for (let j = 0; j <= ny; j++) {
+                            const x = x0 + (i / nx) * (x1 - x0), y = y0 + (j / ny) * (y1 - y0);
+                            if (mKey === "hyp" && y < 0.05) continue;
+                            const [a, c] = m.g(x, y);
+                            const rx = m.unit / Math.sqrt(a), ry = m.unit / Math.sqrt(c);
+                            if (rx > 0.9 || ry > 0.9) continue;
+                            const [px, py] = toPx(x, y);
+                            ctx.beginPath();
+                            ctx.ellipse(px, py, s * rx, s * ry, 0, 0, 2 * Math.PI);
+                            ctx.stroke();
+                        }
+                    }
+                    // axis labels
+                    ctx.fillStyle = "#666"; ctx.font = "16px serif";
+                    ctx.fillText(m.labels[0] + " →", W - 40, H - 8);
+                    ctx.fillText(m.labels[1] + " ↑", 6, 18);
+                    if (mKey === "hyp") {
+                        const [, py] = toPx(0, 0);
+                        ctx.strokeStyle = "#c0392b"; ctx.lineWidth = 2;
+                        ctx.beginPath(); ctx.moveTo(0, py); ctx.lineTo(W, py); ctx.stroke();
+                        ctx.fillStyle = "#c0392b";
+                        ctx.fillText("y = 0 is infinitely far away", 200, py - 6);
+                    }
+
+                    // full path dashed, walked portion solid
+                    ctx.strokeStyle = "#999"; ctx.lineWidth = 1.5; ctx.setLineDash([5, 4]);
+                    ctx.beginPath();
+                    for (let i = 0; i <= NSTEPS; i += 5) {
+                        const [px, py] = toPx(pts[i][0], pts[i][1]);
+                        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke(); ctx.setLineDash([]);
+                    const n = Math.round(t * NSTEPS);
+                    ctx.strokeStyle = "#2e6db4"; ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    for (let i = 0; i <= n; i++) {
+                        const [px, py] = toPx(pts[i][0], pts[i][1]);
+                        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+
+                    // endpoints
+                    ctx.fillStyle = "#333"; ctx.font = "16px serif";
+                    const [ax, ay] = toPx(m.A[0], m.A[1]), [bx, by] = toPx(m.B[0], m.B[1]);
+                    ctx.beginPath(); ctx.arc(ax, ay, 4, 0, 2 * Math.PI); ctx.fill();
+                    ctx.beginPath(); ctx.arc(bx, by, 4, 0, 2 * Math.PI); ctx.fill();
+                    ctx.fillText("A", ax - 18, ay + 18); ctx.fillText("B", bx + 8, by + 18);
+
+                    // moving point with velocity and coordinate vector
+                    const p = pts[n], v = vels[n];
+                    const [a, c] = m.g(p[0], p[1]);
+                    const vlen = Math.sqrt(a * v[0] * v[0] + c * v[1] * v[1]);
+                    const ex = [1, 0];
+                    const exlen = Math.sqrt(a);
+                    // g-unit vectors for display, scaled to 'unit' chart size
+                    const k = 0.55;
+                    const vd = [v[0] / vlen * k, v[1] / vlen * k];
+                    const ed = [ex[0] / exlen * k, 0];
+                    arrow(ctx, toPx, p[0], p[1], ed[0], ed[1], "#27ae60", m.xname);
+                    arrow(ctx, toPx, p[0], p[1], vd[0], vd[1], "#c0392b", "γ′");
+                    const [mpx, mpy] = toPx(p[0], p[1]);
+                    ctx.fillStyle = "#c0392b";
+                    ctx.beginPath(); ctx.arc(mpx, mpy, 5, 0, 2 * Math.PI); ctx.fill();
+
+                    // angles: metric vs picture
+                    const gvw = a * v[0] * ex[0];
+                    const cosA = gvw / (vlen * exlen);
+                    const angG = Math.acos(Math.max(-1, Math.min(1, cosA))) * 180 / Math.PI;
+                    const angPic = Math.acos(Math.max(-1, Math.min(1, v[0] / Math.hypot(v[0], v[1])))) * 180 / Math.PI;
+
+                    document.getElementById("met-readout").innerHTML =
+                        '<span class="big">length so far = ' + cum[n].toFixed(4) + "</span>" +
+                        " &nbsp; (whole path: " + cum[NSTEPS].toFixed(4) + ")<br />" +
+                        "angle between γ′ and " + m.xname + ": <b>" + angG.toFixed(1) + "°</b> by the metric, " +
+                        angPic.toFixed(1) + "° in the picture";
+                }
+
+                document.querySelectorAll('input[name="metric"]').forEach((r) =>
+                    r.addEventListener("change", (e) => { mKey = e.target.value; recompute(); render(); }));
+                document.querySelectorAll('input[name="mpath"]').forEach((r) =>
+                    r.addEventListener("change", (e) => { pKey = e.target.value; recompute(); render(); }));
+                document.getElementById("met-t").addEventListener("input", render);
+                recompute(); render();
+            })();
+
+            // ================= light rays in the equatorial plane =================
+            (function () {
+                const canvas = document.getElementById("ray-canvas");
+                const ctx = canvas.getContext("2d");
+                const W = canvas.width, H = canvas.height;
+                const RS = 1;
+                const S = 34; // pixels per r_s
+                const cx = W / 2 + 40, cy = H / 2;
+                function toPx(x, y) { return [cx + S * x, cy - S * y]; }
+                const BC = 1.5 * Math.sqrt(3) * RS;
+
+                // Trace u(phi) with RK4: u'' = -u + 1.5 rs u^2.
+                // Start at x = -X0 with height b, moving in +x direction.
+                function trace(b) {
+                    const X0 = 60;
+                    if (Math.abs(b) < 1e-6) return { path: [[-X0, 0], [-RS, 0]], captured: true, outAng: null };
+                    const r0 = Math.hypot(X0, b);
+                    const phi0 = Math.atan2(b, -X0);
+                    // direction (1,0) in polar components at the start point
+                    const er = [-X0 / r0, b / r0], ephi = [-er[1], er[0]];
+                    const cr = er[0], cph = ephi[0]; // dot((1,0), er), dot((1,0), ephi)
+                    let u = 1 / r0, w = -cr / (r0 * cph); // du/dphi
+                    let phi = phi0;
+                    const h = 0.01 * Math.sign(cph);
+                    const path = [[-X0, b]];
+                    let captured = false;
+                    const f = (u) => -u + 1.5 * RS * u * u;
+                    for (let i = 0; i < 4000; i++) {
+                        const k1u = w, k1w = f(u);
+                        const k2u = w + h / 2 * k1w, k2w = f(u + h / 2 * k1u);
+                        const k3u = w + h / 2 * k2w, k3w = f(u + h / 2 * k2u);
+                        const k4u = w + h * k3w, k4w = f(u + h * k3u);
+                        u += h / 6 * (k1u + 2 * k2u + 2 * k3u + k4u);
+                        w += h / 6 * (k1w + 2 * k2w + 2 * k3w + k4w);
+                        phi += h;
+                        if (u > 1 / RS) { captured = true; break; }
+                        if (u <= 0) break;
+                        const r = 1 / u;
+                        path.push([r * Math.cos(phi), r * Math.sin(phi)]);
+                        if (r > 80) break;
+                    }
+                    // outgoing direction angle
+                    let outAng = null;
+                    if (!captured && path.length > 2) {
+                        const p = path[path.length - 1], q = path[path.length - 2];
+                        outAng = Math.atan2(p[1] - q[1], p[0] - q[0]);
+                    }
+                    return { path, captured, outAng };
+                }
+
+                function drawPath(path, color, width) {
+                    ctx.strokeStyle = color; ctx.lineWidth = width;
+                    ctx.beginPath();
+                    for (let i = 0; i < path.length; i++) {
+                        const [px, py] = toPx(path[i][0], path[i][1]);
+                        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+                    }
+                    ctx.stroke();
+                }
+
+                const fan = [];
+                for (let b = -6; b <= 6.001; b += 0.5) fan.push({ b, ...trace(b) });
+
+                function render() {
+                    const b = parseFloat(document.getElementById("ray-b").value);
+                    document.getElementById("ray-b-val").textContent = b.toFixed(2);
+                    ctx.clearRect(0, 0, W, H);
+                    for (const r of fan) drawPath(r.path, r.captured ? "#ccc" : "#c5d3e6", 1);
+                    // photon sphere + horizon
+                    const [ox, oy] = toPx(0, 0);
+                    ctx.setLineDash([4, 4]); ctx.strokeStyle = "#888"; ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.arc(ox, oy, S * 1.5 * RS, 0, 2 * Math.PI); ctx.stroke();
+                    ctx.setLineDash([]);
+                    ctx.fillStyle = "#000";
+                    ctx.beginPath(); ctx.arc(ox, oy, S * RS, 0, 2 * Math.PI); ctx.fill();
+                    ctx.fillStyle = "#666"; ctx.font = "14px serif";
+                    ctx.fillText("photon sphere r = 1.5 rₛ", ox + S * 1.6, oy - S * 1.3);
+                    // chosen ray
+                    const ray = trace(b);
+                    drawPath(ray.path, ray.captured ? "#555" : "#c0392b", 2.5);
+                    // b marker
+                    const [bx, by] = toPx(-8.5, b), [bx0, by0] = toPx(-8.5, 0);
+                    ctx.strokeStyle = "#c0392b"; ctx.lineWidth = 1; ctx.setLineDash([2, 3]);
+                    ctx.beginPath(); ctx.moveTo(bx0, by0); ctx.lineTo(bx, by); ctx.stroke();
+                    ctx.setLineDash([]);
+                    ctx.fillStyle = "#c0392b"; ctx.fillText("b", bx + 5, (by + by0) / 2 + 5);
+
+                    let txt = "b = " + b.toFixed(2) + " rₛ &nbsp; (critical b<sub>c</sub> = 3√3/2 ≈ " + BC.toFixed(3) + ")<br />";
+                    if (ray.captured) {
+                        txt += "<b>captured</b>: this ray crosses the horizon";
+                    } else {
+                        let defl = -ray.outAng; // ray started heading +x, bent toward the hole
+                        if (b < 0) defl = -defl;
+                        // unwrap total turning by counting from the path
+                        let total = 0;
+                        for (let i = 2; i < ray.path.length; i++) {
+                            const p = ray.path[i], q = ray.path[i - 1], o = ray.path[i - 2];
+                            const a1 = Math.atan2(q[1] - o[1], q[0] - o[0]);
+                            const a2 = Math.atan2(p[1] - q[1], p[0] - q[0]);
+                            let d = a2 - a1;
+                            while (d > Math.PI) d -= 2 * Math.PI;
+                            while (d < -Math.PI) d += 2 * Math.PI;
+                            total += d;
+                        }
+                        const deg = Math.abs(total) * 180 / Math.PI;
+                        const weak = (2 * RS / Math.abs(b)) * 180 / Math.PI;
+                        txt += "<b>escapes</b>, deflected by <b>" + deg.toFixed(1) + "°</b>" +
+                            (Math.abs(b) > 0.01 ? " &nbsp; (weak-field estimate 2rₛ/b = " + weak.toFixed(1) + "°)" : "");
+                    }
+                    document.getElementById("ray-readout").innerHTML = txt;
+                }
+                document.getElementById("ray-b").addEventListener("input", render);
+                render();
+            })();
+
+            // ================= exercises with localStorage =================
+            (function () {
+                const KEY = "tlehman-geometry-exercises";
+                let state = {};
+                try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+
+                function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+
+                function parseAnswer(str) {
+                    const s = str.trim().toLowerCase().replace(/\s+/g, "");
+                    if (!/^[0-9pi+\-*/().]*$/.test(s) || s.length === 0) return NaN;
+                    if (/[a-z]/.test(s.replace(/pi/g, ""))) return NaN;
+                    const expr = s.replace(/pi/g, "(3.141592653589793)");
+                    try { return Function('"use strict"; return (' + expr + ')')(); }
+                    catch (e) { return NaN; }
+                }
+
+                const exercises = document.querySelectorAll(".exercise");
+
+                function updateProgress() {
+                    const n = exercises.length;
+                    let solved = 0;
+                    exercises.forEach((ex) => { if (state[ex.dataset.id] && state[ex.dataset.id].solved) solved++; });
+                    document.getElementById("ex-progress").textContent = solved + " of " + n + " solved";
+                }
+
+                exercises.forEach((ex) => {
+                    const id = ex.dataset.id;
+                    const answer = parseAnswer(ex.dataset.answer);
+                    const input = ex.querySelector("input");
+                    const feedback = ex.querySelector(".feedback");
+                    const btn = ex.querySelector("button.check");
+
+                    if (state[id]) {
+                        input.value = state[id].input || "";
+                        if (state[id].solved) {
+                            ex.classList.add("solved");
+                            feedback.textContent = "✓ correct";
+                            feedback.style.color = "#27ae60";
+                        }
+                    }
+
+                    function check() {
+                        const val = parseAnswer(input.value);
+                        state[id] = state[id] || {};
+                        state[id].input = input.value;
+                        if (isNaN(val)) {
+                            feedback.textContent = "couldn't parse that (try a number, or something like pi/3)";
+                            feedback.style.color = "#c0392b";
+                        } else if (Math.abs(val - answer) < 0.02 * Math.max(1, Math.abs(answer))) {
+                            state[id].solved = true;
+                            ex.classList.add("solved");
+                            feedback.textContent = "✓ correct";
+                            feedback.style.color = "#27ae60";
+                        } else {
+                            feedback.textContent = "not quite, try again (hint below)";
+                            feedback.style.color = "#c0392b";
+                        }
+                        save();
+                        updateProgress();
+                    }
+
+                    btn.addEventListener("click", check);
+                    input.addEventListener("keydown", (e) => { if (e.key === "Enter") check(); });
+                });
+
+                updateProgress();
+            })();
+        </script>
+
+        <script type="module">
+            import * as THREE from "three";
+            import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+
+            // ================= parallel transport on the sphere =================
+            (function () {
+                const container = document.getElementById("pt-container");
+                const scene = new THREE.Scene();
+                scene.background = new THREE.Color(0xffffff);
+                const w = container.clientWidth, h = container.clientHeight;
+                const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100);
+                camera.position.set(2.2, 1.9, 2.6);
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(w, h);
+                container.appendChild(renderer.domElement);
+                const controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                window.addEventListener("resize", () => {
+                    const w2 = container.clientWidth, h2 = container.clientHeight;
+                    camera.aspect = w2 / h2;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(w2, h2);
+                });
+                scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+                const dl = new THREE.DirectionalLight(0xffffff, 1.0);
+                dl.position.set(2, 3, 1);
+                scene.add(dl);
+
+                // math (x,y,z) with z up  ->  world (y, z, x): a cyclic
+                // permutation, so it's a rotation and handedness survives
+                function toWorld(x, y, z) { return new THREE.Vector3(y, z, x); }
+                function sph(th, ph) { return toWorld(Math.sin(th) * Math.cos(ph), Math.sin(th) * Math.sin(ph), Math.cos(th)); }
+                function eTheta(th, ph) { return toWorld(Math.cos(th) * Math.cos(ph), Math.cos(th) * Math.sin(ph), -Math.sin(th)); }
+                function ePhi(th, ph) { return toWorld(-Math.sin(th) * Math.sin(ph), Math.sin(th) * Math.cos(ph), 0); }
+
+                const sphere = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.995, 64, 48),
+                    new THREE.MeshStandardMaterial({ color: 0xdde6f2, roughness: 0.9, transparent: true, opacity: 0.92 }));
+                scene.add(sphere);
+                // lat/long lines
+                const lineMat = new THREE.LineBasicMaterial({ color: 0xb8c6d8 });
+                for (let k = 1; k < 6; k++) {
+                    const th = (k / 6) * Math.PI, pts = [];
+                    for (let i = 0; i <= 96; i++) pts.push(sph(th, (i / 96) * 2 * Math.PI));
+                    scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), lineMat));
+                }
+                for (let k = 0; k < 12; k++) {
+                    const ph = (k / 12) * 2 * Math.PI, pts = [];
+                    for (let i = 0; i <= 48; i++) pts.push(sph((i / 48) * Math.PI, ph));
+                    scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), lineMat));
+                }
+
+                let loopLine = null, capMesh = null;
+                const arrowStart = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 0.5, 0xc0392b, 0.14, 0.07);
+                const arrowV = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 0.5, 0x2e6db4, 0.14, 0.07);
+                const arrowE = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 0.35, 0x27ae60, 0.1, 0.05);
+                arrowStart.line.material.transparent = true; arrowStart.line.material.opacity = 0.45;
+                arrowStart.cone.material.transparent = true; arrowStart.cone.material.opacity = 0.45;
+                scene.add(arrowStart, arrowV, arrowE);
+                const dot = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 12), new THREE.MeshBasicMaterial({ color: 0x2e6db4 }));
+                scene.add(dot);
+
+                const NS = 720;
+                let th0 = 50 * Math.PI / 180;
+                let Vs = []; // transported (V^theta, V^phi) at each step
+                let alphas = []; // unwrapped angle of V relative to e_theta, degrees
+
+                function recompute() {
+                    // parallel transport: alpha' = -omega(gamma'), with the
+                    // sphere's connection form omega = cos(theta) dphi.
+                    // Along the latitude gamma(phi) = (theta0, phi), gamma' = d/dphi,
+                    // so omega(gamma') = cos(theta0). Integrate with the midpoint rule.
+                    const omega = (th, ph) => Math.cos(th);
+                    const hh = 2 * Math.PI / NS;
+                    let alpha = 0;
+                    alphas = [0];
+                    Vs = [[1, 0]];
+                    for (let i = 0; i < NS; i++) {
+                        const phm = (i + 0.5) * hh;
+                        alpha += -omega(th0, phm) * hh;
+                        alphas.push(alpha * 180 / Math.PI);
+                        // V = cos(alpha) e_1 + sin(alpha) e_2 in coordinate components
+                        Vs.push([Math.cos(alpha), Math.sin(alpha) / Math.sin(th0)]);
+                    }
+                    // loop line
+                    if (loopLine) { scene.remove(loopLine); loopLine.geometry.dispose(); }
+                    const pts = [];
+                    for (let i = 0; i <= 128; i++) pts.push(sph(th0, (i / 128) * 2 * Math.PI).multiplyScalar(1.003));
+                    loopLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),
+                        new THREE.LineBasicMaterial({ color: 0x333333 }));
+                    scene.add(loopLine);
+                    // cap
+                    if (capMesh) { scene.remove(capMesh); capMesh.geometry.dispose(); }
+                    const NR = 16, NP = 64, pos = [], idx = [];
+                    for (let i = 0; i <= NR; i++) for (let j = 0; j <= NP; j++) {
+                        const p = sph((i / NR) * th0, (j / NP) * 2 * Math.PI).multiplyScalar(1.002);
+                        pos.push(p.x, p.y, p.z);
+                    }
+                    for (let i = 0; i < NR; i++) for (let j = 0; j < NP; j++) {
+                        const a = i * (NP + 1) + j, b = a + NP + 1;
+                        idx.push(a, b, a + 1, b, b + 1, a + 1);
+                    }
+                    const g = new THREE.BufferGeometry();
+                    g.setIndex(idx); g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+                    g.computeVertexNormals();
+                    capMesh = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: 0xf3c65f, transparent: true, opacity: 0.35, side: THREE.DoubleSide }));
+                    scene.add(capMesh);
+                }
+
+                function worldV(V, th, ph) {
+                    return eTheta(th, ph).multiplyScalar(V[0]).add(ePhi(th, ph).multiplyScalar(V[1]));
+                }
+
+                function update() {
+                    const t = parseFloat(document.getElementById("pt-t").value);
+                    const n = Math.round(t * NS), ph = (n / NS) * 2 * Math.PI;
+                    const p = sph(th0, ph);
+                    const V = worldV(Vs[n], th0, ph);
+                    const V0 = worldV(Vs[0], th0, 0);
+                    const p0 = sph(th0, 0);
+                    arrowStart.position.copy(p0); arrowStart.setDirection(V0.clone().normalize());
+                    arrowV.position.copy(p); arrowV.setDirection(V.clone().normalize());
+                    arrowE.position.copy(p); arrowE.setDirection(eTheta(th0, ph));
+                    dot.position.copy(p);
+                    const alpha = alphas[n];
+                    let txt = "angle of V relative to the frame vector ∂<sub>θ</sub>: <b>" + alpha.toFixed(1) + "°</b>" +
+                        " &nbsp; (−2π cos θ₀ · t = " + (-360 * Math.cos(th0) * t).toFixed(1) + "°)";
+                    if (n === NS) {
+                        // signed rotation from V0 to V(final), about the outward normal
+                        const nrm = p0.clone().normalize();
+                        const a = V0.clone().normalize(), b = V.clone().normalize();
+                        const rot = (Math.atan2(a.clone().cross(b).dot(nrm), a.dot(b)) * 180 / Math.PI + 360) % 360;
+                        const area = 2 * Math.PI * (1 - Math.cos(th0)) * 180 / Math.PI;
+                        const areaW = (area % 360 + 360) % 360;
+                        txt += '<br /><span class="big">V came back rotated by <b>' + rot.toFixed(1) + "°</b></span>" +
+                            " &nbsp; enclosed area 2π(1 − cos θ₀) = " + area.toFixed(1) + "° ≡ " + areaW.toFixed(1) + "° (mod 360°)";
+                    }
+                    document.getElementById("pt-readout").innerHTML = txt;
+                }
+
+                const latSlider = document.getElementById("pt-lat");
+                function setLat() {
+                    th0 = parseFloat(latSlider.value) * Math.PI / 180;
+                    document.getElementById("pt-lat-val").textContent = latSlider.value + "°";
+                    recompute(); update();
+                }
+                latSlider.addEventListener("input", setLat);
+                document.getElementById("pt-t").addEventListener("input", update);
+                setLat();
+                (function animate() {
+                    requestAnimationFrame(animate);
+                    controls.update();
+                    renderer.render(scene, camera);
+                })();
+            })();
+
+            // ================= black hole ray tracer =================
+            (function () {
+                const container = document.getElementById("bh-container");
+                const renderer = new THREE.WebGLRenderer({ antialias: false });
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                container.appendChild(renderer.domElement);
+                const scene = new THREE.Scene();
+                const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+                const frag = `
+                precision highp float;
+                varying vec2 vUv;
+                uniform vec2 uRes;
+                uniform vec3 uCamPos;
+                uniform mat3 uBasis;
+                uniform float uRs;
+                uniform float uFov;
+                uniform float uGrid;
+                uniform float uBand;
+
+                // --- hashing and noise ---
+                vec3 hash33(vec3 p) {
+                    p = fract(p * vec3(0.1031, 0.1030, 0.0973));
+                    p += dot(p, p.yxz + 33.33);
+                    return fract((p.xxy + p.yxx) * p.zyx);
+                }
+                float hash13(vec3 p) {
+                    p = fract(p * 0.1031);
+                    p += dot(p, p.zyx + 31.32);
+                    return fract((p.x + p.y) * p.z);
+                }
+                float vnoise(vec3 p) {
+                    vec3 i = floor(p), f = fract(p);
+                    f = f * f * (3.0 - 2.0 * f);
+                    return mix(mix(mix(hash13(i), hash13(i + vec3(1,0,0)), f.x),
+                                   mix(hash13(i + vec3(0,1,0)), hash13(i + vec3(1,1,0)), f.x), f.y),
+                               mix(mix(hash13(i + vec3(0,0,1)), hash13(i + vec3(1,0,1)), f.x),
+                                   mix(hash13(i + vec3(0,1,1)), hash13(i + vec3(1,1,1)), f.x), f.y), f.z);
+                }
+                float fbm(vec3 p) {
+                    float a = 0.5, s = 0.0;
+                    for (int i = 0; i < 5; i++) { s += a * vnoise(p); p *= 2.1; a *= 0.5; }
+                    return s;
+                }
+
+                // --- the sky: stars on a cube-map grid, a galactic band, a grid ---
+                vec3 stars(vec3 d) {
+                    vec3 a = abs(d);
+                    vec2 uv; float face;
+                    if (a.x >= a.y && a.x >= a.z) { uv = d.yz / a.x; face = d.x > 0.0 ? 0.0 : 1.0; }
+                    else if (a.y >= a.z)          { uv = d.xz / a.y; face = d.y > 0.0 ? 2.0 : 3.0; }
+                    else                          { uv = d.xy / a.z; face = d.z > 0.0 ? 4.0 : 5.0; }
+                    float N = 40.0;
+                    vec2 g = (uv * 0.5 + 0.5) * N;
+                    vec2 cell = floor(g);
+                    vec3 col = vec3(0.0);
+                    for (int i = -1; i <= 1; i++)
+                    for (int j = -1; j <= 1; j++) {
+                        vec2 c = cell + vec2(float(i), float(j));
+                        vec3 h = hash33(vec3(c, face * 7.0 + 1.0));
+                        if (h.z < 0.4) {
+                            vec2 pos = c + h.xy;
+                            vec2 dv = g - pos;
+                            float d2 = dot(dv, dv);
+                            vec3 h2 = hash33(vec3(c + 11.0, face * 3.0 + 2.0));
+                            float bright = 0.3 + 1.4 * pow(h2.x, 4.0);
+                            float size = 0.035 + 0.05 * h2.y * h2.y;
+                            vec3 tint = mix(vec3(0.85, 0.9, 1.0), vec3(1.0, 0.9, 0.75), h2.z);
+                            col += tint * bright * exp(-d2 / (size * size));
+                        }
+                    }
+                    return col;
+                }
+                vec3 sky(vec3 d) {
+                    vec3 col = stars(d);
+                    if (uBand > 0.5) {
+                        vec3 bn = normalize(vec3(0.3, 1.0, 0.25));
+                        float band = exp(-pow(dot(d, bn) * 3.5, 2.0));
+                        float n = fbm(d * 4.0);
+                        col += band * (0.25 + 0.6 * n) * vec3(0.30, 0.28, 0.42) * 0.9;
+                        col += band * pow(fbm(d * 9.0 + 3.0), 3.0) * vec3(0.7, 0.55, 0.5) * 0.35;
+                    }
+                    if (uGrid > 0.5) {
+                        float lat = asin(clamp(d.y, -1.0, 1.0));
+                        float lon = atan(d.x, d.z);
+                        float s = 3.14159265 / 12.0;  // 15 degrees
+                        float lw = 0.0045;
+                        float gl = 1.0 - smoothstep(0.0, lw, abs(fract(lat / s + 0.5) - 0.5) * s);
+                        float gm = 1.0 - smoothstep(0.0, lw / max(cos(lat), 0.05), abs(fract(lon / s + 0.5) - 0.5) * s);
+                        float eq = 1.0 - smoothstep(0.0, lw * 1.5, abs(lat));
+                        col += vec3(0.25, 0.55, 0.6) * max(gl, gm) * 0.6 + vec3(0.9, 0.5, 0.2) * eq * 0.8;
+                    }
+                    return col;
+                }
+
+                // --- geodesic integration ---
+                vec3 accel(vec3 x, float h2) {
+                    float r2 = dot(x, x);
+                    return -1.5 * uRs * h2 * x / (r2 * r2 * sqrt(r2));
+                }
+
+                void main() {
+                    vec2 ndc = vUv * 2.0 - 1.0;
+                    ndc.x *= uRes.x / uRes.y;
+                    float f = 1.0 / tan(uFov * 0.5);
+                    vec3 d = normalize(uBasis * normalize(vec3(ndc, -f)));
+                    vec3 x = uCamPos;
+                    if (uRs <= 0.0) { gl_FragColor = vec4(sky(d), 1.0); return; }
+
+                    // static observer: radial component of the coordinate velocity
+                    // is scaled by sqrt(1 - rs/r)
+                    float r0 = length(x);
+                    vec3 er = x / r0;
+                    float cr = dot(d, er);
+                    vec3 v = (d - cr * er) + cr * sqrt(max(1.0 - uRs / r0, 0.0)) * er;
+                    float h2 = dot(cross(x, v), cross(x, v));
+                    float rEscape = max(60.0, 3.0 * r0);
+                    bool captured = false;
+                    for (int i = 0; i < 400; i++) {
+                        float r = length(x);
+                        if (r < uRs) { captured = true; break; }
+                        if (r < 1.5 * uRs && dot(x, v) < 0.0) { captured = true; break; }
+                        if (r > rEscape) break;
+                        float h = clamp(0.06 * r, 0.02, 1.5);
+                        // RK4
+                        vec3 k1x = v,                  k1v = accel(x, h2);
+                        vec3 k2x = v + 0.5 * h * k1v,  k2v = accel(x + 0.5 * h * k1x, h2);
+                        vec3 k3x = v + 0.5 * h * k2v,  k3v = accel(x + 0.5 * h * k2x, h2);
+                        vec3 k4x = v + h * k3v,        k4v = accel(x + h * k3x, h2);
+                        x += h / 6.0 * (k1x + 2.0 * k2x + 2.0 * k3x + k4x);
+                        v += h / 6.0 * (k1v + 2.0 * k2v + 2.0 * k3v + k4v);
+                    }
+                    if (!captured && length(x) < 1.5 * uRs) captured = true;
+                    vec3 col = captured ? vec3(0.0) : sky(normalize(v));
+                    gl_FragColor = vec4(col, 1.0);
+                }`;
+
+                const uniforms = {
+                    uRes: { value: new THREE.Vector2(1, 1) },
+                    uCamPos: { value: new THREE.Vector3(0, 0, 10) },
+                    uBasis: { value: new THREE.Matrix3() },
+                    uRs: { value: 1.0 },
+                    uFov: { value: 60 * Math.PI / 180 },
+                    uGrid: { value: 1.0 },
+                    uBand: { value: 1.0 },
+                };
+                const mat = new THREE.ShaderMaterial({
+                    uniforms,
+                    vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }",
+                    fragmentShader: frag,
+                    depthTest: false, depthWrite: false,
+                });
+                scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+
+                let yaw = 0, pitch = 0, needs = true;
+                const rsSlider = document.getElementById("bh-rs"), dSlider = document.getElementById("bh-d");
+
+                function updateUniforms() {
+                    const rs = parseFloat(rsSlider.value), D = parseFloat(dSlider.value);
+                    document.getElementById("bh-rs-val").textContent = rs.toFixed(2);
+                    document.getElementById("bh-d-val").textContent = D.toFixed(1) + " (" + (rs > 0 ? (D / rs).toFixed(1) + " rₛ" : "flat") + ")";
+                    uniforms.uRs.value = rs;
+                    uniforms.uCamPos.value.set(0, 0, D);
+                    const q = new THREE.Quaternion().setFromEuler(new THREE.Euler(pitch, yaw, 0, "YXZ"));
+                    uniforms.uBasis.value.setFromMatrix4(new THREE.Matrix4().makeRotationFromQuaternion(q));
+                    uniforms.uGrid.value = document.getElementById("bh-grid").checked ? 1 : 0;
+                    uniforms.uBand.value = document.getElementById("bh-band").checked ? 1 : 0;
+                    const size = renderer.getSize(new THREE.Vector2()).multiplyScalar(renderer.getPixelRatio());
+                    uniforms.uRes.value.copy(size);
+                    // readout
+                    const bc = 1.5 * Math.sqrt(3) * rs;
+                    let txt = "photon sphere at 1.5 rₛ = " + (1.5 * rs).toFixed(2) + ", &nbsp; b<sub>c</sub> = 2.598 rₛ = " + bc.toFixed(2);
+                    if (rs > 0 && D > 1.5 * rs) {
+                        const sa = (bc / D) * Math.sqrt(1 - rs / D);
+                        txt += "<br />shadow angular radius: <b>" + (Math.asin(Math.min(1, sa)) * 180 / Math.PI).toFixed(1) + "°</b>" +
+                            " &nbsp; (horizon would subtend only " + (Math.asin(rs / D) * 180 / Math.PI).toFixed(1) + "°)";
+                    } else if (rs > 0) {
+                        txt += "<br /><b>you are inside the photon sphere</b>";
+                    } else {
+                        txt += "<br />no mass: straight rays, undistorted sky";
+                    }
+                    document.getElementById("bh-readout").innerHTML = txt;
+                    needs = true;
+                }
+
+                // drag to look
+                let dragging = false, lx = 0, ly = 0;
+                const el = renderer.domElement;
+                el.addEventListener("pointerdown", (e) => { dragging = true; lx = e.clientX; ly = e.clientY; el.setPointerCapture(e.pointerId); });
+                el.addEventListener("pointerup", (e) => { dragging = false; el.releasePointerCapture(e.pointerId); });
+                el.addEventListener("pointermove", (e) => {
+                    if (!dragging) return;
+                    const dx = e.clientX - lx, dy = e.clientY - ly;
+                    lx = e.clientX; ly = e.clientY;
+                    yaw += dx * 0.004; pitch += dy * 0.004;
+                    pitch = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, pitch));
+                    updateUniforms();
+                });
+                document.getElementById("bh-reset").addEventListener("click", () => { yaw = 0; pitch = 0; updateUniforms(); });
+                [rsSlider, dSlider, document.getElementById("bh-grid"), document.getElementById("bh-band")]
+                    .forEach((c) => c.addEventListener("input", updateUniforms));
+                window.addEventListener("resize", () => {
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                    updateUniforms();
+                });
+
+                updateUniforms();
+                (function animate() {
+                    requestAnimationFrame(animate);
+                    if (needs) { needs = false; renderer.render(scene, cam); }
+                })();
+            })();
+        </script>
+
+        <script data-goatcounter="https://tobilehman.goatcounter.com/count"
+                async src="//gc.zgo.at/count.js"></script>
+    </body>
+</html>

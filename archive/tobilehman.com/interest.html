@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Notes on interest rates" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/interest/ " />
+        <meta property="og:image" content=""/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Notes on interest rates" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='' />
+    
+
+    <title>
+        
+            Notes on interest rates : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" href="css/base.css"></link>
+    <link rel="stylesheet" href="css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="posts.html">Posts</a></li>
+        <li><a href="tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="links.html">Links</a></li>
+            <li><a href="notes.html">Notes</a></li>
+            <li><a href="projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Notes on interest rates</h1>
+
+    <style>
+a[href*='cnbc.com']::after {
+    background-image: url("https://www.cnbc.com/favicon.ico")
+}
+</style>
+
+<p>This page is about interest rates, negative interest rates, and <mark>complex interest rates</mark>.
+I think interest rates are interesting because they represent the value of <a href="tags/time.html">time</a>.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="interest.html#positive">Interest rates</a>
+<ol>
+<li><a href="interest.html#fed">Central Banking (The Federal Reserve)</a></li>
+<li><a href="interest.html#decline">The long-term decline of interest rates</a></li>
+</ol>
+</li>
+<li><a href="interest.html#negative">Negative interest rates</a></li>
+<li><a href="interest.html#complex">Complex interest rates</a>
+<ol>
+<li><a href="interest.html#eth">Ethereum Smart Contract Implementation</a></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>&ldquo;Compound interest is the eighth wonder of the world. He who understands it, earns it &hellip; he who doesn&rsquo;t &hellip; pays it.&rdquo;
+― Albert Einstein</p>
+</blockquote>
+<p>This quote is special because Einstein revolutionized our understanding of time, and interest is intimately related to the value of time. The interest rate is frequently used to <a href="https://www.investopedia.com/terms/d/discountrate.asp">discount</a> money in the future. Another cool way to think about <mark>interest is that it&rsquo;s the price of sending money back in time</mark>.</p>
+<p>Now let&rsquo;s get into the math.
+<a id="positive"></a></p>
+<h1 id="interest-rates">Interest rates</h1>
+<p>In all of these notes, we assume that interest compounds. That means that interest is earned on interest, or from the other side of the transaction,
+interest is paid on interest.</p>
+<p>The definition of an interest rate is a non-negative real number \( r \in [0, \infty) \).
+Call the principal \(P \in [0, \infty)\).</p>
+<p>Then, if the interest compounds annually, after t years, the total value of the investment is $$ P(1 + r)^{t} $$</p>
+<p>As an example, assume you bought a $1000 bond that earned 5% interest compounded annually. P = $1000 and r = 0.05, after 20 years, the value would be ($1000)*(1 + 0.05)<sup>20</sup> = $2653.30</p>
+<p>What about the really, really long term? How does the interest grow? Looking back at the formula:</p>
+<p>$$ P(1 + r)^{t} $$</p>
+<p>You can see that if the interest rate r is fixed over time, that it grows <mark>exponentially in t</mark>. This is what makes it &rsquo;the wonder of the world&rsquo;. Saving $X dollars a year grows linearly, but interest compounds exponentially.</p>
+<img src="images/linear-exponential.png" alt="graph of linear versus exponential growth" />
+<p><a id="fed"></a></p>
+<h3 id="the-federal-reserve">The Federal Reserve</h3>
+<p>The Federal Reserve is the central bank of the United States. It has a dual mandate to keep <a href="https://fred.stlouisfed.org/series/FPCPITOTLZGUSA">inflation</a> low and also keep <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> low. It&rsquo;s main tool for doing this are &ldquo;Open Market Operations&rdquo;, which amount to buying bonds with newly printed money, or removing bonds from circulation. These buying and selling operations can guide the <a href="https://www.federalreserve.gov/monetarypolicy/openmarket.htm">federal funds rate</a> to the Federal Reserve&rsquo;s goal. The federal funds rate is a minimum interest rate. If it&rsquo;s low, then borrowing is cheap and unemployment will fall, since it&rsquo;s cheaper for businesses to borrow and hire people. However, if it remains too low for too long, it&rsquo;s possible that all that cheap borrowed money could push up inflation.</p>
+<p>The Federal Reserve has to set the interest rate low enough to encourage job creation, but not too low that it stokes more inflation than the target.</p>
+<p><a id="decline"></a></p>
+<h3 id="the-long-term-decline-of-interest-rates">The long-term decline of interest rates</h3>
+<p>The Bank of England published an interesting document called <a href="https://www.bankofengland.co.uk/-/media/boe/files/working-paper/2020/eight-centuries-of-global-real-interest-rates-r-g-and-the-suprasecular-decline-1311-2018.pdf">Eight centuries of global real interest rates, R-G, and the &lsquo;suprasecular&rsquo; decline, 1311–2018</a>. In it they find a -1.96bps (basis point, or 0.01%) per year trend. That means that <mark>for the last 800 years, real interest rates have been declining by -0.02% per year</mark>.</p>
+<p><a id="negative"></a></p>
+<h1 id="negative-interest-rates">Negative interest rates</h1>
+<p>After the crash of 2008, central banks around the world lowered their interest rates to 0 in order to prevent the financial crash from turning into a repeat of the <a href="https://en.wikipedia.org/wiki/Great_Depression">Great Depression</a>. This worked in the United States, but in the European Union, the ECB (European Central Bank) had to experiment with <mark>lowering their interest rates to below 0</mark>.</p>
+<p>What does a negative interest rate mean? It means that the banks pay you to borrow money. Similarly, it charges savers for keeping their money in the bank. As an example, <a href="https://www.cnbc.com/2019/08/12/danish-bank-is-offering-10-year-mortgages-with-negative-interest-rates.html">a Danish bank offered negative interest rate mortgages</a>. The whole purpose of negative interest rates is to encourage money to circulate, instead of staying in bank accounts.</p>
+<p>So, \(r\) can be any real number, negative, positive or zero. What about complex numbers?</p>
+<p>(For a primer on imaginary and complex numbers, see my post <a href="posts/imaginary-numbers-are-real.html">Imaginary Numbers are Real</a>)</p>
+<p><a id="complex"></a></p>
+<h1 id="complex-interest-rates">Complex interest rates</h1>
+<p>What would a complex interest rate mean? If you are comfortable with math, you might bust out the compound interest formula and just change them from being real variables to being complex variables. So, assume \(P, r \in \mathbb{C}\), the set of complex numbers. Then \(P = A + iB\) and \(r = c + id\), where \( A, B, c, d \in \mathbb{R} \).</p>
+<p>Then \( P(1 + r)^{t} \) becomes</p>
+<p>$$ (A + iB)(1 + (c + id))^{t} $$</p>
+<p>But wait a minute, what does an imaginary amount of money mean? One way to imagine it is that the currency unit is actually a pair of units, like say, USD and DOGE. And there&rsquo;s this rule that if you multiply 1 DOGE * 1 DOGE it becomes worth -1 USD. This is equivalent to the complex number arithmetic.</p>
+<p>So all wallets in the economy would have US Dollars and Dogecoin, and the Federal Reserve would set the complex federal funds rate so that the compound interest grows in a spiral that doesn&rsquo;t diverge too quickly.</p>
+<p>One way to see it is to convert the complex number to polar coordinates, then raising it to a power will cause it to grow in a spiral or shrink in a spiral. Here&rsquo;s an example I cooked up with <a href="https://wolfram.com/mathematica">Mathematica</a>:</p>
+<p><img src="images/complex-interest-rates.gif" alt="complex exponentiation spiral"></p>
+<p><strong>Update from 2021-10-12</strong>:
+When I wrote the first draft on 2021-09-09, I was unaware of any other attempt to define complex rates of return. I thought I had invented it, but I was wrong. Here&rsquo;s a paper from 2010 called &ldquo;The Simple Meaning of Complex Rates of Return&rdquo;:</p>
+<p><a href="pdf/2010-Pierru-ComplexInterest.pdf">Pierru, Axel. (2010). The Simple Meaning of Complex Rates of Return. Engineering Economist. 55. 10.1080/00137911003775081.</a></p>
+<p>In Pierru 2010, the paper talks about the real and imaginary components representing two assets, A and B, with their own distinct rates of interest, ρ<sub>A</sub> and ρ<sub>B</sub>, and the imaginary unit i is interpreted as an exchange operator, exchanging some of A for B, or vice versa.</p>
+<p>Then the paper defines a complex rate of return in terms of ρ<sub>A</sub> and ρ<sub>B</sub>, where the period over which the interest is accrued is followed by an exchange between asset A and B.</p>
+<p><a id="eth"></a></p>
+<p><a href="https://ethereum.org">Ethereum</a> smart contract implementing complex money: <a href="https://replit.com/@tlehman/ComplexMoney#contract.sol">ComplexMoney on Repl.it</a></p>
+
+</article>
+
+<script>
+    const listItems = [];
+</script>
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

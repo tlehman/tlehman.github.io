@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Do sets exist?">
+<meta name="twitter:description" content="In my post yesterday, Cantor&#39;s Paradise: From Empty to Infinity and Beyond, I talked about how we...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="9j6WjX9P-SdlTh6CFUrQkKViZ8t3W0r7rDYGYeniRy6d4I2EZOBesu0ZQMrIJOk0C8LDahP9QzGU-_v36ARLSA" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Do sets exist?</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        91 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        598 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-11-19</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>In my post yesterday, <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html">Cantor's Paradise: From Empty to Infinity and Beyond</a>, I talked about how we know that there are two exclusive possibilities, either:</div><ol>
+<li>No infinite sets exist OR</li>
+<li>Infinitely many sizes of infinite sets exist</li>
+</ol><div>
+<br>The <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html#:~:text=of%20those%20sets.-,Axiom%20of%20Infinity,-%3A%20There%20exists%20a">Axiom of Infinity</a> implies 2. So if you admit the existence of just a single size of infinity, like the countably infinite set ℤ of integers, then you automatically get larger infinities, like the size of ℝ, the real numbers, and beyond. I remember doing an exercise in my set theory &amp; topology class that used the <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html#:~:text=with%20its%20singleton.-,Axiom%20of%20Power%20Set,-%3A%20For%20any%20set">Axiom of Power Set</a>, we proved that, for any set S, the power set P(S) is always strictly bigger:<br><br>$$\forall S : |S| &lt; |P(S)|$$<br><br>The power set P(S) of S is the set of all subsets of S. So we know that <em>if sets exist, and at least one of those sets is infinite, </em><strong><em>then</em></strong><em> there exist a towering hierarchy of larger sizes of infinite sets, ascending in size up with no upper bound. </em>Stated more simply: there is no infinity larger than all other infinities.<br><br>Okay, but let's back up for a second, <strong>do sets even exist?</strong><br><br>This question belongs to the philosophical discipline of ontology. Ontology is all about what does and does not exist. In physics, the ontology that physicists work with includes things like particles. Programming languages come with their own ontologies too, Java's ontology includes Classes and Objects. Clojure's ontology includes values like numbers, vectors, maps and sets.<br><br>The reason I am asking this question in this post is that it's <a href="https://www.scientificamerican.com/article/is-the-mathematical-world-real/">common for people to take for granted that mathematical objects don't exist</a>. In Plato's The Republic, he writes as Socrates, describing the Allegory of the Cave, and uses the metaphor of the cave to symbolize the world of the senses vs the outside world, which symbolizes the world of ideas. <br><br>The "shadows on the cave wall" are like the imperfect sets we draw on paper and instantiate in Clojure REPLs:</div><pre>#{1 3 2}</pre><div>
+<action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4eE16OWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--dc84db299e1aab4dc5245946713f4a9b3a4bd524" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--05050ca36c75b69897d12bb1f20a148aaf5b528f/platocave.jpg" filename="platocave.jpg" filesize="181473" width="1380" height="770" previewable="true" presentation="gallery" caption="Created by Cao Youfang - Plato's Cave Allegory"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBFZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--05050ca36c75b69897d12bb1f20a148aaf5b528f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/platocave.jpg">
+
+  <figcaption class="attachment__caption">
+      Created by Cao Youfang - Plato's Cave Allegory
+  </figcaption>
+</figure></action-text-attachment><br>By contrast, Plato holds that the ideal <em>set in itself</em> exists, meaning, for example, that the set {1,3,2} we instantiated in Clojure above, is but a shadow on the cave wall for the ideal set existing in the outside world:<br><br>$$\{1, 3, 2\}$$<br><br>Applying this metaphor, the immanent set-in-memory, or set-on-paper is only a shadow of the <em>real</em> set. This real set is accessible to the intellect, through reason. In Platonism, the ontological status of sets is actually <em>higher</em> than the matter it is presented in. So Plato says "yes, sets exist". If this is true, and the <a href="cantors-paradise-from-empty-to-infinity-and-beyond.html#:~:text=of%20those%20sets.-,Axiom%20of%20Infinity,-%3A%20There%20exists%20a">Axiom of Infinity</a> is true, then infinity really exists. Infinite sets are real.<br><br>What's an alternative view? Aristotle, a student of Plato's disagreed with this theory of ideal forms, and argued that forms are immanent, not transcendent. Aristotle was early in a tradition of <a href="https://en.wikipedia.org/wiki/Empiricism">empiricism</a>. This is more at home among the consensus materialist ontologies that are common today.<br><br>So Aristotle would say "no, sets don't exist. <em>pictures of sets exist, data structures of sets in memory exist"</em>. <br><br>Why does any of this matter? Answering this question probably won't produce any practical applications of mathematics. But it's interesting to anyone who wonders about what reality really is, or what mathematics really is. Being able to answer questions like this is also useful in getting into the question of whether God really exists.<br><br>
+</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/metaphysics.html">#metaphysics</a>
+        <a href="../tags/philosophy.html">#philosophy</a>
+        <a href="../tags/ontology.html">#ontology</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

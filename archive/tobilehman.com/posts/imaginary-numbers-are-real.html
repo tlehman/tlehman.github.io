@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="16x16 32x32">
+
+    
+        <meta property="og:title" content="Imaginary Numbers Are Real" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tobilehman.com/posts/imaginary-numbers-are-real/ " />
+        <meta property="og:image" content="https://tobilehman.com/posts/imaginary-numbers-are-real/img/complex-polar-card.png"/>
+        <meta name="twitter:card" content="summary_large_image">
+
+        <meta name="twitter:creator" content="@tobi_lehman" />
+        <meta name="twitter:title" content="Imaginary Numbers Are Real" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:image" content='https://tobilehman.com/posts/imaginary-numbers-are-real/img/complex-polar-card.png' />
+    
+
+    <title>
+        
+            Imaginary Numbers Are Real : tobilehman.com
+        
+    </title>
+
+
+    
+    <script>
+        var breadcrumbs = window.location.href.replace(/\?.*$/, '').split("/");
+        var path = "";
+        for(var i = 3; i < breadcrumbs.length; i++) {
+            if(i > 3 && i < breadcrumbs.length-1) {
+                path += "/";
+            }
+            path += breadcrumbs[i];
+        }
+
+        var pwd = "/home/tobi/" + path;
+    </script>
+    
+    <script src="../js/base.js"></script>
+    <link rel="stylesheet" href="../css/base.css"></link>
+    <link rel="stylesheet" href="../css/custom-2023-08-28.css"></link>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+const title = document.getElementsByTagName('meta');
+</script>
+
+</head>
+<body><div class="row">
+    <div class="col-2 header-col-2"></div>
+    <div class="col-8 centered" style="max-width: 100%; padding: 0">
+        <div id="terminal" style="max-width: 100%; overflow-x: hidden;">
+        <pre>Welcome to tobilehman.com!
+% <span id="cursor">&nbsp</span></pre>
+        </div>
+    </div>
+    <div class="col-2 header-col-2"></div>
+</div>
+<div class="row">
+            <div class="col-2"><style>
+.more-hidden::after {
+    content: "\25BA";
+}
+.more-showing::after {
+    content: "\25BC"
+}
+</style>
+<script>
+
+function more() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.remove('more-hidden');
+    m.classList.add('more-showing');
+    o.classList.remove('hidden');
+    m.innerText = "Less";
+}
+
+function less() {
+    const m = document.getElementById('more-expander');
+    const o = document.getElementById('other-menu');
+    m.classList.add('more-hidden');
+    m.classList.remove('more-showing');
+    m.innerText = "More";
+    o.classList.add('hidden');
+}
+
+function toggleMoreLess() {
+    const m = document.getElementById('more-expander');
+    if(m.classList.contains('more-hidden')) {
+        more();
+    } else {
+        less();
+    }
+}
+
+</script>
+<nav>
+    <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../posts.html">Posts</a></li>
+        <li><a href="../tags.html">#Tags</a></li>
+        <li>
+           <a id="more-expander" class="more-hidden" href="javascript:toggleMoreLess()">More</a>
+        </li>
+        <div id="other-menu" class="hidden">
+            <li><a href="../archive.html">Archive</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+            <li><a id="dark-mode-toggle" href="javascript:activateDarkMode">Dark Mode</a></li>
+            <li><a href="../links.html">Links</a></li>
+            <li><a href="../notes.html">Notes</a></li>
+            <li><a href="../projects.html">Projects</a></li>
+        </div>
+    </ul>
+</nav>
+
+</div>
+            <div class="col-8">
+                <div id="content">
+<article class="post">
+    <h1>Imaginary Numbers Are Real</h1>
+
+    
+        <div class="post-meta">Wed, Aug 21, 2019 - 1500 Words </div>
+    
+
+    <script src="../js/math-canvas.js"></script>
+<p>Numbers solve problems. Some problems are so precisely specified that they can be written as equations. When you learn to count, you start being able to solve problems like &ldquo;how long until the weekend?&rdquo;, which can produce equations like $$ x + 2 = 5 $$</p>
+<p>Natural number equations give rise to a solution space that looks like this:
+<canvas class="plot-1d" data-min="0" data-max="8" data-discrete="true"></canvas></p>
+<p>When we learn how to subtract, we learn how to solve equations like \( x + 1 = 0 \), and
+when we learn to divide, we learn to solve equations like \( x * 3 = 1 \).</p>
+<p>By this point we are familiar with \(\mathbb{R}\), the Real Number Line, the solution space we all learn in high school:</p>
+<p><canvas class="plot-1d" data-min="-3" data-max="3"></canvas></p>
+<p>The naming of the Real Number Line suggests that all other forms of numbers are not <em>real</em>, which
+is unfortunate. If you spend any time doing electrical engineering problems, or particle physics, you will encounter equations like this $$ x^2 + 1 = 0 $$</p>
+<p>The above equation can have real, practical applications, but the solution is not on the real line. In order to solve it, you have to posit a number that has this property: \(x^2 = -1\), conventionally, \(x\) is called \(i\), The number is called \(i\) because it stands for &ldquo;imaginary&rdquo;.</p>
+<p>The real numbers and the imaginary numbers are taken together as an enlarged number system, called the complex numbers. These complex numbers solve more equations than the reals.</p>
+<h2 id="slippery-slope">Slippery slope?</h2>
+<p>But wait a minute, if you introduce a new type of number to solve an equation, won&rsquo;t you have new equations that can&rsquo;t be solved in your expanded system, and you&rsquo;ll have to invent <strong>even more new kinds of number to solve <em>those</em> equations</strong>?</p>
+<p>TL;DR: No, Carl Freidrich Gauss solved this in 1799 [1]</p>
+<p>What Gauss&rsquo; Fundamental Theorem of Algebra shows is that the set of complex numbers is <strong>algebraically complete</strong>, meaning any polynomial equation with complex coefficients (the \(a_i\)s):</p>
+<div class="sidescroll">
+$$ a_n x^n + ... + a_1 x + a_0 = 0$$
+</div>
+<p>will have \(n\) complex solutions. So the set of all complex numbers is &ldquo;complete&rdquo; in the sense that every algebraic equation can be
+solved by a complex number.</p>
+<p>So that settles it, no slippery slope, introducing one imaginary unit \(i\) is all you need.</p>
+<h2 id="the-space-of-complex-numbers">The space of complex numbers</h2>
+<p>The set \( \mathbb{C} \) of complex numbers has a beautiful 2-dimensional geometry. The real number line is the horizontal axis, and the
+imaginary number line is the vertical axis. A complex number is the sum of a real number and an imaginary one. To visualize it, let&rsquo;s
+start with a point. Tap or click around to see the blue point and it&rsquo;s
+complex number representation: <span style="color: blue" id="example-z1">z = 1 + 2i</span>
+</span></p>
+<p><canvas id="example-1" class="plot-2d"
+data-min="-3" data-max="3"
+data-point-blue='{"x": 1, "y": 2}'>
+</canvas></p>
+<p>So, every complex number is a point in the plane, and every point in the plane is a complex number. All polynomial equations have all their solutions in that plane, and the imaginary component is just another dimension, they are no less real than the familiar real numbers.</p>
+<h2 id="adding-complex-numbers">Adding complex numbers</h2>
+<p>If you want to add two complex numbers, you use the parallelogram rule. Click around below and you will see how a, b and c = a+b form a parallelogram.</p>
+<span id="challenge-1">
+**Challenge: try to set the blue point so that the parallelogram is a square.**
+</span>
+<p>Given two complex numbers
+<span style="color: blue" id="ex-add-blue">a = 1 + 2i</span> and
+<span style="color: red" id="ex-add-red">b = 1 + 0.5i</span>, the sum is
+<span style="color: purple" id="ex-add-purple">c = a + b = 2 + 2.5i</span>
+<canvas id="example-add" class="plot-2d"
+data-min="-3" data-max="3"
+data-point-blue='{"x": 1, "y": 2}'
+data-point-red='{"x": 1, "y": 0.5}'
+data-point-purple='{"x": 2, "y": 2.5}'>
+</canvas></p>
+<p>We learned above that adding complex numbers is equivalent to forming a parallelogram with 0. Another way to think of addition is using Cartesian coordinates (u,v) + (x,y) = (u + x, v + y).</p>
+<h2 id="multiplying-complex-numbers">Multiplying complex numbers</h2>
+<p>What about multiplying complex numbers? Well, in order for these new numbers to be &ldquo;backwards compatible&rdquo; with the real numbers, they will need to satisfy all the same laws, like associativity and the distribution rule.</p>
+<p><strong>Associativity</strong> is the property that $$ x + (y + z) = (x + y) + z $$
+<strong>Distributivity</strong> is the property that $$ x (y + z) = x y + x z $$</p>
+<p>Suppose \(x = a + i b\) and \(y = c + i d \) and \(a,b,c,d\) are four arbitrary real numbers. Then we can use distributivity to write out \(x * y\):</p>
+<p>$$ x * y = (a + i b) * (c + id) $$</p>
+<p>applying the distributivity rule again gives:</p>
+<p>$$ ac + ibc + aid + i^2 bd$$</p>
+<p>And remembering that \(i^2 = -1\), we can now gather up the real numbers on the left and the imaginary ones on the right:</p>
+<p>$$ (ac - bd) + i(ad + bc)$$</p>
+<p>The above formula is useful for calculation, but that was a bunch of tedious algebra that didn&rsquo;t reveal the beautiful geometry lurking beneath the surface. Complex number addition turned out to be a nice parallelogram shape, does multiplication have any geometric interpretation? It does! But it&rsquo;s not obvious if we keep using our familiar Cartesian coordinate system. We need to change our coordinate system from Cartesian to Polar.</p>
+<h3 id="polar-coordinates">Polar coordinates</h3>
+<p>A point in polar coordinates is described by a radius \(r\) and an angle \(\theta\) (theta). If we start with a point \(x + iy\), we can calculate the radius using the Pythagorean theorem: \(r = \sqrt{x^2 + y^2} \), and the angle can be recovered using trig functions: \(\theta = \cos^{-1}(x/r)\).</p>
+<p>Now before we get to geometric multiplication, it&rsquo;s worth going over <a href="https://en.wikipedia.org/wiki/Euler%27s_identity">The Most Beautiful Equation Ever</a>, Euler&rsquo;s identity. The number \(e = 2.71828..\), called <strong>Euler&rsquo;s constant</strong> shows up <em>everywhere</em>. Seriously, everywhere. Even in finance.
+When computing compound interest, let \(P\) be the principal invested, \(r\) be your interest rate, \(n\) be the number of times you compound per year,
+then \(P(1 + \frac{r}{n})^n\) is the value of your investment after a year. If you increase \(n\) to \(\infty\), the value of your investment converges to \(Pe^r\). That&rsquo;s called continuously compounded interest.</p>
+<p>Another place \(e\) shows up is in trigonometry, and it will be useful for us writing complex numbers in polar coordinates. To understand The Most Beautiful Equation Ever: \( e^{i \pi} + 1 = 0 \), we have to study \(e^z\), where \(z\) is a complex number. The <a href="https://en.wikipedia.org/wiki/Taylor+series">Taylor series</a>
+expansion for the function \(e^z\) is:</p>
+<div class="sidescroll">
+$$ e^z = 1 + z + \frac{z^2}{2!} + \frac{z^3}{3!} + \frac{z^4}{4!} + ... $$
+</div>
+<p>Note: the notation 3! means 3 * 2 * 1, it&rsquo;s pronounced &ldquo;three factorial&rdquo;.</p>
+<p>If you expand out the sine and cosine functions in the same way, you get these equations:</p>
+<div class="sidescroll">
+$$ \sin(z) = z - \frac{z^3}{3!} + \frac{z^5}{5!} - \frac{z^7}{7!} + - ... $$
+</div>
+<div class="sidescroll">
+$$ \cos(z) = 1 - \frac{z^2}{2!} + \frac{z^4}{4!} - \frac{z^6}{6!} + - ... $$
+</div>
+<p>Then, compute \(e^{ix}\), remembering that \(i^2 = -1\)</p>
+<div class="sidescroll">
+$$ e^{ix} = 1 + ix + \frac{(ix)^2}{2!} + \frac{(ix)^3}{3!} + \frac{(ix)^4}{4!} + ... $$
+</div>
+<div class="sidescroll">
+$$ e^{ix} = 1 + ix - \frac{x^2}{2!} - i\frac{x^3}{3!} + \frac{x^4}{4!} + - ... $$
+</div>
+<p>Notice the alternating pattern of imaginary numbers? Take every other term and group it together:</p>
+<div class="sidescroll">
+$$ e^{ix} = \left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - + ...\right) + \left(ix - i\frac{x^3}{3!} + - \right) $$ 
+</div>
+<div class="sidescroll">
+$$ e^{ix} = \left(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - + ...\right) + i\left(x - \frac{x^3}{3!} + - \right) $$ 
+</div>
+<div class="sidescroll">
+$$ e^{ix} = \cos(x) + i\sin(x) $$
+</div>
+<p>And there it is, don&rsquo;t worry if you didn&rsquo;t follow all the algebraic details, I have to admit, when I first worked this out in calculus III, it seemed really bizarre that these things fit together so beautifully.</p>
+<p>To go from this equation to The Most Beautiful Equation Ever, just set x = π and calculate the result. It all collapses to -1, like all those infinitely many terms and alternating signs just vanished into hyperspace.</p>
+<p>This is so beautiful it must be true.</p>
+<h2 id="polar-multiplication-of-complex-numbers">Polar multiplication of complex numbers</h2>
+<p>Okay, now that we know what \(e^{ix}\) means, we are ready to write down complex numbers in polar form and see what multiplication looks like.</p>
+<p>Given two complex numbers
+<span style="color: blue" id="px-mult-blue">a = 0.5e<sup>0.3i</sup></span> and
+<span style="color: red" id="px-mult-red">b = 2.2e<sup>-0.3i</sup></span>, the product is
+<span style="color: purple" id="px-mult-purple">c = 1.1e<sup>0</sup></span></p>
+<p>Click or tap below to move the blue point, pay attention to the blue number above also, since it has the radius and angle information in it. The way to read this presentation of complex numbers is: <code>radius</code> * e<sup>i<code>angle</code></sup></p>
+<p><canvas id="example-2" class="polar-plot" data-rmax="4" data-point-red='{"r": 2.2, "theta": -0.3}' data-point-blue='{"r": 0.5, "theta": 0.3}' data-point-purple='{"r": 1.1, "theta": 0.0}'></canvas></p>
+<p>After playing around with a bunch of values, can you guess the rule? The geometric rule for multiplying complex numbers is multiply the radiuses and add the angles. This kind of beauty is lurking underneath all that old high school homework, obscured by rote memorization and inadequate tools for teachers. There&rsquo;s a whole flat world out there that makes Euclidean geometry computable with symbols in such an elegant way. I just had to share that, imaginary numbers are not some arbitrary contrivance, they are <em>real</em>.</p>
+
+<script src="imaginary-numbers-are-real/examples.js">
+</script>
+
+<p><a name="citations"></a></p>
+<ol>
+<li>C.F. Gauss&rsquo; Fundamental Theorem of Algebra <a href="http://math.huji.ac.il/~ehud/MH/Gauss-HarelCain.pdf">http://math.huji.ac.il/~ehud/MH/Gauss-HarelCain.pdf</a></li>
+</ol>
+
+</article>
+
+
+                </div>
+            </div>
+            <div class="col-2 sidebar">
+    <b>Tags: </b>
+    <ul>
+    
+        <li><a href="../tags/math.html">#math</a></li>
+    
+        <li><a href="../tags/deep-dive.html">#deep-dive</a></li>
+    
+    </ul>
+
+            </div>
+        </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      
+      <footer class="page-footer font-small special-color-dark pt-4">
+      
+        
+      
+        <div class="footer-copyright text-center py-3">&#169; 
+          <span class="copyright">
+            Copyright 2010-2024 Tobi Lehman. All rights reserved.
+          </span>
+        </div>
+        
+      
+      </footer>
+      
+    </div>
+    <div class="col-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{tikz-cd}
+\usepackage{amsmath}
+
+\usetikzlibrary{backgrounds}
+
+
+% Set transparent background
+\tikzset{background rectangle/.style={fill=none}, show background rectangle}
+
+\begin{document}
+\begin{tikzcd}
+\mathcal{G}\downarrow F \arrow[rd, "\text{Is}_F"] & \\
+                                      & \mathcal{G} \\
+\mathcal{G}\downarrow S \arrow[ru, "\text{Is}_S"] &
+\end{tikzcd}
+\end{document}

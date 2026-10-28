@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Computer Modern';
+    src: url('../../css/computer-modern/cmunrm.ttf');
+}
+
+body {
+    font-family: 'Computer Modern', serif;
+    font-size: 20px;
+    max-width: 800px;
+}
+
+img {
+    max-width: 300px;
+}

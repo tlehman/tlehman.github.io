@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draft Editor</title>
+    <link rel="stylesheet" href="blog-style-c95649ab0394022103d59996f0d4a44c.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
+    <link rel="stylesheet" href="darkmode.css">
+    <script src="darkmode.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/overtype@latest/dist/overtype.min.js"></script>
+    <style>
+        body { max-width: 900px; }
+
+        .meta-fields {
+            display: flex;
+            gap: 1em;
+            flex-wrap: wrap;
+            margin-bottom: 1em;
+        }
+        .meta-fields label {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85em;
+            color: #666;
+        }
+        .meta-fields input {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 0.3em 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .meta-fields input[name="title"] { width: 300px; }
+        .meta-fields input[name="slug"] { width: 200px; }
+        .meta-fields input[name="date"] { width: 160px; }
+
+        #editor-container {
+            margin-bottom: 1em;
+            min-height: 500px;
+        }
+
+        /* Preview pane */
+        #preview-pane {
+            display: none;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 1em;
+            min-height: 500px;
+            margin-bottom: 1em;
+        }
+        #preview-pane.visible {
+            display: block;
+        }
+
+        /* Annotation margin notes */
+        .margin-notes-pane {
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: 600px;
+        }
+        .margin-note {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.82em;
+            line-height: 1.4;
+            cursor: pointer;
+            position: relative;
+        }
+        .margin-note .dismiss-btn {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #999;
+            line-height: 1;
+        }
+        .margin-note .dismiss-btn:hover { color: #333; }
+        .margin-note .noted-text {
+            font-style: italic;
+            font-size: 0.9em;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+        .margin-note .severity-badge {
+            display: inline-block;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+        .margin-note.type-fact-check  { background: #fee2e2; border-color: #dc2626; }
+        .margin-note.type-style       { background: #dbeafe; border-color: #2563eb; }
+        .margin-note.type-coherence   { background: #dcfce7; border-color: #16a34a; }
+        .margin-note.type-consistency { background: #fef9c3; border-color: #ca8a04; }
+
+        .actions {
+            display: flex;
+            gap: 1em;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .actions button {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 0.5em 1.5em;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            cursor: pointer;
+            background: #fff;
+        }
+        .actions button.publish {
+            background: #0645ad;
+            color: #fff;
+            border-color: #0645ad;
+        }
+        .actions button.publish:hover { background: #0534a0; }
+        .actions button.clear:hover { background: #f5f5f5; }
+        .actions button.preview-btn { border-color: #666; }
+        .actions button.preview-btn.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        #status {
+            font-size: 0.9em;
+            color: #666;
+        }
+        #status.error { color: #c00; }
+        #status.success { color: #080; }
+
+        @media (max-width: 800px) {
+            .meta-fields input[name="title"] { width: 100%; }
+        }
+
+        /* Dark mode */
+        html.dark .actions button { background: #2a2a2a; color: #e0e0e0; border-color: #555; }
+        html.dark .actions button.publish { background: #0645ad; color: #fff; border-color: #0645ad; }
+        html.dark .actions button.preview-btn.active { background: #e0e0e0; color: #1a1a1a; }
+        html.dark #preview-pane { background: #2a2a2a; color: #e0e0e0; border-color: #555; }
+        html.dark .margin-note.type-fact-check  { background: #5c1a1a; border-color: #f87171; color: #f8d7da; }
+        html.dark .margin-note.type-style       { background: #1e2a4a; border-color: #60a5fa; color: #cfe2ff; }
+        html.dark .margin-note.type-coherence   { background: #1a3a1a; border-color: #4ade80; color: #d1e7dd; }
+        html.dark .margin-note.type-consistency { background: #3a3418; border-color: #facc15; color: #fff3cd; }
+        html.dark .margin-note .dismiss-btn { color: #999; }
+        html.dark .margin-note .dismiss-btn:hover { color: #e0e0e0; }
+    </style>
+</head>
+<body>
+    <nav style="display: flex; align-items: center; gap: 10px; margin-bottom: 1em;">
+        <a href="/writing/"><img src="/img/android-chrome-192x192.png" alt="logo" style="height: 32px; width: 32px;"></a>
+        <a href="/writing/" style="font-size: 1.4em; font-weight: 600; text-decoration: none; color: #000;">Tobi's writing</a>
+        <a href="/" style="margin-left: auto; text-decoration: none; color: #000;">Home</a>
+        <button class="darkmode-toggle">Dark</button>
+    </nav>
+
+    <h1>Draft Editor</h1>
+
+    <div style="margin-bottom: 1em;">
+        <label style="font-size: 0.85em; color: #666;">Edit Published
+            <select id="articleSelect" style="font-family: inherit; font-size: 1rem; padding: 0.3em 0.5em; border: 1px solid #ccc; border-radius: 3px; margin-left: 0.5em;">
+                <option value="">— New article —</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="meta-fields">
+        <label>Title
+            <input type="text" name="title" id="title" placeholder="Article title">
+        </label>
+        <label>Slug
+            <input type="text" name="slug" id="slug" placeholder="auto-generated">
+        </label>
+        <label>Date
+            <input type="date" name="date" id="date">
+        </label>
+    </div>
+
+    <div id="editor-container"></div>
+    <div id="preview-pane"></div>
+    <div id="margin-notes" class="margin-notes-pane"></div>
+
+    <div class="actions">
+        <button class="publish" onclick="publish()">Publish</button>
+        <button class="preview-btn" id="previewBtn" onclick="togglePreview()">Preview</button>
+        <button class="clear" onclick="clearDraft()">Clear Draft</button>
+        <button class="clear" id="redditBtn" onclick="generateRedditComments()">Generate Reddit Comments</button>
+        <span id="wordcount" style="font-size: 0.85em; color: #666;">0 words</span>
+        <span id="status"></span>
+    </div>
+
+    <div id="reddit-comments"></div>
+
+    <script src="marked.min.js"></script>
+    <script>
+        const titleEl = document.getElementById('title');
+        const slugEl = document.getElementById('slug');
+        const dateEl = document.getElementById('date');
+        const editorContainerEl = document.getElementById('editor-container');
+        const previewPane = document.getElementById('preview-pane');
+        const previewBtn = document.getElementById('previewBtn');
+        const marginNotesEl = document.getElementById('margin-notes');
+        const statusEl = document.getElementById('status');
+        const articleSelect = document.getElementById('articleSelect');
+
+        // Core state
+        let currentAnnotations = [];
+        let nextAnnotationId = 0;
+        let previewVisible = false;
+
+        // Initialize OverType editor
+        let editor = null;
+        const isDark = document.documentElement.classList.contains('dark');
+        try {
+            const result = new OverType('#editor-container', {
+                value: '',
+                theme: isDark ? 'cave' : 'solar',
+                toolbar: true,
+                autoResize: true,
+                onChange: (value) => {
+                    updateWordCount();
+                    saveDraft();
+                }
+            });
+            // OverType may return instance directly or as [instance]
+            editor = Array.isArray(result) ? result[0] : result;
+            console.log('OverType initialized', editor);
+        } catch (e) {
+            console.error('OverType init failed:', e);
+        }
+
+        function getContent() {
+            if (editor && typeof editor.getValue === 'function') return editor.getValue();
+            // Fallback: read from textarea inside the container
+            const ta = editorContainerEl.querySelector('textarea');
+            return ta ? ta.value : '';
+        }
+
+        function setContent(md) {
+            if (editor && typeof editor.setValue === 'function') {
+                editor.setValue(md);
+            } else {
+                const ta = editorContainerEl.querySelector('textarea');
+                if (ta) ta.value = md;
+            }
+        }
+
+        // Preview toggle
+        function togglePreview() {
+            previewVisible = !previewVisible;
+            if (previewVisible) {
+                previewPane.innerHTML = marked.parse(getContent());
+                previewPane.classList.add('visible');
+                editorContainerEl.style.display = 'none';
+                previewBtn.classList.add('active');
+                previewBtn.textContent = 'Edit';
+            } else {
+                previewPane.classList.remove('visible');
+                editorContainerEl.style.display = '';
+                previewBtn.classList.remove('active');
+                previewBtn.textContent = 'Preview';
+            }
+        }
+
+        // Sync dark mode theme with OverType
+        const darkToggle = document.querySelector('.darkmode-toggle');
+        if (darkToggle) {
+            darkToggle.addEventListener('click', () => {
+                setTimeout(() => {
+                    if (editor && typeof editor.setTheme === 'function') {
+                        const nowDark = document.documentElement.classList.contains('dark');
+                        editor.setTheme(nowDark ? 'cave' : 'solar');
+                    }
+                }, 50);
+            });
+        }
+
+        // Populate "Edit Published" dropdown
+        fetch('/api/articles')
+            .then(r => r.json())
+            .then(articles => {
+                articles.forEach(a => {
+                    const opt = document.createElement('option');
+                    opt.value = a.slug;
+                    opt.textContent = `${a.date} — ${a.title}`;
+                    articleSelect.appendChild(opt);
+                });
+            })
+            .catch(() => {});
+
+        articleSelect.addEventListener('change', async () => {
+            const slug = articleSelect.value;
+            if (!slug) return;
+            try {
+                const res = await fetch(`/api/articles/${slug}`);
+                const data = await res.json();
+                if (res.ok) {
+                    titleEl.value = data.title;
+                    slugEl.value = data.slug;
+                    dateEl.value = data.date;
+                    setContent(data.content);
+                    slugManuallyEdited = true;
+                    localStorage.removeItem(STORAGE_KEY);
+                    updateWordCount();
+                    statusEl.textContent = `Loaded "${data.title}"`;
+                    statusEl.className = '';
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error loading article: ' + e.message;
+                statusEl.className = 'error';
+            }
+        });
+
+        // Default date to today
+        dateEl.value = new Date().toISOString().slice(0, 10);
+
+        // Auto-generate slug from title
+        let slugManuallyEdited = false;
+        slugEl.addEventListener('input', () => { slugManuallyEdited = true; });
+        titleEl.addEventListener('input', () => {
+            if (!slugManuallyEdited) {
+                slugEl.value = titleEl.value
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-|-$/g, '');
+            }
+        });
+
+        const wordcountEl = document.getElementById('wordcount');
+
+        function updateWordCount() {
+            const text = getContent().trim();
+            const count = text ? text.split(/\s+/).length : 0;
+            wordcountEl.textContent = count + ' word' + (count !== 1 ? 's' : '');
+        }
+
+        // localStorage auto-save (debounced)
+        const STORAGE_KEY = 'draft-editor';
+        let saveTimer;
+        function saveDraft() {
+            clearTimeout(saveTimer);
+            saveTimer = setTimeout(() => {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                    title: titleEl.value,
+                    slug: slugEl.value,
+                    date: dateEl.value,
+                    content: getContent(),
+                    slugManuallyEdited
+                }));
+                statusEl.textContent = 'Draft saved';
+                statusEl.className = '';
+            }, 500);
+        }
+        titleEl.addEventListener('input', saveDraft);
+        slugEl.addEventListener('input', saveDraft);
+        dateEl.addEventListener('input', saveDraft);
+
+        // Restore draft on load
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+            try {
+                const d = JSON.parse(saved);
+                titleEl.value = d.title || '';
+                slugEl.value = d.slug || '';
+                dateEl.value = d.date || dateEl.value;
+                setContent(d.content || '');
+                slugManuallyEdited = d.slugManuallyEdited || false;
+                updateWordCount();
+                statusEl.textContent = 'Draft restored from localStorage';
+            } catch (e) {}
+        }
+
+        const redditBtn = document.getElementById('redditBtn');
+        const redditCommentsEl = document.getElementById('reddit-comments');
+        const REDDIT_STORAGE_KEY = 'draft-reddit-comments';
+
+        function updateRedditBtn() {
+            const saved = localStorage.getItem(REDDIT_STORAGE_KEY);
+            redditBtn.textContent = saved ? 'Re-generate Reddit Comments' : 'Generate Reddit Comments';
+        }
+
+        const savedReddit = localStorage.getItem(REDDIT_STORAGE_KEY);
+        if (savedReddit) {
+            redditCommentsEl.innerHTML = marked.parse(savedReddit);
+        }
+        updateRedditBtn();
+
+        function clearDraft() {
+            localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(REDDIT_STORAGE_KEY);
+            titleEl.value = '';
+            slugEl.value = '';
+            dateEl.value = new Date().toISOString().slice(0, 10);
+            setContent('');
+            slugManuallyEdited = false;
+            currentAnnotations = [];
+            marginNotesEl.innerHTML = '';
+            redditCommentsEl.innerHTML = '';
+            updateRedditBtn();
+            updateWordCount();
+            if (previewVisible) togglePreview();
+            statusEl.textContent = 'Draft cleared';
+            statusEl.className = '';
+        }
+
+        // ─── Annotation System ───
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        function truncate(str, max) {
+            return str.length > max ? str.slice(0, max) + '...' : str;
+        }
+
+        function findTextOffset(needle, haystack) {
+            let idx = haystack.indexOf(needle);
+            if (idx !== -1) return idx;
+
+            const normNeedle = needle.replace(/\s+/g, ' ').trim();
+            const normHaystack = haystack.replace(/\s+/g, ' ');
+            idx = normHaystack.indexOf(normNeedle);
+            if (idx !== -1) {
+                let origIdx = 0, normIdx = 0;
+                while (normIdx < idx && origIdx < haystack.length) {
+                    if (/\s/.test(haystack[origIdx])) {
+                        while (origIdx < haystack.length - 1 && /\s/.test(haystack[origIdx + 1])) origIdx++;
+                    }
+                    origIdx++;
+                    normIdx++;
+                }
+                return origIdx;
+            }
+
+            idx = haystack.toLowerCase().indexOf(needle.toLowerCase());
+            if (idx !== -1) return idx;
+
+            return -1;
+        }
+
+        function resolveOverlaps(annotations) {
+            const sorted = [...annotations].sort((a, b) => a.startOffset - b.startOffset || b.length - a.length);
+            const result = [];
+            let lastEnd = 0;
+            for (const ann of sorted) {
+                if (ann.startOffset >= lastEnd) {
+                    result.push(ann);
+                    lastEnd = ann.endOffset;
+                }
+            }
+            return result;
+        }
+
+        function applyAnnotations(newAnnotations, type) {
+            const content = getContent();
+            const located = [];
+            for (const ann of newAnnotations) {
+                const idx = findTextOffset(ann.text, content);
+                if (idx === -1) continue;
+                located.push({
+                    id: nextAnnotationId++,
+                    type: type,
+                    text: ann.text,
+                    feedback: ann.feedback,
+                    severity: ann.severity || 'medium',
+                    startOffset: idx,
+                    endOffset: idx + ann.text.length,
+                    length: ann.text.length
+                });
+            }
+
+            currentAnnotations = currentAnnotations
+                .filter(a => a.type !== type)
+                .concat(located)
+                .sort((a, b) => a.startOffset - b.startOffset);
+
+            renderMarginNotes();
+        }
+
+        function renderMarginNotes() {
+            marginNotesEl.innerHTML = '';
+
+            for (const ann of currentAnnotations) {
+                const note = document.createElement('div');
+                note.className = 'margin-note type-' + ann.type;
+                note.id = 'margin-note-' + ann.id;
+                note.innerHTML =
+                    '<button class="dismiss-btn" data-id="' + ann.id + '">&times;</button>' +
+                    '<div class="severity-badge">' + escapeHtml(ann.severity) + '</div> ' +
+                    escapeHtml(ann.feedback) +
+                    '<div class="noted-text">"' + escapeHtml(truncate(ann.text, 80)) + '"</div>';
+
+                note.querySelector('.dismiss-btn').addEventListener('click', () => {
+                    currentAnnotations = currentAnnotations.filter(a => a.id !== ann.id);
+                    renderMarginNotes();
+                });
+
+                marginNotesEl.appendChild(note);
+            }
+        }
+
+        async function requestAnnotation(type) {
+            const content = getContent().trim();
+            if (!content) return;
+
+            try {
+                const res = await fetch('/api/annotate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content, type })
+                });
+                const data = await res.json();
+                if (res.ok && data.annotations && data.annotations.length > 0) {
+                    applyAnnotations(data.annotations, type);
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error: ' + e.message;
+                statusEl.className = 'error';
+            }
+        }
+
+        // ─── Reddit Comments ───
+
+        async function generateRedditComments() {
+            const content = getContent().trim();
+            if (!content) {
+                statusEl.textContent = 'Nothing to generate comments for.';
+                statusEl.className = 'error';
+                return;
+            }
+
+            redditBtn.disabled = true;
+            redditBtn.textContent = 'Generating...';
+            statusEl.textContent = 'Generating reddit comments...';
+            statusEl.className = '';
+
+            try {
+                const res = await fetch(window.location.origin + '/api/reddit-comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    redditCommentsEl.innerHTML = marked.parse(data.comments);
+                    localStorage.setItem(REDDIT_STORAGE_KEY, data.comments);
+                    statusEl.textContent = 'Reddit comments generated';
+                    statusEl.className = 'success';
+                } else {
+                    statusEl.textContent = 'Error: ' + (data.error || 'Unknown error');
+                    statusEl.className = 'error';
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error: ' + e.message;
+                statusEl.className = 'error';
+            } finally {
+                redditBtn.disabled = false;
+                updateRedditBtn();
+            }
+        }
+
+        // ─── Publish ───
+
+        async function publish() {
+            const title = titleEl.value.trim();
+            const slug = slugEl.value.trim();
+            const date = dateEl.value;
+            const content = getContent();
+
+            if (!title || !slug || !date || !content) {
+                statusEl.textContent = 'All fields are required.';
+                statusEl.className = 'error';
+                return;
+            }
+
+            statusEl.textContent = 'Publishing...';
+            statusEl.className = '';
+
+            try {
+                const res = await fetch('/api/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title, slug, date, content })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    statusEl.innerHTML = 'Published! <a href="' + data.url + '">' + data.url + '</a>';
+                    statusEl.className = 'success';
+                } else {
+                    statusEl.textContent = 'Error: ' + (data.error || 'Unknown error');
+                    statusEl.className = 'error';
+                }
+            } catch (e) {
+                statusEl.textContent = 'Error: ' + e.message;
+                statusEl.className = 'error';
+            }
+        }
+    </script>
+</body>
+</html>

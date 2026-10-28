@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="KANs vs MLPs for AI: Part 1">
+<meta name="twitter:description" content="About a week ago, this paper made a big splash on 𝕏:
+“KAN: Kolmogorov-Arnold NetworksZiming Liu, ...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="Kzkn400llLejS9ciOtKXNejJ8wdk359SIuBdCuep4OlA5zzqVoozIisciWrnvK6RRmlXpgB5lpgaLaCc5k_sjw" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>KANs vs MLPs for AI: Part 1</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        18 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        613 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2024-05-09</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>About a week ago, this paper made a big splash on <a href="https://x.com">𝕏</a>:<br><br>
+</div><blockquote>KAN: Kolmogorov-Arnold Networks<a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Liu,+Z">Ziming Liu</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Wang,+Y">Yixuan Wang</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Vaidya,+S">Sachin Vaidya</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Ruehle,+F">Fabian Ruehle</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Halverson,+J">James Halverson</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Solja%C4%8Di%C4%87,+M">Marin Soljačić</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Hou,+T+Y">Thomas Y. Hou</a>, <a href="https://arxiv.org/search/cs?searchtype=author&amp;query=Tegmark,+M">Max Tegmark</a><blockquote>Inspired by the Kolmogorov-Arnold representation theorem, we propose Kolmogorov-Arnold Networks (KANs) as promising alternatives to Multi-Layer Perceptrons (MLPs). While MLPs have fixed activation functions on nodes ("neurons"), KANs have learnable activation functions on edges ("weights"). KANs have no linear weights at all -- every weight parameter is replaced by a univariate function parameterized as a spline. We show that this seemingly simple change makes KANs outperform MLPs in terms of accuracy and interpretability. For accuracy, much smaller KANs can achieve comparable or better accuracy than much larger MLPs in data fitting and PDE solving. Theoretically and empirically, KANs possess faster neural scaling laws than MLPs. For interpretability, KANs can be intuitively visualized and can easily interact with human users. Through two examples in mathematics and physics, KANs are shown to be useful collaborators helping scientists (re)discover mathematical and physical laws. In summary, KANs are promising alternatives for MLPs, opening opportunities for further improving today's deep learning models which rely heavily on MLPs.\</blockquote>
+<a href="https://arxiv.org/abs/2404.19756">https://arxiv.org/abs/2404.19756</a>
+</blockquote><div>
+<br>Before we dig into the paper and the implementations, let's first unpack MLPs, the current dominant form of AI models. <br><br>
+</div><h1>The Universal Approximation Theorem and Multi-Layer Perceptrons</h1><div><br></div><div>The MLP (Multi-Layer Perceptron) is useful because of the <a href="https://www.deep-mind.org/2023/03/26/the-universal-approximation-theorem/">Universal Approximation Theorem</a>. The Universal Approximation Theorem states that for any function $$f : \mathbb{R}^n \to \mathbb{R}^m$$<br><br>There exists a neural network with one hidden layer that can approximate \( f \) on <a href="topology-basics-compactness.html">compact</a> subset of \(\mathbb{R}^n\) to arbitrary accuracy, given by the parameter \( \epsilon \). The paper writes out the formula:<br><br><br>$$ f({\bf x}) \approx \sum_{i=1}^N(\epsilon) a_i \sigma({\bf w}_i \cdot {\bf x} + b_i)$$<br><br>Where \(N(\epsilon)\) is the number of steps required to achieve an accuracy of within \( \epsilon \) of the real function \(f\). The \({\bf w}_i\) are the weights that are discovered through training. The \(b_i\) are the biases, which are also learned. The learning algorithm used is called backpropagation. If you are interested in how backprop works, check out <a href="https://colah.github.io/posts/2015-08-Backprop/">this excellent post by Chris Olah from 2015</a>. He shows that backprop is derived from the chain rule in calculus.<br><br>This result is the theoretical underpinning of today's neural networks. But what is this Kolmogorov-Arnold representation theorem?<br><br>
+</div><h1>The Kolmogorov-Arnold representation theorem and KANs</h1><div>The alternative architecture proposed in the arXiv paper is called a KAN (Kolmogorov-Arnold Network), which depends on the Kolmogorov-Arnold Representation theorem. This theorem is exact, unlike the MLP, here is the statement of the theorem, assume the same \( f : \mathbb{R}^n \to \mathbb{R}^m \), then:<br><br>$$ f({\bf x}) = \sum_{q=1}^{2n+1} \Phi_q\left( \sum_{p=1}^n(\phi_{q,p}(x_p)\right)$$<br><br>Other than being exact, the AI-relevant thing that KANs have is about activation functions. On an MLP, the neurons hold a number, and the value of that number can trigger an "activation", which is analogous to a neuron firing. The activation functions used vary, some popular choices are ReLU, tanh and various <a href="https://en.wikipedia.org/wiki/Sigmoid_function">sigmoids</a>.<br><br>KANs have <em>learnable activation functions on edges</em>, and there's also a sum operation on nodes. This means there are no linear weight matrices! <br><br>One of the motivations for KANs is that they are more interpretable than MLPs. Interpreting the internal structure of the model is a huge problem, so this is a good reason to learn their strengths and weaknesses. Another thing that KANs promise is the ability to be more accurate and use less compute for training time.<br><br>In the next post we will dig into how to write and train one of these things and compare/contrast it to the MLP equivalent.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/math.html">#math</a>
+        <a href="../tags/AI.html">#AI</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

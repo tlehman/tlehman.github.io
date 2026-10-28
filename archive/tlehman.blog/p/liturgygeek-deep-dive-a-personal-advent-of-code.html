@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="LiturgyGeek deep dive: a personal Advent of Code">
+<meta name="twitter:description" content="Today is the first day of Advent, but the third day of Advent of Code (AoC). I&#39;m not doing AoC th...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="sBVqZq9O3oHn2CqTWk1fr1EA5Lf-Fwn9JtykFMSodeTby3FvtOF5FG-PdNuHI2YL_6BAFpqxADceEVmCxU55gg" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>LiturgyGeek deep dive: a personal Advent of Code</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        96 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        499 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2023-12-03</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>Today is the first day of <a href="https://www.usccb.org/prayer-worship/liturgical-year/advent">Advent</a>, but the third day of <a href="https://adventofcode.com/2023">Advent of Code</a> (AoC). I'm not doing AoC this year, but I am doing something involving both Advent <em>and</em> Code, which is to extend <a href="https://twitter.com/KalebAxon">Kaleb Axon</a>'s <a href="https://liturgygeek.com/">LiturgyGeek</a> to include the Roman Catholic liturgical calendar.<br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4MU1EOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--d64da71e001096f95a6ea0af0ed767db1b8b9aea" content-type="image/png" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBOdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--92f82077009d5b2239e5cfde3e7d520cd09cbdd1/liturgygeek.png" filename="liturgygeek.png" filesize="48714" width="400" height="308" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--png">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBOdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--92f82077009d5b2239e5cfde3e7d520cd09cbdd1/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--ed26e74deacf60c2a0584ef372f6af76e3b2bc4b/liturgygeek.png">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">liturgygeek.png</span>
+      <span class="attachment__size">47.6 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br>This is my first time fully participating in the liturgical year since <a href="becoming-a-catechumen.html">becoming a catechumen</a>, so I have a lot of learning to do. My favorite way to learn about a new topic, besides reading and talking to people who know more than me, is to write code to implement the new ideas I'm learning. In college I would write Mathematica and C++ code when learning about a new branch of math, or I'd write programs to do simulations in physics for my physics classes.<br><br>
+</div><h1>Structure of the LiturgyGeek repo</h1><div>In case anyone else is interested, here's the basic structure of the repo, and how the liturgical calendar is computed:<br><br>
+</div><ul><li>LiturgyGeek.Tools/Sources/occasions.txt (codes for feast days, saints, etc.)</li></ul><pre>ordinary "Ordinary Time"
+advent "Advent"
+lent "{weekOrdinal} {dayOfWeek} of Lent"
+holyWeek "Holy Week"
+apostlesFast "Apostles' Fast"
+dormitionFast "Dormition Fast"</pre><ul>
+<li>Specific Traditions' data<ul><li>OCA (Orthodox Church in America)<ul>
+<li>LiturgyGeek.Tools/Sources/oca.txt</li>
+<li>LiturgyGeek.Tools/Sources/oca.json<ul><li>Contains definitions of the occasions for that tradition:<ul><li><pre>    //---------------------------------------------------------------------------
+    // Advent
+
+    "advent": {
+      "startDate": "11/15",
+      "endDate": "12/24",
+      "commonRules": [ "relaxedFastSeason" ]
+    },</pre></li></ul>
+</li></ul>
+</li>
+</ul>
+</li></ul>
+</li>
+<li>LiturgyGeek.Api (defines the API for the backend web server)</li>
+<li>LiturgyGeek.Ng (defines the Angular.JS frontend web app)</li>
+<li>LiturgyGeek.Calendars (defines the main ChurchCalendar abstraction and time logic)<ul>
+<li>ChurchCalendar.cs<ul>
+<li>has a TraditionCode (e.g. Easter Orthodox)</li>
+<li>has a CalendarCode (e.g. OCA)</li>
+</ul>
+</li>
+<li>The Engine namespace contains<ul>
+<li>CalendarReader: for reading calendar definition files</li>
+<li>CalendarEvaluator: for evaluating/calculating calendar dates and</li>
+<li>CalendarYearBuilder: for building calendar years</li>
+</ul>
+</li>
+<li>The Dates namespace has classes representing different kinds of date calculations like FixedDate and MovableDate</li>
+</ul>
+</li>
+<li>LiturgyGeek.Data (handles database interaction)</li>
+</ul><div>
+<br>I work mostly on my M1 Mac and on my Linux servers through ssh, so I can't build this repo right now, my Windows machine is in my office and it's sunday. But I have a good high-level overview of the LiturgyGeek code and a decent plan of action for Monday night. I also wanted to share this for anyone interested in forking and adding <em>their </em>tradition's liturgical calendar to the project.<br><br>After mass today I got this beautiful printed liturgical calendar from my church:<br><br><action-text-attachment sgid="eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJamxuYVdRNkx5OTBiR1ZvYldGdUxXSnNiMmN2UVdOMGFYWmxVM1J2Y21GblpUbzZRbXh2WWk4MU5qOWxlSEJwY21WelgybHVCam9HUlZRPSIsImV4cCI6bnVsbCwicHVyIjoiYXR0YWNoYWJsZSJ9fQ==--6beb3ebd5b100ceb559b2edbbdef743c07a1c7ae" content-type="image/jpeg" url="https://tlehman.blog/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBQUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48f05b2e4af03f74a584b276bcbb6f3d844728c1/2024.jpg" filename="2024.jpg" filesize="761244" width="1200" height="1030" previewable="true" presentation="gallery"><figure class="attachment attachment--preview attachment--jpg">
+    <img src="../rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBQUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--48f05b2e4af03f74a584b276bcbb6f3d844728c1/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJQUJHa0NBQU09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1eb69fdf1a2afca9ec466428668fd17e0d8ee878/2024.jpg">
+
+  <figcaption class="attachment__caption">
+      <span class="attachment__name">2024.jpg</span>
+      <span class="attachment__size">743 KB</span>
+  </figcaption>
+</figure></action-text-attachment><br><br>One parting thought I'll share with my audience here: an obsession with time is the thing which lead me to come to believe in God. So I believe it's appropriate to work on Sunday if it's toward honoring the keeping of time for liturgical purposes. I'll share that story later, for now, I hope this has been helpful or inspiring in some way.<br><br>
+</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/religion.html">#religion</a>
+        <a href="../tags/catholicism.html">#catholicism</a>
+        <a href="../tags/time.html">#time</a>
+        <a href="../tags/programming.html">#programming</a>
+        <a href="../tags/dotnet.html">#dotnet</a>
+        <a href="../tags/js.html">#js</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>

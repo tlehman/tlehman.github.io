@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>tlehman.blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="tlehman.blog">
+<meta name="twitter:creator" content="Tobi Lehman">
+<meta name="twitter:title" content="Running LLaMA models locally in GNU Emacs">
+<meta name="twitter:description" content="I&#39;ve gotten my emacs config posted here, and then I used ollama, a server written in Go, to pull ...">
+
+
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="IcJIlfrPYDNIsxeJp1rJ1dwFjNiMoBwqWWJiLad7aJJKHFOc4WDHpsDkScF6NPBxcqUoeegGFeBhr5-7pp1k9A" />
+    
+
+    <link rel="stylesheet" href="../assets/application-dcf5f86888fcc233843102d0760c62a69145040cb9c14830949b8dde418c4eec.css" data-turbo-track="reload" />
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js",
+    "trix": "/assets/trix-1563ff9c10f74e143b3ded40a8458497eaf2f87a648a5cbbfebdb7dec3447a5e.js",
+    "@rails/actiontext": "/assets/actiontext-28c61f5197c204db043317a8f8826a87ab31495b741f854d307ca36122deefce.js",
+    "controllers/application": "/assets/controllers/application-3c65a51e91a21dd46b1c9b6646162bac9775d4d911067a979102e3c18e9ebe24.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-4b4f8326b02f4ba5761ced621b278cfab5bfa0a9f4c3bb6d9f5bfc3f18394c0d.js",
+    "controllers": "/assets/controllers/index-119fad9e0503eb4359d76d77249cb804e097f5d0c1d6fca03446f1485c1a57a9.js"
+  }
+}</script>
+<link rel="modulepreload" href="../assets/application-c3ff599ad4f48e7c3eda95e54366ba76f70041a44ae2a38db038b531e1ac9be0.js">
+<link rel="modulepreload" href="../assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="../assets/stimulus.min-dd364f16ec9504dfb72672295637a1c8838773b01c0b441bd41008124c407894.js">
+<link rel="modulepreload" href="../assets/stimulus-loading-3576ce92b149ad5d6959438c6f291e2426c86df3b874c525b30faad51b0d96b3.js">
+<script src="../assets/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>
+  </head>
+
+  <body>
+    <header>
+      <div class="header">
+          <h1>
+            <span class="header-avatar"></span>&nbsp;
+            tlehman.blog > <span class="cursor"></span>
+          </h1>
+          <nav>
+            <ul class="horizontal-list">
+              <li><a href="../index.html">Timeline</a></li>
+              <li><a href="../posts.html">Posts</a></li>
+              <li><a href="../tags.html">Tags</a></li>
+              <li><a href="../contact.html">Contact</a></li>
+              <li><a href="../about.html">About</a></li>
+              <li><a href="../now.html">Now</a></li>
+              <li><a href="../feed.xml"><img style="width: 16px; height: 16px"src="https://upload.wikimedia.org/wikipedia/commons/4/46/Generic_Feed-icon.svg"></a></li>
+              <li>
+              </li>
+            </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+        <!-- Katex start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+<!-- The loading of KaTeX is deferred to speed up page rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+<!-- To automatically render math in text elements, include the auto-render extension: -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+<!-- Katex end -->
+
+
+
+<h1>Running LLaMA models locally in GNU Emacs</h1>
+<div class="post-metadata">
+    <span class="meta-box">
+        56 page views
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        188 words
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <time class="post-created-at">2024-03-22</time>
+    </span>
+</div>
+<article>
+    <div class="trix-content">
+  <div>I've gotten my emacs config posted <a href="https://github.com/tlehman/etc/blob/master/emacs.el">here</a>, and then I used <a href="https://ollama.com/">ollama</a>, a server written in Go, to pull and serve up the <a href="https://huggingface.co/HuggingFaceH4/zephyr-7b-beta">zephyr 7b model</a>. I can then interact with it through <a href="https://github.com/s-kostyaev/ellama">ellama</a>, and it even formats the chat dialogue as <a href="https://orgmode.org/">org-mode</a>. <br>This workflow is very easy to get into a flow state. The <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Tab-Bars.html">tab-bar-mode</a> gives me those tabs across the top, then I can stay entirely in emacs while I work through various parts of an Emacs Lisp or Clojure program. I'll start working with other languages too, but the integration of a local LLM is a game-changer. I can't describe how flow-state-inducing it is.<br><action-text-attachment content-type="image" url="https://pbs.twimg.com/media/GJVJicyagAAb-Q9?format=jpg&amp;name=4096x4096" width="2340" height="1698"><figure class="attachment attachment--preview">
+  <img width="2340" height="1698" src="https://pbs.twimg.com/media/GJVJicyagAAb-Q9?format=jpg&amp;name=4096x4096">
+</figure></action-text-attachment><br><action-text-attachment content-type="image" url="https://pbs.twimg.com/media/GJVJic9b0AAIpnZ?format=jpg&amp;name=4096x4096" width="2704" height="1756"><figure class="attachment attachment--preview">
+  <img width="2704" height="1756" src="https://pbs.twimg.com/media/GJVJic9b0AAIpnZ?format=jpg&amp;name=4096x4096">
+</figure></action-text-attachment><br>Programming will never be the same, you can have a little intelligence to chat with in your editor, a hyper-<a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber-duck</a> for all your programming questions. It's frequently wrong or incomplete, but the feedback loop between generation, editing and execution is so tight that it makes for a really nice workflow.</div>
+</div>
+
+</article>
+<hr>
+<div class="tags">
+        <a href="../tags/programming.html">#programming</a>
+        <a href="../tags/AI.html">#AI</a>
+        <a href="../tags/emacs.html">#emacs</a>
+        <a href="../tags/Go.html">#Go</a>
+</div>
+
+<script src="../assets/cssfaviconlinks-33b812ce0c73a0b60fdd88bab0eed29733f00a820b1af9e6d4df2fa02614f217.js"></script>
+
+    </main>
+
+    <script>
+     fetch('/page_views', {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json',
+             'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+         },
+         body: JSON.stringify({
+             page_view: {
+                 url: window.location.href
+             }
+         })
+     });
+    </script>
+  </body>
+</html>
