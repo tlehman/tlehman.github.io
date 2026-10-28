@@ -11,3 +11,4 @@ math/grp/perms
 *#
 .DS_Store
 .env
+shell/texsh/vendor/

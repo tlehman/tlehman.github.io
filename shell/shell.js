@@ -1,4 +1,4 @@
-// shell.js -- a small shell and terminal for /programs.html.
+// shell.js -- a small shell and terminal for /shell/.
 //
 // External commands are WebAssembly: every file in /bin holds the bytes of
 // coreutils.wasm and runs through the WASI host in wasi.js against an
@@ -50,6 +50,7 @@ class Terminal {
     this.pending = '';
     this.style = { fg: null, bold: false, underline: false };
     this.link = null;
+    this.sink = this.out;
     this.colsCache = 0;
     window.addEventListener('resize', () => { this.colsCache = 0; });
   }
@@ -121,6 +122,14 @@ class Terminal {
     // OSC 8 ; params ; uri  -- hyperlinks
     const m = /^8;[^;]*;(.*)$/s.exec(body);
     if (m) this.link = m[1] || null;
+    // OSC 777 ; nowrap|wrap  -- a block that scrolls sideways instead of
+    // wrapping, so laid-out math keeps its shape on narrow screens
+    if (body === '777;nowrap') {
+      const block = document.createElement('span');
+      block.className = 'nowrap';
+      this.out.append(block);
+      this.sink = block;
+    } else if (body === '777;wrap') this.sink = this.out;
   }
 
   styled(tag) {
@@ -146,23 +155,23 @@ class Terminal {
   }
 
   emit(text) {
-    if (this.link) { this.out.append(this.anchor(this.link, text)); return; }
+    if (this.link) { this.sink.append(this.anchor(this.link, text)); return; }
     // linkify bare URLs in plain output
     const parts = text.split(/(https?:\/\/[^\s'"<>]+)/);
     parts.forEach((part, k) => {
       if (!part) return;
-      if (k % 2) { this.out.append(this.anchor(part, part)); return; }
+      if (k % 2) { this.sink.append(this.anchor(part, part)); return; }
       if (this.style.fg === null && !this.style.bold && !this.style.underline) {
-        this.out.append(document.createTextNode(part));
+        this.sink.append(document.createTextNode(part));
       } else {
         const span = this.styled('span');
         span.textContent = part;
-        this.out.append(span);
+        this.sink.append(span);
       }
     });
   }
 
-  clear() { this.out.textContent = ''; }
+  clear() { this.out.textContent = ''; this.sink = this.out; }
 
   setPrompt(ps1) { this.ps1.textContent = ps1; }
 
@@ -208,7 +217,7 @@ class Shell {
     return path === HOME ? '~' : path.startsWith(HOME + '/') ? '~' + path.slice(HOME.length) : path;
   }
 
-  prompt() { return `${USER}@${HOST}:${this.tilde(this.cwd)}$ `; }
+  prompt() { return this.texsh ? 'texsh> ' : `${USER}@${HOST}:${this.tilde(this.cwd)}$ `; }
 
   // Lexically resolve a path against $PWD (like `cd -L`).
   abs(path) {
@@ -361,6 +370,13 @@ class Shell {
   // ----------------------------------------------------------- execution
 
   run(line) {
+    if (this.texsh) {
+      this.texsh.history.push(line);
+      const say = (s) => this.term.write(s);
+      const err = (s) => this.term.write(`\x1b[31m${s}\x1b[0m`);
+      this.status = texshLine(this, line, say, err, true);
+      return;
+    }
     let list;
     try { list = this.parse(this.tokenize(line)); } catch (e) {
       this.term.write(`sh: ${e.message}\n`);
@@ -485,6 +501,7 @@ class Shell {
   // ---------------------------------------------------------- completion
 
   complete(value, pos) {
+    if (this.texsh) return null;
     const head = value.slice(0, pos);
     const m = /(?:^|[\s|;&<>])((?:\\.|[^\s|;&<>])*)$/.exec(head);
     const word = m[1];
@@ -546,6 +563,82 @@ function tzEnv() {
   return { TZOFFSET: String(-d.getTimezoneOffset()), TZNAME: name };
 }
 
+// ================================================================= texsh
+
+// One line of texsh's command language (see texsh's src/once.ts and
+// src/shell.ts), rendered with Unicode cells since a page can't draw Kitty
+// graphics. `interactive` is the REPL started by a bare `texsh`.
+function texshLine(shell, line, say, err, interactive, tty = true) {
+  const T = window.TEXSH;
+  const cmd = T.parseLine(line);
+  if (!cmd) return 0;
+  const gray = (s) => (tty ? `\x1b[90m${s}\x1b[0m` : s);
+  const copy = (text) => {
+    shell.texsh && (shell.texsh.last = text);
+    navigator.clipboard?.writeText(text).catch(() => {});
+  };
+  const unicode = (latex) => {
+    const r = T.latexToUnicode(latex);
+    for (const w of r.warnings) err(`⚠ ${w}\n`);
+    return r.text;
+  };
+  switch (cmd.kind) {
+    case 'render':
+      for (const latex of cmd.exprs) {
+        let out;
+        try { out = T.renderLatexToString(latex); } catch (e) { err(`error: ${e.message}\n`); return 1; }
+        say(tty ? `\x1b]777;nowrap\x07${out}\x1b]777;wrap\x07\n` : `${out}\n`);
+      }
+      return 0;
+    case 'unicode': {
+      let rc = 0;
+      for (const latex of cmd.exprs) {
+        try {
+          const text = unicode(latex);
+          say(`${text}\n`);
+          const points = T.formatCodePoints(text);
+          if (points) say(gray(`${points}\n`));
+          if (interactive) copy(text);
+        } catch (e) { err(`syntax error: ${e.message}\n`); rc = 1; }
+      }
+      return rc;
+    }
+    case 'copy': {
+      let text;
+      if (cmd.exprs.length) {
+        try { text = cmd.exprs.map(unicode).join('\n'); } catch (e) { err(`syntax error: ${e.message}\n`); return 1; }
+      } else if (interactive && shell.texsh.last) text = shell.texsh.last;
+      else { err('usage: copy $…$ (nothing to copy yet)\n'); return 1; }
+      copy(text);
+      say(`${text}\n`);
+      say(gray(navigator.clipboard ? 'copied to the clipboard\n' : 'no clipboard access here\n'));
+      return 0;
+    }
+    case 'help':
+      say(T.HELP_LINES.filter((l) => !/^\s+(mode <m>|mouse drag)/.test(l)).join('\n') + '\n');
+      return 0;
+    case 'examples':
+      say(T.EXAMPLE_LINES.join('\n') + '\n');
+      return 0;
+    case 'message':
+      if (cmd.color === 'error') { err(`${cmd.text}\n`); return 1; }
+      say(gray(`${cmd.text}\n`));
+      return 0;
+    case 'mode':
+      if (cmd.mode === 'kitty') { err('kitty graphics need a real terminal; the browser renders Unicode cells\n'); return 1; }
+      return 0;
+    case 'history':
+    case 'clear':
+    case 'exit':
+      if (!interactive) { err(`'${cmd.kind}' only makes sense in the interactive shell\n`); return 1; }
+      if (cmd.kind === 'history') shell.texsh.history.slice(0, -1).forEach((h, i) => say(`${String(i + 1).padStart(4)}  ${h}\n`));
+      if (cmd.kind === 'clear') shell.term.clear();
+      if (cmd.kind === 'exit') shell.texsh = null;
+      return 0;
+  }
+  return 0;
+}
+
 // =============================================================== builtins
 
 const HELP = `\x1b[1mtobi@host\x1b[0m: a shell in your browser.
@@ -555,7 +648,11 @@ running against an in-memory filesystem. Changes vanish on reload.
 
   \x1b[1;32mls\x1b[0m cat tree grep head tail wc sort uniq rev echo seq date uname
   mkdir rmdir touch rm cp mv ln readlink stat basename dirname env
-  \x1b[1mbuiltins:\x1b[0m cd pwd open export unset history clear help which exit
+  \x1b[1mbuiltins:\x1b[0m cd pwd open export unset history clear help which exit texsh
+
+  \x1b[1mtexsh\x1b[0m              LaTeX math shell (github.com/tlehman/texsh): type
+                     $\\frac{1}{2}$ to render it, \`help\` inside for more
+  \x1b[1mtexsh -c\x1b[0m '$x^2$'   render one line and return
 
 Pipes (|), redirects (> >> < 2>), && || ; quoting, $VARS and globs work.
 Links are clickable; \`open NAME\` or \`cd\` into one follows it.
@@ -624,8 +721,30 @@ const BUILTINS = {
   },
   exit(argv, say) {
     say('logout\n');
-    setTimeout(() => { window.location.href = './index.html'; }, 300);
+    setTimeout(() => { window.location.href = '../index.html'; }, 300);
   },
+};
+BUILTINS.texsh = function texsh(argv, say, err, io) {
+  if (!window.TEXSH) { err('texsh: not available (texsh.js failed to load)\n'); return 1; }
+  const usage = `usage: texsh                 interactive LaTeX math shell
+       texsh -c '<line>'     evaluate one line and print the result
+       texsh -c 'unicode $\\mathbb{R}$'
+       texsh -c '$x^2 + y^2 = z^2$'
+`;
+  if (argv[1] === '-h' || argv[1] === '--help') { say(usage); return 0; }
+  if (argv[1] === '-c' || argv[1] === '--command') return texshLine(this, argv.slice(2).join(' '), say, err, false, io.tty[1]);
+  if (argv.length > 1) { err(usage); return 2; }
+  // piped input: evaluate each line, like `texsh -c`
+  if (io.stdin.length || !io.tty[1]) {
+    let rc = 0;
+    for (const line of new TextDecoder().decode(io.stdin).split('\n')) {
+      rc = texshLine(this, line, say, err, false, io.tty[1]) || rc;
+    }
+    return rc;
+  }
+  this.texsh = { history: [], last: '' };
+  say("texsh: LaTeX math shell. Wrap LaTeX in $…$; try 'examples', 'help', or 'exit'.\n");
+  return 0;
 };
 BUILTINS['xdg-open'] = BUILTINS.open;
 BUILTINS.logout = BUILTINS.exit;
@@ -644,7 +763,7 @@ function seed(fs, wasm, applets, programs) {
   help               what this shell can do
 
 The tools in /bin are a tiny coreutils written in C and compiled to
-WebAssembly; the source is in /programs/shell/ of
+WebAssembly; the source is in /shell/ of
 https://github.com/tlehman/tlehman.github.io
 `);
   fs.symlink(`${HOME}/github/tlehman`, 'https://github.com/tlehman/');
@@ -731,6 +850,7 @@ function attachInput(term, shell) {
 
   const interrupt = () => {
     term.echoLine('^C');
+    shell.texsh = null;
     shell.status = 130;
     shell.histPos = shell.history.length;
     prompt();
@@ -754,12 +874,24 @@ function attachInput(term, shell) {
     },
     'C-p': () => history(-1),
     'C-n': () => history(1),
+    // readline word motion; a word is a run of letters and digits
+    'M-b': () => {
+      const head = input.value.slice(0, input.selectionStart);
+      setValue(input.value, head.replace(/[\p{L}\p{N}]*[^\p{L}\p{N}]*$/u, '').length);
+    },
+    'M-f': () => {
+      const p = input.selectionStart;
+      const skip = /^[^\p{L}\p{N}]*[\p{L}\p{N}]*/u.exec(input.value.slice(p))[0].length;
+      setValue(input.value, p + skip);
+    },
   };
 
   input.addEventListener('keydown', (e) => {
     if (e.isComposing) return;
     let key = e.key;
     if (e.ctrlKey && !e.altKey && !e.metaKey && key.length === 1) key = `C-${key.toLowerCase()}`;
+    // Alt/Option: use the physical key, since on a Mac Option-B types ∫
+    else if (e.altKey && !e.ctrlKey && !e.metaKey && /^Key[A-Z]$/.test(e.code)) key = `M-${e.code.slice(3).toLowerCase()}`;
     else if (e.ctrlKey || e.altKey || e.metaKey) return;
     if (key === 'Enter' && e.shiftKey) return;
     // Ctrl-C copies when something is selected
@@ -856,7 +988,6 @@ async function boot() {
   seed(fs, wasm, applets, readPrograms(list));
   const shell = new Shell(term, fs);
   shell.modules.set(wasm, module);
-  shell.env.PWD = `${HOME}/programs`;
 
   const { prompt, submit } = attachInput(term, shell);
   prompt();
