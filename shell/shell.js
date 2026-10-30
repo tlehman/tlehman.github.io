@@ -8,8 +8,8 @@
 (() => {
 const { E, FS, FT, Node, Process, isURL } = window.WASI;
 
-const USER = 'tobi';
-const HOST = 'host';
+const USER = 'web';
+const HOST = 'tobi';
 const HOME = `/home/${USER}`;
 const HISTORY_KEY = 'programs-shell-history';
 
@@ -641,7 +641,7 @@ function texshLine(shell, line, say, err, interactive, tty = true) {
 
 // =============================================================== builtins
 
-const HELP = `\x1b[1mtobi@host\x1b[0m: a shell in your browser.
+const HELP = `\x1b[1mweb@tobi\x1b[0m: a shell in your browser.
 
 The commands in /bin are one C program compiled to WebAssembly (WASI),
 running against an in-memory filesystem. Changes vanish on reload.
