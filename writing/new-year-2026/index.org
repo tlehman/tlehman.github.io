@@ -11,6 +11,17 @@
 #+HTML_HEAD: <link rel="preconnect" href="https://fonts.googleapis.com">
 #+HTML_HEAD: <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 #+HTML_HEAD: <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet">
+#+HTML_HEAD: <meta property="og:type" content="article">
+#+HTML_HEAD: <meta property="og:site_name" content="Tobi's writing">
+#+HTML_HEAD: <meta property="og:title" content="Leaving Q1 of the 21st Century">
+#+HTML_HEAD: <meta property="og:url" content="https://tobilehman.com/writing/new-year-2026/">
+#+HTML_HEAD: <meta name="description" content="I still remember New Year&#x27;s Eve 1999, I was 11 years old, and I wasn&#x27;t sure if Y2K was going to turn my Furby into a Terminator or if nothing was going to happen.">
+#+HTML_HEAD: <meta property="og:description" content="I still remember New Year&#x27;s Eve 1999, I was 11 years old, and I wasn&#x27;t sure if Y2K was going to turn my Furby into a Terminator or if nothing was going to happen.">
+#+HTML_HEAD: <meta name="twitter:title" content="Leaving Q1 of the 21st Century">
+#+HTML_HEAD: <meta name="twitter:description" content="I still remember New Year&#x27;s Eve 1999, I was 11 years old, and I wasn&#x27;t sure if Y2K was going to turn my Furby into a Terminator or if nothing was going to happen.">
+#+HTML_HEAD: <meta property="og:image" content="https://tobilehman.com/writing/new-year-2026/21c.png">
+#+HTML_HEAD: <meta name="twitter:image" content="https://tobilehman.com/writing/new-year-2026/21c.png">
+#+HTML_HEAD: <meta name="twitter:card" content="summary_large_image">
 
 /December 31st, 2025/
 

@@ -160,6 +160,7 @@ def render_published(path):
         [
             "index.md",
             "--template=../template.html",
+            "--lua-filter=../social-card.lua",
             f"--math-method=katex:{KATEX_URL}",
             "-o",
             "index.html",

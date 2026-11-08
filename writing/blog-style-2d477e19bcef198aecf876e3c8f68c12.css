@@ -115,6 +115,17 @@ img {
     border-top: 1px solid #ccc;
 }
 
+/* The form is the last thing on the page, so on a phone there is nothing
+   below it for the browser to scroll up and the keyboard covers it. While
+   it has focus, add room underneath so it can sit above the keyboard. */
+.subscribe-form:focus-within {
+    padding-bottom: 60vh;
+}
+
+.subscribe-form input {
+    scroll-margin-bottom: 2em;
+}
+
 .subscribe-form label {
     display: block;
     margin-bottom: 0.5em;
