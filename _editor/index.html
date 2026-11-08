@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write</title>
+    <!-- server.py fills in the current blog-style-<hash>.css -->
+    <link rel="stylesheet" href="{{BLOG_CSS}}">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
+    <link rel="stylesheet" href="/writing/darkmode.css">
+    <script src="/writing/darkmode.js"></script>
+    <link rel="stylesheet" href="/_editor/dist/editor.css">
+</head>
+<body>
+    <aside class="drawer" id="drawer">
+        <div class="drawer-top">
+            <button class="new" type="button" data-new>+ New draft</button>
+            <button type="button" class="darkmode-toggle">Dark</button>
+        </div>
+        <h2>Drafts</h2>
+        <div id="drafts"></div>
+        <h2>Published</h2>
+        <div id="published"></div>
+    </aside>
+
+    <div class="toolbar" role="toolbar" aria-label="Formatting">
+        <button type="button" id="posts" title="Posts">☰ Posts</button>
+        <span class="sep"></span>
+        <button type="button" data-cmd="bold" class="bold" title="Bold (Ctrl+B)">B</button>
+        <button type="button" data-cmd="italic" class="italic" title="Italic (Ctrl+I)">I</button>
+        <button type="button" data-cmd="strike" class="strike" title="Strikethrough (Ctrl+Shift+S)">S</button>
+        <button type="button" data-cmd="code" class="mono" title="Inline code (Ctrl+E)">&lt;/&gt;</button>
+        <button type="button" data-cmd="link" title="Link (Ctrl+K)">Link</button>
+        <span class="sep"></span>
+        <button type="button" data-cmd="paragraph" title="Paragraph (Ctrl+Alt+0)">¶</button>
+        <button type="button" data-cmd="h2" title="Heading (Ctrl+Alt+2)">H2</button>
+        <button type="button" data-cmd="h3" title="Subheading (Ctrl+Alt+3)">H3</button>
+        <button type="button" data-cmd="bullets" title="Bulleted list (Ctrl+Shift+8)">•</button>
+        <button type="button" data-cmd="numbers" title="Numbered list (Ctrl+Shift+7)">1.</button>
+        <button type="button" data-cmd="quote" title="Quote (Ctrl+Shift+B)">“ ”</button>
+        <button type="button" data-cmd="codeblock" class="mono" title="Code block (Ctrl+Alt+C)">{ }</button>
+        <button type="button" data-cmd="rule" title="Divider">―</button>
+        <span class="sep"></span>
+        <button type="button" data-cmd="image" title="Image (or paste / drop one)">Image</button>
+        <button type="button" data-cmd="math" class="math" title="Inline math (Ctrl+M, or type $x$)">𝑥²</button>
+        <button type="button" data-cmd="displaymath" class="math" title="Display equation (Ctrl+Shift+M, or type $$x$$ on its own line)">∑</button>
+        <span class="sep"></span>
+        <button type="button" data-cmd="undo" title="Undo (Ctrl+Z)">↶</button>
+        <button type="button" data-cmd="redo" title="Redo (Ctrl+Shift+Z)">↷</button>
+        <span class="spacer"></span>
+        <span id="status" aria-live="polite"></span>
+        <button type="button" id="delete" class="danger" title="Delete this draft" hidden>Delete</button>
+        <a class="button" id="view" target="_blank" title="Open the published page" hidden>View ↗</a>
+        <button type="button" id="publish" class="primary" hidden>Publish</button>
+    </div>
+
+    <main id="main" hidden>
+        <small id="date"></small>
+        <h1 id="title" contenteditable="plaintext-only" spellcheck="true"></h1>
+        <div id="meta"></div>
+        <div id="content"></div>
+    </main>
+
+    <div class="empty" id="empty" hidden>
+        <p>Pick a post from the list, or start something new.</p>
+        <button type="button" data-new>+ New draft</button>
+    </div>
+
+    <input type="file" id="file" accept="image/*" multiple hidden>
+    <script type="module" src="/_editor/dist/editor.js"></script>
+</body>
+</html>

@@ -150,6 +150,40 @@ img {
     text-align: left;
 }
 
+/* Math (KaTeX). A display equation is a block as wide as the text column
+   (the full screen width minus the page gutter on phones); if the formula is
+   wider, it scrolls sideways inside its own box. Same for code blocks. */
+.math.display,
+.math-wide,
+.katex-display {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* .math-wide: an inline formula too long for the column; a script moves it
+   onto its own line as a scrolling block instead of overflowing the page. */
+.math-wide,
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.2em 0; /* room for tall glyphs, since overflow-y is hidden */
+    -webkit-overflow-scrolling: touch;
+}
+
+pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Last line of defence: nothing (an unbreakable inline formula, a wide
+   image, a long URL) may make the whole page scroll sideways. */
+html {
+    overflow-x: hidden; /* fallback for browsers without clip */
+    overflow-x: clip;
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
     body {

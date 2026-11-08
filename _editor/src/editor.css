@@ -1,0 +1,363 @@
+/* Editor chrome. The page itself uses the blog stylesheet, so the writing
+   area looks like the published post. */
+
+:root {
+  --ui: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bg: #fff;
+  --line: #ddd;
+  --muted: #666;
+  --hover: rgba(0, 0, 0, 0.06);
+  --active: rgba(0, 0, 0, 0.12);
+  --accent: #0645ad;
+  --danger: #b00020;
+}
+html.dark {
+  --bg: #1a1a1a;
+  --line: #444;
+  --muted: #999;
+  --hover: rgba(255, 255, 255, 0.08);
+  --active: rgba(255, 255, 255, 0.16);
+  --accent: #8ab4f8;
+  --danger: #ff8a80;
+}
+
+/* ---------------------------------------------------------------- toolbar */
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  margin: -40px -20px 1em;
+  padding: 8px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  font: 14px/1 var(--ui);
+}
+.toolbar button,
+.toolbar a.button {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.toolbar button:hover,
+.toolbar a.button:hover {
+  background: var(--hover);
+}
+.toolbar button.is-active {
+  background: var(--active);
+}
+.toolbar .sep {
+  width: 1px;
+  height: 20px;
+  margin: 0 4px;
+  background: var(--line);
+}
+.toolbar .spacer {
+  flex: 1;
+}
+.toolbar .bold { font-weight: 700; }
+.toolbar .italic { font-style: italic; font-family: Georgia, serif; }
+.toolbar .strike { text-decoration: line-through; }
+.toolbar .mono { font-family: ui-monospace, monospace; font-size: 13px; }
+.toolbar .math { font-family: "KaTeX_Main", Georgia, serif; font-size: 16px; }
+#status {
+  color: var(--muted);
+  padding: 0 8px;
+  white-space: nowrap;
+}
+#status.error {
+  color: var(--danger);
+  white-space: normal;
+}
+.toolbar .primary,
+.popover .primary {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+html.dark .toolbar .primary,
+html.dark .popover .primary {
+  background: #e0e0e0;
+  color: #1a1a1a;
+  border-color: #e0e0e0;
+}
+.toolbar .primary:hover {
+  background: #333;
+}
+.toolbar .danger:hover {
+  color: var(--danger);
+}
+[hidden] {
+  display: none !important;
+}
+/* Formatting buttons only make sense with a post open. */
+body:has(#main[hidden]) .toolbar [data-cmd],
+body:has(#main[hidden]) .toolbar .sep {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .toolbar {
+    margin: -20px -15px 1em;
+    padding: 6px 15px;
+  }
+}
+
+/* ---------------------------------------------------------------- page */
+
+#title {
+  outline: none;
+  margin-bottom: 0.2em;
+}
+#title:empty::before {
+  content: "Untitled";
+  color: var(--muted);
+}
+#meta {
+  font: 13px/1.4 var(--ui);
+  color: var(--muted);
+  margin-bottom: 2em;
+}
+
+.tiptap {
+  outline: none;
+  min-height: 50vh;
+  padding-bottom: 30vh;
+}
+.tiptap > * + * {
+  margin-top: 0;
+}
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--muted);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+.tiptap img {
+  display: block;
+  margin: 1.5em 0;
+  cursor: default;
+}
+.tiptap img.ProseMirror-selectednode {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.tiptap pre {
+  padding: 0.8em 1em;
+  border-radius: 4px;
+  background: var(--hover);
+  font-size: 0.8em;
+  overflow-x: auto;
+}
+.tiptap :not(pre) > code {
+  font-size: 0.85em;
+  padding: 0.1em 0.25em;
+  border-radius: 3px;
+  background: var(--hover);
+}
+.tiptap hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 2em 0;
+}
+.tiptap hr.ProseMirror-selectednode {
+  border-top-color: var(--accent);
+}
+.tiptap a {
+  cursor: text;
+}
+
+/* math */
+.tiptap .tiptap-mathematics-render {
+  cursor: pointer;
+  border-radius: 3px;
+}
+.tiptap .tiptap-mathematics-render:hover {
+  background: var(--hover);
+}
+.tiptap .ProseMirror-selectednode.tiptap-mathematics-render,
+.tiptap .ProseMirror-selectednode > .tiptap-mathematics-render {
+  outline: 2px solid var(--accent);
+}
+.tiptap div.tiptap-mathematics-render {
+  margin: 1em 0;
+  padding: 0.25em 0;
+}
+.tiptap .block-math-error {
+  white-space: pre;
+  overflow-x: auto;
+}
+.tiptap .block-math-error,
+.tiptap .inline-math-error {
+  color: var(--danger);
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+}
+
+/* ---------------------------------------------------------------- popover */
+
+.popover {
+  position: absolute;
+  z-index: 20;
+  width: min(440px, calc(100vw - 32px));
+  box-sizing: border-box;
+  padding: 10px;
+  background: var(--bg);
+  color: inherit;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  font: 14px/1.4 var(--ui);
+}
+.popover textarea,
+.popover input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: 14px/1.4 ui-monospace, monospace;
+  resize: vertical;
+}
+.popover.wide {
+  width: min(760px, calc(100vw - 32px));
+}
+.popover .preview {
+  min-height: 1.6em;
+  max-height: 50vh;
+  padding: 10px 2px 2px;
+  font-size: 18px;
+  overflow: auto;
+}
+/* Left-align so a formula wider than the popover starts at the left edge
+   and scrolls right, instead of being cut off on both sides. */
+.popover .preview .katex-display {
+  margin: 0;
+  overflow: visible;
+}
+.popover .preview .katex-display > .katex {
+  text-align: left;
+}
+.popover .row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.popover .hint {
+  margin-right: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+.popover button {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- drawer */
+
+.drawer {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 30;
+  width: min(340px, 85vw);
+  box-sizing: border-box;
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+  font: 15px/1.35 var(--ui);
+  transform: translateX(-105%);
+  transition: transform 0.15s ease;
+}
+.drawer.open {
+  transform: none;
+}
+.drawer h2 {
+  margin: 1.4em 0 0.4em;
+  font: 600 12px var(--ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.drawer-top {
+  display: flex;
+  gap: 8px;
+}
+.drawer .darkmode-toggle {
+  font-size: 14px;
+  padding: 0 10px;
+}
+.drawer .new {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.drawer .new:hover,
+.drawer a:hover {
+  background: var(--hover);
+}
+.drawer a {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.drawer a.current {
+  background: var(--active);
+}
+.drawer a span {
+  display: block;
+}
+.drawer a small {
+  font-size: 12px;
+}
+.drawer > div {
+  color: var(--muted);
+}
+
+.empty {
+  margin-top: 20vh;
+  text-align: center;
+  font: 16px/1.5 var(--ui);
+  color: var(--muted);
+}
+.empty button {
+  margin-top: 1em;
+  padding: 8px 16px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}

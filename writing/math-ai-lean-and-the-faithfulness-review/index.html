@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math, AI, Lean and the Faithfulness Review</title>
+    <link rel="stylesheet" href="/writing/blog-style-c95649ab0394022103d59996f0d4a44c.css">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
+    <link rel="stylesheet" href="/writing/darkmode.css">
+    <script src="/writing/darkmode.js"></script>
+    <link rel="stylesheet" href="/writing/annotations.css">
+    <script src="/writing/annotations.js" defer></script>
+    <script defer=""
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+    </script>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" />
+    <script>
+    // Runs after the KaTeX render above (listeners fire in order). An inline
+    // formula wider than its paragraph becomes a sideways-scrolling block
+    // (.math-wide in blog-style.css) instead of pushing past the page edge.
+    document.addEventListener("DOMContentLoaded", function () {
+        function fit() {
+            document.querySelectorAll(".math.inline").forEach(function (el) {
+                el.classList.remove("math-wide");
+                var box = el.parentElement.getBoundingClientRect();
+                if (el.getBoundingClientRect().right > box.right + 1) el.classList.add("math-wide");
+            });
+        }
+        fit();
+        if (document.fonts) document.fonts.ready.then(fit);
+        window.addEventListener("resize", fit);
+    });
+    </script>
+</head>
+<body>
+    <nav style="display: flex; align-items: center; gap: 10px; margin-bottom: 1em;">
+        <a href="/writing/"><img src="/img/android-chrome-192x192.png" alt="logo" style="height: 32px; width: 32px;"></a>
+        <a href="/writing/" style="font-size: 1.4em; font-weight: 600; text-decoration: none; color: #000;">Tobi's writing</a>
+        <a href="/" style="margin-left: auto; text-decoration: none; color: #000;">Home</a>
+        <button class="darkmode-toggle">Dark</button>
+    </nav>
+    <small>2026-11-07</small>
+    <h1>Math, AI, Lean and the Faithfulness Review</h1>
+<p>Back in September, <a
+href="https://openai.com/index/navier-stokes-solution/">OpenAI released
+their solution</a> to the million dollar Millennium prize problem, a
+solution to the <a
+href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations">Navier-Stokes
+equations</a> which blows up to <span class="math inline">\infty</span>
+in finite time. One month later, Bastounis et al released to the paper
+on <a href="https://arxiv.org/abs/2610.08144">arXiv</a> called
+"Navier-Stokes Lost in translation: Why Lean verification of AI
+autoformalisation does not guarantee correct natural language proofs".
+This demonstrated that the Lean code that OpenAI generated might have
+type-checked, but it didn't correspond to the natural language proof in
+the PDF that was meant for humans to read. In other words, the
+formalization was not faithful.</p>
+<p><span class="math display">\begin{aligned}
+  \text{Paper (Lemma 8.6, eq. 8.19):}\quad
+  &amp;\bigl\|\mathcal{N}^{-1}F\bigr\|_{C^m_y}
+    \le C_m\,\|F\|_{C^{\textcolor{#2F7FB5}{m+\mathbf{4}}}_y},
+  &amp;&amp;\sum_{k\in\mathbb{Z}^2}\frac{1}{(1+|k|)^{\textcolor{#2F7FB5}{\mathbf{3}}}}
+&lt; \infty \\[6pt]
+  \text{Lean (\texttt{norm\_derivativeWord\_inverse\_le}):}\quad
+  &amp;\bigl\|\mathcal{N}^{-1}F\bigr\|_{C^m_y}
+    \le K_m\,\|F\|_{C^{\textcolor{#C9442B}{m+\mathbf{5}}}_y},
+  &amp;&amp;\sum_{k\in\mathbb{Z}^2}\frac{1}{(1+|k_1|+|k_2|)^{\textcolor{#C9442B}{\mathbf{4}}}}
+&lt; \infty
+\end{aligned}</span></p>
+<p>The problem of converting a bunch of precise Lean code into a
+human-readable PDF is straightforward, this is like <a
+href="/writing/knuths-web-is-rewoven/">literate programming</a>. But the
+inverse is harder than the <a
+href="https://en.wikipedia.org/wiki/Halting_problem">Halting
+problem</a>.</p>
+<blockquote>
+<p>Solvability Complexity Index (SCI) hierarchy/arithmetical hierarchy
+(the SCI = ∞). Hence, informally, providing semantically faithful AI
+autoformalisation is harder than any computational problem including the
+Halting problem (which has SCI =1).</p>
+<p><a
+href="https://arxiv.org/abs/2610.08144">https://arxiv.org/abs/2610.08144</a></p>
+</blockquote>
+<p>The inverse process of going from natural language proof to formal
+language <a href="https://lean-lang.org/&#39;">Lean</a> code
+automatically using AI is called autoformalization.</p>
+<p>There is a backlog of mathematics from antiquity up through the
+present moment, the giants' shoulders upon which we stand, which still
+needs to be formalized and imported so we can pick up where they left
+off. No matter how smart the models get, they will still need
+hyper-specialized human reviewers to review those first attempts at
+autoformalization. Their review will not be for correctness of the Lean
+code, that's something the Lean kernel itself checks. Their review will
+be for the faithfulness of the mapping between the <span
+class="math inline">\LaTeX</span> paper with natural language prose and
+the L∃∀N code that resulted from the autoformalization process.</p>
+<p>I call this process the <strong>faithfulness review</strong>. The
+humans who do mathematics will use Lean's proof checker, but they will
+have to carefully review the faithfulness of the mapping between the
+paper and the Lean code.</p>
+<p>An example of how this might work is a UI where the paper is on the
+left and the formal code is on the right. Each mapping is a first class
+object, and it can be annotated with the human's input. When all the
+mappings are audited, if it all checks out, then the Lean certificate
+and the Faithfulness Review certificate can be published. This creates a
+solid foundation to build upon for future mathematical work.</p>
+<p><img src="83e659eafd51.png" /></p>
+<p>I am introducing a product that carries out this faithfulness review.
+If you are interested, subscribe to this newsletter to hear when it's
+ready. Until then,</p>
+<blockquote>
+<p>But prove all things; hold fast that which is good</p>
+<p>1 Thessalonians 5:21</p>
+</blockquote>
+<form
+  action="https://buttondown.com/api/emails/embed-subscribe/tobilehman"
+  method="post"
+  class="embeddable-buttondown-form subscribe-form"
+>
+  <label for="bd-email">Subscribe to TobiLehman.com</label>
+  <input type="email" name="email" id="bd-email" />
+  <input type="submit" value="Subscribe" />
+  <p>
+    <a href="https://buttondown.com/refer/tobilehman" target="_blank">
+      Powered by Buttondown.
+    </a>
+  </p>
+</form>
+<script data-goatcounter="https://tobilehman.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

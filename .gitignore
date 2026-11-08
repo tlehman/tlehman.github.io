@@ -12,3 +12,6 @@ math/grp/perms
 .DS_Store
 .env
 shell/texsh/vendor/
+_editor/node_modules/
+_editor/dist/
+__pycache__/

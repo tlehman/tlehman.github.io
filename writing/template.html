@@ -11,6 +11,26 @@
     <script src="/writing/darkmode.js"></script>
     <link rel="stylesheet" href="/writing/annotations.css">
     <script src="/writing/annotations.js" defer></script>
+$if(math)$
+    $math$
+    <script>
+    // Runs after the KaTeX render above (listeners fire in order). An inline
+    // formula wider than its paragraph becomes a sideways-scrolling block
+    // (.math-wide in blog-style.css) instead of pushing past the page edge.
+    document.addEventListener("DOMContentLoaded", function () {
+        function fit() {
+            document.querySelectorAll(".math.inline").forEach(function (el) {
+                el.classList.remove("math-wide");
+                var box = el.parentElement.getBoundingClientRect();
+                if (el.getBoundingClientRect().right > box.right + 1) el.classList.add("math-wide");
+            });
+        }
+        fit();
+        if (document.fonts) document.fonts.ready.then(fit);
+        window.addEventListener("resize", fit);
+    });
+    </script>
+$endif$
 </head>
 <body>
     <nav style="display: flex; align-items: center; gap: 10px; margin-bottom: 1em;">

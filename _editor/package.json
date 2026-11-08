@@ -1,0 +1,20 @@
+{
+  "name": "writing-editor",
+  "private": true,
+  "description": "WYSIWYG editor for /writing/, bundled by ./write.sh",
+  "scripts": {
+    "build": "esbuild src/editor.js --bundle --format=esm --minify --sourcemap --outdir=dist --log-level=warning --loader:.woff2=file --loader:.woff=file --loader:.ttf=file"
+  },
+  "dependencies": {
+    "@tiptap/core": "3.29.2",
+    "@tiptap/extension-image": "3.29.2",
+    "@tiptap/extension-mathematics": "3.29.2",
+    "@tiptap/extensions": "3.29.2",
+    "@tiptap/pm": "3.29.2",
+    "@tiptap/starter-kit": "3.29.2",
+    "katex": "0.16.22"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}
